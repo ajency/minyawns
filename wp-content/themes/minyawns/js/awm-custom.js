@@ -4,9 +4,137 @@
 
 jQuery(document).ready(function($){
 	
-	jQuery('#mycarousel').jcarousel({
-    	wrap: 'circular'
-    });
+	
+	 var ajaxurl =  global.ajaxurl; 	
+	// alert(ajaxurl);
+	 
+	 
+	 
+	/* POPUP LOGIN */ 	 
+	jQuery("#btn_login").live("click",function(){	 
+		
+		jQuery('#frm_login').submit();		
+		//var data = jQuery("#frm_login").serializeArray();
+		$.post(ajaxurl,{
+			action : 'popup_userlogin',
+			//data :  data 
+			pdemail :jQuery("#txt_email").val(),
+			pdpass :jQuery("#txt_pass").val(),
+		},
+		function(response){  
+			console.log(response);
+			 if(response.success==true)
+			{
+				//alert("login successfull..redirect page..");				
+				window.location.href = $("#hdn_siteurl").val()+'/dashboard/';
+			} 
+		})
+	
+	})
+	
+	
+	
+	
+	jQuery('#frm_login').validate({		
+		
+		rules : {
+
+			'txt_pass' : {  
+				required  : true, 
+				minlength : 3	
+			},
+			 
+			'txt_email' : {  
+				required  : true, 
+				minlength : 6,
+				email: true
+			} 
+
+		},
+		submitHandler : function(form){ 		
+		return false; 
+		}		
+	
+	});	
+	/*END POPUP LOGIN */
+	
+	
+	
+	/* POPUP SIGNUP */
+	jQuery("#btn_signup").live("click",function(){	 
+		
+		alert(jQuery("#signup_email").val()+jQuery("#signup_password").val()+jQuery("#signup_fname").val()+jQuery("#signup_lname").val());
+		
+		
+		jQuery('#frm_signup').submit();		
+		//var data = jQuery("#frm_login").serializeArray();
+		$.post(ajaxurl,{
+			action : 'popup_usersignup',
+			//data :  data 
+			pdemail_ :jQuery("#signup_email").val(),
+			pdpass_ :jQuery("#signup_password").val(),
+			pdfname_ :jQuery("#signup_fname").val(),
+			pdlname_ :jQuery("#signup_lname").val() 
+		},
+		function(response){  
+			console.log(response);
+			 if(response.success==true)
+			{
+				//alert("Registration  success...");				
+				//window.location.href = '/home/'+'?msg=succes';
+			} 
+		})
+	
+	})
+	
+	
+	
+	
+	jQuery('#frm_signup').validate({		
+		
+		rules : {
+
+			'signup_password' : {  
+				required  : true, 
+				minlength : 3	
+			},
+			 
+			'signup_email' : {  
+				required  : true, 
+				minlength : 6,
+				email: true
+			},
+			'signup_fname' : {  
+				required  : true, 
+				minlength : 2	
+			},
+			'signup_lname' : {  
+				required  : true, 
+				minlength : 2	
+			}
+
+		},
+		submitHandler : function(form){ 		
+		return false; 
+		}		
+	
+	});
+	
+	
+	
+	/*END POPUP SIGNUP */
+	
+	
+	
+	if(jQuery('#mycarousel').length>0)
+	 {
+	
+		jQuery('#mycarousel').jcarousel({
+	    	wrap: 'circular'
+	    });
+	}
+	
+	
 	$('.nav-toggle').click(function(e){
 		  
 		e.preventDefault();
