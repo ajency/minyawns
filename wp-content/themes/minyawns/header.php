@@ -25,7 +25,12 @@
 		<![endif]-->
 		
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-
+<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/bootstrap/css/bootstrap-responsive.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/flat-ui.css">
+                <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/style.css">
+                
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
 		<!-- end of wordpress head -->
@@ -33,6 +38,29 @@
 				
 	</head>
 	
-	<body <?php body_class(); ?>>
+	<body>
+   <div class=" pbl mtn">
+      <div class="bottom-menu  bottom-menu-inverse top-menu">
+        <div class="container">
+          <div class="row">
+            <div class="span2 brand">
+              <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"/> </a>
+            </div>
+			<div class="span6">
+			
+            </div>
+            <div class="span2">
+			
+            </div>
+
+            <div class="span2">
+				<a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	<a href="#mylogin"  data-toggle="modal">Login </a>
+						
+					  </div>
+          </div>
+        </div>
+      </div> <!-- /bottom-menu-inverse -->
+
+    </div>
 				
 		
