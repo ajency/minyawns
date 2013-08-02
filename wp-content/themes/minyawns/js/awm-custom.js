@@ -15,20 +15,7 @@ jQuery(document).ready(function($){
 		
 		jQuery('#frm_login').submit();		
 		//var data = jQuery("#frm_login").serializeArray();
-		$.post(ajaxurl,{
-			action : 'popup_userlogin',
-			//data :  data 
-			pdemail :jQuery("#txt_email").val(),
-			pdpass :jQuery("#txt_pass").val(),
-		},
-		function(response){  
-			console.log(response);
-			 if(response.success==true)
-			{
-				//alert("login successfull..redirect page..");				
-				window.location.href = $("#hdn_siteurl").val()+'/dashboard/';
-			} 
-		})
+		
 	
 	})
 	
@@ -51,7 +38,23 @@ jQuery(document).ready(function($){
 			} 
 
 		},
-		submitHandler : function(form){ 		
+		submitHandler : function(form){ 
+			
+			$.post(ajaxurl,{
+				action : 'popup_userlogin',
+				//data :  data 
+				pdemail :jQuery("#txt_email").val(),
+				pdpass :jQuery("#txt_pass").val(),
+			},
+			function(response){  
+				console.log(response);
+				 if(response.success==true)
+				{
+					//alert("login successfull..redirect page..");				
+					window.location.href = $("#hdn_siteurl").val()+'/dashboard/';
+				} 
+			})	
+			
 		return false; 
 		}		
 	
@@ -68,22 +71,7 @@ jQuery(document).ready(function($){
 		
 		jQuery('#frm_signup').submit();		
 		//var data = jQuery("#frm_login").serializeArray();
-		$.post(ajaxurl,{
-			action : 'popup_usersignup',
-			//data :  data 
-			pdemail_ :jQuery("#signup_email").val(),
-			pdpass_ :jQuery("#signup_password").val(),
-			pdfname_ :jQuery("#signup_fname").val(),
-			pdlname_ :jQuery("#signup_lname").val() 
-		},
-		function(response){  
-			console.log(response);
-			 if(response.success==true)
-			{
-				//alert("Registration  success...");				
-				//window.location.href = '/home/'+'?msg=succes';
-			} 
-		})
+		
 	
 	})
 	
@@ -114,7 +102,25 @@ jQuery(document).ready(function($){
 			}
 
 		},
-		submitHandler : function(form){ 		
+		submitHandler : function(form){ 	
+			
+		
+			$.post(ajaxurl,{
+				action : 'popup_usersignup',
+				//data :  data 
+				pdemail_ :jQuery("#signup_email").val(),
+				pdpass_ :jQuery("#signup_password").val(),
+				pdfname_ :jQuery("#signup_fname").val(),
+				pdlname_ :jQuery("#signup_lname").val() 
+			},
+			function(response){  
+				console.log(response);
+				 if(response.success==true)
+				{
+					//alert("Registration  success...");				
+					//window.location.href = '/home/'+'?msg=succes';
+				} 
+			})
 		return false; 
 		}		
 	
