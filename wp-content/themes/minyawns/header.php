@@ -12,6 +12,7 @@
 
         <title><?php wp_title('|', true, 'right'); ?></title>
 
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- media-queries.js (fallback) -->
@@ -122,9 +123,7 @@
             <b class="dislike">120</b>
             </a> 
             </div>
-
-
-            </div>
+           </div>
         </script>
         <script type="text/template" id="edit-profile">
           

@@ -610,13 +610,7 @@ a:hover {
     font-weight: bold;
     color: #8ed030;
   }
-  .Main-job .btn-job {
-    display: block;
-    background: #8ed030;
-    width: 70%;
-    margin: 10px auto;
-  }
-  .Main-job .label-small {
+  .Main-job \ .label-small {
     margin: 10px auto;
     display: block;
     width: 38%;

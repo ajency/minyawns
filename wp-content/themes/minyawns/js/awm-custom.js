@@ -5,6 +5,7 @@
 jQuery(document).ready(function($){
 	
 	
+
         jQuery('#user-popdown').popover(
 				{
 					placement : 'bottom',
@@ -12,30 +13,19 @@ jQuery(document).ready(function($){
 					content : '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="'+siteurl+'/profile" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" id="logout-button" class="popup_link"><i class="icon-unlock"></i> </a></span></div></div>',
 				}
 			);
+
 //	 var ajaxurl =  global.ajaxurl; 	
 	// alert(ajaxurl);
+ 
 	 
 	 
 	 
 	/* POPUP LOGIN */ 	 
-	jQuery("#btn_login").live("click",function(){	 
-		
+	jQuery("#btn_login").live("click",function(){
 		jQuery('#frm_login').submit();		
-		//var data = jQuery("#frm_login").serializeArray();
-		$.post(ajaxurl,{
-			action : 'popup_userlogin',
-			//data :  data 
-			pdemail :jQuery("#txt_email").val(),
-			pdpass :jQuery("#txt_pass").val(),
-		},
-		function(response){  
-			console.log(response);
-			 if(response.success==true)
-			{
-				//alert("login successfull..redirect page..");				
-				window.location.href = $("#hdn_siteurl").val();
-			} 
-		})
+
+		//var data = jQuery("#frm_login").serializeArray();		
+
 	
 	})
 	
@@ -58,7 +48,27 @@ jQuery(document).ready(function($){
 			} 
 
 		},
-		submitHandler : function(form){ 		
+		submitHandler : function(form){ 
+			jQuery("#div_loginmsg").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+			jQuery.post(ajaxurl,{
+				action : 'popup_userlogin',
+				//data :  data 
+				pdemail :jQuery("#txt_email").val(),
+				pdpass :jQuery("#txt_pass").val(),
+			},
+			function(response){  
+				console.log(response);
+				if(response.success==true)
+				{
+					//alert("login successfull..redirect page..");				
+					window.location.href = jQuery("#hdn_siteurl").val()+'/dashboard/';
+				} 
+				else
+				{
+					jQuery("#div_loginmsg").html(response.msg);
+				}	
+			})	
+			
 		return false; 
 		}		
 	
@@ -70,29 +80,13 @@ jQuery(document).ready(function($){
 	/* POPUP SIGNUP */
 	jQuery("#btn_signup").live("click",function(){	 
 		
-		alert(jQuery("#signup_email").val()+jQuery("#signup_password").val()+jQuery("#signup_fname").val()+jQuery("#signup_lname").val());
-		
+		//alert(jQuery("#signup_email").val()+jQuery("#signup_password").val()+jQuery("#signup_fname").val()+jQuery("#signup_lname").val());
 		
 		jQuery('#frm_signup').submit();		
 		//var data = jQuery("#frm_login").serializeArray();
-		$.post(ajaxurl,{
-			action : 'popup_usersignup',
-			//data :  data 
-			pdemail_ :jQuery("#signup_email").val(),
-			pdpass_ :jQuery("#signup_password").val(),
-			pdfname_ :jQuery("#signup_fname").val(),
-			pdlname_ :jQuery("#signup_lname").val() 
-		},
-		function(response){  
-			
-			 if(response.success==true)
-			{
-				//alert("Registration  success...");				
-				//window.location.href = '/home/'+'?msg=succes';
-		  //$("#close_button").trigger("click");   
-     
-                    } 
-		})
+
+		
+
 	
 	})
 	
@@ -123,7 +117,37 @@ jQuery(document).ready(function($){
 			}
 
 		},
-		submitHandler : function(form){ 		
+		submitHandler : function(form){ 	
+			
+			jQuery("#div_signupmsg").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+			jQuery.post(ajaxurl,{
+				action : 'popup_usersignup',
+				//data :  data 
+				pdemail_ :jQuery("#signup_email").val(),
+				pdpass_ :jQuery("#signup_password").val(),
+				pdfname_ :jQuery("#signup_fname").val(),
+				pdlname_ :jQuery("#signup_lname").val() 
+			},
+			function(response){  
+				console.log(response);
+				if(response.success==true)
+				{
+					jQuery("#div_signupmsg").html(response.msg);
+					jQuery("#signup_email").val("");
+					jQuery("#signup_password").val("");
+					jQuery("#signup_fname").val("");
+					jQuery("#signup_lname").val("");
+					 //alert("Registration  success...");				
+					//window.location.href = '/home/'+'?msg=succes';
+				} 
+				 else
+					  
+				{
+					 jQuery("#div_signupmsg").html(response.msg);
+					//alert("Registration  success...");				
+					//window.location.href = '/home/'+'?msg=succes';
+				} 	 
+			})
 		return false; 
 		}		
 	

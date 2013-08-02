@@ -736,8 +736,8 @@ table.qlabs_grid_container tbody.data_container tr.expanded td div.expanded .col
 	table.qlabs_grid_container tbody.data_container tr.data_odd:hover td.data_cell,
 	table.qlabs_grid_container tbody.data_container tr.highlighted td.data_cell
 		{
-		border-left: 0px !important;
-		border-right: 0px !important;
+		/*border-left: 0px !important;
+		border-right: 0px !important;*/
 		}
 		
 	/* --- Remove Tooltips --- */
@@ -1541,6 +1541,112 @@ table.qlabs_grid_container1 tbody.data_container tr.expanded td div.expanded .co
 		width: 360px; /* --- Overall Table Width --- */
 		}
 	
+.Main-job .awm_service_title{width: 21.3%;}
+.Main-job .awm_service_demand{width: 17.6%;}
+.Main-job .awm_service_supply{width: 19.5%;}
+.Main-job .awm_service_discount{width: 9.9%;}
+.awm_service_status{width:16%;}
+.Main-job .awm_service_arrow{width: 5%;display:none;}
+.services_tlt,td.awm_service_name{width: 40%;}
+td.awm_service_status{width: 21%;}
+.Main-job td.awm_service_action{display:none; text-align: center;width: 14.7%;}
+.services_act{text-align: center;width:25%;}
+.services_sts{width: 24%;}
+.Main-job  .awm_exchange_service_tlt{width: 23.1%;}
+.Main-job .awm_exchange_service_demand{width:22%;}
+.awm_exchange_service_supply{width:21%;}
+.Main-job  .awm_exchange_service_discount{width: 4%;}
+.awm_exchange_service_status{width:17.5%;}
+.Main-job  .awm_exchange_services_arrow{display:none;}
+.Main-job  .awm_exchange_services_action {display:none;width:13.1%;}
+.Main-job thead{
+	display:block !important
+}
+.Main-job thead tr td{
+	display:block !important
+}
+.Main-job #appendedInputButton-04 {
+width: 184px;
+}
+.jobs_menu {
+	width: 258px;
+}
+.footer_menu {
+	list-style: none;
+	margin: auto;
+	width: 272px;
+	text-align: center;
+}
+.Main-job .awm_service_title .logo-name{
+	font-size:11px !important;
+	font-family:arial!important;
+	text-align:center;
+	display: block;
+	line-height: 6px;
+	margin: auto;
+}
+.Main-job .awm_service_title img{
+visibility:hidden;
+}
+.Main-job thead tr {
+	display:block !important
+}
+.expanded  .service_tlt  thead{
+	display: block !important;
+}
+.expanded  .service_tlt  tr {
+	display: block !important;
+}
+.expanded  .service_tlt  tr td {
+	display: block !important;
+}
+.expanded .header_row {
+height: auto !important;
+}
+.expanded .header_row  h4{
+	font-size:15px;
+}
+.expanded .minywans_list b {
+	float: left;
+}
+.expanded .minywans_list .span9 {
+	margin-left:5px;
+}
+.tab-content {
+	padding: 10px 10px 10px !important;
+}
+.expanded .service_tlt img {
+	display:none;
+}
+.Main-job  .arrow-down {
+	margin-top: 30px;
+	margin-left: 2px;
+}
+.Main-job  .arrow-up {
+	margin-top: 30px;
+	margin-left: 2px;
+}
+.Main-job .awm_service_demand span {
+	font-size: 19px;
+	display: inline-block;
+	float: left;
+	margin-right: 2px;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+.Main-job .awm_service_discount ins {
+	font-size: 13px;
+}	
+.Main-job tbody.data_container tr.data_even td.data_cell div {
+font-size: 9px !important;
+text-align: center;
+}
+.Main-job  tbody.data_container tr.data_even td.data_cell div b {
+ font-size: 11px!important;
+ display:none;
+}
+	
+	
 	/* --- Change Apperance --- */
 	table,
 	thead,
@@ -1548,7 +1654,7 @@ table.qlabs_grid_container1 tbody.data_container tr.expanded td div.expanded .co
 	tr,
 	td
 		{ 
-		display: block;
+display: inline-block;
 		}
 		
 	/* --- Cell Works Like A Row --- */	
@@ -1968,38 +2074,39 @@ width:100%!important;
 width: 100%;
 }
 table.qlabs_grid_container tr td {
-display: block%!important;
+
 }
 h2.page-title{font-size:15px; margin-bottom:20px;line-height: 14px;}
 
 #no-more-tables table thead, #no-more-tables table thead tr.subheader_row th
-{display:block !important;}	
+{
+
+}	
 
 #no-more-tables table thead tr.subheader_row
-{display: none;
+{
 
 }	
 #no-more-tables table thead tr.subheader_row th
-{border: none;
-position: relative;
-padding-left: 50% !important;
-white-space: normal;
-text-align: left;
-
+{
+padding: 5px !important;
+line-height: 159% ;
+font-size:9px;
 }
 #no-more-tables table tbody{display:block !important;} 
 table.ins_table tbody tr td { border: none;
 position: relative;
 white-space: normal;
 }
-body table.qlabs_grid_container tbody.data_container tr.data_even td.data_cell{padding-left: 40%!important;top: 12px;}
+body table.qlabs_grid_container tbody.data_container tr.data_even td.data_cell{
+top: 0px;
+}
 
 table.ins_table{display: block;}
 table.ins_table tr.data_even{width:100%;}
 table.ins_table tr.data_even td{
-height:58px !important;
+height:43px !important;
 text-align: left;
-width: 60%;
 height: 100px;
 
 }
@@ -2016,7 +2123,7 @@ height: 100px;
 		font-size: 13px;
 		color: #395191;
 }
-td.awm_service_arrow{display:block!important;}
+
 body table.qlabs_grid_container tbody.data_container tr.data_even td.awm_service_arrow{
  margin-top:-20px;line-height: 44px!important;}
 td.awm_service_action .admin_service_action{margin-top:17px;line-height: 22px;}
@@ -2042,24 +2149,31 @@ td.awm_service_action .admin_service_action{margin-top:17px;line-height: 22px;}
 	color: white;
 }
 .duration_mob .span5{
-	float:left !important;
-	width:43%!important;
+
+margin-bottom: -9px;
+}
+.duration_mob .span5.mob-botm{
+	border-bottom: 2px solid #71DA2B;
+	margin-bottom: 3px;
+	padding-top: 3px;
+
 }
 .duration_mob .span2{
-	float:left !important;
-	width: 14%!important;
+
+display:none;
 }
 .rating{
 	text-align:center !important;
 }
 table.qlabs_grid_container tbody.data_container tr.data_even {
 
-border-bottom: 2px Solid #999;
+border-bottom: 1px Solid #ccc;
 }
 .duration_mob span {
-	font-size: 20px !important;
-	float: left;
+	font-size: 11px !important;
+	float: left!important;
 	margin-right: 5px!important;
+	margin-top:2px!important;
 }
 .duration_mob .ins_table .time-bold {
 font-size: 14px !important;
@@ -2067,10 +2181,7 @@ font-size: 14px !important;
 }
 	.duration_mob .row-fluid{
 		width:96%;
-	}
-	.arrow-down {
-	margin: 20px auto !important;
-	display:none;
+		margin-top:-5px;
 	}
 	
 	
@@ -2103,9 +2214,7 @@ table.ins_table tr.data_even td{
 table.ins_table, table.ins_table tbody, table.ins_table tbody tr {
 					display: block;
 }
-td.awm_service_arrow{
-			display:none!important;
-}
+
 #no-more-tables td:before { 
 			content: attr(data-title);
 }
