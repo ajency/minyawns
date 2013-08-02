@@ -35,7 +35,7 @@
 		<?php wp_head(); ?>
 		<!-- end of wordpress head -->
 
-				
+		<script> var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>' </script>		
 	</head>
 	
 	<body>

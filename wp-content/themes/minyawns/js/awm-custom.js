@@ -5,17 +5,15 @@
 jQuery(document).ready(function($){
 	
 	
-	 var ajaxurl =  global.ajaxurl; 	
-	// alert(ajaxurl);
+	 // var ajaxurl =  global.ajaxurl; 	
+	 // alert(ajaxurl);
 	 
 	 
 	 
 	/* POPUP LOGIN */ 	 
-	jQuery("#btn_login").live("click",function(){	 
-		
+	jQuery("#btn_login").live("click",function(){
 		jQuery('#frm_login').submit();		
-		//var data = jQuery("#frm_login").serializeArray();
-		
+		//var data = jQuery("#frm_login").serializeArray();		
 	
 	})
 	
