@@ -5,6 +5,13 @@
 jQuery(document).ready(function($){
 	
 	
+        jQuery('#user-popdown').popover(
+				{
+					placement : 'bottom',
+					html : true,
+					content : '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="'+siteurl+'/profile" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" id="logout-button" class="popup_link"><i class="icon-unlock"></i> </a></span></div></div>',
+				}
+			);
 //	 var ajaxurl =  global.ajaxurl; 	
 	// alert(ajaxurl);
 	 
@@ -26,7 +33,7 @@ jQuery(document).ready(function($){
 			 if(response.success==true)
 			{
 				//alert("login successfull..redirect page..");				
-				window.location.href = $("#hdn_siteurl").val()+'/dashboard/';
+				window.location.href = $("#hdn_siteurl").val();
 			} 
 		})
 	
@@ -77,12 +84,14 @@ jQuery(document).ready(function($){
 			pdlname_ :jQuery("#signup_lname").val() 
 		},
 		function(response){  
-			console.log(response);
+			
 			 if(response.success==true)
 			{
 				//alert("Registration  success...");				
 				//window.location.href = '/home/'+'?msg=succes';
-			} 
+		  //$("#close_button").trigger("click");   
+     
+                    } 
 		})
 	
 	})

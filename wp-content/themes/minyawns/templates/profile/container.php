@@ -1,19 +1,19 @@
 <div class="container">
     <div  id="main-content" class="main-content bg-white" style="height:900px;">
         <div class="breadcrumb-text">
-            <p>
+            <p id="bread-crumbs-id">
                 <a href="myjobs.html">View All Jobs</a>
-                My Profile
+                 
             </p>
         </div>
 
 
         <div id="profile-view" class="row-fluid min_profile">
-            <div id="loader1" class="modal_ajax" ><!-- Place at bottom of page --></div>
+           
          </div>
         
         <hr>
-        <div class="row-fluid">
+        <div id="my-history" class="row-fluid">
     <div class="span12">
         <section id="no-more-tables">
             <table class="qlabs_grid_container tablesorter jobs_table">		
@@ -41,7 +41,7 @@
                         <!-- table 1-->
                         <td colspan="7">
                             <table class="ins_table">
- <div id="loader1" class="modal_ajax_large_dashboard" ><!-- Place at bottom of page --></div>
+ <div id="loader2" class="modal_ajax_large_dashboard" ><!-- Place at bottom of page --></div>
                                
                             </table>
                         </td>
