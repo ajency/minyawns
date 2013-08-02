@@ -13,9 +13,7 @@
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.placeholder.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.stacktable.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/application.js"></script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.pep.js"></script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.dragsort-0.5.1.js"></script>
+
 
 	
 <script src="<?php echo get_template_directory_uri(); ?>/js/awm-custom.js"></script>
