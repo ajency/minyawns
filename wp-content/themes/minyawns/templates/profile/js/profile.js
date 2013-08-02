@@ -156,7 +156,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                     var html = template();//response.toJSON()
                     $(self.el).append(html);
                 }, save_user_details: function() {
-                    alert("dave");
+                   
                     var self = this;
                     this.usercollection.fetch({
                         data: {
