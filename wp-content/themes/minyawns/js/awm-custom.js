@@ -5,8 +5,11 @@
 jQuery(document).ready(function($){
 	
 	
-	 // var ajaxurl =  global.ajaxurl; 	
-	 // alert(ajaxurl);
+ 
+ 
+//	 var ajaxurl =  global.ajaxurl; 	
+	// alert(ajaxurl);
+ 
 	 
 	 
 	 

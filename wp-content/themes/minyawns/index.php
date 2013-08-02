@@ -123,7 +123,7 @@ get_header(); ?>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.dragsort-0.5.1.js"></script>
 	
 	
-<!--		<script src="<?php echo get_template_directory_uri(); ?>/js/awm-custom.js"></script>-->
+		<script src="<?php echo get_template_directory_uri(); ?>/js/awm-custom.js"></script>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.validate.min.js"></script>
 	
   </body>

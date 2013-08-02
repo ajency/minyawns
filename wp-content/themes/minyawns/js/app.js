@@ -34,6 +34,9 @@ require.config({
         },
         'jquery.stacktable': {
             deps: ['jquery-1.8.3.min']
+        },
+        'jquery.validate.min':{
+            deps:['jquery-1.8.3.min']
         }
     }
 });
@@ -50,6 +53,7 @@ require([
     'jquery.tagsinput',
     'jquery.placeholder',
     'jquery.stacktable',
+    'jquery.validate.min'
 ],
         function($, _, Backbone, Profile) {
 
