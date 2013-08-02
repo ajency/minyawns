@@ -34,10 +34,10 @@ require.config({
         },
         'jquery.stacktable': {
             deps: ['jquery-1.8.3.min']
-        },
-        'jquery.validate.min':{
-            deps:['jquery-1.8.3.min']
+        }, 'bootstrap-switch': {
+            deps: ['jquery-1.8.3.min']
         }
+
     }
 });
 var ProfileView = {};
@@ -48,25 +48,31 @@ require([
     '../templates/profile/js/profile',
     'bootstrap.min',
     'bootstrap-select',
+    'bootstrap-switch',
     'flatui-checkbox',
     'flatui-radio',
     'jquery.tagsinput',
     'jquery.placeholder',
-    'jquery.stacktable',
-    'jquery.validate.min'
+    'jquery.stacktable'
+
 ],
         function($, _, Backbone, Profile) {
 
 
             ProfileView = Backbone.Router.extend({
                 routes: {
-                    "": "roles", // #users
+                    "": "profile",
                     "profile": "profile"
 
                 }, profile: function(routes)
                 {
-                    var profile_view = new Profile.ProfileContianerView({'breadcrumb': 'Dashboard'});
+                    $("#profile-view").empty();
+                    $("#no-more-tables").find("tbody").empty();
+                    $('#main-content').append("<div id='profile-view' class='row-fluid min_profile'><div id='loader1' class='modal_ajax'></div></div>");
+                    var profile_view = new Profile.ProfileContianerView({'breadcrumb': 'My Profile'});
                     profile_view.render();
+                    $("#loader1").hide();
+                    $("#loader2").hide();
 
                 }
             });
