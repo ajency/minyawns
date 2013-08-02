@@ -37,6 +37,9 @@
                 
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
+                <script> var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>' </script>
+
+
 		<!-- end of wordpress head -->
 <script type="text/template" id="user-profile">
    

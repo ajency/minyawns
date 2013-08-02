@@ -37,8 +37,8 @@ function br_template_directory_uri($template_dir_uri, $template, $theme_root_uri
 }
 add_filter('template_directory_uri','br_template_directory_uri',100,3);
 
-wp_localize_script( 'jquery', 'global', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ,'template_directory_uri' => get_template_directory_uri()  ) );
-
+//wp_localize_script( 'jquery-1.8.3.min', 'global', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ,'template_directory_uri' => get_template_directory_uri()  ) );
+//
 
 
 //function to log in user
