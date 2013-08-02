@@ -57,7 +57,8 @@ function popup_userlogin()
 	
 	if (is_wp_error($user) )
 	{
-		$response = array('success' => false,'user'=>$user_->user_login.$pd_pass );
+		$msg = "Invalid email/password or verify your account with the verification link send to your email id. ";
+		$response = array('success' => false,'user'=>$user_->user_login.$pd_pass,'msg'=>$msg );
 		wp_send_json($response);
 	}
 	else
@@ -82,10 +83,32 @@ add_action('wp_ajax_nopriv_popup_userlogin','popup_userlogin');
 
 
 
+
+
+
+
+/*
+ * Function to generate user activation key string
+ *  
+ */
+function generate_user_activation_key($user_email)
+{
+	$salt = wp_generate_password(20); // 20 character "random" string
+	$key = sha1($salt . $user_email . uniqid(time(), true));
+	return($key);
+}
+
+
+
+
+
 //function to register new user
 function popup_usersignup()
 {
 	global $wpdb;
+	
+	$user_activation_key = generate_user_activation_key($userdata_['user_email']);
+	
 	$userdata_['user_login'] = $_REQUEST['pdemail_'];
 	$userdata_['user_email'] = $_REQUEST['pdemail_'];
 	$userdata_['user_pass'] = $_REQUEST['pdpass_'];
@@ -93,18 +116,20 @@ function popup_usersignup()
 	$userdata_['last_name'] = $_REQUEST['pdlname_'];
 	$userdata_['role']		= 'subscriber';
 	$userdata_['user_status'] = 2;
+	$userdata_['user_activation_key'] = $user_activation_key;
 	
 	
 	
 	
-	
-	$user_ =  get_user_by('email', $pd_email);
+	$user_ =  get_user_by('email', $userdata_['user_email']);
 	if($user_)
 	{
 		
 		$msg = "User with the email Id provided already exists";
-		$response= array('success'=>false,'mmsg'=>$msg);
+		$response= array('success'=>false,'msg'=>$msg);
 		wp_send_json($response);
+		
+		
 	
 	}
 	else
@@ -117,21 +142,44 @@ function popup_usersignup()
 		{
 			$msg = "Error occured while creating a new user. Please try again.";
 			$success = false;
+			$response = array("success"=>true,'msg'=>$msg);
+			wp_send_json($response);
 		}
 		else
 		{
-			$msg = "Error occured while creating a new user. Please try again.";
-			
+			/*$msg = "Error occured while creating a new user. Please try again.";			
 			$response = array('success' => true,'user'=>$user_->user_login.$pd_pass );
 			wp_send_json($response);
-			$success = true;						
+			$success = true;	*/	
+			$msg = "You have successfully registered. Please check your mail to complete registration";
+			 
+			$wpdb->update($wpdb->users, array('user_activation_key' => $user_activation_key), array('user_login' => $userdata_['user_email']));
+			$wpdb->update($wpdb->users, array('user_status' => 2), array('user_login' => $userdata_['user_email']));
+			
+			 
+			$subject = "You have successfully registered on Minyaqns";
+			$message="Hi, <br/><br/>You have successfully registered on <a href='".site_url()."' >Minyawns</a>.<br/><br/> To verify your account visit the following address";
+			$message.="<a href='".site_url()."/newuser-verification/?action=ver&key=".$user_activation_key."&email=". $userdata_['user_email'] . "'>veify link</a>\r\n";
+			//$message.= '<' . network_site_url("activate/?action=ver&key=$user_activation_key&email=" . $userdata_['user_email']) . ">\r\n";
+			$message.="<br/><br/> Regards
+					<br/>Minyawns Team<br/> ";
+		 
+			
+			add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
+			wp_mail($userdata_['user_email'], $subject,$message);
+			
+			
+			
+			$response = array("success"=>true,'msg'=>$msg,'user'=>$user_->user_login,'userdata'=>$userdata_,'ret_userid'=>$user_id);
+			wp_send_json($response);
+			
+			
 		}
 		
 		 
 
 		 
-		$response = array("success"=>true,'user'=>$user_->user_login,'userdata'=>$userdata_,'ret_userid'=>$user_id);
-		wp_send_json($response);
+		
 	}//end else
 
 
@@ -174,3 +222,28 @@ function minyawns_initial_checks()
 }
 
 add_action('init','minyawns_initial_checks');*/
+
+
+
+
+add_filter('wp_authenticate_user', 'myplugin_auth_login',10,2);
+function myplugin_auth_login ($user, $password) {
+	//do any extra validation stuff here
+	global $wpdb;
+	
+	$user_table = $wpdb->base_prefix.'users';
+	//$res_verify_user =    $wpdb->get_results($wpdb->prepare("SELECT count(user_login) as user_count FROM wp_users WHERE user_login =%s AND user_status=0 ",$user),OBJECT);
+	$res_verify_user = $wpdb->get_results( "SELECT count(user_login) as user_count FROM wp_users WHERE user_login ='".$user->user_login."' AND user_status=0 ",OBJECT );
+	if($res_verify_user)
+	{
+		foreach($res_verify_user as $res_verify_usr)
+		{	if($res_verify_usr->user_count>0)
+		 		return $user;
+		 
+		}
+	}
+	else
+		return false;
+	
+	
+}

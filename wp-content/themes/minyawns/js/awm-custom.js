@@ -40,8 +40,8 @@ jQuery(document).ready(function($){
 
 		},
 		submitHandler : function(form){ 
-			
-			$.post(ajaxurl,{
+			jQuery("#div_loginmsg").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+			jQuery.post(ajaxurl,{
 				action : 'popup_userlogin',
 				//data :  data 
 				pdemail :jQuery("#txt_email").val(),
@@ -49,11 +49,15 @@ jQuery(document).ready(function($){
 			},
 			function(response){  
 				console.log(response);
-				 if(response.success==true)
+				if(response.success==true)
 				{
 					//alert("login successfull..redirect page..");				
-					window.location.href = $("#hdn_siteurl").val()+'/dashboard/';
+					window.location.href = jQuery("#hdn_siteurl").val()+'/dashboard/';
 				} 
+				else
+				{
+					jQuery("#div_loginmsg").html(response.msg);
+				}	
 			})	
 			
 		return false; 
@@ -67,8 +71,7 @@ jQuery(document).ready(function($){
 	/* POPUP SIGNUP */
 	jQuery("#btn_signup").live("click",function(){	 
 		
-		alert(jQuery("#signup_email").val()+jQuery("#signup_password").val()+jQuery("#signup_fname").val()+jQuery("#signup_lname").val());
-		
+		//alert(jQuery("#signup_email").val()+jQuery("#signup_password").val()+jQuery("#signup_fname").val()+jQuery("#signup_lname").val());
 		
 		jQuery('#frm_signup').submit();		
 		//var data = jQuery("#frm_login").serializeArray();
@@ -105,8 +108,8 @@ jQuery(document).ready(function($){
 		},
 		submitHandler : function(form){ 	
 			
-		
-			$.post(ajaxurl,{
+			jQuery("#div_signupmsg").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+			jQuery.post(ajaxurl,{
 				action : 'popup_usersignup',
 				//data :  data 
 				pdemail_ :jQuery("#signup_email").val(),
@@ -116,11 +119,23 @@ jQuery(document).ready(function($){
 			},
 			function(response){  
 				console.log(response);
-				 if(response.success==true)
+				if(response.success==true)
 				{
-					//alert("Registration  success...");				
+					jQuery("#div_signupmsg").html(response.msg);
+					jQuery("#signup_email").val("");
+					jQuery("#signup_password").val("");
+					jQuery("#signup_fname").val("");
+					jQuery("#signup_lname").val("");
+					 //alert("Registration  success...");				
 					//window.location.href = '/home/'+'?msg=succes';
 				} 
+				 else
+					  
+				{
+					 jQuery("#div_signupmsg").html(response.msg);
+					//alert("Registration  success...");				
+					//window.location.href = '/home/'+'?msg=succes';
+				} 	 
 			})
 		return false; 
 		}		
