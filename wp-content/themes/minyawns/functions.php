@@ -234,7 +234,7 @@ function myplugin_auth_login ($user, $password) {
 	
 	$user_table = $wpdb->base_prefix.'users';
 	//$res_verify_user =    $wpdb->get_results($wpdb->prepare("SELECT count(user_login) as user_count FROM wp_users WHERE user_login =%s AND user_status=0 ",$user),OBJECT);
-	$res_verify_user = $wpdb->get_results( "SELECT count(user_login) as user_count FROM wp_users WHERE user_login ='".$user->user_login."' AND user_status=0 ",OBJECT );
+	$res_verify_user = $wpdb->get_results( "SELECT count(user_login) as user_count FROM $user_table WHERE user_login ='".$user->user_login."' AND user_status=0 ",OBJECT );
 	if($res_verify_user)
 	{
 		foreach($res_verify_user as $res_verify_usr)
