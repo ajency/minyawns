@@ -1,0 +1,878 @@
+/*
+Theme Name:     Minyawans
+Theme URI:      http://www.Minyawans.com/
+Description:    Theme for Minyawans
+Author:         Amit for Ajency.in
+Author URI:     http://ajency.in/
+Template:       Minyawans
+Version:        0.1.0
+*/
+
+
+
+/****Webfonts****/
+
+
+/****Sitewide Variables****/
+@green: #8ED030;
+@black:#000000;
+@c-grey: #575757;
+@error-red: #B94A48;
+@l-grey: #F8F8F8;
+@3-grey: #333333;
+a{text-decoration:none;}
+a:hover{text-decoration:none !important;}
+.site_link{
+	text-align:center;
+	color: #9B9696;
+	font-size: 12px;
+	line-height: 22px;
+}
+.request_link{
+	border-bottom: 1px dotted #C4C0C0;
+}
+.bg-white{
+	background:#fff;
+	border:1px solid #ccc;
+	padding: 5px;
+}
+.btn-apply{
+	width: 64%;
+	margin-top: -87px;
+	margin-left: 59px;
+	background:@green !important;
+}
+.bottom-arrow{
+	margin: auto;
+	display: block;
+	margin-top: -22px;
+}
+.mobile_like_btn{
+	display:none;
+}
+.border-color{
+	border-top:1px solid #c9c9c9;
+}
+.btn-job{
+	display:none;
+	background:@green;
+}
+.green-btn{
+	background-color: @green !important;
+	width: 14%;
+	margin: auto;
+	font-weight: bold;
+	&:hover{
+		background-color: #74B21B !important;
+	}
+}
+.social-icon{
+	width: 156px;
+	margin: auto;
+	margin-top: 8px;
+	margin-bottom: 10px;
+	img{
+		&:hover{
+			opacity:0.5;
+		}
+	}
+}
+.jobs_menu {
+	margin: auto;
+	width: 304px;
+	li{
+		a{
+			background: #FFF;
+			border-radius: 0px;
+			border: 1px solid #CCC;
+			border-width:0px;
+			font-size: 20px;
+			color: @green;
+			margin-right: 6px;
+			&:hover {
+				color: #FFF;
+				background: @green;
+			}
+			&:focus {
+				color: #FFF;
+				background: @green;
+			}
+		}
+	
+	}
+		li.active{
+			margin-bottom: -3px;
+		a{
+			color: #FFF;
+			background: @green;
+			border-width: 0px;
+			&:hover {
+				color: #FFF;
+				background: @green;
+				border-width: 0px;
+			}
+			&:focus {
+				color: #FFF;
+				background: @green;
+				border-width: 0px;
+			}
+		}
+	
+	}
+
+}
+
+.jobs_table{
+	.ratings{
+		font-size: 33px;
+		font-weight: bold;
+		color: @green;
+}
+	
+
+	.header_cell{
+		i{
+			font-size: 52px;
+			color: #CCC;
+			float: left;
+			margin-right: 9px;
+		}
+		.page-title{
+			font-size: 27px;
+			font-weight: 600;
+			color: #7B7B79;
+		}
+		.select-role{
+			margin-top: 8px;
+			.btn-warning{
+				background-color: #C0C0BC !important;
+			}
+		}
+	}
+
+}
+.ins_table{
+
+	.awm_service_title{
+		img{
+			margin:auto;
+			display:block;
+			-webkit-filter: grayscale(100%);
+			opacity: 0.5;
+		}
+	}
+	.time-box{
+		 margin-left: 22px; 
+	}
+	.amount{
+		display:block;
+	}
+	.time-bold{
+		font-size: 19px !important;
+		line-height: 34px;
+	}
+	.header_cell{
+		border-bottom: 1px solid #E0DEDE;
+	}
+	
+}
+.minywans_list{
+		font-size:13px !important;
+		
+		b{
+			float: right;
+			color: #7E7A7A!important;
+		}
+		.span9{
+			font-size:13px !important;
+		}
+	}
+.awm_single_services{
+background: #F8F8F8!important;
+}
+.footer_menu{
+	list-style: none;
+	margin: auto;
+	width: 355px;;
+	li{
+			display:inline-block;
+			margin-left:10px;
+			margin-left: 16px;
+			a{
+			color: #817C7C;
+		text-transform: uppercase;
+		font-size: 12px;
+			}
+	}
+}
+
+.frm_job{
+	.control-label {
+			width: 80px ;
+	}
+	.controls {
+		margin-left: 110px;
+		}
+		.input-datepicker{
+			.btn{
+			padding: 4px 6px 10px 12px;
+			}
+		}
+	.hasDatepicker{
+		width:80%!important;
+		
+	}	
+	.input-prepend{
+		width: 27%;
+		input{
+			width: 80%;
+		}
+	}
+	.timepicker{
+		width:33% !important;
+	}
+	.ui-spinner{
+		width:5%;
+	}
+}
+
+.awm_single_service_name{
+	.label{
+		margin-top: 4px;
+		background: #E2E2E2;
+	}
+}
+
+.min_profile{
+	.change-avtar{
+		position:relative;
+		span{
+			font-size: 13px;
+			color: #666;
+			background: rgba(255, 255, 255, 0.8);
+			position: absolute;
+			left: 0px;
+			bottom: 0px;
+			display: none;
+			width: 100%;
+			text-align: center;
+			height: 20px;
+			line-height: 20px;
+		}
+		&:hover{
+				span{
+				display:block!important;
+			}
+		}
+	}
+	.edit{
+		font-size: 15px;
+	}
+	.profile-list{
+		.span2{
+			margin-left:0px !important;
+		}
+		.label-small{
+			margin-bottom: 6px;
+		}
+		
+	}
+.like_btn{
+			width: 120px; height: 120px; border-radius: 100%; background: #FAFAFA; border: 5px solid #F1F1F1;
+			i{
+				font-size: 35px;
+				line-height: 54px;
+			}
+			.icon-thumbs-up{
+				margin-left: 23px;
+				margin-right: 8px;
+			}
+			.like{
+				padding: 4px;
+				margin-left: 19px;
+				line-height: 16px;
+				color: #B9B8B8;
+			}
+			.dislike{
+				padding: 4px;
+				line-height: 16px;
+				color: #B9B8B8;
+			}
+			.icon-thumbs-down{
+				color: #F65151;
+			}
+		}
+}
+
+.list-jobs{
+	border: 1px solid #E9E4E4;
+	background: #EEE;
+	margin-bottom:20px;
+	.jobs-details{
+	background:url(../images/tablepsd_08.png);
+	border-bottom: 2px solid #CCC;
+
+	
+		.img-logo{
+				border-right: 1px solid #E6E6E6;
+				height:55px;
+			img{
+				width:60%;
+				display:block;
+				-webkit-filter: grayscale(100%);
+				opacity:0.5;
+				margin-top: 14px !important;
+				margin:auto;
+			}
+		}
+		.minyawns-select{
+				border-right: 1px solid #E6E6E6;
+				height:55px;
+			span{
+				font-size: 37px;
+				text-align: center;
+				display: block;
+				color: #AEB1B4;
+				font-weight: bold;
+				float: left;
+				margin-right: 15px;
+				margin-left: 10px;
+				margin-top: 8px;
+				font-family: arial;
+			}
+			 div {
+			color: #888585;
+			font-size: 13px;
+			line-height: 57px;
+			font-weight: bold;
+				b{
+					border-bottom: 1px dotted #9B9999;
+					padding-bottom: 2px;
+				}
+			}
+		
+		}
+		.job-complete{
+		
+			font-family: arial;
+			font-weight: bold;
+			font-size: 18px;
+			padding: 17px;
+			margin-left: 20px;
+			color:@green;
+		
+		}
+		.jobs-date{
+			border-right: 1px solid #E6E6E6;
+				height:55px;
+				.posteddate{
+					color: #BEBBBB;
+					margin-bottom: 5px;
+					font-weight: bold;
+					margin-top: 5px;
+					font-size: 11px;
+					span{
+						color: #BEBBBB;
+					}
+				}
+				.jobsdate{
+					font-weight: bold;
+					font-size: 17px;
+					font-family:arial;
+				}
+		}
+		.job-duration{
+		border-right: 1px solid #E6E6E6;
+				height:55px;
+				.row-fluid{
+				margin-top: 11px;
+			span{
+				font-size: 27px;
+				text-align: left;
+				color: #AEB1B4;
+				display: block;
+				font-weight: bold;
+				float: left;
+				margin-right: 9px;
+				
+			}
+			.time-bold{
+				font-size: 19px !important;
+               line-height: 34px;
+			}
+			}
+		}
+		.wages{
+			text-align: left;
+			font-family: arial;
+			font-size: 27px;
+			font-weight: bold;
+			color: @green;
+			line-height: 32px;
+			line-height: 54px;
+			/*color: #B4B2B2;*/
+			margin-left: 12px;
+		}
+		}
+		.expand{
+			margin-left:0px;
+			background: #F8F8F8 ;
+			width: 96%;
+			margin-left: 2%;
+			margin-right: 2%;
+			border: 1px solid #E0E0E0;
+			display: block;
+			float: left;
+			padding: 10px 0px 10px 0px;
+			margin-top: 1%;
+			margin-bottom: 1%;
+			position: relative;
+			
+			
+				.details{
+				border-right:1px solid #ccc;
+				position: relative;
+				
+					.span4{
+						img{
+								margin:auto;
+								display:block;
+						}
+					}
+					
+					.span8{
+						font-size: 12px;
+						line-height: 19px;
+						color: #857F7F;
+					}
+					.arrow-left{
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						margin: auto;
+						right: -40px;
+					}
+					
+				}
+				
+				
+				.left-border{
+					border-left:1px solid #ccc;
+					
+				}
+				.span4{
+						.btn-success{
+						width: 70%;
+						margin-top: 87px;
+						background: @green;
+						margin-left: 42px;
+						}
+						.btn-rate{
+						width: 70%;
+						margin-top: 37px;
+						
+						margin-left: 42px;
+						}
+						.btn-apply{
+						width: 70%;
+						margin-top: 56px;
+						margin-left: 42px;
+						}
+						.btn-unapply{
+						width: 70%;
+						margin-left: 42px;
+						}
+						.like_btn{
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							margin: auto;
+							height: 41px;
+							b{
+								font-size: 20px;
+								margin-left: 5px;
+								margin-right:10px;
+							}
+							a{
+								margin-left: 6px;
+								font-size: 26px;
+							}
+							.icon-thumbs{
+							color: #F55568;
+							}
+						}
+					}
+					.minyawansgrid{
+						
+						.span6{
+							margin-left: 8px;
+							border-bottom: 1px dotted#CCC;
+							margin-bottom: 5px;
+							img{
+								width: 11%;
+								padding: 5px;
+							}
+							b{
+								width: 157px;
+								display: inline-block;
+							}
+							.icon-thumbs-up{
+								margin-left:20px;
+							}
+							.icon-thumbs{
+								margin-left:10px;
+								color:#F65151;
+							}
+							&:hover{
+								cursor:pointer;
+								background: #EEE9E9;
+							}
+						}
+					}
+		}
+}
+
+.single-jobs{
+
+	.jobdesc{
+				
+				.jobsimg{
+						img{
+								margin:auto;
+								display:block;
+						}
+					}
+					.job-details{
+						font-size: 12px;
+						line-height: 19px;
+						color: #857F7F;
+					}
+				
+			}
+			.minyawns-grid{
+				width: 98%;
+				margin: auto;
+				
+				.thumbnails{
+					margin-left: 31px;
+					.span3{
+						margin-right: 16px;
+						margin-left:0px !important;
+						.thumbnail{
+							height:480px;
+							position:relative;
+							.caption{
+								img{
+									width: 55%;
+									margin: auto;
+									display: block;
+									border-radius: 100%;
+									-moz-border-radius: 100%;
+									-webkit-border-radius: 100%;
+									border: 5px solid #CCC;
+								}
+							}
+							.rating{
+								width: 50%;
+								margin: auto;
+								padding: 10px;
+						.icon-thumbs-up{
+								margin-left:0px;
+							}
+							.icon-thumbs{
+								margin-left:10px;
+								color:#F65151;
+								}
+							}
+							h4{
+							font-size: 19PX;
+							text-align: center;
+							font-weight: bold;
+							}
+							.collage{
+								text-align: center;
+								font-size: 12px;
+								margin-bottom: 10px;
+								font-weight:bold;
+							}
+							.social-link{
+							text-align: center;
+							font-size: 12px;
+							margin-bottom: 10px;
+							}
+							.label-small{
+								margin-bottom: 5px;
+								padding: 5px;
+							}
+							hr{
+								margin: 13px 0;
+								border: 0;
+								border-top: 1px solid #E2E2E2;
+							}
+							.dwn-btn{
+								position: absolute;
+								bottom: 7px;
+								width: 89%;
+								.onoffswitch{
+									margin-left:37px;
+								}
+								.well-done{
+									background:@green;
+									padding:5px;
+									margin-bottom:10px
+								}
+								.terrible{
+									padding:5px;
+									margin-bottom:10px
+								}
+								
+							}
+							
+						
+						}
+						 &:hover{
+					background:#fff;
+					cursor:pointer;
+						.caption{
+								img{
+									border: 7px solid @green;
+								}
+							}
+					
+						}
+					}
+				
+				}
+			}
+}
+
+.frm-edit{
+	.control-label {
+		width: 175px;
+		}
+		.controls {
+			margin-left: 200px;
+				.input{
+					width: 300px;
+				}
+				.tagsinput {
+					width: 60%;
+					margin-bottom: 1px;
+				}
+			}
+}
+
+
+/* mobile resonsive */
+@media (max-width: 767px) {
+.pagination{
+	margin-left:0px !important;
+}
+.jobs_menu {
+	width: 274px;
+		li{
+			float:left;
+			&:hover{
+				border:0px;
+				border-radius:0px
+			}
+			a{
+				border-radius: 0px;
+				margin-bottom: 2px;
+				&:active{
+					border-radius: 0px;
+					border:0px;
+					margin-right: 5px;
+					margin-bottom: 2px;
+				}
+				&:hover{
+					border-radius: 0px;
+					border:0px;
+					margin-right: 5px;
+					margin-bottom: 2px;
+				}
+			}
+		}
+	}
+	
+.Main-job{
+	
+	.ratings{
+		font-size: 33px;
+		font-weight: bold;
+		color: @green;
+}
+\
+
+	.label-small {
+		margin: 10px auto;
+		display: block;
+		width: 38%;
+		text-align: center;
+	}
+
+	.header_cell{
+		i{
+			font-size: 33px;
+			color: #CCC;
+			float: left;
+			margin-right: 9px;
+		}
+		.page-title{
+			font-size: 20px;
+			font-weight: 600;
+			color: #7B7B79;
+		}
+		.select-role{
+			margin-top: 8px;
+			.btn-warning{
+				background-color: #C0C0BC !important;
+			}
+		}
+	}
+	
+	.header_row {
+		height: 140px !important;
+	}
+
+}
+
+	.container{
+		.brand{
+			img{
+				margin:auto;
+				display:block;
+			}
+			
+		}
+		.notify{
+				width: 22%;
+				margin: auto;
+				#logged-in {
+					float: left;
+					margin-right:5px;
+				}
+			}
+			.profile-list{
+				.span2{
+					font-weight:bold;
+				}
+				.span10{
+					color: #ADABAB;
+				}
+			}
+			.like_btn{
+				display:none;
+			}
+			.mobile_like_btn{
+				display:block;
+				border: 1px dotted#CCC;
+				padding: 5px;
+				 a{
+					margin-right: 10px;
+					font-size: 19px;
+				 }
+				 a.red{
+					color:#F65151;
+				 }
+			}
+	}
+.footer_menu{
+	list-style: none;
+	margin: auto;
+	width: 319px;
+	li{
+			display:inline-block;
+			margin-left:12px;
+			
+			a{
+			color: #817C7C;
+		text-transform: uppercase;
+		font-size: 11px;
+			}
+	}
+}
+	.social-icon {
+	width: 156px;
+	margin: auto;
+	margin-top: 8px;
+	margin-bottom: 4px;
+	}
+	.form-horizontal{
+		.control-label{
+			font-weight:bold;
+			float: none;
+			text-align: left;
+		}
+		.controls {
+			margin-left: 0px;
+				input{
+					height: 30px;
+					margin: 1px 0;
+				}
+					textarea{
+					height: 100px;
+					margin: 1px 0;
+				}
+			}
+			.form-group{
+				label{
+					font-size:11px;
+				}
+			}
+			.input-datepicker .btn {
+				margin-top: 1px;
+			}
+			.input-prepend {
+				width: 67%;
+				}
+				.timepicker{
+					margin-top: 10px !important;
+					display: inline-block;
+				}
+		}
+		
+	
+}
+/* TABLET resonsive */
+@media (min-width: 768px) and (max-width: 979px) {
+.footer_menu{
+	list-style: none;
+	margin: auto;
+	width: 45%;
+	li{
+			display:inline-block;
+			margin-left:12px;
+			
+			a{
+			color: #817C7C;
+		text-transform: uppercase;
+		font-size: 11px;
+			}
+	}
+}
+	.social-icon {
+	width: 22%;
+	margin: auto;
+	margin-top: 8px;
+	margin-bottom: 4px;
+	}
+	.form-horizontal{
+		.btn-inverse{
+			font-size: 13px;
+		}
+			.hasDatepicker {
+				width: 69%!important;
+				
+				}
+				.input-datepicker  {
+				width: 69%!important;
+				margin-top: 10px !important;
+					display: inline-block;
+			}
+			.timepicker{
+					margin-top: 10px !important;
+					display: inline-block;
+				}
+	}
+}
