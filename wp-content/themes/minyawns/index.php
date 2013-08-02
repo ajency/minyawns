@@ -31,6 +31,7 @@ get_header(); ?>
     <h4 id="myModalLabel">Sign Up to <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"/> </h4>
   </div>
   <div class="modal-body">
+  	<div id="div_signupmsg" ></div>
     <div class="row-fluid">
 		<div class="span6"> 
 		
@@ -38,7 +39,7 @@ get_header(); ?>
 				<h6 class="align-center" style=" margin-bottom: 0px; ">
 				Create an Account</h6>
 		<p class="align-center">Fill out the required information Below</p>
-				<div id="div_signupmsg"></div>
+		
 				<div class="control-group ">
 		            <input type="text" value="" name="signup_email"  id="signup_email"  placeholder="Email Address" class="span3">
 		        </div>

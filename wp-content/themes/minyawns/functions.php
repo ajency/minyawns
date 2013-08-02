@@ -117,7 +117,7 @@ function popup_usersignup()
 	if($user_)
 	{
 		
-		$msg = "User with the email Id provided already exists";
+		$msg = "<div class='alert alert-error alert-box'>  <button type='button' class='close' data-dismiss='alert'>&times;</button>User with the email Id provided already exists</div>";
 		$response= array('success'=>false,'msg'=>$msg);
 		wp_send_json($response);
 		
@@ -143,7 +143,7 @@ function popup_usersignup()
 			$response = array('success' => true,'user'=>$user_->user_login.$pd_pass );
 			wp_send_json($response);
 			$success = true;	*/	
-			$msg = "You have successfully registered. Please check your mail to complete registration";
+			$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered. Please check your mail to complete registration</div>";
 			 
 			$wpdb->update($wpdb->users, array('user_activation_key' => $user_activation_key), array('user_login' => $userdata_['user_email']));
 			$wpdb->update($wpdb->users, array('user_status' => 2), array('user_login' => $userdata_['user_email']));
