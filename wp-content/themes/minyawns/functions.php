@@ -191,17 +191,18 @@ add_action('wp_ajax_nopriv_popup_usersignup','popup_usersignup');
 /**
  * Function to prevent dashboard access of users other than administrator
  */
-/*function minyawns_prevent_dashboard_access()
+ function minyawns_prevent_dashboard_access()
 {
 	//if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  )
-	if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  )
+	//if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  )
+	if(  (true!= strpos( strtolower( $_SERVER['REQUEST_URI'] ),'wp-admin')) &&  ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  ) )
 	wp_redirect( home_url() );
 }
 
 
 /**
  * Function to keep remeber me checked
- * /
+ */
 function minyawns_login_checked_remember_me() {
 	add_filter( 'login_footer', 'rememberme_checked' );
 }
@@ -221,7 +222,7 @@ function minyawns_initial_checks()
 	//myStartSession();
 }
 
-add_action('init','minyawns_initial_checks');*/
+add_action('init','minyawns_initial_checks'); 
 
 
 
