@@ -1,4 +1,4 @@
-define(['underscore', 'jquery', 'backbone'],
+define(['underscore', 'jquery-1.8.3.min', 'backbone'],
         function(_, $, Backbone, ModalView) {
 
             var Manage = {};
