@@ -214,17 +214,18 @@ add_action('wp_ajax_nopriv_popup_usersignup', 'popup_usersignup');
 /**
  * Function to prevent dashboard access of users other than administrator
  */
-/*function minyawns_prevent_dashboard_access()
+ function minyawns_prevent_dashboard_access()
 {
 	//if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  )
-	if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  )
+	//if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  )
+	if(  (true!= strpos( strtolower( $_SERVER['REQUEST_URI'] ),'wp-admin')) &&  ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  ) )
 	wp_redirect( home_url() );
 }
 
 
 /**
  * Function to keep remeber me checked
- * /
+ */
 function minyawns_login_checked_remember_me() {
 	add_filter( 'login_footer', 'rememberme_checked' );
 }
@@ -244,7 +245,7 @@ function minyawns_initial_checks()
 	//myStartSession();
 }
 
-add_action('init','minyawns_initial_checks');*/
+add_action('init','minyawns_initial_checks'); 
 
 
 
@@ -256,7 +257,7 @@ function myplugin_auth_login ($user, $password) {
 	
 	$user_table = $wpdb->base_prefix.'users';
 	//$res_verify_user =    $wpdb->get_results($wpdb->prepare("SELECT count(user_login) as user_count FROM wp_users WHERE user_login =%s AND user_status=0 ",$user),OBJECT);
-	$res_verify_user = $wpdb->get_results( "SELECT count(user_login) as user_count FROM wp_users WHERE user_login ='".$user->user_login."' AND user_status=0 ",OBJECT );
+	$res_verify_user = $wpdb->get_results( "SELECT count(user_login) as user_count FROM $user_table WHERE user_login ='".$user->user_login."' AND user_status=0 ",OBJECT );
 	if($res_verify_user)
 	{
 		foreach($res_verify_user as $res_verify_usr)
