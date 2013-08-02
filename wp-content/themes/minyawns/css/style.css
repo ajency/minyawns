@@ -173,7 +173,11 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 	width: 35px;
 	margin-top: -15px;
 	margin-right: -22px;
-	line-height: 27px;
+	line-height: 22px;
+	font-weight: bold;
+}
+.error{
+	color: #F82929;
 	font-weight: bold;
 }
 .main .close {
@@ -305,4 +309,19 @@ border-top: 1px solid #DAD7D7;
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
+}
+.bottom-menu a {
+
+color: #F6F3F3;
+}
+.alert-box{
+	padding: 11px 44px 11px 11px;
+	font-size:13px;
+}
+.alert-box .close{
+	background:none;
+	color:#ccc;
+	margin-right:-15px;
+	color: #AAA5A5;
+	border:0px;
 }

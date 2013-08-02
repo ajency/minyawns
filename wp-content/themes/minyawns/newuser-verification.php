@@ -133,12 +133,34 @@ if($pd_action=="ver")
 				$wpdb->update($wpdb->users, array('user_activation_key' => ""), array('user_email' =>$pd_email));
 				$wpdb->update($wpdb->users, array('user_status' => 0), array('user_email' => $pd_email));
 				
-				echo "Your account is successfully verified.";
+				echo "
+				<div class='container'>
+					<div class='main-content '>
+					<div class='alert alert-info ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
+							<h4 style='text-align:center'>Your account is successfully verified.</h4>
+							<hr>
+							<img src='<?php echo get_template_directory_uri(); ?>/images/big-minyawns.png'/ style='margin:auto;display:block;'>
+							</div>
+					</div>
+				</div>
+				
+				";
 				
 			}
 			else
 			{
-				echo "Invalid authentication key or email ID";
+				echo "
+				<div class='container'>
+					<div class='main-content '>
+					<div class='alert alert-error ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
+							<h4 style='text-align:center'>Invalid authentication key or email ID</h4>
+							<hr>
+							<img src='<?php echo get_template_directory_uri(); ?>/images/big-minyawns.png'/ style='margin:auto;display:block;'>
+							</div>
+					</div>
+				</div>
+				
+				";
 			}
 		}
 	}
