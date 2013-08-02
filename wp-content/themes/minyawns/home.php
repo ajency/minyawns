@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Template: Home page
@@ -100,8 +101,7 @@ get_header(); ?>
 	<script src="js/jquery.pep.js"></script>
 	<script src="js/jquery.dragsort-0.5.1.js"></script>
 	
-	<script src="js/awm-custom.js"></script>
-	<script src="js/jquery.validate.min.js"></script>
+	
 	
   </body>
 </html>	
@@ -109,3 +109,4 @@ get_header(); ?>
 			
 
 <?php get_footer(); ?>
+
