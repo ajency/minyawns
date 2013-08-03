@@ -37,10 +37,11 @@
         <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
 
         <!-- wordpress head functions -->
-        <?php wp_head(); ?>
+        <?php //wp_head(); ?>
        
         <script> var ajaxurl = '<?php echo admin_url('admin-ajax.php', 'relative'); ?>' 
             var siteurl = '<?php echo site_url();?>'
+            var logouturl='<?php echo wp_logout_url( home_url() ); ?>'
         
         </script>
  <?php $current_user = wp_get_current_user();
@@ -263,8 +264,7 @@
                         <!-- table 1-->
                         <td colspan="7">
                             <table class="ins_table">
- <div id="loader2" class="modal_ajax_large_dashboard" ><!-- Place at bottom of page --></div>
-                               
+                        
                             </table>
                         </td>
                     </tr>
@@ -313,12 +313,8 @@
                         </div>
                        <?php  }else
                         { ?>
-                        
- <div class="span2">
-                            <a href="#profile" >Profle</a> &nbsp; &nbsp; 	
-                        </div>
-
-                        <div class="span2">
+ 
+                        <div class="span2 upper-link">
                             <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	<a href="#mylogin"  data-toggle="modal">Login </a>
 
                         </div>

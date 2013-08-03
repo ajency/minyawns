@@ -14,7 +14,8 @@
 global $wpdb;
 
 
-get_header(); ?>
+get_header();
+?>
 <style type="text/css">
 .fbLoginButton img
 {

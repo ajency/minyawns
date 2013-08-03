@@ -1,5 +1,4 @@
 <?php
-
 require '../../../libs/Slim/Slim.php';
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim(array('debug' => true));
@@ -34,7 +33,7 @@ $app->get('/users', function () use ($app) {
             } else {
                 foreach ($_GET as $key => $values) {
 
-                    update_user_meta($_GET['current_user'], $key,trim(strip_tags($values)));
+                    update_user_meta($_GET['current_user'], $key,trim($values));
                 }
                 $data=array();/*blank since the above condition is called when MY profile loads*/
             }
@@ -42,8 +41,11 @@ $app->get('/users', function () use ($app) {
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(array('data' => $data, 'status' => "success"));
         });
+$app->get('/logout', function () use ($app) {
 
-$app->run();
+    
+            wp_logout();
+      wp_redirect( home_url() );
+});
 
-
-
+$app->run();?>

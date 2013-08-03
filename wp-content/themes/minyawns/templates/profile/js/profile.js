@@ -99,7 +99,9 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                         },
                         reset: true,
                         success: function(model, response) {
+                            alert("here");
                             var template = _.template($("#user-profile").html());
+                            console.log(response.data);
                             var html = template(response.data);//response.toJSON()
                             $(self.el).append(html);
 
@@ -119,6 +121,9 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                             var template = _.template($("#history-row").html());
                            $("#no-more-tables").find('table tbody').append(template);
                            $("#loader1").hide();
+                        },error:function(e)
+                        {
+                           
                         }
                     });
 

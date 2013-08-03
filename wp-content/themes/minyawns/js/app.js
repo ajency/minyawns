@@ -31,11 +31,10 @@ require.config({
         },
         'jquery.placeholder': {
             deps: ['jquery-1.8.3.min']
-        },
-        'jquery.stacktable': {
-            deps: ['jquery-1.8.3.min']
         }, 'bootstrap-switch': {
             deps: ['jquery-1.8.3.min']
+        },'jquery.validate.min':{
+             deps: ['jquery-1.8.3.min']
         }
 
     }
@@ -53,7 +52,7 @@ require([
     'flatui-radio',
     'jquery.tagsinput',
     'jquery.placeholder',
-    'jquery.stacktable'
+    'jquery.validate.min'
 
 ],
         function($, _, Backbone, Profile) {
@@ -62,25 +61,37 @@ require([
             ProfileView = Backbone.Router.extend({
                 routes: {
                     "": "profile",
-                    "profile": "profile"
-
+                    "profile": "profile",
+                    "logout":"logout"
                 }, profile: function(routes)
                 {
                     $("#profile-view").empty();
-                    $("#no-more-tables").find("tbody").empty();
-                    $('#main-content').append("<div id='profile-view' class='row-fluid min_profile'><div id='loader1' class='modal_ajax'></div></div>");
+//                    $("#no-more-tables").find("tbody").empty();
+                    $('#main-content').append("<div id='profile-view' class='row-fluid min_profile'></div>");
                     var profile_view = new Profile.ProfileContianerView({'breadcrumb': 'My Profile'});
                     profile_view.render();
                     $("#loader1").hide();
                     $("#loader2").hide();
 
+                },logout:function()
+                {
+                    alert("logged");
+                     $.ajax({
+                    url: "../wp-content/themes/minyawns/templates/profile/api/index.php/logout",
+                    success: function() {
+
+                    }});
                 }
             });
             $(function() {
                 new ProfileView();
                 Backbone.history.start();
+                
+                
             });
 
+
+           
 
 
         });
