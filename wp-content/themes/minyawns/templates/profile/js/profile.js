@@ -99,7 +99,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                         },
                         reset: true,
                         success: function(model, response) {
-                            alert("here");
+                            
                             var template = _.template($("#user-profile").html());
                             console.log(response.data);
                             var html = template(response.data);//response.toJSON()
