@@ -4,9 +4,10 @@
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.8.3.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.validate.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/js/awm-custom.js"></script>
+      <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js"></script>
-    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
+  
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/bootstrap-select.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/bootstrap-switch.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/flatui-checkbox.js"></script>
