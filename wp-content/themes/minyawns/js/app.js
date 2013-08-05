@@ -35,7 +35,7 @@ require.config({
             deps: ['jquery-1.8.3.min']
         },'jquery.validate':{
              deps: ['jquery-1.8.3.min'],
-             exports: "jquery.validation"
+             exports: "jquery.validate"
         }
 
     }
