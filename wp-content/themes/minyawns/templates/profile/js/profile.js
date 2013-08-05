@@ -73,25 +73,22 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                 el: '#profile-view',
                 initialize: function() {
 
-                    _.bindAll(this, 'render', 'profile_edit');
+                    _.bindAll(this, 'render');
                     this.userdetails = new Manage.UserDetailsCollection();
                 }, events: {
                     'change #roles-drop-down': function(e) {
                         this.select_role(e);
 
                     },
-                    'click #edit-profile': 'profile_edit'
-
-
-                },
+                        },
                 render: function() {
                     var self = this;
                     $("#loader1").show();
                     var template = _.template($("#user-avatar").html());
                     var html = template();//response.toJSON()
                     $(self.el).append(html);
-                   // $('#bread_link').children().remove();
-                    $("#bread-crumbs-id").append("<a href='#profile'>" + self.options.breadcrumb + "</a>");
+                   $("#bread-crumbs-id").empty();
+                    $("#bread-crumbs-id").append("<a href='#'>View All jobs</a><a href='#profile'>" + self.options.breadcrumb + "</a>");
                     this.userdetails.fetch({
                         data: {
                             'action': 'fetch',
@@ -118,26 +115,16 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                              *  user history
                              * 
                              */
+                           //$("#my-history").show();
                             var template = _.template($("#history-row").html());
-                           $("#no-more-tables").find('table tbody').append(template);
+                           $("#no-more-tables").find('table tbody').html(template);
                            $("#loader1").hide();
                         },error:function(e)
                         {
                            
                         }
                     });
-
-
-
-
-
-                    
-
-
-                }, profile_edit: function() {
-                    var profile_edit_view = new Manage.ProfileEditContianerView({'breadcrumb': 'Edit Profile'});
-                    profile_edit_view.render();
-                }
+            }
 
             });
 
@@ -155,8 +142,9 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
 
                     var self = this;
                     $("#bread-crumbs-id").append("<a href='#edit'>" + self.options.breadcrumb + "</a>");
-                    $(self.el).find("#profile-view").remove();
-                    $(self.el).find("#my-history").remove();
+                    $(self.el).find("#profile-view").hide();
+                    $(self.el).find("#my-history").hide();
+                    
                     var template = _.template($("#edit-profile").html());
                     var html = template();//response.toJSON()
                     $(self.el).append(html);
@@ -172,7 +160,8 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                             'skill': $("#tagsinput").val(),
                             'body': $("#inputbody").val(),
                             'url': $("#LinkedIn").val(),
-                            'current_user': $("#current_user").val()
+                            'current_user': $("#current_user").val(),
+                            'user_skills':$("#user_skills").val()
                         },
                         reset: true,
                         success: function(model, response) {
@@ -180,17 +169,12 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                             if (response.status == "success")
                             {
                                 $("#edit-user-profile").remove();
-                                $('#main-content').append("<div id='profile-view' class='row-fluid min_profile'></div>");
-                                var profile_view = new Manage.ProfileContianerView({'breadcrumb': 'My Profile'});
-                                profile_view.render();
-                                $("#main-content").append($("#user-history-table").html());
+                              
                             }
-
-
-                            //self.create_pagination_useraccess(self.collection.total,self.offset);
+                     
                         },
                         error: function(err) {
-                            //console.log(err);
+                           
                         }
                     });
 

@@ -38,14 +38,20 @@
 
         <!-- wordpress head functions -->
         <?php //wp_head(); ?>
-       
-        <script> var ajaxurl = '<?php echo admin_url('admin-ajax.php', 'relative'); ?>' 
-            var siteurl = '<?php echo site_url();?>'
-            var logouturl='<?php echo wp_logout_url( home_url() ); ?>'
-        
+
+        <script> var ajaxurl = '<?php echo admin_url('admin-ajax.php', 'relative'); ?>'
+            var siteurl = '<?php echo site_url(); ?>'
+            var logouturl = '<?php echo wp_logout_url(home_url()); ?>'
+            
         </script>
- <?php $current_user = wp_get_current_user();
-                        $current_user_details=get_user_meta($current_user->ID);?>
+        <?php 
+        
+        $current_user = wp_get_current_user();
+        $current_user_details = get_user_meta($current_user->ID);
+        if(is_array($current_user_details)){ 
+        $skills = implode(",",$current_user_details['user_skills']);
+        }
+        ?>
 
         <!-- end of wordpress head -->
         <script type="text/template" id="user-profile">
@@ -76,11 +82,9 @@
             Skills :
             </div>
             <div class="span10">
-            <span class="label label-small">Social media account management</span>
-            <span class="label label-small">Marketing </span>
-            <span class="label label-small">Writing Publishing online</span>
-            <span class="label label-small">Blogging</span>
-            <span class="label label-small">Data-entry</span>
+           <% for(var i=0;i<user_skills.length;i++){%>
+             <span class="label label-small"><%= user_skills[i] %></span>
+           <% } %>
 
 
             </div>
@@ -93,7 +97,7 @@
         <script type="text/template" id="user-avatar">
             <div class="span2">
             <a href="#" class="change-avtar">
-            <img <?php  echo  get_avatar($current_user->ID,300)?>
+            <img <?php echo get_avatar($current_user->ID, 300) ?>
             <span>Change Avatar</span>
             </a>
             </div>
@@ -124,12 +128,13 @@
             <b class="dislike">120</b>
             </a> 
             </div>
-           </div>
+            </div>
         </script>
         <script type="text/template" id="edit-profile">
           
             <form class="form-horizontal frm-edit" id="edit-user-profile">
-            
+            <input type="hidden" id="user_id" value="<?php echo $current_user->ID; ?>"></input>
+                <input type="hidden" id="user_skills" value="<?php echo $skills ?>"></input>
             <div class="control-group">
             <label class="control-label" for="inputFirst">First Name</label>
             <div class="controls">
@@ -163,7 +168,7 @@
             <div class="control-group">
             <label class="control-label" for="inputskill">Skill</label>
             <div class="controls">
-            <input name="tagsinput" class="tagsinput " value="School,Teacher,Colleague"  style="width:60%;"/>
+            <input name="tagsinput" id="tags" class="tagsinput " value="<?php echo $skills ?>"  style="width:60%;"/>
             </div>
             </div>
             <div class="control-group">
@@ -237,54 +242,54 @@
             </tr>
         </script>
         <script type="text/template" id="user-history-table">
-        <div id="my-history" class="row-fluid"> <div class="span12">
-        <section id="no-more-tables">
+            <div id="my-history" class="row-fluid"> <div class="span12">
+            <section id="no-more-tables">
             <table class="qlabs_grid_container tablesorter jobs_table">		
-                <thead>
-                    <tr class="header_row">
-                        <td colspan="7" class="header_cell">
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <h3 class="page-title"> My History</h3> <!-- header label -->
-                                    Applied, pending and completed job history
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="subheader_row">
-                        <th class="subheader_cell awm_exchange_service_tlt service_tlt headerSortDown">Logo</th>
-                        <th class="subheader_cell awm_exchange_service_demand headerSortDown">Session Date</th>
-                        <th class="subheader_cell awm_exchange_service_supply headerSortDown">Duration</th>
-                        <th class="subheader_cell awm_exchange_service_discount headerSortDown">Wages</th>
-                        <th class="subheader_cell awm_exchange_services_action">Ratings</th>
-                    </tr>
-                </thead>
-                <tbody class="data_container">
-                    <tr class="data_even">
-                        <!-- table 1-->
-                        <td colspan="7">
-                            <table class="ins_table">
-                        
-                            </table>
-                        </td>
-                    </tr>
-                    
-                       </tbody>
-                            </table>
-                       
-             
-           
+            <thead>
+            <tr class="header_row">
+            <td colspan="7" class="header_cell">
+            <div class="row-fluid">
+            <div class="span12">
+            <h3 class="page-title"> My History</h3> <!-- header label -->
+            Applied, pending and completed job history
+            </div>
+            </div>
+            </td>
+            </tr>
+            <tr class="subheader_row">
+            <th class="subheader_cell awm_exchange_service_tlt service_tlt headerSortDown">Logo</th>
+            <th class="subheader_cell awm_exchange_service_demand headerSortDown">Session Date</th>
+            <th class="subheader_cell awm_exchange_service_supply headerSortDown">Duration</th>
+            <th class="subheader_cell awm_exchange_service_discount headerSortDown">Wages</th>
+            <th class="subheader_cell awm_exchange_services_action">Ratings</th>
+            </tr>
+            </thead>
+            <tbody class="data_container">
+            <tr class="data_even">
+            <!-- table 1-->
+            <td colspan="7">
+            <table class="ins_table">
 
-        </section>
-        <br>
-    </div>
-</div>
+            </table>
+            </td>
+            </tr>
+
+            </tbody>
+            </table>
+
+
+
+
+            </section>
+            <br>
+            </div>
+            </div>
         </script>
     </head>
 
     <body class="page_bg">
-         <input type="hidden" value="<?php echo $_SESSION['email'] ?>" id="loggedinemail"/>
-         <input id="current_user" type="hidden" value="<?php echo $current_user->ID; ?>"></input>
+        <input type="hidden" value="<?php echo $_SESSION['email'] ?>" id="loggedinemail"/>
+        <input id="current_user" type="hidden" value="<?php echo $current_user->ID; ?>"></input>
         <div class=" pbl mtn">
             <div class="bottom-menu  bottom-menu-inverse top-menu">
                 <div class="container">
@@ -295,36 +300,36 @@
                         <div class="span6">
 
                         </div>
-                        <?php 
-                         $current_user = wp_get_current_user();
-                        $current_user_details=get_user_meta($current_user->ID);
-                       
-                               
-                        if(is_user_logged_in() == TRUE){ ?>
-                       <div class="span2 notify">
-                            <div id="logged-in">
-                                <a id="user-popdown" href="javascript:void(0);" >
-                                    <img <?php echo get_avatar($current_user->ID,150);?> <b class="caret"></b>
-                                </a>
+                        <?php
+                        $current_user = wp_get_current_user();
+                        $current_user_details = get_user_meta($current_user->ID);
+
+
+                        if (is_user_logged_in() == TRUE) {
+                            ?>
+                            <div class="span2 notify">
+                                <div id="logged-in">
+                                    <a id="user-popdown" href="javascript:void(0);" >
+                                        <img <?php echo get_avatar($current_user->ID, 150); ?> <b class="caret"></b>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="span1">
-                            <a href="#" class="help_icon"><i class="icon-question-sign"></i></a>
-                        </div>
-                       <?php  }else
-                        { ?>
- 
-                        <div class="span2 upper-link">
-                            <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	<a href="#mylogin"  data-toggle="modal">Login </a>
+                            <div class="span1">
+                                <a href="#" class="help_icon"><i class="icon-question-sign"></i></a>
+                            </div>
+<?php } else {
+    ?>
 
-                        </div>
+                            <div class="span2 upper-link">
+                                <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	<a href="#mylogin"  data-toggle="modal">Login </a>
 
-                       <?php  } ?>
+                            </div>
+
+<?php } ?>
                     </div>
                 </div>
             </div> <!-- /bottom-menu-inverse -->
 
         </div>
-        <script type="text/javascript" data-main="<?php echo get_template_directory_uri(); ?>/js/app.js" src="<?php echo get_template_directory_uri(); ?>/js/require.js"></script>
-
+       
 
