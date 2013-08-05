@@ -33,9 +33,8 @@ require.config({
             deps: ['jquery-1.8.3.min']
         }, 'bootstrap-switch': {
             deps: ['jquery-1.8.3.min']
-        },'jquery.validate':{
-             deps: ['jquery-1.8.3.min'],
-             exports: "jquery.validate"
+        },'jquery.validate.min':{
+             deps: ['jquery-1.8.3.min']
         }
 
     }
@@ -53,7 +52,7 @@ require([
     'flatui-radio',
     'jquery.tagsinput',
     'jquery.placeholder',
-    'jquery.validate'
+    'jquery.validate.min'
 
 ],
         function($, _, Backbone, Profile) {
