@@ -316,12 +316,12 @@
         </script>
     </head>
 
-    <body class="page_bg">
+    <body class="home-page">
         <input type="hidden" value="<?php echo $_SESSION['email'] ?>" id="loggedinemail"/>
         <input type="hidden" id="user_id" value="<?php echo $current_user->ID; ?>"></input>
 
         <input id="current_user" type="hidden" value="<?php echo $current_user->ID; ?>"></input>
-        <div class=" pbl mtn">
+        <div class=" pbl mtn top-menu">
             <div class="bottom-menu  bottom-menu-inverse top-menu">
                 <div class="container">
                     <div class="row">
@@ -362,5 +362,81 @@
             </div> <!-- /bottom-menu-inverse -->
 
         </div>
+        
+         <!-- Banner Layout --->
+	<div id="innermainimage">
+		<div class="row-fluid banner-content">
+			<div class="span12">
+				<img src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
+				<div class="banner-desc">
+					Minyawans is an easy to use. on-demand,<br>
+					student labour sourcing application
+				</div>
+				<hr>
+				<div class="row-fluid">
+						<div class="span4"></div>
+						<div class="span2"><a href="#fakelink" class="btn btn-huge btn-block btn-primary">Get a Minyawn</a></div>
+						<div class="span2"><a href="#fakelink" class="btn btn-huge btn-block btn-info">Become a Minyawn</a></div>
+						<div class="span4"></div>
+				</div>	
+			</div>
+			
+		</div>
+            <img class="bg-background" src="<?php echo get_template_directory_uri() ?>/images/banner1.jpg"/>
+	</div>
+		 <!--End  Banner Layout --->
+	
+	<div id="init-land" class="container">
+	<div class="row-fluid">
+			<div class="span12"><h3 class="heading-title">How does it work ? </h3></div>
+		</div>
+		<div class="row-fluid">
+			<div class="span2"></div>
+			<div class="span3">
+				<div class="workflow1">
+				<i class="icon-calendar-empty i-cal"></i>
+				</div>
+			<h3 class="small-header">Request a Minyawan</h3>
+				<p class="small-desc">Pick a time and describe <br> your task.</p>
+			</div>
+			<div class="span2">
+					<div class="workflow">
+					<i class="icon-user i-user"></i>
+					</div>
+					<h3 class="small-header">Get Work Done</h3>
+				<p class="small-desc">Take care of projects on your
+to-do list.</p>
+				</div>
+			<div class="span3">
+				<div class="workflow2">
+				<i class="icon-dollar i-money"></i>
+				</div>
+				<h3 class="small-header">Profit !</h3>
+				<p class="small-desc">Enjoy having less <br>
+work to do.</p>
+			</div>
+			<div class="span2"></div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+			<h3 class="big-heading-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit </h3>
+			<p class="big-heading-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			</div>
+		</div>
+		<footer>
+	 <hr style="border-top:1px solid #C7C3C3;">
+		  <ul class="footer_menu">
+			  <li><a href="#">About</a></li>
+			  <li><a href="#">Careers</a></li>
+			  <li><a href="#">Blog</a></li>
+			  <li><a href="#">Tech City</a></li>
+			  <li><a href="#">Directory</a></li>
+		  </ul>
+		  <div class="social-icon"><a href="#"><img src="images/twiiter.png"/></a>&nbsp;&nbsp;<a href="#"><img src="images/facebook.png"/></a></div>
+		  <div class="site_link">All rights reserved 2013 @ Minyawn</div>
+	</footer>
+	
+	</div>
 
 

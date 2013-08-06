@@ -71,6 +71,8 @@ require([
                     "update": "profile"
                 }, profile: function(routes)
                 {
+                    $("#innermainimage").remove();
+                    $("#init-land").remove();
                     $("#profile-view").show();
                     $("#my-history").show();
                     $("#profile-view").empty();
