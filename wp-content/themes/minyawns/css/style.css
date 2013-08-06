@@ -328,3 +328,14 @@ color: #999999;
 .upper-link a{
     color:#fff;
 }
+.breadcrumb-end{
+    color:#999;
+    content: "";
+    
+}
+.breadcrumb-end p a:after {
+    color: #BDC3C7;
+    content: "";
+    font-weight: 300;
+    margin: 0 4px 0 9px;
+}
