@@ -1,13 +1,9 @@
-define(['underscore', 'jquery-1.8.3.min', 'backbone'],
+define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
         function(_, $, Backbone, ModalView) {
 
             var Manage = {};
-
             Manage.templates = {
             };
-
-
-
             /*
              *
              *   BACKBONE MODELS
@@ -24,7 +20,6 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                     return  '../wp-content/themes/minyawns/templates/profile/api/index.php/users';
                 }
             });
-
             Manage.UserCollection = Backbone.Collection.extend({
                 model: Manage.User,
                 url: function() {
@@ -49,8 +44,6 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                 }
 
             });
-
-
             /*====================================================================================================================================
              END OF MODELS
              
@@ -73,22 +66,19 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                 el: '#profile-view',
                 initialize: function() {
 
-                    _.bindAll(this, 'render');
+                    _.bindAll(this, 'render', 'change_avatar');
                     this.userdetails = new Manage.UserDetailsCollection();
+                    freePrevView(this);
                 }, events: {
                     'change #roles-drop-down': function(e) {
                         this.select_role(e);
-
                     },
-                        },
+                    'click .change-avtar': 'change_avatar'
+                },
                 render: function() {
                     var self = this;
                     $("#loader1").show();
-                    var template = _.template($("#user-avatar").html());
-                    var html = template();//response.toJSON()
-                    $(self.el).append(html);
-                   $("#bread-crumbs-id").empty();
-                    $("#bread-crumbs-id").append("<a href='#'>View All jobs</a><a href='#profile'>" + self.options.breadcrumb + "</a>");
+
                     this.userdetails.fetch({
                         data: {
                             'action': 'fetch',
@@ -96,37 +86,49 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                         },
                         reset: true,
                         success: function(model, response) {
-                            
+
+                            var template = _.template($("#user-avatar").html());
+                            var html = template(response.data); //response.toJSON()
+                            $(self.el).append(html);
+                            $("#bread-crumbs-id").empty();
+                            $("#bread-crumbs-id").append("<a href='#'>View All jobs</a><a href='#profile' class='breadcrumb-end'>" + self.options.breadcrumb + "</a>");
+
+
                             var template = _.template($("#user-profile").html());
                             console.log(response.data);
-                            var html = template(response.data);//response.toJSON()
+                            var html = template(response.data); //response.toJSON()
                             $(self.el).append(html);
-
                             /*
                              *  user votes
                              * 
                              */
                             var template = _.template($("#user-votes").html());
-                            var html = template();//response.toJSON()
+                            var html = template(); //response.toJSON()
                             $(self.el).append(html);
                             $("#loader1").hide();
-                            
                             /*
                              *  user history
                              * 
                              */
-                           //$("#my-history").show();
+                            //$("#my-history").show();
                             var template = _.template($("#history-row").html());
-                           $("#no-more-tables").find('table tbody').html(template);
-                           $("#loader1").hide();
-                        },error:function(e)
-                        {
-                           
+                            $("#no-more-tables").find('table tbody').html(template);
+                            $("#loader1").hide();
                         }
                     });
-            }
+                }, change_avatar: function() {
+                    var view = new Manage.AddNewAvatar();
+                    view.render().showModal();
+                }
 
             });
+
+            /*
+             * Profile edit view 
+             * 
+             * 
+             */
+
 
             Manage.ProfileEditContianerView = Backbone.View.extend({
                 el: '#main-content',
@@ -134,57 +136,144 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
 
                     _.bindAll(this, 'render', 'save_user_details');
                     this.usercollection = new Manage.UserCollection();
-
+                    this.userdetails = new Manage.UserDetailsCollection();
+                    freePrevView(this);
                 }, events: {
                     'click #update-profile-button': 'save_user_details'
                 },
                 render: function() {
-
+                    $('#tags').tagsInput();
                     var self = this;
-                    $("#bread-crumbs-id").append("<a href='#edit'>" + self.options.breadcrumb + "</a>");
+                    $("#bread-crumbs-id").append("<a href='#edit' class='breadcrumb-end'>" + self.options.breadcrumb + "</a>");
                     $(self.el).find("#profile-view").hide();
                     $(self.el).find("#my-history").hide();
-                    
-                    var template = _.template($("#edit-profile").html());
-                    var html = template();//response.toJSON()
-                    $(self.el).append(html);
-                }, save_user_details: function() {
-                   
-                    var self = this;
-                    this.usercollection.fetch({
+                    $('#tags').tagsInput();
+                    this.userdetails.fetch({
                         data: {
-                            'first_name': $("#inputFirst").val(),
-                            'last_name': $("#inputlast").val(),
-                            'college': $("#inputcollege").val(),
-                            'major': $("#inputmajor").val(),
-                            'skill': $("#tagsinput").val(),
-                            'body': $("#inputbody").val(),
-                            'url': $("#LinkedIn").val(),
-                            'current_user': $("#current_user").val(),
-                            'user_skills':$("#user_skills").val()
+                            'action': 'fetch',
+                            'user_id': $("#current_user").val()
                         },
                         reset: true,
                         success: function(model, response) {
+                            $(".tm-input").tagsManager();
+//                            alert($('#tags').tagsInput());
+                            var template = _.template($("#edit-profile").html());
+                            console.log(response.data.user_skills);
+                            var html = template(response.data); //response.toJSON()
+                            $(self.el).append(html);
+                            $(".tm-input").tagsManager({
+                                prefilled: response.data.user_skills,
+                                hiddenTagListId: 'user_skills',
+                            });
+                        }
+                    })
 
-                            if (response.status == "success")
-                            {
-                                $("#edit-user-profile").remove();
-                              
+                }, save_user_details: function() {
+                    var validator = $("#edit-user-profile").validate({
+                        rules: {
+                            linkedIn: {
+                                required: true,
+                                url: true
                             }
-                     
-                        },
-                        error: function(err) {
-                           
                         }
                     });
+                    if (validator.form() === false)
+                    {
+                        return false;
+                    } else {
+                        var self = this;
+                        this.usercollection.fetch({
+                            data: {
+                                'first_name': $("#inputFirst").val(),
+                                'last_name': $("#inputlast").val(),
+                                'college': $("#inputcollege").val(),
+                                'major': $("#inputmajor").val(),
+                                'skill': $("#tagsinput").val(),
+                                'body': $("#inputbody").val(),
+                                'url': $("#LinkedIn").val(),
+                                'current_user': $("#current_user").val(),
+                                'user_skills': $("#user_skills").val()
+                            },
+                            reset: true,
+                            success: function(model, response) {
 
+                                if (response.status == "success")
+                                {
+                                    $("#edit-user-profile").remove();
+                                    $("#profile-view").show();
+                                    $("#my-history").show();
+                                    $("#profile-view").empty();
+                                    $("#edit-user-profile").remove();
+                                    var profile_view = new Manage.ProfileContianerView({'breadcrumb': 'My Profile'});
+                                    profile_view.render();
+                                }
+
+                            },
+                            error: function(err) {
+
+                            }
+                        });
+                    }
                 }
             });
 
 
+            /*
+             *  Loads the lightbox a .showModal() call above
+             * 
+             * 
+             */
+            Manage.AddNewAvatar = ModalView.extend({
+                el: '#main-content',
+                initialize: function() {
+
+                    _.bindAll(this, 'render', 'upload_avatar');
+                    this._ensureElement();
+                    this.template = _.template($("#avatar-dialog").html());
+                    freePrevView(this);
+                }, events: {
+                    'click #update-profile-button': 'save_user_details',
+                    'click #save_poup': 'upload_avatar'
+                }, render: function() {
+                    $(this.el).html(this.template());
+                    return this;
+                }, upload_avatar: function() {
+
+                    var formData = new FormData($('form')[0]);
+                    $.ajax({
+                        url: '../wp-content/themes/minyawns/templates/profile/api/index.php/change_avatar', //server script to process data
+                        type: 'POST',
+                        xhr: function() {  // custom xhr
+                            var myXhr = $.ajaxSettings.xhr();
+                            if (myXhr.upload) { // check if upload property exists
+                                //myXhr.upload.addEventListener('progress', false); // for handling the progress of the upload
+                            }
+                            return myXhr;
+                        },
+                        //Ajax events
+                        success: function(data, status) {
+                            window.location.reload();
+
+                        },
+                        error: function(data, status, e) {
+                           
+                        },
+                        // Form data
+                        data: formData,
+                        //Options to tell JQuery not to process data or worry about content-type
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    });
+
+
+                }
+
+
+            });
+
 
             return Manage;
-
         });
 
 

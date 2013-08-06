@@ -271,3 +271,10 @@ function myplugin_auth_login ($user, $password) {
 	
 	
 }
+add_filter( 'avatar_defaults', 'custom_avatar' );
+ 
+function custom_avatar ($avatar_defaults) {
+$myavatar = get_template_directory_uri() . '/images/profile.png';
+$avatar_defaults[$myavatar] = "Branded Avatar";
+return $avatar_defaults;
+}
