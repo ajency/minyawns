@@ -14,51 +14,41 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
              *
              *
              */
-            Manage.UserRoles = Backbone.Model.extend({
+            Manage.User = Backbone.Model.extend({
                 defaults: {
                     role_names: "",
                     total: ""
                 },
                 url: function() {
 
-                    return  '../wp-content/themes/phoenix/templates/manage/api/index.php/roles';
+                    return  '../wp-content/themes/minyawns/templates/profile/api/index.php/users';
                 }
             });
 
-
-            Manage.UserCapbGroup = Backbone.Model.extend({
-                defaults: {
-                    role_names: "",
-                    total: ""
-                },
+            Manage.UserCollection = Backbone.Collection.extend({
+                model: Manage.User,
                 url: function() {
-
-                    return  '../wp-content/themes/phoenix/templates/manage/api/index.php/capb-group/' + this.get('group_id');
-                }
-            });
-
-            Manage.CheckCapbGroup = Backbone.Model.extend({
-                defaults: {
-                    role_names: "",
-                    total: ""
+                    return '../wp-content/themes/minyawns/templates/profile/api/index.php/users';
                 },
-                url: function() {
+                parse: function(response) {
 
-                    return  '../wp-content/themes/phoenix/templates/manage/api/index.php/check-capb-group';
+                    this.total = response.total;
+                    return response.data;
                 }
-            });
 
-            Manage.OperationsCapbGroup = Backbone.Model.extend({
-                defaults: {
-                    role_names: "",
-                    total: ""
+            });
+            Manage.UserDetailsCollection = Backbone.Collection.extend({
+                model: Manage.User,
+                url: function() {
+                    return '../wp-content/themes/minyawns/templates/profile/api/index.php/users';
                 },
-                url: function() {
+                parse: function(response) {
 
-                    return  '../wp-content/themes/phoenix/templates/manage/api/index.php/capb-operations';
+                    this.total = response.total;
+                    return response.data;
                 }
-            });
 
+            });
 
 
             /*====================================================================================================================================
@@ -83,45 +73,58 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                 el: '#profile-view',
                 initialize: function() {
 
-                    _.bindAll(this, 'render', 'profile_edit');
-                    this.userrolecollection = new Manage.CheckCapbGroup();
+                    _.bindAll(this, 'render');
+                    this.userdetails = new Manage.UserDetailsCollection();
                 }, events: {
                     'change #roles-drop-down': function(e) {
                         this.select_role(e);
 
                     },
-                    'click #edit-profile': 'profile_edit'
-
-
-                },
+                        },
                 render: function() {
                     var self = this;
-
+                    $("#loader1").show();
                     var template = _.template($("#user-avatar").html());
                     var html = template();//response.toJSON()
                     $(self.el).append(html);
+                   $("#bread-crumbs-id").empty();
+                    $("#bread-crumbs-id").append("<a href='#'>View All jobs</a><a href='#profile'>" + self.options.breadcrumb + "</a>");
+                    this.userdetails.fetch({
+                        data: {
+                            'action': 'fetch',
+                            'user_id': $("#current_user").val()
+                        },
+                        reset: true,
+                        success: function(model, response) {
+                            
+                            var template = _.template($("#user-profile").html());
+                            console.log(response.data);
+                            var html = template(response.data);//response.toJSON()
+                            $(self.el).append(html);
 
-                    var template = _.template($("#user-profile").html());
-
-                    //_.each(model.data, function(role, index) {
-                    var html = template();//response.toJSON()
-                    $(self.el).append(html);
-
-                    var template = _.template($("#user-votes").html());
-
-                    //_.each(model.data, function(role, index) {
-                    var html = template();//response.toJSON()
-                    $(self.el).append(html);
-
-
-                    var template = _.template($("#history-row").html());
-                    $("#no-more-tables").find('table tbody').append(template);
-
-
-                }, profile_edit: function() {
-                    var sel = this;
-                    this.subview.render();
-                }
+                            /*
+                             *  user votes
+                             * 
+                             */
+                            var template = _.template($("#user-votes").html());
+                            var html = template();//response.toJSON()
+                            $(self.el).append(html);
+                            $("#loader1").hide();
+                            
+                            /*
+                             *  user history
+                             * 
+                             */
+                           //$("#my-history").show();
+                            var template = _.template($("#history-row").html());
+                           $("#no-more-tables").find('table tbody').html(template);
+                           $("#loader1").hide();
+                        },error:function(e)
+                        {
+                           
+                        }
+                    });
+            }
 
             });
 
@@ -129,16 +132,52 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone'],
                 el: '#main-content',
                 initialize: function() {
 
-                    _.bindAll(this, 'render');
+                    _.bindAll(this, 'render', 'save_user_details');
+                    this.usercollection = new Manage.UserCollection();
 
+                }, events: {
+                    'click #update-profile-button': 'save_user_details'
                 },
                 render: function() {
-                    alert("render");
+
                     var self = this;
-                    $(self.el).find("#profile-view").remove().find(".row-fluid").remove();
+                    $("#bread-crumbs-id").append("<a href='#edit'>" + self.options.breadcrumb + "</a>");
+                    $(self.el).find("#profile-view").hide();
+                    $(self.el).find("#my-history").hide();
+                    
                     var template = _.template($("#edit-profile").html());
                     var html = template();//response.toJSON()
-                    $(self.el).html(html);
+                    $(self.el).append(html);
+                }, save_user_details: function() {
+                   
+                    var self = this;
+                    this.usercollection.fetch({
+                        data: {
+                            'first_name': $("#inputFirst").val(),
+                            'last_name': $("#inputlast").val(),
+                            'college': $("#inputcollege").val(),
+                            'major': $("#inputmajor").val(),
+                            'skill': $("#tagsinput").val(),
+                            'body': $("#inputbody").val(),
+                            'url': $("#LinkedIn").val(),
+                            'current_user': $("#current_user").val(),
+                            'user_skills':$("#user_skills").val()
+                        },
+                        reset: true,
+                        success: function(model, response) {
+
+                            if (response.status == "success")
+                            {
+                                $("#edit-user-profile").remove();
+                              
+                            }
+                     
+                        },
+                        error: function(err) {
+                           
+                        }
+                    });
+
                 }
             });
 

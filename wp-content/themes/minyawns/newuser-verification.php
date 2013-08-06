@@ -139,7 +139,7 @@ if($pd_action=="ver")
 					<div class='alert alert-info ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
 							<h4 style='text-align:center'>Your account is successfully verified.</h4>
 							<hr>
-							<img src='<?php echo get_template_directory_uri(); ?>/images/big-minyawns.png'/ style='margin:auto;display:block;'>
+							<img src='".get_template_directory_uri()."/images/big-minyawns.png'/ style='margin:auto;display:block;'>
 							</div>
 					</div>
 				</div>
@@ -155,7 +155,7 @@ if($pd_action=="ver")
 					<div class='alert alert-error ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
 							<h4 style='text-align:center'>Invalid authentication key or email ID</h4>
 							<hr>
-							<img src='<?php echo get_template_directory_uri(); ?>/images/big-minyawns.png'/ style='margin:auto;display:block;'>
+							<img src='".get_template_directory_uri()."/images/big-minyawns.png'/ style='margin:auto;display:block;'>
 							</div>
 					</div>
 				</div>

@@ -312,7 +312,7 @@ border-top: 1px solid #DAD7D7;
 }
 .bottom-menu a {
 
-color: #F6F3F3;
+color: #999999;
 }
 .alert-box{
 	padding: 11px 44px 11px 11px;
@@ -324,4 +324,7 @@ color: #F6F3F3;
 	margin-right:-15px;
 	color: #AAA5A5;
 	border:0px;
+}
+.upper-link a{
+    color:#fff;
 }

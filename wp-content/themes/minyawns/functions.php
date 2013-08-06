@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MInyawns functions and definitions.
  *
@@ -18,11 +19,8 @@
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
  *
  */
-
-
 //remove admin bar from front end
 show_admin_bar(false);
-
 
 /**
  * Child theme Path
@@ -31,19 +29,17 @@ show_admin_bar(false);
  * @param unknown $theme_root_uri
  * @return string
  */
-function br_template_directory_uri($template_dir_uri, $template, $theme_root_uri )
-{
-	return $theme_root_uri . '/minyawns';
+function br_template_directory_uri($template_dir_uri, $template, $theme_root_uri) {
+    return $theme_root_uri . '/minyawns';
 }
-add_filter('template_directory_uri','br_template_directory_uri',100,3);
+
+add_filter('template_directory_uri', 'br_template_directory_uri', 100, 3);
 
 
 
 
 
 //wp_localize_script( 'jquery-1.8.3.min', 'global', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ,'template_directory_uri' => get_template_directory_uri()  ) );
-//
-
 
 
 //function to log in user
@@ -76,15 +72,11 @@ function popup_userlogin()
 		$response = array("success"=>true,'user'=>$user_->user_login,'userdata'=>$user_data);
 		wp_send_json($response);
 	} 
+
 }
-add_action('wp_ajax_popup_userlogin','popup_userlogin');
-add_action('wp_ajax_nopriv_popup_userlogin','popup_userlogin');
 
-
-
-
-
-
+add_action('wp_ajax_popup_userlogin', 'popup_userlogin');
+add_action('wp_ajax_nopriv_popup_userlogin', 'popup_userlogin');
 
 
 /*
@@ -183,25 +175,57 @@ function popup_usersignup()
 	}//end else
 
 
+    $user_ = get_user_by('email', $pd_email);
+    if ($user_) {
+
+        $msg = "User with the email Id provided already exists";
+        $response = array('success' => false, 'mmsg' => $msg);
+        wp_send_json($response);
+    } else {
+
+
+        $user_id = wp_insert_user($userdata_);
+
+        if (!is_numeric($user_id)) {
+            $msg = "Error occured while creating a new user. Please try again.";
+            $success = false;
+        } else {
+            $msg = "Error occured while creating a new user. Please try again.";
+
+            $response = array('success' => true, 'user' => $user_->user_login . $pd_pass);
+            wp_send_json($response);
+            $success = true;
+        }
+
+
+
+
+        $response = array("success" => true, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
+        wp_send_json($response);
+    }//end else
 }
-add_action('wp_ajax_popup_usersignup','popup_usersignup');
-add_action('wp_ajax_nopriv_popup_usersignup','popup_usersignup');
+
+add_action('wp_ajax_popup_usersignup', 'popup_usersignup');
+add_action('wp_ajax_nopriv_popup_usersignup', 'popup_usersignup');
+
+
 
 
 /**
  * Function to prevent dashboard access of users other than administrator
  */
-/*function minyawns_prevent_dashboard_access()
+ function minyawns_prevent_dashboard_access()
 {
 	//if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  )
-	if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  )
+	//if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  )
+	if(  (true!= strpos( strtolower( $_SERVER['REQUEST_URI'] ),'wp-admin')) &&  ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) && !current_user_can( 'administrator' ) &&( false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/admin-ajax.php' ) &&  false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/async-upload.php' ) && false === strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin/post.php' ) )  ) )
 	wp_redirect( home_url() );
 }
 
 
 /**
  * Function to keep remeber me checked
- * /
+ */
 function minyawns_login_checked_remember_me() {
 	add_filter( 'login_footer', 'rememberme_checked' );
 }
@@ -221,7 +245,7 @@ function minyawns_initial_checks()
 	//myStartSession();
 }
 
-add_action('init','minyawns_initial_checks');*/
+add_action('init','minyawns_initial_checks'); 
 
 
 
@@ -233,7 +257,7 @@ function myplugin_auth_login ($user, $password) {
 	
 	$user_table = $wpdb->base_prefix.'users';
 	//$res_verify_user =    $wpdb->get_results($wpdb->prepare("SELECT count(user_login) as user_count FROM wp_users WHERE user_login =%s AND user_status=0 ",$user),OBJECT);
-	$res_verify_user = $wpdb->get_results( "SELECT count(user_login) as user_count FROM wp_users WHERE user_login ='".$user->user_login."' AND user_status=0 ",OBJECT );
+	$res_verify_user = $wpdb->get_results( "SELECT count(user_login) as user_count FROM $user_table WHERE user_login ='".$user->user_login."' AND user_status=0 ",OBJECT );
 	if($res_verify_user)
 	{
 		foreach($res_verify_user as $res_verify_usr)
