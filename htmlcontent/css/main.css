@@ -773,6 +773,9 @@ a:hover {
   position: relative;
   z-index: 99;
 }
+#innermainimage .bg-background {
+  position: absolute;
+}
 #innermainimage .banner-content {
   position: absolute;
   z-index: 999;
