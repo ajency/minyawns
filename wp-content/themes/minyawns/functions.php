@@ -271,10 +271,14 @@ function myplugin_auth_login ($user, $password) {
 	
 	
 }
-add_filter( 'avatar_defaults', 'custom_avatar' );
- 
-function custom_avatar ($avatar_defaults) {
-$myavatar = get_template_directory_uri() . '/images/profile.png';
-$avatar_defaults[$myavatar] = "Branded Avatar";
-return $avatar_defaults;
-}
+
+if ( !function_exists('fb_addgravatar') ) {
+function fb_addgravatar( $avatar_defaults ) {
+$myavatar = get_bloginfo('template_directory') . '/images/profile.png';
+$avatar_defaults[$myavatar] = 'Users';
+$myavatar2 = get_bloginfo('template_directory') . '/images/profile.png';
+$avatar_defaults[$myavatar2] = 'My Avatar';
+return $avatar_defaults; }
+add_filter( 'avatar_defaults', 'fb_addgravatar' ); }
+
+?>
