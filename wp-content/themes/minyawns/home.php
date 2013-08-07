@@ -1,37 +1,155 @@
 
 <?php
 /**
- * Template: Home page
-
+Template Name: Home Page
  */
+get_header(); 
 
-get_header(); ?>
-			
-		<div id="myModal" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(images/pattern-bg.png)">
+global $post;  
+?>
+
+<style type="text/css">
+.fbLoginButton img
+{
+	margin: auto;
+	display: block;
+}
+</style>
+<input type="hidden" name="hdn_siteurl" id="hdn_siteurl" value ="<?php echo site_url(); ?>" />
+
+
+<div id="innermainimage">
+            <div class="row-fluid banner-content">
+                <div class="span12">
+                    <img src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
+                    <div class="banner-desc">
+                        Minyawans is an easy to use. on-demand,<br>
+                        student labour sourcing application
+                    </div>
+                    <hr>
+                    <div class="row-fluid">
+                        <div class="span4"></div>
+                        <div class="span2"><a href="#fakelink" class="btn btn-huge btn-block btn-primary">Get a Minyawn</a></div>
+                        <div class="span2"><a href="#fakelink" class="btn btn-huge btn-block btn-info">Become a Minyawn</a></div>
+                        <div class="span4"></div>
+                    </div>	
+                </div>
+
+            </div>
+            <img class="bg-background" src="<?php echo get_template_directory_uri() ?>/images/banner1.jpg"/>
+        </div>
+        <!--End  Banner Layout --->
+
+        <div id="init-land" class="container">
+            <div class="row-fluid">
+                <div class="span12"><h3 class="heading-title">How does it work ? </h3></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span3">
+                    <div class="workflow1">
+                        <i class="icon-calendar-empty i-cal"></i>
+                    </div>
+                    <h3 class="small-header">Request a Minyawan</h3>
+                    <p class="small-desc">Pick a time and describe <br> your task.</p>
+                </div>
+                <div class="span2">
+                    <div class="workflow">
+                        <i class="icon-user i-user"></i>
+                    </div>
+                    <h3 class="small-header">Get Work Done</h3>
+                    <p class="small-desc">Take care of projects on your
+                        to-do list.</p>
+                </div>
+                <div class="span3">
+                    <div class="workflow2">
+                        <i class="icon-dollar i-money"></i>
+                    </div>
+                    <h3 class="small-header">Profit !</h3>
+                    <p class="small-desc">Enjoy having less <br>
+                        work to do.</p>
+                </div>
+                <div class="span2"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <h3 class="big-heading-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit </h3>
+                    <p class="big-heading-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                </div>
+            </div>
+            
+<div id="mylogin" class="modal signup  hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
   <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/delete.png"/></button>
-    <h4 id="myModalLabel">Sign Up to <img src="images/logo.png"/> </h4>
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
+    <h4 id="myModalLabel">Login to <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"/> </h4>
   </div>
   <div class="modal-body">
     <div class="row-fluid">
 		<div class="span6"> 
-		<h6 class="align-center" style=" margin-bottom: 0px; ">
-		Create an Account</h6>
-<p class="align-center">Fill out the required information Below</p>
+	
+		<div id="div_loginmsg"></div>
+		<form name= "frm_login" id="frm_login" action="" >
 		<div class="control-group ">
-            <input type="text" value="" placeholder="Email Address" class="span3">
+            <input type="text" name="txt_email"  id="txt_email"  value="" placeholder="Email Address" class="span3">
           </div>
 		<div class="control-group ">
-            <input type="text" value="" placeholder="Password" class="span3">
+            <input type="password"  name="txt_pass"  id="txt_pass"  value="" placeholder="Password" class="span3">
           </div>
-		  <div class="control-group span6 " style=" margin-left: 0px; ">
-            <input type="text" value="" placeholder="First Name" class="span3">
-          </div>
-		<div class="control-group span6 ">
-            <input type="text" value="" placeholder="Last Name" class="span3">
-          </div>
-		  <div class="clear"></div>
-		  <a href="#fakelink" class="btn btn-large btn-block btn-inverse" >Sign Up</a>
+		  <div class="row-fluid">
+			<div class="span4"><a href="#" class="btn btn-large btn-block btn-inverse "  id="btn_login" >Login</a></div>
+				<div class="span8"><a href="#"  style=" line-height: 42px; color: #12B13E;font-weight:bold; ">Forget your password ?</a></div>
+		  </div> 
+		</form>  
+		  
+		  
+		  </div>
+		<div class="span6">
+			<h6 class="align-center" style=" margin-bottom: 0px; ">
+		Login Using Facebook</h6>
+<p class="align-center">Get using minyawns, faster !</p><br>
+
+		<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
+		
+	<?php 	jfb_output_facebook_btn(); ?>
+		</div>
+		
+	</div>
+  </div>
+  
+</div>
+<div id="myModal" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
+  <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
+    <h4 id="myModalLabel">Sign Up to <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"/> </h4>
+  </div>
+  <div class="modal-body">
+  	<div id="div_signupmsg" ></div>
+    <div class="row-fluid">
+		<div class="span6"> 
+		
+			<form name="frm_signup"  id="frm_signup" action="" >
+				<h6 class="align-center" style=" margin-bottom: 0px; ">
+				Create an Account</h6>
+		<p class="align-center">Fill out the required information Below</p>
+		
+				<div class="control-group ">
+		            <input type="text" value="" name="signup_email"  id="signup_email"  placeholder="Email Address" class="span3">
+		        </div>
+				<div class="control-group ">
+		            <input type="password" value="" name="signup_password"  id="signup_password"  placeholder="Password" class="span3">
+		        </div>
+				  <div class="control-group span6 " style=" margin-left: 0px; ">
+		            <input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="First Name" class="span3">
+		          </div>
+				<div class="control-group span6 ">
+		            <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Last Name" class="span3">
+		          </div>
+				  <div class="clear"></div>
+				  <a href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup" >Sign Up</a>
+			</form>
+			
+			
 		</div>
 		
 		<div class="span6">
@@ -39,7 +157,11 @@ get_header(); ?>
 		Sign Up Using Facebook</h6>
 <p class="align-center">Get using minyawns, faster !</p><br><br>
 
-		<a href="#"><img src="images/fbConnect_button.png" class="center-image"/></a>
+		<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/?>
+		<?php 	
+		jfb_output_facebook_callback();
+		jfb_output_facebook_init();
+		jfb_output_facebook_btn(); ?>
 		<br><br>
 		<p class="align-center">Already a Minyawn?<a href="#"><b> Sign in here</b></a></p>
 		</div>
@@ -48,65 +170,6 @@ get_header(); ?>
   </div>
   
 </div>
-
-<div id="mylogin" class="modal signup  hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(images/pattern-bg.png)">
-  <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="images/delete.png"/></button>
-    <h4 id="myModalLabel">Login to <img src="images/logo.png"/> </h4>
-  </div>
-  <div class="modal-body">
-    <div class="row-fluid">
-		<div class="span6"> 
-	
-		<div class="control-group ">
-            <input type="text" value="" placeholder="Email Address" class="span3">
-          </div>
-		<div class="control-group ">
-            <input type="text" value="" placeholder="Password" class="span3">
-          </div>
-		  <div class="row-fluid">
-			<div class="span4"><a href="#fakelink" class="btn btn-large btn-block btn-inverse " >Login</a></div>
-				<div class="span8"><a href="#"  style=" line-height: 42px; color: #12B13E;font-weight:bold; ">Forget your password ?</a></div>
-		  </div> 
-		  </div>
-		<div class="span6">
-			<h6 class="align-center" style=" margin-bottom: 0px; ">
-		Login Using Facebook</h6>
-<p class="align-center">Get using minyawns, faster !</p><br>
-
-		<a href="#"><img src="images/fbConnect_button.png" class="center-image"/></a>
-		
-		
-		</div>
-		
-	</div>
-  </div>
-  
-</div>
-			
-    <!-- Load JS here for greater good =============================-->
-    <script src="js/jquery-1.8.3.min.js"></script>
-    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/jquery.ui.touch-punch.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-    <script src="js/flatui-checkbox.js"></script>
-    <script src="js/flatui-radio.js"></script>
-    <script src="js/jquery.tagsinput.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
-    <script src="js/jquery.stacktable.js"></script>
-    <script src="js/application.js"></script>
-	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="js/jquery.pep.js"></script>
-	<script src="js/jquery.dragsort-0.5.1.js"></script>
-	
-	
-	
-  </body>
-</html>	
-			
-			
-
-<?php get_footer(); ?>
-
+ <?php
+get_footer();
+?>

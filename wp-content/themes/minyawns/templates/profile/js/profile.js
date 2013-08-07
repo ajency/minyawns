@@ -294,7 +294,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                         },
                         //Ajax events
                         success: function(data, status) {
-                            window.location.reload();
+                            //window.location.reload();
 
                         },
                         error: function(data, status, e) {
@@ -314,7 +314,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                             $("#modal-blanket").hide();
                             $(".modal").hide();
                             $("#modalContainer").remove();
-                            window.location.hash = 'profile';
+                            window.location.hash = '#profile';
                         }
 
 

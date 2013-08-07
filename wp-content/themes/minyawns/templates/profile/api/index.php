@@ -20,13 +20,13 @@ $app->get('/users', function () use ($app) {
                 $user_meta = get_user_meta($_GET['user_id']); // fetch user meta
                 // $user_skills=get_user_meta(trim($_GET['user_id']),'user_skills',FALSE);  /* user meta skils*/
                 $user_role = mn_get_current_user_role($_GET['user_id']);
-               
+
                 $user_role = "subscriber";
                 $user_data = array(
                     'email' => $user_data->user_email,
                 );
 
-                if ($user_role == "author") { /*if role is a author*/
+                if ($user_role == "author") { /* if role is a author */
                     if (!is_array($user_meta['user_skills']))
                         $user_meta['user_skills'] = array();
 
@@ -41,12 +41,12 @@ $app->get('/users', function () use ($app) {
                         'user_id' => $_GET['user_id'],
                         'user_role' => 'author'
                     );
-                }else {/* if role is a subscriber*/
+                }else {/* if role is a subscriber */
                     $meta_array = array(
                         'industry' => $user_meta['industry'][0],
                         'location' => $user_meta['location'][0],
                         'company_website' => $user_meta['company_website'][0],
-                        'body'=>$user_meta['body'][0],
+                        'body' => $user_meta['body'][0],
                         'user_id' => $_GET['user_id'],
                         'user_role' => 'subscriber'
                     );
@@ -60,7 +60,7 @@ $app->get('/users', function () use ($app) {
                 $data = array_merge($user_data, $meta_array, $user_avatar); //merge the two to send via json array
             } else {
                 foreach ($_GET as $key => $values) {
-                    
+
                     delete_user_meta($_GET['current_user'], $key);
                     if ($key == "user_skills") {
 
@@ -87,19 +87,36 @@ $app->get('/logout', function () use ($app) {
             wp_redirect(home_url());
         });
 
+
+
 $app->POST('/change_avatar', function() use($app) {
             delete_user_meta($_POST['user_id'], 'facebook_avatar_thumb');
             delete_user_meta($_POST['user_id'], 'facebook_avatar_full');
             $ext = explode('.', $_FILES['file']['name']);
             $extension = $ext[1];
-            $newname = $ext[0] . '_' . time();
-            $full_local_path = '../../../avatars/' . $newname . "." . $extension;
+            $newname = "avatar_user" . '_' . $_POST['user_id'];
+            $full_local_path = '../../../../../uploads/user_avatars/' . $newname . "." . $extension;
             move_uploaded_file($_FILES["file"]["tmp_name"], $full_local_path);
-            $image_link = get_template_directory_uri() . "/avatars/" . $newname . "." . $extension;
-            add_user_meta($_POST['user_id'], "facebook_avatar_thumb", $image_link);
-            add_user_meta($_POST['user_id'], "facebook_avatar_full", $image_link);
+            
+           $image= wp_get_image_editor($full_local_path);
+           
+if ( ! is_wp_error( $image ) ) {
+   
+    $image->resize(168,168, true );
+    $new_name="avatar_user_".$_POST['user_id']."_168x168";
+    $image->save('../../../../../uploads/user_avatars/'.$new_name.".".$extension);
+}
+$uploads = wp_upload_dir();
+$image_link = $upload_dir['baseurl'] . "/user_avatars/" . $new_name . "." . $extension;
+ add_user_meta($_POST['user_id'], "facebook_avatar_thumb", $image_link);
+ add_user_meta($_POST['user_id'], "facebook_avatar_full", $image_link);
         });
 $app->run();
+
+
+
+
+
 
 /*
  * Function to get user role by user id
