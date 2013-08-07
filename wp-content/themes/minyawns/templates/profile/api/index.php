@@ -94,22 +94,24 @@ $app->POST('/change_avatar', function() use($app) {
             delete_user_meta($_POST['user_id'], 'facebook_avatar_full');
             $ext = explode('.', $_FILES['file']['name']);
             $extension = $ext[1];
+            if($extension == "jpg" || $extension == "png" || $extension == "jpeg" ){
             $newname = "avatar_user" . '_' . $_POST['user_id'];
             $full_local_path = '../../../../../uploads/user_avatars/' . $newname . "." . $extension;
             move_uploaded_file($_FILES["file"]["tmp_name"], $full_local_path);
-            
-           $image= wp_get_image_editor($full_local_path);
-           
-if ( ! is_wp_error( $image ) ) {
-   
-    $image->resize(168,168, true );
-    $new_name="avatar_user_".$_POST['user_id']."_168x168";
-    $image->save('../../../../../uploads/user_avatars/'.$new_name.".".$extension);
-}
-$uploads = wp_upload_dir();
-$image_link = $upload_dir['baseurl'] . "/user_avatars/" . $new_name . "." . $extension;
- add_user_meta($_POST['user_id'], "facebook_avatar_thumb", $image_link);
- add_user_meta($_POST['user_id'], "facebook_avatar_full", $image_link);
+
+            $image = wp_get_image_editor($full_local_path);
+
+            if (!is_wp_error($image)) {
+
+                $image->resize(168, 168, true);
+                $new_name = "avatar_user_" . $_POST['user_id'] . "_168x168";
+                $image->save('../../../../../uploads/user_avatars/' . $new_name . "." . $extension);
+            }
+            $uploads = wp_upload_dir();
+            $image_link = $upload_dir['baseurl'] . "/user_avatars/" . $new_name . "." . $extension;
+            add_user_meta($_POST['user_id'], "facebook_avatar_thumb", $image_link);
+           add_user_meta($_POST['user_id'], "facebook_avatar_full", $image_link);
+            }
         });
 $app->run();
 

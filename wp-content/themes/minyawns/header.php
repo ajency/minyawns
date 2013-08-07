@@ -147,7 +147,7 @@
         <script type="text/template" id="user-avatar">
             <div class="span2">
             <% if(avatar_check.length == 0){ %>
-            <a href="#chang" class="change-avtar">
+            <a href="#avatar" class="change-avtar">
             <img <?php echo get_avatar($current_user->ID, 300) ?>
             <span>Change <?php echo $avatarText; ?></span>
             <% }else { %>
@@ -172,10 +172,13 @@
             <form class="form-horizontal" enctype="multipart/form-data">
             <div class="control-group">
             <label class="control-label" for="in-name">Upload your picture here</label>
+            
             <div class="controls">
-            <input id="fileupload" name="file" type="file" />
-            <input type="hidden" name="user_id" value="<?php echo $current_user->ID; ?>"/>           
+            <input id="fileupload" name="file" type="file" accept="image/gif, image/jpeg"/>
+            <input type="hidden" name="user_id" value="<?php echo $current_user->ID; ?>"/>  
+            <div id="loader2" class="modal_ajax_gif_team" ></div>
             </div>
+            
             </div>
             </form>
             <div id="loader_team" style="display:none" class="modal_ajax_gif_team"><!-- Place at bottom of page --></div>

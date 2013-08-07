@@ -86,7 +86,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                         },
                         reset: true,
                         success: function(model, response) {
-
+                            $("#loader1").show();
                             var template = _.template($("#user-avatar").html());
                             var html = template(response.data); //response.toJSON()
                             $(self.el).append(html);
@@ -95,13 +95,11 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
 
                             if (response.data.user_role == "author") {
                                 var template = _.template($("#user-profile").html());
-                                console.log(response.data);
                                 var html = template(response.data); //response.toJSON()
                                 $(self.el).append(html);
                             } else
                             {
                                 var template = _.template($("#user-profile-two").html());
-                                console.log(response.data);
                                 var html = template(response.data); //response.toJSON()
                                 $(self.el).append(html);
                             }
@@ -112,7 +110,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                             var template = _.template($("#user-votes").html());
                             var html = template(); //response.toJSON()
                             $(self.el).append(html);
-                            $("#loader1").hide();
+
                             /*
                              *  user history
                              * 
@@ -265,22 +263,22 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
              * 
              */
             Manage.AddNewAvatar = ModalView.extend({
-                el: '#main-content',
+                el: '',
                 initialize: function() {
 
-                    _.bindAll(this, 'render', 'upload_avatar','close_popup');
+                    _.bindAll(this, 'render', 'upload_avatar', 'close_popup');
                     this._ensureElement();
                     this.template = _.template($("#avatar-dialog").html());
                     freePrevView(this);
                 }, events: {
                     'click #update-profile-button': 'save_user_details',
                     'click #save_poup': 'upload_avatar',
-                    'click #close':'close_popup'
+                    'click #close': 'close_popup'
                 }, render: function() {
                     $(this.el).html(this.template());
                     return this;
                 }, upload_avatar: function() {
-
+                    $("#loader2").show();
                     var formData = new FormData($('form')[0]);
                     $.ajax({
                         url: '../wp-content/themes/minyawns/templates/profile/api/index.php/change_avatar', //server script to process data
@@ -294,7 +292,11 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                         },
                         //Ajax events
                         success: function(data, status) {
-                            //window.location.reload();
+                           
+                            $("#modal-blanket").hide();
+                            $(".modal").hide();
+                            $("#modalContainer").remove();
+                            window.location.hash = '#profile';
 
                         },
                         error: function(data, status, e) {
@@ -310,12 +312,12 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
 
 
                 }, close_popup: function()
-                        {
-                            $("#modal-blanket").hide();
-                            $(".modal").hide();
-                            $("#modalContainer").remove();
-                            window.location.hash = '#profile';
-                        }
+                {
+                    $("#modal-blanket").hide();
+                    $(".modal").hide();
+                    $("#modalContainer").remove();
+                    //window.location.hash = '#profile';
+                }
 
 
             });

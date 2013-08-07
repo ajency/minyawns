@@ -64,7 +64,7 @@ require([
 
             ProfileView = Backbone.Router.extend({
                 routes: {
-                    "": "profile",
+                    "#": "profile",
                     "profile": "profile",
                     "logout": "logout",
                     "edit": "edit",
@@ -82,8 +82,6 @@ require([
                     var profile_view = new Profile.ProfileContianerView({'breadcrumb': 'My Profile'});
                     profile_view.render();
 
-                    $("#loader1").hide();
-                    $("#loader2").hide();
 
                 }, edit: function()
                 {
