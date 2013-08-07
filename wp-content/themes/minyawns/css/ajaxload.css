@@ -42,7 +42,7 @@
 }
 
 .modal_ajax_gif_team{
-      background: url("../images/ajax-loader.gif") no-repeat scroll 0 0 transparent;
+      background: url("../images/ajax-loader-old.gif") no-repeat scroll 0 0 transparent;
     display: none;
     float: right;
     height: 60px;

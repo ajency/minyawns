@@ -64,7 +64,7 @@ require([
 
             ProfileView = Backbone.Router.extend({
                 routes: {
-                    "": "profile",
+                    "#": "profile",
                     "profile": "profile",
                     "logout": "logout",
                     "edit": "edit",
