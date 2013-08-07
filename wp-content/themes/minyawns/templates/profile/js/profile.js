@@ -93,7 +93,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                             $("#bread-crumbs-id").empty();
                             $("#bread-crumbs-id").append("<a href='#'>View All jobs</a><a href='#profile' class='breadcrumb-end'>" + self.options.breadcrumb + "</a>");
 
-                            if (response.data.user_role == "author") {
+                            if (response.data.user_role == "minyawn") {
                                 var template = _.template($("#user-profile").html());
                                 var html = template(response.data); //response.toJSON()
                                 $(self.el).append(html);
@@ -160,7 +160,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                         },
                         reset: true,
                         success: function(model, response) {
-                            if (response.data.user_role == "author") {
+                            if (response.data.user_role == "minyawn") {
                                 $(".tm-input").tagsManager();
                                 var template = _.template($("#edit-profile").html());
                                 var html = template(response.data); //response.toJSON()
@@ -183,7 +183,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                     var validator = $("#edit-user-profile").validate({
                         rules: {
                             linkedIn: {
-                                required: true,
+                                
                                 url: true
                             }
                         }
@@ -192,7 +192,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                     {
                         return false;
                     } else {
-                        if ($("#user_role") == "author") {
+                        if ($("#user_role") == "minyawn") {
                             var self = this;
                             this.usercollection.fetch({
                                 data: {

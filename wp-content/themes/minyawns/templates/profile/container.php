@@ -1,5 +1,5 @@
 <div class="container">
-    <div  id="main-content" class="main-content bg-white" style="height:500px;">
+    <div  id="main-content" class="main-content bg-white" >
         <div class="breadcrumb-text">
             <p id="bread-crumbs-id">
                 <a href="myjobs.html">View All Jobs</a>

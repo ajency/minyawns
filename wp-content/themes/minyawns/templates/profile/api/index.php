@@ -21,12 +21,12 @@ $app->get('/users', function () use ($app) {
                 // $user_skills=get_user_meta(trim($_GET['user_id']),'user_skills',FALSE);  /* user meta skils*/
                 $user_role = mn_get_current_user_role($_GET['user_id']);
 
-                $user_role = "subscriber";
+                
                 $user_data = array(
                     'email' => $user_data->user_email,
                 );
 
-                if ($user_role == "author") { /* if role is a author */
+                if ($user_role == "minyawn") { /* if role is a author */
                     if (!is_array($user_meta['user_skills']))
                         $user_meta['user_skills'] = array();
 
@@ -39,7 +39,7 @@ $app->get('/users', function () use ($app) {
                         'url' => $user_meta['url'][0],
                         'user_skills' => $user_meta['user_skills'],
                         'user_id' => $_GET['user_id'],
-                        'user_role' => 'author'
+                        'user_role' => $user_role
                     );
                 }else {/* if role is a subscriber */
                     $meta_array = array(
@@ -48,7 +48,7 @@ $app->get('/users', function () use ($app) {
                         'company_website' => $user_meta['company_website'][0],
                         'body' => $user_meta['body'][0],
                         'user_id' => $_GET['user_id'],
-                        'user_role' => 'subscriber'
+                        'user_role' => $user_role
                     );
                 }
                 if (is_array($user_meta['facebook_uid'])) {
@@ -108,7 +108,8 @@ $app->POST('/change_avatar', function() use($app) {
                 $image->save('../../../../../uploads/user_avatars/' . $new_name . "." . $extension);
             }
             $uploads = wp_upload_dir();
-            $image_link = $upload_dir['baseurl'] . "/user_avatars/" . $new_name . "." . $extension;
+            $image_link = $uploads['baseurl'] . "/user_avatars/" . $new_name . "." . $extension;
+           
             add_user_meta($_POST['user_id'], "facebook_avatar_thumb", $image_link);
            add_user_meta($_POST['user_id'], "facebook_avatar_full", $image_link);
             }

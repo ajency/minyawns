@@ -436,4 +436,3 @@ return $avatar_defaults; }
 add_filter( 'avatar_defaults', 'fb_addgravatar' ); }
 
 ?>
-
