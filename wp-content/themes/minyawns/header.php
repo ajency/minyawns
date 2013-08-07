@@ -47,6 +47,27 @@
         if (is_array($current_user_details['user_skills'])) {
             $skills = implode(",", $current_user_details['user_skills']);
         }
+
+        $user_role = mn_get_current_user_role($current_user->ID);
+
+        function mn_get_current_user_role($user_id) {
+            $user = new WP_User($user_id);
+
+            $role = "";
+            if (!empty($user->roles) && is_array($user->roles)) {
+                foreach ($user->roles as $role) {
+                    return translate_user_role($role);
+                }
+            }
+        }
+        
+        if($user_role == "employer" || $user_role == "author")
+        {
+            $avatarText="Avatar";
+        }else
+        {
+            $avatarText ="Logo";
+        }
         ?>
         <script> var ajaxurl = '<?php echo admin_url('admin-ajax.php', 'relative'); ?>'
             var siteurl = '<?php echo site_url(); ?>'
@@ -95,18 +116,46 @@
             </div>
 
         </script>
+        <script type="text/template" id="user-profile-two">
+
+
+            <div class="span8">
+            <h4> <%= industry %>  <a href="#edit" id="edit-profile" class="edit"><i class="icon-edit"></i> Edit</a></h4> 
+            <div class="row-fluid profile-list">
+            <div class="span2">
+            Location :
+            </div>
+            <div class="span10">
+            <%= location %>
+            </div>
+            <div class="span2">
+            Body :
+            </div>
+            <div class="span10">
+            <%= body %>
+            </div>
+            <div class="span2">
+            Company Website :
+            </div>
+            <div class="span10">
+            -<a href="<%= company_website %>"><%= company_website %>  </a> - <a href="#">Behance </a>
+            </div>
+            </div>
+
+        </script>
 
         <script type="text/template" id="user-avatar">
             <div class="span2">
             <% if(avatar_check.length == 0){ %>
-             <a href="#" class="change-avtar">
-             <img <?php echo get_avatar($current_user->ID, 300) ?>
+            <a href="#chang" class="change-avtar">
+            <img <?php echo get_avatar($current_user->ID, 300) ?>
+            <span>Change <?php echo $avatarText; ?></span>
             <% }else { %>
             <img <?php echo get_avatar($current_user->ID, 300) ?>
-            
-                      <% } %>      
-            
-                
+
+            <% } %>      
+
+
             </a>
             </div>
         </script>
@@ -124,8 +173,8 @@
             <div class="control-group">
             <label class="control-label" for="in-name">Upload your picture here</label>
             <div class="controls">
-           <input id="fileupload" name="file" type="file" />
-           <input type="hidden" name="user_id" value="<?php echo $current_user->ID; ?>"/>           
+            <input id="fileupload" name="file" type="file" />
+            <input type="hidden" name="user_id" value="<?php echo $current_user->ID; ?>"/>           
             </div>
             </div>
             </form>
@@ -172,7 +221,7 @@
         <script type="text/template" id="edit-profile">
 
             <form class="form-horizontal frm-edit" id="edit-user-profile">
-            <input type="hidden" id="user_skills" value=""></input>
+            <input type="hidden" id="user_role" value="<%= user_role %>"></input>
             <div class="control-group">
             <label class="control-label" for="inputFirst">First Name</label>
             <div class="controls">
@@ -228,6 +277,46 @@
             </form>
 
         </script>	
+
+        <script type="text/template" id="edit-profile-two">
+
+            <form class="form-horizontal frm-edit" id="edit-user-profile">
+            <input type="hidden" id="user_role" value="<%= user_role %>"></input>
+            <div class="control-group">
+            <label class="control-label" for="inputFirst">Industry</label>
+            <div class="controls">
+            <input type="text" id="inputFirst" placeholder="" class="input" value="<%= industry %>">
+            </div>
+            </div>
+            <div class="control-group">
+            <label class="control-label" for="inputlast">Location</label>
+            <div class="controls">
+            <input type="text" id="inputlast" placeholder="" class="input" value="<%= location %>">
+            </div>
+            </div>
+            <div class="control-group">
+            <label class="control-label" for="inputemail">Body</label>
+            <div class="controls">
+            <input type="text" id="inputbody" placeholder="" class="input"  value="<%= body %>"></input>
+            </div>
+            </div>
+            <div class="control-group">
+            <label class="control-label" for="inptcollege">Company Website</label>
+            <div class="controls">
+            <input type="text" id="LinkedIn" name="linkedIn" placeholder="" class="input" value="<%= company_website %>">
+            </div>
+            </div>
+            <a  href="#upd" class="btn btn-large btn-block btn-inverse span2" id="update-profile-button" >Update Info</a>
+            <div class="clear"></div>
+            </form>
+
+        </script>	
+
+
+
+
+
+
 
         <script type="text/template" id="history-row">
             <tr class="data_even ">
@@ -362,81 +451,10 @@
             </div> <!-- /bottom-menu-inverse -->
 
         </div>
+
+        <!-- Banner Layout --->
         
-         <!-- Banner Layout --->
-	<div id="innermainimage">
-		<div class="row-fluid banner-content">
-			<div class="span12">
-				<img src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
-				<div class="banner-desc">
-					Minyawans is an easy to use. on-demand,<br>
-					student labour sourcing application
-				</div>
-				<hr>
-				<div class="row-fluid">
-						<div class="span4"></div>
-						<div class="span2"><a href="#myModal"  data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_minyawnregister" >Get a Minyawn</a></div>
-						<div class="span2"><a href="#myModal"  data-toggle="modal" class="btn btn-huge btn-block btn-info"  id="link_employerregister"  >Become a Minyawn</a></div>
-						<div class="span4"></div>
-				</div>	
-			</div>
-			
-		</div>
-            <img class="bg-background" src="<?php echo get_template_directory_uri() ?>/images/banner1.jpg"/>
-	</div>
-		 <!--End  Banner Layout --->
-	
-	<div id="init-land" class="container">
-	<div class="row-fluid">
-			<div class="span12"><h3 class="heading-title">How does it work ? </h3></div>
-		</div>
-		<div class="row-fluid">
-			<div class="span2"></div>
-			<div class="span3">
-				<div class="workflow1">
-				<i class="icon-calendar-empty i-cal"></i>
-				</div>
-			<h3 class="small-header">Request a Minyawan</h3>
-				<p class="small-desc">Pick a time and describe <br> your task.</p>
-			</div>
-			<div class="span2">
-					<div class="workflow">
-					<i class="icon-user i-user"></i>
-					</div>
-					<h3 class="small-header">Get Work Done</h3>
-				<p class="small-desc">Take care of projects on your
-to-do list.</p>
-				</div>
-			<div class="span3">
-				<div class="workflow2">
-				<i class="icon-dollar i-money"></i>
-				</div>
-				<h3 class="small-header">Profit !</h3>
-				<p class="small-desc">Enjoy having less <br>
-work to do.</p>
-			</div>
-			<div class="span2"></div>
-		</div>
-		<div class="row-fluid">
-			<div class="span12">
-			<h3 class="big-heading-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit </h3>
-			<p class="big-heading-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-			</div>
-		</div>
-		<footer>
-	 <hr style="border-top:1px solid #C7C3C3;">
-		  <ul class="footer_menu">
-			  <li><a href="#">About</a></li>
-			  <li><a href="#">Careers</a></li>
-			  <li><a href="#">Blog</a></li>
-			  <li><a href="#">Tech City</a></li>
-			  <li><a href="#">Directory</a></li>
-		  </ul>
-		  <div class="social-icon"><a href="#"><img src="images/twiiter.png"/></a>&nbsp;&nbsp;<a href="#"><img src="images/facebook.png"/></a></div>
-		  <div class="site_link">All rights reserved 2013 @ Minyawn</div>
-	</footer>
-	
-	</div>
+ 
+ 
 
 

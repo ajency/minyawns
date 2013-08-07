@@ -61,7 +61,7 @@ jQuery(document).ready(function($){
 				if(response.success==true)
 				{
 					//alert("login successfull..redirect page..");				
-					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/';
+					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
 				} 
 				else
 				{
@@ -80,16 +80,14 @@ jQuery(document).ready(function($){
 	/* POPUP SIGNUP */
 	jQuery("#link_minyawnregister").live("click",function(){	
 		jQuery("#signup_role").val('minyawn');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
-		//alert(logouturl);
 		//logouturl=logouturl+"&amp;usr_role=minyawn"
-		//alert(logouturl);
+	
 	})
 	
 	jQuery("#link_employerregister").live("click",function(){	
 		jQuery("#signup_role").val('employer');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
-		//alert(logouturl);
-	//	logouturl=logouturl+"&amp;usr_role=employer";
-		// alert(logouturl);
+		//	logouturl=logouturl+"&amp;usr_role=employer";
+		
 	})
 	
 	
@@ -128,7 +126,7 @@ jQuery(document).ready(function($){
 
 		},
 		submitHandler : function(form){ 	
-			
+			//alert(jQuery("#signup_email").val()+" - "+jQuery("#signup_password").val()+" - "+jQuery("#signup_fname").val()+" - "+jQuery("#signup_lname").val()+ " - "+jQuery("#signup_role").val() )
 			jQuery("#div_signupmsg").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
 			jQuery.post(ajaxurl,{
 				action : 'popup_usersignup',

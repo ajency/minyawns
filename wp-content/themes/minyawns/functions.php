@@ -275,6 +275,7 @@ function authenticate_active_user ($user, $password) {
 	
 	
 }
+
  
 
 
@@ -332,7 +333,7 @@ function phoenix_add_role_cap_function()
 		remove_role( 'author' );
 		remove_role( 'contributor' );
 		remove_role( 'subscriber' );	
-		remove_role( 'minyawns' );
+		
 		
 		/* Add minyawns role to the site */
 		add_role('minyawn', 'minyawn', array(
@@ -422,4 +423,17 @@ return $avatar_defaults;
 
 
 
+
+
+
+if ( !function_exists('fb_addgravatar') ) {
+function fb_addgravatar( $avatar_defaults ) {
+$myavatar = get_bloginfo('template_directory') . '/images/profile.png';
+$avatar_defaults[$myavatar] = 'Users';
+$myavatar2 = get_bloginfo('template_directory') . '/images/profile.png';
+$avatar_defaults[$myavatar2] = 'My Avatar';
+return $avatar_defaults; }
+add_filter( 'avatar_defaults', 'fb_addgravatar' ); }
+
+?>
 
