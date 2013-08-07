@@ -82,8 +82,6 @@ require([
                     var profile_view = new Profile.ProfileContianerView({'breadcrumb': 'My Profile'});
                     profile_view.render();
 
-                    $("#loader1").hide();
-                    $("#loader2").hide();
 
                 }, edit: function()
                 {
