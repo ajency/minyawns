@@ -19,26 +19,38 @@ $app->get('/users', function () use ($app) {
                 $user_data = get_userdata($_GET['user_id']);  // fetch user data
                 $user_meta = get_user_meta($_GET['user_id']); // fetch user meta
                 // $user_skills=get_user_meta(trim($_GET['user_id']),'user_skills',FALSE);  /* user meta skils*/
-
-
+                $user_role = mn_get_current_user_role($_GET['user_id']);
+               
+                $user_role = "subscriber";
                 $user_data = array(
                     'email' => $user_data->user_email,
                 );
 
-                if (!is_array($user_meta['user_skills']))
-                    $user_meta['user_skills'] = array();
+                if ($user_role == "author") { /*if role is a author*/
+                    if (!is_array($user_meta['user_skills']))
+                        $user_meta['user_skills'] = array();
 
 
-                $meta_array = array(
-                    'college' => $user_meta['college'][0],
-                    'first_name' => $user_meta['first_name'][0],
-                    'last_name' => $user_meta['last_name'][0],
-                    'major' => $user_meta['major'][0],
-                    'url' => $user_meta['url'][0],
-                    'user_skills' => $user_meta['user_skills'],
-                    'user_id' => $_GET['user_id']
-                );
-
+                    $meta_array = array(
+                        'college' => $user_meta['college'][0],
+                        'first_name' => $user_meta['first_name'][0],
+                        'last_name' => $user_meta['last_name'][0],
+                        'major' => $user_meta['major'][0],
+                        'url' => $user_meta['url'][0],
+                        'user_skills' => $user_meta['user_skills'],
+                        'user_id' => $_GET['user_id'],
+                        'user_role' => 'author'
+                    );
+                }else {/* if role is a subscriber*/
+                    $meta_array = array(
+                        'industry' => $user_meta['industry'][0],
+                        'location' => $user_meta['location'][0],
+                        'company_website' => $user_meta['company_website'][0],
+                        'body'=>$user_meta['body'][0],
+                        'user_id' => $_GET['user_id'],
+                        'user_role' => 'subscriber'
+                    );
+                }
                 if (is_array($user_meta['facebook_uid'])) {
                     $user_avatar = array(
                         'avatar_check' => $user_meta['facebook_uid'][0]
@@ -48,6 +60,7 @@ $app->get('/users', function () use ($app) {
                 $data = array_merge($user_data, $meta_array, $user_avatar); //merge the two to send via json array
             } else {
                 foreach ($_GET as $key => $values) {
+                    
                     delete_user_meta($_GET['current_user'], $key);
                     if ($key == "user_skills") {
 
@@ -75,19 +88,32 @@ $app->get('/logout', function () use ($app) {
         });
 
 $app->POST('/change_avatar', function() use($app) {
-            delete_user_meta($_POST['user_id'],'facebook_avatar_thumb');
-            delete_user_meta($_POST['user_id'],'facebook_avatar_full');
- $ext = explode('.',$_FILES['file']['name']);
-$extension = $ext[1];
-$newname = $ext[0].'_'.time();
-$full_local_path = '../../../avatars/'.$newname.".".$extension ;
-           move_uploaded_file($_FILES["file"]["tmp_name"],$full_local_path);
-$image_link=  get_template_directory_uri()."/avatars/".$newname.".".$extension;
-           add_user_meta($_POST['user_id'],"facebook_avatar_thumb",$image_link);
-            add_user_meta($_POST['user_id'],"facebook_avatar_full",$image_link);
-           
-           
-            
+            delete_user_meta($_POST['user_id'], 'facebook_avatar_thumb');
+            delete_user_meta($_POST['user_id'], 'facebook_avatar_full');
+            $ext = explode('.', $_FILES['file']['name']);
+            $extension = $ext[1];
+            $newname = $ext[0] . '_' . time();
+            $full_local_path = '../../../avatars/' . $newname . "." . $extension;
+            move_uploaded_file($_FILES["file"]["tmp_name"], $full_local_path);
+            $image_link = get_template_directory_uri() . "/avatars/" . $newname . "." . $extension;
+            add_user_meta($_POST['user_id'], "facebook_avatar_thumb", $image_link);
+            add_user_meta($_POST['user_id'], "facebook_avatar_full", $image_link);
         });
 $app->run();
+
+/*
+ * Function to get user role by user id
+ */
+
+function mn_get_current_user_role($user_id) {
+    $user = new WP_User($user_id);
+
+    $role = "";
+    if (!empty($user->roles) && is_array($user->roles)) {
+        foreach ($user->roles as $role) {
+            return translate_user_role($role);
+        }
+    }
+}
+
 ?>

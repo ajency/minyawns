@@ -93,11 +93,18 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                             $("#bread-crumbs-id").empty();
                             $("#bread-crumbs-id").append("<a href='#'>View All jobs</a><a href='#profile' class='breadcrumb-end'>" + self.options.breadcrumb + "</a>");
 
-
-                            var template = _.template($("#user-profile").html());
-                            console.log(response.data);
-                            var html = template(response.data); //response.toJSON()
-                            $(self.el).append(html);
+                            if (response.data.user_role == "author") {
+                                var template = _.template($("#user-profile").html());
+                                console.log(response.data);
+                                var html = template(response.data); //response.toJSON()
+                                $(self.el).append(html);
+                            } else
+                            {
+                                var template = _.template($("#user-profile-two").html());
+                                console.log(response.data);
+                                var html = template(response.data); //response.toJSON()
+                                $(self.el).append(html);
+                            }
                             /*
                              *  user votes
                              * 
@@ -155,16 +162,22 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                         },
                         reset: true,
                         success: function(model, response) {
-                            $(".tm-input").tagsManager();
-//                            alert($('#tags').tagsInput());
-                            var template = _.template($("#edit-profile").html());
-                            console.log(response.data.user_skills);
-                            var html = template(response.data); //response.toJSON()
-                            $(self.el).append(html);
-                            $(".tm-input").tagsManager({
-                                prefilled: response.data.user_skills,
-                                hiddenTagListId: 'user_skills',
-                            });
+                            if (response.data.user_role == "author") {
+                                $(".tm-input").tagsManager();
+                                var template = _.template($("#edit-profile").html());
+                                var html = template(response.data); //response.toJSON()
+                                $(self.el).append(html);
+                                $(".tm-input").tagsManager({
+                                    prefilled: response.data.user_skills,
+                                    hiddenTagListId: 'user_skills',
+                                });
+                            } else
+                            {
+                                var template = _.template($("#edit-profile-two").html());
+                                var html = template(response.data); //response.toJSON()
+                                $(self.el).append(html);
+                            }
+
                         }
                     })
 
@@ -181,38 +194,66 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                     {
                         return false;
                     } else {
-                        var self = this;
-                        this.usercollection.fetch({
-                            data: {
-                                'first_name': $("#inputFirst").val(),
-                                'last_name': $("#inputlast").val(),
-                                'college': $("#inputcollege").val(),
-                                'major': $("#inputmajor").val(),
-                                'skill': $("#tagsinput").val(),
-                                'body': $("#inputbody").val(),
-                                'url': $("#LinkedIn").val(),
-                                'current_user': $("#current_user").val(),
-                                'user_skills': $("#user_skills").val()
-                            },
-                            reset: true,
-                            success: function(model, response) {
+                        if ($("#user_role") == "author") {
+                            var self = this;
+                            this.usercollection.fetch({
+                                data: {
+                                    'first_name': $("#inputFirst").val(),
+                                    'last_name': $("#inputlast").val(),
+                                    'college': $("#inputcollege").val(),
+                                    'major': $("#inputmajor").val(),
+                                    'skill': $("#tagsinput").val(),
+                                    'body': $("#inputbody").val(),
+                                    'url': $("#LinkedIn").val(),
+                                    'current_user': $("#current_user").val(),
+                                    'user_skills': $("#user_skills").val()
+                                },
+                                reset: true,
+                                success: function(model, response) {
 
-                                if (response.status == "success")
-                                {
-                                    $("#edit-user-profile").remove();
-                                    $("#profile-view").show();
-                                    $("#my-history").show();
-                                    $("#profile-view").empty();
-                                    $("#edit-user-profile").remove();
-                                    var profile_view = new Manage.ProfileContianerView({'breadcrumb': 'My Profile'});
-                                    profile_view.render();
+                                    if (response.status == "success")
+                                    {
+                                        $("#edit-user-profile").remove();
+                                        $("#profile-view").show();
+                                        $("#my-history").show();
+                                        $("#profile-view").empty();
+                                        $("#edit-user-profile").remove();
+                                        var profile_view = new Manage.ProfileContianerView({'breadcrumb': 'My Profile'});
+                                        profile_view.render();
+                                    }
+
                                 }
+                            });
+                        } else {
+                            var self = this;
+                            this.usercollection.fetch({
+                                data: {
+                                    'industry': $("#inputFirst").val(),
+                                    'location': $("#inputlast").val(),
+                                    'body': $("#inputbody").val(),
+                                    'company_website': $("#LinkedIn").val(),
+                                    'current_user': $("#current_user").val(),
+                                    'user_role': $("#user_role").val()
+                                },
+                                reset: true,
+                                success: function(model, response) {
 
-                            },
-                            error: function(err) {
+                                    if (response.status == "success")
+                                    {
+                                        $("#edit-user-profile").remove();
+                                        $("#profile-view").show();
+                                        $("#my-history").show();
+                                        $("#profile-view").empty();
+                                        $("#edit-user-profile").remove();
+                                        var profile_view = new Manage.ProfileContianerView({'breadcrumb': 'My Profile'});
+                                        profile_view.render();
+                                    }
 
-                            }
-                        });
+                                }
+                            });
+
+
+                        }
                     }
                 }
             });
@@ -227,13 +268,14 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                 el: '#main-content',
                 initialize: function() {
 
-                    _.bindAll(this, 'render', 'upload_avatar');
+                    _.bindAll(this, 'render', 'upload_avatar','close_popup');
                     this._ensureElement();
                     this.template = _.template($("#avatar-dialog").html());
                     freePrevView(this);
                 }, events: {
                     'click #update-profile-button': 'save_user_details',
-                    'click #save_poup': 'upload_avatar'
+                    'click #save_poup': 'upload_avatar',
+                    'click #close':'close_popup'
                 }, render: function() {
                     $(this.el).html(this.template());
                     return this;
@@ -256,7 +298,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
 
                         },
                         error: function(data, status, e) {
-                           
+
                         },
                         // Form data
                         data: formData,
@@ -267,7 +309,13 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                     });
 
 
-                }
+                }, close_popup: function()
+                        {
+                            $("#modal-blanket").hide();
+                            $(".modal").hide();
+                            $("#modalContainer").remove();
+                            window.location.hash = 'profile';
+                        }
 
 
             });

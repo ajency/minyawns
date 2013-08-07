@@ -61,7 +61,7 @@ jQuery(document).ready(function($){
 				if(response.success==true)
 				{
 					//alert("login successfull..redirect page..");				
-					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/';
+					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
 				} 
 				else
 				{
