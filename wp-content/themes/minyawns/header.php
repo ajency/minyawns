@@ -34,24 +34,26 @@
         <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/main.css">
         <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/data_grids_main.css">
         <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/ajaxload.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/js/tagmanager-master/bootstrap-tagmanager.css">
         <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
 
         <!-- wordpress head functions -->
         <?php //wp_head(); ?>
 
+
+        <?php
+        $current_user = wp_get_current_user();
+        $current_user_details = get_user_meta($current_user->ID);
+        if (is_array($current_user_details['user_skills'])) {
+            $skills = implode(",", $current_user_details['user_skills']);
+        }
+        ?>
         <script> var ajaxurl = '<?php echo admin_url('admin-ajax.php', 'relative'); ?>'
             var siteurl = '<?php echo site_url(); ?>'
             var logouturl = '<?php echo wp_logout_url(home_url()); ?>'
-            
+            var userName = '<?php echo $current_user_details['first_name'][0] ?>'
+
         </script>
-        <?php 
-        
-        $current_user = wp_get_current_user();
-        $current_user_details = get_user_meta($current_user->ID);
-        if(is_array($current_user_details)){ 
-        $skills = implode(",",$current_user_details['user_skills']);
-        }
-        ?>
 
         <!-- end of wordpress head -->
         <script type="text/template" id="user-profile">
@@ -76,15 +78,15 @@
             Social Page :
             </div>
             <div class="span10">
-            <%= url %> -<a href="#"> LinkedIn </a> - <a href="#">Behance </a>
+            -<a href="<%= url %>"> LinkedIn </a> - <a href="#">Behance </a>
             </div>
             <div class="span2">
             Skills :
             </div>
             <div class="span10">
-           <% for(var i=0;i<user_skills.length;i++){%>
-             <span class="label label-small"><%= user_skills[i] %></span>
-           <% } %>
+            <% for(var i=0;i<user_skills.length;i++){%>
+            <span class="label label-small"><%= user_skills[i] %></span>
+            <% } %>
 
 
             </div>
@@ -96,13 +98,50 @@
 
         <script type="text/template" id="user-avatar">
             <div class="span2">
-            <a href="#" class="change-avtar">
+            <% if(avatar_check.length == 0){ %>
+             <a href="#" class="change-avtar">
+             <img <?php echo get_avatar($current_user->ID, 300) ?>
+            <% }else { %>
             <img <?php echo get_avatar($current_user->ID, 300) ?>
-            <span>Change Avatar</span>
+            
+                      <% } %>      
+            
+                
             </a>
             </div>
         </script>
+        <script type="text/template" id="avatar-dialog">
 
+            <div id="Adduser"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h4><i class="fui-document platform"></i>Upload your picture here</h4>
+            </div>
+
+            <div class="modal-body " style="height:auto;">
+            <div class="content" id="content_1" >
+            <form class="form-horizontal" enctype="multipart/form-data">
+            <div class="control-group">
+            <label class="control-label" for="in-name">Upload your picture here</label>
+            <div class="controls">
+           <input id="fileupload" name="file" type="file" />
+           <input type="hidden" name="user_id" value="<?php echo $current_user->ID; ?>"/>           
+            </div>
+            </div>
+            </form>
+            <div id="loader_team" style="display:none" class="modal_ajax_gif_team"><!-- Place at bottom of page --></div>
+            </div>
+            <div id="error_text" style="display:none;font-family:arial;font-size:10px;color:red;">*Please enter a team name</div>
+            <div id="error_text_two" style="display:none;font-family:arial;font-size:10px;color:red;">*Team Exists</div>
+            </div>
+            <div class="modal-footer">
+            <button id="close" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button  id="save_poup" class="btn btn-primary" aria-hidden="true">Save changes</input>
+
+            </div>
+            </div>
+
+        </script>
         <script type="text/template" id="user-votes">
             <div class="span2">
             <br>
@@ -131,70 +170,60 @@
             </div>
         </script>
         <script type="text/template" id="edit-profile">
-          
+
             <form class="form-horizontal frm-edit" id="edit-user-profile">
-            <input type="hidden" id="user_id" value="<?php echo $current_user->ID; ?>"></input>
-                <input type="hidden" id="user_skills" value="<?php echo $skills ?>"></input>
+            <input type="hidden" id="user_skills" value=""></input>
             <div class="control-group">
             <label class="control-label" for="inputFirst">First Name</label>
             <div class="controls">
-            <input type="text" id="inputFirst" placeholder="" class="input" value="<?php echo $current_user_details['first_name'][0] ?>">
+            <input type="text" id="inputFirst" placeholder="" class="input" value="<%= first_name %>">
             </div>
             </div>
             <div class="control-group">
             <label class="control-label" for="inputlast">Last Name</label>
             <div class="controls">
-            <input type="text" id="inputlast" placeholder="" class="input" value="<?php echo $current_user_details['last_name'][0] ?>">
+            <input type="text" id="inputlast" placeholder="" class="input" value="<%= last_name %>">
             </div>
             </div>
             <div class="control-group">
             <label class="control-label" for="inputemail">Email</label>
             <div class="controls">
-            <input type="text" id="inputemail" placeholder="" class="input" disabled="true" value="<?php echo $current_user->user_email; ?>"></input>
+            <input type="text" id="inputemail" placeholder="" class="input" disabled="true" value="<%= email %>"></input>
             </div>
             </div>
             <div class="control-group">
             <label class="control-label" for="inptcollege">College</label>
             <div class="controls">
-            <input type="text" id="inputcollege" placeholder="" class="input" value="<?php echo $current_user_details['college'][0] ?>">
+            <input type="text" id="inputcollege" placeholder="" class="input" value="<%= college %>">
             </div>
             </div>
             <div class="control-group">
             <label class="control-label" for="inputmajor">Major</label>
             <div class="controls">
-            <input type="text" id="inputmajor" placeholder="" class="input" value="<?php echo $current_user_details['major'][0] ?>">
+            <input type="text" id="inputmajor" placeholder="" class="input" value="<%= major %>">
             </div>
             </div>
             <div class="control-group">
             <label class="control-label" for="inputskill">Skill</label>
             <div class="controls">
-            <input name="tagsinput" id="tags" class="tagsinput " value="<?php echo $skills ?>"  style="width:60%;"/>
+
+            <input type="text" name="tags" placeholder="Tags" class="tm-input"/>
             </div>
             </div>
             <div class="control-group">
             <label class="control-label" for="inputbody">Body</label>
             <div class="controls">
-            <textarea type="text" id="inputbody" placeholder="" maxlength="40" class="input" ><?php echo $current_user_details['body'][0] ?></textarea>
+            <textarea type="text" id="inputbody" placeholder="" maxlength="40" class="input" ></textarea>
             </div>
             </div>
             <div class="control-group">
             <label class="control-label" for="LinkedIn">LinkedIn profile public url</label>
             <div class="controls">
-            <input type="text" id="LinkedIn" placeholder="" class="input" value="<?php echo $current_user_details['url'][0] ?>">
-            </div>
-            </div>
-            <div class="control-group">
-            <label class="control-label" for="LinkedIn">Upload a photo</label>
-            <div class="controls">
-            <div class="form-group">
-            <label for="exampleInputFile">You can upload a JPG, GIF or PNG file ( File size limit is 4MB )</label>
-            <input type="file" id="exampleInputFile">
-
-            </div>
+            <input type="text" style="width:147px" id="LinkedIn" name="linkedIn"  placeholder="" class="input" value="<%= url %>">
             </div>
             </div>
             <hr>
-            <a href="#update" class="btn btn-large btn-block btn-inverse span2" id="update-profile-button" >Update Info</a>
+            <a  href="#upd" class="btn btn-large btn-block btn-inverse span2" id="update-profile-button" >Update Info</a>
             <div class="clear"></div>
             </form>
 
@@ -287,10 +316,12 @@
         </script>
     </head>
 
-    <body class="page_bg">
+    <body class="home-page">
         <input type="hidden" value="<?php echo $_SESSION['email'] ?>" id="loggedinemail"/>
+        <input type="hidden" id="user_id" value="<?php echo $current_user->ID; ?>"></input>
+
         <input id="current_user" type="hidden" value="<?php echo $current_user->ID; ?>"></input>
-        <div class=" pbl mtn">
+        <div class=" pbl mtn top-menu">
             <div class="bottom-menu  bottom-menu-inverse top-menu">
                 <div class="container">
                     <div class="row">
@@ -317,19 +348,95 @@
                             <div class="span1">
                                 <a href="#" class="help_icon"><i class="icon-question-sign"></i></a>
                             </div>
-<?php } else {
-    ?>
+                        <?php } else {
+                            ?>
 
                             <div class="span2 upper-link">
                                 <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	<a href="#mylogin"  data-toggle="modal">Login </a>
 
                             </div>
 
-<?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div> <!-- /bottom-menu-inverse -->
 
         </div>
-       
+        
+         <!-- Banner Layout --->
+	<div id="innermainimage">
+		<div class="row-fluid banner-content">
+			<div class="span12">
+				<img src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
+				<div class="banner-desc">
+					Minyawans is an easy to use. on-demand,<br>
+					student labour sourcing application
+				</div>
+				<hr>
+				<div class="row-fluid">
+						<div class="span4"></div>
+						<div class="span2"><a href="#myModal"  data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_minyawnregister" >Get a Minyawn</a></div>
+						<div class="span2"><a href="#myModal"  data-toggle="modal" class="btn btn-huge btn-block btn-info"  id="link_employerregister"  >Become a Minyawn</a></div>
+						<div class="span4"></div>
+				</div>	
+			</div>
+			
+		</div>
+            <img class="bg-background" src="<?php echo get_template_directory_uri() ?>/images/banner1.jpg"/>
+	</div>
+		 <!--End  Banner Layout --->
+	
+	<div id="init-land" class="container">
+	<div class="row-fluid">
+			<div class="span12"><h3 class="heading-title">How does it work ? </h3></div>
+		</div>
+		<div class="row-fluid">
+			<div class="span2"></div>
+			<div class="span3">
+				<div class="workflow1">
+				<i class="icon-calendar-empty i-cal"></i>
+				</div>
+			<h3 class="small-header">Request a Minyawan</h3>
+				<p class="small-desc">Pick a time and describe <br> your task.</p>
+			</div>
+			<div class="span2">
+					<div class="workflow">
+					<i class="icon-user i-user"></i>
+					</div>
+					<h3 class="small-header">Get Work Done</h3>
+				<p class="small-desc">Take care of projects on your
+to-do list.</p>
+				</div>
+			<div class="span3">
+				<div class="workflow2">
+				<i class="icon-dollar i-money"></i>
+				</div>
+				<h3 class="small-header">Profit !</h3>
+				<p class="small-desc">Enjoy having less <br>
+work to do.</p>
+			</div>
+			<div class="span2"></div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+			<h3 class="big-heading-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit </h3>
+			<p class="big-heading-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			</div>
+		</div>
+		<footer>
+	 <hr style="border-top:1px solid #C7C3C3;">
+		  <ul class="footer_menu">
+			  <li><a href="#">About</a></li>
+			  <li><a href="#">Careers</a></li>
+			  <li><a href="#">Blog</a></li>
+			  <li><a href="#">Tech City</a></li>
+			  <li><a href="#">Directory</a></li>
+		  </ul>
+		  <div class="social-icon"><a href="#"><img src="images/twiiter.png"/></a>&nbsp;&nbsp;<a href="#"><img src="images/facebook.png"/></a></div>
+		  <div class="site_link">All rights reserved 2013 @ Minyawn</div>
+	</footer>
+	
+	</div>
+
 

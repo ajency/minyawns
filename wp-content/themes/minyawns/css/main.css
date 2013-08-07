@@ -29,6 +29,13 @@ a:hover {
   border: 1px solid #ccc;
   padding: 5px;
 }
+.top-menu {
+  position: relative;
+  z-index: 9999;
+}
+.top-menu .bottom-menu-inverse {
+  background-color: rgba(0, 0, 0, 0.33);
+}
 .btn-apply {
   width: 64%;
   margin-top: -87px;
@@ -610,13 +617,7 @@ a:hover {
     font-weight: bold;
     color: #8ed030;
   }
-  .Main-job .btn-job {
-    display: block;
-    background: #8ed030;
-    width: 70%;
-    margin: 10px auto;
-  }
-  .Main-job .label-small {
+  .Main-job \ .label-small {
     margin: 10px auto;
     display: block;
     width: 38%;
@@ -762,4 +763,132 @@ a:hover {
     margin-top: 10px !important;
     display: inline-block;
   }
+}
+#innermainimage {
+  height: 516px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1920px;
+  margin-top: -87px;
+  position: relative;
+  z-index: 99;
+}
+#innermainimage .bg-background {
+  position: absolute;
+}
+#innermainimage .banner-content {
+  position: absolute;
+  z-index: 999;
+  margin-top: 10%;
+}
+#innermainimage .banner-content img {
+  display: block;
+  margin: auto;
+}
+#innermainimage .banner-content .banner-desc {
+  font-size: 35px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 100;
+  text-align: center;
+}
+#innermainimage .banner-content hr {
+  width: 9%;
+  margin: 20px auto;
+  border-top: 0px;
+}
+#innermainimage .banner-content .btn-huge {
+  font-size: 17px;
+  line-height: 26px;
+  opacity: 0.8;
+  font-weight: bold;
+}
+#innermainimage .banner-content .btn-huge:hover {
+  opacity: 0.9;
+}
+.home-page {
+  background: url(../images/back2.jpg) repeat-x;
+  background-position: 67px 53px;
+}
+.home-page .heading-title {
+  display: block;
+  padding-top: 30px;
+  margin-bottom: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 18px;
+  background: url(../images/border.png) no-repeat 50% 100%;
+}
+.home-page .big-heading-title {
+  display: block;
+  padding-top: 45px;
+  margin-bottom: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  font-family: arial;
+  text-transform: lowercase;
+  padding-bottom: 18px;
+  background: url(../images/green-border.png) no-repeat 50% 100%;
+}
+.home-page .big-heading-desc {
+  width: 70%;
+  text-align: center;
+  margin: auto;
+}
+.home-page .workflow {
+  background: url(../images/service.png) no-repeat;
+  width: 81px;
+  height: 124px;
+  margin: auto;
+  background-position: 0px 2px;
+}
+.home-page .i-cal {
+  text-align: center;
+  display: block;
+  font-size: 39px;
+  color: #FFF;
+  line-height: 80px;
+  margin-left: 8px;
+}
+.home-page .i-user {
+  text-align: center;
+  display: block;
+  font-size: 42px;
+  color: #FFF;
+  line-height: 80px;
+}
+.home-page .i-money {
+  text-align: center;
+  display: block;
+  font-size: 39px;
+  color: #FFF;
+  line-height: 80px;
+  margin-left: -8px;
+}
+.home-page .small-header {
+  font-size: 17px;
+  text-align: center;
+  margin-bottom: 12px;
+  margin-top: 10px;
+}
+.home-page .small-desc {
+  font-size: 14px;
+  text-align: center;
+  line-height: 15px;
+}
+.home-page .workflow1 {
+  background: url(../images/service.png) no-repeat;
+  width: 81px;
+  height: 124px;
+  margin: auto ;
+  background-position: 4px 1px;
+}
+.home-page .workflow2 {
+  background: url(../images/service.png) no-repeat;
+  width: 81px;
+  height: 124px;
+  margin: auto ;
+  background-position: -5px 1px;
 }

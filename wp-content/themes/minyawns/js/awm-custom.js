@@ -10,7 +10,7 @@ jQuery(document).ready(function($){
 				{
 					placement : 'bottom',
 					html : true,
-					content : '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="'+siteurl+'/profile" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="'+logouturl+'" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
+					content : '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4>'+userName+'</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="'+siteurl+'/profile/#profile" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="'+logouturl+'" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
 				}
 			);
 
@@ -78,6 +78,21 @@ jQuery(document).ready(function($){
 	
 	
 	/* POPUP SIGNUP */
+	jQuery("#link_minyawnregister").live("click",function(){	
+		jQuery("#signup_role").val('minyawn');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
+		//alert(logouturl);
+		//logouturl=logouturl+"&amp;usr_role=minyawn"
+		//alert(logouturl);
+	})
+	
+	jQuery("#link_employerregister").live("click",function(){	
+		jQuery("#signup_role").val('employer');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
+		//alert(logouturl);
+	//	logouturl=logouturl+"&amp;usr_role=employer";
+		// alert(logouturl);
+	})
+	
+	
 	jQuery("#btn_signup").live("click",function(){	 
 		//alert(jQuery("#signup_email").val()+jQuery("#signup_password").val()+jQuery("#signup_fname").val()+jQuery("#signup_lname").val());		
 		jQuery('#frm_signup').submit();		
@@ -121,7 +136,8 @@ jQuery(document).ready(function($){
 				pdemail_ :jQuery("#signup_email").val(),
 				pdpass_ :jQuery("#signup_password").val(),
 				pdfname_ :jQuery("#signup_fname").val(),
-				pdlname_ :jQuery("#signup_lname").val() 
+				pdlname_ :jQuery("#signup_lname").val(), 
+				pdrole_ :jQuery("#signup_role").val()
 			},
 			function(response){  
 				console.log(response);

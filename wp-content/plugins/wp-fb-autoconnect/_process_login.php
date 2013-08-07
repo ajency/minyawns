@@ -200,7 +200,7 @@ function jfb_process_login()
         //Run a filter so the user can be modified to something different before registration
         //NOTE: If the user has selected "pretty names", this'll change FB_xxx to i.e. "John.Smith"
         $jfb_log .= "WP: Applying filters wpfb_insert_user/wpfb_inserting_user\n";
-        $user_data = apply_filters('wpfb_insert_user', $user_data, $fbuser );		
+        $user_data = apply_filters('wpfb_insert_user', $user_data, $fbuser );
         $user_data = apply_filters('wpfb_inserting_user', $user_data, array('WP_ID' => $user_login_id, 'FB_ID' => $fb_uid, 'FB_UserData' => $fbuser, 'access_token'=>$access_token) );
         
         //Insert a new user to our database and make sure it worked
