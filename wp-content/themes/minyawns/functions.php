@@ -249,9 +249,9 @@ add_action('init','minyawns_initial_checks');
 
 
 
-
-add_filter('wp_authenticate_user', 'myplugin_auth_login',10,2);
-function myplugin_auth_login ($user, $password) {
+//Allow only active users to login in 
+add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
+function authenticate_active_user ($user, $password) {
 	//do any extra validation stuff here
 	global $wpdb;
 	
@@ -271,3 +271,77 @@ function myplugin_auth_login ($user, $password) {
 	
 	
 }
+
+
+
+
+
+add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user',11,2);
+function fbautoconnect_insert_user($user_data, $fbuser)
+{
+	global $_POST,$_REQUEST;
+	
+	//$user_data['role'] = 'minyawns';
+	$user_data['role'] = $_REQUEST['cstm'];
+	return($user_data);
+}
+
+
+
+
+
+/**
+ * Class to run a code once
+ */
+if (!class_exists('run_once')){
+	class run_once{
+		function run($key){
+			$test_case = get_option('run_once');
+			if (isset($test_case[$key]) && $test_case[$key]){
+				return false;
+			}
+			else{
+				$test_case[$key] = true;
+				update_option('run_once',$test_case);
+				return true;
+			}
+		}
+
+		function clear($key){
+			$test_case = get_option('run_once');
+			if (isset($test_case[$key])){
+				unset($test_case[$key]);
+			}
+			update_option('run_once',$test_case);
+		}
+	}
+}
+ 
+//Function to remove all default roles except admin, and add roles employer & minyawns
+function phoenix_add_role_cap_function()
+{
+	
+	$run_once = new run_once();
+	if ($run_once->run('remove_roles')){
+		remove_role( 'editor' );
+		remove_role( 'author' );
+		remove_role( 'contributor' );
+		remove_role( 'subscriber' );		
+		
+		/* Add minyawns role to the site */
+		add_role('minyawns', 'minyawns', array(
+		'read' => true,
+		'edit_posts' => true,
+		'delete_posts' => true,
+		));
+		
+		/* Add employer role to the site */
+		add_role('employer', 'employer', array(
+		'read' => true,
+		'edit_posts' => true,
+		'delete_posts' => true,
+		));
+	}
+
+}
+add_action('init','phoenix_add_role_cap_function');

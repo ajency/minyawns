@@ -79,14 +79,9 @@ jQuery(document).ready(function($){
 	
 	/* POPUP SIGNUP */
 	jQuery("#btn_signup").live("click",function(){	 
-		
-		//alert(jQuery("#signup_email").val()+jQuery("#signup_password").val()+jQuery("#signup_fname").val()+jQuery("#signup_lname").val());
-		
+		//alert(jQuery("#signup_email").val()+jQuery("#signup_password").val()+jQuery("#signup_fname").val()+jQuery("#signup_lname").val());		
 		jQuery('#frm_signup').submit();		
 		//var data = jQuery("#frm_login").serializeArray();
-
-		
-
 	
 	})
 	

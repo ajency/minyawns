@@ -108,10 +108,12 @@ get_header();
 			<h6 class="align-center" style=" margin-bottom: 0px; ">
 		Login Using Facebook</h6>
 <p class="align-center">Get using minyawns, faster !</p><br>
-
+<form name="fblogin" id="fb_login" action="" >
+<input type="text" name='cstm' id='cstm' value='employer' />
 		<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
 		
 	<?php 	jfb_output_facebook_btn(); ?>
+	</form>
 		</div>
 		
 	</div>
