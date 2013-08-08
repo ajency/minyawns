@@ -56,6 +56,7 @@ require([
     'awm-custom',
     'bootstrap.min',
     'bootstrap-tagmanager',
+    
   
   
 ],
@@ -68,7 +69,8 @@ require([
                     "profile": "profile",
                     "logout": "logout",
                     "edit": "edit",
-                    "update": "profile"
+                    "update": "profile",
+                    
                 }, profile: function(routes)
                 {
                     $("#innermainimage").remove();
