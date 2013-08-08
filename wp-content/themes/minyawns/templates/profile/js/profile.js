@@ -91,7 +91,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                             var html = template(response.data); //response.toJSON()
                             $(self.el).append(html);
                             $("#bread-crumbs-id").empty();
-                            $("#bread-crumbs-id").append("<a href='#'>View All jobs</a><a href='#profile' class='breadcrumb-end'>" + self.options.breadcrumb + "</a>");
+                            $("#bread-crumbs-id").append("<a href='"+siteurl+"/jobs'>View All jobs</a><a href='#profile' class='breadcrumb-end'>" + self.options.breadcrumb + "</a>");
 
                             if (response.data.user_role == "minyawn") {
                                 var template = _.template($("#user-profile").html());
@@ -296,7 +296,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                             $("#modal-blanket").hide();
                             $(".modal").hide();
                             $("#modalContainer").remove();
-                            window.location.hash = '#profile';
+                            window.location.reload();
 
                         },
                         error: function(data, status, e) {
