@@ -41,7 +41,8 @@ require.config({
         },
         'bootstrap-tagmanager':{
             deps:['jquery-1.8.3.min', 'bootstrap.min']
-        }
+        },
+        
 
     }
 });
@@ -56,6 +57,7 @@ require([
     'awm-custom',
     'bootstrap.min',
     'bootstrap-tagmanager',
+    
   
   
 ],
@@ -68,7 +70,8 @@ require([
                     "profile": "profile",
                     "logout": "logout",
                     "edit": "edit",
-                    "update": "profile"
+                    "update": "profile",
+                    
                 }, profile: function(routes)
                 {
                     $("#innermainimage").remove();
