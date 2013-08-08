@@ -86,18 +86,23 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                         },
                         reset: true,
                         success: function(model, response) {
-
+                            $("#loader1").show();
                             var template = _.template($("#user-avatar").html());
                             var html = template(response.data); //response.toJSON()
                             $(self.el).append(html);
                             $("#bread-crumbs-id").empty();
-                            $("#bread-crumbs-id").append("<a href='#'>View All jobs</a><a href='#profile' class='breadcrumb-end'>" + self.options.breadcrumb + "</a>");
+                            $("#bread-crumbs-id").append("<a href='" + siteurl + "/jobs'>View All jobs</a><a href='#profile' class='breadcrumb-end'>" + self.options.breadcrumb + "</a>");
 
-
-                            var template = _.template($("#user-profile").html());
-                            console.log(response.data);
-                            var html = template(response.data); //response.toJSON()
-                            $(self.el).append(html);
+                            if (response.data.user_role == "minyawn") {
+                                var template = _.template($("#user-profile").html());
+                                var html = template(response.data); //response.toJSON()
+                                $(self.el).append(html);
+                            } else
+                            {
+                                var template = _.template($("#user-profile-two").html());
+                                var html = template(response.data); //response.toJSON()
+                                $(self.el).append(html);
+                            }
                             /*
                              *  user votes
                              * 
@@ -105,7 +110,7 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                             var template = _.template($("#user-votes").html());
                             var html = template(); //response.toJSON()
                             $(self.el).append(html);
-                            $("#loader1").hide();
+
                             /*
                              *  user history
                              * 
@@ -155,16 +160,22 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                         },
                         reset: true,
                         success: function(model, response) {
-                            $(".tm-input").tagsManager();
-//                            alert($('#tags').tagsInput());
-                            var template = _.template($("#edit-profile").html());
-                            console.log(response.data.user_skills);
-                            var html = template(response.data); //response.toJSON()
-                            $(self.el).append(html);
-                            $(".tm-input").tagsManager({
-                                prefilled: response.data.user_skills,
-                                hiddenTagListId: 'user_skills',
-                            });
+                            if (response.data.user_role == "minyawn") {
+                                $(".tm-input").tagsManager();
+                                var template = _.template($("#edit-profile").html());
+                                var html = template(response.data); //response.toJSON()
+                                $(self.el).append(html);
+                                $(".tm-input").tagsManager({
+                                    prefilled: response.data.user_skills,
+                                    hiddenTagListId: 'user_skills',
+                                });
+                            } else
+                            {
+                                var template = _.template($("#edit-profile-two").html());
+                                var html = template(response.data); //response.toJSON()
+                                $(self.el).append(html);
+                            }
+
                         }
                     })
 
@@ -172,7 +183,6 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                     var validator = $("#edit-user-profile").validate({
                         rules: {
                             linkedIn: {
-                                required: true,
                                 url: true
                             }
                         }
@@ -181,38 +191,66 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                     {
                         return false;
                     } else {
-                        var self = this;
-                        this.usercollection.fetch({
-                            data: {
-                                'first_name': $("#inputFirst").val(),
-                                'last_name': $("#inputlast").val(),
-                                'college': $("#inputcollege").val(),
-                                'major': $("#inputmajor").val(),
-                                'skill': $("#tagsinput").val(),
-                                'body': $("#inputbody").val(),
-                                'url': $("#LinkedIn").val(),
-                                'current_user': $("#current_user").val(),
-                                'user_skills': $("#user_skills").val()
-                            },
-                            reset: true,
-                            success: function(model, response) {
+                        if ($("#user_role") == "minyawn") {
+                            var self = this;
+                            this.usercollection.fetch({
+                                data: {
+                                    'first_name': $("#inputFirst").val(),
+                                    'last_name': $("#inputlast").val(),
+                                    'college': $("#inputcollege").val(),
+                                    'major': $("#inputmajor").val(),
+                                    'skill': $("#tagsinput").val(),
+                                    'body': $("#inputbody").val(),
+                                    'url': $("#LinkedIn").val(),
+                                    'current_user': $("#current_user").val(),
+                                    'user_skills': $("#user_skills").val()
+                                },
+                                reset: true,
+                                success: function(model, response) {
 
-                                if (response.status == "success")
-                                {
-                                    $("#edit-user-profile").remove();
-                                    $("#profile-view").show();
-                                    $("#my-history").show();
-                                    $("#profile-view").empty();
-                                    $("#edit-user-profile").remove();
-                                    var profile_view = new Manage.ProfileContianerView({'breadcrumb': 'My Profile'});
-                                    profile_view.render();
+                                    if (response.status == "success")
+                                    {
+                                        $("#edit-user-profile").remove();
+                                        $("#profile-view").show();
+                                        $("#my-history").show();
+                                        $("#profile-view").empty();
+                                        $("#edit-user-profile").remove();
+                                        var profile_view = new Manage.ProfileContianerView({'breadcrumb': 'My Profile'});
+                                        profile_view.render();
+                                    }
+
                                 }
+                            });
+                        } else {
+                            var self = this;
+                            this.usercollection.fetch({
+                                data: {
+                                    'industry': $("#inputFirst").val(),
+                                    'location': $("#inputlast").val(),
+                                    'body': $("#inputbody").val(),
+                                    'company_website': $("#LinkedIn").val(),
+                                    'current_user': $("#current_user").val(),
+                                    'user_role': $("#user_role").val()
+                                },
+                                reset: true,
+                                success: function(model, response) {
 
-                            },
-                            error: function(err) {
+                                    if (response.status == "success")
+                                    {
+                                        $("#edit-user-profile").remove();
+                                        $("#profile-view").show();
+                                        $("#my-history").show();
+                                        $("#profile-view").empty();
+                                        $("#edit-user-profile").remove();
+                                        var profile_view = new Manage.ProfileContianerView({'breadcrumb': 'My Profile'});
+                                        profile_view.render();
+                                    }
 
-                            }
-                        });
+                                }
+                            });
+
+
+                        }
                     }
                 }
             });
@@ -224,21 +262,22 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
              * 
              */
             Manage.AddNewAvatar = ModalView.extend({
-                el: '#main-content',
+                el: '',
                 initialize: function() {
 
-                    _.bindAll(this, 'render', 'upload_avatar');
+                    _.bindAll(this, 'render', 'upload_avatar', 'close_popup');
                     this._ensureElement();
                     this.template = _.template($("#avatar-dialog").html());
                     freePrevView(this);
                 }, events: {
                     'click #update-profile-button': 'save_user_details',
-                    'click #save_poup': 'upload_avatar'
+                    'click #save_poup': 'upload_avatar',
+                    'click #close': 'close_popup'
                 }, render: function() {
                     $(this.el).html(this.template());
                     return this;
                 }, upload_avatar: function() {
-
+                    $("#loader2").show();
                     var formData = new FormData($('form')[0]);
                     $.ajax({
                         url: '../wp-content/themes/minyawns/templates/profile/api/index.php/change_avatar', //server script to process data
@@ -252,11 +291,15 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                         },
                         //Ajax events
                         success: function(data, status) {
-                            window.location.reload();
 
+                            $("#modal-blanket").hide();
+                            $(".modal").hide();
+                            $("#modalContainer").remove();
+                            window.location.hash = '#profile';
+                            window.location.reload();
                         },
                         error: function(data, status, e) {
-                           
+
                         },
                         // Form data
                         data: formData,
@@ -267,6 +310,12 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                     });
 
 
+                }, close_popup: function()
+                {
+                    $("#modal-blanket").hide();
+                    $(".modal").hide();
+                    $("#modalContainer").remove();
+                    //window.location.hash = '#profile';
                 }
 
 

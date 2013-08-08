@@ -12,7 +12,7 @@ require.config({
             exports: 'Backbone'
         },
         'bootstrap.min': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         },
         'custom': {
             deps: ['jquery-1.8.3.min']
@@ -56,6 +56,7 @@ require([
     'awm-custom',
     'bootstrap.min',
     'bootstrap-tagmanager',
+    
   
   
 ],
@@ -64,13 +65,16 @@ require([
 
             ProfileView = Backbone.Router.extend({
                 routes: {
-                    "": "profile",
+                    "#": "profile",
                     "profile": "profile",
                     "logout": "logout",
                     "edit": "edit",
-                    "update": "profile"
+                    "update": "profile",
+                    
                 }, profile: function(routes)
                 {
+                    $("#innermainimage").remove();
+                    $("#init-land").remove();
                     $("#profile-view").show();
                     $("#my-history").show();
                     $("#profile-view").empty();
@@ -80,8 +84,6 @@ require([
                     var profile_view = new Profile.ProfileContianerView({'breadcrumb': 'My Profile'});
                     profile_view.render();
 
-                    $("#loader1").hide();
-                    $("#loader2").hide();
 
                 }, edit: function()
                 {

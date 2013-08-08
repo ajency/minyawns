@@ -106,7 +106,7 @@ function popup_usersignup()
 	$userdata_['user_pass'] = $_REQUEST['pdpass_'];
 	$userdata_['first_name'] = $_REQUEST['pdfname_'];
 	$userdata_['last_name'] = $_REQUEST['pdlname_'];
-	$userdata_['role']		= 'subscriber';
+	$userdata_['role']		= $_REQUEST['pdrole_'];
 	$userdata_['user_status'] = 2;
 	$userdata_['user_activation_key'] = $user_activation_key;
 	
@@ -158,7 +158,7 @@ function popup_usersignup()
 		 
 			
 			add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
-			wp_mail($userdata_['user_email'], $subject,$message);
+			wp_mail($userdata_['user_email'], $subject,email_header().$message.email_signature());
 			
 			
 			
@@ -175,7 +175,9 @@ function popup_usersignup()
 	}//end else
 
 
-    $user_ = get_user_by('email', $pd_email);
+
+	/*
+	$user_ = get_user_by('email', $pd_email);
     if ($user_) {
 
         $msg = "User with the email Id provided already exists";
@@ -203,6 +205,8 @@ function popup_usersignup()
         $response = array("success" => true, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
         wp_send_json($response);
     }//end else
+    	
+    */
 }
 
 add_action('wp_ajax_popup_usersignup', 'popup_usersignup');
@@ -249,9 +253,9 @@ add_action('init','minyawns_initial_checks');
 
 
 
-
-add_filter('wp_authenticate_user', 'myplugin_auth_login',10,2);
-function myplugin_auth_login ($user, $password) {
+//Allow only active users to login in 
+add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
+function authenticate_active_user ($user, $password) {
 	//do any extra validation stuff here
 	global $wpdb;
 	
@@ -271,6 +275,143 @@ function myplugin_auth_login ($user, $password) {
 	
 	
 }
+
+ 
+
+
+
+
+//added on 6aug2013 to add a custom role for the fb user, overrides plugin's default user role
+add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user',11,2);
+function fbautoconnect_insert_user($user_data, $fbuser)
+{
+	global $_POST,$_REQUEST;
+	
+	//$user_data['role'] = 'minyawns';
+	$user_data['role'] = $_POST['usr_role'];
+	return($user_data);
+}
+
+
+
+
+
+/**
+ * Class to run a code once
+ */
+if (!class_exists('run_once')){
+	class run_once{
+		function run($key){
+			$test_case = get_option('run_once');
+			if (isset($test_case[$key]) && $test_case[$key]){
+				return false;
+			}
+			else{
+				$test_case[$key] = true;
+				update_option('run_once',$test_case);
+				return true;
+			}
+		}
+
+		function clear($key){
+			$test_case = get_option('run_once');
+			if (isset($test_case[$key])){
+				unset($test_case[$key]);
+			}
+			update_option('run_once',$test_case);
+		}
+	}
+}
+ 
+//Function to remove all default roles except admin, and add roles employer & minyawns
+function phoenix_add_role_cap_function()
+{
+	
+	$run_once = new run_once();
+	if ($run_once->run('remove_roles')){
+		remove_role( 'editor' );
+		remove_role( 'author' );
+		remove_role( 'contributor' );
+		remove_role( 'subscriber' );	
+		
+		
+		/* Add minyawns role to the site */
+		add_role('minyawn', 'minyawn', array(
+		'read' => true,
+		'edit_posts' => true,
+		'delete_posts' => true,
+		));
+		
+		/* Add employer role to the site */
+		add_role('employer', 'employer', array(
+		'read' => true,
+		'edit_posts' => true,
+		'delete_posts' => true,
+		));
+	}
+
+}
+add_action('init','phoenix_add_role_cap_function');
+
+
+
+
+/**
+ * generate mail header
+ */
+function email_header()
+{
+
+	return '<div style=" width:600px; margin:auto;background:url('.site_url().'/wp-content/themes/minyawns/images/pattern-bg.png);border: 5px solid #CCC;">
+	<!-- header --->
+	<div style="background-color: rgba(0, 0, 0, 0.39);padding: 6px;">
+	<img src="'.site_url().'/wp-content/themes/minyawns/images/logo.png" />
+	</div>
+	<!--End of Header -->
+	
+	<!--Message -->
+
+	<!--End Of Message -->
+
+	<!--Footer -->
+	<div style="margin-top:20px;">
+		<div style="width:512px; margin:auto;">
+			<div style=" font-size: 12px; line-height: 22px; ">';
+}
+
+/**
+ * generate mail footer
+ */
+function email_signature()
+{
+	return '</div>			
+			
+				
+		</div>
+		<div style="clear:both;"></div>
+		
+		<div style="background:#f8f8f8;clear:both;margin:5px 5px 5px 5px;height:40px;padding-left: 10px;">
+			<div style="float:left;"><h3 style="line-height:6px;">Find Us On</h3></div>
+			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="'.site_url().'/wp-content/themes/minyawns/images/Facebook.png" /></a></div>
+			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="'.site_url().'/wp-content/themes/minyawns/images/LinkedIn.png" /></a></div>
+		</div>
+		<br>
+	
+		<div style="background:url('.site_url().'/wp-content/themes/minyawns/images/arro-up.png)repeat-x;clear:both;margin:5px 5px 5px 5px;height:80px;padding-left: 10px;padding: 1px;">
+		
+			<h5 style="color:#ffffff;text-align:center;">Replies to this message are not monitored. Our Customer Service team is available to assist you here: </h5>
+		</div>
+	</div>
+<!--End of footer -->
+</div>';
+}
+
+
+
+
+
+
+ 
 add_filter( 'avatar_defaults', 'custom_avatar' );
  
 function custom_avatar ($avatar_defaults) {
@@ -278,3 +419,20 @@ $myavatar = get_template_directory_uri() . '/images/profile.png';
 $avatar_defaults[$myavatar] = "Branded Avatar";
 return $avatar_defaults;
 }
+ 
+
+
+
+
+
+
+if ( !function_exists('fb_addgravatar') ) {
+function fb_addgravatar( $avatar_defaults ) {
+$myavatar = get_bloginfo('template_directory') . '/images/profile.png';
+$avatar_defaults[$myavatar] = 'Users';
+$myavatar2 = get_bloginfo('template_directory') . '/images/profile.png';
+$avatar_defaults[$myavatar2] = 'My Avatar';
+return $avatar_defaults; }
+add_filter( 'avatar_defaults', 'fb_addgravatar' ); }
+
+?>

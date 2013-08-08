@@ -1,12 +1,12 @@
 <div class="container">
-    <div  id="main-content" class="main-content bg-white" style="height:900px;">
+    <div  id="main-content" class="main-content bg-white" >
         <div class="breadcrumb-text">
             <p id="bread-crumbs-id">
                 <a href="myjobs.html">View All Jobs</a>
 
             </p>
         </div>
-
+<div id="loader1" class="modal_ajax" ></div>
 
         <div id="profile-view" class="row-fluid min_profile">
 

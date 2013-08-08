@@ -339,3 +339,8 @@ color: #999999;
     font-weight: 300;
     margin: 0 4px 0 9px;
 }
+
+
+.modal.fade.in {
+top: 15%;
+}
