@@ -60,13 +60,11 @@
                 }
             }
         }
-        
-        if($user_role == "employer" || $user_role == "author")
-        {
-            $avatarText="Avatar";
-        }else
-        {
-            $avatarText ="Logo";
+
+        if ($user_role == "employer" || $user_role == "author") {
+            $avatarText = "Avatar";
+        } else {
+            $avatarText = "Logo";
         }
         ?>
         <script> var ajaxurl = '<?php echo admin_url('admin-ajax.php', 'relative'); ?>'
@@ -172,13 +170,13 @@
             <form class="form-horizontal" enctype="multipart/form-data">
             <div class="control-group">
             <label class="control-label" for="in-name">Upload your picture here</label>
-            
+
             <div class="controls">
             <input id="fileupload" name="file" type="file" accept="image/gif, image/jpeg"/>
             <input type="hidden" name="user_id" value="<?php echo $current_user->ID; ?>"/>  
             <div id="loader2" class="modal_ajax_gif_team" ></div>
             </div>
-            
+
             </div>
             </form>
             <div id="loader_team" style="display:none" class="modal_ajax_gif_team"><!-- Place at bottom of page --></div>
@@ -225,7 +223,7 @@
 
             <form class="form-horizontal frm-edit" id="edit-user-profile">
             <input type="hidden" id="user_role" value="<%= user_role %>"></input>
-                <input type="hidden" id="user_skills" value=""></input>
+            <input type="hidden" id="user_skills" value=""></input>
             <div class="control-group">
             <label class="control-label" for="inputFirst">First Name</label>
             <div class="controls">
@@ -315,13 +313,6 @@
             </form>
 
         </script>	
-
-
-
-
-
-
-
         <script type="text/template" id="history-row">
             <tr class="data_even ">
 
@@ -424,13 +415,13 @@
                         <div class="span6">
 
                         </div>
-                        <?php
-                        $current_user = wp_get_current_user();
-                        $current_user_details = get_user_meta($current_user->ID);
+<?php
+$current_user = wp_get_current_user();
+$current_user_details = get_user_meta($current_user->ID);
 
 
-                        if (is_user_logged_in() == TRUE) {
-                            ?>
+if (is_user_logged_in() == TRUE) {
+    ?>
                             <div class="span2 notify">
                                 <div id="logged-in">
                                     <a id="user-popdown" href="javascript:void(0);" >
@@ -441,26 +432,57 @@
                             <div class="span1">
                                 <a href="#" class="help_icon"><i class="icon-question-sign"></i></a>
                             </div>
-                        <?php } else {
-                            ?>
+<?php } else {
+    ?>
 
                             <div class="span2 upper-link">
-<!--                                <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	-->
+                                <!--                                <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	-->
                                 <a href="#mylogin"  data-toggle="modal" id="btn__login">Login </a>
 
                             </div>
                             
                             
                             
+                       
                             
                             
                             
                             
                             
                             
-                          
-                          
-                          <!-- LOgin/forgot pass pop up -->
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+
+                        <?php } ?>
+                    </div>
+                </div>
+            </div> <!-- /bottom-menu-inverse -->
+
+        </div>
+
+        <!-- Banner Layout --->
+
+        
+        
+        
+        
+        
+        
+        
+<?php 
+        
+  if (is_user_logged_in() == FALSE) {
+ ?>
+ <!-- LOgin/forgot pass pop up -->
 <input type="hidden" name="hdn_siteurl" id="hdn_siteurl" value ="<?php echo site_url(); ?>" />
  
 <div id="mylogin" class="modal signup  hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
@@ -544,6 +566,7 @@
   
 </div>
 <!-- ENd  LOgin/forgot pass pop up -->  
+ 
                             
                             
                             
@@ -569,7 +592,7 @@
                             
                             
 
-                        <?php } ?>
+<?php } ?>
                     </div>
                 </div>
             </div> <!-- /bottom-menu-inverse -->
@@ -577,7 +600,6 @@
         </div>
 
         <!-- Banner Layout --->
-        
- 
+
 
 
