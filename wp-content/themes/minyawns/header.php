@@ -440,6 +440,125 @@ if (is_user_logged_in() == TRUE) {
                                 <a href="#mylogin"  data-toggle="modal" id="btn__login">Login </a>
 
                             </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                          
+                          
+                          <!-- LOgin/forgot pass pop up -->
+<input type="hidden" name="hdn_siteurl" id="hdn_siteurl" value ="<?php echo site_url(); ?>" />
+ 
+<div id="mylogin" class="modal signup  hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
+  <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
+    <h4 id="myModalLabel">Login to <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"/> </h4>
+  </div>
+  <div class="modal-body">
+  	<div id="div_loginmsg"></div>
+    <div class="row-fluid">
+		<div class="span6"> 
+	
+	
+		<form name= "frm_login" id="frm_login" action="" >
+		<div class="control-group ">
+            <input type="text" name="txt_email"  id="txt_email"  value="" placeholder="Email Address" class="span3">
+          </div>
+		<div class="control-group ">
+            <input type="password"  name="txt_pass"  id="txt_pass"  value="" placeholder="Password" class="span3">
+          </div>
+		  <div class="row-fluid">
+			<div class="span4"><a href="#" class="btn btn-large btn-block btn-inverse "  id="btn_login" >Login</a></div>
+				<div class="span8"><a href="#"  style=" line-height: 42px; color: #12B13E;font-weight:bold; " id="btn_forgotpass">Forgot your password ?</a></div>
+		  </div> 
+		</form>  
+		  
+		  
+		  </div>
+		<div class="span6">
+			<h6 class="align-center" style=" margin-bottom: 0px; ">
+		Login Using Facebook</h6>
+<p class="align-center">Get using minyawns, faster !</p><br>
+
+		<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
+		
+	<?php 	jfb_output_facebook_callback();
+			jfb_output_facebook_init(); 	
+			jfb_output_facebook_btn();
+	 ?>
+		</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<span id="div_msgforgotpass"></span>
+
+	<div id="div_forgotpass" class="tab_content_login" style="display:none;">
+		
+		<p>Enter your username or email to reset your password.</p>
+			<form method="post" action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>" class="wp-user-form">
+				<div class="username">
+					<label for="user_login" class="hide"><?php _e('Username or Email'); ?>: </label>
+					<input type="text" name="user_login" value="" size="20" id="user_login" tabindex="1001" />
+				</div>
+				<div class="login_fields">
+					<?php do_action('login_form', 'resetpass'); ?>
+					<input type="button" id="user-submit" name="user-submit" value="<?php _e('Reset my password'); ?>" class="user-submit btn btn-large btn-block btn-inverse span2" tabindex="1002" />
+					<?php $reset = $_GET['reset']; if($reset == true) { echo '<p>A message will be sent to your email address.</p>'; } ?>
+					<input type="hidden" name="redirect_to" value="<?php echo $_SERVER['REQUEST_URI']; ?>?reset=true" />
+					<input type="hidden" name="user-cookie" value="1" />
+				</div>
+			</form>
+		</div>
+		
+		  
+		<input type="hidden" name= "hdn_rest" id="hdn_reset" value="<?php if(isset($_REQUEST['reset']))     echo $_REQUEST['reset']; else echo "norequest" ?>" />
+	 
+		 
+		
+	</div>
+  </div>
+  
+</div>
+<!-- ENd  LOgin/forgot pass pop up -->  
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
 
 <?php } ?>
                     </div>
@@ -449,8 +568,6 @@ if (is_user_logged_in() == TRUE) {
         </div>
 
         <!-- Banner Layout --->
-
-
 
 
 

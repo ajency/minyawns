@@ -49,6 +49,50 @@ jQuery(document).ready(function($){
 	
 	
 	
+	
+	
+	
+	
+	/* reset password form validation */
+	jQuery('#resetpassform').validate({		
+		
+		rules : {
+			'pass1' : {  
+				required  : true, 
+				minlength : 6	
+			},
+			 
+			'pass2' : {  
+				required  : true, 
+				minlength : 6,
+				equalTo: "#pass1" 
+			} 
+
+		},
+		messages:{
+			'pass1' : {  
+				required  : 'Please enter new password' 				 
+			},
+			 
+			'pass2' : {  
+				required  : 'Please renter new password',
+				equalTo: "The password fields entered do not match" 
+			} 
+			
+		}
+		 
+	
+	});	
+	/* end reset pasword validation */
+	
+	
+	
+	
+	
+	
+	
+	
+	
     jQuery('#user-popdown').popover(
 				{
 					placement : 'bottom',
@@ -119,11 +163,18 @@ jQuery(document).ready(function($){
 	/*END POPUP LOGIN */
 	
 	
+	/*sign in here*/
+	jQuery("#lnk_signin").live("click",function(){		
+		jQuery("#signup_popup_close").click();
+		jQuery("#btn__login").click();
+	})
+	
 	
 	/* POPUP SIGNUP */
 	jQuery("#link_minyawnregister").live("click",function(){	
 		jQuery("#signup_role").val('minyawn');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
-		jQuery("#div_signupmsg").html("");
+		jQuery("#div_signupmsg").html("");		 
+		validator_signup.resetForm();
 		 
 		//logouturl=logouturl+"&amp;usr_role=minyawn"
 	
@@ -131,7 +182,8 @@ jQuery(document).ready(function($){
 	
 	jQuery("#link_employerregister").live("click",function(){	
 		jQuery("#signup_role").val('employer');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
-		jQuery("#div_signupmsg").html(""); 
+		jQuery("#div_signupmsg").html(""); 		 
+		validator_signup.resetForm();
 		//	logouturl=logouturl+"&amp;usr_role=employer";
 		
 	})
@@ -147,7 +199,7 @@ jQuery(document).ready(function($){
 	
 	
 	
-	jQuery('#frm_signup').validate({		
+var validator_signup = jQuery('#frm_signup').validate({		
 		
 		rules : {
 

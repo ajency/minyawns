@@ -53,7 +53,7 @@ function popup_userlogin()
 	
 	if (is_wp_error($user) )
 	{
-		$msg = "Invalid email/password or verify your account with the verification link send to your email id. ";
+		$msg = "<div class='alert alert-error alert-box' style='padding: 10px 45px 10px 5px;font-size:12px'>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Invalid email/password or verify your account with the verification link send to your email id. </div>";
 		$response = array('success' => false,'user'=>$user_->user_login.$pd_pass,'msg'=>$msg );
 		wp_send_json($response);
 	}
@@ -442,7 +442,7 @@ function retrieve_password_ajx() {
 
 	if ( !$user_data ) {
 		//$errors->add('invalidcombo', __('<strong>ERROR</strong>: Invalid username or e-mail.'));
-		$msg = "Invalid username or e-mail.";
+		$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Invalid username or e-mail.</div>";
 		$success_val = false;
 		$response = array('success' => $success_val,'msg'=>$msg );
 		wp_send_json($response);
@@ -484,7 +484,7 @@ function retrieve_password_ajx() {
 	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
 	$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
 	//$message .= '<' . network_site_url("reset-password.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
-	$message .=" <a href='".site_url()."/reset-password/?action=rp&key=".$key."&login=". rawurlencode($user_login). "'>".site_url()."/reset-password/?action=ver&key=".$user_activation_key."&login=". rawurlencode($user_login) ."</a>\r\n";
+	$message .=" <a href='".site_url()."/change-password/?action=rp&key=".$key."&login=". rawurlencode($user_login). "'>".site_url()."/change-password/?action=ver&key=".$user_activation_key."&login=". rawurlencode($user_login) ."</a>\r\n";
 	if ( is_multisite() )
 		$blogname = $GLOBALS['current_site']->site_name;
 	else
@@ -501,13 +501,13 @@ function retrieve_password_ajx() {
 	
 	if ( $message && !wp_mail($user_email, $title, email_header().$message.email_signature()) )
 	{	
-		$msg = 'The e-mail could not be sent.' . "<br />\n" . 'Possible reason: your host may have disabled the mail() function.';
+		$msg = '<div class="alert alert-success alert-box ">  <button type="button" class="close" data-dismiss="alert">&times;</button>The e-mail could not be sent.' . "<br />\n" . 'Possible reason: your host may have disabled the mail() function.</div>';
 		$success_val = false;
 	}
 	else
 	{	
 		//wp_die( __('The e-mail could not be sent.') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.') );
-		$msg = "Check your e-mail for the confirmation link.";
+		$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Check your e-mail for the confirmation link.</div>";
 		$success_val = true;
 		
 
@@ -520,6 +520,82 @@ function retrieve_password_ajx() {
 }
 add_action('wp_ajax_retrieve_password_ajx', 'retrieve_password_ajx');
 add_action('wp_ajax_nopriv_retrieve_password_ajx', 'retrieve_password_ajx');
+
+
+
+
+
+
+
+
+/* Invalid new user verification key */
+function invalid_newuserverification_key(){
+	echo "
+				<div class='container'>
+					<div class='main-content '>
+					<div class='alert alert-error ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
+							<h4 style='text-align:center'>Invalid authentication key or email ID</h4>
+							<hr>
+							<img src='".get_template_directory_uri()."/images/big-minyawns.png'/ style='margin:auto;display:block;'>
+							</div>
+					</div>
+				</div>
+
+				";
+}
+
+
+
+
+/**
+ * Retrieves a user row based on password reset key and login
+ *
+ * @uses $wpdb WordPress Database object
+ *
+ * @param string $key Hash to validate sending user's password
+ * @param string $login The user login
+ * @return object|WP_Error User's database row on success, error object for invalid keys
+ */
+function check_password_reset_key_($key, $login) {
+	global $wpdb;
+
+	$key = preg_replace('/[^a-z0-9]/i', '', $key);
+
+	if ( empty( $key ) || !is_string( $key ) )
+		return new WP_Error('invalid_key', __('Invalid key'));
+
+	if ( empty($login) || !is_string($login) )
+		return new WP_Error('invalid_key', __('Invalid key'));
+
+	$user = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->users WHERE user_activation_key = %s AND user_login = %s", $key, $login));
+
+	if ( empty( $user ) )
+		return new WP_Error('invalid_key', __('Invalid key'));
+
+	return $user;
+}
+
+/**
+ * Handles resetting the user's password.
+ *
+ * @param object $user The user
+ * @param string $new_pass New password for the user in plaintext
+ */
+function reset_password_($user, $new_pass) {
+	do_action('password_reset', $user, $new_pass);
+
+	wp_set_password($new_pass, $user->ID);
+
+	wp_password_change_notification($user);
+}
+
+
+
+
+
+
+
+
 
 
 
