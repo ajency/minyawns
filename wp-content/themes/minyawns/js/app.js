@@ -12,7 +12,7 @@ require.config({
             exports: 'Backbone'
         },
         'bootstrap.min': {
-            deps: ['jquery']
+            deps: ['jquery-1.8.3.min']
         },
         'custom': {
             deps: ['jquery-1.8.3.min']
