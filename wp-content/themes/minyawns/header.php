@@ -449,18 +449,18 @@
                                 <a href="#mylogin"  data-toggle="modal" id="btn__login">Login </a>
 
                             </div>
-
-                        <?php } ?>
-                    </div>
-                </div>
-            </div> <!-- /bottom-menu-inverse -->
-
-        </div>
-
-        <!-- Banner Layout --->
-        
- 
-<!-- LOgin/forgot pass pop up -->
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                          
+                          
+                          <!-- LOgin/forgot pass pop up -->
 <input type="hidden" name="hdn_siteurl" id="hdn_siteurl" value ="<?php echo site_url(); ?>" />
  
 <div id="mylogin" class="modal signup  hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
@@ -495,7 +495,10 @@
 
 		<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
 		
-	<?php 	jfb_output_facebook_btn(); ?>
+	<?php 	jfb_output_facebook_callback();
+			jfb_output_facebook_init(); 	
+			jfb_output_facebook_btn();
+	 ?>
 		</div>
 	
 	
@@ -529,26 +532,50 @@
 			</form>
 		</div>
 		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-	 
+		  
 		<input type="hidden" name= "hdn_rest" id="hdn_reset" value="<?php if(isset($_REQUEST['reset']))     echo $_REQUEST['reset']; else echo "norequest" ?>" />
 	 
-		
-		
-		
-	
+		 
 		
 	</div>
   </div>
   
 </div>
-<!-- ENd  LOgin/forgot pass pop up -->
+<!-- ENd  LOgin/forgot pass pop up -->  
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+
+                        <?php } ?>
+                    </div>
+                </div>
+            </div> <!-- /bottom-menu-inverse -->
+
+        </div>
+
+        <!-- Banner Layout --->
+        
+ 
+
 

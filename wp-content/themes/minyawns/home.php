@@ -122,8 +122,7 @@ global $post;
 
 		<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/?>
 		<?php 	
-		jfb_output_facebook_callback();
-		jfb_output_facebook_init();
+		
 		jfb_output_facebook_btn(); ?>
 		<br><br>
 		<p class="align-center">Already a Minyawn?<a href="#"><b> Sign in here</b></a></p>

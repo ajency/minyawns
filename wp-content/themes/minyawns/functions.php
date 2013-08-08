@@ -528,6 +528,25 @@ add_action('wp_ajax_nopriv_retrieve_password_ajx', 'retrieve_password_ajx');
 
 
 
+/* Invalid new user verification key */
+function invalid_newuserverification_key(){
+	echo "
+				<div class='container'>
+					<div class='main-content '>
+					<div class='alert alert-error ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
+							<h4 style='text-align:center'>Invalid authentication key or email ID</h4>
+							<hr>
+							<img src='".get_template_directory_uri()."/images/big-minyawns.png'/ style='margin:auto;display:block;'>
+							</div>
+					</div>
+				</div>
+
+				";
+}
+
+
+
+
 /**
  * Retrieves a user row based on password reset key and login
  *
