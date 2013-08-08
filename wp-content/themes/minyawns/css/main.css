@@ -970,3 +970,14 @@ a:hover {
     font-size: 23px;
   }
 }
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .home-page #innermainimage {
+    height: 406px;
+  }
+  .home-page #innermainimage .banner-content .banner-desc {
+    font-size: 32px;
+  }
+  .home-page #innermainimage .banner-content .btn-huge {
+    font-size: 13px;
+  }
+}
