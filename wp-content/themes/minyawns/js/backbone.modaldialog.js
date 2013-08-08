@@ -5,7 +5,7 @@
 //
 // Documentation and full license availabe at:
 // https://github.com/GarethElms/BackboneJSModalView
-define(['underscore', 'jquery', 'backbone'],
+define(['underscore', 'jquery-1.8.3.min', 'backbone'],
 function(_, $, Backbone) {
 var ModalView =
     Backbone.View.extend(
