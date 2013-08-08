@@ -11,7 +11,7 @@
  * @package Ajency
  * @subpackage Better_Rentals
  */
-
+global $post;
 global $wpdb ;
 
 
@@ -107,9 +107,10 @@ if($pd_action=="ver")
 	*/ ?>
 		
 	
-  </body>
-</html>	
+ 
 			
 
 
-<?php get_footer(); ?>
+<?php
+get_footer();
+?>

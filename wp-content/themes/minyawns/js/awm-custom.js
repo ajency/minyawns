@@ -49,6 +49,50 @@ jQuery(document).ready(function($){
 	
 	
 	
+	
+	
+	
+	
+	/* reset password validation */
+	jQuery('#resetpassform').validate({		
+		
+		rules : {
+			'pass1' : {  
+				required  : true, 
+				minlength : 6	
+			},
+			 
+			'pass2' : {  
+				required  : true, 
+				minlength : 6,
+				equalTo: "#pass1" 
+			} 
+
+		},
+		messages:{
+			'pass1' : {  
+				required  : 'Please enter new password' 				 
+			},
+			 
+			'pass2' : {  
+				required  : 'Please renter new password',
+				equalTo: "The password fields entered do not match" 
+			} 
+			
+		}
+		 
+	
+	});	
+	/* end reset pasword validation */
+	
+	
+	
+	
+	
+	
+	
+	
+	
     jQuery('#user-popdown').popover(
 				{
 					placement : 'bottom',

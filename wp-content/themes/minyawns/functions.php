@@ -484,7 +484,7 @@ function retrieve_password_ajx() {
 	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
 	$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
 	//$message .= '<' . network_site_url("reset-password.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
-	$message .=" <a href='".site_url()."/reset-password/?action=rp&key=".$key."&login=". rawurlencode($user_login). "'>".site_url()."/reset-password/?action=ver&key=".$user_activation_key."&login=". rawurlencode($user_login) ."</a>\r\n";
+	$message .=" <a href='".site_url()."/change-password/?action=rp&key=".$key."&login=". rawurlencode($user_login). "'>".site_url()."/change-password/?action=ver&key=".$user_activation_key."&login=". rawurlencode($user_login) ."</a>\r\n";
 	if ( is_multisite() )
 		$blogname = $GLOBALS['current_site']->site_name;
 	else
@@ -520,6 +520,63 @@ function retrieve_password_ajx() {
 }
 add_action('wp_ajax_retrieve_password_ajx', 'retrieve_password_ajx');
 add_action('wp_ajax_nopriv_retrieve_password_ajx', 'retrieve_password_ajx');
+
+
+
+
+
+
+
+
+/**
+ * Retrieves a user row based on password reset key and login
+ *
+ * @uses $wpdb WordPress Database object
+ *
+ * @param string $key Hash to validate sending user's password
+ * @param string $login The user login
+ * @return object|WP_Error User's database row on success, error object for invalid keys
+ */
+function check_password_reset_key_($key, $login) {
+	global $wpdb;
+
+	$key = preg_replace('/[^a-z0-9]/i', '', $key);
+
+	if ( empty( $key ) || !is_string( $key ) )
+		return new WP_Error('invalid_key', __('Invalid key'));
+
+	if ( empty($login) || !is_string($login) )
+		return new WP_Error('invalid_key', __('Invalid key'));
+
+	$user = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->users WHERE user_activation_key = %s AND user_login = %s", $key, $login));
+
+	if ( empty( $user ) )
+		return new WP_Error('invalid_key', __('Invalid key'));
+
+	return $user;
+}
+
+/**
+ * Handles resetting the user's password.
+ *
+ * @param object $user The user
+ * @param string $new_pass New password for the user in plaintext
+ */
+function reset_password_($user, $new_pass) {
+	do_action('password_reset', $user, $new_pass);
+
+	wp_set_password($new_pass, $user->ID);
+
+	wp_password_change_notification($user);
+}
+
+
+
+
+
+
+
+
 
 
 
