@@ -2,7 +2,7 @@
     <div  id="main-content" class="main-content bg-white" >
         <div class="breadcrumb-text">
             <p id="bread-crumbs-id">
-                <a href="myjobs.html">View All Jobs</a>
+                <a href="<?php echo site_url()."/jobs" ?>">View All Jobs</a>
 
             </p>
         </div>

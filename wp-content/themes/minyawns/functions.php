@@ -550,4 +550,19 @@ $avatar_defaults[$myavatar2] = 'My Avatar';
 return $avatar_defaults; }
 add_filter( 'avatar_defaults', 'fb_addgravatar' ); }
 
+
+
+add_action( 'init', 'create_post_type' );
+function create_post_type() {
+	register_post_type( 'jobs',
+		array(
+			'labels' => array(
+				'name' => __( 'Jobs' ),
+				'singular_name' => __( 'Jobs' )
+			),
+		'public' => true,
+		'has_archive' => true,
+		)
+	);
+}
 ?>
