@@ -53,7 +53,7 @@ jQuery(document).ready(function($){
 	
 	
 	
-	/* reset password validation */
+	/* reset password form validation */
 	jQuery('#resetpassform').validate({		
 		
 		rules : {
@@ -167,7 +167,8 @@ jQuery(document).ready(function($){
 	/* POPUP SIGNUP */
 	jQuery("#link_minyawnregister").live("click",function(){	
 		jQuery("#signup_role").val('minyawn');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
-		jQuery("#div_signupmsg").html("");
+		jQuery("#div_signupmsg").html("");		 
+		validator_signup.resetForm();
 		 
 		//logouturl=logouturl+"&amp;usr_role=minyawn"
 	
@@ -175,7 +176,8 @@ jQuery(document).ready(function($){
 	
 	jQuery("#link_employerregister").live("click",function(){	
 		jQuery("#signup_role").val('employer');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
-		jQuery("#div_signupmsg").html(""); 
+		jQuery("#div_signupmsg").html(""); 		 
+		validator_signup.resetForm();
 		//	logouturl=logouturl+"&amp;usr_role=employer";
 		
 	})
@@ -191,7 +193,7 @@ jQuery(document).ready(function($){
 	
 	
 	
-	jQuery('#frm_signup').validate({		
+var validator_signup = jQuery('#frm_signup').validate({		
 		
 		rules : {
 
