@@ -191,7 +191,8 @@ define(['underscore', 'jquery-1.8.3.min', 'backbone', 'backbone.modaldialog'],
                     {
                         return false;
                     } else {
-                        if ($("#user_role") == "minyawn") {
+                       
+                        if ($("#user_role").val() === "minyawn") {
                             var self = this;
                             this.usercollection.fetch({
                                 data: {

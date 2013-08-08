@@ -225,6 +225,7 @@
 
             <form class="form-horizontal frm-edit" id="edit-user-profile">
             <input type="hidden" id="user_role" value="<%= user_role %>"></input>
+                <input type="hidden" id="user_skills" value=""></input>
             <div class="control-group">
             <label class="control-label" for="inputFirst">First Name</label>
             <div class="controls">
