@@ -12,7 +12,7 @@ require.config({
             exports: 'Backbone'
         },
         'bootstrap.min': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         },
         'custom': {
             deps: ['jquery-1.8.3.min']
@@ -41,8 +41,7 @@ require.config({
         },
         'bootstrap-tagmanager':{
             deps:['jquery-1.8.3.min', 'bootstrap.min']
-        },
-        
+        }
 
     }
 });
