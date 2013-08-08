@@ -29,8 +29,8 @@ global $post;
                     <hr>
                     <div class="row-fluid">
                         <div class="span4"></div>
-                        <div class="span2"><a  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-primary"  id="link_minyawnregister" >Get a Minyawn</a></div>
-                        <div class="span2"><a href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_employerregister"  >Become a Minyawn</a></div>
+                        <div class="span2"><a  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minyawn</a></div>
+                        <div class="span2"><a href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minyawn</a></div>
                         <div class="span4"></div>
                     </div>	
                 </div>
@@ -125,7 +125,7 @@ global $post;
 		
 		jfb_output_facebook_btn(); ?>
 		<br><br>
-		<p class="align-center">Already a Minyawn?<a href="#"><b> Sign in here</b></a></p>
+		<p class="align-center">Already a Minyawn?<a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
 		</div>
 		
 	</div>
