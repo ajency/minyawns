@@ -11,16 +11,22 @@
  * @package Ajency
  * @subpackage Better_Rentals
  */
-
+global $post;
 global $wpdb ;
 
 
 get_header(); ?>
  
 <?php
+
+
+
+
 global $wpdb;
 if(isset($_REQUEST['action']))
 	$pd_action = $_REQUEST['action'];
+else
+	invalid_newuserverification_key();
 
 if(isset($_REQUEST['key']))
 	$pd_key = $_REQUEST['key'];
@@ -68,18 +74,7 @@ if($pd_action=="ver")
 			}
 			else
 			{
-				echo "
-				<div class='container'>
-					<div class='main-content '>
-					<div class='alert alert-error ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
-							<h4 style='text-align:center'>Invalid authentication key or email ID</h4>
-							<hr>
-							<img src='".get_template_directory_uri()."/images/big-minyawns.png'/ style='margin:auto;display:block;'>
-							</div>
-					</div>
-				</div>
-				
-				";
+				invalid_newuserverification_key();
 			}
 		}
 	}
@@ -107,9 +102,10 @@ if($pd_action=="ver")
 	*/ ?>
 		
 	
-  </body>
-</html>	
+ 
 			
 
 
-<?php get_footer(); ?>
+<?php
+get_footer();
+?>
