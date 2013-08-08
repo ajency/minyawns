@@ -507,7 +507,7 @@ function retrieve_password_ajx() {
 	else
 	{	
 		//wp_die( __('The e-mail could not be sent.') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.') );
-		$msg = "Check your e-mail for the confirmation link.";
+		$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Check your e-mail for the confirmation link.</div>";
 		$success_val = true;
 		
 
