@@ -31,7 +31,7 @@ a:hover {
 }
 .top-menu {
   position: relative;
-  z-index: 9999;
+  z-index: 999;
 }
 .top-menu .bottom-menu-inverse {
   background-color: rgba(0, 0, 0, 0.33);
@@ -920,6 +920,8 @@ a:hover {
     width: 90%;
     left: 0%;
     margin: auto;
+    position: relative;
+    z-index: 99999;
   }
   .signup .close img {
     max-width: none;
