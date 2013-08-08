@@ -151,7 +151,7 @@ function popup_usersignup()
 			 
 			$subject = "You have successfully registered on Minyaqns";
 			$message="Hi, <br/><br/>You have successfully registered on <a href='".site_url()."' >Minyawns</a>.<br/><br/> To verify your account visit the following address";
-			$message.="<a href='".site_url()."/newuser-verification/?action=ver&key=".$user_activation_key."&email=". $userdata_['user_email'] . "'>veify link</a>\r\n";
+			$message.=" <a href='".site_url()."/newuser-verification/?action=ver&key=".$user_activation_key."&email=". $userdata_['user_email'] . "'>".site_url()."/newuser-verification/?action=ver&key=".$user_activation_key."&email=". $userdata_['user_email']."</a>\r\n";
 			//$message.= '<' . network_site_url("activate/?action=ver&key=$user_activation_key&email=" . $userdata_['user_email']) . ">\r\n";
 			$message.="<br/><br/> Regards
 					<br/>Minyawns Team<br/> ";
@@ -405,6 +405,121 @@ function email_signature()
 <!--End of footer -->
 </div>';
 }
+
+
+//function to retrieve password on client side using ajax
+function retrieve_password_ajx() {
+	global $wpdb, $current_site;
+
+	$errors = new WP_Error();
+
+	if ( empty( $_POST['user_login'] ) ) {
+		//$errors->add('empty_username', __('<strong>ERROR</strong>: Enter a username or e-mail address.'));
+		$msg = "Enter a username or e-mail address.";
+		$success_val = false;
+	} else if ( strpos( $_POST['user_login'], '@' ) ) {
+		$user_data = get_user_by( 'email', trim( $_POST['user_login'] ) );
+		if ( empty( $user_data ) )
+		{	//$errors->add('invalid_email', __('<strong>ERROR</strong>: There is no user registered with that email address.'));
+			$msg = "There is no user registered with that email address.";
+			$success_val = false;
+		}
+	} else {
+		$login = trim($_POST['user_login']);
+		$user_data = get_user_by('login', $login);
+	}
+
+	do_action('lostpassword_post');
+
+	if ( $errors->get_error_code() )
+	{
+		//	return $errors;
+		$success_val = false;
+		$response = array('success' => $success_val,'msg'=>$msg );
+		wp_send_json($response);
+		
+	}
+
+	if ( !$user_data ) {
+		//$errors->add('invalidcombo', __('<strong>ERROR</strong>: Invalid username or e-mail.'));
+		$msg = "Invalid username or e-mail.";
+		$success_val = false;
+		$response = array('success' => $success_val,'msg'=>$msg );
+		wp_send_json($response);
+		//return $errors;
+	}
+
+	// redefining user_login ensures we return the right case in the email
+	$user_login = $user_data->user_login;
+	$user_email = $user_data->user_email;
+
+	do_action('retreive_password', $user_login);  // Misspelled and deprecated
+	do_action('retrieve_password', $user_login);
+
+	$allow = apply_filters('allow_password_reset', true, $user_data->ID);
+
+	if ( ! $allow )
+	{
+		//return new WP_Error('no_password_reset', __('Password reset is not allowed for this user'));
+		$success_val = false;
+		$msg = 'Password reset is not allowed for this user';
+		$response = array('success' => $success_val,'msg'=>$msg );
+		wp_send_json($response);
+		
+	}
+	else if ( is_wp_error($allow) )
+		return $allow;
+
+	$key = $wpdb->get_var($wpdb->prepare("SELECT user_activation_key FROM $wpdb->users WHERE user_login = %s", $user_login));
+	if ( empty($key) ) {
+		// Generate something random for a key...
+		$key = wp_generate_password(20, false);
+		do_action('retrieve_password_key', $user_login, $key);
+		// Now insert the new md5 key into the db
+		$wpdb->update($wpdb->users, array('user_activation_key' => $key), array('user_login' => $user_login));
+	}
+	$message = __('Someone requested that the password be reset for the following account:') . "\r\n\r\n";
+	$message .= network_home_url( '/' ) . "\r\n\r\n";
+	$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
+	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
+	$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
+	//$message .= '<' . network_site_url("reset-password.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
+	$message .=" <a href='".site_url()."/reset-password/?action=rp&key=".$key."&login=". rawurlencode($user_login). "'>".site_url()."/reset-password/?action=ver&key=".$user_activation_key."&login=". rawurlencode($user_login) ."</a>\r\n";
+	if ( is_multisite() )
+		$blogname = $GLOBALS['current_site']->site_name;
+	else
+		// The blogname option is escaped with esc_html on the way into the database in sanitize_option
+		// we want to reverse this for the plain text arena of emails.
+		$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
+
+	$title = sprintf( __('[%s] Password Reset'), $blogname );
+
+	$title = apply_filters('retrieve_password_title', $title);
+	$message = apply_filters('retrieve_password_message', $message, $key);
+	
+	add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
+	
+	if ( $message && !wp_mail($user_email, $title, email_header().$message.email_signature()) )
+	{	
+		$msg = 'The e-mail could not be sent.' . "<br />\n" . 'Possible reason: your host may have disabled the mail() function.';
+		$success_val = false;
+	}
+	else
+	{	
+		//wp_die( __('The e-mail could not be sent.') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.') );
+		$msg = "Check your e-mail for the confirmation link.";
+		$success_val = true;
+		
+
+	}
+	
+	$response = array('success' => $success_val,'msg'=>$msg );
+	wp_send_json($response);
+	
+	return true;
+}
+add_action('wp_ajax_retrieve_password_ajx', 'retrieve_password_ajx');
+add_action('wp_ajax_nopriv_retrieve_password_ajx', 'retrieve_password_ajx');
 
 
 

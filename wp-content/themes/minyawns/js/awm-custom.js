@@ -5,8 +5,51 @@
 jQuery(document).ready(function($){
 	
 	
-
-        jQuery('#user-popdown').popover(
+	
+	/*Function to etrieve password */  
+	 jQuery("#user-submit").live("click",function(){	
+		 jQuery("#div_msgforgotpass").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+			jQuery.post(ajaxurl,{
+				action : 'retrieve_password_ajx',
+				//data :  data 
+				user_login :jQuery("#user_login").val(),
+				 
+			},
+			function(response){  
+				console.log(response);
+				 if(response.success==true)
+				{
+					 jQuery("#div_forgotpass").hide();
+					 jQuery("#div_msgforgotpass").html(response.msg);
+					//window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
+				} 
+				else
+				{
+					jQuery("#div_msgforgotpass").html(response.msg);
+				} 
+			})		
+	 })
+	
+	jQuery("#btn_forgotpass").live("click",function(){
+		jQuery("#div_forgotpass").show();
+		jQuery("#div_msgforgotpass").html("");
+	})
+	/*
+	if(jQuery("#hdn_reset").val()!="norequest")
+	{
+		jQuery("#btn__login").click();
+		if(jQuery("#hdn_reset").val()=="true")
+			jQuery("#span_forgotpass").html("Password reset request is sent to your mail box");
+		else
+			jQuery("#span_forgotpass").html("Your email id is not present in our database.Try with a email id, you have used to register on Minyawns");
+	}
+	*/
+	/*Function to etrieve password */  
+	
+	
+	
+	
+    jQuery('#user-popdown').popover(
 				{
 					placement : 'bottom',
 					html : true,
@@ -80,12 +123,15 @@ jQuery(document).ready(function($){
 	/* POPUP SIGNUP */
 	jQuery("#link_minyawnregister").live("click",function(){	
 		jQuery("#signup_role").val('minyawn');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
+		jQuery("#div_signupmsg").html("");
+		 
 		//logouturl=logouturl+"&amp;usr_role=minyawn"
 	
 	})
 	
 	jQuery("#link_employerregister").live("click",function(){	
 		jQuery("#signup_role").val('employer');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
+		jQuery("#div_signupmsg").html(""); 
 		//	logouturl=logouturl+"&amp;usr_role=employer";
 		
 	})
