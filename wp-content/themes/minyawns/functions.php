@@ -394,7 +394,7 @@ function email_signature()
 		
 		<div style="background:#f8f8f8;clear:both;margin:5px 5px 5px 5px;height:40px;padding-left: 10px;">
 			<div style="float:left;"><h3 style="line-height:6px;">Find Us On</h3></div>
-			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="'.site_url().'/wp-content/themes/minyawns/images/Facebook.png" /></a></div>
+			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="'.site_url().'/wp-content/themes/minyawns/images/facebook.png" /></a></div>
 			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="'.site_url().'/wp-content/themes/minyawns/images/LinkedIn.png" /></a></div>
 		</div>
 		<br>
