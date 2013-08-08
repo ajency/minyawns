@@ -59,6 +59,12 @@ if($pd_action=="ver")
 				
 				";
 				
+				
+				$subject = "You have successfully completed registration on minyawns";
+				$message="Hi, <br/><br/>You have successfully completed registration on Minyawns.<br/><br/>. You can visit <a href='".site_url()."' >Minyawns</a> to log in";
+				add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
+				wp_mail($pd_email, $subject,email_header().$message.email_signature());
+				
 			}
 			else
 			{

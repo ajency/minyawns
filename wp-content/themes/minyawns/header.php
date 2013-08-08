@@ -445,7 +445,7 @@
 
                             <div class="span2 upper-link">
 <!--                                <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	-->
-                                <a href="#mylogin"  data-toggle="modal">Login </a>
+                                <a href="#mylogin"  data-toggle="modal" id="btn__login">Login </a>
 
                             </div>
 
