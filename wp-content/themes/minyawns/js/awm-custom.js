@@ -163,6 +163,12 @@ jQuery(document).ready(function($){
 	/*END POPUP LOGIN */
 	
 	
+	/*sign in here*/
+	jQuery("#lnk_signin").live("click",function(){		
+		jQuery("#signup_popup_close").click();
+		jQuery("#btn__login").click();
+	})
+	
 	
 	/* POPUP SIGNUP */
 	jQuery("#link_minyawnregister").live("click",function(){	

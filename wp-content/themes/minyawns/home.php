@@ -29,8 +29,8 @@ global $post;
                     <hr>
                     <div class="row-fluid">
                         <div class="span4"></div>
-                        <div class="span2"><a  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-primary"  id="link_minyawnregister" >Get a Minyawn</a></div>
-                        <div class="span2"><a href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_employerregister"  >Become a Minyawn</a></div>
+                        <div class="span2"><a  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minyawn</a></div>
+                        <div class="span2"><a href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minyawn</a></div>
                         <div class="span4"></div>
                     </div>	
                 </div>
@@ -82,7 +82,7 @@ global $post;
 
 <div id="myModal" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
   <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
+        <button type="button" id="signup_popup_close" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
     <h4 id="myModalLabel">Sign Up to <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"/> </h4>
   </div>
   <div class="modal-body">
@@ -125,7 +125,7 @@ global $post;
 		
 		jfb_output_facebook_btn(); ?>
 		<br><br>
-		<p class="align-center">Already a Minyawn?<a href="#"><b> Sign in here</b></a></p>
+		<p class="align-center">Already a Minyawn?<a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
 		</div>
 		
 	</div>
