@@ -1,53 +1,53 @@
 require.config({
     urlArgs: "v=" + (new Date()).getTime(),
     shim: {
-        'jquery-1.8.3.min': {
+        'jquery': {
             exports: "$"
         },
         'underscore': {
             exports: "_"
         },
         'backbone': {
-            deps: ['underscore', 'jquery-1.8.3.min'],
+            deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
         'bootstrap.min': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         },
         'custom': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         },
         'bootstrap-select': {
-            deps: ['jquery-1.8.3.min', 'bootstrap.min']
+            deps: ['jquery', 'bootstrap.min']
         },
         'flatui-checkbox': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         },
         'flatui-radio': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         },
         'jquery.tagsinput': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         },
         'jquery.placeholder': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         }, 'bootstrap-switch': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         }, 'jquery.validate.min': {
-            deps: ['jquery-1.8.3.min']
+            deps: ['jquery']
         },
         'awm-custom': {
-            deps: ['jquery-1.8.3.min', 'jquery.validate.min']
+            deps: ['jquery', 'jquery.validate.min']
         },
         'bootstrap-tagmanager':{
-            deps:['jquery-1.8.3.min', 'bootstrap.min']
+            deps:['jquery', 'bootstrap.min']
         }
 
     }
 });
 var ProfileView = {};
 require([
-    'jquery-1.8.3.min',
+    'jquery',
     'underscore',
     'backbone',
     '../templates/profile/js/profile',
