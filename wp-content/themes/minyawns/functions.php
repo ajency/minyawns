@@ -53,7 +53,7 @@ function popup_userlogin()
 	
 	if (is_wp_error($user) )
 	{
-		$msg = "Invalid email/password or verify your account with the verification link send to your email id. ";
+		$msg = "<div class='alert alert-error alert-box' style='padding: 10px 45px 10px 5px;font-size:12px'>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Invalid email/password or verify your account with the verification link send to your email id. </div>";
 		$response = array('success' => false,'user'=>$user_->user_login.$pd_pass,'msg'=>$msg );
 		wp_send_json($response);
 	}
@@ -442,7 +442,7 @@ function retrieve_password_ajx() {
 
 	if ( !$user_data ) {
 		//$errors->add('invalidcombo', __('<strong>ERROR</strong>: Invalid username or e-mail.'));
-		$msg = "Invalid username or e-mail.";
+		$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Invalid username or e-mail.</div>";
 		$success_val = false;
 		$response = array('success' => $success_val,'msg'=>$msg );
 		wp_send_json($response);
@@ -501,7 +501,7 @@ function retrieve_password_ajx() {
 	
 	if ( $message && !wp_mail($user_email, $title, email_header().$message.email_signature()) )
 	{	
-		$msg = 'The e-mail could not be sent.' . "<br />\n" . 'Possible reason: your host may have disabled the mail() function.';
+		$msg = '<div class="alert alert-success alert-box ">  <button type="button" class="close" data-dismiss="alert">&times;</button>The e-mail could not be sent.' . "<br />\n" . 'Possible reason: your host may have disabled the mail() function.</div>';
 		$success_val = false;
 	}
 	else

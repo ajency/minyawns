@@ -892,3 +892,18 @@ a:hover {
   margin: auto ;
   background-position: -5px 1px;
 }
+.upper-link #btn__login {
+  float: right;
+}
+.tab_content_login {
+  clear: both;
+  border: 3px dashed #ADABAB;
+  padding: 6px;
+}
+.tab_content_login #user_login {
+  width: 89%;
+  height: 21px;
+}
+.tab_content_login #user-submit {
+  width: 30%;
+}

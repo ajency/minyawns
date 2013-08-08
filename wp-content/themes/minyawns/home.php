@@ -85,10 +85,12 @@ global $post;
     <h4 id="myModalLabel">Login to <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"/> </h4>
   </div>
   <div class="modal-body">
+  <div id="div_loginmsg"></div>
     <div class="row-fluid">
+	
 		<div class="span6"> 
 	
-		<div id="div_loginmsg"></div>
+		
 		<form name= "frm_login" id="frm_login" action="" >
 		<div class="control-group ">
             <input type="text" name="txt_email"  id="txt_email"  value="" placeholder="Email Address" class="span3">
@@ -127,8 +129,12 @@ global $post;
 	
 	
 	
-	<span id="div_msgforgotpass"></span>
+	
 	<div id="div_forgotpass" class="tab_content_login" style="display:none;">
+
+	<span id="div_msgforgotpass"></span>
+
+	
 		<p>Enter your username or email to reset your password.</p>
 			<form method="post" action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>" class="wp-user-form">
 				<div class="username">
@@ -137,9 +143,9 @@ global $post;
 				</div>
 				<div class="login_fields">
 					<?php do_action('login_form', 'resetpass'); ?>
-					<input type="button" id="user-submit" name="user-submit" value="<?php _e('Reset my password'); ?>" class="user-submit" tabindex="1002" />
+					<input type="button" id="user-submit" name="user-submit" value="<?php _e('Reset my password'); ?>" class="user-submit btn btn-large btn-block btn-inverse span2" tabindex="1002" />
 					<?php $reset = $_GET['reset']; if($reset == true) { echo '<p>A message will be sent to your email address.</p>'; } ?>
-					<input type="hidden" name="redirect_to" value="<?php echo $_SERVER['REQUEST_URI']; ?>?reset=true" />
+					<input type="hidden" name="redirect_to" value="<?php echo $_SERVER['REQUEST_URI']; ?>?reset=true"  />
 					<input type="hidden" name="user-cookie" value="1" />
 				</div>
 			</form>
