@@ -907,3 +907,7 @@ a:hover {
 .tab_content_login #user-submit {
   width: 30%;
 }
+#div_msgforgotpass {
+  clear: both;
+  display: block;
+}

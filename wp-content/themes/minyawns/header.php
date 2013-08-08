@@ -514,10 +514,10 @@
 	
 	
 	
-	
+	<span id="div_msgforgotpass"></span>
 
 	<div id="div_forgotpass" class="tab_content_login" style="display:none;">
-		<span id="div_msgforgotpass"></span>
+		
 		<p>Enter your username or email to reset your password.</p>
 			<form method="post" action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>" class="wp-user-form">
 				<div class="username">
