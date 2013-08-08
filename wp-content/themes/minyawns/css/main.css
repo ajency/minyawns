@@ -911,3 +911,60 @@ a:hover {
   clear: both;
   display: block;
 }
+@media (max-width: 767px) {
+  body {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .signup {
+    width: 90%;
+    left: 0%;
+    margin: auto;
+  }
+  .signup .close img {
+    max-width: none;
+    margin-left: -6px;
+    margin-top: -15px;
+  }
+  .home-page {
+    background-position: 60px 505px;
+  }
+  .home-page #btn__login {
+    float: none;
+    display: block;
+    background: #8ed030;
+    width: 20%;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    color: #FFF;
+    border-radius: 5px;
+  }
+  .home-page .bottom-menu {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 11px;
+  }
+  .home-page .bottom-menu .brand {
+    margin-bottom: 0px;
+  }
+  .home-page .pbl {
+    padding-bottom: 0px;
+  }
+  .home-page .bg-background {
+    display: none;
+  }
+  .home-page #innermainimage .banner-content {
+    margin-top: -2%;
+    background: #535353;
+    padding-top: 94px;
+  }
+  .home-page #innermainimage .banner-content .btn-huge {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 7px;
+  }
+  .home-page #innermainimage .banner-content .banner-desc {
+    font-size: 23px;
+  }
+}
