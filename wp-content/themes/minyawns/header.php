@@ -452,15 +452,46 @@
                             
                             
                             
+                       
                             
                             
                             
                             
                             
                             
-                          
-                          
-                          <!-- LOgin/forgot pass pop up -->
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+
+                        <?php } ?>
+                    </div>
+                </div>
+            </div> <!-- /bottom-menu-inverse -->
+
+        </div>
+
+        <!-- Banner Layout --->
+
+        
+        
+        
+        
+        
+        
+        
+<?php 
+        
+  if (is_user_logged_in() == FALSE) {
+ ?>
+ <!-- LOgin/forgot pass pop up -->
 <input type="hidden" name="hdn_siteurl" id="hdn_siteurl" value ="<?php echo site_url(); ?>" />
  
 <div id="mylogin" class="modal signup  hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
@@ -544,40 +575,7 @@
   
 </div>
 <!-- ENd  LOgin/forgot pass pop up -->  
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
 
-                        <?php } ?>
-                    </div>
-                </div>
-            </div> <!-- /bottom-menu-inverse -->
-
-        </div>
-
-        <!-- Banner Layout --->
-        
- 
-
-
+<?php 
+}
+?>
