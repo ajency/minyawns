@@ -9,8 +9,27 @@ require '../../../../../../wp-load.php';
 global $wpdb;
 global $wp_roles;
 $app->post('/addjob', function () use ($app) {
-print_r(json_decode(file_get_contents('php://input'), true));exit();
-    
+            $addjob = json_decode(file_get_contents('php://input'), true);
+
+                $post = array(
+                'ID' => '', //Are you updating an existing post?
+               'post_author' => "1", //The user ID number of the author.
+                'post_date' => date("Y-m-d H:i:s"), //The time post was made.
+                'post_date_gmt' => date("Y-m-d H:i:s"), //The time post was made, in GMT.
+                'post_name' =>$addjob['tasks'], // The name (slug) for your post
+                'post_status' => 'publish',
+                'post_title' => $addjob['tasks'],
+                'post_type' => 'jobs'
+            
+                );
+               $post_id= wp_insert_post($post);
+            
+            
+            foreach($addjob as $key=>$value)
+            {
+                
+                add_post_meta($post_id, $key, $value);
+            }
         });
 $app->run();
 
