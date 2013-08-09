@@ -67,9 +67,6 @@ require([
     'bootstrap-switch',
     'jquery-ui-1.10.3.custom.min',
     'jquery.stacktable'
-
-
-
 ],
         function($, _, Backbone, Profile) {
 

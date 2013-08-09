@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Template Name: Index
+ * 
  *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
@@ -9,23 +10,6 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package Ajency
- * @subpackage Better_Rentals
+ * @subpackage Minyawns
  */
-global $wpdb;
-
-
-get_header();
-?>
- 
-
-<!-- Load JS here for greater good =============================-->
-
-
-
-
-
-
-
-
-
-<?php get_footer(); ?>
+die;

@@ -19,6 +19,12 @@
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
  *
  */
+
+//include Users-api/Job-Api
+require_once 'libs/User-api.php';
+
+require_once 'libs/Job-api.php';
+
 //remove admin bar from front end
 show_admin_bar(false);
 
@@ -29,18 +35,55 @@ show_admin_bar(false);
  * @param unknown $theme_root_uri
  * @return string
  */
-function br_template_directory_uri($template_dir_uri, $template, $theme_root_uri) {
+function mn_template_directory_uri($template_dir_uri, $template, $theme_root_uri) {
     return $theme_root_uri . '/minyawns';
 }
 
-add_filter('template_directory_uri', 'br_template_directory_uri', 100, 3);
+add_filter('template_directory_uri', 'mn_template_directory_uri', 100, 3);
 
 
 
+function minyawns_scripts_styles()
+{
+	switch(ENVIRONMENT)
+	{
+		case 'DEVELOPMENT':
+			wp_enqueue_style('bootstrap'			, get_template_directory_uri() .'/css/bootstrap.css', array(), null);
+			wp_enqueue_style('bootstrap-responsive'	, get_template_directory_uri() .'/css/bootstrap-responsive.css', array(), null);
+			wp_enqueue_style('flat-ui'				, get_template_directory_uri() .'/css/flat-ui.css', array(), null);
+			wp_enqueue_style('main'					, get_template_directory_uri() .'/css/main.css', array(), null);
+			wp_enqueue_style('style'				, get_template_directory_uri() .'/css/style.css', array(), null);
+			wp_enqueue_style('font-awesome'			, get_template_directory_uri() .'/css/font-awesome.css', array(), null);
+			wp_enqueue_style('data_grids_main'		, get_template_directory_uri() .'/css/data_grids_main.css', array(), null);
+			wp_enqueue_style('ajaxload'				, get_template_directory_uri() .'/css/ajaxload.css', array(), null);
+			wp_enqueue_style('bootstrap-tagmanager' , get_template_directory_uri() .'/css/bootstrap-tagmanager.css', array(), null);
+			
+			wp_enqueue_script('mn-underscore'		, site_url() .'/wp-includes/js/underscore.min.js', array(), null);
+			wp_enqueue_script('jquery-ui'	 		, get_template_directory_uri() .'/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
+			wp_enqueue_script('mn-backbone'			, site_url() .'/wp-includes/js/backbone.min.js', array('mn-underscore','jquery'), null);
+			wp_enqueue_script('bootstrap-min' 		, get_template_directory_uri() .'/js/bootstrap.min.js', array('jquery'), null);
+			wp_enqueue_script('bootstrap-select' 	, get_template_directory_uri() .'/js/bootstrap-select.js', array('jquery','bootstrap-min'), null);
+			wp_enqueue_script('bootstrap-switch' 	, get_template_directory_uri() .'/js/bootstrap-switch.js', array('jquery','bootstrap-min'), null);
+			wp_enqueue_script('flatui-checkbox' 	, get_template_directory_uri() .'/js/flatui-checkbox.js', array('jquery'), null);
+			wp_enqueue_script('flatui-radio'	 	, get_template_directory_uri() .'/js/flatui-radio.js', array('jquery'), null);
+			wp_enqueue_script('jquery.tagsinput'	, get_template_directory_uri() .'/js/jquery.tagsinput.js', array('jquery'), null);
+			wp_enqueue_script('jquery.stacktable' 	, get_template_directory_uri() .'/js/jquery.stacktable.js', array('jquery'), null);
+			wp_enqueue_script('jquery.placeholder'	, get_template_directory_uri() .'/js/jquery.placeholder.js', array('jquery'), null);
+			wp_enqueue_script('application' 		, get_template_directory_uri() .'/js/application.js', array('jquery'), null);
+			wp_enqueue_script('minyawns-js' 		, get_template_directory_uri() .'/js/minyawns.js', array('jquery'), null);
 
-
-//wp_localize_script( 'jquery-1.8.3.min', 'global', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ,'template_directory_uri' => get_template_directory_uri()  ) );
-
+			break;
+		case 'TESTING':
+			wp_enqueue_style('minyawns-testing'		, get_template_directory_uri() .'/css/minyawns-testing.css', array(), null);
+			break;
+		case 'PRODUCTION':
+		default:
+			wp_enqueue_style('minyawns-production'	, get_template_directory_uri() .'/css/minyawns-production.css', array(), null);
+			break;
+	}
+	 	
+}
+add_action('wp_enqueue_scripts', 'minyawns_scripts_styles', 100);
 
 //function to log in user
 function popup_userlogin()
@@ -90,10 +133,6 @@ function generate_user_activation_key($user_email)
 	return($key);
 }
 
-
-
-
-
 //function to register new user
 function popup_usersignup()
 {
@@ -120,14 +159,9 @@ function popup_usersignup()
 		$msg = "<div class='alert alert-error alert-box'>  <button type='button' class='close' data-dismiss='alert'>&times;</button>User with the email Id provided already exists</div>";
 		$response= array('success'=>false,'msg'=>$msg);
 		wp_send_json($response);
-		
-		
-	
 	}
 	else
 	{	
-		
-		
 		$user_id = wp_insert_user($userdata_);
 		
 		if(!is_numeric($user_id))
@@ -155,58 +189,15 @@ function popup_usersignup()
 			//$message.= '<' . network_site_url("activate/?action=ver&key=$user_activation_key&email=" . $userdata_['user_email']) . ">\r\n";
 			/*$message.="<br/><br/> Regards,
 					<br/>Minyawns Team<br/> ";
-		 
 			*/
 			add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
 			wp_mail($userdata_['user_email'], $subject,email_header().$message.email_signature());
 			
-			
-			
 			$response = array("success"=>true,'msg'=>$msg,'user'=>$user_->user_login,'userdata'=>$userdata_,'ret_userid'=>$user_id);
-			wp_send_json($response);
-			
-			
+			wp_send_json($response);			
 		}
-		
-		 
 
-		 
-		
-	}//end else
-
-
-
-	/*
-	$user_ = get_user_by('email', $pd_email);
-    if ($user_) {
-
-        $msg = "User with the email Id provided already exists";
-        $response = array('success' => false, 'mmsg' => $msg);
-        wp_send_json($response);
-    } else {
-
-
-        $user_id = wp_insert_user($userdata_);
-
-        if (!is_numeric($user_id)) {
-            $msg = "Error occured while creating a new user. Please try again.";
-            $success = false;
-        } else {
-            $msg = "Error occured while creating a new user. Please try again.";
-
-            $response = array('success' => true, 'user' => $user_->user_login . $pd_pass);
-            wp_send_json($response);
-            $success = true;
-        }
-
-
-
-
-        $response = array("success" => true, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
-        wp_send_json($response);
-    }//end else
-    	
-    */
+	}
 }
 
 add_action('wp_ajax_popup_usersignup', 'popup_usersignup');
@@ -241,20 +232,15 @@ function rememberme_checked() {
 
 function minyawns_initial_checks()
 {
-	//	awm_create_custom_tables();
-	//awm_page_restrict();
 	minyawns_prevent_dashboard_access();
 	minyawns_login_checked_remember_me();
-	//awm_do_download();
-	//myStartSession();
 }
 
-add_action('init','minyawns_initial_checks'); 
-
+//add_action('init','minyawns_initial_checks'); 
 
 
 //Allow only active users to login in 
-add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
+//add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
 function authenticate_active_user ($user, $password) {
 	//do any extra validation stuff here
 	global $wpdb;
@@ -275,10 +261,6 @@ function authenticate_active_user ($user, $password) {
 	
 	
 }
-
- 
-
-
 
 
 //added on 6aug2013 to add a custom role for the fb user, overrides plugin's default user role
@@ -337,17 +319,17 @@ function phoenix_add_role_cap_function()
 		
 		/* Add minyawns role to the site */
 		add_role('minyawn', 'minyawn', array(
-		'read' => true,
-		'edit_posts' => true,
-		'delete_posts' => true,
-		));
+												'read' => true,
+												'edit_posts' => true,
+												'delete_posts' => true,
+											));
 		
 		/* Add employer role to the site */
 		add_role('employer', 'employer', array(
-		'read' => true,
-		'edit_posts' => true,
-		'delete_posts' => true,
-		));
+												'read' => true,
+												'edit_posts' => true,
+												'delete_posts' => true,
+											));
 	}
 
 }
@@ -595,46 +577,27 @@ function reset_password_($user, $new_pass) {
 	wp_password_change_notification($user);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 add_filter( 'avatar_defaults', 'custom_avatar' );
  
 function custom_avatar ($avatar_defaults) {
-$myavatar = get_template_directory_uri() . '/images/profile.png';
-$avatar_defaults[$myavatar] = "Branded Avatar";
-return $avatar_defaults;
+	$myavatar = get_template_directory_uri() . '/images/profile.png';
+	$avatar_defaults[$myavatar] = "Branded Avatar";
+	return $avatar_defaults;
 }
- 
-
-
-
-
-
 
 if ( !function_exists('fb_addgravatar') ) {
-function fb_addgravatar( $avatar_defaults ) {
-$myavatar = get_bloginfo('template_directory') . '/images/profile.png';
-$avatar_defaults[$myavatar] = 'Users';
-$myavatar2 = get_bloginfo('template_directory') . '/images/profile.png';
-$avatar_defaults[$myavatar2] = 'My Avatar';
-return $avatar_defaults; }
-add_filter( 'avatar_defaults', 'fb_addgravatar' ); }
+	function fb_addgravatar( $avatar_defaults ) 
+	{
+		$myavatar = get_bloginfo('template_directory') . '/images/profile.png';
+		$avatar_defaults[$myavatar] = 'Users';
+		$myavatar2 = get_bloginfo('template_directory') . '/images/profile.png';
+		$avatar_defaults[$myavatar2] = 'My Avatar';
+		return $avatar_defaults; 
+	}
+	add_filter( 'avatar_defaults', 'fb_addgravatar' ); 
+}
 
 
-
-add_action( 'init', 'create_post_type' );
 function create_post_type() {
 	register_post_type( 'jobs',
 		array(
@@ -647,4 +610,30 @@ function create_post_type() {
 		)
 	);
 }
-?>
+add_action( 'init', 'create_post_type' );
+
+/**
+ * Function to redirect after login depending on the user role
+ * redirect to:
+ * minyanws -> /minyawns
+ * employer -> /employer
+ */
+function mn_login_redirect($redirect_to,  $user_login, $user) {
+	
+	//is there a user to check?
+    global $user;
+    if( isset( $user->roles ) && is_array( $user->roles ) ) {
+        //check for admins
+        if( in_array( "administrator", $user->roles ) ) {
+            // redirect them to the default place
+            $redirect_to = site_url('wp-admin');
+        } 
+        else {
+            $redirect_to = site_url('profile');
+        }
+    }
+    
+    return $redirect_to;
+   
+}
+add_filter('login_redirect','mn_login_redirect', 10, 3);
