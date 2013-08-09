@@ -12,3 +12,4 @@
  * @package Ajency
  * @subpackage Minyawns
  */
+die;

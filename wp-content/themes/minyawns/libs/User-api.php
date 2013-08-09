@@ -12,7 +12,7 @@ function setup_user_profile_data()
 	if(!is_user_logged_in()) return;
 	
 	global $current_user;
-
+	
 	$user_meta = get_user_meta($current_user->data->ID);
 	
 	//set profile first name
@@ -37,7 +37,13 @@ function setup_user_profile_data()
 	$current_user->data->profilebody	= isset($user_meta['profilebody']) ? $user_meta['profilebody'][0] : '';
 
 	//set profile profile linked in
-	$current_user->data->linkedin	= isset($user_meta['linkedin']) ? $user_meta['linkedin'][0] : '';
+	$current_user->data->linkedin		= isset($user_meta['linkedin']) ? $user_meta['linkedin'][0] : '';
+
+	//set profile profile linked in
+	$current_user->data->company_website= isset($user_meta['company_website']) ? $user_meta['company_website'][0] : '';
+
+	//set profile profile linked in
+	$current_user->data->location		= isset($user_meta['location']) ? $user_meta['location'][0] : '';
 }
 add_action('wp_loaded','setup_user_profile_data');
 
@@ -103,6 +109,28 @@ function get_user_profile_body()
 	global $current_user;
 
 	return $current_user->data->profilebody;
+}
+
+//Company website
+function user_company_website()
+{
+	echo get_user_company_website();
+}
+function get_user_company_website()
+{
+	global $current_user;
+	return $current_user->data->company_website;
+}
+
+//User location
+function user_location()
+{
+	echo get_user_location();
+}
+function get_user_location()
+{
+	global $current_user;
+	return $current_user->data->location;
 }
 
 //User profile linkedin

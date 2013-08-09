@@ -236,11 +236,11 @@ function minyawns_initial_checks()
 	minyawns_login_checked_remember_me();
 }
 
-add_action('init','minyawns_initial_checks'); 
+//add_action('init','minyawns_initial_checks'); 
 
 
 //Allow only active users to login in 
-add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
+//add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
 function authenticate_active_user ($user, $password) {
 	//do any extra validation stuff here
 	global $wpdb;
@@ -597,14 +597,22 @@ if ( !function_exists('fb_addgravatar') ) {
  * minyanws -> /minyawns
  * employer -> /employer
  */
-function mn_login_redirect($redirect_to, $request, $user) {
+function mn_login_redirect($redirect_to,  $user_login, $user) {
 	
-	if(!isset($user->ID)) return;
-	
-	if( isset( $user->roles ) && is_array( $user->roles ) ) {
-	
-	}
-
-	return $redirect_to;
+	//is there a user to check?
+    global $user;
+    if( isset( $user->roles ) && is_array( $user->roles ) ) {
+        //check for admins
+        if( in_array( "administrator", $user->roles ) ) {
+            // redirect them to the default place
+            $redirect_to = site_url('wp-admin');
+        } 
+        else {
+            $redirect_to = site_url('profile');
+        }
+    }
+    
+    return $redirect_to;
+   
 }
-//add_action('login_redirect','mn_login_redirect',10,3);
+add_filter('login_redirect','mn_login_redirect', 10, 3);

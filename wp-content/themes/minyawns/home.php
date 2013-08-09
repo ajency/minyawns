@@ -5,11 +5,7 @@ Template Name: Home Page
  */
 get_header(); 
 
-global $post;  
 ?>
-
-
-
 <div id="innermainimage">
             <div class="row-fluid banner-content">
                 <div class="span12">

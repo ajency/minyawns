@@ -118,15 +118,21 @@ jQuery(document).ready(function($){
 				//remove success
 				_.pluck(data,'success');
 
-				$('#profile-view').find('.college').text(data.college);		
-				$('#profile-view').find('.major').text(data.major);
 				$('#profile-view').find('.name').html(data.first_name + ' ' + data.last_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
 				
+				//minyawns role
+				$('#profile-view').find('.college').text(data.college);		
+				$('#profile-view').find('.major').text(data.major);
 				var skills = '';
 				_.each(data.user_skills, function(ele,index){
 					skills += "<span class='label label-small'>"+ele+"</span>";
 				});
 				$('#profile-view').find('.user_skills').html(skills);
+
+
+				//employer role
+				$('#profile-view').find('.location').text(data.location);
+				$('#profile-view').find('.company_website').html(' <a href="'+data.company_website+'">'+data.company_website + '</a>');
 
 				//show success message
 				$('#profile-edit').prepend('<div class="alert alert-success">Profile updated succesfully</div>');

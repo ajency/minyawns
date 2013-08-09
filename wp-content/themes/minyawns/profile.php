@@ -25,6 +25,11 @@ get_header();  ?>
 					<div class="span8">
 						<h4 class="name"> <?php user_profile_name(); ?>  <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a></h4> 
 						<div class="row-fluid profile-list">
+							<?php
+
+							if(get_user_role() === 'minyawn'): ?>
+
+
 							<div class="span2">
 								College :
 							</div>
@@ -64,6 +69,30 @@ get_header();  ?>
 										}
 									?>
 							</div>
+							<?php
+							else :
+							?>		
+							<div class="span2">
+					            Location :
+					        </div>
+					        <div class="span10 location">
+					            <?php user_location(); ?>
+					        </div>
+					        <div class="span2 profilebody">
+					           Body :
+					        </div>
+					        <div class="span10">
+					        	 <?php user_profile_body(); ?>
+					        </div>
+					        <div class="span2">
+					            Company Website :
+					        </div>
+					        <div class="span10 company_website">
+					           - <a href="<?php user_company_website(); ?>"><?php user_company_website(); ?></a>
+					        </div>
+					        <?php
+							endif; 
+							?>
 						</div>
 						
 					</div>
@@ -79,7 +108,7 @@ get_header();  ?>
 								<b class="dislike"><?php user_dislike_count(); ?></b>
 							</a> 
 						</div>
-					<!-- Mobile View Like Button -->
+						<!-- Mobile View Like Button -->
 					
 						<div class="mobile_like_btn">
 							<a href="#fakelink" >
@@ -163,6 +192,7 @@ get_header();  ?>
 				      		<input type="text" id="profileemail" disabled  name="profileemail" placeholder="" value="<?php user_profile_email() ?>" class="input">
 				    	</div>
 				  	</div>
+				  	<?php if(get_user_role() === 'minyawn'): ?>
 				   	<div class="control-group">
 				    	<label class="control-label" for="inptcollege">College</label>
 				    	<div class="controls">
@@ -181,18 +211,32 @@ get_header();  ?>
 				    		<input name="user_skills" id="user_skills" class="tagsinput " value="<?php echo implode(',',get_user_skills()); ?>"  style="width:60%;"/>
 				    	</div>
 				  	</div>
-				    <div class="control-group">
-				    	<label class="control-label" for="inputbody">Body</label>
-				    	<div class="controls">
-				      		<textarea type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
-				    	</div>
-				  	</div>
-				 	<div class="control-group">
-				    	<label class="control-label" for="LinkedIn">LinkedIn profile public url</label>
+				  	<div class="control-group">
+				    	<label class="control-label" for="LinkedIn">LinkedIn url</label>
 				    	<div class="controls">
 				     		<input type="text" id="linkedin"  name="linkedin" placeholder="" value="<?php user_profile_linkedin(); ?>" class="input">
 				    	</div>
 				  	</div>
+				  <?php else : ?>
+				    <div class="control-group">
+				    	<label class="control-label" for="inputbody">Location</label>
+				    	<div class="controls">
+				      		<input type="text" id="location"  name="location" placeholder="" value="<?php user_location(); ?>" class="input">
+				    	</div>
+				  	</div>
+				  	<div class="control-group">
+				    	<label class="control-label" for="inputbody">Company Website</label>
+				    	<div class="controls">
+				      		<input type="text" id="company_website"  name="company_website" placeholder="" value="<?php user_company_website(); ?>" class="input">
+				    	</div>
+				  	</div>
+				  	<div class="control-group">
+				    	<label class="control-label" for="inputbody">Profile Body</label>
+				    	<div class="controls">
+				      		<textarea type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
+				    	</div>
+				  	</div>
+				 	<?php endif; ?>
 				  	<!--
 				   	<div class="control-group">
 				    	<label class="control-label" for="LinkedIn">Upload a photo</label>
@@ -206,7 +250,7 @@ get_header();  ?>
 				  	<hr>
 				  	<a href="#" class="btn btn-large btn-block btn-inverse span2" id="update-profile-info">Update Info</a>
 				  	<input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
-					<div class="clear"></div>
+				  	<div class="clear"></div>
 				</form>
 			</div>
 			<div class="clear"></div>
