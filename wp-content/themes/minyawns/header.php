@@ -315,7 +315,7 @@
 
         </script>	
         <script type="text/template" id="history-row">
-            <tr class="data_even profile ">
+            <tr class="data_even profile ins_table">
 
             <td  class="data_cell awm_service_title profile-logo" >
             <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"/>
@@ -351,7 +351,7 @@
             </td>
             <td  class="data_cell awm_service_action rating profile-rating">
 
-            <span > +1</span>
+            <span class="ratings" > +1</span>
             </td>
             </tr>
         </script>
