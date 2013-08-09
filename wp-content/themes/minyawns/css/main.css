@@ -617,7 +617,7 @@ a:hover {
     font-weight: bold;
     color: #8ed030;
   }
-  .Main-job \ .label-small {
+  .Main-job .label-small {
     margin: 10px auto;
     display: block;
     width: 38%;
@@ -946,6 +946,13 @@ a:hover {
     margin-left: 0px;
     margin-right: 0px;
     padding: 11px;
+    height: 72px;
+  }
+  .home-page .bottom-menu #logged-in img {
+    width: 30px;
+  }
+  .home-page .bottom-menu .help_icon {
+    margin-top: -1px;
   }
   .home-page .bottom-menu .brand {
     margin-bottom: 0px;
@@ -961,8 +968,12 @@ a:hover {
     background: #535353;
     padding-top: 94px;
   }
+  .home-page #innermainimage .banner-content .log-img {
+    width: 22%;
+  }
   .home-page #innermainimage .banner-content .btn-huge {
     width: 60%;
+    font-size: 15px;
     margin: auto;
     margin-bottom: 7px;
   }
