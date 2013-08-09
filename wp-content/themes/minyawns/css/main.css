@@ -951,7 +951,7 @@ a:hover {
     margin-top: -15px;
   }
   .home {
-    background-position: 60px 505px;
+    background-position: 60px 480px;
   }
   .home #btn__login {
     float: none;
@@ -986,7 +986,7 @@ a:hover {
     display: none;
   }
   .home #innermainimage .banner-content {
-    margin-top: -2%;
+    margin-top: 5%;
     background: #535353;
     padding-top: 94px;
   }
