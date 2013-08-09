@@ -39,10 +39,16 @@ require.config({
         'awm-custom': {
             deps: ['jquery-1.8.3.min', 'jquery.validate.min']
         },
-        'bootstrap-tagmanager':{
-            deps:['jquery-1.8.3.min', 'bootstrap.min']
+        'bootstrap-tagmanager': {
+            deps: ['jquery-1.8.3.min', 'bootstrap.min']
+        }, 'application': {
+            deps: ['jquery-1.8.3.min', 'bootstrap.min', 'bootstrap-switch', 'bootstrap-select', 'jquery.placeholder']
+        }, 'jquery-ui-1.10.3.custom.min':
+                {
+                    deps: ['jquery-1.8.3.min']
+                }, 'jquery.stacktable': {
+            deps: ['jquery-1.8.3.min']
         }
-
     }
 });
 var ProfileView = {};
@@ -51,11 +57,16 @@ require([
     'underscore',
     'backbone',
     '../templates/profile/js/profile',
-    'jquery.validate.min',    
+    '../templates/jobs/js/job',
+    'jquery.validate.min',
     'jquery.tagsinput',
     'awm-custom',
     'bootstrap.min',
-    'bootstrap-tagmanager'
+    'bootstrap-tagmanager',
+    'application',
+    'bootstrap-switch',
+    'jquery-ui-1.10.3.custom.min',
+    'jquery.stacktable'
 ],
         function($, _, Backbone, Profile) {
 
@@ -67,7 +78,8 @@ require([
                     "logout": "logout",
                     "edit": "edit",
                     "update": "profile",
-                    
+                    "sendform": "sendform"
+
                 }, profile: function(routes)
                 {
                     $("#innermainimage").remove();
@@ -88,17 +100,63 @@ require([
                     var profile_edit_view = new Profile.ProfileEditContianerView({'breadcrumb': 'Edit Profile'});
                     profile_edit_view.render();
 
-                   
+
 
 
                 }, logout: function()
                 {
-                    alert("logged");
+
                     $.ajax({
                         url: "../wp-content/themes/minyawns/templates/profile/api/index.php/logout",
                         success: function() {
 
                         }});
+                }, sendform: function() {
+                    
+                    var Job = Backbone.Model.extend({
+                defaults: {
+                    tasks: "",
+                    start: "",
+                    end: "",
+                    starttime: "",
+                    endtime: "",
+                    require: "",
+                    wages: "",
+                    location: "",
+                    details: ""
+                },
+                url: function() {
+
+                    return  '../wp-content/themes/minyawns/templates/jobs/api/index.php/addjob';
+                }, validate: function(attr) {
+
+
+
+                }
+            });
+            var data = {};
+//            data.title = $("#tasks").val();
+//            data.sdate=$("#start-date").val();
+//            data.edate=$("#end-date").val();
+//            data.stime=$("#start-time").val();
+//            data.etime=$("#end-time").val();
+//            data.required=$("#required").val();
+//            data.wages=$("#wages").val();
+//            data.location=$("#location").val();
+//            data.detail=$("#details").val();
+                    var jobs = new Job();
+                    jobs.set({ 
+                        tasks: $("#tasks").val(),
+                        start: $("#start-date").val(),
+                        end: $("#end-date").val(),
+                        starttime:$("#start-time").val(),
+                        endtime:$("#end-time").val(),
+                        require: $("#required").val(),
+                        wages: $("#wages").val(),
+                        location:$("#location").val(),
+                        details: $("#details").val()
+                    }); /*selected id in the url*/
+                    jobs.save(data);
                 }
             });
             $(function() {

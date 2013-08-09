@@ -183,13 +183,13 @@ function popup_usersignup()
 			$wpdb->update($wpdb->users, array('user_status' => 2), array('user_login' => $userdata_['user_email']));
 			
 			 
-			$subject = "You have successfully registered on Minyaqns";
+			$subject = "You have successfully registered on Minyawns";
 			$message="Hi, <br/><br/>You have successfully registered on <a href='".site_url()."' >Minyawns</a>.<br/><br/> To verify your account visit the following address";
 			$message.=" <a href='".site_url()."/newuser-verification/?action=ver&key=".$user_activation_key."&email=". $userdata_['user_email'] . "'>".site_url()."/newuser-verification/?action=ver&key=".$user_activation_key."&email=". $userdata_['user_email']."</a>\r\n";
 			//$message.= '<' . network_site_url("activate/?action=ver&key=$user_activation_key&email=" . $userdata_['user_email']) . ">\r\n";
-			$message.="<br/><br/> Regards
+			/*$message.="<br/><br/> Regards,
 					<br/>Minyawns Team<br/> ";
-		 
+			*/
 			add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
 			wp_mail($userdata_['user_email'], $subject,email_header().$message.email_signature());
 			
@@ -366,7 +366,9 @@ function email_header()
  */
 function email_signature()
 {
-	return '</div>			
+	return '<br/><br/>Regards,<br/>
+			Minyawns Team<br/><br/>
+			</div>			
 			
 				
 		</div>
@@ -374,7 +376,7 @@ function email_signature()
 		
 		<div style="background:#f8f8f8;clear:both;margin:5px 5px 5px 5px;height:40px;padding-left: 10px;">
 			<div style="float:left;"><h3 style="line-height:6px;">Find Us On</h3></div>
-			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="'.site_url().'/wp-content/themes/minyawns/images/Facebook.png" /></a></div>
+			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="'.site_url().'/wp-content/themes/minyawns/images/facebook.png" /></a></div>
 			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="'.site_url().'/wp-content/themes/minyawns/images/LinkedIn.png" /></a></div>
 		</div>
 		<br>
@@ -397,14 +399,18 @@ function retrieve_password_ajx() {
 
 	if ( empty( $_POST['user_login'] ) ) {
 		//$errors->add('empty_username', __('<strong>ERROR</strong>: Enter a username or e-mail address.'));
-		$msg = "Enter a username or e-mail address.";
+		$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Enter a username or e-mail address.</div>";
 		$success_val = false;
+		$response = array('success' => $success_val,'msg'=>$msg );
+		wp_send_json($response);
 	} else if ( strpos( $_POST['user_login'], '@' ) ) {
 		$user_data = get_user_by( 'email', trim( $_POST['user_login'] ) );
 		if ( empty( $user_data ) )
 		{	//$errors->add('invalid_email', __('<strong>ERROR</strong>: There is no user registered with that email address.'));
-			$msg = "There is no user registered with that email address.";
+			$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>There is no user registered with that email address.</div>";
 			$success_val = false;
+			$response = array('success' => $success_val,'msg'=>$msg );
+			wp_send_json($response);
 		}
 	} else {
 		$login = trim($_POST['user_login']);
@@ -460,13 +466,13 @@ function retrieve_password_ajx() {
 		// Now insert the new md5 key into the db
 		$wpdb->update($wpdb->users, array('user_activation_key' => $key), array('user_login' => $user_login));
 	}
-	$message = __('Someone requested that the password be reset for the following account:') . "\r\n\r\n";
-	$message .= network_home_url( '/' ) . "\r\n\r\n";
-	$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
-	$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
+	$message = 'Hi, <br/><br/>Someone requested that the password be reset for the following account on <a href="'.site_url().'">'.site_url().'</a>';
+	 
+	$message .= '<br/>Username: '.$user_login;
+	$message .= '<br/><br/>If this was a mistake, just ignore this email and nothing will happen.' ;
+	$message .= '<br/>To reset your password, visit the following address:';
 	//$message .= '<' . network_site_url("reset-password.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
-	$message .=" <a href='".site_url()."/change-password/?action=rp&key=".$key."&login=". rawurlencode($user_login). "'>".site_url()."/change-password/?action=ver&key=".$user_activation_key."&login=". rawurlencode($user_login) ."</a>\r\n";
+	$message .=" <br/><a href='".site_url()."/change-password/?action=rp&key=".$key."&login=". rawurlencode($user_login). "'>".site_url()."/change-password/?action=ver&key=".$user_activation_key."&login=". rawurlencode($user_login) ."</a>\r\n";
 	if ( is_multisite() )
 		$blogname = $GLOBALS['current_site']->site_name;
 	else
@@ -590,6 +596,21 @@ if ( !function_exists('fb_addgravatar') ) {
 	}
 	add_filter( 'avatar_defaults', 'fb_addgravatar' ); 
 }
+
+
+function create_post_type() {
+	register_post_type( 'jobs',
+		array(
+			'labels' => array(
+				'name' => __( 'Jobs' ),
+				'singular_name' => __( 'Jobs' )
+			),
+		'public' => true,
+		'has_archive' => true,
+		)
+	);
+}
+add_action( 'init', 'create_post_type' );
 
 /**
  * Function to redirect after login depending on the user role

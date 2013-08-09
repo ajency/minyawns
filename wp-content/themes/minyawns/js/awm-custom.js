@@ -6,8 +6,56 @@ jQuery(document).ready(function($){
 	
 	
 	
-	/*Function to etrieve password */  
-	 jQuery("#user-submit").live("click",function(){	
+	/*Function to etrieve password */ 
+	
+	 jQuery("#user-submit").live("click",function(){
+		 
+		 jQuery('#frm_forgotpassword').submit();
+	 })
+	
+	
+	/*forgot password form validation */
+	jQuery('#frm_forgotpassword').validate({		
+		
+		rules : {
+			'user_login' : {  
+				required  : true 
+				 
+			} 
+
+		},
+		submitHandler : function(form){ 
+			
+						jQuery("#div_msgforgotpass").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+						jQuery.post(ajaxurl,{
+							action : 'retrieve_password_ajx',
+							//data :  data 
+							user_login :jQuery("#user_login").val(),
+							 
+						},
+						function(response){  
+							console.log(response);
+							 if(response.success==true)
+							{
+								 jQuery("#user_login").val("");
+								 jQuery("#div_forgotpass").hide();
+								 jQuery("#div_msgforgotpass").html(response.msg);
+								//window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
+							} 
+							else
+							{
+								jQuery("#div_msgforgotpass").html(response.msg);
+							} 
+						})	
+			 
+			
+						return false; 
+		}
+		
+	});	
+	/* end reset pasword validation */
+	
+	/* jQuery("#user-submit").live("click",function(){	
 		 jQuery("#div_msgforgotpass").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
 			jQuery.post(ajaxurl,{
 				action : 'retrieve_password_ajx',
@@ -19,6 +67,7 @@ jQuery(document).ready(function($){
 				console.log(response);
 				 if(response.success==true)
 				{
+					 jQuery("#user_login").val("");
 					 jQuery("#div_forgotpass").hide();
 					 jQuery("#div_msgforgotpass").html(response.msg);
 					//window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
@@ -28,10 +77,11 @@ jQuery(document).ready(function($){
 					jQuery("#div_msgforgotpass").html(response.msg);
 				} 
 			})		
-	 })
+	 })*/
 	
 	jQuery("#btn_forgotpass").live("click",function(){
-		jQuery("#div_forgotpass").show();
+		jQuery("#div_forgotpass").toggle();
+		//jQuery("#div_forgotpass").show();
 		jQuery("#div_msgforgotpass").html("");
 	})
 	/*
@@ -108,6 +158,15 @@ jQuery(document).ready(function($){
 	 
 	 
 	/* POPUP LOGIN */ 	 
+    
+    //hide forget password section
+    jQuery("#btn__login").live("click",function(){    	 
+    	jQuery("#div_forgotpass").hide();
+    	jQuery("#div_msgforgotpass").html("");
+    	jQuery("#user_login").val("");
+    })
+    
+    //user login form validation and user login
 	jQuery("#btn_login").live("click",function(){
 		jQuery('#frm_login').submit();		
 
@@ -163,7 +222,7 @@ jQuery(document).ready(function($){
 	/*END POPUP LOGIN */
 	
 	
-	/*sign in here*/
+	/*sign in here link*/
 	jQuery("#lnk_signin").live("click",function(){		
 		jQuery("#signup_popup_close").click();
 		jQuery("#btn__login").click();
@@ -175,6 +234,10 @@ jQuery(document).ready(function($){
 		jQuery("#signup_role").val('minyawn');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
 		jQuery("#div_signupmsg").html("");		 
 		validator_signup.resetForm();
+		jQuery("#signup_email").val("");
+		jQuery("#signup_password").val("");
+		jQuery("#signup_fname").val("");
+		jQuery("#signup_lname").val("");
 		 
 		//logouturl=logouturl+"&amp;usr_role=minyawn"
 	
@@ -184,6 +247,10 @@ jQuery(document).ready(function($){
 		jQuery("#signup_role").val('employer');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
 		jQuery("#div_signupmsg").html(""); 		 
 		validator_signup.resetForm();
+		jQuery("#signup_email").val("");
+		jQuery("#signup_password").val("");
+		jQuery("#signup_fname").val("");
+		jQuery("#signup_lname").val("");
 		//	logouturl=logouturl+"&amp;usr_role=employer";
 		
 	})

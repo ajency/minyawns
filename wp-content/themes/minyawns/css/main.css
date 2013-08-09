@@ -29,9 +29,12 @@ a:hover {
   border: 1px solid #ccc;
   padding: 5px;
 }
+.page {
+  background: url(../images/pattern-bg.png) repeat;
+}
 .top-menu {
   position: relative;
-  z-index: 9999;
+  z-index: 999;
 }
 .top-menu .bottom-menu-inverse {
   background-color: rgba(0, 0, 0, 0.33);
@@ -617,7 +620,7 @@ a:hover {
     font-weight: bold;
     color: #8ed030;
   }
-  .Main-job \ .label-small {
+  .Main-job .label-small {
     margin: 10px auto;
     display: block;
     width: 38%;
@@ -769,7 +772,7 @@ a:hover {
   margin: 0 auto;
   width: 100%;
   max-width: 1920px;
-  margin-top: -87px;
+  margin-top: -107px;
   position: relative;
   z-index: 99;
 }
@@ -805,11 +808,11 @@ a:hover {
 #innermainimage .banner-content .btn-huge:hover {
   opacity: 0.9;
 }
-.home-page {
+.home {
   background: url(../images/back2.jpg) repeat-x;
   background-position: 67px 53px;
 }
-.home-page .heading-title {
+.home .heading-title {
   display: block;
   padding-top: 30px;
   margin-bottom: 50px;
@@ -820,7 +823,7 @@ a:hover {
   padding-bottom: 18px;
   background: url(../images/border.png) no-repeat 50% 100%;
 }
-.home-page .big-heading-title {
+.home .big-heading-title {
   display: block;
   padding-top: 45px;
   margin-bottom: 50px;
@@ -832,19 +835,19 @@ a:hover {
   padding-bottom: 18px;
   background: url(../images/green-border.png) no-repeat 50% 100%;
 }
-.home-page .big-heading-desc {
+.home .big-heading-desc {
   width: 70%;
   text-align: center;
   margin: auto;
 }
-.home-page .workflow {
+.home .workflow {
   background: url(../images/service.png) no-repeat;
   width: 81px;
   height: 124px;
   margin: auto;
   background-position: 0px 2px;
 }
-.home-page .i-cal {
+.home .i-cal {
   text-align: center;
   display: block;
   font-size: 39px;
@@ -852,14 +855,14 @@ a:hover {
   line-height: 80px;
   margin-left: 8px;
 }
-.home-page .i-user {
+.home .i-user {
   text-align: center;
   display: block;
   font-size: 42px;
   color: #FFF;
   line-height: 80px;
 }
-.home-page .i-money {
+.home .i-money {
   text-align: center;
   display: block;
   font-size: 39px;
@@ -867,25 +870,25 @@ a:hover {
   line-height: 80px;
   margin-left: -8px;
 }
-.home-page .small-header {
+.home .small-header {
   font-size: 17px;
   text-align: center;
   margin-bottom: 12px;
   margin-top: 10px;
 }
-.home-page .small-desc {
+.home .small-desc {
   font-size: 14px;
   text-align: center;
   line-height: 15px;
 }
-.home-page .workflow1 {
+.home .workflow1 {
   background: url(../images/service.png) no-repeat;
   width: 81px;
   height: 124px;
   margin: auto ;
   background-position: 4px 1px;
 }
-.home-page .workflow2 {
+.home .workflow2 {
   background: url(../images/service.png) no-repeat;
   width: 81px;
   height: 124px;
@@ -910,4 +913,121 @@ a:hover {
 #div_msgforgotpass {
   clear: both;
   display: block;
+}
+@media (max-width: 767px) {
+  body {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .signup {
+    width: 90%;
+    left: 0%;
+    margin: auto;
+    position: relative;
+    z-index: 99999;
+  }
+  .signup .close img {
+    max-width: none;
+    margin-left: -6px;
+    margin-top: -15px;
+  }
+  .home {
+    background-position: 60px 505px;
+  }
+  .home #btn__login {
+    float: none;
+    display: block;
+    background: #8ed030;
+    width: 20%;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    color: #FFF;
+    border-radius: 5px;
+  }
+  .home .bottom-menu {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 11px;
+    height: 72px;
+  }
+  .home .bottom-menu #logged-in img {
+    width: 30px;
+  }
+  .home .bottom-menu .help_icon {
+    margin-top: -1px;
+  }
+  .home .bottom-menu .brand {
+    margin-bottom: 0px;
+  }
+  .home .pbl {
+    padding-bottom: 0px;
+  }
+  .home .bg-background {
+    display: none;
+  }
+  .home #innermainimage .banner-content {
+    margin-top: -2%;
+    background: #535353;
+    padding-top: 94px;
+  }
+  .home #innermainimage .banner-content .log-img {
+    width: 22%;
+  }
+  .home #innermainimage .banner-content .btn-huge {
+    width: 60%;
+    font-size: 15px;
+    margin: auto;
+    margin-bottom: 7px;
+  }
+  .home #innermainimage .banner-content .banner-desc {
+    font-size: 23px;
+  }
+}
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .home {
+    background-position: 67px -50px;
+  }
+  .home #innermainimage {
+    height: 406px;
+  }
+  .home #innermainimage .banner-content {
+    margin-top: 20%;
+  }
+  .home #innermainimage .banner-content .log-img {
+    width: 10%;
+  }
+  .home #innermainimage .banner-content .banner-desc {
+    font-size: 28px;
+  }
+  .home #innermainimage .banner-content .btn-huge {
+    font-size: 12px;
+  }
+}
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .home {
+    background-position: 67px -150px;
+  }
+  .home #innermainimage {
+    height: 300px;
+  }
+  .home #innermainimage .banner-content {
+    margin-top: 25%;
+  }
+  .home #innermainimage .banner-content .log-img {
+    width: 8%;
+  }
+  .home #innermainimage .banner-content .banner-desc {
+    font-size: 20px;
+  }
+  .home #innermainimage .banner-content .btn-huge {
+    font-size: 10px;
+    padding: 10px 10px 10px;
+  }
+  .home .small-header {
+    font-size: 14px;
+  }
+  .home .small-desc {
+    font-size: 12px;
+  }
 }

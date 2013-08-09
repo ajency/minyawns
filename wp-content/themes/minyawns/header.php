@@ -11,6 +11,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
 	
 	<title><?php wp_title('|', true, 'right'); ?></title>
 	
@@ -66,17 +67,6 @@
 						<a href="#mylogin" data-toggle="modal" id="btn__login">Login </a>
 
 					</div>
-
-
-
-
-
-
-
-
-
-
-
 					<!-- LOgin/forgot pass pop up -->
 					<input type="hidden" name="hdn_siteurl" id="hdn_siteurl"
 						value="&lt;?php echo site_url(); ?&gt;" />
@@ -140,19 +130,6 @@
 									jfb_output_facebook_btn();
 									?>
 								</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 								<span id="div_msgforgotpass"></span>
 
 								<div id="div_forgotpass" class="tab_content_login"
@@ -182,13 +159,6 @@
 										</div>
 									</form>
 								</div>
-
-
-								<input type="hidden" name="hdn_rest" id="hdn_reset"
-									value="&lt;?php if(isset($_REQUEST['reset']))     echo $_REQUEST['reset']; else echo &quot;norequest&quot; ?&gt;" />
-
-
-
 							</div>
 						</div>
 
@@ -196,9 +166,47 @@
 					<!-- ENd  LOgin/forgot pass pop up -->
 
 					<?php } ?>
-				</div>
-			</div>
-		</div>
-		<!-- /bottom-menu-inverse -->
+	
+	
+	
+	<span id="div_msgforgotpass"></span>
+
+	<div id="div_forgotpass" class="tab_content_login" style="display:none;">
+		
+    		<p>Enter your username or email to reset your password.</p>
+    			<form method="post" name="frm_forgotpassword" id="frm_forgotpassword"  action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>" class="wp-user-form">
+    				<div class="username">
+    					<label for="user_login" class="hide"><?php _e('Username or Email'); ?>: </label>
+    					<input type="text" name="user_login" value="" size="20" id="user_login" tabindex="1001" />
+    				</div>
+    				<div class="login_fields">
+    					<?php do_action('login_form', 'resetpass'); ?>
+    					<input type="button" id="user-submit" name="user-submit" value="<?php _e('Reset my password'); ?>" class="user-submit btn btn-large btn-block btn-inverse span2" tabindex="1002" />
+    					<?php $reset = $_GET['reset']; if($reset == true) { echo '<p>A message will be sent to your email address.</p>'; } ?>
+    					<input type="hidden" name="redirect_to" value="<?php echo $_SERVER['REQUEST_URI']; ?>?reset=true" />
+    					<input type="hidden" name="user-cookie" value="1" />
+    				</div>
+    			</div>
+    		</div>
+    		<!-- /bottom-menu-inverse -->
+    		
+    		  
+    		<input type="hidden" name= "hdn_rest" id="hdn_reset" value="<?php if(isset($_REQUEST['reset']))     echo $_REQUEST['reset']; else echo "norequest" ?>" />
+    	 
+    		 
+    		
+    	</div>
+      </div>
+      
+    </div>
+<!-- ENd  LOgin/forgot pass pop up -->  
+                    </div>
+                </div>
+            </div> <!-- /bottom-menu-inverse -->
+
+        </div>
+
+        <!-- Banner Layout --->
+
 
 	</div>
