@@ -172,8 +172,7 @@ get_header();  ?>
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div class="span11" id="profile-edit">
-				<div class="row-fluid">
+			<div class="span11 form-horizontal" id="profile-edit">
 				<form class="form-horizontal frm-edit" id="profile-edit-form">
 				  	<div class="control-group">
 					    <label class="control-label" for="inputFirst">First Name</label>
@@ -253,8 +252,6 @@ get_header();  ?>
 				  	<input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
 				  	<div class="clear"></div>
 				</form>
-			</div>
-		
 			</div>
 			<div class="clear"></div>
 		</div>
