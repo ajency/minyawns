@@ -19,7 +19,7 @@ jQuery(document).ready(function($){
 		
 		rules : {
 			'user_login' : {  
-				required  : true, 
+				required  : true 
 				 
 			} 
 
