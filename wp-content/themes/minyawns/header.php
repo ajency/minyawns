@@ -33,6 +33,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/main.css">
         <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/data_grids_main.css">
+		 <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/data_grids_style_01.css">
         <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/ajaxload.css">
         <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/js/tagmanager-master/bootstrap-tagmanager.css">
         <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
@@ -314,21 +315,21 @@
 
         </script>	
         <script type="text/template" id="history-row">
-            <tr class="data_even ">
+            <tr class="data_even profile ">
 
-            <td data-title="Logo" class="data_cell awm_service_title" >
+            <td  class="data_cell awm_service_title profile-logo" >
             <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"/>
             </td>
-            <td data-title="Session Date" class="data_cell awm_service_demand">
+            <td  class="data_cell awm_service_demand profile-date">
             <span class="service-total-demand" data-count="0">30</span>
             <div>
             May<b  class="service-client-demand" data-count="0">2013</b>
             </div>
             <div class="demand"> Monday</div>
             </td>
-            <td data-title="Duration" class="data_cell awm_service_supply duration_mob">
+            <td  class="data_cell awm_service_supply duration_mob profile-time">
             <div class="row-fluid">
-            <div class="span5">
+            <div class="span5 mob-botm">
             <span data-count="0" class="total-exchange-count">11:00</span>
             <div>
             pm
@@ -345,12 +346,12 @@
             </div>
             </div>
             </td>
-            <td data-title="Wages"  class="data_cell awm_service_discount">
+            <td  class="data_cell awm_service_discount profile-wages">
             <ins><span class="amount">$1000</span></ins>
             </td>
-            <td data-title="Ratings "  class="data_cell awm_service_action rating">
+            <td  class="data_cell awm_service_action rating profile-rating">
 
-            <span class="ratings"> +1</span>
+            <span > +1</span>
             </td>
             </tr>
         </script>
@@ -400,7 +401,7 @@
         </script>
     </head>
 
-    <body class="home-page">
+    <body <?php body_class(); ?>>
         <input type="hidden" value="<?php echo $_SESSION['email'] ?>" id="loggedinemail"/>
         <input type="hidden" id="user_id" value="<?php echo $current_user->ID; ?>"></input>
 

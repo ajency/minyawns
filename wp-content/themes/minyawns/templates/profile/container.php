@@ -28,12 +28,12 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="subheader_row">
-                                <th class="subheader_cell awm_exchange_service_tlt service_tlt headerSortDown">Logo</th>
-                                <th class="subheader_cell awm_exchange_service_demand headerSortDown">Session Date</th>
-                                <th class="subheader_cell awm_exchange_service_supply headerSortDown">Duration</th>
-                                <th class="subheader_cell awm_exchange_service_discount headerSortDown">Wages</th>
-                                <th class="subheader_cell awm_exchange_services_action">Ratings</th>
+                            <tr class="subheader_row profile-header">
+                                <th class="subheader_cell awm_exchange_service_tlt service_tlt headerSortDown profile-logo">Logo</th>
+                                <th class="subheader_cell awm_exchange_service_demand headerSortDown profile-date">Session Date</th>
+                                <th class="subheader_cell awm_exchange_service_supply headerSortDown profile-time">Duration</th>
+                                <th class="subheader_cell awm_exchange_service_discount headerSortDown profile-wages">Wages</th>
+                                <th class="subheader_cell awm_exchange_services_action profile-rating">Ratings</th>
                             </tr>
                         </thead>
                         <tbody class="data_container">
