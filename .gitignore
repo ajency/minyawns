@@ -2,3 +2,4 @@
 .buildpath
 wp-config.php
 .externalToolBuilders
+node_modules
