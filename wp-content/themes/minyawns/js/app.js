@@ -55,10 +55,7 @@ require([
     'jquery.tagsinput',
     'awm-custom',
     'bootstrap.min',
-    'bootstrap-tagmanager',
-    
-  
-  
+    'bootstrap-tagmanager'
 ],
         function($, _, Backbone, Profile) {
 
