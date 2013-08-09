@@ -31,7 +31,8 @@ jQuery(document).ready(function($){
 	 })
 	
 	jQuery("#btn_forgotpass").live("click",function(){
-		jQuery("#div_forgotpass").show();
+		jQuery("#div_forgotpass").toggle();
+		//jQuery("#div_forgotpass").show();
 		jQuery("#div_msgforgotpass").html("");
 	})
 	/*
@@ -108,6 +109,15 @@ jQuery(document).ready(function($){
 	 
 	 
 	/* POPUP LOGIN */ 	 
+    
+    //hide forget password section
+    jQuery("#btn__login").live("click",function(){    	 
+    	jQuery("#div_forgotpass").hide();
+    	jQuery("#div_msgforgotpass").html("");
+    	jQuery("#user_login").val("");
+    })
+    
+    //user login form validation and user login
 	jQuery("#btn_login").live("click",function(){
 		jQuery('#frm_login').submit();		
 
@@ -163,7 +173,7 @@ jQuery(document).ready(function($){
 	/*END POPUP LOGIN */
 	
 	
-	/*sign in here*/
+	/*sign in here link*/
 	jQuery("#lnk_signin").live("click",function(){		
 		jQuery("#signup_popup_close").click();
 		jQuery("#btn__login").click();

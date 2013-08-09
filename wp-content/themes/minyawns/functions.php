@@ -417,14 +417,18 @@ function retrieve_password_ajx() {
 
 	if ( empty( $_POST['user_login'] ) ) {
 		//$errors->add('empty_username', __('<strong>ERROR</strong>: Enter a username or e-mail address.'));
-		$msg = "Enter a username or e-mail address.";
+		$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Enter a username or e-mail address.</div>";
 		$success_val = false;
+		$response = array('success' => $success_val,'msg'=>$msg );
+		wp_send_json($response);
 	} else if ( strpos( $_POST['user_login'], '@' ) ) {
 		$user_data = get_user_by( 'email', trim( $_POST['user_login'] ) );
 		if ( empty( $user_data ) )
 		{	//$errors->add('invalid_email', __('<strong>ERROR</strong>: There is no user registered with that email address.'));
-			$msg = "There is no user registered with that email address.";
+			$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>There is no user registered with that email address.</div>";
 			$success_val = false;
+			$response = array('success' => $success_val,'msg'=>$msg );
+			wp_send_json($response);
 		}
 	} else {
 		$login = trim($_POST['user_login']);
