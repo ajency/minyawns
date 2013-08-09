@@ -199,6 +199,10 @@ jQuery(document).ready(function($){
 		jQuery("#signup_role").val('employer');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
 		jQuery("#div_signupmsg").html(""); 		 
 		validator_signup.resetForm();
+		jQuery("#signup_email").val("");
+		jQuery("#signup_password").val("");
+		jQuery("#signup_fname").val("");
+		jQuery("#signup_lname").val("");
 		//	logouturl=logouturl+"&amp;usr_role=employer";
 		
 	})
