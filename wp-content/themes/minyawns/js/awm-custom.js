@@ -6,8 +6,56 @@ jQuery(document).ready(function($){
 	
 	
 	
-	/*Function to etrieve password */  
-	 jQuery("#user-submit").live("click",function(){	
+	/*Function to etrieve password */ 
+	
+	 jQuery("#user-submit").live("click",function(){
+		 
+		 jQuery('#frm_forgotpassword').submit();
+	 })
+	
+	
+	/*forgot password form validation */
+	jQuery('#frm_forgotpassword').validate({		
+		
+		rules : {
+			'user_login' : {  
+				required  : true, 
+				 
+			} 
+
+		},
+		submitHandler : function(form){ 
+			
+						jQuery("#div_msgforgotpass").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+						jQuery.post(ajaxurl,{
+							action : 'retrieve_password_ajx',
+							//data :  data 
+							user_login :jQuery("#user_login").val(),
+							 
+						},
+						function(response){  
+							console.log(response);
+							 if(response.success==true)
+							{
+								 jQuery("#user_login").val("");
+								 jQuery("#div_forgotpass").hide();
+								 jQuery("#div_msgforgotpass").html(response.msg);
+								//window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
+							} 
+							else
+							{
+								jQuery("#div_msgforgotpass").html(response.msg);
+							} 
+						})	
+			 
+			
+						return false; 
+		}
+		
+	});	
+	/* end reset pasword validation */
+	
+	/* jQuery("#user-submit").live("click",function(){	
 		 jQuery("#div_msgforgotpass").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
 			jQuery.post(ajaxurl,{
 				action : 'retrieve_password_ajx',
@@ -29,7 +77,7 @@ jQuery(document).ready(function($){
 					jQuery("#div_msgforgotpass").html(response.msg);
 				} 
 			})		
-	 })
+	 })*/
 	
 	jQuery("#btn_forgotpass").live("click",function(){
 		jQuery("#div_forgotpass").toggle();

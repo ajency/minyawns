@@ -541,7 +541,7 @@ if (is_user_logged_in() == TRUE) {
 	<div id="div_forgotpass" class="tab_content_login" style="display:none;">
 		
 		<p>Enter your username or email to reset your password.</p>
-			<form method="post" action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>" class="wp-user-form">
+			<form method="post" name="frm_forgotpassword" id="frm_forgotpassword"  action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>" class="wp-user-form">
 				<div class="username">
 					<label for="user_login" class="hide"><?php _e('Username or Email'); ?>: </label>
 					<input type="text" name="user_login" value="" size="20" id="user_login" tabindex="1001" />
