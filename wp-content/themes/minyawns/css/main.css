@@ -767,6 +767,25 @@ a:hover {
     display: inline-block;
   }
 }
+.ins_table .awm_service_title img {
+  margin: auto;
+  display: block;
+  -webkit-filter: grayscale(100%);
+  opacity: 0.5;
+}
+.ins_table .time-box {
+  margin-left: 22px;
+}
+.ins_table .amount {
+  display: block;
+}
+.ins_table .time-bold {
+  font-size: 19px !important;
+  line-height: 34px;
+}
+.ins_table .header_cell {
+  border-bottom: 1px solid #E0DEDE;
+}
 #innermainimage {
   height: 516px;
   margin: 0 auto;
