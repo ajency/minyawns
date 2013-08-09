@@ -971,13 +971,49 @@ a:hover {
   }
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .home-page {
+    background-position: 67px -50px;
+  }
   .home-page #innermainimage {
     height: 406px;
   }
+  .home-page #innermainimage .banner-content {
+    margin-top: 20%;
+  }
+  .home-page #innermainimage .banner-content .log-img {
+    width: 10%;
+  }
   .home-page #innermainimage .banner-content .banner-desc {
-    font-size: 32px;
+    font-size: 28px;
   }
   .home-page #innermainimage .banner-content .btn-huge {
-    font-size: 13px;
+    font-size: 12px;
+  }
+}
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .home-page {
+    background-position: 67px -150px;
+  }
+  .home-page #innermainimage {
+    height: 300px;
+  }
+  .home-page #innermainimage .banner-content {
+    margin-top: 25%;
+  }
+  .home-page #innermainimage .banner-content .log-img {
+    width: 8%;
+  }
+  .home-page #innermainimage .banner-content .banner-desc {
+    font-size: 20px;
+  }
+  .home-page #innermainimage .banner-content .btn-huge {
+    font-size: 10px;
+    padding: 10px 10px 10px;
+  }
+  .home-page .small-header {
+    font-size: 14px;
+  }
+  .home-page .small-desc {
+    font-size: 12px;
   }
 }

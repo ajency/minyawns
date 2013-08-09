@@ -21,7 +21,7 @@ global $post;
 <div id="innermainimage">
             <div class="row-fluid banner-content">
                 <div class="span12">
-                    <img src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
+                    <img class="log-img" src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
                     <div class="banner-desc">
                         Minyawans is an easy to use. on-demand,<br>
                         student labour sourcing application
