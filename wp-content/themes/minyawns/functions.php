@@ -385,7 +385,7 @@ function email_header()
 function email_signature()
 {
 	return '<br/><br/>Regards,<br/>
-			Minyawns Team<br/>
+			Minyawns Team<br/><br/>
 			</div>			
 			
 				
@@ -486,7 +486,7 @@ function retrieve_password_ajx() {
 	}
 	$message = 'Hi, <br/><br/>Someone requested that the password be reset for the following account on <a href="'.site_url().'">'.site_url().'</a>';
 	 
-	$message .= '<br/>Username:'.$user_login;
+	$message .= '<br/>Username: '.$user_login;
 	$message .= '<br/><br/>If this was a mistake, just ignore this email and nothing will happen.' ;
 	$message .= '<br/>To reset your password, visit the following address:';
 	//$message .= '<' . network_site_url("reset-password.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
