@@ -36,7 +36,7 @@
 	<?php wp_head(); ?>
 	</head>
 
-<body class="home-page">
+<body <?php body_class(); ?>>
 	<div class=" pbl mtn top-menu">
 		<div class="bottom-menu  bottom-menu-inverse top-menu">
 			<div class="container">
