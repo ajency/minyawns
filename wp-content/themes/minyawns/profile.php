@@ -159,7 +159,7 @@ get_header();  ?>
 										<td colspan="7">
 											<table class="ins_table">
 												
-
+													
 											</table>
 										</td>
 									</tr>

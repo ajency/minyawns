@@ -16,16 +16,16 @@ function setup_user_profile_data()
 	$user_meta = get_user_meta($current_user->data->ID);
 	
 	//set profile first name
-	$current_user->data->first_name 	= $user_meta['first_name'][0];
+	$current_user->data->first_name 	= trim($user_meta['first_name'][0]);
 
 	//set profile last name
-	$current_user->data->last_name 		= $user_meta['last_name'][0];
+	$current_user->data->last_name 		= trim($user_meta['last_name'][0]);
 
 	//set college
-	$current_user->data->college 		= isset($user_meta['college']) ? $user_meta['college'][0] : '';
+	$current_user->data->college 		= isset($user_meta['college']) ? trim($user_meta['college'][0]) : '';
 
 	//set major
-	$current_user->data->major 			= isset($user_meta['major']) ? $user_meta['major'][0] : '';
+	$current_user->data->major 			= isset($user_meta['major']) ? trim($user_meta['major'][0]) : '';
 
 	//set skills
 	$current_user->data->user_skills	= isset($user_meta['user_skills']) ? maybe_unserialize($user_meta['user_skills'][0]) : array();
@@ -34,16 +34,16 @@ function setup_user_profile_data()
 	$current_user->data->socials		= isset($user_meta['socials']) ? maybe_unserialize($user_meta['socials'][0]) : array();
 
 	//set profile profile_body
-	$current_user->data->profilebody	= isset($user_meta['profilebody']) ? $user_meta['profilebody'][0] : '';
+	$current_user->data->profilebody	= isset($user_meta['profilebody']) ? trim($user_meta['profilebody'][0]) : '';
 
 	//set profile profile linked in
-	$current_user->data->linkedin		= isset($user_meta['linkedin']) ? $user_meta['linkedin'][0] : '';
+	$current_user->data->linkedin		= isset($user_meta['linkedin']) ? trim($user_meta['linkedin'][0]) : '';
 
 	//set profile profile linked in
-	$current_user->data->company_website= isset($user_meta['company_website']) ? $user_meta['company_website'][0] : '';
+	$current_user->data->company_website= isset($user_meta['company_website']) ? trim($user_meta['company_website'][0]) : '';
 
 	//set profile profile linked in
-	$current_user->data->location		= isset($user_meta['location']) ? $user_meta['location'][0] : '';
+	$current_user->data->location		= isset($user_meta['location']) ? trim($user_meta['location'][0]) : '';
 }
 add_action('wp_loaded','setup_user_profile_data');
 
