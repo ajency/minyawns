@@ -159,7 +159,7 @@ get_header();  ?>
 										<!-- table 1-->
 										<td colspan="7">
 											<table class="ins_table profile">
-												 <tr class="data_even">
+												 <tr class="data_even completed">
 														<td class="data_cell awm_service_title profile-logo" >
 															<img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/>
 														</td>
