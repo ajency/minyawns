@@ -939,8 +939,8 @@ a:hover {
     padding-left: 0px;
   }
   .signup {
-    width: 90%;
-    left: 0%;
+    width: 90% !important;
+    left: 0%!important;
     margin: auto;
     position: relative;
     z-index: 99999;
