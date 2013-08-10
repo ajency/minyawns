@@ -213,7 +213,7 @@ get_header();  ?>
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div class="span11" id="profile-edit">
+			<div class="span12" id="profile-edit">
 				<div class="row-fluid">	
 					<form class="form-horizontal frm-edit" id="profile-edit-form">
 					  	<div class="control-group">
@@ -275,7 +275,7 @@ get_header();  ?>
 					  	<div class="control-group">
 					    	<label class="control-label" for="inputbody">Profile Body</label>
 					    	<div class="controls">
-					      		<textarea rows="5" type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
+					      		<textarea rows="5" type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" style=" width: 90% !important; " ><?php user_profile_body(); ?></textarea>
 					    	</div>
 					  	</div>
 					 	<?php endif; ?>
