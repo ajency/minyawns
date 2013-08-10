@@ -1948,11 +1948,7 @@ table.qlabs_grid_container tbody.data_container tr.data_even {
     font-size:13px;
 }
 
-table.ins_table tr.data_even td {
-    height:58px !important;
-    text-align:left;
-    display:block;
-}
+
 table.ins_table, table.ins_table tbody, table.ins_table tbody tr {
     display:block;
 }
@@ -1970,12 +1966,7 @@ table.ins_table, table.ins_table tbody, table.ins_table tbody tr {
     font-size:13px;
     color:#395191;
 }
-table.ins_table tr.data_even td {
-    height:58px !important;
-    text-align:left;
-    width:99%;
-    display:block;
-}
+
 table.ins_table tbody tr td {
     border:none;
     position:relative;
