@@ -155,12 +155,7 @@ jQuery(document).ready(function($) {
             showInputs: false,
             minuteStep: 5
         });
-        if ($("#add-job-form").is(":hidden")) {
-            $("#add-job-form").slideDown("slow");
-        } else {
-            $("#add-job-form").slideUp("slow");
-            $("#add-job-form").hide();
-        }
+        $("#add-job-form").toggle("slow");
     });
 
 
