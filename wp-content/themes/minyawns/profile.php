@@ -157,9 +157,44 @@ get_header();  ?>
 									<tr class="data_even">
 										<!-- table 1-->
 										<td colspan="7">
-											<table class="ins_table">
-												
-													
+											<table class="ins_table profile">
+												 <tr class="data_even">
+														<td class="data_cell awm_service_title profile-logo" >
+															<img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/>
+														</td>
+														<td class="data_cell awm_service_demand profile-date">
+														   <span class="service-total-demand" data-count="1">10</span>
+														   <div>
+															 June<b  class="service-client-demand" data-count="1">2013</b>
+														   </div>
+														   <div class="demand"> Thusrday</div>
+														</td>
+														<td  class="data_cell awm_service_supply duration_mob profile-time">
+															 <div class="row-fluid">
+														  <div class="span5">
+															<span data-count="0" class="total-exchange-count">8:00</span>
+															   <div>
+																 am
+															   </div>
+															</div>
+														  <div class="span2">
+															<b class="time-bold">to</b>
+														</div>
+														<div class="span5">
+															 <span data-count="0" class="total-exchange-count">12:00</span>
+																<div>
+																pm
+																</div>
+														 </div>
+														   </div>
+														</td>
+														<td   class="data_cell awm_service_discount profile-wages">
+														   <ins><span class="amount">$28</span></ins>
+														</td>
+													   <td   class="data_cell awm_service_action rating profile-rating">
+														 <span class="ratings"> +1</span>
+														</td>
+													 </tr>
 											</table>
 										</td>
 									</tr>
