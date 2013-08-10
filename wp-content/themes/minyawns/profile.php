@@ -78,10 +78,10 @@ get_header();  ?>
 					        <div class="span10 location">
 					            <?php user_location(); ?>
 					        </div>
-					        <div class="span2 profilebody">
+					        <div class="span2">
 					           Body :
 					        </div>
-					        <div class="span10">
+					        <div class="span10 profilebody">
 					        	 <?php user_profile_body(); ?>
 					        </div>
 					        <div class="span2">
@@ -140,26 +140,61 @@ get_header();  ?>
 											</div>
 										</td>
 									</tr>
-									<tr class="subheader_row">
+									<tr class="subheader_row profile">
 										<th
-											class="subheader_cell awm_exchange_service_tlt service_tlt headerSortDown">Logo</th>
+											class="subheader_cell awm_exchange_service_tlt service_tlt headerSortDown profile-logo">Logo</th>
 										<th
-											class="subheader_cell awm_exchange_service_demand headerSortDown">Session
+											class="subheader_cell awm_exchange_service_demand headerSortDown profile-date">Session
 											Date</th>
 										<th
-											class="subheader_cell awm_exchange_service_supply headerSortDown">Duration</th>
+											class="subheader_cell awm_exchange_service_supply headerSortDown profile-time">Duration</th>
 										<th
-											class="subheader_cell awm_exchange_service_discount headerSortDown">Wages</th>
-										<th class="subheader_cell awm_exchange_services_action">Ratings</th>
+											class="subheader_cell awm_exchange_service_discount headerSortDown profile-wages">Wages</th>
+										<th class="subheader_cell awm_exchange_services_action profile-rating">Ratings</th>
 									</tr>
 								</thead>
 								<tbody class="data_container">
 									<tr class="data_even">
 										<!-- table 1-->
 										<td colspan="7">
-											<table class="ins_table">
-												
-
+											<table class="ins_table profile">
+												 <tr class="data_even">
+														<td class="data_cell awm_service_title profile-logo" >
+															<img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/>
+														</td>
+														<td class="data_cell awm_service_demand profile-date">
+														   <span class="service-total-demand" data-count="1">10</span>
+														   <div>
+															 June<b  class="service-client-demand" data-count="1">2013</b>
+														   </div>
+														   <div class="demand"> Thusrday</div>
+														</td>
+														<td  class="data_cell awm_service_supply duration_mob profile-time">
+															 <div class="row-fluid">
+														  <div class="span5">
+															<span data-count="0" class="total-exchange-count">8:00</span>
+															   <div>
+																 am
+															   </div>
+															</div>
+														  <div class="span2">
+															<b class="time-bold">to</b>
+														</div>
+														<div class="span5">
+															 <span data-count="0" class="total-exchange-count">12:00</span>
+																<div>
+																pm
+																</div>
+														 </div>
+														   </div>
+														</td>
+														<td   class="data_cell awm_service_discount profile-wages">
+														   <ins><span class="amount">$28</span></ins>
+														</td>
+													   <td   class="data_cell awm_service_action rating profile-rating">
+														 <span class="ratings"> +1</span>
+														</td>
+													 </tr>
 											</table>
 										</td>
 									</tr>
@@ -172,86 +207,78 @@ get_header();  ?>
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div class="span11 form-horizontal" id="profile-edit">
-				<form class="form-horizontal frm-edit" id="profile-edit-form">
-				  	<div class="control-group">
-					    <label class="control-label" for="inputFirst">First Name</label>
-					    <div class="controls">
-					      	<input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name() ?>" class="input">
-					    </div>
-				  	</div>
-				    <div class="control-group">
-				    	<label class="control-label" for="inputlast">Last Name</label>
-				    	<div class="controls">
-				      		<input type="text" id="last_name"  name="last_name" placeholder="" value="<?php user_profile_last_name() ?>" class="input">
-				   		</div>
-				  	</div>
-				   	<div class="control-group">
-				    	<label class="control-label" for="inputemail">Email</label>
-				    	<div class="controls">
-				      		<input type="text" id="profileemail" disabled  name="profileemail" placeholder="" value="<?php user_profile_email() ?>" class="input">
-				    	</div>
-				  	</div>
-				  	<?php if(get_user_role() === 'minyawn'): ?>
-				   	<div class="control-group">
-				    	<label class="control-label" for="inptcollege">College</label>
-				    	<div class="controls">
-				     		<input type="text" id="college"  name="college" placeholder="" value="<?php user_college() ?>" class="input">
-				    	</div>
-				  	</div>
-				   	<div class="control-group">
-				    	<label class="control-label" for="inputmajor">Major</label>
-				    	<div class="controls">
-				    		<input type="text" id="major"  name="major" placeholder="" value="<?php user_college_major() ?>" class="input">
-				    	</div>
-				  	</div>
-				    <div class="control-group">
-				    	<label class="control-label" for="inputskill">Skill</label>
-				    	<div class="controls">
-				    		<input name="user_skills" id="user_skills" class="tagsinput " value="<?php echo implode(',',get_user_skills()); ?>"  style="width:60%;"/>
-				    	</div>
-				  	</div>
-				  	<div class="control-group">
-				    	<label class="control-label" for="LinkedIn">LinkedIn url</label>
-				    	<div class="controls">
-				     		<input type="text" id="linkedin"  name="linkedin" placeholder="" value="<?php user_profile_linkedin(); ?>" class="input">
-				    	</div>
-				  	</div>
-				  <?php else : ?>
-				    <div class="control-group">
-				    	<label class="control-label" for="inputbody">Location</label>
-				    	<div class="controls">
-				      		<input type="text" id="location"  name="location" placeholder="" value="<?php user_location(); ?>" class="input">
-				    	</div>
-				  	</div>
-				  	<div class="control-group">
-				    	<label class="control-label" for="inputbody">Company Website</label>
-				    	<div class="controls">
-				      		<input type="text" id="company_website"  name="company_website" placeholder="" value="<?php user_company_website(); ?>" class="input">
-				    	</div>
-				  	</div>
-				  	<div class="control-group">
-				    	<label class="control-label" for="inputbody">Profile Body</label>
-				    	<div class="controls">
-				      		<textarea type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
-				    	</div>
-				  	</div>
-				 	<?php endif; ?>
-				  	<!--
-				   	<div class="control-group">
-				    	<label class="control-label" for="LinkedIn">Upload a photo</label>
-				    	<div class="controls">
-				     		<div class="form-group">
-				      			<label for="exampleInputFile">You can upload a JPG, GIF or PNG file ( File size limit is 4MB )</label>
-				      			<input type="file" id="exampleInputFile" id="profileimage" name="profileimage">
-							</div>
-				    	</div>
-				  	</div>-->
-				  	<hr>
-				  	<a href="#" class="btn btn-large btn-block btn-inverse span2" id="update-profile-info">Update Info</a>
-				  	<input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
-				  	<div class="clear"></div>
-				</form>
+			<div class="span11" id="profile-edit">
+				<div class="row-fluid">	
+					<form class="form-horizontal frm-edit" id="profile-edit-form">
+					  	<div class="control-group">
+						    <label class="control-label" for="inputFirst">First Name</label>
+						    <div class="controls">
+						      	<input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name() ?>" class="input">
+						    </div>
+					  	</div>
+					    <div class="control-group">
+					    	<label class="control-label" for="inputlast">Last Name</label>
+					    	<div class="controls">
+					      		<input type="text" id="last_name"  name="last_name" placeholder="" value="<?php user_profile_last_name() ?>" class="input">
+					   		</div>
+					  	</div>
+					   	<div class="control-group">
+					    	<label class="control-label" for="inputemail">Email</label>
+					    	<div class="controls">
+					      		<input type="text" id="profileemail" disabled  name="profileemail" placeholder="" value="<?php user_profile_email() ?>" class="input">
+					    	</div>
+					  	</div>
+					  	<?php if(get_user_role() === 'minyawn'): ?>
+					   	<div class="control-group">
+					    	<label class="control-label" for="inptcollege">College</label>
+					    	<div class="controls">
+					     		<input type="text" id="college"  name="college" placeholder="" value="<?php user_college() ?>" class="input">
+					    	</div>
+					  	</div>
+					   	<div class="control-group">
+					    	<label class="control-label" for="inputmajor">Major</label>
+					    	<div class="controls">
+					    		<input type="text" id="major"  name="major" placeholder="" value="<?php user_college_major() ?>" class="input">
+					    	</div>
+					  	</div>
+					    <div class="control-group">
+					    	<label class="control-label" for="inputskill">Skill</label>
+					    	<div class="controls">
+					    		<input name="user_skills" id="user_skills" class="tagsinput " value="<?php echo implode(',',get_user_skills()); ?>"  style="width:60%;"/>
+					    	</div>
+					  	</div>
+					  	<div class="control-group">
+					    	<label class="control-label" for="LinkedIn">LinkedIn url</label>
+					    	<div class="controls">
+					     		<input type="text" id="linkedin"  name="linkedin" placeholder="" value="<?php user_profile_linkedin(); ?>" class="input">
+					    	</div>
+					  	</div>
+					  <?php else : ?>
+					    <div class="control-group">
+					    	<label class="control-label" for="inputbody">Location</label>
+					    	<div class="controls">
+					      		<input type="text" id="location"  name="location" placeholder="" value="<?php user_location(); ?>" class="input">
+					    	</div>
+					  	</div>
+					  	<div class="control-group">
+					    	<label class="control-label" for="inputbody">Company Website</label>
+					    	<div class="controls">
+					      		<input type="text" id="company_website"  name="company_website" placeholder="" value="<?php user_company_website(); ?>" class="input">
+					    	</div>
+					  	</div>
+					  	<div class="control-group">
+					    	<label class="control-label" for="inputbody">Profile Body</label>
+					    	<div class="controls">
+					      		<textarea rows="5" type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
+					    	</div>
+					  	</div>
+					 	<?php endif; ?>
+					  	<hr>
+					  	<a href="#" class="btn btn-large btn-block btn-inverse span2" id="update-profile-info">Update Info</a>
+					  	<input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
+					  	<div class="clear"></div>
+					</form>
+				</div>
 			</div>
 			<div class="clear"></div>
 		</div>

@@ -39,10 +39,11 @@ jQuery(document).ready(function($) {
     //Backbone.emulateHTTP = true;
     //Backbone.emulateJSON = true;
 
-    /**
-     * A simple backbone model for profile
-     */
-    var Profile = Backbone.Model.extend({
+    
+            /**
+             * A simple backbone model for profile
+             */
+            var Profile = Backbone.Model.extend({
         url: function() {
             return 'http://localhost/minyawns/wp-content/themes/minyawns/libs/user.php/user';
         },
@@ -130,10 +131,13 @@ jQuery(document).ready(function($) {
 
                 //employer role
                 $('#profile-view').find('.location').text(data.location);
+                $('#profile-view').find('.profilebody').text(data.profilebody);
                 $('#profile-view').find('.company_website').html(' <a href="' + data.company_website + '">' + data.company_website + '</a>');
 
                 //show success message
                 $('#profile-edit').prepend('<div class="alert alert-success">Profile updated succesfully</div>');
+
+                
             },
             errors: function() {
                 $(_this).removeAttr('disabled');
@@ -221,7 +225,7 @@ jQuery(document).ready(function($) {
                 var data = model.toJSON();
                 $("#add-job-form").slideUp("slow");
                 $("#add-job-form").hide();
-              
+
 
             },
             errors: function() {
@@ -230,6 +234,7 @@ jQuery(document).ready(function($) {
             }
         });
     });
+
 
 
 

@@ -80,6 +80,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_style('minyawns-production', get_template_directory_uri() . '/css/minyawns-production.css', array(), null);
             break;
     }
+
 }
 
 add_action('wp_enqueue_scripts', 'minyawns_scripts_styles', 100);

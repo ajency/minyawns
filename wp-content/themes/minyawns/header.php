@@ -21,13 +21,13 @@
 	
 	<!-- media-queries.js (fallback) -->
 	<!--[if lt IE 9]>
-	                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			
-	        <![endif]-->
+	    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			
+	<![endif]-->
 	
 	<!-- html5.js -->
 	<!--[if lt IE 9]>
-	                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	        <![endif]-->
+	    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 	
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
@@ -36,7 +36,7 @@
 	<?php wp_head(); ?>
 	</head>
 
-<body class="home-page">
+<body <?php body_class(); ?>>
 	<div class=" pbl mtn top-menu">
 		<div class="bottom-menu  bottom-menu-inverse top-menu">
 			<div class="container">
@@ -64,7 +64,7 @@
 						?>
 
 					<div class="span2 upper-link">
-						<!--                                <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	-->
+						<!-- <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	-->
 						<a href="#mylogin" data-toggle="modal" id="btn__login">Login </a>
 
 					</div>
@@ -74,7 +74,7 @@
 
 					<div id="mylogin" class="modal signup  hide fade" tabindex="-1"
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-						style="background: url(&amp; amp;">
+						style="">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">
@@ -138,7 +138,7 @@
 
 									<p>Enter your username or email to reset your password.</p>
 									<form method="post"
-										action="&lt;?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?&gt;"
+										action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>"
 										class="wp-user-form">
 										<div class="username">
 											<label for="user_login" class="hide"><?php _e('Username or Email'); ?>:
@@ -148,14 +148,14 @@
 										<div class="login_fields">
 											<?php do_action('login_form', 'resetpass'); ?>
 											<input type="button" id="user-submit" name="user-submit"
-												value="&lt;?php _e('Reset my password'); ?&gt;"
+												value="<?php _e('Reset my password'); ?>"
 												class="user-submit btn btn-large btn-block btn-inverse span2"
 												tabindex="1002" />
 											<?php $reset = $_GET['reset']; if($reset == true) { 
 												echo '<p>A message will be sent to your email address.</p>';
 } ?>
 											<input type="hidden" name="redirect_to"
-												value="&lt;?php echo $_SERVER['REQUEST_URI']; ?&gt;?reset=true" />
+												value="<?php echo $_SERVER['REQUEST_URI']; ?>;?reset=true" />
 											<input type="hidden" name="user-cookie" value="1" />
 										</div>
 									</form>
@@ -167,19 +167,10 @@
 					<!-- ENd  LOgin/forgot pass pop up -->
 
 					<?php } ?>
-	
-	
-	
-	
 
-	
                     </div>
                 </div>
             </div> <!-- /bottom-menu-inverse -->
 
         </div>
 
-        <!-- Banner Layout --->
-
-
-	</div>
