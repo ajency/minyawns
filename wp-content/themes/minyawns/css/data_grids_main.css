@@ -504,10 +504,7 @@ table.qlabs_grid_container tbody.data_container tr.expanded td div.expanded .col
 }
 /* --- Mobile Devices 480 - 768px --- */
 @media only screen and (max-width:768px),(min-device-width:480px) and (max-device-width:767px) {
-    table.qlabs_grid_container {
-    width:480px;
-    /* --- Overall Table Width --- */
-}
+
 .profile .data_cell {
     height:50px;
 }
@@ -2035,4 +2032,93 @@ td.awm_service_action .admin_service_action {
 .rating {
     text-align:center !important;
 }
+}
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+	.profile .data_cell {
+    height:50px;
+}
+.profile .profile-logo {
+    width:19%;
+}
+.profile .profile-date {
+    width:15%;
+}
+.profile .profile-time {
+    width:17%;
+}
+.profile .profile-wages {
+    width:9%;
+}
+.profile .profile-rating {
+    width:8%;
+}
+.profile .profile-date span {
+    font-size:19px;
+    display:inline-block;
+    float:left;
+    margin-right:2px;
+    margin-top:0px;
+    margin-left:0px;
+}
+.profile .profile-date div b {
+    font-size:11px!important;
+   
+}
+.profile .profile-rating span {
+    font-size:15px;
+    line-height:31px;
+    font-weight:bold;
+    color:#57B324;
+}
+.profile .profile-date div {
+    text-align:center;
+}
+.profile .profile-wages ins {
+    font-size:13px;
+}
+}
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+	.profile .data_cell {
+    height:50px;
+}
+.profile .profile-logo {
+    width:19%;
+}
+.profile .profile-date {
+    width:15%;
+}
+.profile .profile-time {
+    width:17%;
+}
+.profile .profile-wages {
+    width:9%;
+}
+.profile .profile-rating {
+    width:8%;
+}
+.profile .profile-date span {
+    font-size:19px;
+    display:inline-block;
+    float:left;
+    margin-right:2px;
+    margin-top:0px;
+    margin-left:0px;
+}
+.profile .profile-date div b {
+    font-size:11px!important;
+   
+}
+.profile .profile-rating span {
+    font-size:15px;
+    line-height:31px;
+    font-weight:bold;
+    color:#57B324;
+}
+.profile .profile-date div {
+    text-align:center;
+}
+.profile .profile-wages ins {
+    font-size:13px;
+}
+
 }
