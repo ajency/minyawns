@@ -74,7 +74,7 @@
 
 					<div id="mylogin" class="modal signup  hide fade" tabindex="-1"
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-						style="background: url(&amp; amp;">
+						style="">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">
@@ -167,6 +167,7 @@
 					<!-- ENd  LOgin/forgot pass pop up -->
 
 					<?php } ?>
+
                     </div>
                 </div>
             </div> <!-- /bottom-menu-inverse -->

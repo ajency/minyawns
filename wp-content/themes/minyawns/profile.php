@@ -153,6 +153,7 @@ get_header();  ?>
 											class="subheader_cell awm_exchange_service_supply headerSortDown profile-time">Duration</th>
 										<th
 											class="subheader_cell awm_exchange_service_discount headerSortDown profile-wages">Wages</th>
+											<th class="subheader_cell awm_exchange_service_discount headerSortDown profile-status">Status </th>
 										<th class="subheader_cell awm_exchange_services_action profile-rating">Ratings</th>
 									</tr>
 								</thead>
@@ -161,7 +162,7 @@ get_header();  ?>
 										<!-- table 1-->
 										<td colspan="7">
 											<table class="ins_table profile">
-												 <tr class="data_even">
+												 <tr class="data_even completed">
 														<td class="data_cell awm_service_title profile-logo" >
 															<img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/>
 														</td>
@@ -193,6 +194,11 @@ get_header();  ?>
 														</td>
 														<td   class="data_cell awm_service_discount profile-wages">
 														   <ins><span class="amount">$28</span></ins>
+														</td>
+														<td   class="data_cell awm_service_discount profile-status">
+														  <!--<span class="label label-small label-success">Completd</span>-->
+													<span class="label label-small label-important">Pending</span>
+														 <!-- <span class="label label-small label-warning">Applied</span> -->
 														</td>
 													   <td   class="data_cell awm_service_action rating profile-rating">
 														 <span class="ratings"> +1</span>

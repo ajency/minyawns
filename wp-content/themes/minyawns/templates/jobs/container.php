@@ -658,11 +658,12 @@
                 <div class="tab-pane" id="tab2">
                     <div class="dialog dialog-success">
                         Add a Job Listing 
-                        <a href="#addjob"> <button class="btn btn-primary btn-wide mll">
+                        <a href="#"> <button class="btn btn-primary btn-wide mll">
                                 <i class="fui-mail"></i>
                                 Add Jobs
                             </button><a/>
                     </div>
+                    <div id="add-job-form" style="display:blobk;">
                     <form class="form-horizontal frm_job">
                         <div class="control-group small">
                             <label class="control-label" for="inputtask">Tasks</label>
@@ -718,6 +719,7 @@
                         <a href="#sendform" class="btn btn-large btn-block btn-inverse span2" >Submit</a>
                         <div class="clear"></div>
                     </form>
+                </div>
 
                 </div>
                 <div class="row-fluid list-jobs"  style="background: #C7C9C5;">
