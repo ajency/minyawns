@@ -72,6 +72,8 @@ function minyawns_scripts_styles()
 			wp_enqueue_script('jquery.placeholder'	, get_template_directory_uri() .'/js/jquery.placeholder.js', array('jquery'), null);
 			wp_enqueue_script('application' 		, get_template_directory_uri() .'/js/application.js', array('jquery'), null);
 			wp_enqueue_script('minyawns-js' 		, get_template_directory_uri() .'/js/minyawns.js', array('jquery'), null);
+			wp_enqueue_script('awm-custom' 		, get_template_directory_uri() .'/js/awm-custom.js', array('jquery'), null);
+			wp_enqueue_script('jquery_validate' 		, get_template_directory_uri() .'/js/jquery.validate.min.js', array('jquery'), null);
 
 			break;
 		case 'TESTING':
@@ -174,23 +176,16 @@ function popup_usersignup()
 		}
 		else
 		{
-			/*$msg = "Error occured while creating a new user. Please try again.";			
-			$response = array('success' => true,'user'=>$user_->user_login.$pd_pass );
-			wp_send_json($response);
-			$success = true;	*/	
+			
 			$msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered. Please check your mail to complete registration</div>";
 			 
 			$wpdb->update($wpdb->users, array('user_activation_key' => $user_activation_key), array('user_login' => $userdata_['user_email']));
 			$wpdb->update($wpdb->users, array('user_status' => 2), array('user_login' => $userdata_['user_email']));
-			
 			 
 			$subject = "You have successfully registered on Minyawns";
 			$message="Hi, <br/><br/>You have successfully registered on <a href='".site_url()."' >Minyawns</a>.<br/><br/> To verify your account visit the following address";
 			$message.=" <a href='".site_url()."/newuser-verification/?action=ver&key=".$user_activation_key."&email=". $userdata_['user_email'] . "'>".site_url()."/newuser-verification/?action=ver&key=".$user_activation_key."&email=". $userdata_['user_email']."</a>\r\n";
-			//$message.= '<' . network_site_url("activate/?action=ver&key=$user_activation_key&email=" . $userdata_['user_email']) . ">\r\n";
-			/*$message.="<br/><br/> Regards,
-					<br/>Minyawns Team<br/> ";
-			*/
+			
 			add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
 			wp_mail($userdata_['user_email'], $subject,email_header().$message.email_signature());
 			
@@ -207,6 +202,25 @@ add_action('wp_ajax_nopriv_popup_usersignup', 'popup_usersignup');
 
 
 
+
+
+
+
+
+
+/*function notloggedin_redirect() {
+	if ( !is_user_logged_in() && (is_home()) ) {
+		wp_redirect(site_url() );
+		exit;
+	}
+}
+add_action('get_header', 'notloggedin_redirect');
+
+*/
+
+
+
+
 /**
  * Function to prevent dashboard access of users other than administrator
  */
@@ -219,25 +233,13 @@ add_action('wp_ajax_nopriv_popup_usersignup', 'popup_usersignup');
 }
 
 
-/**
- * Function to keep remeber me checked
- */
-function minyawns_login_checked_remember_me() {
-	add_filter( 'login_footer', 'rememberme_checked' );
-}
-//add_action( 'init', 'awm_login_checked_remember_me' );
-
-function rememberme_checked() {
-	echo "<script>document.getElementById('rememberme').checked = true;</script>";
-}
-
 function minyawns_initial_checks()
 {
 	minyawns_prevent_dashboard_access();
-	minyawns_login_checked_remember_me();
+	
 }
 
-//add_action('init','minyawns_initial_checks'); 
+add_action('init','minyawns_initial_checks'); 
 
 
 //Allow only active users to login in 
@@ -517,7 +519,9 @@ add_action('wp_ajax_nopriv_retrieve_password_ajx', 'retrieve_password_ajx');
 
 
 
-/* Invalid new user verification key */
+/** Invalid new user verification key
+ *   
+ */
 function invalid_newuserverification_key(){
 	echo "
 				<div class='container'>

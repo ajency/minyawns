@@ -3,13 +3,10 @@
  */
 
 jQuery(document).ready(function($){
-	
-	
-	
-	/*Function to etrieve password */ 
-	
-	 jQuery("#user-submit").live("click",function(){
-		 
+
+		
+	/*Function to etrieve password */ 	
+	 jQuery("#user-submit").live("click",function(){		 
 		 jQuery('#frm_forgotpassword').submit();
 	 })
 	
@@ -28,10 +25,8 @@ jQuery(document).ready(function($){
 			
 						jQuery("#div_msgforgotpass").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
 						jQuery.post(ajaxurl,{
-							action : 'retrieve_password_ajx',
-							//data :  data 
-							user_login :jQuery("#user_login").val(),
-							 
+							action : 'retrieve_password_ajx',							
+							user_login :jQuery("#user_login").val(),							 
 						},
 						function(response){  
 							console.log(response);
@@ -40,14 +35,13 @@ jQuery(document).ready(function($){
 								 jQuery("#user_login").val("");
 								 jQuery("#div_forgotpass").hide();
 								 jQuery("#div_msgforgotpass").html(response.msg);
-								//window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
+								
 							} 
 							else
 							{
 								jQuery("#div_msgforgotpass").html(response.msg);
 							} 
-						})	
-			 
+						})
 			
 						return false; 
 		}
@@ -55,54 +49,14 @@ jQuery(document).ready(function($){
 	});	
 	/* end reset pasword validation */
 	
-	/* jQuery("#user-submit").live("click",function(){	
-		 jQuery("#div_msgforgotpass").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
-			jQuery.post(ajaxurl,{
-				action : 'retrieve_password_ajx',
-				//data :  data 
-				user_login :jQuery("#user_login").val(),
-				 
-			},
-			function(response){  
-				console.log(response);
-				 if(response.success==true)
-				{
-					 jQuery("#user_login").val("");
-					 jQuery("#div_forgotpass").hide();
-					 jQuery("#div_msgforgotpass").html(response.msg);
-					//window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
-				} 
-				else
-				{
-					jQuery("#div_msgforgotpass").html(response.msg);
-				} 
-			})		
-	 })*/
-	
+	 
+	/* forgotpass link */
 	jQuery("#btn_forgotpass").live("click",function(){
-		jQuery("#div_forgotpass").toggle();
-		//jQuery("#div_forgotpass").show();
+		jQuery("#div_forgotpass").toggle();		
 		jQuery("#div_msgforgotpass").html("");
 	})
-	/*
-	if(jQuery("#hdn_reset").val()!="norequest")
-	{
-		jQuery("#btn__login").click();
-		if(jQuery("#hdn_reset").val()=="true")
-			jQuery("#span_forgotpass").html("Password reset request is sent to your mail box");
-		else
-			jQuery("#span_forgotpass").html("Your email id is not present in our database.Try with a email id, you have used to register on Minyawns");
-	}
-	*/
-	/*Function to etrieve password */  
-	
-	
-	
-	
-	
-	
-	
-	
+	 
+
 	/* reset password form validation */
 	jQuery('#resetpassform').validate({		
 		
@@ -129,32 +83,24 @@ jQuery(document).ready(function($){
 				equalTo: "The password fields entered do not match" 
 			} 
 			
-		}
-		 
+		}		 
 	
 	});	
 	/* end reset pasword validation */
 	
 	
 	
-	
-	
-	
-	
-	
-	
-    jQuery('#user-popdown').popover(
+	if(jQuery('#user-popdown').length>0)
+	{
+	   jQuery('#user-popdown').popover(
 				{
 					placement : 'bottom',
 					html : true,
 					content : '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4>'+userName+'</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="'+siteurl+'/profile/#profile" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="'+logouturl+'" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
 				}
 			);
+	}
 
-//	 var ajaxurl =  global.ajaxurl; 	
-	// alert(ajaxurl);
- 
-	 
 	 
 	 
 	/* POPUP LOGIN */ 	 
@@ -168,10 +114,7 @@ jQuery(document).ready(function($){
     
     //user login form validation and user login
 	jQuery("#btn_login").live("click",function(){
-		jQuery('#frm_login').submit();		
-
-		//var data = jQuery("#frm_login").serializeArray();		
-
+		jQuery('#frm_login').submit();	
 	
 	})
 	
@@ -197,16 +140,14 @@ jQuery(document).ready(function($){
 		submitHandler : function(form){ 
 			jQuery("#div_loginmsg").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
 			jQuery.post(ajaxurl,{
-				action : 'popup_userlogin',
-				//data :  data 
+				action : 'popup_userlogin',				
 				pdemail :jQuery("#txt_email").val(),
 				pdpass :jQuery("#txt_pass").val(),
 			},
 			function(response){  
 				console.log(response);
 				if(response.success==true)
-				{
-					//alert("login successfull..redirect page..");				
+				{								
 					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
 				} 
 				else
@@ -237,9 +178,7 @@ jQuery(document).ready(function($){
 		jQuery("#signup_email").val("");
 		jQuery("#signup_password").val("");
 		jQuery("#signup_fname").val("");
-		jQuery("#signup_lname").val("");
-		 
-		//logouturl=logouturl+"&amp;usr_role=minyawn"
+		jQuery("#signup_lname").val("");		
 	
 	})
 	
@@ -250,23 +189,18 @@ jQuery(document).ready(function($){
 		jQuery("#signup_email").val("");
 		jQuery("#signup_password").val("");
 		jQuery("#signup_fname").val("");
-		jQuery("#signup_lname").val("");
-		//	logouturl=logouturl+"&amp;usr_role=employer";
+		jQuery("#signup_lname").val("");		
 		
 	})
 	
 	
-	jQuery("#btn_signup").live("click",function(){	 
-		//alert(jQuery("#signup_email").val()+jQuery("#signup_password").val()+jQuery("#signup_fname").val()+jQuery("#signup_lname").val());		
-		jQuery('#frm_signup').submit();		
-		//var data = jQuery("#frm_login").serializeArray();
+	jQuery("#btn_signup").live("click",function(){	 				
+		jQuery('#frm_signup').submit();				
 	
 	})
 	
 	
-	
-	
-var validator_signup = jQuery('#frm_signup').validate({		
+	var validator_signup = jQuery('#frm_signup').validate({		
 		
 		rules : {
 
@@ -290,8 +224,8 @@ var validator_signup = jQuery('#frm_signup').validate({
 			}
 
 		},
-		submitHandler : function(form){ 	
-			//alert(jQuery("#signup_email").val()+" - "+jQuery("#signup_password").val()+" - "+jQuery("#signup_fname").val()+" - "+jQuery("#signup_lname").val()+ " - "+jQuery("#signup_role").val() )
+		submitHandler : function(form){	
+			
 			jQuery("#div_signupmsg").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
 			jQuery.post(ajaxurl,{
 				action : 'popup_usersignup',
@@ -310,16 +244,12 @@ var validator_signup = jQuery('#frm_signup').validate({
 					jQuery("#signup_email").val("");
 					jQuery("#signup_password").val("");
 					jQuery("#signup_fname").val("");
-					jQuery("#signup_lname").val("");
-					 //alert("Registration  success...");				
-					//window.location.href = '/home/'+'?msg=succes';
+					jQuery("#signup_lname").val("");					
 				} 
 				 else
 					  
 				{
-					 jQuery("#div_signupmsg").html(response.msg);
-					//alert("Registration  success...");				
-					//window.location.href = '/home/'+'?msg=succes';
+					 jQuery("#div_signupmsg").html(response.msg);				
 				} 	 
 			})
 		return false; 
@@ -327,15 +257,15 @@ var validator_signup = jQuery('#frm_signup').validate({
 	
 	});
 	
-	
-	
 	/*END POPUP SIGNUP */
 	
 	
 	
-	if(jQuery('#mycarousel').length>0)
-	 {
 	
+	
+	
+	if(jQuery('#mycarousel').length>0)
+	 {	
 		jQuery('#mycarousel').jcarousel({
 	    	wrap: 'circular'
 	    });

@@ -68,9 +68,33 @@
 						<a href="#mylogin" data-toggle="modal" id="btn__login">Login </a>
 
 					</div>
-					<!-- LOgin/forgot pass pop up -->
-					<input type="hidden" name="hdn_siteurl" id="hdn_siteurl"
-						value="&lt;?php echo site_url(); ?&gt;" />
+					
+
+					<?php } ?>
+                    </div>
+                </div>
+            </div> <!-- /bottom-menu-inverse -->
+
+        </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+  <?php
+
+					if (is_user_logged_in() == FALSE) {
+                            ?>      
+        
+        
+        <!-- LOgin/forgot pass pop up -->
+					<input type="hidden" name="hdn_siteurl" id="hdn_siteurl" value="<?php echo site_url(); ?>" />
 
 					<div id="mylogin" class="modal signup  hide fade" tabindex="-1"
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -165,11 +189,8 @@
 
 					</div>
 					<!-- ENd  LOgin/forgot pass pop up -->
-
-					<?php } ?>
-                    </div>
-                </div>
-            </div> <!-- /bottom-menu-inverse -->
-
-        </div>
-
+        
+        
+<?php 
+}
+?>
