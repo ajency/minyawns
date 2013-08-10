@@ -63,16 +63,18 @@ function minyawns_scripts_styles()
 			wp_enqueue_style('style'				, get_template_directory_uri() .'/css/style.css', array(), null);
 			wp_enqueue_style('font-awesome'			, get_template_directory_uri() .'/css/font-awesome.css', array(), null);
 			wp_enqueue_style('data_grids_main'		, get_template_directory_uri() .'/css/data_grids_main.css', array(), null);
-			wp_enqueue_style('data_grids_main_01'		, get_template_directory_uri() .'/css/data_grids_style_01.css', array(), null);
+			wp_enqueue_style('data_grids_main_01'	, get_template_directory_uri() .'/css/data_grids_style_01.css', array(), null);
 			wp_enqueue_style('ajaxload'				, get_template_directory_uri() .'/css/ajaxload.css', array(), null);
 			wp_enqueue_style('bootstrap-tagmanager' , get_template_directory_uri() .'/css/bootstrap-tagmanager.css', array(), null);
-			
+			wp_enqueue_style('bootstrap-timepicker-css' , get_template_directory_uri() .'/css/bootstrap-timepicker.css', array(), null);
+            
 			wp_enqueue_script('mn-underscore'		, site_url() .'/wp-includes/js/underscore.min.js', array(), null);
 			wp_enqueue_script('jquery-ui'	 		, get_template_directory_uri() .'/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
 			wp_enqueue_script('mn-backbone'			, site_url() .'/wp-includes/js/backbone.min.js', array('mn-underscore','jquery'), null);
 			wp_enqueue_script('bootstrap-min' 		, get_template_directory_uri() .'/js/bootstrap.min.js', array('jquery'), null);
 			wp_enqueue_script('bootstrap-select' 	, get_template_directory_uri() .'/js/bootstrap-select.js', array('jquery','bootstrap-min'), null);
 			wp_enqueue_script('bootstrap-switch' 	, get_template_directory_uri() .'/js/bootstrap-switch.js', array('jquery','bootstrap-min'), null);
+            wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() .'/js/bootstrap-timepicker.js', array('jquery','bootstrap-min'), null);
 			wp_enqueue_script('flatui-checkbox' 	, get_template_directory_uri() .'/js/flatui-checkbox.js', array('jquery'), null);
 			wp_enqueue_script('flatui-radio'	 	, get_template_directory_uri() .'/js/flatui-radio.js', array('jquery'), null);
 			wp_enqueue_script('jquery.tagsinput'	, get_template_directory_uri() .'/js/jquery.tagsinput.js', array('jquery'), null);
