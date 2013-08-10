@@ -172,86 +172,78 @@ get_header();  ?>
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div class="span11 form-horizontal" id="profile-edit">
-				<form class="form-horizontal frm-edit" id="profile-edit-form">
-				  	<div class="control-group">
-					    <label class="control-label" for="inputFirst">First Name</label>
-					    <div class="controls">
-					      	<input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name() ?>" class="input">
-					    </div>
-				  	</div>
-				    <div class="control-group">
-				    	<label class="control-label" for="inputlast">Last Name</label>
-				    	<div class="controls">
-				      		<input type="text" id="last_name"  name="last_name" placeholder="" value="<?php user_profile_last_name() ?>" class="input">
-				   		</div>
-				  	</div>
-				   	<div class="control-group">
-				    	<label class="control-label" for="inputemail">Email</label>
-				    	<div class="controls">
-				      		<input type="text" id="profileemail" disabled  name="profileemail" placeholder="" value="<?php user_profile_email() ?>" class="input">
-				    	</div>
-				  	</div>
-				  	<?php if(get_user_role() === 'minyawn'): ?>
-				   	<div class="control-group">
-				    	<label class="control-label" for="inptcollege">College</label>
-				    	<div class="controls">
-				     		<input type="text" id="college"  name="college" placeholder="" value="<?php user_college() ?>" class="input">
-				    	</div>
-				  	</div>
-				   	<div class="control-group">
-				    	<label class="control-label" for="inputmajor">Major</label>
-				    	<div class="controls">
-				    		<input type="text" id="major"  name="major" placeholder="" value="<?php user_college_major() ?>" class="input">
-				    	</div>
-				  	</div>
-				    <div class="control-group">
-				    	<label class="control-label" for="inputskill">Skill</label>
-				    	<div class="controls">
-				    		<input name="user_skills" id="user_skills" class="tagsinput " value="<?php echo implode(',',get_user_skills()); ?>"  style="width:60%;"/>
-				    	</div>
-				  	</div>
-				  	<div class="control-group">
-				    	<label class="control-label" for="LinkedIn">LinkedIn url</label>
-				    	<div class="controls">
-				     		<input type="text" id="linkedin"  name="linkedin" placeholder="" value="<?php user_profile_linkedin(); ?>" class="input">
-				    	</div>
-				  	</div>
-				  <?php else : ?>
-				    <div class="control-group">
-				    	<label class="control-label" for="inputbody">Location</label>
-				    	<div class="controls">
-				      		<input type="text" id="location"  name="location" placeholder="" value="<?php user_location(); ?>" class="input">
-				    	</div>
-				  	</div>
-				  	<div class="control-group">
-				    	<label class="control-label" for="inputbody">Company Website</label>
-				    	<div class="controls">
-				      		<input type="text" id="company_website"  name="company_website" placeholder="" value="<?php user_company_website(); ?>" class="input">
-				    	</div>
-				  	</div>
-				  	<div class="control-group">
-				    	<label class="control-label" for="inputbody">Profile Body</label>
-				    	<div class="controls">
-				      		<textarea type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
-				    	</div>
-				  	</div>
-				 	<?php endif; ?>
-				  	<!--
-				   	<div class="control-group">
-				    	<label class="control-label" for="LinkedIn">Upload a photo</label>
-				    	<div class="controls">
-				     		<div class="form-group">
-				      			<label for="exampleInputFile">You can upload a JPG, GIF or PNG file ( File size limit is 4MB )</label>
-				      			<input type="file" id="exampleInputFile" id="profileimage" name="profileimage">
-							</div>
-				    	</div>
-				  	</div>-->
-				  	<hr>
-				  	<a href="#" class="btn btn-large btn-block btn-inverse span2" id="update-profile-info">Update Info</a>
-				  	<input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
-				  	<div class="clear"></div>
-				</form>
+			<div class="span11" id="profile-edit">
+				<div class="row-fluid">	
+					<form class="form-horizontal frm-edit" id="profile-edit-form">
+					  	<div class="control-group">
+						    <label class="control-label" for="inputFirst">First Name</label>
+						    <div class="controls">
+						      	<input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name() ?>" class="input">
+						    </div>
+					  	</div>
+					    <div class="control-group">
+					    	<label class="control-label" for="inputlast">Last Name</label>
+					    	<div class="controls">
+					      		<input type="text" id="last_name"  name="last_name" placeholder="" value="<?php user_profile_last_name() ?>" class="input">
+					   		</div>
+					  	</div>
+					   	<div class="control-group">
+					    	<label class="control-label" for="inputemail">Email</label>
+					    	<div class="controls">
+					      		<input type="text" id="profileemail" disabled  name="profileemail" placeholder="" value="<?php user_profile_email() ?>" class="input">
+					    	</div>
+					  	</div>
+					  	<?php if(get_user_role() === 'minyawn'): ?>
+					   	<div class="control-group">
+					    	<label class="control-label" for="inptcollege">College</label>
+					    	<div class="controls">
+					     		<input type="text" id="college"  name="college" placeholder="" value="<?php user_college() ?>" class="input">
+					    	</div>
+					  	</div>
+					   	<div class="control-group">
+					    	<label class="control-label" for="inputmajor">Major</label>
+					    	<div class="controls">
+					    		<input type="text" id="major"  name="major" placeholder="" value="<?php user_college_major() ?>" class="input">
+					    	</div>
+					  	</div>
+					    <div class="control-group">
+					    	<label class="control-label" for="inputskill">Skill</label>
+					    	<div class="controls">
+					    		<input name="user_skills" id="user_skills" class="tagsinput " value="<?php echo implode(',',get_user_skills()); ?>"  style="width:60%;"/>
+					    	</div>
+					  	</div>
+					  	<div class="control-group">
+					    	<label class="control-label" for="LinkedIn">LinkedIn url</label>
+					    	<div class="controls">
+					     		<input type="text" id="linkedin"  name="linkedin" placeholder="" value="<?php user_profile_linkedin(); ?>" class="input">
+					    	</div>
+					  	</div>
+					  <?php else : ?>
+					    <div class="control-group">
+					    	<label class="control-label" for="inputbody">Location</label>
+					    	<div class="controls">
+					      		<input type="text" id="location"  name="location" placeholder="" value="<?php user_location(); ?>" class="input">
+					    	</div>
+					  	</div>
+					  	<div class="control-group">
+					    	<label class="control-label" for="inputbody">Company Website</label>
+					    	<div class="controls">
+					      		<input type="text" id="company_website"  name="company_website" placeholder="" value="<?php user_company_website(); ?>" class="input">
+					    	</div>
+					  	</div>
+					  	<div class="control-group">
+					    	<label class="control-label" for="inputbody">Profile Body</label>
+					    	<div class="controls">
+					      		<textarea type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
+					    	</div>
+					  	</div>
+					 	<?php endif; ?>
+					  	<hr>
+					  	<a href="#" class="btn btn-large btn-block btn-inverse span2" id="update-profile-info">Update Info</a>
+					  	<input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
+					  	<div class="clear"></div>
+					</form>
+				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
