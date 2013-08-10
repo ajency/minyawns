@@ -132,6 +132,7 @@ jQuery(document).ready(function($){
 
 				//employer role
 				$('#profile-view').find('.location').text(data.location);
+				$('#profile-view').find('.profilebody').text(data.profilebody);
 				$('#profile-view').find('.company_website').html(' <a href="'+data.company_website+'">'+data.company_website + '</a>');
 
 				//show success message

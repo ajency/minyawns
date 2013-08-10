@@ -78,10 +78,10 @@ get_header();  ?>
 					        <div class="span10 location">
 					            <?php user_location(); ?>
 					        </div>
-					        <div class="span2 profilebody">
+					        <div class="span2">
 					           Body :
 					        </div>
-					        <div class="span10">
+					        <div class="span10 profilebody">
 					        	 <?php user_profile_body(); ?>
 					        </div>
 					        <div class="span2">
@@ -234,7 +234,7 @@ get_header();  ?>
 					  	<div class="control-group">
 					    	<label class="control-label" for="inputbody">Profile Body</label>
 					    	<div class="controls">
-					      		<textarea type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
+					      		<textarea rows="5" type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
 					    	</div>
 					  	</div>
 					 	<?php endif; ?>
