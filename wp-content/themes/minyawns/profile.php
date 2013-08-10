@@ -127,6 +127,9 @@ get_header();  ?>
 				<div id="my-history" class="row-fluid">
 					<div class="span12">
 						<section id="no-more-tables">
+							<?php $jobs = new MN_User_Jobs(array('user_id' => get_user_id())); ?>
+
+							<?php if($jobs->have_jobs()): ?>
 							<table class="qlabs_grid_container tablesorter jobs_table">
 								<thead>
 									<tr class="header_row">
@@ -201,6 +204,11 @@ get_header();  ?>
 
 								</tbody>
 							</table>
+						<?php else: ?>
+
+							//show html here if user doesn't have any jobs
+
+						<?php endif; ?>
 						</section>
 						<br>
 					</div>
