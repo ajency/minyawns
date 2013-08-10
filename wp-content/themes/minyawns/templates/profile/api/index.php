@@ -4,12 +4,11 @@ require '../../../libs/Slim/Slim.php';
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim(array('debug' => true));
 
-require '../../../../../../wp-includes/wp-db.php';
+//require '../../../../../../wp-includes/wp-db.php';
 require '../../../../../../wp-load.php';
 global $wpdb;
 global $wp_roles;
-$app->get('/users', function () use ($app) {
-
+$app->post('/users', function () use ($app) {
 
             global $wpdb;
             $user_avatar = array('avatar_check' => '');
@@ -80,6 +79,7 @@ $app->get('/users', function () use ($app) {
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(array('data' => $data, 'status' => "success"));
         });
+
 $app->get('/logout', function () use ($app) {
 
 
@@ -135,5 +135,3 @@ function mn_get_current_user_role($user_id) {
         }
     }
 }
-
-?>

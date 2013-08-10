@@ -345,3 +345,36 @@ color: #999999;
 .modal.fade.in {
 top: 15%;
 }
+
+.fbLoginButton img
+{
+    margin: auto;
+    display: block;
+}
+
+div.profile-wrapper{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+}
+
+div.profile-wrapper #profile-view{
+	position: absolute;
+	z-index: 100;
+}
+
+div.profile-wrapper #profile-edit{
+	position: relative;
+	z-index: 10;
+	display: none;
+	margin-left: 0;
+}
+
+.row-fluid input[type="text"]{
+	height : auto !important;
+}
+
+span.form-error{
+	color : red;
+	font-size: 12px;
+}

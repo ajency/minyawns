@@ -5,19 +5,7 @@ Template Name: Home Page
  */
 get_header(); 
 
-global $post;  
 ?>
-
-<style type="text/css">
-.fbLoginButton img
-{
-	margin: auto;
-	display: block;
-}
-</style>
-
-
-
 <div id="innermainimage">
             <div class="row-fluid banner-content">
                 <div class="span12">
@@ -38,7 +26,7 @@ global $post;
             </div>
             <img class="bg-background" src="<?php echo get_template_directory_uri() ?>/images/banner1.jpg"/>
         </div>
-        <!--End  Banner Layout --->
+        <!-- End  Banner Layout -->
 
         <div id="init-land" class="container">
             <div class="row-fluid">
@@ -120,7 +108,7 @@ global $post;
 		Sign Up Using Facebook</h6>
 <p class="align-center">Get using minyawns, faster !</p><br><br>
 
-		<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/?>
+
 		<?php 	
 		
 		jfb_output_facebook_btn(); ?>
@@ -134,4 +122,3 @@ global $post;
 </div>
  <?php
 get_footer();
-?>
