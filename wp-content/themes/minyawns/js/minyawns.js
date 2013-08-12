@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
     //Backbone.emulateHTTP = true;
     //Backbone.emulateJSON = true;
 
-    
+
     /**
      * A simple backbone model for profile
      */
@@ -137,7 +137,7 @@ jQuery(document).ready(function($) {
                 //show success message
                 $('#profile-edit').prepend('<div class="alert alert-success">Profile updated succesfully</div>');
 
-                
+
             },
             errors: function() {
                 $(_this).removeAttr('disabled');
@@ -150,12 +150,17 @@ jQuery(document).ready(function($) {
 
     $("#add-job-button").live('click', function(e) {
         e.preventDefault();
-        $('.timepicker-default').timepicker({
-            template: 'dropdown',
-            showInputs: false,
-            minuteStep: 5
-        });
         $("#add-job-form").toggle("slow");
+        $("#add-job-button").hide();
+        $("#cancel-job-button").show();
+    });
+
+    $("#cancel-job-button").live('click', function(e) {
+        e.preventDefault();
+        $("#add-job-form").toggle("slow");
+        $("#add-job-form").hide();
+        $("#add-job-button").show();
+        $("#cancel-job-button").hide();
     });
 
 
@@ -204,7 +209,7 @@ jQuery(document).ready(function($) {
             })
         });
         var data = $("#job-form").serializeArray();
-        
+
         var job_data = {};
         _.each(data, function(ele, index) {
             job_data[ele.name] = ele.value;
@@ -219,6 +224,8 @@ jQuery(document).ready(function($) {
                 $(_this).removeAttr('disabled');
                 $("#add-job-form").slideUp("slow");
                 $("#add-job-form").hide();
+                $("#add-job-button").show();
+                $("#cancel-job-button").hide();
 
             },
             errors: function() {
@@ -227,4 +234,26 @@ jQuery(document).ready(function($) {
             }
         });
     });
+
+
+    $("#browse").click(function(e) {
+        var Job = Backbone.Model.extend({
+            url: function() {
+                return 'http://localhost/minyawns/wp-content/themes/minyawns/libs/job.php/fetchjobs';
+            }
+
+        });
+        window.job = new Job();
+        window.job.save({
+            wait: true,
+            success: function(model, resp) {
+
+
+            },
+            errors: function() {
+
+            }
+        });
+    });
+
 });

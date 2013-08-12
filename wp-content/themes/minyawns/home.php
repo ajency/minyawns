@@ -5,6 +5,8 @@ Template Name: Home Page
  */
 get_header(); 
 
+if(is_user_logged_in())
+	wp_redirect(site_url()."/profile/#profile");
 ?>
 <div id="innermainimage">
             <div class="row-fluid banner-content">
