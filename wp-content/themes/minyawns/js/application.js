@@ -105,7 +105,7 @@ return "" +
         "</a>";
 }
 });
-        $('#spinner-01').customspinner({
+        $('#job_required_minyawns').customspinner({
 min: - 99,
         max: 99
 }).on('focus', function () {
@@ -136,7 +136,7 @@ var $this = $(this)
         if (toggle) $this.closest('.table').find('.toggle-all :checkbox').checkbox(checkAll ? 'check' : 'uncheck');
 });
         // jQuery UI Datepicker
-        $('#start_date').datepicker({
+        $('#job_start_date').datepicker({
 showOtherMonths: true,
         selectOtherMonths: true,
         dateFormat: "d MM, yy",
@@ -146,14 +146,14 @@ showOtherMonths: true,
 }).prev('.btn').on('click', function (e) {
 e && e.preventDefault();
 
-        $('#start_date').focus();
+        $('#job_start_date').focus();
 });
         $.extend($.datepicker, {_checkOffset:function(inst, offset, isFixed){return offset}});
         // Switch
         $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
         // Stackable tables
         $(".table-striped").stacktable({id: "rwd-table"});
-        $('#end_date').datepicker({
+        $('#job_end_date').datepicker({
 showOtherMonths: true,
         selectOtherMonths: true,
         dateFormat: "d MM, yy",
@@ -162,17 +162,17 @@ showOtherMonths: true,
 }).prev('.btn').on('click', function (e) {
 e && e.preventDefault();
 
-        $('#end_date').focus();
+        $('#job_end_date').focus();
  
 });
         $.extend($.datepicker, {_checkOffset:function(inst, offset, isFixed){return offset}});
-        jQuery('#start_time').timepicker({
+        jQuery('#job_start_time').timepicker({
 minuteStep: 1,
         template: 'modal',
         showSeconds: true,
         showMeridian: false
 });
-        jQuery('#end_time').timepicker({
+        jQuery('#job_end_time').timepicker({
 minuteStep: 1,
         template: 'modal',
         showSeconds: true,

@@ -67,16 +67,12 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
-
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery'), null);
-
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
             wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() . '/js/bootstrap-timepicker.js', array('jquery', 'bootstrap-min'), null);
-
-           
-
+            wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('flatui-checkbox', get_template_directory_uri() . '/js/flatui-checkbox.js', array('jquery'), null);
             wp_enqueue_script('flatui-radio', get_template_directory_uri() . '/js/flatui-radio.js', array('jquery'), null);
             wp_enqueue_script('jquery.tagsinput', get_template_directory_uri() . '/js/jquery.tagsinput.js', array('jquery'), null);
@@ -84,10 +80,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
- wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
-            wp_enqueue_script('jquery_validate' 		, get_template_directory_uri() .'/js/jquery.validate.min.js', array('jquery'), null);
-             wp_enqueue_script('awm-custom' 		, get_template_directory_uri() .'/js/awm-custom.js', array('jquery'), null);
-           
+            wp_localize_script( 'jquery-ui', 'SITEURL', site_url());
             break;
     }
 
@@ -567,11 +560,21 @@ function create_post_type() {
         ),
         'public' => true,
         'has_archive' => true,
-            )
+        )
     );
 }
 
 add_action('init', 'create_post_type');
+
+
+function register_jobs_taxonomy() {
+   register_taxonomy(
+		'job_tags',
+		'jobs'
+	);
+}
+
+add_action('init', 'register_jobs_taxonomy');
 
 /**
  * Function to redirect after login depending on the user role
@@ -598,28 +601,41 @@ function mn_login_redirect($redirect_to, $user_login, $user) {
 
 add_filter('login_redirect', 'mn_login_redirect', 10, 3);
 
+//setup the global $minyawnjob var for the single job page
+function load_single_job()
+{
+    if(!is_singular('jobs'))
+        return;
 
- 
+    global $minyawn_job;    
+    $minyawn_job = new Minyawn_Job(get_the_ID()); 
+}
+add_action('template_redirect','load_single_job');
+
+
+
+
+
 function check_access()
 {
 	global $wpdb, $post, $current_user;
-	
-	  
-	$page_slug = $post->post_name;
+
 	 
+	$page_slug = $post->post_name;
+
 	$user_roles = $current_user->roles;
 	$user_role = array_shift($user_roles);
-	
+
 	if(empty($user_role))
 		$user_role = "Not logged in";
 	$queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  wp_userpermissioins where role = %s and  noperm_slug = %s ",$user_role,$page_slug  ),OBJECT);
 	foreach($queryresult as $res)
-	if($res->cnt_perm>0)
-	{
-		no_access_page($user_role,$page_slug);
-	}
-	else
-		return true;
+		if($res->cnt_perm>0)
+		{
+			no_access_page($user_role,$page_slug);
+		}
+		else
+			return true;
 }
 
 function no_access_page($user_role,$page_slug)
@@ -650,4 +666,4 @@ function no_access_page($user_role,$page_slug)
 		</div> <input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="'.site_url().'/'.$page_slug.'/" />';
 	return false ;
 }
-
+ 

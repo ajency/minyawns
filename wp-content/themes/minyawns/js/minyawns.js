@@ -49,7 +49,7 @@ jQuery(document).ready(function($) {
      */
     var Profile = Backbone.Model.extend({
         url: function() {
-            return 'http://localhost/minyawns/wp-content/themes/minyawns/libs/user.php/user';
+            return SITEURL+'/wp-content/themes/minyawns/libs/user.php/user';
         },
         validate: function(attr) {
 
@@ -176,35 +176,35 @@ jQuery(document).ready(function($) {
 
     var Job = Backbone.Model.extend({
         url: function() {
-            return 'http://localhost/minyawns/wp-content/themes/minyawns/libs/job.php/addjob';
+            return SITEURL+'/wp-content/themes/minyawns/libs/job.php/addjob';
         },
         validate: function(attr) {
 
             var errors = [];
 
-            if (attr.start_date !== '' && attr.end_Date !== '') {
+            if (attr.job_start_date !== '' && attr.job_end_Date !== '') {
                 //alert(Date.parse(attr.start_date));
                 // alert(Date.parse(attr.end_date));
-                if (Date.parse(attr.start_date) > Date.parse(attr.end_date))
+                if (Date.parse(attr.job_start_date) > Date.parse(attr.end_date))
                 {
-                    errors.push({field: 'end_date', msg: 'End date cannot be less than start date.'});
+                    errors.push({field: 'job_end_date', msg: 'End date cannot be less than start date.'});
 
                 }
             } else
             {
-                errors.push({field: 'start_date', msg: 'Please fill the date fields.'});
+                errors.push({field: 'job_start_date', msg: 'Please fill the date fields.'});
             }
 
 
-            if (!attr.wages) {
-                errors.push({field: 'wages', msg: 'Please fill wages field.'});
+            if (!attr.job_wages) {
+                errors.push({field: 'job_wages', msg: 'Please fill wages field.'});
             }
-            if (attr.required === '')
-                errors.push({field: 'required', msg: 'Please enter required field'});
+            if (!attr.job_required_minyawns)
+                errors.push({field: 'job_required_minyawns', msg: 'Please enter required field'});
 
 
-            if (attr.tasks === '')
-                errors.push({field: 'tasks', msg: 'Please enter ' + 'tasks'});
+            if (!attr.job_task)
+                errors.push({field: 'job_task', msg: 'Please enter ' + 'tasks'});
 
 
             if (errors.length > 0)
@@ -241,8 +241,9 @@ jQuery(document).ready(function($) {
             job_data[ele.name] = ele.value;
 
         });
-        $("#ajax-load").show();
-        window.job.save(job_data, {
+        
+        window.job.save(job_data, 
+        {
             wait: true,
             success: function(model, resp) {
                 $("#success_msg").show();
