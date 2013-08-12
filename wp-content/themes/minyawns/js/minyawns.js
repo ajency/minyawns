@@ -19,19 +19,23 @@ jQuery(document).ready(function($) {
         var span2 = $('#profile-edit');
         var w = $(span1).width();
 
-        if ($(this).hasClass('view'))
+        if(!$(this).hasClass('loaded'))
         {
-            $(span1).animate({left: 0}, 500);
-            $(span2).show().animate({left: w}, 500);
-            $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
-        }
-        else
-        {
-            $('#profile-edit').find('div.alert').remove();
-            $(span1).animate({left: -1 * w}, 500);
-            $(span2).css({'left': w, 'top': 0});
-            $(span2).show().animate({left: 0}, 500);
-            $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+            if($(this).hasClass('view'))
+            {
+                $(span1).animate({left: 0}, 500);
+                $(span2).show().animate({left: w}, 500);
+                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+            }
+            else
+            {
+                $(this).removeClass('loaded');
+                $('#profile-edit').find('div.alert').remove();
+                $(span1).animate({left: -1 * w}, 500);
+                $(span2).css({'left': w, 'top': 0});
+                $(span2).show().animate({left: 0}, 500);
+                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+            }
         }
     });
 
