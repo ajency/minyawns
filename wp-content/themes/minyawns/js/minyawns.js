@@ -107,7 +107,7 @@ jQuery(document).ready(function($) {
         window.profile.bind('invalid', function(model, error, options) {
 
             _.each(error, function(ele, index) {
-                $('#' + ele.field).parent().append('<span class="form-error">' + ele.msg + '</span>');
+                $('#' + ele.field).parent().append('<br/><span class="form-error">' + ele.msg + '</span>');
             })
         });
 
