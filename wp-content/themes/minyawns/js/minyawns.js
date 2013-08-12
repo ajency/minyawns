@@ -70,17 +70,34 @@ jQuery(document).ready(function($) {
 
             var errors = [];
 
-            _.each(attr, function(index, ele) {
+//            _.each(attr, function(index, ele) {
+//
+//                if (ele == 'id')
+//                    return;
+//
+//                if (attr[ele] == '')
+//                {
+//                    errors.push({field: ele, msg: 'Please enter ' + ele});
+//                }
+//
+//            });
 
-                if (ele == 'id')
-                    return;
-
-                if (attr[ele] == '')
-                {
-                    errors.push({field: ele, msg: 'Please enter ' + ele});
-                }
-
-            });
+            if (!attr.first_name)
+            {
+                errors.push({field: 'first_name', msg: 'Please enter ' + 'Company Name'});
+            }
+            if (!attr.location)
+            {
+                errors.push({field: 'location', msg: 'Please enter ' + 'Company Location'});
+            }
+            if (!attr.company_website)
+            {
+                errors.push({field: 'company_website', msg: 'Please enter ' + 'Company Website'});
+            }
+            if (!attr.profilebody)
+            {
+                errors.push({field: 'profilebody', msg: 'Please enter ' + ' your Company profile'});
+            }
 
             if (errors.length > 0)
                 return errors;
@@ -162,7 +179,7 @@ jQuery(document).ready(function($) {
 
                 $(span1).animate({left: 0}, 500);
                 $(span2).hide();
-               // $(span1).show().animate({left: w}, 500);
+                // $(span1).show().animate({left: w}, 500);
                 $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
 
 
