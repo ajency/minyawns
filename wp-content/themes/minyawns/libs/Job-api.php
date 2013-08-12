@@ -93,7 +93,7 @@ class Minyawn_Job
     	foreach ($meta as $key => $value) {
     	   	$mt = explode('|',$value);
 			if(in_array($mt[0],$this->include_meta))
-				$this[$mt[0]] = $mt[1];
+				$this->key[$mt[0]] = $mt[1];
 	    }
 
 	}

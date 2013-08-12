@@ -11,12 +11,11 @@ $app->post('/addjob', function() use ($app) {
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http request
             $json_a = json_decode($requestBody, true);
-//print_r($json_a);exit();
+
             $post = array(
                 'post_author' => "1", //The user ID number of the author.
                 'post_date' => date("Y-m-d H:i:s"), //The time post was made.
                 'post_date_gmt' => date("Y-m-d H:i:s"), //The time post was made, in GMT.
-                'post_name' => $json_a['job_task'], // The name (slug) for your post
                 'post_status' => 'publish',
                 'post_title' => $json_a['job_task'],
                 'post_type' => 'jobs',
@@ -30,7 +29,7 @@ $app->post('/addjob', function() use ($app) {
             foreach ($json_a as $key => $value) {
 
                 if ($key == 'jobtags') {
-                    $tags = explode(",", $tags);
+                    $tags = explode(",", $value);
                     for ($i = 0; $i < sizeof($tags); $i++) {
                         wp_insert_term($tags[$i], 'job_tags');
                     }
@@ -57,7 +56,7 @@ $app->post('/fetchjobs', function() use ($app) {
     SELECT $wpdb->posts.* 
     FROM $wpdb->posts, $wpdb->postmeta
     WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id 
-    AND $wpdb->postmeta.meta_key = 'start-date' 
+    AND $wpdb->postmeta.meta_key = 'job_start_date' 
     AND $wpdb->postmeta.meta_value > '" . current_time('timestamp') . "' 
     AND $wpdb->posts.post_status = 'publish' 
     AND $wpdb->posts.post_type = 'jobs'
