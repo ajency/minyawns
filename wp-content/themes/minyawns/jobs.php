@@ -730,11 +730,19 @@ get_header();
                                     <input type="text" name="required" id="required" placeholder="" value="0" class="spinner">
                                 </div>
                             </div>
+						
+							
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Wages</label>
-                                <div class="controls ">
-                                  <input class="input-small" name="wages" type="text" id="wages" placeholder="" >
-                                </div>
+                             
+									<div class="controls small">
+									<div class="input-prepend">
+									  <span class="add-on"><i class="icon-dollar"></i></span>
+									  <input class="span2" id="prependedInput-04 wages" type="text" name="wages" >
+									</div>
+								  </div>
+								
+								
                             </div>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Location</label>
@@ -745,7 +753,8 @@ get_header();
                              <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tags</label>
                                 <div class="controls ">
-                                  	<input  name="jobst"  placeholder="Tags" class="tm-input"  style="width:20%;"/>
+                                  	
+									 <input type="text" name="jobst" id="tags" value="" placeholder="" class="span3">
 					    
                                 </div>
                             </div>
