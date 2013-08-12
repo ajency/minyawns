@@ -81,7 +81,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
             wp_enqueue_script('awm-custom', get_template_directory_uri() . '/js/awm-custom.js', array('jquery'), null);
-           
+            wp_localize_script( 'jquery-ui', 'SITEURL', site_url());
             break;
     }
 

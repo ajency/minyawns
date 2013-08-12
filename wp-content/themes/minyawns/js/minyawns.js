@@ -49,7 +49,7 @@ jQuery(document).ready(function($) {
      */
     var Profile = Backbone.Model.extend({
         url: function() {
-            return 'http://localhost/minyawns/wp-content/themes/minyawns/libs/user.php/user';
+            return SITEURL+'/wp-content/themes/minyawns/libs/user.php/user';
         },
         validate: function(attr) {
 
@@ -176,7 +176,7 @@ jQuery(document).ready(function($) {
 
     var Job = Backbone.Model.extend({
         url: function() {
-            return 'http://localhost/minyawns/wp-content/themes/minyawns/libs/job.php/addjob';
+            return SITEURL+'/wp-content/themes/minyawns/libs/job.php/addjob';
         },
         validate: function(attr) {
 
