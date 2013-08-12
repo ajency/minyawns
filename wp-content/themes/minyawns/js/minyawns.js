@@ -171,18 +171,16 @@ jQuery(document).ready(function($) {
         validate: function(attr) {
 
             var errors = [];
-
-            _.each(attr, function(index, ele) {
-
-                if (ele == 'id')
-                    return;
-
-                if (attr[ele] == '')
-                {
-                    errors.push({field: ele, msg: 'Please enter ' + ele});
-                }
-
-            });
+alert(attr.tasks)
+//            _.each(attr, function(index, ele) {                            
+//                
+//                                 alert(attr[index]);
+////                if (attr[ele] == '')
+////                {
+////                    errors.push({field: ele, msg: 'Please enter ' + ele});
+////                }
+//
+//            });
 
             if (errors.length > 0)
                 return errors;
@@ -195,12 +193,11 @@ jQuery(document).ready(function($) {
 
         e.preventDefault();
         var _this = $(this);
-        $(this).attr('disabled', 'disabled');
-
-        //remove previuous errors
+//       
+//        //remove previuous errors
         $('#job-form').find('span.form-error').remove();
-
-        //attach it to global window so we can use it later to update the main profile view
+//
+//        //attach it to global window so we can use it later to update the main profile view
         window.job = new Job();
         window.job.bind('invalid', function(model, error, options) {
 
@@ -208,11 +205,12 @@ jQuery(document).ready(function($) {
                 $('#' + ele.field).parent().append('<span class="form-error">' + ele.msg + '</span>');
             })
         });
-        var data = $("#job-form").serializeArray();
-
-        var job_data = {};
+        var data = $("#job-form").serializeArray(); 
+        $(this).attr('disabled', 'disabled');
+//
+            var job_data = {};
         _.each(data, function(ele, index) {
-            job_data[ele.name] = ele.value;
+             job_data[ele.name] = ele.value;
 
         });
 

@@ -22,8 +22,21 @@
 
 
 <script type="text/javascript">
-        
 var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>"
+<?php if(isset($_REQUEST['action']))
+{
+	if($_REQUEST['action']=="invalid_login")
+	{
+	?>
+	jQuery(document).ready(function($){
+	jQuery("#btn__login").click();
+	jQuery("#div_loginmsg").html("<div class='alert alert-error alert-box' style='padding: 10px 45px 10px 5px;font-size:12px'>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You havent registered with your facebook account/email on Minyawns. Please use Registration form to sign up on Minyawns. </div>");
+	})
+	<?php 
+	}
+}
+		
+?>	
 </script>
 
 </body>
