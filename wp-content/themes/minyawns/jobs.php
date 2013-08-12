@@ -751,7 +751,7 @@ get_header();
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tags</label>
                                 <div class="controls ">
-                                    <input  name="job_tags" id="job_tags" value="" placeholder="" class="tm-input">
+                                    <input  name="jobst" id="jobst" value="" placeholder="" class="tm-input tagsinput">
                                </div>
                             </div>
                             <div class="control-group small">
