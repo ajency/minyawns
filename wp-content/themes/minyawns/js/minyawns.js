@@ -171,19 +171,36 @@ jQuery(document).ready(function($) {
         validate: function(attr) {
 
             var errors = [];
-alert(attr.tasks)
-//            _.each(attr, function(index, ele) {                            
-//                
-//                                 alert(attr[index]);
-////                if (attr[ele] == '')
-////                {
-////                    errors.push({field: ele, msg: 'Please enter ' + ele});
-////                }
-//
-//            });
+
+            if (attr.start_date !== '' && attr.end_Date !== '') {
+                //alert(Date.parse(attr.start_date));
+                // alert(Date.parse(attr.end_date));
+                if (Date.parse(attr.start_date) > Date.parse(attr.end_date))
+                {
+                    errors.push({field: 'end_date', msg: 'End date cannot be less than start date.'});
+
+                }
+            } else
+            {
+                errors.push({field: 'start_date', msg: 'Please fill the date fields.'});
+            }
+
+
+            if (!attr.wages) {
+                errors.push({field: 'wages', msg: 'Please fill wages field.'});
+            }
+            if (attr.required === '')
+                errors.push({field: 'required', msg: 'Please enter required field'});
+
+
+            if (attr.tasks === '')
+                errors.push({field: 'tasks', msg: 'Please enter ' + 'tasks'});
+
 
             if (errors.length > 0)
                 return errors;
+
+
         }
 
     });
@@ -192,38 +209,41 @@ alert(attr.tasks)
     $('#add-job').click(function(e) {
 
         e.preventDefault();
-        var _this = $(this);
+        _this = $(this);
 //       
 //        //remove previuous errors
         $('#job-form').find('span.form-error').remove();
 //
 //        //attach it to global window so we can use it later to update the main profile view
+
         window.job = new Job();
         window.job.bind('invalid', function(model, error, options) {
 
             _.each(error, function(ele, index) {
-                $('#' + ele.field).parent().append('<span class="form-error">' + ele.msg + '</span>');
+                $('#' + ele.field).parent().append('<br/><span class="form-error">' + ele.msg + '</span>');
             })
         });
-        var data = $("#job-form").serializeArray(); 
+        var data = $("#job-form").serializeArray();
         $(this).attr('disabled', 'disabled');
 //
-            var job_data = {};
+        var job_data = {};
         _.each(data, function(ele, index) {
-             job_data[ele.name] = ele.value;
+            job_data[ele.name] = ele.value;
 
         });
-
+        $("#ajax-load").show();
         window.job.save(job_data, {
             wait: true,
             success: function(model, resp) {
-
+                $("#success_msg").show();
+                $("#ajax-load").hide();
                 //get model data
                 $(_this).removeAttr('disabled');
                 $("#add-job-form").slideUp("slow");
                 $("#add-job-form").hide();
                 $("#add-job-button").show();
                 $("#cancel-job-button").hide();
+                $("#success_msg").hide();
 
             },
             errors: function() {

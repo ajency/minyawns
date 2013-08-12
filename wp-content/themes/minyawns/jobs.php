@@ -682,7 +682,10 @@ get_header();
                                         <?php  //} ?>
                     
                     <div id="add-job-form" style="display:none;">
+                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>
+                        <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
                         <form id="job-form" class="form-horizontal">
+                            
                             <input type="hidden" value="" name="jobtags" id="job_tags"></input>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tasks</label>
@@ -695,13 +698,13 @@ get_header();
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text" class="span1" name="start-date" value="" id="datepicker-01">
+                                        <input type="text" class="span1" name="start_date" value="" id="start_date">
                                     </div>
                                    
                                 </div>
                             </div>
 							 <div class="input-append bootstrap-timepicker">
-                                        <input id="timepicker" type="text" class="timepicker-default input-small" name="start-time" id="time-pick">
+                                        <input id="start_time" type="text" class="timepicker-default input-small" name="start_time" >
                                         <span class="add-on">
                                             <i class="icon-time"></i>
                                         </span>
@@ -712,13 +715,13 @@ get_header();
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text"  name="end-date" class="span1" value="" id="datepicker-02">
+                                        <input type="text"  name="end_date" class="span1" value="" id="end_date">
                                     </div>
                                 </div>
 								  
                             </div>
 							 <div class="input-append bootstrap-timepicker">
-								<input id="timepickerend" type="text" class="timepicker-default input-small" name="end-time" id="time-pick">
+								<input id="end_time" type="text" class="timepicker-default input-small" name="end_time">
 								<span class="add-on">
 									<i class="icon-time"></i>
 								</span>
@@ -745,7 +748,7 @@ get_header();
                              <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tags</label>
                                 <div class="controls ">
-                                  	<input  name="jobst"  placeholder="Tags" class="tm-input"  style="width:20%;"/>
+                                  	<input  name="jobst"  placeholder="Tags" class="tm-input span2"  style="width:20%;"/>
 					    
                                 </div>
                             </div>
