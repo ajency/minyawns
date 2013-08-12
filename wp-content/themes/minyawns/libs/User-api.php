@@ -226,4 +226,111 @@ function get_user_dislike_count()
 	global $current_user;
 	return isset($current_user->data->like_count) ? $current_user->data->like_count : 0;
 }
- 
+
+/**
+ * CLass to get all user's jobs
+ */
+class MN_User_Jobs {
+
+    var $query_vars = array();
+    var $jobs;
+    var $job;
+    var $job_count = 0;
+    var $current_job = -1;
+    var $in_the_loop = false;
+
+    function __construct($args = null) {
+        if (!empty($args)) {
+
+        	if(!isset($args['user_id'])) return;
+
+            $this->query_vars = wp_parse_args($args, array(
+                'user_id'=> false,
+                'status' => false
+            ));
+
+            $this->query();
+        }
+    }
+
+    function query() {
+        global $wpdb;
+
+        $qv = & $this->query_vars;
+
+        $and = '';
+        
+        if (false !== $qv['status'])
+            $and = $wpdb->prepare("AND ub.status=%s", $qv['status']);
+
+        $sql = $wpdb->prepare("	SELECT ub.status, ub.rating,
+        						GROUP_CONCAT(CONCAT(jm.meta_key,'|',jm.meta_value)) as meta
+         						FROM {$wpdb->prefix}userjobs as ub JOIN {$wpdb->prefix}postmeta as jm
+							 	ON ub.job_id = jm.post_id 
+							 	WHERE ub.user_id = %d 
+							 	$and 
+							 	GROUP BY jm.post_id", $qv['user_id']);
+ 		
+        $this->jobs = $wpdb->get_results($sql);
+        
+        $this->job_count = count($this->jobs);
+
+        if($this->job_count > 0)
+        {	
+        	$include_meta = array('job_logo','startdatetime','enddatetime','wages');
+
+        	//convert the meta string to php array
+        	foreach ($this->jobs as &$value) {
+	       		$meta = explode(',',$value->meta);
+	       		
+				$parsedmeta = array();
+				foreach ($meta as $m) {
+					$mt = explode('|',$m);
+
+					if(in_array($m[0],$include_meta))
+						$parsedmeta[$mt[0]] = $mt[1];
+				}
+				$value->meta = $parsedmeta;
+	        }
+	     }
+    }
+
+    function have_jobs() {
+        if ($this->current_job + 1 < $this->job_count) {
+            return true;
+        } elseif ($this->current_job + 1 == $this->job_count && $this->job_count > 0) {
+            //do_action_ref_array('loop_end', array(&$this));
+            // Do some cleaning up after the loop
+            $this->rewind_jobs();
+        }
+
+        $this->in_the_loop = false;
+        return false;
+    }
+
+    function rewind_jobs() {
+        $this->current_job = -1;
+        if ($this->job_count > 0) {
+            $this->job = $this->jobs[0];
+        }
+    }
+
+    function the_job() {
+        global $mn_job;
+        $this->in_the_loop = true;
+
+        if ($this->current_job == -1) // loop has just started
+            do_action_ref_array('loop_start', array(&$this));
+
+        $mn_job = $this->next_job();
+    }
+
+    function next_job() {
+
+        $this->current_job++;
+
+        $this->job = $this->jobs[$this->current_job];
+        return $this->job;
+    }
+
+}

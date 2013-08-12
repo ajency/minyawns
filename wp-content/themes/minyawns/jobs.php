@@ -671,7 +671,7 @@ get_header();
                         </button>
                     </div>
                     <div id="add-job-form" style="display:none;">
-                        <form id="job-form">
+                        <form id="job-form" class="form-horizontal">
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tasks</label>
                                 <div class="controls ">
@@ -683,7 +683,7 @@ get_header();
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text" class="span1" name="start-date" value="14 March, 2013" id="datepicker-01">
+                                        <input type="text" class="span1" name="start-date" value="" id="datepicker-01">
                                     </div>
                                     <div class="input-append bootstrap-timepicker-component">
                                         <input type="text" class="timepicker-default input-small" name="start-time" id="time-pick">
@@ -698,7 +698,7 @@ get_header();
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text"  name="end-date" class="span1" value="14 March, 2013">
+                                        <input type="text"  name="end-date" class="span1" value="">
                                     </div>
                                     <div class="input-append bootstrap-timepicker-component">
                                         <input type="text" name="end-time" class="timepicker-default input-small">
