@@ -664,59 +664,65 @@ get_header();
             </div>
             <div id="jobs-list">
                 <div class="tab-pane" id="tab2">
+                    <?php
+
+					//if (is_user_logged_in() == TRUE) {
+                            ?>
                     <div class="dialog dialog-success">
-                        Add a Job Listing 
                         <button class="btn btn-primary btn-wide mll" id="add-job-button">
                             <i class="fui-mail"></i>
                             Add Jobs
                         </button>
-                        <button class="btn btn-primary btn-wide mll" id="cancel-job-button" style="display:none">
-                            <i class="fui-mail"></i>
-                            Cancel
-                        </button>
                     </div>
+                    <?php  //} ?>
+                    
                     <div id="add-job-form" style="display:none;">
                         <form id="job-form" class="form-horizontal">
+                            <input type="hidden" value="" name="jobtags" id="job_tags"></input>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tasks</label>
                                 <div class="controls ">
                                     <input type="text" id="tasks" name="tasks" value="" placeholder="" class="span3">
                                 </div>
                             </div>
-                            <div class="control-group small">
+                            <div class="control-group small float-left ">
                                 <label class="control-label" for="inputtask">Start</label>
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
                                         <input type="text" class="span1" name="start-date" value="" id="datepicker-01">
                                     </div>
-                                    <div class="input-append bootstrap-timepicker-component">
-                                        <input type="text" class="timepicker-default input-small" name="start-time" id="time-pick">
+                                   
+                                </div>
+                            </div>
+							 <div class="input-append bootstrap-timepicker">
+                                        <input id="timepicker" type="text" class="timepicker-default input-small" name="start-time" id="time-pick">
                                         <span class="add-on">
                                             <i class="icon-time"></i>
                                         </span>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="control-group small">
+									<div class="clear"></div>
+                            <div class="control-group small float-left">
                                 <label class="control-label" for="inputtask">End</label>
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
                                         <input type="text"  name="end-date" class="span1" value="" id="datepicker-02">
                                     </div>
-                                    <div class="input-append bootstrap-timepicker-component">
-                                        <input type="text" name="end-time" class="timepicker-default input-small">
-                                        <span class="add-on">
-                                            <i class="icon-time"></i>
-                                        </span>
-                                    </div>
                                 </div>
+								  
                             </div>
+							 <div class="input-append bootstrap-timepicker">
+								<input id="timepickerend" type="text" class="timepicker-default input-small" name="end-time" id="time-pick">
+								<span class="add-on">
+									<i class="icon-time"></i>
+								</span>
+							</div>
+							<div class="clear"></div>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Required</label>
                                 <div class="controls ">
-                                    <input type="text" name="required" id="required" placeholder="" value="0" class="spinner">
+                                    <input type="text" name="required" id="spinner-01" placeholder="" value="0" class="spinner">
                                 </div>
                             </div>
                             <div class="control-group small">
@@ -729,6 +735,13 @@ get_header();
                                 <label class="control-label" for="inputtask">Location</label>
                                 <div class="controls ">
                                     <input type="text" name="location" id="location" value="" placeholder="" class="span3">
+                                </div>
+                            </div>
+                             <div class="control-group small">
+                                <label class="control-label" for="inputtask">Tags</label>
+                                <div class="controls ">
+                                  	<input  name="jobst"  placeholder="Tags" class="tagsinput"  style="width:20%;"/>
+					    
                                 </div>
                             </div>
                             <div class="control-group small">
@@ -977,6 +990,7 @@ get_header();
         </div>
     </div>
 </div>
+
 <?php
 get_footer();
 ?>

@@ -19,19 +19,23 @@ jQuery(document).ready(function($) {
         var span2 = $('#profile-edit');
         var w = $(span1).width();
 
-        if ($(this).hasClass('view'))
+        if(!$(this).hasClass('loaded'))
         {
-            $(span1).animate({left: 0}, 500);
-            $(span2).show().animate({left: w}, 500);
-            $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
-        }
-        else
-        {
-            $('#profile-edit').find('div.alert').remove();
-            $(span1).animate({left: -1 * w}, 500);
-            $(span2).css({'left': w, 'top': 0});
-            $(span2).show().animate({left: 0}, 500);
-            $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+            if($(this).hasClass('view'))
+            {
+                $(span1).animate({left: 0}, 500);
+                $(span2).show().animate({left: w}, 500);
+                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+            }
+            else
+            {
+                $(this).removeClass('loaded');
+                $('#profile-edit').find('div.alert').remove();
+                $(span1).animate({left: -1 * w}, 500);
+                $(span2).css({'left': w, 'top': 0});
+                $(span2).show().animate({left: 0}, 500);
+                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+            }
         }
     });
 
@@ -149,19 +153,25 @@ jQuery(document).ready(function($) {
     /********************************** PROFILE JS CODE *************************************/
 
     $("#add-job-button").live('click', function(e) {
+        var _this = $(this);
         e.preventDefault();
-        $("#add-job-form").toggle("slow");
-        $("#add-job-button").hide();
-        $("#cancel-job-button").show();
+        $("#add-job-form").toggle("slow", function(){
+            if($("#add-job-form").is(':hidden'))
+                $(_this).html('<i class="fui-mail"></i> Add Jobs');
+            else
+                $(_this).html('Cancel');
+                
+        });
+        
     });
 
-    $("#cancel-job-button").live('click', function(e) {
+    /*$("#cancel-job-button").live('click', function(e) {
         e.preventDefault();
         $("#add-job-form").toggle("slow");
         $("#add-job-form").hide();
         $("#add-job-button").show();
         $("#cancel-job-button").hide();
-    });
+    });*/
 
 
     var Job = Backbone.Model.extend({
@@ -171,18 +181,16 @@ jQuery(document).ready(function($) {
         validate: function(attr) {
 
             var errors = [];
-
-            _.each(attr, function(index, ele) {
-
-                if (ele == 'id')
-                    return;
-
-                if (attr[ele] == '')
-                {
-                    errors.push({field: ele, msg: 'Please enter ' + ele});
-                }
-
-            });
+alert(attr.tasks)
+//            _.each(attr, function(index, ele) {                            
+//                
+//                                 alert(attr[index]);
+////                if (attr[ele] == '')
+////                {
+////                    errors.push({field: ele, msg: 'Please enter ' + ele});
+////                }
+//
+//            });
 
             if (errors.length > 0)
                 return errors;
@@ -195,12 +203,11 @@ jQuery(document).ready(function($) {
 
         e.preventDefault();
         var _this = $(this);
-        $(this).attr('disabled', 'disabled');
-
-        //remove previuous errors
+//       
+//        //remove previuous errors
         $('#job-form').find('span.form-error').remove();
-
-        //attach it to global window so we can use it later to update the main profile view
+//
+//        //attach it to global window so we can use it later to update the main profile view
         window.job = new Job();
         window.job.bind('invalid', function(model, error, options) {
 
@@ -208,11 +215,12 @@ jQuery(document).ready(function($) {
                 $('#' + ele.field).parent().append('<span class="form-error">' + ele.msg + '</span>');
             })
         });
-        var data = $("#job-form").serializeArray();
-
-        var job_data = {};
+        var data = $("#job-form").serializeArray(); 
+        $(this).attr('disabled', 'disabled');
+//
+            var job_data = {};
         _.each(data, function(ele, index) {
-            job_data[ele.name] = ele.value;
+             job_data[ele.name] = ele.value;
 
         });
 

@@ -10,11 +10,12 @@ require_once( '../../../wp-load.php');
 
 global $wpdb;
 $query_widget=("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}userjobs 
-				(id 		INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-			     user_id 	INT,
-			     job_id 	INT,
-                 status 	varchar(100),
-			     rating 	INT )");
+				(id 			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			     user_id 		INT,
+			     job_id 		INT,
+                 status 		VARCHAR(100),
+                 status_date 	DATE,
+			     rating 		INT )");
 
 $wpdb->query($query_widget);
 

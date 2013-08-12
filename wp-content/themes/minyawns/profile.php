@@ -9,7 +9,7 @@ get_header();  ?>
 	<div id="main-content" class="main-content bg-white">
 		<div class="breadcrumb-text">
 			<p id="bread-crumbs-id">
-				<a href="#" class="view edit-user-profile">My Profile</a>
+				<a href="#" class="view loaded edit-user-profile">My Profile</a>
 			</p>
 		</div>
 		<div class="row-fluid profile-wrapper">
@@ -18,7 +18,11 @@ get_header();  ?>
 
 					<div class="span2">
 						<a href="#" class="change-avtar">
-							<?php echo get_avatar( get_user_profile_email(), 168 ); ?>
+							<?php 	if(!is_user_fb_registered())
+										echo get_avatar( get_user_profile_email(), 168 ); 
+									else
+										echo '<img src="' . get_user_fb_avatar('large') .'" width="168" height="168" />';
+							?>
 							<span>Change Avatar</span>
 						</a>
 					</div>
