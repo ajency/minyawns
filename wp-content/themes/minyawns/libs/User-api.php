@@ -79,7 +79,11 @@ function is_user_fb_registered()
 function get_user_fb_avatar($type = 'thumb')
 {
 	global $current_user;
-	return $type == 'large' ? $current_user->data->facebook_avatar_full : $current_user->data->facebook_avatar_thumb;
+
+	if($type == 'large')
+		return 'https://graph.facebook.com/' . $current_user->data->facebook_uid . '/picture?width=200&height=200';
+	else
+		return 'https://graph.facebook.com/' . $current_user->data->facebook_uid . '/picture?type=square';
 }
 
 //user profile name
