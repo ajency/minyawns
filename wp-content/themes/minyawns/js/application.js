@@ -178,6 +178,19 @@ String.prototype.repeat = function(num) {
       $('#datepicker-02').focus();
     });
     $.extend($.datepicker, {_checkOffset:function(inst,offset,isFixed){return offset}});
+	 
+  jQuery('#timepicker').timepicker({
+                minuteStep: 1,
+                template: 'modal',
+                showSeconds: true,
+                showMeridian: false
+            });
+			  jQuery('#timepickerend').timepicker({
+                minuteStep: 1,
+                template: 'modal',
+                showSeconds: true,
+                showMeridian: false
+            });
 	
   });
 })(jQuery);

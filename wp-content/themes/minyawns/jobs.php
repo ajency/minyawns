@@ -690,36 +690,40 @@ get_header();
                                     <input type="text" id="tasks" name="tasks" value="" placeholder="" class="span3">
                                 </div>
                             </div>
-                            <div class="control-group small">
+                            <div class="control-group small float-left ">
                                 <label class="control-label" for="inputtask">Start</label>
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
                                         <input type="text" class="span1" name="start-date" value="" id="datepicker-01">
                                     </div>
-                                    <div class="input-append bootstrap-timepicker-component">
-                                        <input type="text" class="timepicker-default input-small" name="start-time" id="time-pick">
+                                   
+                                </div>
+                            </div>
+							 <div class="input-append bootstrap-timepicker">
+                                        <input id="timepicker" type="text" class="timepicker-default input-small" name="start-time" id="time-pick">
                                         <span class="add-on">
                                             <i class="icon-time"></i>
                                         </span>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="control-group small">
+									<div class="clear"></div>
+                            <div class="control-group small float-left">
                                 <label class="control-label" for="inputtask">End</label>
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
                                         <input type="text"  name="end-date" class="span1" value="" id="datepicker-02">
                                     </div>
-                                    <div class="input-append bootstrap-timepicker-component">
-                                        <input type="text" name="end-time" class="timepicker-default input-small">
-                                        <span class="add-on">
-                                            <i class="icon-time"></i>
-                                        </span>
-                                    </div>
                                 </div>
+								  
                             </div>
+							 <div class="input-append bootstrap-timepicker">
+								<input id="timepickerend" type="text" class="timepicker-default input-small" name="end-time" id="time-pick">
+								<span class="add-on">
+									<i class="icon-time"></i>
+								</span>
+							</div>
+							<div class="clear"></div>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Required</label>
                                 <div class="controls ">
@@ -991,6 +995,7 @@ get_header();
         </div>
     </div>
 </div>
+
 <?php
 get_footer();
 ?>

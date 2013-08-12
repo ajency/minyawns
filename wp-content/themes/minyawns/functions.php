@@ -84,6 +84,7 @@ function minyawns_scripts_styles() {
            
             break;
     }
+
 }
 
 add_action('wp_enqueue_scripts', 'minyawns_scripts_styles', 100);

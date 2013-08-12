@@ -21,6 +21,9 @@ a:hover {
   font-size: 12px;
   line-height: 22px;
 }
+.bootstrap-timepicker-widget {
+  z-index: 9999 !important;
+}
 .request_link {
   border-bottom: 1px dotted #C4C0C0;
 }
@@ -1269,4 +1272,18 @@ a:hover {
     cursor: pointer;
     background: #EEE9E9;
   }
+}
+.float-left {
+  float: left;
+}
+.bootstrap-timepicker input {
+  height: 16px;
+  margin-left: 14px;
+}
+.bootstrap-timepicker .add-on {
+  min-width: 23px;
+  padding: 9px 5px;
+  font-size: 14.99px;
+  line-height: 8px;
+  height: 12px;
 }

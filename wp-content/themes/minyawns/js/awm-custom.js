@@ -5,9 +5,11 @@
 
 jQuery(document).ready(function($){
 
+
 jQuery(".tm-input").tagsManager({hiddenTagListId:'job_tags'});
     
    	
+
 	/*Function to etrieve password */ 	
 	 jQuery("#user-submit").live("click",function(){		 
 
