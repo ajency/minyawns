@@ -57,6 +57,11 @@ a:hover {
   display: none;
   background: #8ed030;
 }
+.default-btn {
+  background-color: #8ed030 !important;
+  width: 18%;
+  font-size: 14.996px !important;
+}
 .green-btn {
   background-color: #8ed030 !important;
   width: 14%;

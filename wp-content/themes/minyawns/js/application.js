@@ -167,5 +167,20 @@ String.prototype.repeat = function(num) {
 
     // Stackable tables
     $(".table-striped").stacktable({id: "rwd-table"});
+	
+	 $('#datepicker-02').datepicker({
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      dateFormat: "d MM, yy",
+      yearRange: '-1:+1'
+    }).prev('.btn').on('click', function (e) {
+      e && e.preventDefault();
+      $('#datepicker-02').focus();
+    });
+    $.extend($.datepicker, {_checkOffset:function(inst,offset,isFixed){return offset}});
+	
   });
 })(jQuery);
+
+// jQuery UI Datepicker
+   
