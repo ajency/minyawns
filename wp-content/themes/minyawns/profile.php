@@ -13,6 +13,10 @@ get_header();  ?>
 			</p>
 		</div>
 		<div class="row-fluid profile-wrapper">
+		<?php if(check_access()===true)
+		{
+			 
+		?>
 			<div class="span12" id="profile-view">
 				<div class="row-fluid min_profile">
 
@@ -216,14 +220,7 @@ get_header();  ?>
 							</table>
 						<?php else: ?>
 
-							<!--show html here if user doesn't have any jobs-->
-							
-							<div class="alert alert-info myjobs " >
-							<h4 style="text-align:center">No Jobs Available</h4>
-							<hr>
-							There doesn't seem to be anything here. you can apply for jobs on the '<B>Browse Jobs</B>' page
-							<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn">Take Me There</a>
-							</div>
+							//show html here if user doesn't have any jobs
 
 						<?php endif; ?>
 						</section>
@@ -306,6 +303,9 @@ get_header();  ?>
 				</div>
 			</div>
 			<div class="clear"></div>
+			<?php
+		} 
+			?>
 		</div>
 	</div>
 </div>
