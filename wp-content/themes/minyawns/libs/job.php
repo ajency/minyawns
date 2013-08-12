@@ -28,19 +28,19 @@ $app->post('/addjob', function() use ($app) {
 
             foreach ($json_a as $key => $value) {
 
-                if ($key == 'jobtags') {
+                if ($key == 'job_tags') {
                     $tags = explode(",", $value);
                     for ($i = 0; $i < sizeof($tags); $i++) {
                         wp_insert_term($tags[$i], 'job_tags');
                     }
                 } elseif ($key == "job_start_date") {
-                    add_post_meta($post_id, $key, strtotime($value));
+                    update_post_meta($post_id, $key, strtotime($value));
                 } elseif ($key == "job_start_time") {
-                    add_post_meta($post_id, $key, strtotime($value));
+                    update_post_meta($post_id, $key, strtotime($value));
                 } elseif ($key == "job_end_time") {
-                    add_post_meta($post_id, $key, strtotime($value));
+                    update_post_meta($post_id, $key, strtotime($value));
                 } elseif ($key !== 'job_details') {
-                    add_post_meta($post_id, $key, $value);
+                    update_post_meta($post_id, $key, $value);
                 }
             }
 

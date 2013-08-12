@@ -680,7 +680,6 @@ get_header();
                         <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
                         <form id="job-form" class="form-horizontal">
 
-                            <input type="hidden" value="" name="jobtags" id="job_tags"></input>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tasks</label>
                                 <div class="controls ">
@@ -744,14 +743,14 @@ get_header();
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Location</label>
                                 <div class="controls ">
-                                    <input type="text" name="location" id="location" value="" placeholder="" class="span3">
+                                    <input type="text" name="job_location" id="job_location" value="" placeholder="" class="span3">
                                 </div>
                             </div>
 
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tags</label>
                                 <div class="controls ">
-                                    <input  name="jobst" id="jobst" value="" placeholder="" class="tm-input tagsinput">
+                                    <input  name="job_tags" id="job_tags" value="" placeholder="" class="tm-input tagsinput">
                                </div>
                             </div>
                             <div class="control-group small">
@@ -766,6 +765,7 @@ get_header();
                         </form>
                     </div>
                 </div>
+                <?php /*
                 <div class="row-fluid list-jobs"  style="background: #C7C9C5;">
                     <div class="span12 jobs-details">
                         <div class="span2 img-logo"> <img src="<?php echo get_template_directory_uri(); ?>/images/livefyre-logo.png"/> </div>
@@ -995,6 +995,7 @@ get_header();
 
                         </div>
                     </div>
+                    */ ?>
                 </div>
             </div>
         </div>
