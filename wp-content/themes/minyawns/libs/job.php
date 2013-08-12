@@ -16,7 +16,6 @@ $app->post('/addjob', function() use ($app) {
                 'post_author' => "1", //The user ID number of the author.
                 'post_date' => date("Y-m-d H:i:s"), //The time post was made.
                 'post_date_gmt' => date("Y-m-d H:i:s"), //The time post was made, in GMT.
-                'post_name' => $json_a['tasks'], // The name (slug) for your post
                 'post_status' => 'publish',
                 'post_title' => $json_a['tasks'],
                 'post_type' => 'jobs',

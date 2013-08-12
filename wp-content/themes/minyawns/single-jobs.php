@@ -1,5 +1,9 @@
 <?php
 get_header();
+
+global $minyawn_job;
+$minyawn_job = new Minyawn_Job(get_the_ID());
+var_dump($minyawn_job);
 ?>
 <div class="container">
 	<div class="tab-content">
@@ -18,8 +22,8 @@ get_header();
 		            <div><b>Minyawns Have Applied</b></div>
 		         </div>
 		         <div class="span3 jobs-date">
-		            <div class="posteddate"> Posted Date : <span>10 April 2013</span></div>
-		            <div class="jobsdate"> Jobs Date : <span>20 June 2013</span></div>
+		            <div class="posteddate"> Posted Date : <span><?php echo get_job_posted_date(); ?></span></div>
+		            <div class="jobsdate"> Jobs Date : <span><?php echo get_job_date(); ?></span></div>
 		         </div>
 		         <div class="span3 job-duration">
 		            <div class="row-fluid">
@@ -47,7 +51,7 @@ get_header();
 		      <div class="span12 expand">
 		         <div class="row-fluid jobdesc">
 		            <div class="span3 jobsimg"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/></div>
-		            <div class="span9 job-details"><?php echo get_the_content() ?></div>
+		            <div class="span9 job-details"><?php echo get_job_details() ?></div>
 		         </div>
 		         <hr>
 		         <?php /*

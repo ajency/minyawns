@@ -83,6 +83,10 @@ class Minyawn_Job
 
 		$job = $wpdb->get_row($sql);
 
+		$this->job_detials = $job->post_content;
+
+		$this->posted_date = $job->post_date;
+
 		//convert the meta string to php array
     	$meta = explode(',',$job->meta);
     
@@ -123,7 +127,27 @@ class Minyawn_Job
 	{	
 		return $this->applied_by;
 	}
-
-
 	
+}
+
+
+function get_job_details()
+{
+	global $minyawn_job;
+
+	return $minyawn_job->job_detials;
+}
+
+function get_job_posted_date()
+{
+	global $minyawn_job;
+
+	return date('d M Y',strtotime($minyawn_job->posted_date));
+}
+
+function get_job_date()
+{
+	global $minyawn_job;
+
+	return date('d M Y',strtotime($minyawn_job->posted_date));
 }
