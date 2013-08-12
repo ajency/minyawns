@@ -7,7 +7,7 @@ get_header();
 ?>
 <div class="container">
     <ul class="nav nav-tabs nav-append-content jobs_menu">
-        <li ><a href="#tab1">Browse Jobs</a></li>
+        <li ><a href="#tab1" id="browse">Browse Jobs</a></li>
         <li class="active"><a href="#tab2">My Jobs</a></li>
     </ul> <!-- /tabs -->
 

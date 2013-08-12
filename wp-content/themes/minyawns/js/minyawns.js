@@ -235,7 +235,25 @@ jQuery(document).ready(function($) {
         });
     });
 
+$("#browse").click(function(e){
+    var Job = Backbone.Model.extend({
+        url: function() {
+            return 'http://localhost/minyawns/wp-content/themes/minyawns/libs/job.php/fetchjobs';
+        }
 
+    });
+     window.job = new Job();
+     window.job.save({
+            wait: true,
+            success: function(model, resp) {
+
+
+            },
+            errors: function() {
+               
+            }
+        });
+});
 
 
 });

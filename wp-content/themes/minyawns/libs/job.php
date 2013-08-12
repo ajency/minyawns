@@ -25,11 +25,17 @@ $app->post('/addjob', function() use ($app) {
                 );
                $post_id= wp_insert_post($post);
             
-            
+          
             foreach($json_a as $key=>$value)
             {
                 
+                if($key == "start-date"){
+                   
+                    add_post_meta($post_id, $key, strtotime($value)); 
+                }
+                else{
                 add_post_meta($post_id, $key, $value);
+                }
             }
             
 	
@@ -37,5 +43,27 @@ $app->post('/addjob', function() use ($app) {
     echo json_encode(array('success' => 1));
 
 });
+
+$app->post('/fetchjobs', function() use ($app) {
+    global $post,$wpdb;
+   
+$querystr = "
+    SELECT $wpdb->posts.* 
+    FROM $wpdb->posts, $wpdb->postmeta
+    WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id 
+    AND $wpdb->postmeta.meta_key = 'start-date' 
+    AND $wpdb->postmeta.meta_value > '".current_time('timestamp')."' 
+    AND $wpdb->posts.post_status = 'publish' 
+    AND $wpdb->posts.post_type = 'jobs'
+    ORDER BY $wpdb->posts.post_date DESC
+ ";
+
+ $pageposts = $wpdb->get_results($querystr, OBJECT);
+	print_r($pageposts);exit();
+
+});
+
+
+
 
 $app->run();
