@@ -109,7 +109,9 @@ class Minyawn_Job {
         return $this->applied_by;
     }
 
-}
+
+
+
 
 function get_job_details() {
     global $minyawn_job;
@@ -127,4 +129,5 @@ function get_job_date() {
     global $minyawn_job;
 
     return date('d M Y', strtotime($minyawn_job->posted_date));
+}
 }

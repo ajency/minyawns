@@ -35,7 +35,12 @@
 	<!-- wordpress head functions -->
 	<?php wp_head(); ?>
 	</head>
-
+        <script>
+            var siteurl='<?php echo site_url(); ?>';
+            var logouturl='<?php echo wp_logout_url();?>';
+            
+            </script>
+            
 <body <?php body_class(); ?>>
 	<div class=" pbl mtn top-menu">
 		<div class="bottom-menu  bottom-menu-inverse top-menu">
@@ -53,8 +58,10 @@
                             ?>
 					<div class="span2 notify">
 						<div id="logged-in">
-							<a id="user-popdown" href="javascript:void(0);"> <b class="caret"></b>
-							</a>
+                                                   
+							<a id="user-popdown" href="javascript:void(0);"> <?php echo get_avatar( get_user_profile_email(),168);?> <b class="caret"></b>
+							
+                                                        </a>
 						</div>
 					</div>
 					<div class="span1">
