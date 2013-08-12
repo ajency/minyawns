@@ -553,10 +553,10 @@ if (!function_exists('fb_addgravatar')) {
 }
 
 function create_post_type() {
-    register_post_type('jobs', array(
+    register_post_type('job', array(
         'labels' => array(
-            'name' => __('Jobs'),
-            'singular_name' => __('Jobs')
+            'name' => __('Job'),
+            'singular_name' => __('Job')
         ),
         'public' => true,
         'has_archive' => true,

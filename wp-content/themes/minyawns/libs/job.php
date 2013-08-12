@@ -19,7 +19,7 @@ $app->post('/addjob', function() use ($app) {
                 'post_name' => $json_a['job_task'], // The name (slug) for your post
                 'post_status' => 'publish',
                 'post_title' => $json_a['job_task'],
-                'post_type' => 'jobs',
+                'post_type' => 'job',
                 'post_content' => $json_a['job_details']
             );
 
@@ -30,8 +30,10 @@ $app->post('/addjob', function() use ($app) {
             foreach ($json_a as $key => $value) {
 
                 if ($key == 'jobtags') {
+                    
                     $tags = explode(",", $tags);
                     for ($i = 0; $i < sizeof($tags); $i++) {
+                        print_r($tags[$i]);
                         wp_insert_term($tags[$i], 'job_tags');
                     }
                 } elseif ($key == "job_start_date") {
