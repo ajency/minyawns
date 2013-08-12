@@ -9,7 +9,7 @@ get_header();  ?>
 	<div id="main-content" class="main-content bg-white">
 		<div class="breadcrumb-text">
 			<p id="bread-crumbs-id">
-				<a href="#" class="view edit-user-profile">My Profile</a>
+				<a href="#" class="view loaded edit-user-profile">My Profile</a>
 			</p>
 		</div>
 		<div class="row-fluid profile-wrapper">

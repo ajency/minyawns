@@ -669,17 +669,12 @@ get_header();
 					//if (is_user_logged_in() == TRUE) {
                             ?>
                     <div class="dialog dialog-success">
-                        Add a Job Listing 
                         <button class="btn btn-primary btn-wide mll" id="add-job-button">
                             <i class="fui-mail"></i>
                             Add Jobs
                         </button>
-                        <button class="btn btn-primary btn-wide mll" id="cancel-job-button" style="display:none">
-                            <i class="fui-mail"></i>
-                            Cancel
-                        </button>
                     </div>
-                                        <?php  //} ?>
+                    <?php  //} ?>
                     
                     <div id="add-job-form" style="display:none;">
                         <form id="job-form" class="form-horizontal">
@@ -727,7 +722,7 @@ get_header();
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Required</label>
                                 <div class="controls ">
-                                    <input type="text" name="required" id="required" placeholder="" value="0" class="spinner">
+                                    <input type="text" name="required" id="spinner-01" placeholder="" value="0" class="spinner">
                                 </div>
                             </div>
 						
@@ -753,8 +748,10 @@ get_header();
                              <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tags</label>
                                 <div class="controls ">
+
                                   	
 									 <input type="text" name="jobst" id="tags" value="" placeholder="" class="span3">
+
 					    
                                 </div>
                             </div>
