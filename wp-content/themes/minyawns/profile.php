@@ -60,7 +60,7 @@ get_header();  ?>
 										if(is_array($socials))
 										{	
 											foreach ($socials as $social)
-												echo "<a href='#'>$social</a>";
+												echo "<a href='#' target='_blank'>$social</a>";
 										}
 									?>
 							</div>
@@ -96,7 +96,7 @@ get_header();  ?>
 					            Company Website :
 					        </div>
 					        <div class="span10 company_website">
-					           - <a href="<?php user_company_website(); ?>"><?php user_company_website(); ?></a>
+					           - <a href="<?php user_company_website(); ?>" target="_blank"><?php user_company_website(); ?></a>
 					        </div>
 					        <?php
 							endif; 
@@ -266,7 +266,7 @@ get_header();  ?>
 					    <div class="control-group">
 					    	<label class="control-label" for="inputskill">Skill</label>
 					    	<div class="controls">
-					    		<input name="user_skills" id="user_skills" class="tagsinput " value="<?php echo implode(',',get_user_skills()); ?>"  style="width:60%;"/>
+					    		<input name="user_skills" id="user_skills" class="tagsinput " value="<?php echo get_user_skills(); ?>"  style="width:60%;"/>
 					    	</div>
 					  	</div>
 					  	<div class="control-group">
