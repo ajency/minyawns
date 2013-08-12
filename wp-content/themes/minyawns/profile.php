@@ -9,7 +9,7 @@ get_header();  ?>
 	<div id="main-content" class="main-content bg-white">
 		<div class="breadcrumb-text">
 			<p id="bread-crumbs-id">
-				<a href="#" class="view edit-user-profile">My Profile</a>
+				<a href="#" class="view loaded edit-user-profile">My Profile</a>
 			</p>
 		</div>
 		<div class="row-fluid profile-wrapper">
@@ -216,7 +216,14 @@ get_header();  ?>
 							</table>
 						<?php else: ?>
 
-							//show html here if user doesn't have any jobs
+							<!--show html here if user doesn't have any jobs-->
+							
+							<div class="alert alert-info myjobs " >
+							<h4 style="text-align:center">No Jobs Available</h4>
+							<hr>
+							There doesn't seem to be anything here. you can apply for jobs on the '<B>Browse Jobs</B>' page
+							<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn">Take Me There</a>
+							</div>
 
 						<?php endif; ?>
 						</section>

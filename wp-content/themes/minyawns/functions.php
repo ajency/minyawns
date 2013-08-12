@@ -67,10 +67,16 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
+
+            wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery'), null);
+
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
             wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() . '/js/bootstrap-timepicker.js', array('jquery', 'bootstrap-min'), null);
+
+           
+
             wp_enqueue_script('flatui-checkbox', get_template_directory_uri() . '/js/flatui-checkbox.js', array('jquery'), null);
             wp_enqueue_script('flatui-radio', get_template_directory_uri() . '/js/flatui-radio.js', array('jquery'), null);
             wp_enqueue_script('jquery.tagsinput', get_template_directory_uri() . '/js/jquery.tagsinput.js', array('jquery'), null);
@@ -78,11 +84,14 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
-            wp_enqueue_script('awm-custom', get_template_directory_uri() . '/js/awm-custom.js', array('jquery'), null);
-            wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery'), null);
-            wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery'), null);
+ wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
+            wp_enqueue_script('jquery_validate' 		, get_template_directory_uri() .'/js/jquery.validate.min.js', array('jquery'), null);
+             wp_enqueue_script('awm-custom' 		, get_template_directory_uri() .'/js/awm-custom.js', array('jquery'), null);
+           
             break;
     }
+
+ 
 }
 
 add_action('wp_enqueue_scripts', 'minyawns_scripts_styles', 100);
@@ -243,6 +252,7 @@ function fbautoconnect_insert_user($user_data, $fbuser) {
     }
 }
 
+
 /**
  * Class to run a code once
  */
@@ -307,49 +317,49 @@ add_action('init', 'phoenix_add_role_cap_function');
  */
 function email_header() {
 
-    return '<div style=" width:600px; margin:auto;background:url(' . site_url() . '/wp-content/themes/minyawns/images/pattern-bg.png);border: 5px solid #CCC;">
-	<!-- header --->
-	<div style="background-color: rgba(0, 0, 0, 0.39);padding: 6px;">
-	<img src="' . site_url() . '/wp-content/themes/minyawns/images/logo.png" />
-	</div>
-	<!--End of Header -->
-	
-	<!--Message -->
+	return '<div style=" width:600px; margin:auto;background:url(' . site_url() . '/wp-content/themes/minyawns/images/pattern-bg.png);border: 5px solid #CCC;">
+			<!-- header --->
+			<div style="background-color: rgba(0, 0, 0, 0.39);padding: 6px;">
+			<img src="' . site_url() . '/wp-content/themes/minyawns/images/logo.png" />
+					</div>
+					<!--End of Header -->
 
-	<!--End Of Message -->
+					<!--Message -->
 
-	<!--Footer -->
-	<div style="margin-top:20px;">
-		<div style="width:512px; margin:auto;">
-			<div style=" font-size: 12px; line-height: 22px; ">';
+					<!--End Of Message -->
+
+					<!--Footer -->
+					<div style="margin-top:20px;">
+					<div style="width:512px; margin:auto;">
+					<div style=" font-size: 12px; line-height: 22px; ">';
 }
 
 /**
  * generate mail footer
  */
 function email_signature() {
-    return '<br/><br/>Regards,<br/>
+	return '<br/><br/>Regards,<br/>
 			Minyawns Team<br/><br/>
-			</div>			
-			
+			</div>
 				
-		</div>
-		<div style="clear:both;"></div>
-		
-		<div style="background:#f8f8f8;clear:both;margin:5px 5px 5px 5px;height:40px;padding-left: 10px;">
+
+			</div>
+			<div style="clear:both;"></div>
+
+			<div style="background:#f8f8f8;clear:both;margin:5px 5px 5px 5px;height:40px;padding-left: 10px;">
 			<div style="float:left;"><h3 style="line-height:6px;">Find Us On</h3></div>
 			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="' . site_url() . '/wp-content/themes/minyawns/images/facebook.png" /></a></div>
-			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="' . site_url() . '/wp-content/themes/minyawns/images/LinkedIn.png" /></a></div>
-		</div>
-		<br>
-	
-		<div style="background:url(' . site_url() . '/wp-content/themes/minyawns/images/arro-up.png)repeat-x;clear:both;margin:5px 5px 5px 5px;height:80px;padding-left: 10px;padding: 1px;">
-		
-			<h5 style="color:#ffffff;text-align:center;">Replies to this message are not monitored. Our Customer Service team is available to assist you here: </h5>
-		</div>
-	</div>
-<!--End of footer -->
-</div>';
+					<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="' . site_url() . '/wp-content/themes/minyawns/images/LinkedIn.png" /></a></div>
+							</div>
+							<br>
+
+							<div style="background:url(' . site_url() . '/wp-content/themes/minyawns/images/arro-up.png)repeat-x;clear:both;margin:5px 5px 5px 5px;height:80px;padding-left: 10px;padding: 1px;">
+
+									<h5 style="color:#ffffff;text-align:center;">Replies to this message are not monitored. Our Customer Service team is available to assist you here: </h5>
+									</div>
+									</div>
+									<!--End of footer -->
+									</div>';
 }
 
 //function to retrieve password on client side using ajax
@@ -470,19 +480,21 @@ add_action('wp_ajax_nopriv_retrieve_password_ajx', 'retrieve_password_ajx');
 /* Invalid new user verification key */
 
 function invalid_newuserverification_key() {
-    echo "
-				<div class='container'>
-					<div class='main-content '>
-					<div class='alert alert-error ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
-							<h4 style='text-align:center'>Invalid authentication key or email ID</h4>
-							<hr>
-							<img src='" . get_template_directory_uri() . "/images/big-minyawns.png'/ style='margin:auto;display:block;'>
-							</div>
+	echo "
+			<div class='container'>
+			<div class='main-content '>
+			<div class='alert alert-error ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
+			<h4 style='text-align:center'>Invalid authentication key or email ID</h4>
+			<hr>
+			<img src='" . get_template_directory_uri() . "/images/big-minyawns.png'/ style='margin:auto;display:block;'>
 					</div>
-				</div>
+					</div>
+					</div>
 
-				";
+					";
 }
+
+
 
 /**
  * Retrieves a user row based on password reset key and login
@@ -585,3 +597,6 @@ function mn_login_redirect($redirect_to, $user_login, $user) {
 }
 
 add_filter('login_redirect', 'mn_login_redirect', 10, 3);
+
+
+

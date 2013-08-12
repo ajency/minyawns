@@ -24,6 +24,11 @@ a:hover {
 .bootstrap-timepicker-widget {
   z-index: 9999 !important;
 }
+.alert-box {
+  padding: 10px 55px 10px 30px !important;
+  font-family: arial;
+  font-size: 15px;
+}
 .request_link {
   border-bottom: 1px dotted #C4C0C0;
 }
@@ -1282,8 +1287,19 @@ a:hover {
 }
 .bootstrap-timepicker .add-on {
   min-width: 23px;
-  padding: 9px 5px;
+  padding: 9px 2px;
   font-size: 14.99px;
   line-height: 8px;
   height: 12px;
+}
+.myjobs {
+  width: 90%;
+  margin: auto;
+  border: 10px solid rgba(204, 204, 204, 0.57);
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+}
+.myjobs .default-btn {
+  margin: 10px auto;
 }

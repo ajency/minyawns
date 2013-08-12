@@ -665,27 +665,21 @@ get_header();
             <div id="jobs-list">
                 <div class="tab-pane" id="tab2">
                     <?php
-
-					//if (is_user_logged_in() == TRUE) {
-                            ?>
+                    //if (is_user_logged_in() == TRUE) {
+                    ?>
                     <div class="dialog dialog-success">
-                        Add a Job Listing 
                         <button class="btn btn-primary btn-wide mll" id="add-job-button">
                             <i class="fui-mail"></i>
                             Add Jobs
                         </button>
-                        <button class="btn btn-primary btn-wide mll" id="cancel-job-button" style="display:none">
-                            <i class="fui-mail"></i>
-                            Cancel
-                        </button>
                     </div>
-                                        <?php  //} ?>
-                    
+                    <?php //}  ?>
+
                     <div id="add-job-form" style="display:none;">
                         <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>
                         <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
                         <form id="job-form" class="form-horizontal">
-                            
+
                             <input type="hidden" value="" name="jobtags" id="job_tags"></input>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tasks</label>
@@ -700,16 +694,16 @@ get_header();
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
                                         <input type="text" class="span1" name="start_date" value="" id="start_date">
                                     </div>
-                                   
+
                                 </div>
                             </div>
-							 <div class="input-append bootstrap-timepicker">
-                                        <input id="start_time" type="text" class="timepicker-default input-small" name="start_time" >
-                                        <span class="add-on">
-                                            <i class="icon-time"></i>
-                                        </span>
-                                    </div>
-									<div class="clear"></div>
+                            <div class="input-append bootstrap-timepicker">
+                                <input id="start_time" type="text" class="timepicker-default input-small" name="start_time" >
+                                <span class="add-on">
+                                    <i class="icon-time"></i>
+                                </span>
+                            </div>
+                            <div class="clear"></div>
                             <div class="control-group small float-left">
                                 <label class="control-label" for="inputtask">End</label>
                                 <div class="controls">
@@ -718,26 +712,34 @@ get_header();
                                         <input type="text"  name="end_date" class="span1" value="" id="end_date">
                                     </div>
                                 </div>
-								  
+
                             </div>
-							 <div class="input-append bootstrap-timepicker">
-								<input id="end_time" type="text" class="timepicker-default input-small" name="end_time">
-								<span class="add-on">
-									<i class="icon-time"></i>
-								</span>
-							</div>
-							<div class="clear"></div>
+                            <div class="input-append bootstrap-timepicker">
+                                <input id="end_time" type="text" class="timepicker-default input-small" name="end_time">
+                                <span class="add-on">
+                                    <i class="icon-time"></i>
+                                </span>
+                            </div>
+                            <div class="clear"></div>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Required</label>
                                 <div class="controls ">
-                                    <input type="text" name="required" id="required" placeholder="" value="0" class="spinner">
+                                    <input type="text" name="required" id="spinner-01" placeholder="" value="0" class="spinner">
                                 </div>
                             </div>
+
+
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Wages</label>
-                                <div class="controls ">
-                                  <input class="input-small" name="wages" type="text" id="wages" placeholder="" >
+
+                                <div class="controls small">
+                                    <div class="input-prepend">
+                                        <span class="add-on"><i class="icon-dollar"></i></span>
+                                        <input class="span2" id="prependedInput-04 wages" type="text" name="wages" >
+                                    </div>
                                 </div>
+
+
                             </div>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Location</label>
@@ -745,12 +747,11 @@ get_header();
                                     <input type="text" name="location" id="location" value="" placeholder="" class="span3">
                                 </div>
                             </div>
-                             <div class="control-group small">
+                            <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tags</label>
                                 <div class="controls ">
-                                  	<input  name="jobst"  placeholder="Tags" class="tm-input span2"  style="width:20%;"/>
-					    
-                                </div>
+                                    <input  name="jobst" id="jobst" value="" placeholder="" class="tm-input span3">
+                               </div>
                             </div>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Details</label>
