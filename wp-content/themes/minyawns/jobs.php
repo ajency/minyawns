@@ -5,6 +5,7 @@
  */
 get_header();
 ?>
+
 <div class="container">
     <ul class="nav nav-tabs nav-append-content jobs_menu">
         <li ><a href="#tab1" id="browse">Browse Jobs</a></li>
@@ -669,6 +670,10 @@ get_header();
                             <i class="fui-mail"></i>
                             Add Jobs
                         </button>
+                        <button class="btn btn-primary btn-wide mll" id="cancel-job-button" style="display:none">
+                            <i class="fui-mail"></i>
+                            Cancel
+                        </button>
                     </div>
                     <div id="add-job-form" style="display:none;">
                         <form id="job-form" class="form-horizontal">
@@ -698,7 +703,7 @@ get_header();
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text"  name="end-date" class="span1" value="">
+                                        <input type="text"  name="end-date" class="span1" value="" id="datepicker-02">
                                     </div>
                                     <div class="input-append bootstrap-timepicker-component">
                                         <input type="text" name="end-time" class="timepicker-default input-small">
@@ -729,7 +734,7 @@ get_header();
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Details</label>
                                 <div class="controls ">
-                                    <textarea class="span6" name="details" rows="10" id="details" cols="4" placeholder="Add comment..." style="height:70px;"></textarea>
+                                    <textarea class="span6" name="details" rows="10" id="details" cols="4" placeholder="" style="height:70px;"></textarea>
                                 </div>
                             </div>
                             <hr>

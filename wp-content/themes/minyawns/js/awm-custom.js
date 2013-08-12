@@ -7,6 +7,7 @@ jQuery(document).ready(function($){
 		
 	/*Function to etrieve password */ 	
 	 jQuery("#user-submit").live("click",function(){		 
+
 		 jQuery('#frm_forgotpassword').submit();
 	 })
 	
