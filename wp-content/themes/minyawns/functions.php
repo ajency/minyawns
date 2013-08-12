@@ -88,7 +88,9 @@ function minyawns_scripts_styles()
 
 			break;
 	}
+
 }
+
 add_action('wp_enqueue_scripts', 'minyawns_scripts_styles', 100);
 
 //function to log in user
@@ -206,25 +208,14 @@ function minyawns_prevent_dashboard_access() {
         wp_redirect(home_url());
 }
 
-/**
- * Function to keep remeber me checked
- */
-function minyawns_login_checked_remember_me() {
-    add_filter('login_footer', 'rememberme_checked');
-}
-
-//add_action( 'init', 'awm_login_checked_remember_me' );
-
-function rememberme_checked() {
-    echo "<script>document.getElementById('rememberme').checked = true;</script>";
-}
+ 
 
 function minyawns_initial_checks() {
     minyawns_prevent_dashboard_access();
-    minyawns_login_checked_remember_me();
+    
 }
 
-//add_action('init','minyawns_initial_checks'); 
+add_action('init','minyawns_initial_checks'); 
 //Allow only active users to login in 
 //add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
 function authenticate_active_user($user, $password) {
@@ -248,11 +239,20 @@ function authenticate_active_user($user, $password) {
 add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user', 11, 2);
 
 function fbautoconnect_insert_user($user_data, $fbuser) {
-    global $_POST, $_REQUEST;
-
-    //$user_data['role'] = 'minyawns';
-    $user_data['role'] = $_POST['usr_role'];
-    return($user_data);
+    global $_POST, $_REQUEST,$redirectTo;
+    echo "<script>    returnToPreviousPage(); alert('test".$_POST['fb_chk_usersigninform']."'); </script>";
+    
+    if($_POST['fb_chk_usersigninform']=="loginfrm")
+    {
+    	echo "<script> jQuery('#btn__login').click(); alert('test')</script>";
+    	wp_redirect(site_url()."/?action=invalid_login");
+    	 
+    }
+    else
+    {
+  	 	$user_data['role'] = $_POST['usr_role'];
+   	 	return($user_data);
+    }
 }
 
 /**

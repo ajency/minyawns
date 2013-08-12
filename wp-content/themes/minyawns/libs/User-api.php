@@ -44,6 +44,15 @@ function setup_user_profile_data()
 
 	//set profile profile linked in
 	$current_user->data->location		= isset($user_meta['location']) ? trim($user_meta['location'][0]) : '';
+
+	//set profile facebook_uid
+	$current_user->data->facebook_uid	= isset($user_meta['facebook_uid']) ? trim($user_meta['facebook_uid'][0]) : 0;
+
+	//set profile facebook_avatar_full image
+	$current_user->data->facebook_avatar_full	= isset($user_meta['facebook_avatar_full']) ? trim($user_meta['facebook_avatar_full'][0]) : '';
+
+	//set profile facebook_avatar_thumb image
+	$current_user->data->facebook_avatar_thumb	= isset($user_meta['facebook_avatar_thumb']) ? trim($user_meta['facebook_avatar_thumb'][0]) : '';
 }
 add_action('wp_loaded','setup_user_profile_data');
 
@@ -57,6 +66,20 @@ function get_user_id()
 {
 	global $current_user;
 	return $current_user->data->ID;
+}
+
+//is fb registered
+function is_user_fb_registered()
+{
+	global $current_user;
+	return $current_user->data->facebook_uid !== 0;
+}
+
+//get user FB avatar URL
+function get_user_fb_avatar($type = 'thumb')
+{
+	global $current_user;
+	return $type == 'large' ? $current_user->data->facebook_avatar_full : $current_user->data->facebook_avatar_thumb;
 }
 
 //user profile name
