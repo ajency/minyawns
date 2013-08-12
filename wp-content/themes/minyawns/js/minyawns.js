@@ -255,5 +255,267 @@ jQuery(document).ready(function($) {
             }
         });
     });
+    
+   
+    
+   /*############POP UP############*/ 
+    /*Function to etrieve password */ 	
+	 jQuery("#user-submit").live("click",function(){
+		 jQuery('#frm_forgotpassword').submit();
+	 })
+	
+	
+	/*forgot password form validation */
+	jQuery('#frm_forgotpassword').validate({		
+		
+		rules : {
+			'user_login' : {  
+				required  : true 
+				 
+			} 
+
+		},
+		submitHandler : function(form){ 
+			
+						jQuery("#div_msgforgotpass").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+						jQuery.post(ajaxurl,{
+							action : 'retrieve_password_ajx',							
+							user_login :jQuery("#user_login").val(),							 
+						},
+						function(response){  
+							console.log(response);
+							 if(response.success==true)
+							{
+								 jQuery("#user_login").val("");
+								 jQuery("#div_forgotpass").hide();
+								 jQuery("#div_msgforgotpass").html(response.msg);
+								
+							} 
+							else
+							{
+								jQuery("#div_msgforgotpass").html(response.msg);
+							} 
+						})
+			
+						return false; 
+		}
+		
+	});	
+	/* end reset pasword validation */
+	
+	 
+	/* forgotpass link */
+	jQuery("#btn_forgotpass").live("click",function(){
+		jQuery("#div_forgotpass").toggle();		
+		jQuery("#div_msgforgotpass").html("");
+	})
+	 
+
+	/* reset password form validation */
+	jQuery('#resetpassform').validate({				
+		rules : {
+			'pass1' : {  
+				required  : true, 
+				minlength : 6	
+			},			 
+			'pass2' : {  
+				required  : true, 
+				minlength : 6,
+				equalTo: "#pass1" 
+			} 
+		},
+		messages:{
+			'pass1' : {  
+				required  : 'Please enter new password' 				 
+			},
+			 
+			'pass2' : {  
+				required  : 'Please renter new password',
+				equalTo: "The password fields entered do not match" 
+			} 			
+		}		 
+	
+	});	
+	/* end reset pasword validation */	
+	
+	 
+	 
+	/* POPUP LOGIN */ 	 
+   
+   //hide forget password section on login pop up link click
+   jQuery("#btn__login").live("click",function(){    	 
+   	jQuery("#div_forgotpass").hide();
+   	jQuery("#div_msgforgotpass").html("");
+   	jQuery("#user_login").val("");
+   	jQuery("#div_loginmsg").html("");
+   	jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="fb_chk_usersigninform" id="fb_chk_usersigninform" value="loginfrm" /> ');////jQuery("#usr_role").val('employer');
+   })
+   
+   //user login form validation and user login
+	jQuery("#btn_login").live("click",function(){
+		jQuery('#frm_login').submit();		
+	})
+	
+	
+	
+	
+	jQuery('#frm_login').validate({				
+		rules : {
+
+			'txt_pass' : {  
+				required  : true, 
+				minlength : 3	
+			},			 
+			'txt_email' : {  
+				required  : true, 
+				minlength : 6,
+				email: true
+			} 
+
+		},
+		submitHandler : function(form){ 
+			jQuery("#div_loginmsg").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+			jQuery.post(ajaxurl,{
+				action : 'popup_userlogin',				
+				pdemail :jQuery("#txt_email").val(),
+				pdpass :jQuery("#txt_pass").val(),
+			},
+			function(response){  
+				console.log(response);
+				if(response.success==true)
+				{								
+					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/';
+				} 
+				else
+				{
+					jQuery("#div_loginmsg").html(response.msg);
+				}	
+			})	
+			
+		return false; 
+		}		
+	
+	});	
+	/*END POPUP LOGIN */
+	
+	
+	/*sign in here link*/
+	jQuery("#lnk_signin").live("click",function(){		
+		jQuery("#signup_popup_close").click();
+		jQuery("#btn__login").click();
+	})
+	
+	
+	/* POPUP SIGNUP */
+	jQuery("#link_minyawnregister").live("click",function(){	
+		jQuery("#signup_role").val('minyawn');		
+		
+		if(jQuery("#usr_role").length>0)
+		{
+			jQuery("#usr_role").val("minyawn");
+		}
+		else
+		{		
+			jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
+		}
+		
+		if(jQuery("#fb_chk_usersigninform").length>0)
+		{
+			jQuery("#fb_chk_usersigninform").remove();
+		}
+		
+		jQuery("#div_signupmsg").html("");		 
+		validator_signup.resetForm();
+		jQuery("#signup_email").val("");
+		jQuery("#signup_password").val("");
+		jQuery("#signup_fname").val("");
+		jQuery("#signup_lname").val("");		
+	
+	})
+	
+	jQuery("#link_employerregister").live("click",function(){	
+		jQuery("#signup_role").val('employer');
+		if(jQuery("#usr_role").length>0)
+		{
+			jQuery("#usr_role").val("employer");
+		}
+		else
+		{	
+			jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
+		}
+		if(jQuery("#fb_chk_usersigninform").length>0)
+		{
+			jQuery("#fb_chk_usersigninform").remove();
+		}
+		
+		jQuery("#div_signupmsg").html(""); 		 
+		validator_signup.resetForm();
+		jQuery("#signup_email").val("");
+		jQuery("#signup_password").val("");
+		jQuery("#signup_fname").val("");
+		jQuery("#signup_lname").val("");		
+		
+	})	
+	
+	jQuery("#btn_signup").live("click",function(){	 				
+		jQuery('#frm_signup').submit();		
+	})	
+	
+	var validator_signup = jQuery('#frm_signup').validate({				
+		rules : {
+
+			'signup_password' : {  
+				required  : true, 
+				minlength : 3	
+			},
+			 
+			'signup_email' : {  
+				required  : true, 
+				minlength : 6,
+				email: true
+			},
+			'signup_fname' : {  
+				required  : true, 
+				minlength : 2	
+			},
+			'signup_lname' : {  
+				required  : true, 
+				minlength : 2	
+			}
+
+		},
+		submitHandler : function(form){	
+			
+			jQuery("#div_signupmsg").html("<img src='"+jQuery("#hdn_siteurl").val()+"/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+			jQuery.post(ajaxurl,{
+				action : 'popup_usersignup',
+				//data :  data 
+				pdemail_ :jQuery("#signup_email").val(),
+				pdpass_ :jQuery("#signup_password").val(),
+				pdfname_ :jQuery("#signup_fname").val(),
+				pdlname_ :jQuery("#signup_lname").val(), 
+				pdrole_ :jQuery("#signup_role").val()
+			},
+			function(response){  
+				console.log(response);
+				if(response.success==true)
+				{
+					jQuery("#div_signupmsg").html(response.msg);
+					jQuery("#signup_email").val("");
+					jQuery("#signup_password").val("");
+					jQuery("#signup_fname").val("");
+					jQuery("#signup_lname").val("");					
+				} 
+				 else					  
+				{
+					 jQuery("#div_signupmsg").html(response.msg);				
+				} 	 
+			})
+		return false; 
+		}		
+	
+	});
+	
+	/*END POPUP SIGNUP */    
 
 });
