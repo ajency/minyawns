@@ -221,9 +221,8 @@ get_header();  ?>
 							<div class="alert alert-info myjobs " >
 							<h4 style="text-align:center">No Jobs Available</h4>
 							<hr>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-							<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn">My Jobs</a>
+							There doesn't seem to be anything here. you can apply for jobs on the '<B>Browse Jobs</B>' page
+							<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn">Take Me There</a>
 							</div>
 
 						<?php endif; ?>

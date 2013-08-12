@@ -24,6 +24,11 @@ a:hover {
 .bootstrap-timepicker-widget {
   z-index: 9999 !important;
 }
+.alert-box {
+  padding: 10px 55px 10px 30px !important;
+  font-family: arial;
+  font-size: 15px;
+}
 .request_link {
   border-bottom: 1px dotted #C4C0C0;
 }

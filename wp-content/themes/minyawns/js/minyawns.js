@@ -139,7 +139,7 @@ jQuery(document).ready(function($) {
                 $('#profile-view').find('.company_website').html(' <a href="' + data.company_website + '">' + data.company_website + '</a>');
 
                 //show success message
-                $('#profile-edit').prepend('<div class="alert alert-success">Profile updated succesfully</div>');
+                $('#profile-edit').prepend('<div class="alert alert-success alert-box"><b>Profile</b> updated succesfully <button type="button" class="close fui-cross" data-dismiss="alert"></button></div>');
 
 
             },
