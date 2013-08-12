@@ -153,19 +153,25 @@ jQuery(document).ready(function($) {
     /********************************** PROFILE JS CODE *************************************/
 
     $("#add-job-button").live('click', function(e) {
+        var _this = $(this);
         e.preventDefault();
-        $("#add-job-form").toggle("slow");
-        $("#add-job-button").hide();
-        $("#cancel-job-button").show();
+        $("#add-job-form").toggle("slow", function(){
+            if($("#add-job-form").is(':hidden'))
+                $(_this).html('<i class="fui-mail"></i> Add Jobs');
+            else
+                $(_this).html('Cancel');
+                
+        });
+        
     });
 
-    $("#cancel-job-button").live('click', function(e) {
+    /*$("#cancel-job-button").live('click', function(e) {
         e.preventDefault();
         $("#add-job-form").toggle("slow");
         $("#add-job-form").hide();
         $("#add-job-button").show();
         $("#cancel-job-button").hide();
-    });
+    });*/
 
 
     var Job = Backbone.Model.extend({
