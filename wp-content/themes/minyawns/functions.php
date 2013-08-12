@@ -553,10 +553,10 @@ if (!function_exists('fb_addgravatar')) {
 }
 
 function create_post_type() {
-    register_post_type('jobs', array(
+    register_post_type('job', array(
         'labels' => array(
-            'name' => __('Jobs'),
-            'singular_name' => __('Jobs')
+            'name' => __('Job'),
+            'singular_name' => __('Job')
         ),
         'public' => true,
         'has_archive' => true,
@@ -611,3 +611,60 @@ function load_single_job()
     $minyawn_job = new Minyawn_Job(get_the_ID()); 
 }
 add_action('template_redirect','load_single_job');
+
+
+
+
+
+function check_access()
+{
+    return true;
+	global $wpdb, $post, $current_user;
+
+	 
+	$page_slug = $post->post_name;
+
+	$user_roles = $current_user->roles;
+	$user_role = array_shift($user_roles);
+
+	if(empty($user_role))
+		$user_role = "Not logged in";
+	$queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  wp_userpermissioins where role = %s and  noperm_slug = %s ",$user_role,$page_slug  ),OBJECT);
+	foreach($queryresult as $res)
+		if($res->cnt_perm>0)
+		{
+			no_access_page($user_role,$page_slug);
+		}
+		else
+			return true;
+}
+
+function no_access_page($user_role,$page_slug)
+{
+	if($user_role!="Not logged in")
+		echo '<div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
+			<div class="row-fluid">
+				<div class="span3"><br><img src="'.site_url().'/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
+				<div class="span9">	<h4 >No Access</h4>
+		<hr>
+		We are sorry. This page is unavailable. If you are already logged in and believe you should have access to this page, send us an email at support@minyawns.com with your username and the link of the page you are trying to access.
+		<br>
+		<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn">Go Home</a>
+		<div class="clear"></div></div>
+			</div>
+		</div><input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="'.site_url().'/'.$page_slug.'/" />';
+	else
+		echo '<div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
+			<div class="row-fluid">
+				<div class="span3"><br><img src="'.site_url().'/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
+				<div class="span9">	<h4 >No Access</h4>
+		<hr>
+		We are sorry. This page is unavailable. Please click below to login .
+		<br>
+		<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn" onclick="jQuery(\'#btn__login\').click();" >Login</a>
+		<div class="clear"></div></div>
+			</div>
+		</div> <input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="'.site_url().'/'.$page_slug.'/" />';
+	return false ;
+}
+ 

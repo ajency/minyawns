@@ -4,6 +4,21 @@
 jQuery(document).ready(function($) {
 
     /********************************** PROFILE JS CODE *************************************/
+    
+    
+    if(jQuery('#user-popdown').length>0)
+	{
+	   jQuery('#user-popdown').popover(
+				{
+					placement : 'bottom',
+					html : true,
+					content : '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4></h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="'+siteurl+'/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="'+logouturl+'" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
+				}
+			);
+	}
+        
+        
+        
     //reset height for first span
     $('#main-content .profile-wrapper').height($('#profile-edit').height() + 100);
 
@@ -424,7 +439,10 @@ jQuery(document).ready(function($) {
 				console.log(response);
 				if(response.success==true)
 				{								
-					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/';
+					if(jQuery("#noaccess_redirect_url").length>0)
+						window.location.href = jQuery("#noaccess_redirect_url").val();
+					else
+						window.location.href = jQuery("#hdn_siteurl").val()+'/profile/';
 				} 
 				else
 				{
@@ -557,5 +575,7 @@ jQuery(document).ready(function($) {
 	});
 	
 	/*END POPUP SIGNUP */    
+	
+	
 
 });
