@@ -27,12 +27,19 @@ $app->post('/addjob', function() use ($app) {
 
             foreach ($json_a as $key => $value) {
 
-                if ($key == "start-date") {
-
+                if ($key == "start-date") 
                    add_post_meta($post_id, $key, strtotime($value));
-                } else {
+                
+                if($key == "start-time")
+                    add_post_meta($post_id, $key, strtotime($value));
+                
+                
+                if($key == "end-time")
+                    add_post_meta($post_id, $key, strtotime($value));
+                
+                 else 
                     add_post_meta($post_id, $key, $value);
-                }
+               
             }
 
 

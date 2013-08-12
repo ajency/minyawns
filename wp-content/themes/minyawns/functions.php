@@ -67,12 +67,16 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
+
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery'), null);
+
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
             wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() . '/js/bootstrap-timepicker.js', array('jquery', 'bootstrap-min'), null);
-            wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
+
+           
+
             wp_enqueue_script('flatui-checkbox', get_template_directory_uri() . '/js/flatui-checkbox.js', array('jquery'), null);
             wp_enqueue_script('flatui-radio', get_template_directory_uri() . '/js/flatui-radio.js', array('jquery'), null);
             wp_enqueue_script('jquery.tagsinput', get_template_directory_uri() . '/js/jquery.tagsinput.js', array('jquery'), null);
@@ -80,12 +84,13 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
+ wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('jquery_validate' 		, get_template_directory_uri() .'/js/jquery.validate.min.js', array('jquery'), null);
+             wp_enqueue_script('awm-custom' 		, get_template_directory_uri() .'/js/awm-custom.js', array('jquery'), null);
            
             break;
     }
 
- 
  
 }
 
@@ -206,14 +211,12 @@ function minyawns_prevent_dashboard_access() {
         wp_redirect(home_url());
 }
 
- 
-
 function minyawns_initial_checks() {
     minyawns_prevent_dashboard_access();
-    
 }
 
-add_action('init','minyawns_initial_checks'); 
+add_action('init', 'minyawns_initial_checks');
+
 //Allow only active users to login in 
 //add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
 function authenticate_active_user($user, $password) {
@@ -237,19 +240,15 @@ function authenticate_active_user($user, $password) {
 add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user', 11, 2);
 
 function fbautoconnect_insert_user($user_data, $fbuser) {
-    global $_POST, $_REQUEST,$redirectTo;
-    echo "<script>    returnToPreviousPage(); alert('test".$_POST['fb_chk_usersigninform']."'); </script>";
-    
-    if($_POST['fb_chk_usersigninform']=="loginfrm")
-    {
-    	echo "<script> jQuery('#btn__login').click(); alert('test')</script>";
-    	wp_redirect(site_url()."/?action=invalid_login");
-    	 
-    }
-    else
-    {
-  	 	$user_data['role'] = $_POST['usr_role'];
-   	 	return($user_data);
+    global $_POST, $_REQUEST, $redirectTo;
+    echo "<script>    returnToPreviousPage(); alert('test" . $_POST['fb_chk_usersigninform'] . "'); </script>";
+
+    if ($_POST['fb_chk_usersigninform'] == "loginfrm") {
+        echo "<script> jQuery('#btn__login').click(); alert('test')</script>";
+        wp_redirect(site_url() . "/?action=invalid_login");
+    } else {
+        $user_data['role'] = $_POST['usr_role'];
+        return($user_data);
     }
 }
 
