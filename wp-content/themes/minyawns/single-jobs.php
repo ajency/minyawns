@@ -1,9 +1,5 @@
 <?php
 get_header();
-
-global $minyawn_job;
-$minyawn_job = new Minyawn_Job(get_the_ID());
-var_dump($minyawn_job);
 ?>
 <div class="container">
 	<div class="tab-content">

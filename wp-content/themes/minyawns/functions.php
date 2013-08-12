@@ -591,5 +591,13 @@ function mn_login_redirect($redirect_to, $user_login, $user) {
 
 add_filter('login_redirect', 'mn_login_redirect', 10, 3);
 
+//setup the global $minyawnjob var for the single job page
+function load_single_job()
+{
+    if(!is_singular('jobs'))
+        return;
 
- 
+    global $minyawn_job;    
+    $minyawn_job = new Minyawn_Job(get_the_ID()); 
+}
+add_action('template_redirect','load_single_job');
