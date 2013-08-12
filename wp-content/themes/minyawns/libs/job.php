@@ -25,21 +25,7 @@ $app->post('/addjob', function() use ($app) {
 
             $post_id = wp_insert_post($post);
 
-            foreach ($json_a as $key => $value) {
-
-                if ($key == "job_start_date")
-                    add_post_meta($post_id, $key, strtotime($value));
-
-                if ($key == "job_start_time")
-                    add_post_meta($post_id, $key, strtotime($value));
-
-
-                if ($key == "job_end_time")
-                    add_post_meta($post_id, $key, strtotime($value));
-                else
-                    add_post_meta($post_id, $key, $value);
-            }
-
+            
 
             foreach ($json_a as $key => $value) {
 
@@ -48,10 +34,15 @@ $app->post('/addjob', function() use ($app) {
                     for ($i = 0; $i < sizeof($tags); $i++) {
                         wp_insert_term($tags[$i], 'job_tags');
                     }
-                }
-
-                if ($key !== 'job_details')
+                } elseif ($key == "job_start_date") {
+                    add_post_meta($post_id, $key, strtotime($value));
+                } elseif ($key == "job_start_time") {
+                    add_post_meta($post_id, $key, strtotime($value));
+                } elseif ($key == "job_end_time") {
+                    add_post_meta($post_id, $key, strtotime($value));
+                } elseif ($key !== 'job_details') {
                     add_post_meta($post_id, $key, $value);
+                }
             }
 
 
