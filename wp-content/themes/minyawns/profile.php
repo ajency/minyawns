@@ -127,6 +127,9 @@ get_header();  ?>
 				<div id="my-history" class="row-fluid">
 					<div class="span12">
 						<section id="no-more-tables">
+							<?php $jobs = new MN_User_Jobs(array('user_id' => get_user_id())); ?>
+
+							<?php if($jobs->have_jobs()): ?>
 							<table class="qlabs_grid_container tablesorter jobs_table">
 								<thead>
 									<tr class="header_row">
@@ -159,7 +162,7 @@ get_header();  ?>
 										<!-- table 1-->
 										<td colspan="7">
 											<table class="ins_table profile">
-												 <tr class="data_even">
+												 <tr class="data_even completed">
 														<td class="data_cell awm_service_title profile-logo" >
 															<img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/>
 														</td>
@@ -207,13 +210,18 @@ get_header();  ?>
 
 								</tbody>
 							</table>
+						<?php else: ?>
+
+							//show html here if user doesn't have any jobs
+
+						<?php endif; ?>
 						</section>
 						<br>
 					</div>
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div class="span11" id="profile-edit">
+			<div class="span12" id="profile-edit">
 				<div class="row-fluid">	
 					<form class="form-horizontal frm-edit" id="profile-edit-form">
 					  	<div class="control-group">
@@ -275,7 +283,7 @@ get_header();  ?>
 					  	<div class="control-group">
 					    	<label class="control-label" for="inputbody">Profile Body</label>
 					    	<div class="controls">
-					      		<textarea rows="5" type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" ><?php user_profile_body(); ?></textarea>
+					      		<textarea rows="5" type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" style=" width: 90% !important; " ><?php user_profile_body(); ?></textarea>
 					    	</div>
 					  	</div>
 					 	<?php endif; ?>

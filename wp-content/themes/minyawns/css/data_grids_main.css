@@ -1728,24 +1728,38 @@ b.demand-div {
 }
 /* Landscape phones and down */
 @media (max-width:480px) {
+
+
     /* Profile Table */
+.completed{	
+	border-right: 4px solid #74C31C;
+}
+.applied{	
+	border-right: 4px solid #FFAD00;
+}
+.pending{	
+	border-right: 4px solid #EE3C3C;
+}	
 .profile .data_cell {
     height:50px;
 }
 .profile .profile-logo {
-    width:19%;
+    width:19% !important;
 }
 .profile .profile-date {
-    width:15%;
+    width:15%!important;
 }
 .profile .profile-time {
-    width:17%;
+    width:17%!important;
 }
 .profile .profile-wages {
-    width:9%;
+    width:9%!important;
 }
 .profile .profile-rating {
-    width:8%;
+    width:8%!important;
+}
+.profile .profile-status {
+   display:none;
 }
 .profile .profile-date span {
     font-size:19px;
@@ -1767,9 +1781,13 @@ b.demand-div {
 }
 .profile .profile-date div {
     text-align:center;
+	
 }
 .profile .profile-wages ins {
     font-size:13px;
+}
+table.qlabs_grid_container tbody.data_container tr.data_even td.data_cell div {
+font-size: 10px !important;
 }
 table.qlabs_grid_container {
     width:100%!important;
