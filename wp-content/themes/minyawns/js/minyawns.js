@@ -412,7 +412,10 @@ jQuery(document).ready(function($) {
 				console.log(response);
 				if(response.success==true)
 				{								
-					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/';
+					if(jQuery("#noaccess_redirect_url").length>0)
+						window.location.href = jQuery("#noaccess_redirect_url").val();
+					else
+						window.location.href = jQuery("#hdn_siteurl").val()+'/profile/';
 				} 
 				else
 				{
@@ -545,5 +548,7 @@ jQuery(document).ready(function($) {
 	});
 	
 	/*END POPUP SIGNUP */    
+	
+	
 
 });
