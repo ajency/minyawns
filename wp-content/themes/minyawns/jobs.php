@@ -710,7 +710,7 @@ get_header();
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text"  name="end-date" class="span1" value="">
+                                        <input type="text"  name="end-date" class="span1" value="" id="datepicker-02">
                                     </div>
                                     <div class="input-append bootstrap-timepicker-component">
                                         <input type="text" name="end-time" class="timepicker-default input-small">
