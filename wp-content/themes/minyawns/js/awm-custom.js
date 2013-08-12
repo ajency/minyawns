@@ -114,7 +114,9 @@ jQuery(document).ready(function($){
     
     //user login form validation and user login
 	jQuery("#btn_login").live("click",function(){
+ 
 		jQuery('#frm_login').submit();	
+ 
 	
 	})
 	
