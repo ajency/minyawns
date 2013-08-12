@@ -96,7 +96,7 @@ jQuery(document).ready(function($){
 				{
 					placement : 'bottom',
 					html : true,
-					content : '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4>'+userName+'</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="'+siteurl+'/profile/#profile" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="'+logouturl+'" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
+					content : '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4>'+userName+'</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="'+siteurl+'/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="'+logouturl+'" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
 				}
 			);
 	}
@@ -105,11 +105,13 @@ jQuery(document).ready(function($){
 	 
 	/* POPUP LOGIN */ 	 
     
-    //hide forget password section
+    //hide forget password section on login pop up link click
     jQuery("#btn__login").live("click",function(){    	 
     	jQuery("#div_forgotpass").hide();
     	jQuery("#div_msgforgotpass").html("");
     	jQuery("#user_login").val("");
+    	jQuery("#div_loginmsg").html("");
+    	jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="fb_chk_usersigninform" id="fb_chk_usersigninform" value="loginfrm" /> ');////jQuery("#usr_role").val('employer');
     })
     
     //user login form validation and user login
@@ -150,7 +152,7 @@ jQuery(document).ready(function($){
 				console.log(response);
 				if(response.success==true)
 				{								
-					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/#profile';
+					window.location.href = jQuery("#hdn_siteurl").val()+'/profile/';
 				} 
 				else
 				{
@@ -174,7 +176,24 @@ jQuery(document).ready(function($){
 	
 	/* POPUP SIGNUP */
 	jQuery("#link_minyawnregister").live("click",function(){	
-		jQuery("#signup_role").val('minyawn');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
+		jQuery("#signup_role").val('minyawn');
+		
+		if(jQuery("#usr_role").length>0)
+		{
+			jQuery("#usr_role").val("minyawn");
+		}
+		else
+		{		
+			jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
+		}
+		
+		if(jQuery("#fb_chk_usersigninform").length>0)
+		{
+			jQuery("#fb_chk_usersigninform").remove();
+		}
+		
+		
+		
 		jQuery("#div_signupmsg").html("");		 
 		validator_signup.resetForm();
 		jQuery("#signup_email").val("");
@@ -185,7 +204,21 @@ jQuery(document).ready(function($){
 	})
 	
 	jQuery("#link_employerregister").live("click",function(){	
-		jQuery("#signup_role").val('employer');jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
+		jQuery("#signup_role").val('employer');
+		if(jQuery("#usr_role").length>0)
+		{
+			jQuery("#usr_role").val("employer");
+		}
+		else
+		{	
+			jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
+		}
+		if(jQuery("#fb_chk_usersigninform").length>0)
+		{
+			jQuery("#fb_chk_usersigninform").remove();
+		}
+		
+		
 		jQuery("#div_signupmsg").html(""); 		 
 		validator_signup.resetForm();
 		jQuery("#signup_email").val("");
