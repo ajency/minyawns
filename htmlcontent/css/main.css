@@ -82,6 +82,11 @@ a:hover {
 .green-btn:hover {
   background-color: #74B21B !important;
 }
+.red-btn {
+  width: 14%;
+  margin: auto;
+  font-weight: bold;
+}
 .social-icon {
   width: 156px;
   margin: auto;
