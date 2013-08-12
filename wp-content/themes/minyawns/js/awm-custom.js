@@ -4,7 +4,9 @@
 
 jQuery(document).ready(function($){
 	
-	
+	alert("here");
+         jQuery('#time-pick').timepicker();
+        jQuery('#datepicker-01').datepicker();
 	
 	/*Function to etrieve password */ 
 	
