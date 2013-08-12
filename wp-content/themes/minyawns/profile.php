@@ -31,7 +31,7 @@ get_header();  ?>
 						</a>
 					</div>
 					<div class="span8">
-						<h4 class="name"> <?php user_profile_name(); ?>  <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a></h4> 
+						<h4 class="name"> <?php user_profile_first_name()." ".user_profile_last_name() ?>  <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a></h4> 
 						<div class="row-fluid profile-list">
 							<?php
 
@@ -232,8 +232,11 @@ get_header();  ?>
 			<div class="span12" id="profile-edit">
 				<div class="row-fluid">	
 					<form class="form-horizontal frm-edit" id="profile-edit-form">
-					  	<div class="control-group">
-						    <label class="control-label" for="inputFirst">First Name</label>
+					  	
+						  
+					  	<?php if(get_user_role() === 'minyawn'): ?>
+                                            <div class="control-group">
+                                                      <label class="control-label" for="inputFirst">First Name</label>
 						    <div class="controls">
 						      	<input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name() ?>" class="input">
 						    </div>
@@ -250,7 +253,6 @@ get_header();  ?>
 					      		<input type="text" id="profileemail" disabled  name="profileemail" placeholder="" value="<?php user_profile_email() ?>" class="input">
 					    	</div>
 					  	</div>
-					  	<?php if(get_user_role() === 'minyawn'): ?>
 					   	<div class="control-group">
 					    	<label class="control-label" for="inptcollege">College</label>
 					    	<div class="controls">
@@ -276,6 +278,13 @@ get_header();  ?>
 					    	</div>
 					  	</div>
 					  <?php else : ?>
+                                             <div class="control-group">
+                                                      <label class="control-label" for="inputFirst">Company Name</label>
+						    <div class="controls">
+                                                        <input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name()." ".user_profile_last_name() ?>" class="input">
+                                                        
+						    </div>
+					  	</div>
 					    <div class="control-group">
 					    	<label class="control-label" for="inputbody">Location</label>
 					    	<div class="controls">
