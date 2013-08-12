@@ -684,7 +684,7 @@ get_header();
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tasks</label>
                                 <div class="controls ">
-                                    <input type="text" id="tasks" name="tasks" value="" placeholder="" class="span3">
+                                    <input type="text" id="job_task" name="job_task" value="" placeholder="" class="span3">
                                 </div>
                             </div>
                             <div class="control-group small float-left ">
@@ -692,13 +692,13 @@ get_header();
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text" class="span1" name="start_date" value="" id="start_date">
+                                        <input type="text" class="span1" name="job_start_date" value="" id="job_start_date">
                                     </div>
 
                                 </div>
                             </div>
                             <div class="input-append bootstrap-timepicker">
-                                <input id="start_time" type="text" class="timepicker-default input-small" name="start_time" >
+                                <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" >
                                 <span class="add-on">
                                     <i class="icon-time"></i>
                                 </span>
@@ -709,13 +709,13 @@ get_header();
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text"  name="end_date" class="span1" value="" id="end_date">
+                                        <input type="text"  name="job_end_date" class="span1" value="" id="job_end_date">
                                     </div>
                                 </div>
 
                             </div>
                             <div class="input-append bootstrap-timepicker">
-                                <input id="end_time" type="text" class="timepicker-default input-small" name="end_time">
+                                <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time">
                                 <span class="add-on">
                                     <i class="icon-time"></i>
                                 </span>
@@ -724,7 +724,7 @@ get_header();
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Required</label>
                                 <div class="controls ">
-                                    <input type="text" name="required" id="spinner-01" placeholder="" value="0" class="spinner">
+                                    <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="0" class="spinner">
                                 </div>
                             </div>
 
@@ -735,7 +735,7 @@ get_header();
                                 <div class="controls small">
                                     <div class="input-prepend">
                                         <span class="add-on"><i class="icon-dollar"></i></span>
-                                        <input class="span2" id="prependedInput-04 wages" type="text" name="wages" >
+                                        <input class="span2" id="job_wages" type="text" name="job_wages" >
                                     </div>
                                 </div>
 
@@ -747,16 +747,17 @@ get_header();
                                     <input type="text" name="location" id="location" value="" placeholder="" class="span3">
                                 </div>
                             </div>
+
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tags</label>
                                 <div class="controls ">
-                                    <input  name="jobst" id="jobst" value="" placeholder="" class="tm-input span3">
+                                    <input  name="job_tags" id="job_tags" value="" placeholder="" class="tm-input">
                                </div>
                             </div>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Details</label>
                                 <div class="controls ">
-                                    <textarea class="span6" name="details" rows="10" id="details" cols="4" placeholder="" style="height:70px;"></textarea>
+                                    <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder="" style="height:70px;"></textarea>
                                 </div>
                             </div>
                             <hr>

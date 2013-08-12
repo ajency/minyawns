@@ -566,6 +566,21 @@ function create_post_type() {
 
 add_action('init', 'create_post_type');
 
+
+function register_jobs_taxonomy() {
+   register_taxonomy(
+		'job_tags',
+		'jobs',
+		array(
+			'label' => __( 'jobs_taxo' ),
+			'rewrite' => array( 'slug' => 'jobs_taxo' ),
+			'hierarchical' => true,
+		)
+	);
+}
+
+add_action('init', 'register_jobs_taxonomy');
+
 /**
  * Function to redirect after login depending on the user role
  * redirect to:

@@ -16,41 +16,33 @@ $app->post('/addjob', function() use ($app) {
                 'post_author' => "1", //The user ID number of the author.
                 'post_date' => date("Y-m-d H:i:s"), //The time post was made.
                 'post_date_gmt' => date("Y-m-d H:i:s"), //The time post was made, in GMT.
+                'post_name' => $json_a['job_task'], // The name (slug) for your post
                 'post_status' => 'publish',
-                'post_title' => $json_a['tasks'],
+                'post_title' => $json_a['job_task'],
                 'post_type' => 'jobs',
-                'post_content' => $json_a['details']
+                'post_content' => $json_a['job_details']
             );
 
             $post_id = wp_insert_post($post);
 
+            
+
             foreach ($json_a as $key => $value) {
 
-                if ($key == "start-date") 
-                   add_post_meta($post_id, $key, strtotime($value));
-                
-                if($key == "start-time")
+                if ($key == 'jobtags') {
+                    $tags = explode(",", $tags);
+                    for ($i = 0; $i < sizeof($tags); $i++) {
+                        wp_insert_term($tags[$i], 'job_tags');
+                    }
+                } elseif ($key == "job_start_date") {
                     add_post_meta($post_id, $key, strtotime($value));
-                
-                
-                if($key == "end-time")
+                } elseif ($key == "job_start_time") {
                     add_post_meta($post_id, $key, strtotime($value));
-                
-                 else 
+                } elseif ($key == "job_end_time") {
+                    add_post_meta($post_id, $key, strtotime($value));
+                } elseif ($key !== 'job_details') {
                     add_post_meta($post_id, $key, $value);
-               
-            }
-
-
-            foreach ($json_a as $key => $value) {
-                
-                if($key == 'jobtags')
-                {
-                   wp_set_post_tags($post_id,$value);
                 }
-                
-                if ($key !== 'details')
-                    add_post_meta($post_id, $key, $value);
             }
 
 
