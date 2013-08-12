@@ -2940,7 +2940,7 @@ textarea[class*="span"] {
 .input-prepend .add-on {
   height: 1.231;
   min-width: 32px;
-  padding: 9px 5px;
+  padding: 7px 5px;
   font-size: 17.99px;
   /* 18px */
 
@@ -2985,7 +2985,7 @@ textarea[class*="span"] {
 }
 .control-group.small .add-on,
 .add-on.small {
-  height: 12px;
+  height: 16px;
   line-height: 10px;
 }
 .control-group.focus .add-on {
