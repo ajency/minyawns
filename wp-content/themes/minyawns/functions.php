@@ -647,9 +647,9 @@ function no_access_page($user_role,$page_slug)
 				<div class="span3"><br><img src="'.site_url().'/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
 				<div class="span9">	<h4 >No Access</h4>
 		<hr>
-		We are sorry. This page is unavailable. If you are already logged in and believe you should have access to this page, send us an email at support@minyawns.com with your username and the link of the page you are trying to access.
+		Sorry, you aren\'t allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we\'ll get back to you as soon as possible. 
 		<br>
-		<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn">Go Home</a>
+		<a href="'.site_url().'" class="btn btn-large btn-block btn-success default-btn">Go Home</a>
 		<div class="clear"></div></div>
 			</div>
 		</div><input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="'.site_url().'/'.$page_slug.'/" />';
@@ -659,7 +659,7 @@ function no_access_page($user_role,$page_slug)
 				<div class="span3"><br><img src="'.site_url().'/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
 				<div class="span9">	<h4 >No Access</h4>
 		<hr>
-		We are sorry. This page is unavailable. Please click below to login .
+		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
 		<br>
 		<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn" onclick="jQuery(\'#btn__login\').click();" >Login</a>
 		<div class="clear"></div></div>
