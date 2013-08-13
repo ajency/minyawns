@@ -110,7 +110,8 @@ $single_job=new Minyawn_Job(get_the_ID());
                         <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
                         <form id="job-form" class="form-horizontal">
 <input type="hidden" value="" id="user_skills"></input>
-                            <div class="control-group small">
+<input type="hidden" value="<?php echo $single_job->get_job_id(); ?>" name="id"></input>
+                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tasks</label>
                                 <div class="controls ">
                                     <input type="text" id="job_task" name="job_task" value="<?php echo get_the_title() ?>" placeholder="" class="span3">
@@ -121,13 +122,13 @@ $single_job=new Minyawn_Job(get_the_ID());
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text" class="span1" name="job_start_date" value="" id="job_start_date">
+                                        <input type="text" class="span1" name="job_start_date" value="<?php echo $single_job->get_job_date(); ?>" id="job_start_date">
                                     </div>
 
                                 </div>
                             </div>
                             <div class="input-append bootstrap-timepicker">
-                                <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" >
+                                <input id="job_start_time" type="text" value="<?php echo $single_job->get_start_time_eform() ?>" class="timepicker-default input-small" name="job_start_time" >
                                 <span class="add-on">
                                     <i class="icon-time"></i>
                                 </span>
@@ -138,13 +139,13 @@ $single_job=new Minyawn_Job(get_the_ID());
                                 <div class="controls">
                                     <div class="input-prepend input-datepicker">
                                         <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text"  name="job_end_date" class="span1" value="" id="job_end_date">
+                                        <input type="text"  name="job_end_date" class="span1" value="<?php echo $single_job->get_job_end_date(); ?>" id="job_end_date">
                                     </div>
                                 </div>
 
                             </div>
                             <div class="input-append bootstrap-timepicker">
-                                <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time">
+                                <input id="job_end_time" type="text" class="timepicker-default input-small" value="<?php echo $single_job->get_start_time_eform() ?>" name="job_end_time">
                                 <span class="add-on">
                                     <i class="icon-time"></i>
                                 </span>
@@ -180,7 +181,7 @@ $single_job=new Minyawn_Job(get_the_ID());
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tags</label>
                                 <div class="controls ">
-                                    <input  name="job_tags" id="job_tags" value="" placeholder="" class="tm-input tagsinput">
+                                    <input  name="job_tags" id="job_tags" value="<?php echo $single_job->get_job_tags(); ?>" placeholder="" class="tm-input tagsinput">
                                </div>
                             </div>
                             <div class="control-group small">
@@ -190,7 +191,7 @@ $single_job=new Minyawn_Job(get_the_ID());
                                 </div>
                             </div>
                             <hr>
-                            <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2" >Submit</a>
+                            <a id="update-job" href="#" class="btn btn-large btn-block btn-inverse span2" >Submit</a>
                             <div class="clear"></div>
                         </form>
                     </div>

@@ -19,24 +19,24 @@ jQuery(document).ready(function($) {
         );
     }
 
-    $('#change-avatar-span').click(function(e){
+    $('#change-avatar-span').click(function(e) {
         e.preventDefault();
         $('#change-avatar').click();
     });
-    
+
     $('#change-avatar').fileupload({
-		url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
-		dataType: 'json', 
-		done: function (e, data) {  
-			console.log(data);
-			$('#change-avatar-span').find('img').attr('src',data.result.image);
-			$('#change-avatar').removeAttr("disabled");
-		},
-		start: function (e, data) {
-		    $('#change-avatar').attr("disabled", "disabled");
-			var progress = parseInt(data.loaded / data.total * 100, 10);
-		}
-	});
+        url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
+        dataType: 'json',
+        done: function(e, data) {
+            console.log(data);
+            $('#change-avatar-span').find('img').attr('src', data.result.image);
+            $('#change-avatar').removeAttr("disabled");
+        },
+        start: function(e, data) {
+            $('#change-avatar').attr("disabled", "disabled");
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+        }
+    });
 
 
 
@@ -280,6 +280,62 @@ jQuery(document).ready(function($) {
 
     });
 
+    var Updatejob = Backbone.Model.extend({
+        url: function() {
+            return SITEURL + '/wp-content/themes/minyawns/libs/job.php/updatejob/' + $("#id").val();
+        },
+        validate: function(attr) {
+
+            var errors = [];
+
+            if (attr.job_start_date !== '' && attr.job_end_Date !== '') {
+                if (Date.parse(attr.job_start_date) > Date.parse(attr.job_end_date))
+                {
+                    errors.push({field: 'job_end_date', msg: 'End date cannot be less than start date.'});
+
+                }
+            }
+            if (attr.job_start_date == '')
+            {
+                errors.push({field: 'job_start_date', msg: 'Please fill the start date field.'});
+            }
+
+            if (attr.job_end_date == '')
+            {
+                errors.push({field: 'job_end_date', msg: 'Please fill the  end date field.'});
+            }
+
+
+            if (!attr.job_wages) {
+                errors.push({field: 'job_wages', msg: 'Please fill wages field.'});
+            }
+            if (!attr.job_required_minyawns)
+                errors.push({field: 'job_required_minyawns', msg: 'Please enter required field'});
+
+            if (!attr.job_location)
+                errors.push({field: 'job_location', msg: 'Please enter location'});
+
+            if (!attr.job_tags)
+                errors.push({field: 'job_tags', msg: 'Please enter tags'});
+
+            if (attr.job_required_minyawns == 0)
+                errors.push({field: 'job_required_minyawns', msg: 'Please select more then one'});
+
+            if (!attr.job_details)
+                errors.push({field: 'job_details', msg: 'Please enter job details'});
+
+
+            if (!attr.job_task)
+                errors.push({field: 'job_task', msg: 'Please enter ' + 'tasks'});
+
+
+            if (errors.length > 0)
+                return errors;
+
+
+        }
+
+    });
 
     $('#add-job').click(function(e) {
 
@@ -317,8 +373,8 @@ jQuery(document).ready(function($) {
                         // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
                         $("#add-job-button").html('<i class="fui-mail"></i> Add Jobs');
-                         $("#add-job-form").find('input:text').val('');
-                       
+                        //$("#add-job-form").find('input:text').val('');
+
                     },
                     errors: function() {
                         $(_this).removeAttr('disabled');
@@ -608,15 +664,17 @@ jQuery(document).ready(function($) {
 
     /*END POPUP SIGNUP */
 
- $('.edit-job-data').live('click', function(e) {
+    $('.edit-job-data').live('click', function(e) {
+
+
 
         e.preventDefault();
         var span1 = $('#single-jobs');
         var span2 = $('#edit-job-form');
         var w = $(span1).width();
 
-        if (!$(this).hasClass('loaded'))
-        {
+//        if ($(this).hasClass('loaded'))
+//        {
             if ($(this).hasClass('view'))
             {
                 $(span1).animate({left: 0}, 500);
@@ -632,9 +690,78 @@ jQuery(document).ready(function($) {
                 $(span2).show().animate({left: 0}, 500);
                 //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
             }
-        }
-        });
-  
+       // }
+    });
 
+
+
+    $('#update-job').click(function(e) {
+
+        e.preventDefault();
+        _this = $(this);
+
+        //remove previuous errors
+        $('#job-form').find('span.form-error').remove();
+
+        //attach it to global window so we can use it later to update the main profile view
+        window.job = new Job();
+        window.job.bind('invalid', function(model, error, options) {
+
+            _.each(error, function(ele, index) {
+
+                $('#' + ele.field).closest('div.controls').append('<br/><span class="form-error">' + ele.msg + '</span>');
+            })
+        });
+        var data = $("#job-form").serializeArray();
+        $(this).attr('disabled', 'disabled');
+
+        var job_data = {};
+        _.each(data, function(ele, index) {
+            job_data[ele.name] = ele.value;
+
+        });
+
+        window.job.save(job_data,
+                {
+                    wait: true,
+                    success: function(model, resp) {
+                        $("#success_msg").show();
+                        $("#ajax-load").hide();
+                        //get model data
+                        // $(_this).removeAttr('disabled');
+                        e.preventDefault();
+                        var span1 = $('#single-jobs');
+                        var span2 = $('#edit-job-form');
+                        var w = $(span1).width();
+
+                        if (!$(this).hasClass('loaded'))
+                        {
+                            if ($(this).hasClass('view'))
+                            {
+                                
+                                $(span1).animate({left: 0}, 500);
+                                $(span2).show().animate({left: w}, 500);
+                                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+                            }
+                            else
+                            {
+                              
+                                $(this).removeClass('loaded');
+                                $('#edit-job-form').find('div.alert').remove();
+                                $(span1).show().animate({left: 0}, 500);
+                                $(span2).css({'left': w, 'top': 0});
+                                $(span2).hide().animate({left: 0}, 500);
+                                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+                            }
+                        }
+                        //$("#add-job-form").find('input:text').val('');
+
+                    },
+                    errors: function() {
+                        $(_this).removeAttr('disabled');
+                        alert('Error!!! Please try again');
+                    }
+                });
+    });
 
 });
