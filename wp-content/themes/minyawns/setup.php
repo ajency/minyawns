@@ -24,10 +24,10 @@ echo "New {$wpdb->prefix}userjobs table  created successfully";
 
 
 $query_pagerestrict=("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}userpermissions
-(id 			INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-role 			varchar(25) NOT NULL,
-noperm_slug 	varchar(60) NOT NULL
-)");
+					(id 			INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+					role 			varchar(25) NOT NULL,
+					noperm_slug 	varchar(60) NOT NULL
+					)");
 
 $wpdb->query($query_pagerestrict);
 

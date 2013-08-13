@@ -628,7 +628,6 @@ add_action('template_redirect','load_single_job');
 
 function check_access()
 {
-   return true;
 	global $wpdb, $post, $current_user;
 	$page_slug = $post->post_name;
 	$user_roles = $current_user->roles;
