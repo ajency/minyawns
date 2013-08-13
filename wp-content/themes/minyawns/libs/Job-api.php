@@ -80,20 +80,26 @@ class Minyawn_Job {
 
 
         $job_meta = get_post_meta($this->ID);
-     
+        
         $this->task = trim($job_meta['job_task'][0]);
-        
+
         $this->job_start_date = trim($job_meta['job_start_date'][0]);
-        
+
+        $this->job_end_date = trim($job_meta['job_end_date'][0]);
+
         $this->job_start_time = trim($job_meta['job_start_time'][0]);
-        
+
         $this->job_end_time = trim($job_meta['job_end_time'][0]);
-        
+
         $this->wages = trim($job_meta['job_wages'][0]);
-        
+
         $this->location = trim($job_meta['job_location'][0]);
+
+        $this->required_minyawns = trim($job_meta['job_required_minyawns'][0]);
         
-        $this->job_minyawns = trim($job_meta['job_required_minyawns'][0]);
+        $job_tags=  wp_get_post_terms($this->ID,'job_tags',array("fields" => "names"));
+        
+        $this->job_tags=($job_tags) >0 ? $job_tags :'';
        
         //get all users applied for the job
         $sql = $wpdb->prepare("SELECT {$wpdb->prefix}users.*, GROUP_CONCAT(CONCAT({$wpdb->prefix}usermeta.meta_key,'|',{$wpdb->prefix}usermeta.meta_value)) AS usermeta 
@@ -170,8 +176,6 @@ class Minyawn_Job {
         return $this->applied_by;
     }
 
-
-
     public function get_job_posted_date() {
         global $minyawn_job;
 
@@ -183,51 +187,58 @@ class Minyawn_Job {
 
         return date('d M Y', $this->job_start_date);
     }
-    
-     public function get_job_required_minyawns() {
+
+    public function get_job_required_minyawns() {
         global $minyawn_job;
 
-        return $this->job_minyawns;
+        return $this->required_minyawns;
     }
 
-     public function get_job_wages() {
+    public function get_job_wages() {
         global $minyawn_job;
 
         return $this->wages;
     }
+
     public function get_job_details() {
         global $minyawn_job;
         return $this->job_details;
     }
-    
+
     public function get_job_start_time() {
         global $minyawn_job;
-        return date('H:i',$this->job_start_time);
+        return date('H:i', $this->job_start_time);
     }
-    
+
     public function get_job_end_time() {
         global $minyawn_job;
 
-        return date('H:i',$this->job_end_time);
+        return date('H:i', $this->job_end_time);
     }
-    
+
+    public function get_job_end_date() {
+        global $minyawn_job;
+        return date('d M Y', $this->job_end_date);
+    }
+
     public function get_job_end_time_ampm() {
         global $minyawn_job;
 
-        return date('a',$this->job_end_time);
+        return date('a', $this->job_end_time);
     }
-    
+
     public function get_job_start_time_ampm() {
         global $minyawn_job;
 
-        return date('a',$this->job_start_time);
+        return date('a', $this->job_start_time);
     }
+
     public function get_job_location() {
         global $minyawn_job;
 
         return $this->location;
     }
-    
+  
     public function get_job_applied_minyawns()
     {
     	return count($this->minyawns);
@@ -245,6 +256,28 @@ class Minyawn_Job {
         if($this->can_apply === 0 && array_key_exists(get_user_id(), $this->minyawns))
             $this->can_apply = 2;
     }
-}
 
+    public function get_job_id() {
+        global $minyawn_job;
+        return $this->ID;
+    }
+
+    public function get_start_time_eform() {
+        global $minyawn_job;
+
+        return date('H:i a ', $this->job_start_time);
+    }
+
+    public function get_end_time_eform() {
+        global $minyawn_job;
+
+        return date('H:i a ', $this->job_end_time);
+    }
+    public function get_job_tags()
+    {
+        
+        return implode(',',$this->job_tags);
+    }
+
+}
 

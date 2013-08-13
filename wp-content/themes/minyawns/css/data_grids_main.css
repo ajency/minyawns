@@ -2208,7 +2208,21 @@ td.awm_service_action .admin_service_action {
 }
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
-	.profile .data_cell {
+.Main-job .awm_service_demand span {
+	font-size: 19px;
+	float: left;
+}
+
+.arrow-down {
+	margin-left: 1px !important;	
+}
+.awm_service_supply span {
+	font-size:19px !important;
+}
+#appendedInputButton-04 {
+width: 151px;
+}
+.profile .data_cell {
     height:50px;
 }
 .profile .profile-logo {
@@ -2260,6 +2274,37 @@ table.qlabs_grid_container {
 	.profile .data_cell {
     height:50px;
 }
+.Main-job .awm_exchange_services_action {
+	display: none;
+	width: 13.1%;
+}
+table.qlabs_grid_container tbody.data_container tr.data_even td.data_cell div {
+	font-size: 10px !important;
+}
+.available{
+	border-right: 3px solid #83D804;
+}
+.no-available{
+	border-right: 3px solid #D80404;
+}
+#appendedInputButton-04 {
+width: 110px;
+}
+.Main-job .awm_service_arrow {
+width: 5%;
+}
+.Main-job td.awm_service_action {
+	display: none;
+}
+
+.awm_service_supply span {
+	font-size:17px !important;
+}
+.Main-job .awm_service_demand span {
+	font-size: 16px;
+	float: left;
+}
+
 
 .profile .profile-time {
     width:28% !important;

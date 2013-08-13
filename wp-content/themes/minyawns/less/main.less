@@ -49,7 +49,7 @@ a:hover{text-decoration:none !important;}
 	border:1px solid #ccc;
 	padding: 5px;
 }
-.page{
+.page, .error404{
 	background:url(../images/pattern-bg.png)repeat;
 }
 .top-menu{
@@ -516,27 +516,63 @@ background: #F8F8F8!important;
 					
 				}
 				.span4{
+					.div-box{
+							position: absolute;
+							top: 24%;
+							bottom: 0;
+							margin: auto;
+							height: 0px;
+							width:33%;
 						.btn-success{
 						width: 70%;
-						margin-top: 87px;
+						
 						background: @green;
 						margin-left: 42px;
 						}
 						.btn-rate{
 						width: 70%;
-						margin-top: 37px;
-						
 						margin-left: 42px;
 						}
 						.btn-apply{
 						width: 70%;
-						margin-top: 56px;
+						
 						margin-left: 42px;
 						}
 						.btn-unapply{
 						width: 70%;
 						margin-left: 42px;
 						}
+						
+						}
+					.div-box2{
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							margin: auto;
+							height: 31px;
+							width: 33%;
+						.btn-success{
+						width: 70%;
+						
+						background: @green;
+						margin-left: 42px;
+						}
+						.btn-rate{
+						width: 70%;
+					margin-left: 42px;
+						}
+						.btn-apply{
+						width: 70%;
+						margin-left: 42px;
+						}
+						.btn-unapply{
+						width: 70%;
+						margin-left: 42px;
+						}
+						
+						}
+						
+						
 						.like_btn{
 							position: absolute;
 							top: 0;
@@ -1430,8 +1466,31 @@ background-position: 60px 480px;
 			}
 		}
 	}
-
 	}
+	
+.list-jobs {
+	.jobs-details .job-duration .row-fluid span {
+			font-size: 20px;
+	}
+	
+	.minyawansgrid{
+						
+						.span6{
+							margin-left: 8px;
+							border-bottom: 1px dotted#CCC;
+							margin-bottom: 5px;
+							width:46% !important;
+							img{
+								width: 11%;
+								padding: 5px;
+							}
+							b{
+								width: auto !important;
+								display: inline-block;
+							}
+						}
+				}
+		}
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
 .home{
@@ -1623,6 +1682,14 @@ background-position: 60px 480px;
 					
 				}
 				.span4{
+				.div-box{
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							margin: auto;
+							height: 0px;
+							width:70%;
+				
 						.btn-success{
 						width: 70%;
 						margin-top: 87px;
@@ -1643,6 +1710,7 @@ background-position: 60px 480px;
 						.btn-unapply{
 						width: 70%;
 						margin-left: 42px;
+						}
 						}
 						.like_btn{
 							position: absolute;
@@ -1742,4 +1810,13 @@ background-position: 60px 480px;
 			margin-top: 120px;
 			}
 		}
+}
+
+.page-error{
+	width:90%;
+	margin:auto;
+	border: 10px solid rgba(204, 204, 204, 0.57);
+	.green-btn{
+		
+	}
 }
