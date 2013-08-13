@@ -1,7 +1,8 @@
 <?php
 get_header();
 
-
+global $minyawn_job;
+var_dump($minyawn_job);
 ?>
 <div class="container">
 	<div class="tab-content">
