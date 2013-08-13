@@ -58,7 +58,8 @@ if($pd_action=="ver")
 					<div class='alert alert-info ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
 							<h4 style='text-align:center'>Your account is successfully verified.</h4>
 							<hr>
-							<img src='".get_template_directory_uri()."/images/big-minyawns.png'/ style='margin:auto;display:block;'>
+							<img src='".get_template_directory_uri()."/images/big-minyawns.png'/ style='margin:auto;display:block;'><br>
+							<b style='text-align:center;' >your email is successfully verified please <a href='#mylogin' data-toggle='modal' id='btn__login'>login</a> here </b>
 							</div>
 					</div>
 				</div>

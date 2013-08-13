@@ -52,6 +52,22 @@ a:hover {
 .top-menu .bottom-menu-inverse {
   background-color: rgba(0, 0, 0, 0.33);
 }
+.signup .alert-success {
+  background-color: #AFE54E;
+  border-color: #76DA33;
+  color: #3F3F3F;
+}
+.signup .alert-success .close {
+  color: #776E6E !important;
+}
+.signup .alert-error {
+  background-color: #F88484;
+  border-color: #FA6262;
+  color: #000;
+}
+.signup .alert-error .close {
+  color: #000 !important;
+}
 .btn-apply {
   width: 64%;
   margin-top: -87px;
@@ -156,6 +172,13 @@ a:hover {
   margin: auto;
   display: block;
   -webkit-filter: grayscale(100%);
+  filter: url(css/grayscale.svg#greyscale);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: gray;
+  /* IE5+ */
+
   opacity: 0.5;
 }
 .ins_table .time-box {
@@ -1018,6 +1041,7 @@ a:hover {
 }
 .upper-link #btn__login {
   float: right;
+  padding: 5px 15px;
 }
 .tab_content_login {
   clear: both;
@@ -1469,4 +1493,12 @@ a:hover {
 }
 .myjobs .default-btn {
   margin: 10px auto;
+}
+/* safari hack*/
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  #innermainimage .banner-content {
+    position: absolute;
+    z-index: 999;
+    margin-top: 120px;
+  }
 }

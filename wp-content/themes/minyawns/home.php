@@ -93,10 +93,10 @@ get_header();
 		            <input type="password" value="" name="signup_password"  id="signup_password"  placeholder="Password" class="span3">
 		        </div>
 				  <div class="control-group span6 " style=" margin-left: 0px; ">
-		            <input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="First Name" class="span3">
+		            <input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="Name" class="span3">
 		          </div>
 				<div class="control-group span6 ">
-		            <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Last Name" class="span3">
+		            <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Company Name" class="span3">
 		          </div>
 				  <div class="clear"></div>
 				  <a href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup" >Sign Up</a>
@@ -108,14 +108,14 @@ get_header();
 		<div class="span6">
 			<h6 class="align-center" style=" margin-bottom: 0px; ">
 		Sign Up Using Facebook</h6>
-<p class="align-center">Get using minyawns, faster !</p><br><br>
+<p class="align-center">Get using minyawns, faster !</p><br><br><br>
 
 
 		<?php 	
 		
 		jfb_output_facebook_btn(); ?>
 		<br><br>
-		<p class="align-center">Already a Minyawn?<a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
+		<p class="align-center">Already registered to Minyawn?<a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
 		</div>
 		
 	</div>
