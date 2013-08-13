@@ -614,8 +614,8 @@ jQuery(document).ready(function($) {
  $('.edit-job-data').live('click', function(e) {
 
         e.preventDefault();
-        var span1 = $('#profile-view');
-        var span2 = $('#profile-edit');
+        var span1 = $('#single-jobs');
+        var span2 = $('#edit-job-form');
         var w = $(span1).width();
 
         if (!$(this).hasClass('loaded'))
@@ -624,19 +624,20 @@ jQuery(document).ready(function($) {
             {
                 $(span1).animate({left: 0}, 500);
                 $(span2).show().animate({left: w}, 500);
-                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
             }
             else
             {
                 $(this).removeClass('loaded');
-                $('#profile-edit').find('div.alert').remove();
+                $('#edit-job-form').find('div.alert').remove();
                 $(span1).animate({left: -1 * w}, 500);
                 $(span2).css({'left': w, 'top': 0});
                 $(span2).show().animate({left: 0}, 500);
-                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
             }
         }
-    });
+        });
+  
 
 
 });
