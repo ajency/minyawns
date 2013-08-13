@@ -1231,6 +1231,23 @@ a:hover {
   .home #innermainimage .banner-content .btn-huge {
     font-size: 12px;
   }
+  .list-jobs .jobs-details .job-duration .row-fluid span {
+    font-size: 20px;
+  }
+  .list-jobs .minyawansgrid .span6 {
+    margin-left: 8px;
+    border-bottom: 1px dotted#CCC;
+    margin-bottom: 5px;
+    width: 46% !important;
+  }
+  .list-jobs .minyawansgrid .span6 img {
+    width: 11%;
+    padding: 5px;
+  }
+  .list-jobs .minyawansgrid .span6 b {
+    width: auto !important;
+    display: inline-block;
+  }
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: portrait) {
   .home {
@@ -1507,7 +1524,4 @@ a:hover {
   width: 90%;
   margin: auto;
   border: 10px solid rgba(204, 204, 204, 0.57);
-}
-.page-error .green-btn {
-  margin: auto;
 }
