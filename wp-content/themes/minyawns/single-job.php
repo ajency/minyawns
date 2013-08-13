@@ -2,6 +2,7 @@
 get_header();
 
 global $minyawn_job;
+
 $single_job=new Minyawn_Job(get_the_ID());
 
 ?>

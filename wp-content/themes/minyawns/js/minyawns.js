@@ -18,21 +18,18 @@ jQuery(document).ready(function($) {
                 }
         );
     }
+
+    $('#change-avatar-span').click(function(e){
+        e.preventDefault();
+        $('#change-avatar').click();
+    });
     
     $('#change-avatar').fileupload({
 		url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
 		dataType: 'json', 
 		done: function (e, data) {  
 			console.log(data);
-			var progress = parseInt(data.loaded / data.total * 100, 10);
-			$('#progress .bar').css(
-					'width',
-					progress + '%'
-			);
-
-			$('#progress').fadeOut('slow', function() {
-				// Animation complete.
-			});
+			$('#change-avatar-span').find('img').attr('src',data.result.image);
 			$('#change-avatar').removeAttr("disabled");
 		},
 		start: function (e, data) {

@@ -58,9 +58,11 @@ $app->post('/change-avatar', function() use($app) {
 			$attach_id 		= upload_attachment($file,$user_ID);
 			$attachment_id	= $attach_id;
 			$attachment_url = wp_get_attachment_thumb_url($attach_id);
-
-		}
+		}	
 	}
+
+	$app->response()->header("Content-Type", "application/json");
+    echo json_encode(array('success' => 1 , 'image' => $attachment_url));
 });
 
 $app->run();

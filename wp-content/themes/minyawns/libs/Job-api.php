@@ -33,14 +33,14 @@ class Minyawn_Job {
     //current job status
     public $job_status;
     public $include_meta = array('job_date',
-        'job_task',
-        'job_start_date',
-        'job_end_date',
-        'job_start_time',
-        'job_end_time',
-        'job_required_minyawns',
-        'job_wages',
-        'job_location');
+                                'job_task',
+                                'job_start_date',
+                                'job_end_date',
+                                'job_start_time',
+                                'job_end_time',
+                                'job_required_minyawns',
+                                'job_wages',
+                                'job_location');
 
     //constructor
     public function __construct($ID) {
@@ -88,17 +88,7 @@ class Minyawn_Job {
         
         $this->job_minyawns = trim($job_meta['job_required_minyawns'][0]);
         //convert the meta string to php array
-        $meta = explode(',', $job->meta);
-        if (is_array($meta)) {
-            foreach ($meta as $key => $value) {
-                $mt = explode('|', $value);
-                if (is_array($mt)) {
-
-                    if (in_array($mt[0], $this->include_meta))
-                        $this->key[$mt[0]] = $mt[1];
-                }
-            }
-        }
+       
     }
 
     public function is_active() {
@@ -125,11 +115,7 @@ class Minyawn_Job {
         return $this->applied_by;
     }
 
-    public function get_job_details() {
-        global $minyawn_job;
 
-        return $this->job_details;
-    }
 
     public function get_job_posted_date() {
         global $minyawn_job;
@@ -154,10 +140,13 @@ class Minyawn_Job {
 
         return $this->wages;
     }
+    public function get_job_details() {
+        global $minyawn_job;
+        return $this->job_details;
+    }
     
     public function get_job_start_time() {
         global $minyawn_job;
-
         return date('H:i',$this->job_start_time);
     }
     
@@ -184,3 +173,5 @@ class Minyawn_Job {
         return $this->location;
     }
 }
+
+
