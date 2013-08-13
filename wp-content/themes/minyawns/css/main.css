@@ -42,7 +42,8 @@ a:hover {
   border: 1px solid #ccc;
   padding: 5px;
 }
-.page {
+.page,
+.error404 {
   background: url(../images/pattern-bg.png) repeat;
 }
 .top-menu {
@@ -1501,4 +1502,12 @@ a:hover {
     z-index: 999;
     margin-top: 120px;
   }
+}
+.page-error {
+  width: 90%;
+  margin: auto;
+  border: 10px solid rgba(204, 204, 204, 0.57);
+}
+.page-error .green-btn {
+  margin: auto;
 }
