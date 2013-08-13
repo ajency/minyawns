@@ -589,6 +589,32 @@ jQuery(document).ready(function($) {
 
     /*END POPUP SIGNUP */
 
+ $('.edit-job-data').live('click', function(e) {
+
+        e.preventDefault();
+        var span1 = $('#profile-view');
+        var span2 = $('#profile-edit');
+        var w = $(span1).width();
+
+        if (!$(this).hasClass('loaded'))
+        {
+            if ($(this).hasClass('view'))
+            {
+                $(span1).animate({left: 0}, 500);
+                $(span2).show().animate({left: w}, 500);
+                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+            }
+            else
+            {
+                $(this).removeClass('loaded');
+                $('#profile-edit').find('div.alert').remove();
+                $(span1).animate({left: -1 * w}, 500);
+                $(span2).css({'left': w, 'top': 0});
+                $(span2).show().animate({left: 0}, 500);
+                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+            }
+        }
+    });
 
 
 });
