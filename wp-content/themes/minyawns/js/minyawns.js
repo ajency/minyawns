@@ -749,9 +749,9 @@ jQuery(document).ready(function($) {
 
 
  /** Apply/UnApply code */
- $('#apply-job,#unapply-job').click(function(evt){
+ $('#apply-job,#unapply-job').live('click',function(evt){
      evt.preventDefault();
-     
+     var _this = $(this);
      var _action = $(this).attr('data-action');
      var _job_id = $(this).attr('data-job-id');
      
@@ -763,8 +763,16 @@ jQuery(document).ready(function($) {
             function(response){
                 if(response.success == 1)
                 {
-                    alert('successfully done');
-                }
+                    if(response.new_action == 'apply')
+                    {
+                       $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id','apply-job').text('Apply'); 
+                    }
+                    if(response.new_action == 'unapply')
+                    {
+                       $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id','unapply-job').text('Unapply'); 
+                    }
+                    
+                }  
                     
             },'json');
  });

@@ -400,7 +400,7 @@ function  minyawn_job_apply()
                   ),
                 array('%d','%d','%s','%d'));
     
-    echo json_encode (array('success' => 1));
+    echo json_encode (array('success' => 1,'new_action' => 'unapply'));
     
     die;     
 }
@@ -422,7 +422,7 @@ function  minyawn_job_unapply()
                       'job_id'  => $job_id
                   ));
     
-    echo json_encode (array('success' => 1));
+    echo json_encode (array('success' => 1,'new_action' => 'apply'));
     
     die;    
 }
