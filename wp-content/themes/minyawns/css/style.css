@@ -227,6 +227,7 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 	background:#fff;
 	border-top: 2px solid #8ED030;
 	min-height: 400px;
+	overflow-x:hidden;
 }
 .jobs_menu.nav-append-content > li.active:first-child:before {
 background-color: #FFF;
@@ -359,15 +360,16 @@ div.profile-wrapper{
 }
 
 div.profile-wrapper #profile-view,#single-jobs{
-	position: absolute;
+	position: relative;
 	z-index: 100;
 }
 
 div.profile-wrapper #profile-edit,#edit-job-form{
-	position: relative;
+	position: absolute;
 	z-index: 10;
 	display: none;
 	margin-left: 0;
+        top:50px;
 }
 
 .row-fluid input[type="text"]{

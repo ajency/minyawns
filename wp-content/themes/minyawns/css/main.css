@@ -454,23 +454,53 @@ a:hover {
 .list-jobs .expand .left-border {
   border-left: 1px solid #ccc;
 }
-.list-jobs .expand .span4 .btn-success {
+.list-jobs .expand .span4 .div-box {
+  position: absolute;
+  top: 24%;
+  bottom: 0;
+  margin: auto;
+  height: 0px;
+  width: 33%;
+}
+.list-jobs .expand .span4 .div-box .btn-success {
   width: 70%;
-  margin-top: 87px;
   background: #8ed030;
   margin-left: 42px;
 }
-.list-jobs .expand .span4 .btn-rate {
+.list-jobs .expand .span4 .div-box .btn-rate {
   width: 70%;
-  margin-top: 37px;
   margin-left: 42px;
 }
-.list-jobs .expand .span4 .btn-apply {
+.list-jobs .expand .span4 .div-box .btn-apply {
   width: 70%;
-  margin-top: 56px;
   margin-left: 42px;
 }
-.list-jobs .expand .span4 .btn-unapply {
+.list-jobs .expand .span4 .div-box .btn-unapply {
+  width: 70%;
+  margin-left: 42px;
+}
+.list-jobs .expand .span4 .div-box2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 31px;
+  width: 33%;
+}
+.list-jobs .expand .span4 .div-box2 .btn-success {
+  width: 70%;
+  background: #8ed030;
+  margin-left: 42px;
+}
+.list-jobs .expand .span4 .div-box2 .btn-rate {
+  width: 70%;
+  margin-left: 42px;
+}
+.list-jobs .expand .span4 .div-box2 .btn-apply {
+  width: 70%;
+  margin-left: 42px;
+}
+.list-jobs .expand .span4 .div-box2 .btn-unapply {
   width: 70%;
   margin-left: 42px;
 }
@@ -1420,23 +1450,31 @@ a:hover {
   .list-jobs .expand .left-border {
     border-left: 1px solid #ccc;
   }
-  .list-jobs .expand .span4 .btn-success {
+  .list-jobs .expand .span4 .div-box {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 0px;
+    width: 70%;
+  }
+  .list-jobs .expand .span4 .div-box .btn-success {
     width: 70%;
     margin-top: 87px;
     background: #8ed030;
     margin-left: 42px;
   }
-  .list-jobs .expand .span4 .btn-rate {
+  .list-jobs .expand .span4 .div-box .btn-rate {
     width: 70%;
     margin-top: 37px;
     margin-left: 42px;
   }
-  .list-jobs .expand .span4 .btn-apply {
+  .list-jobs .expand .span4 .div-box .btn-apply {
     width: 70%;
     margin-top: 56px;
     margin-left: 42px;
   }
-  .list-jobs .expand .span4 .btn-unapply {
+  .list-jobs .expand .span4 .div-box .btn-unapply {
     width: 70%;
     margin-left: 42px;
   }
