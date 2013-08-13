@@ -53,6 +53,10 @@ function setup_user_profile_data()
 
 	//set profile facebook_avatar_thumb image
 	$current_user->data->facebook_avatar_thumb	= isset($user_meta['facebook_avatar_thumb']) ? trim($user_meta['facebook_avatar_thumb'][0]) : '';
+	
+	//check if user has avatar uploaded
+	$current_user->data->avatar					= isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
+	
 }
 add_action('wp_loaded','setup_user_profile_data');
 
@@ -84,6 +88,21 @@ function get_user_fb_avatar($type = 'thumb')
 		return 'https://graph.facebook.com/' . $current_user->data->facebook_uid . '/picture?width=200&height=200';
 	else
 		return 'https://graph.facebook.com/' . $current_user->data->facebook_uid . '/picture?type=square';
+}
+
+
+function get_mn_user_avatar()
+{
+	global $current_user;
+	if($current_user->data->avatar !== false)
+	{
+		return wp_get_attachment_thumb_url($current_user->data->avatar);
+	}
+	
+	if(is_user_fb_registered())
+		return get_user_fb_avatar('large');
+	
+	return false;
 }
 
 //user profile name

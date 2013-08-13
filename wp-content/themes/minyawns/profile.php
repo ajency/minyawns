@@ -21,14 +21,15 @@ get_header();  ?>
 				<div class="row-fluid min_profile">
 
 					<div class="span2">
-						<a href="#" class="change-avtar">
-							<?php 	if(!is_user_fb_registered())
-										echo get_avatar( get_user_profile_email(), 168 ); 
+						<a href="#" id="change-avatar-span" class="change-avtar">
+							<?php 	if(get_mn_user_avatar() !== false)
+										echo '<img src="' . get_mn_user_avatar() .'" width="168" height="168" />';
 									else
-										echo '<img src="' . get_user_fb_avatar('large') .'" width="168" height="168" />';
+										echo get_avatar( get_user_profile_email(), 168 )
 							?>
-							<span >Change Avatar<input id="change-avatar" type="file" name="files"></span>
+							<span >Change Avatar</span>
 						</a>
+						<input id="change-avatar" type="file" name="files" style="visibility:hidden">
 					</div>
 					<div class="span8">
                                             <h4 class="name"> <?php user_profile_first_name()." ".user_profile_last_name()   ?>  <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a></h4> 

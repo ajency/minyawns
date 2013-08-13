@@ -78,7 +78,7 @@ class Minyawn_Job {
                 $mt = explode('|', $value);
                 if(is_array($mt)){
                 if (in_array($mt[0], $this->include_meta))
-                    $this[$mt[0]] = $mt[1];
+                    $this->key[] = $mt[1];
                 }
                 
                 }
@@ -108,7 +108,7 @@ class Minyawn_Job {
     public function get_applied_by() {
         return $this->applied_by;
     }
-
+}
 
 
 
@@ -129,5 +129,4 @@ function get_job_date() {
     global $minyawn_job;
 
     return date('d M Y', strtotime($minyawn_job->posted_date));
-}
 }
