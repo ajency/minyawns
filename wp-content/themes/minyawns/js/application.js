@@ -30,7 +30,9 @@ e.preventDefault();
         // Tooltips
         $("[data-toggle=tooltip]").tooltip("show");
         // Tags Input
-        $(".tagsinput").tagsInput();
+        $(".tagsinput").tagsInput({
+            onAddTag:onAddTag
+        });
         // jQuery UI Sliders
         var $slider = $("#slider");
         if ($slider.length > 0) {
@@ -179,6 +181,35 @@ minuteStep: 1,
         showMeridian: false
 });
 });
+
+function onAddTag(tag) {/*adds tags from the hidden field*/
+     
+    var $keywords = $("#job_tags").siblings(".tagsinput").children(".tag");
+    var tags = [];
+    for (var i = $keywords.length; i--; ) {
+        tags.push($($keywords[i]).text().substring(0, $($keywords[i]).text().length - 1).trim());
+    }
+
+    /*Then if you only want the unique tags entered:*/
+    var uniqueTags = $.unique(tags);
+
+    $("#user_skills").val(uniqueTags);
+}
+function onRemoveTag(tag) { /*removes tags from the hidden field*/
+    var $keywords = $("#job_tags").siblings(".tagsinput").children(".tag");
+    var tags = [];
+    for (var i = $keywords.length; i--; ) {
+        tags.push($($keywords[i]).text().substring(0, $($keywords[i]).text().length - 1).trim());
+    }
+
+    /*Then if you only want the unique tags entered:*/
+    var uniqueTags = $.unique(tags);
+
+    $("#user_skills").val(uniqueTags);
+}
+
         })(jQuery);
 // jQuery UI Datepicker
+  
+  
    
