@@ -47,7 +47,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="span2 brand">
-						<a href="#"><img
+						<a href="<?php echo site_url(); ?>"><img
 							src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
 							alt="" /> </a>
 					</div>

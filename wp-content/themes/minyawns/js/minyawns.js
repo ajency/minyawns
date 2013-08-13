@@ -18,6 +18,28 @@ jQuery(document).ready(function($) {
                 }
         );
     }
+    
+    $('#change-avatar').fileupload({
+		url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
+		dataType: 'json', 
+		done: function (e, data) {  
+			console.log(data);
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			$('#progress .bar').css(
+					'width',
+					progress + '%'
+			);
+
+			$('#progress').fadeOut('slow', function() {
+				// Animation complete.
+			});
+			$('#change-avatar').removeAttr("disabled");
+		},
+		start: function (e, data) {
+		    $('#change-avatar').attr("disabled", "disabled");
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+		}
+	});
 
 
 
