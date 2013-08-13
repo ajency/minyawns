@@ -96,7 +96,7 @@ function get_user_profile_name()
 {	
 	global $current_user;
 
-	return $current_user->data->first_name . ' ' . $current_user->data->last_name;
+	return $current_user->data->first_name . ' ' . ($current_user->data->last_name) ?  $current_user->data->last_name : '';
 }
 
 //User profile first name
@@ -122,7 +122,7 @@ function get_user_profile_last_name()
 {	
 	global $current_user;
 
-	return $current_user->data->last_name;
+	return ($current_user->data->last_name) > 0 ?  $current_user->data->last_name : '';
 }
 
 //User profile body

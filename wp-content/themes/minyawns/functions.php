@@ -67,16 +67,12 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
-
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery'), null);
-
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
             wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() . '/js/bootstrap-timepicker.js', array('jquery', 'bootstrap-min'), null);
-
-           
-
+            wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('flatui-checkbox', get_template_directory_uri() . '/js/flatui-checkbox.js', array('jquery'), null);
             wp_enqueue_script('flatui-radio', get_template_directory_uri() . '/js/flatui-radio.js', array('jquery'), null);
             wp_enqueue_script('jquery.tagsinput', get_template_directory_uri() . '/js/jquery.tagsinput.js', array('jquery'), null);
@@ -84,10 +80,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
- wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
-            wp_enqueue_script('jquery_validate' 		, get_template_directory_uri() .'/js/jquery.validate.min.js', array('jquery'), null);
-             wp_enqueue_script('awm-custom' 		, get_template_directory_uri() .'/js/awm-custom.js', array('jquery'), null);
-           
+            wp_localize_script( 'jquery-ui', 'SITEURL', site_url());
             break;
     }
 
@@ -190,7 +183,8 @@ function popup_usersignup() {
               <br/>Minyawns Team<br/> ";
              */
             add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-            wp_mail($userdata_['user_email'], $subject, email_header() . $message . email_signature());
+            $headers = 'From: Minyawns <support@minyawns.ajency.in>' . "\r\n";
+            wp_mail($userdata_['user_email'], $subject, email_header() . $message . email_signature(),$headers);
 
             $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
             wp_send_json($response);
@@ -451,8 +445,9 @@ function retrieve_password_ajx() {
     $message = apply_filters('retrieve_password_message', $message, $key);
 
     add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-
-    if ($message && !wp_mail($user_email, $title, email_header() . $message . email_signature())) {
+    $headers = 'From: Minyawns <support@minyawns.ajency.in>' . "\r\n";
+    
+    if ($message && !wp_mail($user_email, $title, email_header() . $message . email_signature(),$headers)) {
         $msg = '<div class="alert alert-success alert-box ">  <button type="button" class="close" data-dismiss="alert">&times;</button>The e-mail could not be sent.' . "<br />\n" . 'Possible reason: your host may have disabled the mail() function.</div>';
         $success_val = false;
     } else {
@@ -560,18 +555,28 @@ if (!function_exists('fb_addgravatar')) {
 }
 
 function create_post_type() {
-    register_post_type('jobs', array(
+    register_post_type('job', array(
         'labels' => array(
-            'name' => __('Jobs'),
-            'singular_name' => __('Jobs')
+            'name' => __('Job'),
+            'singular_name' => __('Job')
         ),
         'public' => true,
         'has_archive' => true,
-            )
+        )
     );
 }
 
 add_action('init', 'create_post_type');
+
+
+function register_jobs_taxonomy() {
+   register_taxonomy(
+		'job_tags',
+		'jobs'
+	);
+}
+
+add_action('init', 'register_jobs_taxonomy');
 
 /**
  * Function to redirect after login depending on the user role
@@ -598,5 +603,70 @@ function mn_login_redirect($redirect_to, $user_login, $user) {
 
 add_filter('login_redirect', 'mn_login_redirect', 10, 3);
 
+//setup the global $minyawnjob var for the single job page
+function load_single_job()
+{
+    if(!is_singular('jobs'))
+        return;
+
+    global $minyawn_job;    
+    $minyawn_job = new Minyawn_Job(get_the_ID()); 
+}
+add_action('template_redirect','load_single_job');
 
 
+
+
+
+function check_access()
+{
+    return true;
+	global $wpdb, $post, $current_user;
+
+	 
+	$page_slug = $post->post_name;
+
+	$user_roles = $current_user->roles;
+	$user_role = array_shift($user_roles);
+
+	if(empty($user_role))
+		$user_role = "Not logged in";
+	$queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  wp_userpermissioins where role = %s and  noperm_slug = %s ",$user_role,$page_slug  ),OBJECT);
+	foreach($queryresult as $res)
+		if($res->cnt_perm>0)
+		{
+			no_access_page($user_role,$page_slug);
+		}
+		else
+			return true;
+}
+
+function no_access_page($user_role,$page_slug)
+{
+	if($user_role!="Not logged in")
+		echo '<div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
+			<div class="row-fluid">
+				<div class="span3"><br><img src="'.site_url().'/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
+				<div class="span9">	<h4 >No Access</h4>
+		<hr>
+		We are sorry. This page is unavailable. If you are already logged in and believe you should have access to this page, send us an email at support@minyawns.com with your username and the link of the page you are trying to access.
+		<br>
+		<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn">Go Home</a>
+		<div class="clear"></div></div>
+			</div>
+		</div><input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="'.site_url().'/'.$page_slug.'/" />';
+	else
+		echo '<div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
+			<div class="row-fluid">
+				<div class="span3"><br><img src="'.site_url().'/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
+				<div class="span9">	<h4 >No Access</h4>
+		<hr>
+		We are sorry. This page is unavailable. Please click below to login .
+		<br>
+		<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn" onclick="jQuery(\'#btn__login\').click();" >Login</a>
+		<div class="clear"></div></div>
+			</div>
+		</div> <input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="'.site_url().'/'.$page_slug.'/" />';
+	return false ;
+}
+ 
