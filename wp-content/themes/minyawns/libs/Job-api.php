@@ -33,14 +33,14 @@ class Minyawn_Job {
     //current job status
     public $job_status;
     public $include_meta = array('job_date',
-        'job_task',
-        'job_start_date',
-        'job_end_date',
-        'job_start_time',
-        'job_end_time',
-        'job_required_minyawns',
-        'job_wages',
-        'job_location');
+                                'job_task',
+                                'job_start_date',
+                                'job_end_date',
+                                'job_start_time',
+                                'job_end_time',
+                                'job_required_minyawns',
+                                'job_wages',
+                                'job_location');
 
     //constructor
     public function __construct($ID) {
@@ -77,11 +77,10 @@ class Minyawn_Job {
             foreach ($meta as $key => $value) {
                 $mt = explode('|', $value);
                 if(is_array($mt)){
-                if (in_array($mt[0], $this->include_meta))
-                    $this[$mt[0]] = $mt[1];
-                }
-                
-                }
+                    if (in_array($mt[0], $this->include_meta))
+                        $this->key[$mt[0]] = $mt[1];
+                }    
+            }
         }
     }
 
@@ -108,7 +107,7 @@ class Minyawn_Job {
     public function get_applied_by() {
         return $this->applied_by;
     }
-
+}
 
 
 
@@ -129,5 +128,4 @@ function get_job_date() {
     global $minyawn_job;
 
     return date('d M Y', strtotime($minyawn_job->posted_date));
-}
 }

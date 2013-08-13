@@ -27,6 +27,10 @@ require_once 'libs/Job-api.php';
 //remove admin bar from front end
 show_admin_bar(false);
 
+
+//add image for profile
+add_image_size('profile' , 168, 168, false);
+
 /**
  * Child theme Path
  * @param unknown $template_dir_uri
@@ -67,7 +71,11 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
-            wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery'), null);
+
+            //if(is_page('profile'))
+            wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
+
+            wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery','jquery-ui'), null);
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
             wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
@@ -606,7 +614,7 @@ add_filter('login_redirect', 'mn_login_redirect', 10, 3);
 //setup the global $minyawnjob var for the single job page
 function load_single_job()
 {
-    if(!is_singular('jobs'))
+    if(!is_singular('job'))
         return;
 
     global $minyawn_job;    
@@ -620,7 +628,7 @@ add_action('template_redirect','load_single_job');
 
 function check_access()
 {
-   
+   return true;
 	global $wpdb, $post, $current_user;
 	$page_slug = $post->post_name;
 	$user_roles = $current_user->roles;
@@ -668,3 +676,4 @@ function no_access_page($user_role,$page_slug)
 	return false ;
 }
  
+

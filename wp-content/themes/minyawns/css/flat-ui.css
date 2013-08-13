@@ -3010,7 +3010,7 @@ textarea[class*="span"] {
 }
 .input-prepend .add-on,
 .input-prepend .btn {
-  margin-right: -2px;
+  margin-right: -3px;
 }
 .input-prepend .add-on:first-child,
 .input-prepend .btn:first-child {
@@ -3035,7 +3035,7 @@ textarea[class*="span"] {
 .input-append .add-on,
 .input-append .btn,
 .input-append .btn-group {
-  margin-left: -2px;
+  margin-left: -4px;
 }
 .input-append .btn:first-child {
   border-top-left-radius: 0;
