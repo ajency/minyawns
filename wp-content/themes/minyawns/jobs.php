@@ -662,10 +662,10 @@ get_header();
                     <?php //}  ?>
 
                     <div id="add-job-form" style="display:none;">
-                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>
+<!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
                         <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
                         <form id="job-form" class="form-horizontal">
-
+<input type="hidden" value="" id="user_skills"></input>
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Tasks</label>
                                 <div class="controls ">

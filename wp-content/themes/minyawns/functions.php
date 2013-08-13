@@ -572,7 +572,7 @@ add_action('init', 'create_post_type');
 function register_jobs_taxonomy() {
    register_taxonomy(
 		'job_tags',
-		'jobs'
+		'job'
 	);
 }
 

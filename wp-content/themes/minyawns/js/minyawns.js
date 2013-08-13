@@ -6,6 +6,8 @@ jQuery(document).ready(function($) {
     /********************************** PROFILE JS CODE *************************************/
 
 
+
+
     if (jQuery('#user-popdown').length > 0)
     {
         jQuery('#user-popdown').popover(
@@ -82,7 +84,7 @@ jQuery(document).ready(function($) {
 
             });
 
-            
+
             if (errors.length > 0)
                 return errors;
         },
@@ -136,9 +138,9 @@ jQuery(document).ready(function($) {
 
                 //remove success
                 _.pluck(data, 'success');
-                if(data.last_name === undefined)
+                if (data.last_name === undefined)
                 {
-                    data.last_name='';
+                    data.last_name = '';
                 }
                 $('#profile-view').find('.name').html(data.first_name + ' ' + data.last_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
 
@@ -293,8 +295,11 @@ jQuery(document).ready(function($) {
                         $("#success_msg").show();
                         $("#ajax-load").hide();
                         //get model data
-                        $(_this).removeAttr('disabled');
+                        // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
+                        $("#add-job-button").html('<i class="fui-mail"></i> Add Jobs');
+                         $("#add-job-form").find('input:text').val('');
+                       
                     },
                     errors: function() {
                         $(_this).removeAttr('disabled');
