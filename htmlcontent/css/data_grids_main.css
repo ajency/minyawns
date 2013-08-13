@@ -1744,13 +1744,13 @@ b.demand-div {
     height:50px;
 }
 .profile .profile-logo {
-    width:19% !important;
+    width:13% !important;
 }
 .profile .profile-date {
     width:15%!important;
 }
 .profile .profile-time {
-    width:17%!important;
+    width:19%!important;
 }
 .profile .profile-wages {
     width:9%!important;
@@ -1762,7 +1762,7 @@ b.demand-div {
    display:none;
 }
 .profile .profile-date span {
-    font-size:19px;
+    font-size:13px;
     display:inline-block;
     float:left;
     margin-right:2px;
@@ -1986,7 +1986,6 @@ td.awm_service_action .admin_service_action {
 #responsive_menu nav li a {
     border-left:1px solid #576979;
 }
-
 .duration_mob span {
     font-size:18px !important;
     float:left;
@@ -2011,11 +2010,8 @@ td.awm_service_action .admin_service_action {
 }
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
-.profile .data_cell {
+	.profile .data_cell {
     height:50px;
-}
-.job-duration .row-fluid span {
-	font-size: 21px !important;
 }
 .profile .profile-logo {
     width:18%!important;
@@ -2061,14 +2057,6 @@ table.qlabs_grid_container {
 	width: 100%;
 	height: 100%;
 }
-.list-jobs .expand .minyawansgrid .span6 {
-	width:46%;
-}
-.list-jobs .expand .minyawansgrid .span6 b{
-	width: 104px;
-	display: inline-block;
-	font-size: 11px;
-}
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
 	.profile .data_cell {
@@ -2078,9 +2066,7 @@ table.qlabs_grid_container {
 .profile .profile-time {
     width:28% !important;
 }
-.job-duration .row-fluid span {
-	font-size: 21px !important;
-}
+
 .profile .profile-status span {
 	margin: auto;
 	width: auto!important;
