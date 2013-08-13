@@ -629,14 +629,14 @@ function check_access()
 	if(empty($user_role))
 		$user_role = "Not logged in";
 		
-	$queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  wp_userpermissioins where role = %s and  noperm_slug = %s ",$user_role,$page_slug  ),OBJECT);
+	$queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  ".$wpdb->base_prefix."userpermissions where role = %s and  noperm_slug = %s ",$user_role,$page_slug  ),OBJECT);	
 	foreach($queryresult as $res)
-		if($res->cnt_perm>0)
-		{
-			no_access_page($user_role,$page_slug);
-		}
-		else
-			return true;
+	if($res->cnt_perm>0)
+	{
+		no_access_page($user_role,$page_slug);
+	}
+	else
+		return true;
 }
 
 function no_access_page($user_role,$page_slug)
