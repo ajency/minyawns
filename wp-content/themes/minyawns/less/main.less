@@ -60,6 +60,28 @@ a:hover{text-decoration:none !important;}
 		
 		}
 }
+.signup {
+	.alert-success {
+		background-color: #AFE54E;
+		border-color: #76DA33;
+		color: #3F3F3F;
+	.close {
+		color: #776E6E !important;
+	}
+}
+	.alert-error {
+		background-color: #F88484;
+		border-color: #FA6262;
+		color: #000;
+	.close {
+			color: #000 !important;
+		}
+	}
+
+}
+
+
+
 
 .btn-apply{
 	width: 64%;
@@ -183,6 +205,11 @@ a:hover{text-decoration:none !important;}
 			margin:auto;
 			display:block;
 			-webkit-filter: grayscale(100%);
+			filter: url(css/grayscale.svg#greyscale);    
+		  -moz-filter: grayscale(100%);    
+		   -ms-filter: grayscale(100%);    
+		   -o-filter: grayscale(100%);
+		   filter: gray; /* IE5+ */
 			opacity: 0.5;
 		}
 	}
@@ -1177,6 +1204,8 @@ background: #F8F8F8!important;
 .upper-link{
 	#btn__login{
 		float:right;
+		padding: 5px 15px;
+		
 	}
 }
 .tab_content_login{
@@ -1702,3 +1731,15 @@ background-position: 60px 480px;
 	
  
  }
+ 
+ /* safari hack*/
+ @media screen and (-webkit-min-device-pixel-ratio:0) {
+  
+ #innermainimage {
+	 .banner-content {
+			position: absolute;
+			z-index: 999;
+			margin-top: 120px;
+			}
+		}
+}
