@@ -59,7 +59,11 @@
 					<div class="span2 notify">
 						<div id="logged-in">
                                                    
-							<a id="user-popdown" href="javascript:void(0);"> <?php echo get_avatar( get_user_profile_email(),168);?> <b class="caret"></b>
+							<a id="user-popdown" href="javascript:void(0);"> <?php 
+									if(get_mn_user_avatar() !== false)
+										echo '<img src="' . get_mn_user_avatar() .'" width="168" height="168" />';
+									else
+										echo get_avatar( get_user_profile_email(), 168 )?> <b class="caret"></b>
 							
                                                         </a>
 						</div>

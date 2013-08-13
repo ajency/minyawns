@@ -7,6 +7,7 @@ get_header();
 ?>
 
 <div class="container">
+
     <ul class="nav nav-tabs nav-append-content jobs_menu">
         <li ><a href="#tab1" id="browse">Browse Jobs</a></li>
         <li class="active"><a href="#tab2">My Jobs</a></li>
@@ -662,6 +663,11 @@ get_header();
                     <?php //}  ?>
 
                     <div id="add-job-form" style="display:none;">
+                    
+                     <?php if(check_access()===true)
+		{
+			 
+		?>
 <!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
                         <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
                         <form id="job-form" class="form-horizontal">
@@ -749,6 +755,7 @@ get_header();
                             <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2" >Submit</a>
                             <div class="clear"></div>
                         </form>
+                        <?php }?>
                     </div>
                 </div>
                 <?php /*

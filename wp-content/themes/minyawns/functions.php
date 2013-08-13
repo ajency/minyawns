@@ -614,7 +614,7 @@ add_filter('login_redirect', 'mn_login_redirect', 10, 3);
 //setup the global $minyawnjob var for the single job page
 function load_single_job()
 {
-    if(!is_singular('jobs'))
+    if(!is_singular('job'))
         return;
 
     global $minyawn_job;    
@@ -628,7 +628,6 @@ add_action('template_redirect','load_single_job');
 
 function check_access()
 {
-   return true;
 	global $wpdb, $post, $current_user;
 	$page_slug = $post->post_name;
 	$user_roles = $current_user->roles;

@@ -358,12 +358,12 @@ div.profile-wrapper{
 	width: 100%;
 }
 
-div.profile-wrapper #profile-view{
+div.profile-wrapper #profile-view,#single-jobs{
 	position: absolute;
 	z-index: 100;
 }
 
-div.profile-wrapper #profile-edit{
+div.profile-wrapper #profile-edit,#edit-job-form{
 	position: relative;
 	z-index: 10;
 	display: none;
