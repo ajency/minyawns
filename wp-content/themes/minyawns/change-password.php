@@ -125,7 +125,7 @@ if($alert_msg!=1)
 		  </div>
    
   
-		  <hr><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Reset Password'); ?>" />
+		  <hr><input type="submit" name="wp-submit" id="wp-submit" class="btn btn-large btn-block btn-inverse span2"  style="width:200px" value="<?php esc_attr_e('Reset Password'); ?>" />
 		  <?php /*  <a href="#fakelink" class="btn btn-large btn-block btn-inverse span2">Update Info</a>*/ ?>
 			<div class="clear"></div>
 		</form>
