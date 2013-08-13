@@ -12,7 +12,10 @@ $app->post('/addjob', function() use ($app) {
             $requestBody = $app->request()->getBody();  // <- getBody() of http request
             $json_a = json_decode($requestBody, true);
 
+            $postid=($json_a['id']) > 0 ? $json_a['id']:'';
+            
             $post = array(
+                'ID'=>$postid,
                 'post_author' => "1", //The user ID number of the author.
                 'post_date' => date("Y-m-d H:i:s"), //The time post was made.
                 'post_date_gmt' => date("Y-m-d H:i:s"), //The time post was made, in GMT.
@@ -31,8 +34,8 @@ $app->post('/addjob', function() use ($app) {
                 if ($key == 'job_tags') {
                     $tags = explode(",", $value);
 
-                    for ($i = 0; $i < sizeof($tags); $i++) {
-                      wp_insert_term($tags[$i], 'job_tags');
+                    for ($i = 0; $i < count($tags); $i++) {
+                       wp_set_post_terms($post_id,$tags[$i], 'job_tags',true);
                     }
                 } elseif ($key == "job_start_date") {
                     update_post_meta($post_id, $key, strtotime($value));
@@ -52,6 +55,8 @@ $app->post('/addjob', function() use ($app) {
             echo json_encode(array('success' => 1));
         });
 
+        
+        
 $app->post('/fetchjobs', function() use ($app) {
             global $post, $wpdb;
 
