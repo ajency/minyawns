@@ -27,11 +27,11 @@ get_header();  ?>
 									else
 										echo '<img src="' . get_user_fb_avatar('large') .'" width="168" height="168" />';
 							?>
-							<span>Change Avatar</span>
+							<span >Change Avatar<input id="change-avatar" type="file" name="files"></span>
 						</a>
 					</div>
 					<div class="span8">
-						<h4 class="name"> <?php user_profile_first_name()." ".user_profile_last_name() ?>  <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a></h4> 
+                                            <h4 class="name"> <?php user_profile_first_name()." ".user_profile_last_name()   ?>  <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a></h4> 
 						<div class="row-fluid profile-list">
 							<?php
 
@@ -104,6 +104,7 @@ get_header();  ?>
 						</div>
 						
 					</div>
+					<?php if(get_user_role() === 'minyawn'): ?>
 					<div class="span2">
 						<br>
 						<div class="like_btn"><br><br>
@@ -128,7 +129,8 @@ get_header();  ?>
 								<b class="dislike"><?php user_dislike_count(); ?></b>
 							</a> 
 						</div>
-					</div>				
+					</div>	
+					<?php endif; ?>			
 				</div>
 
 				<hr>
@@ -220,9 +222,19 @@ get_header();  ?>
 							</table>
 						<?php else: ?>
 
-							//show html here if user doesn't have any jobs
+							<!--show html here if user doesn't have any jobs-->
 
-						<?php endif; ?>
+							<div class="alert alert-info myjobs ">
+								<h4 style="text-align: center">No Jobs Available</h4>
+								<hr>
+								There doesn't seem to be anything here. you can apply for jobs
+								on the '<B>Browse Jobs</B>' page <a href="#fakelink"
+									class="btn btn-large btn-block btn-success default-btn">Take Me
+									There</a>
+							</div>
+
+
+							<?php endif; ?>
 						</section>
 						<br>
 					</div>
@@ -281,7 +293,7 @@ get_header();  ?>
                                              <div class="control-group">
                                                       <label class="control-label" for="inputFirst">Company Name</label>
 						    <div class="controls">
-                                                        <input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name()." ".user_profile_last_name() ?>" class="input">
+                                                        <input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name() ?>" class="input">
                                                         
 						    </div>
 					  	</div>

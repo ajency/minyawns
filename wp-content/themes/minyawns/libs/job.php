@@ -32,12 +32,13 @@ $app->post('/addjob', function() use ($app) {
                     $tags = explode(",", $value);
 
                     for ($i = 0; $i < sizeof($tags); $i++) {
-                        print_r($tags[$i]);
-                        wp_insert_term($tags[$i], 'job_tags');
+                      wp_insert_term($tags[$i], 'job_tags');
                     }
                 } elseif ($key == "job_start_date") {
                     update_post_meta($post_id, $key, strtotime($value));
                 } elseif ($key == "job_start_time") {
+                    update_post_meta($post_id, $key, strtotime($value));
+                }elseif ($key == "job_end_date") {
                     update_post_meta($post_id, $key, strtotime($value));
                 } elseif ($key == "job_end_time") {
                     update_post_meta($post_id, $key, strtotime($value));

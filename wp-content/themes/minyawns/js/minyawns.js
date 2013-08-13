@@ -6,6 +6,8 @@ jQuery(document).ready(function($) {
     /********************************** PROFILE JS CODE *************************************/
 
 
+
+
     if (jQuery('#user-popdown').length > 0)
     {
         jQuery('#user-popdown').popover(
@@ -16,6 +18,28 @@ jQuery(document).ready(function($) {
                 }
         );
     }
+    
+    $('#change-avatar').fileupload({
+		url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
+		dataType: 'json', 
+		done: function (e, data) {  
+			console.log(data);
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			$('#progress .bar').css(
+					'width',
+					progress + '%'
+			);
+
+			$('#progress').fadeOut('slow', function() {
+				// Animation complete.
+			});
+			$('#change-avatar').removeAttr("disabled");
+		},
+		start: function (e, data) {
+		    $('#change-avatar').attr("disabled", "disabled");
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+		}
+	});
 
 
 
@@ -70,34 +94,18 @@ jQuery(document).ready(function($) {
 
             var errors = [];
 
-//            _.each(attr, function(index, ele) {
-//
-//                if (ele == 'id')
-//                    return;
-//
-//                if (attr[ele] == '')
-//                {
-//                    errors.push({field: ele, msg: 'Please enter ' + ele});
-//                }
-//
-//            });
+            _.each(attr, function(index, ele) {
 
-            if (!attr.first_name)
-            {
-                errors.push({field: 'first_name', msg: 'Please enter ' + 'Company Name'});
-            }
-            if (!attr.location)
-            {
-                errors.push({field: 'location', msg: 'Please enter ' + 'Company Location'});
-            }
-            if (!attr.company_website)
-            {
-                errors.push({field: 'company_website', msg: 'Please enter ' + 'Company Website'});
-            }
-            if (!attr.profilebody)
-            {
-                errors.push({field: 'profilebody', msg: 'Please enter ' + ' your Company profile'});
-            }
+                if (ele == 'id')
+                    return;
+
+                if (attr[ele] == '')
+                {
+                    errors.push({field: ele, msg: 'Please enter ' + ele});
+                }
+
+            });
+
 
             if (errors.length > 0)
                 return errors;
@@ -152,7 +160,10 @@ jQuery(document).ready(function($) {
 
                 //remove success
                 _.pluck(data, 'success');
-
+                if (data.last_name === undefined)
+                {
+                    data.last_name = '';
+                }
                 $('#profile-view').find('.name').html(data.first_name + ' ' + data.last_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
 
                 //minyawns role
@@ -306,8 +317,11 @@ jQuery(document).ready(function($) {
                         $("#success_msg").show();
                         $("#ajax-load").hide();
                         //get model data
-                        $(_this).removeAttr('disabled');
+                        // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
+                        $("#add-job-button").html('<i class="fui-mail"></i> Add Jobs');
+                         $("#add-job-form").find('input:text').val('');
+                       
                     },
                     errors: function() {
                         $(_this).removeAttr('disabled');
@@ -597,6 +611,32 @@ jQuery(document).ready(function($) {
 
     /*END POPUP SIGNUP */
 
+ $('.edit-job-data').live('click', function(e) {
+
+        e.preventDefault();
+        var span1 = $('#profile-view');
+        var span2 = $('#profile-edit');
+        var w = $(span1).width();
+
+        if (!$(this).hasClass('loaded'))
+        {
+            if ($(this).hasClass('view'))
+            {
+                $(span1).animate({left: 0}, 500);
+                $(span2).show().animate({left: w}, 500);
+                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+            }
+            else
+            {
+                $(this).removeClass('loaded');
+                $('#profile-edit').find('div.alert').remove();
+                $(span1).animate({left: -1 * w}, 500);
+                $(span2).css({'left': w, 'top': 0});
+                $(span2).show().animate({left: 0}, 500);
+                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+            }
+        }
+    });
 
 
 });

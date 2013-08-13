@@ -47,7 +47,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="span2 brand">
-						<a href="#"><img
+						<a href="<?php echo site_url(); ?>"><img
 							src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
 							alt="" /> </a>
 					</div>
@@ -168,9 +168,7 @@
 									style="display: none;">
 
 									<p>Enter your username or email to reset your password.</p>
-									<form method="post"
-										action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>"
-										class="wp-user-form">
+									<form method="post" action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>" class="wp-user-form" id="frm_forgotpassword" name="frm_forgotpassword">
 										<div class="username">
 											<label for="user_login" class="hide"><?php _e('Username or Email'); ?>:
 											</label> <input type="text" name="user_login" value=""

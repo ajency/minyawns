@@ -27,6 +27,10 @@ require_once 'libs/Job-api.php';
 //remove admin bar from front end
 show_admin_bar(false);
 
+
+//add image for profile
+add_image_size('profile' , 168, 168, false);
+
 /**
  * Child theme Path
  * @param unknown $template_dir_uri
@@ -67,7 +71,11 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
-            wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery'), null);
+
+            //if(is_page('profile'))
+            wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
+
+            wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery','jquery-ui'), null);
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
             wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
@@ -572,7 +580,7 @@ add_action('init', 'create_post_type');
 function register_jobs_taxonomy() {
    register_taxonomy(
 		'job_tags',
-		'jobs'
+		'job'
 	);
 }
 
@@ -620,25 +628,23 @@ add_action('template_redirect','load_single_job');
 
 function check_access()
 {
-    return true;
+   return true;
 	global $wpdb, $post, $current_user;
-
-	 
 	$page_slug = $post->post_name;
-
 	$user_roles = $current_user->roles;
 	$user_role = array_shift($user_roles);
 
 	if(empty($user_role))
 		$user_role = "Not logged in";
-	$queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  wp_userpermissioins where role = %s and  noperm_slug = %s ",$user_role,$page_slug  ),OBJECT);
+		
+	$queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  ".$wpdb->base_prefix."userpermissions where role = %s and  noperm_slug = %s ",$user_role,$page_slug  ),OBJECT);	
 	foreach($queryresult as $res)
-		if($res->cnt_perm>0)
-		{
-			no_access_page($user_role,$page_slug);
-		}
-		else
-			return true;
+	if($res->cnt_perm>0)
+	{
+		no_access_page($user_role,$page_slug);
+	}
+	else
+		return true;
 }
 
 function no_access_page($user_role,$page_slug)
@@ -649,9 +655,9 @@ function no_access_page($user_role,$page_slug)
 				<div class="span3"><br><img src="'.site_url().'/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
 				<div class="span9">	<h4 >No Access</h4>
 		<hr>
-		We are sorry. This page is unavailable. If you are already logged in and believe you should have access to this page, send us an email at support@minyawns.com with your username and the link of the page you are trying to access.
+		Sorry, you aren\'t allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we\'ll get back to you as soon as possible. 
 		<br>
-		<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn">Go Home</a>
+		<a href="'.site_url().'" class="btn btn-large btn-block btn-success default-btn">Go Home</a>
 		<div class="clear"></div></div>
 			</div>
 		</div><input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="'.site_url().'/'.$page_slug.'/" />';
@@ -661,7 +667,7 @@ function no_access_page($user_role,$page_slug)
 				<div class="span3"><br><img src="'.site_url().'/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
 				<div class="span9">	<h4 >No Access</h4>
 		<hr>
-		We are sorry. This page is unavailable. Please click below to login .
+		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
 		<br>
 		<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn" onclick="jQuery(\'#btn__login\').click();" >Login</a>
 		<div class="clear"></div></div>
@@ -670,3 +676,4 @@ function no_access_page($user_role,$page_slug)
 	return false ;
 }
  
+
