@@ -504,7 +504,12 @@ table.qlabs_grid_container tbody.data_container tr.expanded td div.expanded .col
 }
 /* --- Mobile Devices 480 - 768px --- */
 @media only screen and (max-width:768px),(min-device-width:480px) and (max-device-width:767px) {
-
+.available{
+	border-right: 3px solid #83D804;
+}
+.no-available{
+	border-right: 3px solid #D80404;
+}
 .profile .data_cell {
     height:50px;
 }
@@ -550,13 +555,21 @@ table.qlabs_grid_container tbody.data_container tr.expanded td div.expanded .col
 }
 /* --- Mobile Devices Up To 480px --- */
 @media only screen and (max-width:480px),(min-device-width:0px) and (max-device-width:479px) {
-    table.qlabs_grid_container {
+.available{
+	border-right: 3px solid #83D804;
+}
+.no-available{
+	border-right: 3px solid #D80404;
+}
+	table.qlabs_grid_container {
     width:360px;
     /* --- Overall Table Width --- */
 }
 /* --- Change Apperance --- */
 table,thead,tbody,tr,td {
-    display:block;
+	display: block;
+	float: left;
+	width: 100%;
 }
 /* --- Cell Works Like A Row --- */
 table.qlabs_grid_container tbody.data_container tr.data_even td.data_cell,table.qlabs_grid_container tbody.data_container tr.data_odd td.data_cell,table.qlabs_grid_container tbody.data_container tr.data_even td.label_cell,table.qlabs_grid_container tbody.data_container tr.data_odd td.label_cell {
@@ -1164,20 +1177,200 @@ table.qlabs_grid_container1 tbody.data_container tr.expanded td div.expanded .co
     width:768px;
     /* --- Overall Table Width --- */
 }
+
 }
 /* --- Mobile Devices 480 - 768px --- */
-@media only screen and (max-width:768px),(min-device-width:480px) and (max-device-width:767px) {
+@media (max-width: 767px) {
     table.qlabs_grid_container1 {
     width:480px;
     /* --- Overall Table Width --- */
 }
-}
-/* --- Mobile Devices Up To 480px --- */
-@media only screen and (max-width:480px),(min-device-width:0px) and (max-device-width:479px) {
     table.qlabs_grid_container1 {
     width:360px;
     /* --- Overall Table Width --- */
 }
+  table.qlabs_grid_container thead tr.subheader_row {
+	height:35px
+}  
+
+
+	
+
+.Main-job .awm_exchange_services_arrow {
+    display:none;
+}
+.Main-job .awm_exchange_services_action {
+    display:none;
+    width:13.1%;
+}
+.Main-job thead {
+    display:block !important}
+.Main-job thead tr td {
+    display:block !important}
+.Main-job #appendedInputButton-04 {
+    width:184px;
+}
+.jobs_menu {
+    width:258px;
+}
+.footer_menu {
+    list-style:none;
+    margin:auto;
+    width:272px;
+    text-align:center;
+}
+.Main-job .awm_service_title .logo-name {
+    font-size:11px !important;
+    font-family:arial!important;
+    text-align:center;
+    display:block;
+    line-height:6px;
+    margin:auto;
+}
+.Main-job .awm_service_title img {
+  
+}
+.Main-job thead tr {
+    display:block !important}
+.expanded .service_tlt thead {
+    display:block !important;
+}
+.expanded .service_tlt tr {
+    display:block !important;
+}
+.expanded .service_tlt tr td {
+    display:block !important;
+}
+.expanded .header_row {
+    height:auto !important;
+}
+.expanded .header_row h4 {
+    font-size:15px;
+}
+.expanded .minywans_list b {
+    float:left;
+}
+.expanded .minywans_list .span9 {
+    margin-left:5px;
+}
+/*.tab-content {
+    padding:10px 10px 10px !important;
+}*/
+.expanded .service_tlt img {
+    display:none;
+}
+.Main-job .arrow-down {
+    margin-top:30px;
+    margin-left:2px;
+}
+.Main-job .arrow-up {
+    margin-top:30px;
+    margin-left:2px;
+}
+.Main-job .awm_service_demand span {
+    font-size:19px;
+    display:inline-block;
+    float:left;
+    margin-right:2px;
+    margin-top:0px;
+    margin-left:0px;
+}
+.Main-job .awm_service_discount ins {
+    font-size:13px;
+}
+.Main-job tbody.data_container tr.data_even td.data_cell div {
+    font-size:9px !important;
+    text-align:center;
+}
+.Main-job tbody.data_container tr.data_even td.data_cell div b {
+    font-size:11px!important;
+    display:none;
+}
+/* --- Change Apperance --- */
+/*table,thead,tbody,tr,td {
+    display:inline-block;
+}*/
+/* --- Cell Works Like A Row --- */
+table.qlabs_grid_container1 tbody.data_container tr.data_even td.data_cell,table.qlabs_grid_container1 tbody.data_container tr.data_odd td.data_cell,table.qlabs_grid_container1 tbody.data_container tr.data_even td.label_cell,table.qlabs_grid_container1 tbody.data_container tr.data_odd td.label_cell {
+    padding:6px 8px 6px 8px !important;
+    line-height:150% !important;
+    border-top:0;
+    position:relative;
+}
+/* --- Header Row --- */
+table.qlabs_grid_container1 thead tr.header_row {
+    border-top:0px;
+    height:43px;
+}
+/* --- Disable Subheader Row --- */
+table.qlabs_grid_container1 tbody tr.subheader_row,table.qlabs_grid_container1 tbody tr.subheader_row td.subheader_cell {
+    display:none;
+}
+/* --- Remove Redundant Borders --- */
+table.qlabs_grid_container1 tbody.data_container tr.data_even td.data_cell,table.qlabs_grid_container1 tbody.data_container tr.data_odd td.data_cell,table.qlabs_grid_container1 tbody.data_container tr.data_even td.label_cell,table.qlabs_grid_container1 tbody.data_container tr.data_odd td.label_cell,table.qlabs_grid_container1 tbody.data_container tr.data_even td.data_cell:first-child,table.qlabs_grid_container1 tbody.data_container tr.data_odd td.data_cell:first-child,table.qlabs_grid_container1 tbody.data_container tr.data_even:hover td.data_cell,table.qlabs_grid_container1 tbody.data_container tr.data_odd:hover td.data_cell,table.qlabs_grid_container1 tbody.data_container tr.highlighted td.data_cell {
+    border-left:0px !important;
+    border-right:0px !important;
+}
+/* --- Remove Tooltips --- */
+div.qlabs_tooltip {
+    display:none !important;
+}
+/* --- 50% Width Column Turn Into 100% Width Column --- */
+table.qlabs_grid_container1 tbody.data_container tr.expanded td div.expanded .column_50 {
+    width:96%;
+    margin-left:2%;
+    margin-right:2%;
+    float:left;
+    padding:10px 0px 10px 0px;
+    display:block;
+}
+table.qlabs_grid_container1 tbody.data_container tr.expanded td div.expanded .column_50:last-child {
+    width:96%;
+    margin-left:2%;
+    margin-right:2%;
+    float:left;
+    padding:10px 0px 10px 0px;
+    display:block;
+}
+/* --- 33% Width Column Turn Into 100% Width Column --- */
+table.qlabs_grid_container1 tbody.data_container tr.expanded td div.expanded .column_33 {
+    width:96%;
+    margin-left:2%;
+    margin-right:2%;
+    float:left;
+    padding:10px 0px 10px 0px;
+    display:block;
+}
+table.qlabs_grid_container1 tbody.data_container tr.expanded td div.expanded .column_33:first-child {
+    width:96%;
+    margin-left:2%;
+    margin-right:2%;
+    float:left;
+    padding:10px 0px 10px 0px;
+    display:block;
+}
+table.qlabs_grid_container1 tbody.data_container tr.expanded td div.expanded .column_33:last-child {
+    width:96%;
+    margin-left:2%;
+    margin-right:2%;
+    float:left;
+    padding:10px 0px 10px 0px;
+    display:block;
+}
+/* --- Column Labels --- */
+/* --- Use The Same Labels As In HTML Document --- */
+
+}
+/* --- Mobile Devices Up To 480px --- */
+@media (max-width: 480px){
+    table.qlabs_grid_container1 {
+    width:360px;
+    /* --- Overall Table Width --- */
+}
+  table.qlabs_grid_container thead tr.subheader_row {
+	height:26px
+}  
+	
 .Main-job .awm_service_title {
     width:21.3%;
 }
@@ -1200,6 +1393,9 @@ table.qlabs_grid_container1 tbody.data_container tr.expanded td div.expanded .co
 .services_tlt,td.awm_service_name {
     width:40%;
 }
+.Main-job .awm_exchange_service_supply {
+width: 18%;
+}
 td.awm_service_status {
     width:21%;
 }
@@ -1216,16 +1412,16 @@ td.awm_service_status {
     width:24%;
 }
 .Main-job .awm_exchange_service_tlt {
-    width:23.1%;
+    width:19.1%;
 }
 .Main-job .awm_exchange_service_demand {
-    width:22%;
+    width:16%;
 }
 .awm_exchange_service_supply {
     width:21%;
 }
 .Main-job .awm_exchange_service_discount {
-    width:4%;
+    width:15%;
 }
 .awm_exchange_service_status {
     width:17.5%;
@@ -1262,7 +1458,7 @@ td.awm_service_status {
     margin:auto;
 }
 .Main-job .awm_service_title img {
-    visibility:hidden;
+  
 }
 .Main-job thead tr {
     display:block !important}
@@ -1287,9 +1483,10 @@ td.awm_service_status {
 .expanded .minywans_list .span9 {
     margin-left:5px;
 }
+/*
 .tab-content {
     padding:10px 10px 10px !important;
-}
+}*/
 .expanded .service_tlt img {
     display:none;
 }
@@ -1321,9 +1518,10 @@ td.awm_service_status {
     display:none;
 }
 /* --- Change Apperance --- */
-table,thead,tbody,tr,td {
+/*table,thead,tbody,tr,td {
     display:inline-block;
 }
+*/
 /* --- Cell Works Like A Row --- */
 table.qlabs_grid_container1 tbody.data_container tr.data_even td.data_cell,table.qlabs_grid_container1 tbody.data_container tr.data_odd td.data_cell,table.qlabs_grid_container1 tbody.data_container tr.data_even td.label_cell,table.qlabs_grid_container1 tbody.data_container tr.data_odd td.label_cell {
     padding:6px 8px 6px 8px !important;
@@ -1744,13 +1942,13 @@ b.demand-div {
     height:50px;
 }
 .profile .profile-logo {
-    width:19% !important;
+    width:13% !important;
 }
 .profile .profile-date {
     width:15%!important;
 }
 .profile .profile-time {
-    width:17%!important;
+    width:19%!important;
 }
 .profile .profile-wages {
     width:9%!important;
@@ -1762,7 +1960,7 @@ b.demand-div {
    display:none;
 }
 .profile .profile-date span {
-    font-size:19px;
+    font-size:13px;
     display:inline-block;
     float:left;
     margin-right:2px;

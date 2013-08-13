@@ -980,7 +980,7 @@ a.muted:focus {
   /* 13px */
 
   line-height: 20px;
-  padding: 6px 13px 8px;
+padding: 6px 13px 6px;
 }
 .btn.btn-small > [class^="fui-"] {
   top: 1px;

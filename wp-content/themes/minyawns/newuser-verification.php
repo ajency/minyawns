@@ -69,7 +69,8 @@ if($pd_action=="ver")
 				$subject = "Your registration is approved on Minyawns";
 				$message="Hi, <br/><br/>Your registration is approved on Minyawns.<br/><br/> You can visit <a href='".site_url()."' >Minyawns</a> to log in";
 				add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
-				wp_mail($pd_email, $subject,email_header().$message.email_signature());
+				$headers = 'From: Minyawns <support@minyawns.ajency.in>' . "\r\n";
+				wp_mail($pd_email, $subject,email_header().$message.email_signature(),$headers);
 				
 			}
 			else
