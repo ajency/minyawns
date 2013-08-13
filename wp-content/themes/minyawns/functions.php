@@ -620,17 +620,15 @@ add_action('template_redirect','load_single_job');
 
 function check_access()
 {
-    return true;
+   
 	global $wpdb, $post, $current_user;
-
-	 
 	$page_slug = $post->post_name;
-
 	$user_roles = $current_user->roles;
 	$user_role = array_shift($user_roles);
 
 	if(empty($user_role))
 		$user_role = "Not logged in";
+		
 	$queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  wp_userpermissioins where role = %s and  noperm_slug = %s ",$user_role,$page_slug  ),OBJECT);
 	foreach($queryresult as $res)
 		if($res->cnt_perm>0)
