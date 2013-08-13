@@ -114,9 +114,22 @@ height: 16px;
 }
 @media (max-width: 767px) {
   .bootstrap-timepicker {
-    width: 100%;
+    width: 50%;
+	margin-left: -15px;
+	margin-bottom: 13px !important;
   }
+  .bootstrap-timepicker .add-on {
+		min-width: 23px;
+		padding: 9px 2px;
+		font-size: 14.99px;
+		line-height: 8px;
+		height: 14px;
+		}
   .bootstrap-timepicker .dropdown-menu {
     width: 100%;
   }
+  .bootstrap-timepicker input {
+	height: 36px;
+	margin-left: 14px;
+	}
 }

@@ -715,7 +715,7 @@ a:hover {
     font-size: 11px;
   }
   .social-icon {
-    width: 156px;
+    width: 158px;
     margin: auto;
     margin-top: 8px;
     margin-bottom: 4px;
@@ -1022,6 +1022,88 @@ a:hover {
   }
   .home #innermainimage .banner-content .banner-desc {
     font-size: 23px;
+  }
+  .single-jobs .minyawns-grid {
+    width: 98%;
+    margin: auto;
+  }
+  .single-jobs .minyawns-grid .thumbnails {
+    margin-left: 0px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 {
+    margin-right: 16px;
+    margin-left: 0px !important;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail {
+    height: auto;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .caption img {
+    width: 23%;
+    border: 2px solid #CCC;
+    float: left;
+    margin-right: 11px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .rating {
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    position: absolute;
+    right: -14px;
+    bottom: 14px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .rating .icon-thumbs-up {
+    margin-left: 0px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .rating .icon-thumbs {
+    margin-left: 10px;
+    color: #F65151;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail h4 {
+    font-size: 16PX;
+    text-align: left;
+    font-weight: bold;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .collage {
+    text-align: left;
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .social-link {
+    text-align: left;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .label-small {
+    padding: 3px;
+    font-size: 10px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn {
+    position: relative;
+    bottom: -2px;
+    width: 100%;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn .onoffswitch {
+    margin-left: 0px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn .well-done {
+    background: #8ed030;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn .terrible {
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3:hover {
+    background: #fff;
+    cursor: pointer;
+  }
+  .single-jobs .minyawns-grid .thumbnails .span3:hover .caption img {
+    border: 2px solid #8ed030;
+  }
+  .single-jobs .green-btn {
+    width: 98%;
+    margin: auto !important;
   }
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {

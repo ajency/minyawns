@@ -6,15 +6,13 @@
 .modal_ajax_large {
    
    
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     151px;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
-                url('../images/ajax-loader.gif') 
-                50% 50% 
-                no-repeat;
+  z-index: 1000;
+top: 0;
+left: 0;
+height: 44%;
+width: 100%;
+background: rgba(0, 0, 0, 0.23) url('../images/ajax-loader.gif') 50% 50% no-repeat;
+position: absolute;
 }
 
 .modal_ajax {
