@@ -29,9 +29,12 @@ class Minyawn_Job {
     //required minyawns count for the job
     public $required_minyawns;
     //array of user appled for the job. array(user_id/profile name/ratelike/ratedislike/current-job-status/status-change-date)
-    public $applied_by = array();
+    public $minyawns = array();
     //current job status
     public $job_status;
+    //can apply
+    public $can_apply;
+    
     public $include_meta = array('job_date',
                                 'job_task',
                                 'job_start_date',
@@ -41,6 +44,8 @@ class Minyawn_Job {
                                 'job_required_minyawns',
                                 'job_wages',
                                 'job_location');
+    
+    public $include_user_meta = array('college','major','linkedin','user_skills');
 
     //constructor
     public function __construct($ID) {
@@ -52,6 +57,8 @@ class Minyawn_Job {
         $this->ID = $ID;
 
         $this->query();
+        
+        $this->can_apply();
     }
 
     function query() {
@@ -59,11 +66,11 @@ class Minyawn_Job {
         global $wpdb;
 
         $sql = $wpdb->prepare("	SELECT j.*,
-        						GROUP_CONCAT(CONCAT(jm.meta_key,'|',jm.meta_value)) as meta
-         						FROM {$wpdb->prefix}posts as j JOIN {$wpdb->prefix}postmeta as jm
-							 	ON j.ID = jm.post_id 
-							 	WHERE j.ID = %d 
-							 	GROUP BY jm.post_id LIMIT 1", $this->ID);
+        			GROUP_CONCAT(CONCAT(jm.meta_key,'|',jm.meta_value)) as meta
+         			FROM {$wpdb->prefix}posts as j JOIN {$wpdb->prefix}postmeta as jm
+				ON j.ID = jm.post_id 
+				WHERE j.ID = %d 
+				GROUP BY jm.post_id LIMIT 1", $this->ID);
 
         $job = $wpdb->get_row($sql);
 
@@ -87,8 +94,56 @@ class Minyawn_Job {
         $this->location = trim($job_meta['job_location'][0]);
         
         $this->job_minyawns = trim($job_meta['job_required_minyawns'][0]);
-        //convert the meta string to php array
        
+        //get all users applied for the job
+        $sql = $wpdb->prepare("SELECT {$wpdb->prefix}users.*, GROUP_CONCAT(CONCAT({$wpdb->prefix}usermeta.meta_key,'|',{$wpdb->prefix}usermeta.meta_value)) AS usermeta 
+                               FROM {$wpdb->prefix}users 
+                               JOIN {$wpdb->prefix}usermeta ON user_id = {$wpdb->prefix}users.ID 
+                               JOIN {$wpdb->prefix}userjobs ON {$wpdb->prefix}userjobs.user_id = {$wpdb->prefix}users.ID
+                               WHERE {$wpdb->prefix}userjobs.job_id = %d 
+                               GROUP BY {$wpdb->prefix}userjobs.user_id",  $this->ID);
+
+        $minyawns = $wpdb->get_results($sql);
+
+        if(!empty($minyawns))
+        {
+        	foreach ($minyawns as $minyawn)
+        	{
+        		$user = array(
+        					'user_login' 	=> $minyawn->user_login,
+        					'profile_name' 	=> $minyawn->display_name,
+        					'user_email'	=> $minyawn->user_email
+        				);
+        		
+        		//convert the meta string to php array
+        		$usermeta = explode(',',$minyawn->usermeta);
+        		$fb_uid = false;
+        		foreach ($usermeta as $meta) {
+        			
+        			$meta = explode('|',$meta);
+        		
+        			if(in_array($meta[0],$this->include_user_meta))
+        				$user[$meta[0]] = maybe_unserialize($meta[1]);
+        			
+        			if($meta[0] == 'avatar_attachment')
+                                   $user['image'] = wp_get_attachment_thumb_url($meta[1]);
+                                
+                                if($meta[0] == 'facebook_uid')
+                                    $fb_uid = $meta[1];
+        		}
+        		
+                        //set image
+        		if(!isset($user['image']) && $fb_uid !== false) 
+                            $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
+                        elseif(!isset($user['image']))
+                            $user['image'] = false;
+                        
+        		if(!isset($user['rate_like'])) $user['rate_like'] = 0;
+        		if(!isset($user['rate_dislike'])) $user['rate_dislike'] = 0;
+        			
+       			$this->minyawns[$minyawn->ID] = $user;
+        	}
+        }
     }
 
     public function is_active() {
@@ -171,6 +226,24 @@ class Minyawn_Job {
         global $minyawn_job;
 
         return $this->location;
+    }
+    
+    public function get_job_applied_minyawns()
+    {
+    	return count($this->minyawns);
+    }
+    
+    //can user apply
+    public function can_apply()
+    {	
+        $this->can_apply = 0;
+        
+        //check if requirement is complete
+        if((int)$this->required_minyawns === count($this->minyawns))
+            $this->can_apply = 1;
+        
+        if($this->can_apply === 0 && array_key_exists(get_user_id(), $this->minyawns))
+            $this->can_apply = 2;
     }
 }
 

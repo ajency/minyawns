@@ -213,16 +213,6 @@ jQuery(document).ready(function($) {
         });
 
     });
-
-    /*$("#cancel-job-button").live('click', function(e) {
-     e.preventDefault();
-     $("#add-job-form").toggle("slow");
-     $("#add-job-form").hide();
-     $("#add-job-button").show();
-     $("#cancel-job-button").hide();
-     });*/
-
-
     var Job = Backbone.Model.extend({
         url: function() {
             return SITEURL + '/wp-content/themes/minyawns/libs/job.php/addjob';
@@ -614,26 +604,41 @@ jQuery(document).ready(function($) {
         var span1 = $('#single-jobs');
         var span2 = $('#edit-job-form');
         var w = $(span1).width();
-
-        if (!$(this).hasClass('loaded'))
-        {
-            if ($(this).hasClass('view'))
-            {
-                $(span1).animate({left: 0}, 500);
-                $(span2).show().animate({left: w}, 500);
-                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
-            }
-            else
-            {
-                $(this).removeClass('loaded');
-                $('#edit-job-form').find('div.alert').remove();
-                $(span1).animate({left: -1 * w}, 500);
-                $(span2).css({'left': w, 'top': 0});
-                $(span2).show().animate({left: 0}, 500);
-                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
-            }
+       
+        if ($(this).hasClass('view'))
+        {	
+            $(span1).animate({left: 0}, 500);
+            $(span2).show().animate({left: w}, 500);
         }
-        });
+        else
+        {
+            $('#edit-job-form').find('div.alert').remove();
+            $(span1).animate({left: -1 * w}, 500);
+            $(span2).css({'left': w, 'top': '60px'});
+            $(span2).show().animate({left: 0}, 500);
+        }
+ });
+ 
+ /** Apply/UnApply code */
+ $('#apply-job,#unapply-job').click(function(evt){
+     evt.preventDefault();
+     
+     var _action = $(this).attr('data-action');
+     var _job_id = $(this).attr('data-job-id');
+     
+     $.post(ajaxurl,
+            {
+                action : 'minyawn_job_'+_action,
+                job_id : parseInt(_job_id)
+            },
+            function(response){
+                if(response.success == 1)
+                {
+                    alert('successfully done');
+                }
+                    
+            },'json');
+ });
   
 
 
