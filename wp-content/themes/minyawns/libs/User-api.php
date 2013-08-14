@@ -380,3 +380,50 @@ class MN_User_Jobs {
     }
 
 }
+
+function  minyawn_job_apply()
+{
+     if('POST' !== $_SERVER['REQUEST_METHOD'])
+        return;
+    
+    global $user_ID,$wpdb;
+    
+    //get job ID
+    $job_id = $_POST['job_id'];
+    
+    $wpdb->insert($wpdb->prefix.'userjobs',
+                  array(
+                      'user_id' => $user_ID,
+                      'job_id'  => $job_id,
+                      'status'  => 'applied',
+                      'rating'  => 0
+                  ),
+                array('%d','%d','%s','%d'));
+    
+    echo json_encode (array('success' => 1,'new_action' => 'unapply'));
+    
+    die;     
+}
+add_action('wp_ajax_minyawn_job_apply','minyawn_job_apply');
+
+function  minyawn_job_unapply()
+{
+    if('POST' !== $_SERVER['REQUEST_METHOD'])
+        return;
+    
+    global $user_ID,$wpdb;
+    
+    //get job ID
+    $job_id = $_POST['job_id'];
+    
+    $wpdb->delete($wpdb->prefix.'userjobs',
+                  array(
+                      'user_id' => $user_ID,
+                      'job_id'  => $job_id
+                  ));
+    
+    echo json_encode (array('success' => 1,'new_action' => 'apply'));
+    
+    die;    
+}
+add_action('wp_ajax_minyawn_job_unapply','minyawn_job_unapply');
