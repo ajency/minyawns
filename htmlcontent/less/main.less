@@ -49,7 +49,7 @@ a:hover{text-decoration:none !important;}
 	border:1px solid #ccc;
 	padding: 5px;
 }
-.page{
+.page, .error404{
 	background:url(../images/pattern-bg.png)repeat;
 }
 .top-menu{
@@ -60,6 +60,28 @@ a:hover{text-decoration:none !important;}
 		
 		}
 }
+.signup {
+	.alert-success {
+		background-color: #AFE54E;
+		border-color: #76DA33;
+		color: #3F3F3F;
+	.close {
+		color: #776E6E !important;
+	}
+}
+	.alert-error {
+		background-color: #F88484;
+		border-color: #FA6262;
+		color: #000;
+	.close {
+			color: #000 !important;
+		}
+	}
+
+}
+
+
+
 
 .btn-apply{
 	width: 64%;
@@ -91,13 +113,8 @@ a:hover{text-decoration:none !important;}
 		background-color: #74B21B !important;
 	}
 }
-.red-btn{
-	width: 14%;
-	margin: auto;
-	font-weight: bold;
-}
 .social-icon{
-	width: 156px;
+	width: 158px;
 	margin: auto;
 	margin-top: 8px;
 	margin-bottom: 10px;
@@ -151,16 +168,22 @@ a:hover{text-decoration:none !important;}
 	}
 
 }
-
+.table-border{
+	border: 1px solid #EEEBEB;
+	#appendedInputButton-04 {
+		width: 195px;
+		}
+}
 .jobs_table{
 	.ratings{
 		font-size: 33px;
 		font-weight: bold;
 		color: @green;
-}
+	}
 	
 
 	.header_cell{
+	padding: 9px;
 		i{
 			font-size: 52px;
 			color: #CCC;
@@ -179,6 +202,192 @@ a:hover{text-decoration:none !important;}
 			}
 		}
 	}
+	.collapse.in {
+		height: auto;
+		margin-top:70px;
+		}
+			.accordion-heading .accordion-toggle {
+				display: block;
+				padding:0px !important;
+				}
+	.header-title{
+		font-weight: normal;
+		border-top: 0px solid #C5C5C5;
+		border-bottom: 0px solid #C5C5C5;
+		color: #747474 !important;
+		background: url(../images/tablepsd_03.png);
+		font-size: 11px !important;
+		font-family: arial !important;
+		margin-top: 10px;
+		height: 43px;
+		
+		.job-logo{
+			width: 16%;
+			float: left;
+			border-right:1px solid #ccc;
+		}
+		.job-date{
+			width: 12%;
+			float: left;
+			border-right:1px solid #ccc;
+		}
+		.job-time{
+			width: 26%;
+			float: left;
+			border-right:1px solid #ccc;
+		}
+		.job-wage{
+			width: 12%;
+			float: left;
+			border-right:1px solid #ccc;
+		}
+		.job-progress{
+			width: 16%;
+			float: left;
+			border-right:1px solid #ccc;
+		}
+		.job-action{
+			width:6%;
+			float: left;
+			
+		}
+		.header-sub{
+			text-align: center;
+			font-size: 13px;
+			font-weight: bold;
+			line-height: 40px;
+			padding: 5px 8px 6px 13px !important;
+		}
+		
+	}
+	.data-title{
+		background: url(../images/tablepsd_08.png);
+		font-family: arial, sans-serif !important;
+		margin-left:0px !important;
+		.accordion-toggle {
+				display: block;
+				padding:0px;
+				}
+
+		.job-logo{
+			width: 16%;
+			float: left;
+			height: 53px;
+			border-right:1px solid #ccc;
+			img{
+				margin: auto;
+				display: block;
+				-webkit-filter: grayscale(100%);
+				-moz-filter: grayscale(100%);
+				-ms-filter: grayscale(100%);
+				-o-filter: grayscale(100%);
+				filter: gray;
+				opacity: 0.5;
+			}
+			
+		}
+		.job-date{
+			width: 12%;
+			float: left;
+			height: 53px;
+			border-right:1px solid #ccc;
+			span {
+				font-size: 33px;
+				text-align: center;
+				display: block;
+				color: #AEB1B4;
+				font-weight: bold;
+				float: left;
+				margin-right: 5px;
+				margin-top: 9px;
+				margin-left: 10px;
+				}
+				div {
+				color: #616161;
+				font-size: 11px;
+				b {
+					color: #A7A097;
+					font-size: 14px;
+					margin-left: 5px;
+					}
+				}
+		}
+		.job-time{
+			width: 26%;
+			float: left;
+			height: 53px;
+			border-right:1px solid #ccc;
+			span {
+			font-size: 29px;
+			text-align: center;
+			color: #AEB1B4;
+			display: block;
+			font-weight: bold;
+			float: left;
+			margin-right: 9px;
+			margin-top: 9px;
+			}
+			div {
+			color: #616161;
+			font-size: 11px;
+			
+			}
+			.time-bold {
+				font-size: 19px !important;
+				line-height: 34px;
+				}
+		}
+		.job-wage{
+			width: 12%;
+			float: left;
+			height: 53px;
+			border-right:1px solid #ccc;
+			ins {
+				font-size: 26px;
+				text-align: center;
+				color: #707070;
+				font-weight: bold;
+				line-height: 30px;
+				display: block;
+			}
+		}
+		.job-progress{
+			width: 16%;
+			float: left;
+			height: 53px;
+			text-align: center;
+			padding-top: 10px;
+			border-right:1px solid #ccc;
+			.label{
+				margin-top:10px;
+			}
+		}
+		.job-action{
+			width:6%;
+			float: left;
+			height: 53px;
+			.arrow-down{
+				margin:10px  auto;
+			}
+			
+		}
+		.header-sub{
+			padding-top: 1%;
+			line-height: 150% !important;
+			padding: 17px 8px 0px 13px !important;
+		}
+		
+	}
+	.accordion-inner{
+		.header-title{
+			border: 1px solid #EEEBEB;
+		}
+		.job-data{
+			border: 1px solid #EEEBEB;
+			padding: 14px 0px;
+			background: #F8F8F8!important;
+		}
+	}
 
 }
 .ins_table{
@@ -188,6 +397,11 @@ a:hover{text-decoration:none !important;}
 			margin:auto;
 			display:block;
 			-webkit-filter: grayscale(100%);
+			filter: url(css/grayscale.svg#greyscale);    
+		  -moz-filter: grayscale(100%);    
+		   -ms-filter: grayscale(100%);    
+		   -o-filter: grayscale(100%);
+		   filter: gray; /* IE5+ */
 			opacity: 0.5;
 		}
 	}
@@ -494,27 +708,63 @@ background: #F8F8F8!important;
 					
 				}
 				.span4{
+					.div-box{
+							position: absolute;
+							top: 24%;
+							bottom: 0;
+							margin: auto;
+							height: 0px;
+							width:33%;
 						.btn-success{
 						width: 70%;
-						margin-top: 87px;
+						
 						background: @green;
 						margin-left: 42px;
 						}
 						.btn-rate{
 						width: 70%;
-						margin-top: 37px;
-						
 						margin-left: 42px;
 						}
 						.btn-apply{
 						width: 70%;
-						margin-top: 56px;
+						
 						margin-left: 42px;
 						}
 						.btn-unapply{
 						width: 70%;
 						margin-left: 42px;
 						}
+						
+						}
+					.div-box2{
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							margin: auto;
+							height: 31px;
+							width: 33%;
+						.btn-success{
+						width: 70%;
+						
+						background: @green;
+						margin-left: 42px;
+						}
+						.btn-rate{
+						width: 70%;
+					margin-left: 42px;
+						}
+						.btn-apply{
+						width: 70%;
+						margin-left: 42px;
+						}
+						.btn-unapply{
+						width: 70%;
+						margin-left: 42px;
+						}
+						
+						}
+						
+						
 						.like_btn{
 							position: absolute;
 							top: 0;
@@ -701,6 +951,107 @@ background: #F8F8F8!important;
 .pagination{
 	margin-left:0px !important;
 }
+.dialog {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.ins_table{
+	.expanded {
+	display:none;
+	}
+}
+.list-jobs{
+	.jobs-details{
+		height:59px;
+		.img-logo{
+			float: left;
+			width: 15%;
+			img{
+				width: 90%;
+			}
+		}
+		.job-complete {
+			font-size: 13px;
+			padding: 9px;
+			margin-left: 0px;
+			color: #8ED030;
+		}
+		.minyawns-select{
+			width: 14%;
+			margin-left: 2px;
+			float: left;
+			span {
+				font-size: 18px;
+				text-align: center;
+				}
+				div {
+				color: #888585;
+				font-size: 7px;
+				line-height:8px;
+				}
+				
+		}
+		.jobs-date{
+			width: 28%;
+			margin-left: 2px;
+			float: left;
+			.posteddate{
+				font-size: 7px;
+			}
+			.jobsdate{
+				font-weight: normal;
+				font-size: 11px;
+				span{
+					display:block;
+				}
+			}
+		}
+		.job-duration{
+			width: 25%;
+			float: left;
+			text-align: center;
+			font-size: 11px;
+			margin-left: 2px;
+			
+			.row-fluid {
+					margin-top: 4px;
+					}
+		}
+		.wages {
+			font-size: 16px;
+			width: 10%;
+			float: left;
+			margin-left: 6px;
+			
+		}
+		
+	}
+	.expand{
+		padding: 10px 2px 10px 2px;
+		.details {
+			border-right:0px;
+			.arrow-left {
+				display:none;
+			}
+		}
+		.minyawansgrid{
+			.span6{
+				margin-left:0px;
+				b{
+					width:auto;
+				}
+			}
+		}
+		.btn-success {
+			margin-top:10px !important;
+		}
+	}
+
+}
+
+
+
+
 .jobs_menu {
 	width: 274px;
 		li{
@@ -1081,6 +1432,8 @@ background: #F8F8F8!important;
 .upper-link{
 	#btn__login{
 		float:right;
+		padding: 5px 15px;
+		
 	}
 }
 .tab_content_login{
@@ -1106,8 +1459,8 @@ background: #F8F8F8!important;
 @media (max-width: 767px){
 
 	body {
-		padding-right: 0px;
-		padding-left: 0px;
+		padding-right: 10px;
+		padding-left: 10px;
 	}
 	.signup {
 		width: 90% !important;
@@ -1188,7 +1541,6 @@ background-position: 60px 480px;
 			}
 		}
 	}
-	
 .single-jobs{
 .minyawns-grid{
 				width: 98%;
@@ -1283,8 +1635,169 @@ background-position: 60px 480px;
 				width:98%;
 				margin:auto !important;
 			}
-}	
-	
+}		
+.list-jobs .expand .span4 .div-box2 {
+	position: relative;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	height: auto;
+	width: 100%;
+	}	
+
+.jobs_table{
+
+.collapse.in {
+		
+		margin-top:0px;
+		}
+		.header-title {
+			h3{
+				font-size: 19px;
+			}
+		.header-sub {
+			text-align: center;
+			font-size: 9px;
+			line-height: 13px;
+			padding: 7px 8px 6px 13px !important;
+			height: 19px !important;
+			}
+		}
+		
+	.header-title{
+		height: 32px;
+		
+		.job-logo{
+			width: 14%;
+		}
+		.job-date{
+			width: 18%;
+		}
+		.job-time{
+			width: 22%;
+		}
+		.job-wage{
+			width: 12%;
+			border-right:0px;
+		}
+		
+	}
+
+	.job-progress {
+		display:none;
+	}
+	.job-progress {
+		display:none;
+	}
+	.job-action {
+		display:none;
+	}
+	.data-title{
+		height: 67px;
+		.accordion-toggle {
+				display: block;
+				padding:0px;
+				}
+
+		.job-logo{
+			width: 14%;
+		}
+		.job-date{
+			width: 18%;
+			span {
+					font-size: 19px;
+					display: inline-block;
+					float: left;
+					margin-right: 2px;
+					margin-top: 0px;
+					margin-left: 0px;
+				}
+				div {
+				color: #616161;
+				font-size: 11px;
+				b {
+					display:none;
+					}
+				}
+		}
+		.job-time{
+			width: 22%;
+			span {
+					font-size: 11px !important;
+					float: left!important;
+					margin-right: 5px!important;
+					margin-top: 2px!important;
+			}
+			div {
+			color: #616161;
+			font-size: 11px;
+			
+			}
+			.time-bold {
+				display:none;
+				}
+		}
+		.job-wage{
+			width: 12%;
+			float: left;
+			height: 53px;
+			border-right:0px;
+			ins {
+				font-size: 13px;
+			}
+		}
+		.job-progress{
+			width: 16%;
+			float: left;
+			height: 53px;
+			text-align: center;
+			padding-top: 10px;
+			border-right:1px solid #ccc;
+			.label{
+				margin-top:10px;
+			}
+		}
+		.job-action{
+			width:6%;
+			float: left;
+			height: 53px;
+			.arrow-down{
+				margin:10px  auto;
+			}
+			
+		}
+		.header-sub{
+			padding-top: 1%;
+			line-height: 150% !important;
+			padding: 10px 8px 0px 13px !important;
+		}
+		
+	}
+	.accordion-inner{
+		
+		.job-data{
+			.inner-data{
+				padding-left: 12px;
+				
+			}
+			.span3{
+					img{
+						display:none;
+					}
+				}
+				.btn-apply{
+					margin: 10px auto !important;;
+				}
+		}
+	}
+	.minywans_list b {
+			float: none;
+			color:#302E2E!important;
+			}
+	.select-role {
+		margin-top: 8px;
+		width: 64% !important;
+		}
 }
 
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
@@ -1306,8 +1819,31 @@ background-position: 60px 480px;
 			}
 		}
 	}
-
 	}
+	
+.list-jobs {
+	.jobs-details .job-duration .row-fluid span {
+			font-size: 20px;
+	}
+	
+	.minyawansgrid{
+						
+						.span6{
+							margin-left: 8px;
+							border-bottom: 1px dotted#CCC;
+							margin-bottom: 5px;
+							width:46% !important;
+							img{
+								width: 11%;
+								padding: 5px;
+							}
+							b{
+								width: auto !important;
+								display: inline-block;
+							}
+						}
+				}
+		}
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
 .home{
@@ -1499,6 +2035,14 @@ background-position: 60px 480px;
 					
 				}
 				.span4{
+				.div-box{
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							margin: auto;
+							height: 0px;
+							width:70%;
+				
 						.btn-success{
 						width: 70%;
 						margin-top: 87px;
@@ -1519,6 +2063,7 @@ background-position: 60px 480px;
 						.btn-unapply{
 						width: 70%;
 						margin-left: 42px;
+						}
 						}
 						.like_btn{
 							position: absolute;
@@ -1594,7 +2139,7 @@ background-position: 60px 480px;
 	}
  }
  .myjobs{
-	width:90%;
+
 	margin:auto;
 	border: 10px solid rgba(204, 204, 204, 0.57);
 	margin-top:2%;
@@ -1607,3 +2152,24 @@ background-position: 60px 480px;
 	
  
  }
+ 
+ /* safari hack*/
+ @media screen and (-webkit-min-device-pixel-ratio:0) {
+  
+ #innermainimage {
+	 .banner-content {
+			position: absolute;
+			z-index: 999;
+			margin-top: 120px;
+			}
+		}
+}
+.page-error{
+	width:90%;
+	margin:auto;
+	border: 10px solid rgba(204, 204, 204, 0.57);
+	.green-btn{
+		margin:auto !important;
+	}
+}
+}

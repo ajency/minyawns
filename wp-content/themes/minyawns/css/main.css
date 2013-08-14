@@ -169,6 +169,16 @@ a:hover {
 .jobs_table .header_cell .select-role .btn-warning {
   background-color: #C0C0BC !important;
 }
+.jobs_table .header-title {
+  font-weight: normal;
+  border-top: 0px solid #C5C5C5;
+  border-bottom: 0px solid #C5C5C5;
+  color: #747474 !important;
+  background: url(../images/tablepsd_03.png);
+  font-size: 11px !important;
+  font-family: arial !important;
+  height: 43px;
+}
 .ins_table .awm_service_title img {
   margin: auto;
   display: block;
@@ -1241,6 +1251,14 @@ a:hover {
     width: 98%;
     margin: auto !important;
   }
+  .list-jobs .expand .span4 .div-box2 {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: auto;
+    width: 100%;
+  }
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
   .home {
@@ -1562,4 +1580,7 @@ a:hover {
   width: 90%;
   margin: auto;
   border: 10px solid rgba(204, 204, 204, 0.57);
+}
+.page-error .green-btn {
+  margin: auto !important;
 }

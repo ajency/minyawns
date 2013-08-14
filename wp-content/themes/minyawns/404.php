@@ -19,7 +19,7 @@ get_header(); ?>
 				<div class="page-content">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/404error.png" style="margin:auto; display:block;"/>
 					<p style="text-align:center;"><?php _e( 'Look like something Wrong ! the page you were looking is not there 
-Go Home ', 'twentythirteen' ); ?></p>
+ ', 'minyawns' ); ?></p>
 
 			<a href="<?php echo site_url(); ?>" class="btn btn-medium btn-block green-btn btn-success ">Go Home</a>
 					<?php //get_search_form(); ?>

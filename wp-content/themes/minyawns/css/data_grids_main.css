@@ -2138,11 +2138,7 @@ table.ins_table, table.ins_table tbody, table.ins_table tbody tr {
     color:#395191;
 }
 
-table.ins_table tbody tr td {
-    border:none;
-    position:relative;
-    white-space:normal;
-}
+
 body td.awm_service_title b {
     font-size:12px !important;
 }
@@ -2269,6 +2265,9 @@ table.qlabs_grid_container {
 	width: 100%;
 	height: 100%;
 }
+.awm_exchange_service_demand {
+	width: 14%;
+}
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
 	.profile .data_cell {
@@ -2277,6 +2276,10 @@ table.qlabs_grid_container {
 .Main-job .awm_exchange_services_action {
 	display: none;
 	width: 13.1%;
+}
+table.qlabs_grid_container {
+	width: 100%;
+	height: 100%;
 }
 table.qlabs_grid_container tbody.data_container tr.data_even td.data_cell div {
 	font-size: 10px !important;
@@ -2363,6 +2366,9 @@ margin-left: 10px;
 }
 .profile .profile-wages ins {
     font-size:13px;
+}
+.awm_exchange_service_demand {
+	width: 14%;
 }
 
 }
