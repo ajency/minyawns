@@ -279,5 +279,5 @@ class Minyawn_Job {
         return implode(',',$this->job_tags);
     }
 
-}
+} 
 
