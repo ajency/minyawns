@@ -6,6 +6,96 @@
 get_header();
 ?>
 
+
+<!-- Row Div -->
+<script type="text/template" id="browse-jobs-table">
+    <div class="accordion-group">
+    <div id="last-job-id" last-job="<%= post_id %>" value="<%= post_id %>"></div>
+    <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3">
+    <div class="span12 data-title">
+    <div class="job-logo header-sub"> <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"></div>
+    <div class="job-date header-sub">
+    <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
+    <div>
+    <%= job_start_month %><b class="service-client-demand" data-count="0"><%= job_start_year %></b>
+    </div>
+    <div class="demand"><%= job_day %></div>
+    </div>
+    <div class="job-time header-sub duration_mob">
+    <div class="row-fluid">
+    <div class="span5 mob-botm">
+    <span data-count="0" class="total-exchange-count"><%= job_start_time %></span>
+    <div>
+    <%= job_start_meridiem %>
+    </div>
+    </div>
+    <div class="span2">
+    <b class="time-bold">to</b>
+    </div>
+    <div class="span5">
+    <span data-count="0" class="total-exchange-count"><%= job_end_time %></span>
+    <div>
+    <%= job_end_meridiem %>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="job-wage header-sub">
+    <ins><span class="amount"><%= job_wages %></span></ins>
+    </div>
+
+    <div class="job-progress header-sub">
+    <span class="label label-small label-success">Available</span>
+    </div>
+
+    <div class="job-action header-sub">
+
+    <div class="arrow-down">
+    </div>
+
+    </div>
+    </div>
+    </a>
+    </div>
+
+    <div id="collapse3" class="accordion-body collapse ">
+    <div class="accordion-inner">
+    <div class="row-fluid header-title">
+    <div class="span12">
+    <h3> Walmart </h3>
+    </div>
+    </div>
+    <div class="row-fluid job-data">
+    <div class="span9 inner-data">
+    <div class="row-fluid minywans_list">
+    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link">  Anna Pollard</a>  </div>
+    </div>
+    <div class="row-fluid minywans_list">
+    <div class="span3 "><b>Location :</b></div><div class="span9">  Paccar Hall, 1st Floor NE Stevens Way, Seattle </div>
+    </div>
+    <div class="row-fluid minywans_list">
+    <div class="span3 "><b>Details :</b></div><div class="span9">  We will need 3 workers to set up chairs and tables and help direct traffic for our event. Please wear business casual and a red tie </div>
+    </div>
+    <div class="row-fluid minywans_list">
+    <div class="span3 "><b>Tags :</b></div><div class="span9">  <span class="label">Event</span><span class="label">Labour</span> </div>
+    </div>
+    </div>
+    <div class="span3">
+    <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-left.png">
+    <a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply">Apply Job</a>
+    </div>
+    </div>
+
+
+
+    </div>
+
+    <!-- Row Div -->
+    <div style="clear:both;">	</div>
+
+</script>
 <div class="container">
 
     <ul class="nav nav-tabs nav-append-content jobs_menu">
@@ -14,633 +104,49 @@ get_header();
     </ul> <!-- /tabs -->
 
     <div class="tab-content">
-        <div class="tab-pane " id="tab1">
-                        	<section id="no-more-tables">
-	<table class="qlabs_grid_container tablesorter jobs_table Main-job">		
-		<thead>
-			<tr class="header_row">
-				<td colspan="7" class="header_cell">
-					<div class="row-fluid">
-						<div class="span7">
-							<i class="icon-calendar"></i><h3 class="page-title"> Months</h3> <!-- header label -->
-							JUN 2013
-						</div>
-						
-						<div class="span2">
-						  <select name="small" class="select-block select-role">
-							<option value="0">Today</option>
-							<option value="1">Tommorow</option>
-							<option value="2">This Week</option>
-							<option value="3">This Month</option>
-						</select>
-						</div>
-						<div class="span3">
-						<div class="control-group small ctrl-grp">
-            <div class="input-append">
-              <input class="span2" id="appendedInputButton-04" type="text" placeholder="Search">
-              <button class="btn btn-small" type="button"><span class="fui-search"></span></button>
+        <div class="tab-pane jobs_table " id="tab1">
+            <div id="browse-jobs-table" class=" table-border">
+                <div class="row-fluid header_cell">
+                    <div class="span7">
+                        <i class="icon-calendar"></i><h3 class="page-title"> Month</h3> <!-- header label -->
+                        JUN 2013
+                    </div>
+
+                    <div class="span2">
+                        <select name="small" class="select-block select-role">
+                            <option value="0" selected="true">Upcoming</option>
+                            <option value="1">Today</option>
+                            <option value="2">Tommorow</option>
+                            <option value="3">This Week</option>
+                            <option value="4">This Month</option>
+                        </select>
+                    </div>
+                    <!--                    <div class="span3">
+                                            <div class="control-group small ctrl-grp">
+                                                <div class="input-append">
+                                                    <input class="span2" id="appendedInputButton-04" type="text" placeholder="Search">
+                                                    <button class="btn btn-small" type="button"><span class="fui-search"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                </div>
+                <!-- Row Div header -->
+                <div class="row-fluid ">
+                    <div class="span12 header-title">
+                        <div class="job-logo header-sub"> Logo</div>
+                        <div class="job-date header-sub"> Session Date</div>
+                        <div class="job-time header-sub">Duration</div>
+                        <div class="job-wage header-sub">Wages</div>
+                        <div class="job-progress header-sub">Progress</div>
+                        <div class="job-action header-sub">Action</div>
+                    </div>
+                </div>
+                <div class="row-fluid " id="accordion2">
+
+                </div>
+                <button id="load-more"></button>
             </div>
-          </div>
-					</div>
-					
-				</td>
-			</tr>
-			<tr class="subheader_row">
-				<th class="subheader_cell awm_exchange_service_tlt service_tlt headerSortDown m-logo">Logo</th>
-				<th class="subheader_cell awm_exchange_service_demand headerSortDown m-date">Session Date</th>
-				<th class="subheader_cell awm_exchange_service_supply headerSortDown m-time">Duration</th>
-				<th class="subheader_cell awm_exchange_service_discount headerSortDown m-wage">Wages</th>
-				<th class="subheader_cell awm_exchange_services_action">Progress</th>
-				<th class="subheader_cell awm_exchange_services_arrow">Action</th>
-			</tr>
-		</thead>
-		<tbody class="data_container">
-			<tr class="data_even">
-   <!-- table 1-->
-   <td colspan="7">
-      <table class="ins_table ">
-	    
-         <tr class="data_even available">
-		 
-            <td class="data_cell awm_service_title" >
-               <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"/>
-			
-			 </td>
-            <td  class="data_cell awm_service_demand">
-               <span class="service-total-demand" data-count="0">30</span>
-               <div>
-                  May<b  class="service-client-demand" data-count="0">2013</b>
-               </div>
-			   <div class="demand"> Monday</div>
-			</td>
-            <td  class="data_cell awm_service_supply duration_mob">
-               <div class="row-fluid">
-			  <div class="span5 mob-botm">
-				<span data-count="0" class="total-exchange-count">11:00</span>
-				   <div>
-					 pm
-				   </div>
-			    </div>
-			  <div class="span2">
-				<b class="time-bold">to</b>
-			</div>
-			<div class="span5">
-				 <span data-count="0" class="total-exchange-count">2:00</span>
-					<div>
-					pm
-					</div>
-			 </div>
-			   </div>
-			  </td>
-            <td  class="data_cell awm_service_discount">
-               <ins><span class="amount">$100</span></ins>
-            </td>
-          <td  class="data_cell awm_service_action">
-              
-			  <span class="label label-small label-success">Available</span>
-            </td>
-            <td  class="data_cell awm_service_arrow">
-              <a href="#collapse52" class="nav-toggle">
-                  <div class="arrow-down">
-                  </div>
-				 
-               </a>
-             </td>
-			 	
-         </tr>
-	
-         <tr class="expanded ">
-            <td colspan="7">
-               <input id="row_1" name="#" type="checkbox"/>
-               <div id="collapse52" style="display:none" class="expand">
-                  <div class="column_100">
-                     <table class="qlabs_grid_container awm_single_services ins_table service_tlt " width="100%">
-                        <thead>
-                           <tr class="header_row">
-                              <td class="header_cell">
-                                 <h4 >Walmart</h4>
-                              </td>
-                           </tr>
-                        </thead>
-                        <tbody class="data_container">
-                           <tr class="odd">
-                              <td class="data_cell awm_single_service_name">
-                                <div class="row-fluid">
-									<div class="span9">
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link">  Anna Pollard</a>  </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Location :</b></div><div class="span9">  Paccar Hall, 1st Floor NE Stevens Way, Seattle </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Details :</b></div><div class="span9">  We will need 3 workers to set up chairs and tables and help direct traffic for our event. Please wear business casual and a red tie </div>
-										</div>
-											<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Tags :</b></div><div class="span9">  <span class="label">Event</span><span class="label">Labour</span> </div>
-									</div>
-									</div>
-									<div class="span3">
-										<img src="images/arrow-left.png"/>
-										<a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply">Apply Job</a>
-									</div>
-								</div>
-                              </td>
-                            </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </td>
-         </tr>
-      </table>
-   </td>
-</tr>
-<tr class="data_even available">
-   <!-- table 1-->
-   <td colspan="7">
-      <table class="ins_table">
-         <tr class="data_even">
-            <td class="data_cell awm_service_title" >
-                <img src="<?php echo get_template_directory_uri(); ?>/images/livefyre-logo.png"/>
-			
-			</td>
-            <td  class="data_cell awm_service_demand">
-               <span class="service-total-demand" data-count="1">10</span>
-               <div>
-                 Jun<b  class="service-client-demand" data-count="1">2013</b>
-               </div>
-			   <div class="demand"> Thusrday</div>
-            </td>
-            <td  class="data_cell awm_service_supply duration_mob">
-                 <div class="row-fluid">
-			  <div class="span5 mob-botm">
-				<span data-count="0" class="total-exchange-count">8:00</span>
-				   <div>
-					 am
-				   </div>
-			    </div>
-			  <div class="span2">
-				<b class="time-bold">to</b>
-			</div>
-			<div class="span5">
-				 <span data-count="0" class="total-exchange-count">12:00</span>
-					<div>
-					pm
-					</div>
-			 </div>
-			   </div>
-            </td>
-            <td  class="data_cell awm_service_discount">
-               <ins><span class="amount">$28</span></ins>
-            </td>
-           <td  class="data_cell awm_service_action">
-                <span class="label label-small label-success">Available</span>
-            </td>
-            <td  class="data_cell awm_service_arrow">
-               <a href="#collapse53" class="nav-toggle">
-                  <div class="arrow-down">
-                  </div>
-				 
-               </a>
-            
-            </td>
-         </tr>
-         <tr class="expanded">
-            <td colspan="7">
-               <input id="row_1" name="#" type="checkbox"/>
-               <div id="collapse53" style="display:none" class="expand">
-                  <div class="column_100">
-                 <table class="qlabs_grid_container awm_single_services ins_table service_tlt " width="100%">
-                        <thead>
-                           <tr class="header_row">
-                              <td class="header_cell">
-                                 <h4 >Lifefyre</h4>
-                              </td>
-                           </tr>
-                        </thead>
-                        <tbody class="data_container">
-                           <tr class="odd">
-                              <td class="data_cell awm_single_service_name">
-                                <div class="row-fluid">
-									<div class="span9">
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Requested by :</b></div><div class="span9"><a href="#" class="request_link">  Anna Pollard</a>  </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Location :</b></div><div class="span9">  Paccar Hall, 1st Floor NE Stevens Way, Seattle </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Details :</b></div><div class="span9">  We will need 3 workers to set up chairs and tables and help direct traffic for our event. Please wear business casual and a red tie </div>
-										</div>
-											<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Tags :</b></div><div class="span9">  <span class="label">Event</span><span class="label">Labour</span> </div>
-									</div>
-									</div>
-									<div class="span3">
-										<img src="images/arrow-left.png"/>
-										<a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply">Apply Job</a>
-									</div>
-								</div>
-                              </td>
-                            </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </td>
-         </tr>
-      </table>
-   </td>
-</tr>
-<tr class="data_even no-available">
-   <!-- table 1-->
-   <td colspan="7">
-      <table class="ins_table">
-         <tr class="data_even">
-            <td  class="data_cell awm_service_title" >
-              <img src="<?php echo get_template_directory_uri(); ?>/images/UbuntuLogo.png"/>
-			  
-            </td>
-            <td  class="data_cell awm_service_demand">
-               <span class="service-total-demand" data-count="1">05</span>
-               <div>
-                 May<b  class="service-client-demand" data-count="1">2013</b>
-               </div>
-			    <div class="demand"> Sunday</div>
-            </td>
-            <td  class="data_cell awm_service_supply duration_mob">
-				      <div class="row-fluid">
-			  <div class="span5 mob-botm">
-				<span data-count="0" class="total-exchange-count">10:00</span>
-				   <div>
-					 am
-				   </div>
-			    </div>
-			  <div class="span2">
-				<b class="time-bold">to</b>
-			</div>
-			<div class="span5">
-				 <span data-count="0" class="total-exchange-count">12:00</span>
-					<div>
-					pm
-					</div>
-			 </div>
-			   </div>
-            </td>
-            <td  class="data_cell awm_service_discount">
-              <ins><span class="amount">$400</span></ins>
-            </td>
-			<td  class="data_cell awm_service_action">
-          <span class="label label-small label-important">No Available</span>
-            </td>
-            <td  class="data_cell awm_service_arrow">
-               <a href="#collapse54" class="nav-toggle">
-                  <div class="arrow-down">
-                  </div>
-				  
-               </a>
-           </td>
-         </tr>
-         <tr class="expanded">
-            <td colspan="7">
-               <input id="row_1" name="#" type="checkbox"/>
-               <div id="collapse54" style="display:none" class="expand">
-                  <div class="column_100">
-                      <table class="qlabs_grid_container awm_single_services ins_table service_tlt " width="100%">
-                        <thead>
-                           <tr class="header_row">
-                              <td class="header_cell">
-                                 <h4 >Ubunto</h4>
-                              </td>
-                           </tr>
-                        </thead>
-                        <tbody class="data_container">
-                           <tr class="odd">
-                              <td class="data_cell awm_single_service_name">
-                                <div class="row-fluid">
-									<div class="span9">
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Requested by :</b></div><div class="span9"><a href="#" class="request_link"> <a href="#" class="request_link">  Anna Pollard</a>  </a></div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Location :</b></div><div class="span9">  Paccar Hall, 1st Floor NE Stevens Way, Seattle </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Details :</b></div><div class="span9">  We will need 3 workers to set up chairs and tables and help direct traffic for our event. Please wear business casual and a red tie </div>
-										</div>
-											<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Tags :</b></div><div class="span9">  <span class="label">Event</span><span class="label">Labour</span> </div>
-									</div>
-									</div>
-									<div class="span3">
-										<img src="images/arrow-left.png"/>
-										<a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply">Apply Job</a>
-									</div>
-								</div>
-                              </td>
-                            </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </td>
-         </tr>
-      </table>
-   </td>
-</tr>
-  <td colspan="7">
-      <table class="ins_table">
-         <tr class="data_even available">
-            <td  class="data_cell awm_service_title" >
-               <img src=" <?php echo get_template_directory_uri(); ?>/images/CIRC-logo_300dpi_PNG.png"/>
-			  
-			 </td>
-            <td  class="data_cell awm_service_demand">
-               <span class="service-total-demand" data-count="0">12</span>
-               <div>
-                  May<b  class="service-client-demand" data-count="0">2013</b>
-               </div>
-			   <div class="demand"> Friday</div>
-			</td>
-            <td  class="data_cell awm_service_supply duration_mob">
-                  <div class="row-fluid">
-			  <div class="span5 mob-botm">
-				<span data-count="0" class="total-exchange-count">8:00</span>
-				   <div>
-					 am
-				   </div>
-			    </div>
-			  <div class="span2">
-				<b class="time-bold">to</b>
-			</div>
-			<div class="span5">
-				 <span data-count="0" class="total-exchange-count">12:00</span>
-					<div>
-					pm
-					</div>
-			 </div>
-			   </div>
-			  </td>
-            <td   class="data_cell awm_service_discount">
-               <ins><span class="amount">$25</span></ins>
-            </td>
-          <td  class="data_cell awm_service_action">
-              <span class="label label-small label-success">Available</span>
-            </td>
-            <td  class="data_cell awm_service_arrow">
-               <a href="#collapse55" class="nav-toggle">
-                  <div class="arrow-down">
-                  </div>
-				 
-               </a>
-             </td>
-         </tr>
-         <tr class="expanded">
-            <td colspan="7">
-               <input id="row_1" name="#" type="checkbox"/>
-               <div id="collapse55" style="display:none" class="expand">
-                  <div class="column_100">
-                     <table class="qlabs_grid_container awm_single_services ins_table service_tlt " width="100%">
-                        <thead>
-                           <tr class="header_row">
-                              <td class="header_cell">
-                                 <h4 >CIRC</h4>
-                              </td>
-                           </tr>
-                        </thead>
-                        <tbody class="data_container">
-                           <tr class="odd">
-                              <td class="data_cell awm_single_service_name">
-                                <div class="row-fluid">
-									<div class="span9">
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link">  Anna Pollard</a> </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Location :</b></div><div class="span9">  Paccar Hall, 1st Floor NE Stevens Way, Seattle </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Details :</b></div><div class="span9">  We will need 3 workers to set up chairs and tables and help direct traffic for our event. Please wear business casual and a red tie </div>
-										</div>
-											<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Tags :</b></div><div class="span9">  <span class="label">Event</span><span class="label">Labour</span> </div>
-									</div>
-									</div>
-									<div class="span3">
-										<img src="images/arrow-left.png"/>
-										<a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply">Apply Job</a>
-									</div>
-								</div>
-                              </td>
-                            </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </td>
-         </tr>
-      </table>
-   </td>
-</tr>
-<tr class="data_even available">
-   <!-- table 1-->
-   <td colspan="7">
-      <table class="ins_table">
-         <tr class="data_even">
-            <td  class="data_cell awm_service_title" >
-                <img src="<?php echo get_template_directory_uri(); ?>/images/livefyre-logo.png"/>
-				
-			</td>
-            <td  class="data_cell awm_service_demand">
-               <span class="service-total-demand" data-count="1">10</span>
-               <div>
-                 Jun<b  class="service-client-demand" data-count="1">2013</b>
-               </div>
-			     <div class="demand"> Sunday</div>
-            </td>
-            <td  class="data_cell awm_service_supply duration_mob">
-                    <div class="row-fluid">
-			  <div class="span5 mob-botm">
-				<span data-count="0" class="total-exchange-count">8:00</span>
-				   <div>
-					 am
-				   </div>
-			    </div>
-			  <div class="span2">
-				<b class="time-bold">to</b>
-			</div>
-			<div class="span5">
-				 <span data-count="0" class="total-exchange-count">12:00</span>
-					<div>
-					pm
-					</div>
-			 </div>
-			   </div>
-            </td>
-            <td class="data_cell awm_service_discount">
-               <ins><span class="amount">$28</span></ins>
-            </td>
-           <td  class="data_cell awm_service_action">
-                <span class="label label-small label-success">Available</span>
-            </td>
-            <td class="data_cell awm_service_arrow">
-               <a href="#collapse57" class="nav-toggle">
-                  <div class="arrow-down">
-                  </div>
-				 
-               </a>
-            
-            </td>
-         </tr>
-         <tr class="expanded">
-            <td colspan="7">
-               <input id="row_1" name="#" type="checkbox"/>
-               <div id="collapse57" style="display:none" class="expand">
-                  <div class="column_100">
-                 <table class="qlabs_grid_container awm_single_services ins_table service_tlt " width="100%">
-                        <thead>
-                           <tr class="header_row">
-                              <td class="header_cell">
-                                 <h4 >Lifefyre</h4>
-                              </td>
-                           </tr>
-                        </thead>
-                        <tbody class="data_container">
-                           <tr class="odd">
-                              <td class="data_cell awm_single_service_name">
-                                <div class="row-fluid">
-									<div class="span9">
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link">  Anna Pollard</a> </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Location :</b></div><div class="span9">  Paccar Hall, 1st Floor NE Stevens Way, Seattle </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Details :</b></div><div class="span9">  We will need 3 workers to set up chairs and tables and help direct traffic for our event. Please wear business casual and a red tie </div>
-										</div>
-											<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Tags :</b></div><div class="span9">  <span class="label">Event</span><span class="label">Labour</span> </div>
-									</div>
-									</div>
-									<div class="span3">
-										<img src="images/arrow-left.png"/>
-										<a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply">Apply Job</a>
-									</div>
-								</div>
-                              </td>
-                            </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </td>
-         </tr>
-      </table>
-   </td>
-</tr>
-<tr class="data_even">
-   <!-- table 1-->
-   <td colspan="7">
-      <table class="ins_table">
-         <tr class="data_even no-available">
-            <td  class="data_cell awm_service_title" >
-              <img src="<?php echo get_template_directory_uri(); ?>/images/bitly_logo.png"/>
-		
-            </td>
-            <td  class="data_cell awm_service_demand">
-               <span class="service-total-demand" data-count="1">05</span>
-               <div>
-                 May<b  class="service-client-demand" data-count="1">2013</b>
-               </div>
-			     <div class="demand"> Wednesday</div>
-            </td>
-            <td  class="data_cell awm_service_supply duration_mob">
-				      <div class="row-fluid">
-			  <div class="span5 mob-botm">
-				<span data-count="0" class="total-exchange-count">8:00</span>
-				   <div>
-					 am
-				   </div>
-			    </div>
-			  <div class="span2">
-				<b class="time-bold">to</b>
-			</div>
-			<div class="span5">
-				 <span data-count="0" class="total-exchange-count">12:00</span>
-					<div>
-					pm
-					</div>
-			 </div>
-			   </div>
-            </td>
-            <td   class="data_cell awm_service_discount">
-              <ins><span class="amount">$400</span></ins>
-            </td>
-			<td  class="data_cell awm_service_action">
-          <span class="label label-small label-important">No Available</span>
-            </td>
-            <td  class="data_cell awm_service_arrow">
-               <a href="#collapse58" class="nav-toggle">
-                  <div class="arrow-down">
-                  </div>
-				 
-               </a>
-           </td>
-         </tr>
-         <tr class="expanded">
-            <td colspan="7">
-               <input id="row_1" name="#" type="checkbox"/>
-               <div id="collapse58" style="display:none" class="expand">
-                  <div class="column_100">
-                      <table class="qlabs_grid_container awm_single_services ins_table service_tlt " width="100%">
-                        <thead>
-                           <tr class="header_row">
-                              <td class="header_cell">
-                                 <h4 >Bitly</h4>
-                              </td>
-                           </tr>
-                        </thead>
-                        <tbody class="data_container">
-                           <tr class="odd">
-                              <td class="data_cell awm_single_service_name">
-                                <div class="row-fluid">
-									<div class="span9">
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link">  Anna Pollard</a>  </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Location :</b></div><div class="span9">  Paccar Hall, 1st Floor NE Stevens Way, Seattle </div>
-										</div>
-										<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Details :</b></div><div class="span9">  We will need 3 workers to set up chairs and tables and help direct traffic for our event. Please wear business casual and a red tie </div>
-										</div>
-											<div class="row-fluid minywans_list">
-										<div class="span3 "><b>Tags :</b></div><div class="span9">  <span class="label">Event</span><span class="label">Labour</span> </div>
-									</div>
-									</div>
-									<div class="span3">
-										<img src="images/arrow-left.png"/>
-										<a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply">Apply Job</a>
-									</div>
-								</div>
-                              </td>
-                            </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </td>
-         </tr>
-      </table>
-   </td>
-</tr>		</tbody>
-	</table>
-
-	</section>
         </div>
-
         <!-- /tabs -->
         <div class="tab-pane active" id="tab2">
             <div class="breadcrumb-text">
@@ -663,336 +169,336 @@ get_header();
                     <?php //}  ?>
 
                     <div id="add-job-form" style="display:none;">
-                    
-                     <?php if(check_access()===true)
-		{
-			 
-		?>
-<!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
-                        <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
-                        <form id="job-form" class="form-horizontal">
-<input type="hidden" value="" id="user_skills"></input>
-                            <div class="control-group small">
-                                <label class="control-label" for="inputtask">Tasks</label>
-                                <div class="controls ">
-                                    <input type="text" id="job_task" name="job_task" value="" placeholder="" class="span3">
+
+                        <?php
+                        if (check_access() === true) {
+                            ?>
+                            <!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
+                            <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
+                            <form id="job-form" class="form-horizontal">
+                                <input type="hidden" value="" id="user_skills"></input>
+                                <input type="hidden" value="" name="id"></input>
+                                <div class="control-group small">
+                                    <label class="control-label" for="inputtask">Tasks</label>
+                                    <div class="controls ">
+                                        <input type="text" id="job_task" name="job_task" value="" placeholder="" class="span3">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group small float-left ">
-                                <label class="control-label" for="inputtask">Start</label>
-                                <div class="controls">
-                                    <div class="input-prepend input-datepicker">
-                                        <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text" class="span1" name="job_start_date" value="" id="job_start_date">
+                                <div class="control-group small float-left ">
+                                    <label class="control-label" for="inputtask">Start</label>
+                                    <div class="controls">
+                                        <div class="input-prepend input-datepicker">
+                                            <button type="button" class="btn"><span class="fui-calendar"></span></button>
+                                            <input type="text" class="span1" name="job_start_date" value="" id="job_start_date">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="input-append bootstrap-timepicker">
+                                    <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" >
+                                    <span class="add-on">
+                                        <i class="icon-time"></i>
+                                    </span>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="control-group small float-left">
+                                    <label class="control-label" for="inputtask">End</label>
+                                    <div class="controls">
+                                        <div class="input-prepend input-datepicker">
+                                            <button type="button" class="btn"><span class="fui-calendar"></span></button>
+                                            <input type="text"  name="job_end_date" class="span1" value="" id="job_end_date">
+                                        </div>
                                     </div>
 
                                 </div>
-                            </div>
-                            <div class="input-append bootstrap-timepicker">
-                                <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" >
-                                <span class="add-on">
-                                    <i class="icon-time"></i>
-                                </span>
-                            </div>
-                            <div class="clear"></div>
-                            <div class="control-group small float-left">
-                                <label class="control-label" for="inputtask">End</label>
-                                <div class="controls">
-                                    <div class="input-prepend input-datepicker">
-                                        <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                        <input type="text"  name="job_end_date" class="span1" value="" id="job_end_date">
-                                    </div>
+                                <div class="input-append bootstrap-timepicker">
+                                    <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time">
+                                    <span class="add-on">
+                                        <i class="icon-time"></i>
+                                    </span>
                                 </div>
-
-                            </div>
-                            <div class="input-append bootstrap-timepicker">
-                                <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time">
-                                <span class="add-on">
-                                    <i class="icon-time"></i>
-                                </span>
-                            </div>
-                            <div class="clear"></div>
-                            <div class="control-group small">
-                                <label class="control-label" for="inputtask">Required</label>
-                                <div class="controls ">
-                                    <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="0" class="spinner">
-                                </div>
-                            </div>
-
-
-                            <div class="control-group small">
-                                <label class="control-label" for="inputtask">Wages</label>
-
-                                <div class="controls small">
-                                    <div class="input-prepend">
-                                        <span class="add-on"><i class="icon-dollar"></i></span>
-                                        <input class="span2" id="job_wages" type="text" name="job_wages" >
+                                <div class="clear"></div>
+                                <div class="control-group small">
+                                    <label class="control-label" for="inputtask">Required</label>
+                                    <div class="controls ">
+                                        <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="0" class="spinner">
                                     </div>
                                 </div>
 
 
-                            </div>
-                            <div class="control-group small">
-                                <label class="control-label" for="inputtask">Location</label>
-                                <div class="controls ">
-                                    <input type="text" name="job_location" id="job_location" value="" placeholder="" class="span3">
-                                </div>
-                            </div>
+                                <div class="control-group small">
+                                    <label class="control-label" for="inputtask">Wages</label>
 
-                            <div class="control-group small">
-                                <label class="control-label" for="inputtask">Tags</label>
-                                <div class="controls ">
-                                    <input  name="job_tags" id="job_tags" value="" placeholder="" class="tm-input tagsinput">
-                               </div>
-                            </div>
-                            <div class="control-group small">
-                                <label class="control-label" for="inputtask">Details</label>
-                                <div class="controls ">
-                                    <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder="" style="height:70px;"></textarea>
+                                    <div class="controls small">
+                                        <div class="input-prepend">
+                                            <span class="add-on"><i class="icon-dollar"></i></span>
+                                            <input class="span2" id="job_wages" type="text" name="job_wages" >
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                            </div>
-                            <hr>
-                            <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2" >Submit</a>
-                            <div class="clear"></div>
-                        </form>
-                        <?php }?>
+                                <div class="control-group small">
+                                    <label class="control-label" for="inputtask">Location</label>
+                                    <div class="controls ">
+                                        <input type="text" name="job_location" id="job_location" value="" placeholder="" class="span3">
+                                    </div>
+                                </div>
+
+                                <div class="control-group small">
+                                    <label class="control-label" for="inputtask">Tags</label>
+                                    <div class="controls ">
+                                        <input  name="job_tags" id="job_tags" value="" placeholder="" class="tm-input tagsinput">
+                                    </div>
+                                </div>
+                                <div class="control-group small">
+                                    <label class="control-label" for="inputtask">Details</label>
+                                    <div class="controls ">
+                                        <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder="" style="height:70px;"></textarea>
+                                    </div>
+                                </div>
+                                <hr>
+                                <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2" >Submit</a>
+                                <div class="clear"></div>
+                            </form>
+                        <?php } ?>
                     </div>
                 </div>
                 <?php /*
-                <div class="row-fluid list-jobs"  style="background: #C7C9C5;">
-                    <div class="span12 jobs-details">
-                        <div class="span2 img-logo"> <img src="<?php echo get_template_directory_uri(); ?>/images/livefyre-logo.png"/> </div>
-                        <div class="span3 minyawns-select"><span>4</span>
-                            <div>Minyawns Have Applied</div> 
-                        </div>
-                        <div class="span3 jobs-date"> 
-                            <div class="posteddate"> Posted Date : <span>10 April 2013</span></div>
-                            <div class="jobsdate"> Jobs Date : <span>20 June 2013</span></div>
-                        </div>
-                        <div class="span3 job-duration duration_mob">
-                            <div class="row-fluid">
-                                <div class="span5 mob-botm">
-                                    <span data-count="0" class="total-exchange-count">11:00</span>
-                                    <div>
-                                        pm
-                                    </div>
-                                </div>
-                                <div class="span2">
-                                    <b class="time-bold">to</b>
-                                </div>
-                                <div class="span5">
-                                    <span data-count="0" class="total-exchange-count">2:00</span>
-                                    <div>
-                                        pm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="span1 wages">
-                            $100
-                        </div>
-                    </div>
-                    <div class="span12 expand">
-                        <div class="span8 details"> 
-                            <div class="row-fluid">
-                                <div class="span4"> <img src="<?php echo get_template_directory_uri(); ?>/images/livefyre-logo.png"/></div>
-                                <div class="span8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </br>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </div>
-                            </div><br>
-                            <div class="row-fluid minyawansgrid">
-                                <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult1.png"/><b> Simon Srewell</b>
-                                    <a href="#fakelink" >
-                                        <i class="icon-thumbs-up"></i> 100
-                                    </a> 
-                                    <a href="#fakelink"  class="icon-thumbs">
-                                        <i class="icon-thumbs-down"></i> 200
-                                    </a> 
-                                </div>
-                                <div class="span6"> <img src="<?php echo get_template_directory_uri(); ?>/images/iconsult2.png"/><b> Riya mactheel</b>
-                                    <a href="#fakelink" >
-                                        <i class="icon-thumbs-up"></i> 50
-                                    </a> 
-                                    <a href="#fakelink"  class="icon-thumbs">
-                                        <i class="icon-thumbs-down"></i> 50
-                                    </a>
+                  <div class="row-fluid list-jobs"  style="background: #C7C9C5;">
+                  <div class="span12 jobs-details">
+                  <div class="span2 img-logo"> <img src="<?php echo get_template_directory_uri(); ?>/images/livefyre-logo.png"/> </div>
+                  <div class="span3 minyawns-select"><span>4</span>
+                  <div>Minyawns Have Applied</div>
+                  </div>
+                  <div class="span3 jobs-date">
+                  <div class="posteddate"> Posted Date : <span>10 April 2013</span></div>
+                  <div class="jobsdate"> Jobs Date : <span>20 June 2013</span></div>
+                  </div>
+                  <div class="span3 job-duration duration_mob">
+                  <div class="row-fluid">
+                  <div class="span5 mob-botm">
+                  <span data-count="0" class="total-exchange-count">11:00</span>
+                  <div>
+                  pm
+                  </div>
+                  </div>
+                  <div class="span2">
+                  <b class="time-bold">to</b>
+                  </div>
+                  <div class="span5">
+                  <span data-count="0" class="total-exchange-count">2:00</span>
+                  <div>
+                  pm
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="span1 wages">
+                  $100
+                  </div>
+                  </div>
+                  <div class="span12 expand">
+                  <div class="span8 details">
+                  <div class="row-fluid">
+                  <div class="span4"> <img src="<?php echo get_template_directory_uri(); ?>/images/livefyre-logo.png"/></div>
+                  <div class="span8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </br>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </div>
+                  </div><br>
+                  <div class="row-fluid minyawansgrid">
+                  <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult1.png"/><b> Simon Srewell</b>
+                  <a href="#fakelink" >
+                  <i class="icon-thumbs-up"></i> 100
+                  </a>
+                  <a href="#fakelink"  class="icon-thumbs">
+                  <i class="icon-thumbs-down"></i> 200
+                  </a>
+                  </div>
+                  <div class="span6"> <img src="<?php echo get_template_directory_uri(); ?>/images/iconsult2.png"/><b> Riya mactheel</b>
+                  <a href="#fakelink" >
+                  <i class="icon-thumbs-up"></i> 50
+                  </a>
+                  <a href="#fakelink"  class="icon-thumbs">
+                  <i class="icon-thumbs-down"></i> 50
+                  </a>
 
-                                </div>
-                                <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult3.png"/><b> Richard Andrews</b>
-                                    <a href="#fakelink" >
-                                        <i class="icon-thumbs-up"></i> 10
-                                    </a> 
-                                    <a href="#fakelink"  class="icon-thumbs">
-                                        <i class="icon-thumbs-down"></i> 20
-                                    </a>
+                  </div>
+                  <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult3.png"/><b> Richard Andrews</b>
+                  <a href="#fakelink" >
+                  <i class="icon-thumbs-up"></i> 10
+                  </a>
+                  <a href="#fakelink"  class="icon-thumbs">
+                  <i class="icon-thumbs-down"></i> 20
+                  </a>
 
-                                </div>
-                                <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult4.png"/> <b> Albert Srewell</b>
-                                    <a href="#fakelink" >
-                                        <i class="icon-thumbs-up"></i> 50
-                                    </a> 
-                                    <a href="#fakelink"  class="icon-thumbs">
-                                        <i class="icon-thumbs-down"></i> 100
-                                    </a>
+                  </div>
+                  <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult4.png"/> <b> Albert Srewell</b>
+                  <a href="#fakelink" >
+                  <i class="icon-thumbs-up"></i> 50
+                  </a>
+                  <a href="#fakelink"  class="icon-thumbs">
+                  <i class="icon-thumbs-down"></i> 100
+                  </a>
 
-                                </div>
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
-                            </div>
+                  </div>
+                  <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
+                  </div>
 
-                        </div>
+                  </div>
 
-                        <div class="span4"><a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply ">Apply</a> </br>
-                            <a href="#fakelink" class="btn btn-large btn-block btn-danger btn-unapply">Un Apply</a></div></div>
-                </div>
+                  <div class="span4"><a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply ">Apply</a> </br>
+                  <a href="#fakelink" class="btn btn-large btn-block btn-danger btn-unapply">Un Apply</a></div></div>
+                  </div>
 
-                <div class="row-fluid list-jobs" style="background: #C7C9C5;">
-                    <div class="span12 jobs-details">
-                        <div class="span2 img-logo"> <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"/> </div>
-                        <div class="span3 minyawns-select"><span>4</span>
-                            <div>Minyawns Have Applied</div> 
-                        </div>
-                        <div class="span3 jobs-date"> 
-                            <div class="posteddate"> Posted Date : <span>8 July 2013</span></div>
-                            <div class="jobsdate"> Jobs Date : <span>10 July 2013</span></div>
-                        </div>
-                        <div class="span3 job-duration duration_mob">
-                            <div class="row-fluid">
-                                <div class="span5 mob-botm">
-                                    <span data-count="0" class="total-exchange-count">08:00</span>
-                                    <div>
-                                        pm
-                                    </div>
-                                </div>
-                                <div class="span2">
-                                    <b class="time-bold">to</b>
-                                </div>
-                                <div class="span5">
-                                    <span data-count="0" class="total-exchange-count">12:00</span>
-                                    <div>
-                                        pm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="span1 wages">
-                            $50
-                        </div>
-                    </div>
-                    <div class="span12 expand">
-                        <div class="span8 details"> 
-                            <div class="row-fluid">
-                                <div class="span4"> <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"/></div>
-                                <div class="span8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </br>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </div>
-                            </div><br>
-                            <div class="row-fluid minyawansgrid">
-                                <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult1.png"/><b> Simon Srewell</b>
-                                    <a href="#fakelink" >
-                                        <i class="icon-thumbs-up"></i> 100
-                                    </a> 
-                                    <a href="#fakelink"  class="icon-thumbs">
-                                        <i class="icon-thumbs-down"></i> 200
-                                    </a> 
-                                </div>
-                                <div class="span6"> <img src="<?php echo get_template_directory_uri(); ?>/images/iconsult2.png"/><b> Riya mactheel</b>
-                                    <a href="#fakelink" >
-                                        <i class="icon-thumbs-up"></i> 50
-                                    </a> 
-                                    <a href="#fakelink"  class="icon-thumbs">
-                                        <i class="icon-thumbs-down"></i> 50
-                                    </a>
+                  <div class="row-fluid list-jobs" style="background: #C7C9C5;">
+                  <div class="span12 jobs-details">
+                  <div class="span2 img-logo"> <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"/> </div>
+                  <div class="span3 minyawns-select"><span>4</span>
+                  <div>Minyawns Have Applied</div>
+                  </div>
+                  <div class="span3 jobs-date">
+                  <div class="posteddate"> Posted Date : <span>8 July 2013</span></div>
+                  <div class="jobsdate"> Jobs Date : <span>10 July 2013</span></div>
+                  </div>
+                  <div class="span3 job-duration duration_mob">
+                  <div class="row-fluid">
+                  <div class="span5 mob-botm">
+                  <span data-count="0" class="total-exchange-count">08:00</span>
+                  <div>
+                  pm
+                  </div>
+                  </div>
+                  <div class="span2">
+                  <b class="time-bold">to</b>
+                  </div>
+                  <div class="span5">
+                  <span data-count="0" class="total-exchange-count">12:00</span>
+                  <div>
+                  pm
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="span1 wages">
+                  $50
+                  </div>
+                  </div>
+                  <div class="span12 expand">
+                  <div class="span8 details">
+                  <div class="row-fluid">
+                  <div class="span4"> <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"/></div>
+                  <div class="span8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </br>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </div>
+                  </div><br>
+                  <div class="row-fluid minyawansgrid">
+                  <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult1.png"/><b> Simon Srewell</b>
+                  <a href="#fakelink" >
+                  <i class="icon-thumbs-up"></i> 100
+                  </a>
+                  <a href="#fakelink"  class="icon-thumbs">
+                  <i class="icon-thumbs-down"></i> 200
+                  </a>
+                  </div>
+                  <div class="span6"> <img src="<?php echo get_template_directory_uri(); ?>/images/iconsult2.png"/><b> Riya mactheel</b>
+                  <a href="#fakelink" >
+                  <i class="icon-thumbs-up"></i> 50
+                  </a>
+                  <a href="#fakelink"  class="icon-thumbs">
+                  <i class="icon-thumbs-down"></i> 50
+                  </a>
 
-                                </div>
-                                <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult3.png"/><b> Richard Andrews</b>
-                                    <a href="#fakelink" >
-                                        <i class="icon-thumbs-up"></i> 10
-                                    </a> 
-                                    <a href="#fakelink"  class="icon-thumbs">
-                                        <i class="icon-thumbs-down"></i> 20
-                                    </a>
+                  </div>
+                  <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult3.png"/><b> Richard Andrews</b>
+                  <a href="#fakelink" >
+                  <i class="icon-thumbs-up"></i> 10
+                  </a>
+                  <a href="#fakelink"  class="icon-thumbs">
+                  <i class="icon-thumbs-down"></i> 20
+                  </a>
 
-                                </div>
-                                <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult4.png"/> <b> Albert Srewell</b>
-                                    <a href="#fakelink" >
-                                        <i class="icon-thumbs-up"></i> 50
-                                    </a> 
-                                    <a href="#fakelink"  class="icon-thumbs">
-                                        <i class="icon-thumbs-down"></i> 100
-                                    </a>
+                  </div>
+                  <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult4.png"/> <b> Albert Srewell</b>
+                  <a href="#fakelink" >
+                  <i class="icon-thumbs-up"></i> 50
+                  </a>
+                  <a href="#fakelink"  class="icon-thumbs">
+                  <i class="icon-thumbs-down"></i> 100
+                  </a>
 
-                                </div>
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
-                            </div>
+                  </div>
+                  <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
+                  </div>
 
-                        </div>
+                  </div>
 
-                        <div class="span4">
-                            <a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply ">Apply</a> </br>
-                            <a href="#fakelink" class="btn btn-large btn-block btn-danger btn-unapply">Un Apply</a></div>
-                    </div>
-                </div>
+                  <div class="span4">
+                  <a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply ">Apply</a> </br>
+                  <a href="#fakelink" class="btn btn-large btn-block btn-danger btn-unapply">Un Apply</a></div>
+                  </div>
+                  </div>
 
-                <div class="row-fluid list-jobs">
-                    <div class="span12 jobs-details">
-                        <div class="span2 img-logo"> <img src="<?php echo get_template_directory_uri(); ?>/images/UbuntuLogo.png"/> </div>
-                        <div class="span3 minyawns-select"><span>4</span>
-                            <div>Minyawns Have Applied</div> 
-                        </div>
-                        <div class="span3 jobs-date"> 
-                            <div class="job-complete"> Job Completed</div>
-                        </div>
-                        <div class="span3 job-duration duration_mob">
-                            <div class="row-fluid">
-                                <div class="span5 mob-botm">
-                                    <span data-count="0" class="total-exchange-count">11:00</span>
-                                    <div>
-                                        pm
-                                    </div>
-                                </div>
-                                <div class="span2">
-                                    <b class="time-bold">to</b>
-                                </div>
-                                <div class="span5">
-                                    <span data-count="0" class="total-exchange-count">2:00</span>
-                                    <div>
-                                        pm
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="span1 wages">
-                            $100
-                        </div>
-                    </div>
-                    <div class="span12 expand">
-                        <div class="span8 details"> 
-                            <div class="row-fluid">
-                                <div class="span4"> <img src="<?php echo get_template_directory_uri(); ?>/images/UbuntuLogo.png"/></div>
-                                <div class="span8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </br>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </div>
-                            </div><br>
-                            <div class="row-fluid minyawansgrid">
+                  <div class="row-fluid list-jobs">
+                  <div class="span12 jobs-details">
+                  <div class="span2 img-logo"> <img src="<?php echo get_template_directory_uri(); ?>/images/UbuntuLogo.png"/> </div>
+                  <div class="span3 minyawns-select"><span>4</span>
+                  <div>Minyawns Have Applied</div>
+                  </div>
+                  <div class="span3 jobs-date">
+                  <div class="job-complete"> Job Completed</div>
+                  </div>
+                  <div class="span3 job-duration duration_mob">
+                  <div class="row-fluid">
+                  <div class="span5 mob-botm">
+                  <span data-count="0" class="total-exchange-count">11:00</span>
+                  <div>
+                  pm
+                  </div>
+                  </div>
+                  <div class="span2">
+                  <b class="time-bold">to</b>
+                  </div>
+                  <div class="span5">
+                  <span data-count="0" class="total-exchange-count">2:00</span>
+                  <div>
+                  pm
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="span1 wages">
+                  $100
+                  </div>
+                  </div>
+                  <div class="span12 expand">
+                  <div class="span8 details">
+                  <div class="row-fluid">
+                  <div class="span4"> <img src="<?php echo get_template_directory_uri(); ?>/images/UbuntuLogo.png"/></div>
+                  <div class="span8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </br>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </div>
+                  </div><br>
+                  <div class="row-fluid minyawansgrid">
 
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
-                            </div>
+                  <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
+                  </div>
 
-                        </div>
+                  </div>
 
-                        <div class="span4">
-                            <div class="like_btn">
-                                <b>Your Job Ratings</b>
+                  <div class="span4">
+                  <div class="like_btn">
+                  <b>Your Job Ratings</b>
 
-                                <a href="#fakelink">
-                                    <i class="icon-thumbs-up"></i> 10
-                                </a> 
-                                <a href="#fakelink" class="icon-thumbs">
-                                    <i class="icon-thumbs-down"></i> 20
-                                </a> 
-                            </div> 
+                  <a href="#fakelink">
+                  <i class="icon-thumbs-up"></i> 10
+                  </a>
+                  <a href="#fakelink" class="icon-thumbs">
+                  <i class="icon-thumbs-down"></i> 20
+                  </a>
+                  </div>
 
-                        </div>
-                    </div>
-                    */ ?>
-                </div>
+                  </div>
+                  </div>
+                 */ ?>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <?php

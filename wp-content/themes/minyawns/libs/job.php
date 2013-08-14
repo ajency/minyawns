@@ -34,17 +34,13 @@ $app->post('/addjob', function() use ($app) {
                 if ($key == 'job_tags') {
                     $tags = explode(",", $value);
 
-                    if(isset($postid))
-                        wp_delete_object_term_relationships($postid, 'job_tags' );
-                    
+                    if (isset($postid))
+                        wp_delete_object_term_relationships($postid, 'job_tags');
+
                     for ($i = 0; $i < count($tags); $i++) {
-                        
-                       
+
+
                         wp_set_post_terms($post_id, $tags[$i], 'job_tags', true);
-                    
-                        
-                        
-                        
                     }
                 } elseif ($key == "job_start_date") {
                     update_post_meta($post_id, $key, strtotime($value));
@@ -66,39 +62,71 @@ $app->post('/addjob', function() use ($app) {
 
 
 
-$app->post('/fetchjobs', function() use ($app) {
+$app->get('/fetchjobs/', function() use ($app) {
             global $post, $wpdb;
+// AND $wpdb->postmeta.meta_key = 'job_start_date' 
+            //AND $wpdb->postmeta.meta_value <= '" . current_time('timestamp') . "' 
+           
 
-            $data = array();
-            $querystr = "
+            if (isset($_GET['last_id']))
+                $last_id = ($_GET['last_id']) > 0 ? $_GET['last_id'] : '';
+
+           
+                $querystr = "
                             SELECT $wpdb->posts.* 
                             FROM $wpdb->posts, $wpdb->postmeta
                             WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id 
                             AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            AND $wpdb->postmeta.meta_value <= '" . current_time('timestamp') . "' 
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
                             AND $wpdb->posts.post_status = 'publish' 
-                            AND $wpdb->posts.post_type = 'jobs'
-                            ORDER BY $wpdb->posts.post_date DESC
+                            AND $wpdb->posts.post_type = 'job'
+                            ORDER BY $wpdb->posts.ID DESC
+                            LIMIT " . trim($_GET['offset']) . ",2
                          ";
+            //print_r($querystr);exit();
 
+//            else
+//            {
+//                 $querystr = "
+//                            SELECT $wpdb->posts.* 
+//                            FROM $wpdb->posts, $wpdb->postmeta
+//                            WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id
+//                            AND $wpdb->posts.ID < $last_id
+//                            AND $wpdb->postmeta.meta_key = 'job_start_date' 
+//                            AND $wpdb->postmeta.meta_value <= '" . current_time('timestamp') . "'
+//                            AND $wpdb->posts.post_status = 'publish' 
+//                            AND $wpdb->posts.post_type = 'job'
+//                            ORDER BY $wpdb->posts.ID DESC
+//                                LIMIT 5
+//                         ";
+//            }
+            $data = array();
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
             foreach ($pageposts as $pagepost) {
                 $post_meta = get_post_meta($pagepost->ID);
-                $data = array(
+                $data[] = array(
                     'post_name' => $pagepost->post_title,
                     'post_date' => $pagepost->post_date,
                     'post_title' => $pagepost->post_title,
                     'post_id' => $pagepost->ID,
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
-                    'job_end_date' => date('d M Y', $post_meta['job_end_date'][0]),
-                   
+                    'job_end_date' => date('d M Y', strtotime($post_meta['job_end_date'][0])),
+                    'job_day' => date('l', $post_meta['job_start_date'][0]),
+                    'job_wages' => $post_meta['job_wages'][0],
+                    'job_progress' => 'available',
+                    'job_start_day' => date('d', $post_meta['job_start_date'][0]),
+                    'job_start_month' => date('F', $post_meta['job_start_date'][0]),
+                    'job_start_year' => date('Y', $post_meta['job_start_date'][0]),
+                    'job_start_meridiem' => date('a', $post_meta['job_start_time'][0]),
+                    'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),
+                    'job_start_time' => date('H:i', $post_meta['job_start_time'][0]),
+                    'job_end_time' => date('H:i', $post_meta['job_end_time'][0])
                 );
             }
-            print_r($post_meta);
-            exit();
+            $total = count($pageposts);
             $app->response()->header("Content-Type", "application/json");
-            echo json_encode(array('data' => $data, 'status' => "success"));
+            echo json_encode($data);
         });
 
 
