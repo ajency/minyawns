@@ -455,6 +455,9 @@ a:hover {
 .min_profile .change-avtar:hover span {
   display: block!important;
 }
+.min_profile .change-avtar img {
+  border: 2px solid;
+}
 .min_profile .edit {
   font-size: 15px;
 }
