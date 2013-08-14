@@ -144,7 +144,7 @@ get_header();
                 <div class="row-fluid " id="accordion2">
 
                 </div>
-                <button id="load-more"></button>
+                <button class="btn btn-primary btn-wide mll" id="load-more">Load more</button>
             </div>
         </div>
         <!-- /tabs -->

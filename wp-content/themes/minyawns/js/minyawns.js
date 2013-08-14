@@ -356,7 +356,7 @@ jQuery(document).ready(function($) {
 
     $("#load-more").click(function(e) {
 
-        alert(window.fetchj.models.length);
+       // alert(window.fetchj.models.length);
         window.fetchj.fetch({
             remove: false,
             add: true,
@@ -366,6 +366,7 @@ jQuery(document).ready(function($) {
             },success: function(collection, response) {
 
                 var template = _.template($("#browse-jobs-table").html());
+                $("#accordion2").empty();
                 _.each(collection.models, function(model) {
                     console.log(collection.models);
                     var html = template(model.toJSON());
