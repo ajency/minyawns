@@ -99,10 +99,9 @@ get_header();
 </script>
 
 <script type="text/templates" id="no-result">
-    <div class="alert alert-info myjobs ">
-    <h4 style="text-align: center">No Jobs Available</h4>
-    <hr>
-    There doesn't seem to be anything here.
+    <div class="alert alert-info myjobs no-job ">
+    <b style="text-align: center">No Jobs Available ! </b>&nbsp;
+ There doesn't seem to be anything here.
     </div>
 </script>
 <script type="text/templates" id="my-jobs">
@@ -359,7 +358,7 @@ get_header();
                                     </div>
                                 </div>
                                 <hr>
-                                <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2" >Submit</a>
+                                <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
                                 <div class="clear"></div>
                             </form>
                         <?php } ?>
