@@ -64,27 +64,31 @@ $app->post('/addjob', function() use ($app) {
 
 $app->get('/fetchjobs/', function() use ($app) {
             global $post, $wpdb;
+            $prefix = $wpdb->prefix;
 // AND $wpdb->postmeta.meta_key = 'job_start_date' 
             //AND $wpdb->postmeta.meta_value <= '" . current_time('timestamp') . "' 
-           
 
-            if (isset($_GET['last_id']))
-                $last_id = ($_GET['last_id']) > 0 ? $_GET['last_id'] : '';
+$current_user_id=  get_current_user_id();
+            if (isset($_GET['my_jobs'])) {
+                $tables = "$wpdb->posts, $wpdb->postmeta,{$wpdb->prefix}userjobs";
+                $my_jobs_filter = "WHERE $wpdb->posts.post_author = $current_user_id  AND $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.job_id = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date'";
+            } else {
+                $tables = "$wpdb->posts, $wpdb->postmeta";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+            }
 
-           
-                $querystr = "
+            $querystr = "
                             SELECT $wpdb->posts.* 
-                            FROM $wpdb->posts, $wpdb->postmeta
-                            WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id 
-                            AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
+                            FROM $tables
+                            $my_jobs_filter
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
                             LIMIT " . trim($_GET['offset']) . ",2
                          ";
-            //print_r($querystr);exit();
 
+            //print_r($querystr);exit();
 //            else
 //            {
 //                 $querystr = "
@@ -100,11 +104,12 @@ $app->get('/fetchjobs/', function() use ($app) {
 //                                LIMIT 5
 //                         ";
 //            }
+
             $data = array();
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
             foreach ($pageposts as $pagepost) {
-                $tags=wp_get_post_terms($pagepost->ID,'job_tags',array("fields" => "names"));
+                $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
                 //print_r(implode(",",$tags));exit();
                 $post_meta = get_post_meta($pagepost->ID);
                 $data[] = array(
@@ -124,11 +129,12 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),
                     'job_start_time' => date('H:i', $post_meta['job_start_time'][0]),
                     'job_end_time' => date('H:i', $post_meta['job_end_time'][0]),
-                    'job_location'=>$post_meta['job_location'][0],
-                    'job_details'=>$pagepost->post_content,
-                    'tags'=>$tags,
-                    'tags_count'=>sizeof($tags),
-                    'job_author'=>  get_the_author_meta( 'display_name' , $pagepost->post_author)
+                    'job_location' => $post_meta['job_location'][0],
+                    'job_details' => $pagepost->post_content,
+                    'tags' => $tags,
+                    'tags_count' => sizeof($tags),
+                    'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
+                    'job_author_logo' => get_avatar($pagepost->post_author, '10')
                 );
             }
             $total = count($pageposts);

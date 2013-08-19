@@ -353,7 +353,11 @@ jQuery(document).ready(function($) {
 
 
     });
+    $("#my_jobs").click(function(e) {
 
+        fetch_my_jobs();
+
+    });
     $("#load-more").click(function(e) {
 
         // alert(window.fetchj.models.length);
@@ -553,9 +557,9 @@ jQuery(document).ready(function($) {
             jQuery("#fb_chk_usersigninform").remove();
         }
         jQuery("#div_alreadyregister").html("Already a Minyawn?");
-        jQuery("#signup_fname").attr("placeholder","First Name");
-        jQuery("#signup_lname").attr("placeholder","Last Name");
-        
+        jQuery("#signup_fname").attr("placeholder", "First Name");
+        jQuery("#signup_lname").attr("placeholder", "Last Name");
+
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
         jQuery("#signup_email").val("");
@@ -579,10 +583,10 @@ jQuery(document).ready(function($) {
         {
             jQuery("#fb_chk_usersigninform").remove();
         }
-         jQuery("#div_alreadyregister").html("Already registered to Minyawn?");
-        jQuery("#signup_fname").attr("placeholder","Name");
-        jQuery("#signup_lname").attr("placeholder","Company Name");
-        
+        jQuery("#div_alreadyregister").html("Already registered to Minyawn?");
+        jQuery("#signup_fname").attr("placeholder", "Name");
+        jQuery("#signup_lname").attr("placeholder", "Company Name");
+
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
         jQuery("#signup_email").val("");
@@ -775,11 +779,52 @@ jQuery(document).ready(function($) {
     });
 
 
-$('#accordion2').bind('scroll', function()
-                              {
-                                if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight)
-                                {
-                                  alert('end reached');
-                                }
-                              })
+    $('#accordion2').bind('scroll', function()
+    {
+        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
+        {
+            alert('end reached');
+        }
+    })
+
+    function fetch_my_jobs()
+    {
+        $("#accordion2").empty();
+        $("#list-my-jobs").empty();
+        var Fetchjobs = Backbone.Collection.extend({
+            model: Job,
+            url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
+        });
+
+        window.fetchj = new Fetchjobs;
+
+        window.fetchj.fetch({
+            data: {
+                'my_jobs': 1,
+                'offset': 0
+
+            },
+            success: function(collection, response) {
+
+                var template = _.template($("#my-jobs").html());
+                _.each(collection.models, function(model) {
+
+                    var html = template(model.toJSON());
+                    $("#list-my-jobs").append(html);
+                });
+
+
+
+            },
+            error: function(err) {
+                //console.log(err);
+            }
+
+        });
+
+    }
+    
+    /* function on page load*/
+    fetch_my_jobs();
 });
+

@@ -60,7 +60,7 @@ get_header();
     </div>
     </a>
     </div>
-	
+
     <div id="collapse<%= post_id %>" class="accordion-body collapse ">
     <div class="accordion-inner">
     <div class="row-fluid header-title">
@@ -94,14 +94,106 @@ get_header();
     </div>
 
     <!-- Row Div -->
-    
+
+
+</script>
+<script type="text/templates" id="my-jobs">
+    <div class="row-fluid list-jobs"  style="background: #C7C9C5;">
+    <div class="span12 jobs-details">
+    <div class="span2 img-logo"> <%= job_author_logo %> </div>
+    <div class="span3 minyawns-select"><span>4</span>
+    <div>Minyawns Have Applied</div> 
+    </div>
+    <div class="span3 jobs-date"> 
+    <div class="posteddate"> Posted Date : <span><%= post_date %></span></div>
+    <div class="jobsdate"> Jobs Date : <span><%= job_start_date %></span></div>
+    </div>
+    <div class="span3 job-duration">
+    <div class="row-fluid">
+    <div class="span5">
+    <span data-count="0" class="total-exchange-count"><%= job_start_time %></span>
+    <div>
+    <%=job_start_meridiem %>
+    </div>
+    </div>
+    <div class="span2">
+    <b class="time-bold">to</b>
+    </div>
+    <div class="span5">
+    <span data-count="0" class="total-exchange-count"><%=job_end_time %></span>
+    <div>
+   <%= job_end_meridiem %>
+     </div>
+    </div>
+    </div>
+    </div>
+    <div class="span1 wages">
+    $<%= job_wages %> 
+    </div>
+    </div>
+    <div class="span12 expand">
+    <div class="span8 details"> 
+    <div class="row-fluid">
+    <div class="span4"> <img src="images/livefyre-logo.png"/></div>
+    <div class="span8"><%= job_details %></div>
+    </div><br>
+    <div class="row-fluid minyawansgrid">
+    <div class="span6"><img src="images/iconsult1.png"/><b> Simon Srewell</b>
+    <a href="#fakelink" >
+    <i class="icon-thumbs-up"></i> 100
+    </a> 
+    <a href="#fakelink"  class="icon-thumbs">
+    <i class="icon-thumbs-down"></i> 200
+    </a> 
+    </div>
+    <div class="span6"> <img src="images/iconsult2.png"/><b> Riya mactheel</b>
+    <a href="#fakelink" >
+    <i class="icon-thumbs-up"></i> 50
+    </a> 
+    <a href="#fakelink"  class="icon-thumbs">
+    <i class="icon-thumbs-down"></i> 50
+    </a>
+
+    </div>
+    <div class="span6"><img src="images/iconsult3.png"/><b> Richard Andrews</b>
+    <a href="#fakelink" >
+    <i class="icon-thumbs-up"></i> 10
+    </a> 
+    <a href="#fakelink"  class="icon-thumbs">
+    <i class="icon-thumbs-down"></i> 20
+    </a>
+
+    </div>
+    <div class="span6"><img src="images/iconsult4.png"/> <b> Albert Srewell</b>
+    <a href="#fakelink" >
+    <i class="icon-thumbs-up"></i> 50
+    </a> 
+    <a href="#fakelink"  class="icon-thumbs">
+    <i class="icon-thumbs-down"></i> 100
+    </a>
+
+    </div>
+    <img src="images/left-arrow.png" class="arrow-left"/>
+    </div>
+
+    </div>
+
+    <div class="span4">
+    <div class="div-box">
+    <a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply ">Apply</a> </br>
+    <a href="#fakelink" class="btn btn-large btn-block btn-danger btn-unapply">Un Apply</a>
+    </div>
+    </div>
+
+    </div>
+    </div>
 
 </script>
 <div class="container">
 
     <ul class="nav nav-tabs nav-append-content jobs_menu">
         <li ><a href="#tab1" id="browse">Browse Jobs</a></li>
-        <li class="active"><a href="#tab2">My Jobs</a></li>
+        <li class="active" id="my_jobs"><a href="#tab2">My Jobs</a></li>
     </ul> <!-- /tabs -->
 
     <div class="tab-content">
@@ -116,10 +208,10 @@ get_header();
                     <div class="span2">
                         <select name="small" class="select-block select-role">
                             <option value="0" selected="true">Upcoming</option>
-<!--                            <option value="1">Today</option>
-                            <option value="2">Tommorow</option>
-                            <option value="3">This Week</option>
-                            <option value="4">This Month</option>-->
+                            <!--                            <option value="1">Today</option>
+                                                        <option value="2">Tommorow</option>
+                                                        <option value="3">This Week</option>
+                                                        <option value="4">This Month</option>-->
                         </select>
                     </div>
                     <!--                    <div class="span3">
@@ -263,6 +355,10 @@ get_header();
                                 <div class="clear"></div>
                             </form>
                         <?php } ?>
+                    </div>
+                    <div id="list-my-jobs">
+
+
                     </div>
                 </div>
                 <?php /*
