@@ -243,10 +243,9 @@ add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user', 11, 2);
 
 function fbautoconnect_insert_user($user_data, $fbuser) {
     global $_POST, $_REQUEST, $redirectTo;
-    echo "<script>    returnToPreviousPage(); alert('test" . $_POST['fb_chk_usersigninform'] . "'); </script>";
-
-    if ($_POST['fb_chk_usersigninform'] == "loginfrm") {
-        echo "<script> jQuery('#btn__login').click(); alert('test')</script>";
+  	//echo "<script>    returnToPreviousPage(); alert('test" . $_POST['fb_chk_usersigninform'] . "'); </script>";
+    if ($_POST['fb_chk_usersigninform'] == "loginfrm") {      
+    	//echo "<script> jQuery('#btn__login').click(); ";
         wp_redirect(site_url() . "/?action=invalid_login");
     } else {
         $user_data['role'] = $_POST['usr_role'];
