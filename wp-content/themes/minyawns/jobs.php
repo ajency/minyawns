@@ -201,25 +201,27 @@ get_header();
     <ul class="nav nav-tabs nav-append-content jobs_menu">
         <li ><a href="#tab1" id="browse">Browse Jobs</a></li>
         <li class="active" id="my_jobs"><a href="#tab2">My Jobs</a></li>
-    </ul> <!-- /tabs -->
+    </ul>  
 
     <div class="tab-content">
         <div class="tab-pane jobs_table " id="tab1">
             <div id="browse-jobs-table" class=" table-border">
                 <div class="row-fluid header_cell">
-                    <div class="span7">
-                        <i class="icon-calendar"></i><h3 class="page-title"> Month</h3> <!-- header label -->
+<!--                    <div class="span7">
+                        <i class="icon-calendar"></i><h3 class="page-title"> Month</h3>  header label 
                         JUN 2013
-                    </div>
+                    </div>-->
 
                     <div class="span2">
-                        <select name="small" class="select-block select-role">
+<!--                        <select name="small" class="select-block select-role">
                             <option value="0" selected="true">Upcoming</option>
-                            <!--                            <option value="1">Today</option>
+                                                        <option value="1">Today</option>
                                                         <option value="2">Tommorow</option>
                                                         <option value="3">This Week</option>
-                                                        <option value="4">This Month</option>-->
-                        </select>
+                                                        <option value="4">This Month</option>
+                        </select>-->
+                        
+                       <button class="btn btn-primary btn-wide mll" id="show-calendar">Show calendar</button>
                     </div>
                     <!--                    <div class="span3">
                                             <div class="control-group small ctrl-grp">
@@ -601,6 +603,7 @@ get_header();
                  */ ?>
             </div>
         </div>
+        
     </div>
 </div>
 </div>
