@@ -97,6 +97,14 @@ get_header();
 
 
 </script>
+
+<script type="text/templates" id="no-result">
+    <div class="alert alert-info myjobs ">
+    <h4 style="text-align: center">No Jobs Available</h4>
+    <hr>
+    There doesn't seem to be anything here.
+    </div>
+</script>
 <script type="text/templates" id="my-jobs">
     <div class="row-fluid list-jobs"  style="background: #C7C9C5;">
     <div class="span12 jobs-details">
@@ -122,8 +130,8 @@ get_header();
     <div class="span5">
     <span data-count="0" class="total-exchange-count"><%=job_end_time %></span>
     <div>
-   <%= job_end_meridiem %>
-     </div>
+    <%= job_end_meridiem %>
+    </div>
     </div>
     </div>
     </div>

@@ -334,12 +334,19 @@ jQuery(document).ready(function($) {
 
             },
             success: function(collection, response) {
-                var template = _.template($("#browse-jobs-table").html());
-                _.each(collection.models, function(model) {
+                if (collection.length == 0) {
+                    var template = _.template($("#no-result").html());
+                    $("#accordion2").append(template);
+                    $("#load-more").hide();
 
-                    var html = template(model.toJSON());
-                    $("#accordion2").append(html);
-                });
+                } else {
+                    var template = _.template($("#browse-jobs-table").html());
+                    _.each(collection.models, function(model) {
+
+                        var html = template(model.toJSON());
+                        $("#accordion2").append(html);
+                    });
+                }
 
 
 
@@ -805,14 +812,19 @@ jQuery(document).ready(function($) {
 
             },
             success: function(collection, response) {
+                if (collection.length === 0) {
+                    var template = _.template($("#no-result").html());
+                    $("#list-my-jobs").append(template);
+                    //$("#list-my-jobs").hide();
 
-                var template = _.template($("#my-jobs").html());
-                _.each(collection.models, function(model) {
+                } else {
+                    var template = _.template($("#my-jobs").html());
+                    _.each(collection.models, function(model) {
 
-                    var html = template(model.toJSON());
-                    $("#list-my-jobs").append(html);
-                });
-
+                        var html = template(model.toJSON());
+                        $("#list-my-jobs").append(html);
+                    });
+                }
 
 
             },
@@ -823,7 +835,7 @@ jQuery(document).ready(function($) {
         });
 
     }
-    
+
     /* function on page load*/
     fetch_my_jobs();
 });
