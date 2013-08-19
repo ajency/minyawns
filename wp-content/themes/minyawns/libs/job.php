@@ -16,7 +16,7 @@ $app->post('/addjob', function() use ($app) {
 
             $post = array(
                 'ID' => $postid,
-                'post_author' => "1", //The user ID number of the author.
+                'post_author' => get_current_user_id(), //The user ID number of the author.
                 'post_date' => date("Y-m-d H:i:s"), //The time post was made.
                 'post_date_gmt' => date("Y-m-d H:i:s"), //The time post was made, in GMT.
                 'post_status' => 'publish',
