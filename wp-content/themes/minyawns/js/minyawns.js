@@ -552,7 +552,10 @@ jQuery(document).ready(function($) {
         {
             jQuery("#fb_chk_usersigninform").remove();
         }
-
+        jQuery("#div_alreadyregister").html("Already a Minyawn?");
+        jQuery("#signup_fname").attr("placeholder","First Name");
+        jQuery("#signup_lname").attr("placeholder","Last Name");
+        
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
         jQuery("#signup_email").val("");
@@ -576,7 +579,10 @@ jQuery(document).ready(function($) {
         {
             jQuery("#fb_chk_usersigninform").remove();
         }
-
+         jQuery("#div_alreadyregister").html("Already registered to Minyawn?");
+        jQuery("#signup_fname").attr("placeholder","Name");
+        jQuery("#signup_lname").attr("placeholder","Company Name");
+        
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
         jQuery("#signup_email").val("");

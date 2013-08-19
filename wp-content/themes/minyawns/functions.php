@@ -191,7 +191,7 @@ function popup_usersignup() {
               <br/>Minyawns Team<br/> ";
              */
             add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-            $headers = 'From: Minyawns <support@minyawns.ajency.in>' . "\r\n";
+            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
             wp_mail($userdata_['user_email'], $subject, email_header() . $message . email_signature(),$headers);
 
             $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
@@ -453,7 +453,7 @@ function retrieve_password_ajx() {
     $message = apply_filters('retrieve_password_message', $message, $key);
 
     add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-    $headers = 'From: Minyawns <support@minyawns.ajency.in>' . "\r\n";
+    $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
     
     if ($message && !wp_mail($user_email, $title, email_header() . $message . email_signature(),$headers)) {
         $msg = '<div class="alert alert-success alert-box ">  <button type="button" class="close" data-dismiss="alert">&times;</button>The e-mail could not be sent.' . "<br />\n" . 'Possible reason: your host may have disabled the mail() function.</div>';

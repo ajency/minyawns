@@ -115,7 +115,7 @@ get_header();
 		
 		jfb_output_facebook_btn(); ?>
 		<br><br>
-		<p class="align-center">Already registered to Minyawn?<a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
+		<p class="align-center"><span id="div_alreadyregister">Already registered to Minyawn?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
 		</div>
 		
 	</div>
