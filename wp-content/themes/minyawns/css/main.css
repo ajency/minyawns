@@ -29,6 +29,9 @@ a:hover {
   font-family: arial;
   font-size: 15px;
 }
+.no-job {
+  text-align: center;
+}
 .request_link {
   border-bottom: 1px dotted #C4C0C0;
 }
@@ -1573,20 +1576,6 @@ a:hover {
     margin-top: 8px;
     width: 64% !important;
   }
-  .float-left {
-    float: left;
-  }
-  .bootstrap-timepicker input {
-    height: 16px;
-    margin-left: 14px;
-  }
-  .bootstrap-timepicker .add-on {
-    min-width: 23px;
-    padding: 9px 2px;
-    font-size: 14.99px;
-    line-height: 8px;
-    height: 12px;
-  }
   .myjobs {
     margin: auto;
     border: 10px solid rgba(204, 204, 204, 0.57);
@@ -1896,4 +1885,21 @@ a:hover {
     z-index: 999;
     margin-top: 120px;
   }
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.bootstrap-timepicker input {
+  height: 16px;
+  margin-left: 14px;
+}
+.bootstrap-timepicker .add-on {
+  min-width: 23px;
+  padding: 9px 2px;
+  font-size: 14.99px;
+  line-height: 8px;
+  height: 12px;
 }
