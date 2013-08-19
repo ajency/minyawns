@@ -9,10 +9,11 @@ get_header();
 
 <!-- Row Div -->
 <script type="text/template" id="browse-jobs-table">
+    <div style="clear:both;">	</div>
     <div class="accordion-group">
     <div id="last-job-id" last-job="<%= post_id %>" value="<%= post_id %>"></div>
     <div class="accordion-heading">
-    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
     <div class="span12 data-title">
     <div class="job-logo header-sub"> <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"></div>
     <div class="job-date header-sub">
@@ -59,8 +60,8 @@ get_header();
     </div>
     </a>
     </div>
-
-    <div id="collapse3" class="accordion-body collapse ">
+	
+    <div id="collapse<%= post_id %>" class="accordion-body collapse ">
     <div class="accordion-inner">
     <div class="row-fluid header-title">
     <div class="span12">
@@ -93,7 +94,7 @@ get_header();
     </div>
 
     <!-- Row Div -->
-    <div style="clear:both;">	</div>
+    
 
 </script>
 <div class="container">
@@ -115,10 +116,10 @@ get_header();
                     <div class="span2">
                         <select name="small" class="select-block select-role">
                             <option value="0" selected="true">Upcoming</option>
-                            <option value="1">Today</option>
+<!--                            <option value="1">Today</option>
                             <option value="2">Tommorow</option>
                             <option value="3">This Week</option>
-                            <option value="4">This Month</option>
+                            <option value="4">This Month</option>-->
                         </select>
                     </div>
                     <!--                    <div class="span3">

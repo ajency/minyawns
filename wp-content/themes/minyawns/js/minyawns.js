@@ -320,7 +320,7 @@ jQuery(document).ready(function($) {
 
 
     $("#browse").click(function(e) {
-
+        $("#accordion2").empty();
         var Fetchjobs = Backbone.Collection.extend({
             model: Job,
             url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
@@ -329,14 +329,14 @@ jQuery(document).ready(function($) {
         window.fetchj = new Fetchjobs;
 
         window.fetchj.fetch({
-            data:{
-                'offset':0
-            
+            data: {
+                'offset': 0
+
             },
             success: function(collection, response) {
                 var template = _.template($("#browse-jobs-table").html());
                 _.each(collection.models, function(model) {
-                    
+
                     var html = template(model.toJSON());
                     $("#accordion2").append(html);
                 });
@@ -356,19 +356,19 @@ jQuery(document).ready(function($) {
 
     $("#load-more").click(function(e) {
 
-       // alert(window.fetchj.models.length);
+        // alert(window.fetchj.models.length);
         window.fetchj.fetch({
             remove: false,
             add: true,
-            data:{
-                'offset':window.fetchj.models.length
-            
-            },success: function(collection, response) {
+            data: {
+                'offset': window.fetchj.models.length
+
+            }, success: function(collection, response) {
 
                 var template = _.template($("#browse-jobs-table").html());
                 $("#accordion2").empty();
                 _.each(collection.models, function(model) {
-                    console.log(collection.models);
+                    console.log(collection.models.length);
                     var html = template(model.toJSON());
                     $("#accordion2").append(html);
 
@@ -768,4 +768,12 @@ jQuery(document).ready(function($) {
         }, 'json');
     });
 
+
+$('#accordion2').bind('scroll', function()
+                              {
+                                if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight)
+                                {
+                                  alert('end reached');
+                                }
+                              })
 });
