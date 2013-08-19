@@ -71,16 +71,16 @@ get_header();
     <div class="row-fluid job-data">
     <div class="span9 inner-data">
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link">  Anna Pollard</a>  </div>
+    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link"><%= job_author %></a>  </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Location :</b></div><div class="span9">  Paccar Hall, 1st Floor NE Stevens Way, Seattle </div>
+    <div class="span3 "><b>Location :</b></div><div class="span9"><%= job_location %> </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Details :</b></div><div class="span9">  We will need 3 workers to set up chairs and tables and help direct traffic for our event. Please wear business casual and a red tie </div>
+    <div class="span3 "><b>Details :</b></div><div class="span9"><%= job_details %> </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Tags :</b></div><div class="span9">  <span class="label">Event</span><span class="label">Labour</span> </div>
+    <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<tags_count;i++){ %> <span class="label"><%= tags[i] %></span><%}%> </div>
     </div>
     </div>
     <div class="span3">

@@ -104,6 +104,8 @@ $app->get('/fetchjobs/', function() use ($app) {
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
             foreach ($pageposts as $pagepost) {
+                $tags=wp_get_post_terms($pagepost->ID,'job_tags',array("fields" => "names"));
+                //print_r(implode(",",$tags));exit();
                 $post_meta = get_post_meta($pagepost->ID);
                 $data[] = array(
                     'post_name' => $pagepost->post_title,
@@ -121,7 +123,12 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_start_meridiem' => date('a', $post_meta['job_start_time'][0]),
                     'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),
                     'job_start_time' => date('H:i', $post_meta['job_start_time'][0]),
-                    'job_end_time' => date('H:i', $post_meta['job_end_time'][0])
+                    'job_end_time' => date('H:i', $post_meta['job_end_time'][0]),
+                    'job_location'=>$post_meta['job_location'][0],
+                    'job_details'=>$pagepost->post_content,
+                    'tags'=>$tags,
+                    'tags_count'=>sizeof($tags),
+                    'job_author'=>  get_the_author_meta( 'display_name' , $pagepost->post_author)
                 );
             }
             $total = count($pageposts);
