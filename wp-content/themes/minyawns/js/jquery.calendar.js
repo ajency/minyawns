@@ -3,6 +3,7 @@
   * This is the main class of wdCalendar.
   */
 ; (function($) {
+    
     var __WDAY = new Array(i18n.xgcalendar.dateformat.sun, i18n.xgcalendar.dateformat.mon, i18n.xgcalendar.dateformat.tue, i18n.xgcalendar.dateformat.wed, i18n.xgcalendar.dateformat.thu, i18n.xgcalendar.dateformat.fri, i18n.xgcalendar.dateformat.sat);
     var __MonthName = new Array(i18n.xgcalendar.dateformat.jan, i18n.xgcalendar.dateformat.feb, i18n.xgcalendar.dateformat.mar, i18n.xgcalendar.dateformat.apr, i18n.xgcalendar.dateformat.may, i18n.xgcalendar.dateformat.jun, i18n.xgcalendar.dateformat.jul, i18n.xgcalendar.dateformat.aug, i18n.xgcalendar.dateformat.sep, i18n.xgcalendar.dateformat.oct, i18n.xgcalendar.dateformat.nov, i18n.xgcalendar.dateformat.dec);
     if (!Clone || typeof (Clone) != "function") {
@@ -363,7 +364,8 @@
         //contruct DOM 
         function render() {
             //params needed
-            //viewType, showday, events, config			
+            //viewType, showday, events, config	
+            
             var showday = new Date(option.showday.getFullYear(), option.showday.getMonth(), option.showday.getDate());
             var events = option.eventItems;
             var config = { view: option.view, weekstartday: option.weekstartday, theme: option.theme };
@@ -782,6 +784,7 @@
             return ret.join("");
         }
         function BuildDayEvent(theme, e, index) {
+            alert(theme);
             var p = { bdcolor: theme[0], bgcolor2: theme[0], bgcolor1: theme[2], width: "70%", icon: "", title: "", data: "" };
             p.starttime = pZero(e.st.hour) + ":" + pZero(e.st.minute);
             p.endtime = pZero(e.et.hour) + ":" + pZero(e.et.minute);
@@ -1090,6 +1093,7 @@
             else {
                 theme = tc();
             }
+            
             var p = { color: theme[2], title: "", extendClass: "", extendHTML: "", data: "" };
 
             p.title = getTitle(e.event);
@@ -1145,11 +1149,13 @@
                 if (option.onBeforeRequestData && $.isFunction(option.onBeforeRequestData)) {
                     option.onBeforeRequestData(1);
                 }
+               
                 var zone = new Date().getTimezoneOffset() / 60 * -1;
                 var param = [
                 { name: "showdate", value: dateFormat.call(option.showday, i18n.xgcalendar.dateformat.fulldayvalue) },
                 { name: "viewtype", value: option.view },
-				 { name: "timezone", value: zone }
+				 { name: "timezone", value: zone },
+                                 
                 ];
                 if (option.extParam) {
                     for (var pi = 0; pi < option.extParam.length; pi++) {
@@ -1393,6 +1399,7 @@
         }
 
         function dochange() {
+        	
             var d = getRdate();
             var loaded = checkInEr(d.start, d.end);
             if (!loaded) {
@@ -1467,14 +1474,14 @@
         function parseED(data) {
             if (data.length > 6) {
                 var e = [];
-                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10]);
+                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10], data[11]);
                 return e;
             }
             return null;
 
         }
         function quickd(type) {
-            $("#bbit-cs-buddle").css("visibility", "hidden");
+            //$("#bbit-cs-buddle").css("visibility", "hidden");
             var calid = $("#bbit-cs-id").val();
             var param = [{ "name": "calendarId", value: calid },
                         { "name": "type", value: type}];
@@ -1519,12 +1526,13 @@
             if (data == undefined) {
                 data = getdata($(this));
             }
+          
             if (data != null) {
-                if (option.quickDeleteUrl != "" && data[8] == 1 && option.readonly != true) {
-                    var csbuddle = '<div id="bbit-cs-buddle" style="z-index: 180; width: 400px;visibility:hidden;" class="bubble"><table class="bubble-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="bubble-cell-side"><div id="tl1" class="bubble-corner"><div class="bubble-sprite bubble-tl"></div></div><td class="bubble-cell-main"><div class="bubble-top"></div><td class="bubble-cell-side"><div id="tr1" class="bubble-corner"><div class="bubble-sprite bubble-tr"></div></div>  <tr><td class="bubble-mid" colSpan="3"><div style="overflow: hidden" id="bubbleContent1"><div><div></div><div class="cb-root"><table class="cb-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="cb-value"><div class="textbox-fill-wrapper"><div class="textbox-fill-mid"><div id="bbit-cs-what" title="'
-                    	+ i18n.xgcalendar.click_to_detail + '" class="textbox-fill-div lk" style="cursor:pointer;"></div></div></div></td></tr><tr><td class=cb-value><div id="bbit-cs-buddle-timeshow"></div></td></tr></tbody></table><div class="bbit-cs-split"><input id="bbit-cs-id" type="hidden" value=""/>[ <span id="bbit-cs-delete" class="lk">'
-                    	+ i18n.xgcalendar.i_delete + '</span> ]&nbsp; <SPAN id="bbit-cs-editLink" class="lk">'
-                    	+ i18n.xgcalendar.update_detail + ' <StrONG>&gt;&gt;</StrONG></SPAN></div></div></div></div><tr><td><div id="bl1" class="bubble-corner"><div class="bubble-sprite bubble-bl"></div></div><td><div class="bubble-bottom"></div><td><div id="br1" class="bubble-corner"><div class="bubble-sprite bubble-br"></div></div></tr></tbody></table><div id="bubbleClose2" class="bubble-closebutton"></div><div id="prong1" class="prong"><div class=bubble-sprite></div></div></div>';
+                
+                if (data != null) {
+                    
+                    var csbuddle = '<div id="bbit-cs-buddle" style="z-index: 180; width: 400px;visibility:hidden;" class="bubble"><table class="bubble-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="bubble-cell-side"><div id="tl1" class="bubble-corner"><div class="bubble-sprite bubble-tl"></div></div><td class="bubble-cell-main"><div class="bubble-top"></div><td class="bubble-cell-side"><div id="tr1" class="bubble-corner"><div class="bubble-sprite bubble-tr"></div></div>  <tr><td class="bubble-mid" colSpan="3"><div style="overflow: hidden" id="bubbleContent1"><div><div></div><div class="cb-root"><table class="cb-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="cb-value"><div class="textbox-fill-wrapper"><div class="textbox-fill-mid"><div id="bbit-cs-what" style="font-weight:bold;" title="'
+                    	+ i18n.xgcalendar.click_to_detail + '" ></div></div></div></td></tr><tr><td class=cb-value><b>When</b><div id="bbit-cs-buddle-timeshow"></div></td></tr><tr id="bbit-location" ><td class=cb-value><b>Where</b><div id="bbit-cs-buddle-location"></div></td></tr><tr id="bbit-who"><td class=cb-value><b>Who</b><div id="bbit-cs-buddle-who"></div></td></tr></tbody></table><StrONG></StrONG></SPAN></div></div></div></div><tr><td><div id="bl1" class="bubble-corner"><div class="bubble-sprite bubble-bl"></div></div><td><div class="bubble-bottom"></div><td><div id="br1" class="bubble-corner"><div class="bubble-sprite bubble-br"></div></div></tr></tbody></table><div id="bubbleClose2" class="bubble-closebutton"></div><div id="prong1" class="prong"><div class=bubble-sprite></div></div></div>';
                     var bud = $("#bbit-cs-buddle");
                     if (bud.length == 0) {
                         bud = $(csbuddle).appendTo(document.body);
@@ -1565,7 +1573,7 @@
                                     option.ViewCmdhandler.call(this, $("#bbit-cs-buddle").data("cdata"));
                                 }
                             }
-                            $("#bbit-cs-buddle").css("visibility", "hidden");
+                            //$("#bbit-cs-buddle").css("visibility", "hidden");
                             return false;
                         });
                         lbtn.click(function(e) {
@@ -1577,7 +1585,7 @@
                                     option.EditCmdhandler.call(this, $("#bbit-cs-buddle").data("cdata"));
                                 }
                             }
-                            $("#bbit-cs-buddle").css("visibility", "hidden");
+                           // $("#bbit-cs-buddle").css("visibility", "hidden");
                             return false;
                         });
                         bud.click(function() { return false });
@@ -1596,14 +1604,34 @@
                         ss.push(",", dateFormat.call(data[2], "HH:mm"));
                     }
 
-                    if (iscos) {
+
+                   // if (iscos) {
                         ss.push(" - ", dateFormat.call(data[3], i18n.xgcalendar.dateformat.Md3), " (", __WDAY[data[3].getDay()], ")");
                         if (data[4] != 1) {
                             ss.push(",", dateFormat.call(data[3], "HH:mm"));
+                           
                         }
-                    }
+                    //}
+                   // alert(ss);
                     var ts = $("#bbit-cs-buddle-timeshow").html(ss.join(""));
                     $("#bbit-cs-what").html(data[1]);
+                    if(data[9].length == "0")
+                        $("#bbit-location").hide();
+                    else
+                      $("#bbit-cs-buddle-location").html(data[9]);
+                    
+                    if(data[10].length == "0"){
+                        $("#bbit-who").hide()
+                    }
+                    else{
+                       var html="";
+                        var split_email=data[11].split(',');
+                        var split_name=data[10].split(',');
+                        for(i=0;i<split_email.length;i++){
+                         html +="<div id='user_details"+split_name[i]+"' style='cursor:pointer;cursor: hand' onclick='loadCalendar(&quot;"+split_email[i]+"&quot;)'>"+split_name[i]+"</div>";
+                        }
+                            $("#bbit-cs-buddle-who").html(html);
+                    }
                     $("#bbit-cs-id").val(data[0]);
                     bud.data("cdata", data);
                     bud.css({ "visibility": "visible", left: pos.left, top: pos.top });
@@ -1611,6 +1639,7 @@
                     $(document).one("click", function() {
                         $("#bbit-cs-buddle").css("visibility", "hidden");
                     });
+                    $("#bbit-cs-buddle").show();
                 }
                 else {
                     if (!option.ViewCmdhandler) {
@@ -1737,9 +1766,13 @@
             }
         }
         function quickadd(start, end, isallday, pos) {
+            
+            return; //to disable quick add new event
+            
             if ((!option.quickAddHandler && option.quickAddUrl == "") || option.readonly) {
                 return;
             }
+            
             var buddle = $("#bbit-cal-buddle");
             if (buddle.length == 0) {
                 var temparr = [];
@@ -2654,7 +2687,7 @@
                 clearcontainer();
                 option.view = view;
                 render();
-                dochange();
+                //dochange();
             },
             rf: function() {
                 populate();
@@ -2665,7 +2698,7 @@
                 }
                 option.showday = d;
                 render();
-                dochange();
+                //dochange();
             },
 
             pv: function() {
@@ -2681,7 +2714,7 @@
                         break;
                 }
                 render();
-                dochange();
+                //dochange();
             },
             nt: function() {				
                 switch (option.view) {
@@ -2702,7 +2735,7 @@
                         break;
                 }
                 render();
-                dochange();
+                //dochange();
             },
             go: function() {
                 return option;
@@ -2794,3 +2827,11 @@
     };
     
 })(jQuery);
+
+$('.collapse').live('show', function(){
+$(this).parent().find('a').addClass('open'); //add active state to button on open
+});
+
+$('.collapse').live('hide', function(){
+$(this).parent().find('a').removeClass('open'); //remove active state to button on close
+});

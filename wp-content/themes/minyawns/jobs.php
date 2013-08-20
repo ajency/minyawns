@@ -205,6 +205,13 @@ get_header();
 
     <div class="tab-content">
         <div class="tab-pane jobs_table " id="tab1">
+             <div class="breadcrumb-text">
+                <p>
+                    <a href="#">My Job</a>
+                    <a href="#" id="browse-jobs">Browse Jobs</a>
+                    <a href="#" id="calendar-jobs" style="display:none">Calendar Jobs</a>                
+                </p>
+            </div>
             <div id="browse-jobs-table" class=" table-border">
                 <div class="row-fluid header_cell">
                     <!--                    <div class="span7">
@@ -250,7 +257,7 @@ get_header();
 		
                 <button class="btn load_more" id="load-more">Load more</button>
             </div>
-            <div style=" width: 97%; ">
+            <div style=" width: 97%;display:none; " id="calendar">
 
                 <div id="calhead" style="padding-left:1px;padding-right:1px;">          
                     <div class="cHead"><div class="ftitle"></div>
@@ -426,7 +433,7 @@ get_header();
                                 <div class="control-group small">
                                     <label class="control-label" for="inputtask">Tags</label>
                                     <div class="controls ">
-                                        <input  name="job_tags" id="job_tags" value="" placeholder="" class="tm-input tagsinput">
+                                        <input  name="job_tags" id="job_tags" value="" placeholder="Tags here" class="tm-input tagsinput">
                                     </div>
                                 </div>
                                 <div class="control-group small">
