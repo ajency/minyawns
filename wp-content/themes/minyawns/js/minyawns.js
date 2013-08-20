@@ -925,30 +925,6 @@ jQuery(document).ready(function($) {
                 $("#txtdatetimeshow").text(p.datestrshow);
             }
         });
-//        jQuery("#content_1").mCustomScrollbar({
-//            scrollButtons: {
-//                enable: true
-//            }
-//        });
-        $("button").click(function() {
-            $this("#list2 li div").remove();
-        });
-
-
-//        $("#content_2").mCustomScrollbar({
-//            scrollButtons: {
-//                enable: true
-//            }
-//        });
-//        jQuery('#user-popdown').popover(
-//                {
-//                    placement: 'bottom',
-//                    html: true,
-//                    content: '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="#" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" class="popup_link"><i class="icon-unlock"></i> Logout</a></span></div></div>',
-//                }
-//        );
-
-
 
         $('.collapse').live('show', function() {
             $(this).parent().find('a').addClass('open'); //add active state to button on open
@@ -957,6 +933,12 @@ jQuery(document).ready(function($) {
             $(this).parent().find('a').removeClass('open'); //remove active state to button on close
         });
     }
+    
+    $("#show-calendar").live('click',function(){
+        $("#browse-jobs-table").css("display","none");
+        $("#calendar").show();
+        
+    });
     /* function on page load*/
     fetch_my_jobs();
    

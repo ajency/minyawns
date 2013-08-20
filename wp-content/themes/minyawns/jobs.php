@@ -204,6 +204,12 @@ get_header();
 
     <div class="tab-content">
         <div class="tab-pane jobs_table " id="tab1">
+             <div class="breadcrumb-text">
+                <p>
+                    <a href="#">My Job</a>
+                    Browse Jobs
+                </p>
+            </div>
             <div id="browse-jobs-table" class=" table-border">
                 <div class="row-fluid header_cell">
                     <!--                    <div class="span7">
@@ -247,7 +253,7 @@ get_header();
                 </div>
                 <button class="btn btn-primary btn-wide mll" id="load-more">Load more</button>
             </div>
-            <div style=" width: 97%; ">
+            <div style=" width: 97%;display:none; " id="calendar">
 
                 <div id="calhead" style="padding-left:1px;padding-right:1px;">          
                     <div class="cHead"><div class="ftitle"></div>
