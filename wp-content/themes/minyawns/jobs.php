@@ -48,10 +48,11 @@ get_header();
 
     <div class="job-progress header-sub">
     <span class="label label-small label-success">Available</span>
+        
     </div>
 
     <div class="job-action header-sub">
-
+<a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank">View</a> <br>
     <div class="arrow-down">
     </div>
 
@@ -204,7 +205,7 @@ get_header();
 
     <div class="tab-content">
         <div class="tab-pane jobs_table " id="tab1">
-             <div class="breadcrumb-text">
+            <div class="breadcrumb-text">
                 <p>
                     <a href="#">My Job</a>
                     <a href="#" id="browse-jobs">Browse Jobs</a>
