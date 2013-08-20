@@ -318,7 +318,7 @@ get_header();  ?>
 					  	</div>
 					 	<?php endif; ?>
 					  	<hr>
-					  	<a href="#" class="btn btn-large btn-block btn-inverse span2" id="update-profile-info">Update Info</a>
+					  	<a href="#" class="btn btn-large btn-block btn-inverse span2 float-right" id="update-profile-info">Update Info</a>
 					  	<input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
 					  	<div class="clear"></div>
 					</form>

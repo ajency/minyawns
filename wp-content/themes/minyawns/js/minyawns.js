@@ -1,6 +1,8 @@
 /**
  */
 
+
+
 jQuery(document).ready(function($) {
 
     /********************************** PROFILE JS CODE *************************************/
@@ -262,7 +264,7 @@ jQuery(document).ready(function($) {
                 });
     });
     $("#browse").click(function(e) {
-        $("#accordion2").empty();
+    //$("#accordion2").empty();
         var Fetchjobs = Backbone.Collection.extend({
             model: Job,
             url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
@@ -924,28 +926,28 @@ jQuery(document).ready(function($) {
                 $("#txtdatetimeshow").text(p.datestrshow);
             }
         });
-        jQuery("#content_1").mCustomScrollbar({
-            scrollButtons: {
-                enable: true
-            }
-        });
+        //jQuery("#content_1").mCustomScrollbar({
+        //    scrollButtons: {
+        //        enable: true
+         //   }
+      //  });
         $("button").click(function() {
             $this("#list2 li div").remove();
         });
 
 
-        $("#content_2").mCustomScrollbar({
-            scrollButtons: {
-                enable: true
-            }
-        });
-        jQuery('#user-popdown').popover(
-                {
-                    placement: 'bottom',
-                    html: true,
-                    content: '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="#" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" class="popup_link"><i class="icon-unlock"></i> Logout</a></span></div></div>',
-                }
-        );
+      //  $("#content_2").mCustomScrollbar({
+          //  scrollButtons: {
+           //     enable: true
+          //  }
+      //  });
+       // jQuery('#user-popdown').popover(
+            //    {
+                 //   placement: 'bottom',
+             //       html: true,
+                //    content: '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="#" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" class="popup_link"><i class="icon-unlock"></i> Logout</a></span></div></div>',
+               // }
+    //    );
 
 
 

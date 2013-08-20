@@ -8,7 +8,8 @@ get_header();
 
 <!-- Row Div -->
 <script type="text/template" id="browse-jobs-table">
-    <div style="clear:both;">	</div>
+
+   <div style="clear:both;">	</div>
     <div class="accordion-group">
     <div id="last-job-id" last-job="<%= post_id %>" value="<%= post_id %>"></div>
     <div class="accordion-heading">
@@ -210,8 +211,8 @@ get_header();
                                             <i class="icon-calendar"></i><h3 class="page-title"> Month</h3>  header label 
                                             JUN 2013
                                         </div>-->
-
-                    <div class="span2">
+				
+                    <div class="span12">
 <!--                        <select name="small" class="select-block select-role">
                             <option value="0" selected="true">Upcoming</option>
                                                         <option value="1">Today</option>
@@ -220,7 +221,7 @@ get_header();
                                                         <option value="4">This Month</option>
                         </select>-->
 
-                        <button class="btn btn-primary btn-wide mll" id="show-calendar">Show calendar</button>
+                        <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
                     </div>
                     <!--                    <div class="span3">
                                             <div class="control-group small ctrl-grp">
@@ -242,10 +243,12 @@ get_header();
                         <div class="job-action header-sub">Action</div>
                     </div>
                 </div>
-                <div class="row-fluid " id="accordion2">
+				
+                <div class="row-fluid " id="accordion2" >
 
                 </div>
-                <button class="btn btn-primary btn-wide mll" id="load-more">Load more</button>
+		
+                <button class="btn load_more" id="load-more">Load more</button>
             </div>
             <div style=" width: 97%; ">
 

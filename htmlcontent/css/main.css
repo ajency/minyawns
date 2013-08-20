@@ -1894,3 +1894,9 @@ a:hover {
     margin-top: 120px;
   }
 }
+.gray-like a {
+  color: #ccc;
+}
+.gray-like a .icon-thumbs-down {
+  color: #ccc !important;
+}
