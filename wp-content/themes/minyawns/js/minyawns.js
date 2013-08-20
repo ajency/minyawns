@@ -781,7 +781,7 @@ jQuery(document).ready(function($) {
         var dvH = $dv.height() + 2;
         op.height = _MH - dvH;
         op.eventItems = [];
-        var p = jQuery("#gridcontainer").bcalendar(op).BcalGetOp();
+        var p = $("#gridcontainer").bcalendar(op).BcalGetOp();
         if (p && p.datestrshow) {
             $("#txtdatetimeshow").text(p.datestrshow);
         }
