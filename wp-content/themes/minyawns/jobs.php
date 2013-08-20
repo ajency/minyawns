@@ -207,7 +207,8 @@ get_header();
              <div class="breadcrumb-text">
                 <p>
                     <a href="#">My Job</a>
-                    Browse Jobs
+                    <a href="#" id="browse-jobs">Browse Jobs</a>
+                    <a href="#" id="calendar-jobs" style="display:none">Calendar Jobs</a>                
                 </p>
             </div>
             <div id="browse-jobs-table" class=" table-border">

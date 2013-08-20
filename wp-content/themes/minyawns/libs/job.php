@@ -209,6 +209,7 @@ $cnt = count($pageposts);
                 $details=isset($pagepost->post_content) ? $pagepost->post_content :'';
                 $apply=true;
                 $logo=get_avatar($pagepost->post_author, '10');
+               
                // print_r($post_meta['job_start_date_time'][0]);exit();
                 $st = date('d M Y H:i:s', $post_meta['job_start_date_time'][0]);
                 $et = date('d M Y H:i:s', $post_meta['job_end_date_time'][0]);
@@ -228,7 +229,8 @@ $cnt = count($pageposts);
                     $details,
                     $wages,
                     $apply,
-                    $logo
+                    $logo,
+                    $applied
                 );
             }
             //$app->response()->header("Content-Type", "application/json");

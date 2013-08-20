@@ -261,7 +261,16 @@ jQuery(document).ready(function($) {
                     }
                 });
     });
+    $("#browse-jobs").click(function(e) {
+       $("#calendar-jobs").hide();/*bread crumbs*/
+        $("#calendar").hide();
+    });
     $("#browse").click(function(e) {
+        load_browse_jobs();
+    });
+        function load_browse_jobs(){
+        $("#calendar-jobs").hide();/*bread crumbs*/
+        $("#calendar").hide();
         $("#accordion2").empty();
         var Fetchjobs = Backbone.Collection.extend({
             model: Job,
@@ -296,7 +305,7 @@ jQuery(document).ready(function($) {
  
         });
   onload_calendar(); /*load the calendar*/
-    });
+    }
     $("#my_jobs").click(function(e) {
 
         fetch_my_jobs();
@@ -935,6 +944,7 @@ jQuery(document).ready(function($) {
     }
     
     $("#show-calendar").live('click',function(){
+        $("#calendar-jobs").show();/*bread crumbs*/
         $("#browse-jobs-table").css("display","none");
         $("#calendar").show();
         
