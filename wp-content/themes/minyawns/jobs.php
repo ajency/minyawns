@@ -4,6 +4,7 @@
 
  */
 get_header();
+global $minyawn_job;
 ?>
 
 <!-- Row Div -->
@@ -53,7 +54,7 @@ get_header();
     </div>
 
     <div class="job-action header-sub">
-<a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank">View</a> <br>
+
     <div class="arrow-down">
     </div>
 
@@ -86,7 +87,10 @@ get_header();
     </div>
     <div class="span3">
     <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-left.png">
-    <a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply">Apply Job</a>
+
+    <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
+
+    <a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank" class="btn btn-large btn-block btn-success btn-apply">View</a> <br>
     </div>
     </div>
 
@@ -219,7 +223,7 @@ get_header();
                                             <i class="icon-calendar"></i><h3 class="page-title"> Month</h3>  header label 
                                             JUN 2013
                                         </div>-->
-				
+
                     <div class="span12">
 <!--                        <select name="small" class="select-block select-role">
                             <option value="0" selected="true">Upcoming</option>
@@ -251,11 +255,11 @@ get_header();
                         <div class="job-action header-sub">Action</div>
                     </div>
                 </div>
-				
+
                 <div class="row-fluid " id="accordion2" >
 
                 </div>
-		
+
                 <button class="btn load_more" id="load-more">Load more</button>
             </div>
             <div style=" width: 97%;display:none; " id="calendar">
@@ -352,7 +356,7 @@ get_header();
                             Add Jobs
                         </button>
                     </div>
-                    <?php //}  ?>
+                    <?php //}   ?>
 
                     <div id="add-job-form" style="display:none;">
 

@@ -264,16 +264,16 @@ jQuery(document).ready(function($) {
                 });
     });
     $("#browse-jobs").click(function(e) {
-       $("#calendar-jobs").hide();/*bread crumbs*/
+        $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
     });
     $("#browse").click(function(e) {
 
-    $("#accordion2").empty();
+        $("#accordion2").empty();
 
         load_browse_jobs();
     });
-        function load_browse_jobs(){
+    function load_browse_jobs() {
         $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
         $("#accordion2").empty();
@@ -308,9 +308,9 @@ jQuery(document).ready(function($) {
             error: function(err) {
 //console.log(err);
             }
- 
+
         });
-  onload_calendar(); /*load the calendar*/
+        onload_calendar(); /*load the calendar*/
     }
     $("#my_jobs").click(function(e) {
 
@@ -773,7 +773,7 @@ jQuery(document).ready(function($) {
             autoload: true,
             url: DATA_FEED_URL + "?calendar=true&offset=0",
             //quickAddUrl: DATA_FEED_URL + "?method=add",
-           // quickUpdateUrl: DATA_FEED_URL + "?method=update",
+            // quickUpdateUrl: DATA_FEED_URL + "?method=update",
             //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
         };
         var $dv = $("#calhead");
@@ -927,6 +927,7 @@ jQuery(document).ready(function($) {
         });
         //previous date range
         $("#sfprevbtn").click(function(e) {
+           
             var p = jQuery("#gridcontainer").previousRange().BcalGetOp();
             if (p && p.datestrshow) {
                 $("#txtdatetimeshow").text(p.datestrshow);
@@ -940,33 +941,7 @@ jQuery(document).ready(function($) {
                 $("#txtdatetimeshow").text(p.datestrshow);
             }
         });
-<<<<<<< HEAD
-        //jQuery("#content_1").mCustomScrollbar({
-        //    scrollButtons: {
-        //        enable: true
-         //   }
-      //  });
-        $("button").click(function() {
-            $this("#list2 li div").remove();
-        });
 
-
-      //  $("#content_2").mCustomScrollbar({
-          //  scrollButtons: {
-           //     enable: true
-          //  }
-      //  });
-       // jQuery('#user-popdown').popover(
-            //    {
-                 //   placement: 'bottom',
-             //       html: true,
-                //    content: '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="#" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" class="popup_link"><i class="icon-unlock"></i> Logout</a></span></div></div>',
-               // }
-    //    );
-
-
-=======
->>>>>>> ecf9a67e69f70664682898134d7cd5e385e58c68
 
         $('.collapse').live('show', function() {
             $(this).parent().find('a').addClass('open'); //add active state to button on open
@@ -975,15 +950,15 @@ jQuery(document).ready(function($) {
             $(this).parent().find('a').removeClass('open'); //remove active state to button on close
         });
     }
-    
-    $("#show-calendar").live('click',function(){
+
+    $("#show-calendar").live('click', function() {
         $("#calendar-jobs").show();/*bread crumbs*/
-        $("#browse-jobs-table").css("display","none");
+        $("#browse-jobs-table").css("display", "none");
         $("#calendar").show();
-        
+
     });
     /* function on page load*/
     fetch_my_jobs();
-   
+
 });
 

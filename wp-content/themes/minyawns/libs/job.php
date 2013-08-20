@@ -149,7 +149,7 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
             } else {
                 $tables = "$wpdb->posts, $wpdb->postmeta";
                 $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            ";
+                            AND $wpdb->postmeta.meta_value >= '" . strtotime(date('1-m-Y',strtotime('this month'))) . "'";
                 //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
             }
 
@@ -230,7 +230,7 @@ $cnt = count($pageposts);
                     $wages,
                     $apply,
                     $logo,
-                    $applied
+                   
                 );
             }
             //$app->response()->header("Content-Type", "application/json");
