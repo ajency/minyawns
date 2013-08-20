@@ -24,10 +24,22 @@ a:hover {
 .bootstrap-timepicker-widget {
   z-index: 9999 !important;
 }
+.load_more {
+  width: 98%;
+  margin: 10px auto;
+  display: block;
+  border: 1px solid #C0C0C0;
+  background: #E9E7E7;
+  color: #000;
+  font-weight: bold;
+}
 .alert-box {
   padding: 10px 55px 10px 30px !important;
   font-family: arial;
   font-size: 15px;
+}
+.tagsinput input {
+  width: 150px !important;
 }
 .no-job {
   text-align: center;
@@ -43,7 +55,7 @@ a:hover {
 .bg-white {
   background: #fff;
   border: 1px solid #ccc;
-  padding: 5px;
+  padding: 20px 20px 10px;
 }
 .page,
 .error404 {
@@ -170,6 +182,12 @@ a:hover {
   float: left;
   margin-right: 9px;
 }
+.jobs_table .header_cell .calender {
+  font-size: 20px!important;
+  color: #FFF!important;
+  float: none !important;
+  margin-right: 9px!important;
+}
 .jobs_table .header_cell .page-title {
   font-size: 27px;
   font-weight: 600;
@@ -199,6 +217,10 @@ a:hover {
   font-family: arial !important;
   margin-top: 10px;
   height: 43px;
+}
+.jobs_table .header-title h3 {
+  font-size: 27px;
+  padding: 5px;
 }
 .jobs_table .header-title .job-logo {
   width: 16%;
@@ -1890,7 +1912,7 @@ a:hover {
   float: left;
 }
 .float-right {
-  float: right;
+  float: right !important;
 }
 .hasDatepicker {
   width: 102px !important;
@@ -1916,4 +1938,16 @@ a:hover {
   border-radius: 8px !important;
   -moz-border-radius: 8px!important;
   -webkit-border-radius: 8px!important;
+}
+#no-more-tables .myjobs {
+  text-align: center;
+}
+#no-more-tables .btn {
+  margin: 10px auto;
+}
+.gray-like a {
+  color: #ccc;
+}
+.gray-like a .icon-thumbs-down {
+  color: #ccc !important;
 }
