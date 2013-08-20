@@ -940,33 +940,7 @@ jQuery(document).ready(function($) {
                 $("#txtdatetimeshow").text(p.datestrshow);
             }
         });
-<<<<<<< HEAD
-        //jQuery("#content_1").mCustomScrollbar({
-        //    scrollButtons: {
-        //        enable: true
-         //   }
-      //  });
-        $("button").click(function() {
-            $this("#list2 li div").remove();
-        });
 
-
-      //  $("#content_2").mCustomScrollbar({
-          //  scrollButtons: {
-           //     enable: true
-          //  }
-      //  });
-       // jQuery('#user-popdown').popover(
-            //    {
-                 //   placement: 'bottom',
-             //       html: true,
-                //    content: '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="#" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" class="popup_link"><i class="icon-unlock"></i> Logout</a></span></div></div>',
-               // }
-    //    );
-
-
-=======
->>>>>>> ecf9a67e69f70664682898134d7cd5e385e58c68
 
         $('.collapse').live('show', function() {
             $(this).parent().find('a').addClass('open'); //add active state to button on open
