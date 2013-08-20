@@ -65,17 +65,17 @@ function minyawns_scripts_styles() {
             wp_enqueue_style('data_grids_main', get_template_directory_uri() . '/css/data_grids_main.css', array(), null);
             wp_enqueue_style('data_grids_main_01', get_template_directory_uri() . '/css/data_grids_style_01.css', array(), null);
             wp_enqueue_style('ajaxload', get_template_directory_uri() . '/css/ajaxload.css', array(), null);
-			 wp_enqueue_style('calendar', get_template_directory_uri() . '/css/calendar.css', array(), null);
-			wp_enqueue_style('calendar_1', get_template_directory_uri() . '/css/dailog.css', array(), null);
-			wp_enqueue_style('calendar_2', get_template_directory_uri() . '/css/dp.css', array(), null);
-			wp_enqueue_style('calendar_3', get_template_directory_uri() . '/css/alert.css', array(), null);
-			wp_enqueue_style('calendar_4', get_template_directory_uri() . '/css/main-cal.css', array(), null);
+            wp_enqueue_style('calendar', get_template_directory_uri() . '/css/calendar.css', array(), null);
+            wp_enqueue_style('calendar_1', get_template_directory_uri() . '/css/dailog.css', array(), null);
+            wp_enqueue_style('calendar_2', get_template_directory_uri() . '/css/dp.css', array(), null);
+            wp_enqueue_style('calendar_3', get_template_directory_uri() . '/css/alert.css', array(), null);
+            wp_enqueue_style('calendar_4', get_template_directory_uri() . '/css/main-cal.css', array(), null);
             wp_enqueue_style('bootstrap-tagmanager', get_template_directory_uri() . '/css/bootstrap-tagmanager.css', array(), null);
             wp_enqueue_style('bootstrap-timepicker', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
-			wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
+            wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
-           
+
             //if(is_page('profile'))
             wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
 
@@ -91,12 +91,12 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('jquery.stacktable', get_template_directory_uri() . '/js/jquery.stacktable.js', array('jquery'), null);
             wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
-            
+
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
             wp_enqueue_script('jquery-cal', get_template_directory_uri() . '/src/jquery.js', array(), null);
             wp_enqueue_script('wdCalendar_lang_US', get_template_directory_uri() . '/src/plugins/wdCalendar_lang_US.js', array('jquery-cal'), null);
             wp_enqueue_script('jquery.calendar', get_template_directory_uri() . '/src/plugins/jquery.calendar.js', array('jquery-cal'), null);
-            wp_enqueue_script('calendar', get_template_directory_uri() . '/calendar.js', array('jquery-cal'), null);
+//            wp_enqueue_script('calendar', get_template_directory_uri() . '/js/calendar.js', array('jquery-cal'), null);
 
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
             break;

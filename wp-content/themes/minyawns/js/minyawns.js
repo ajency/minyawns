@@ -293,8 +293,9 @@ jQuery(document).ready(function($) {
             error: function(err) {
 //console.log(err);
             }
-
+ 
         });
+  onload_calendar(); /*load the calendar*/
     });
     $("#my_jobs").click(function(e) {
 
@@ -755,7 +756,7 @@ jQuery(document).ready(function($) {
             onAfterRequestData: cal_afterrequest,
             onRequestDataError: cal_onerror,
             autoload: true,
-            url: DATA_FEED_URL + "?method=list",
+            url: DATA_FEED_URL + "?calendar=true&offset=0",
             //quickAddUrl: DATA_FEED_URL + "?method=add",
            // quickUpdateUrl: DATA_FEED_URL + "?method=update",
             //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
@@ -887,7 +888,7 @@ jQuery(document).ready(function($) {
                 $(this).removeClass("fcurrent");
             })
             $(this).addClass("fcurrent");
-            var p = $("#gridcontainer").swtichView("month").BcalGetOp();
+            var p = jQuery("#gridcontainer").swtichView("month").BcalGetOp();
             if (p && p.datestrshow) {
                 $("#txtdatetimeshow").text(p.datestrshow);
             }
@@ -924,28 +925,28 @@ jQuery(document).ready(function($) {
                 $("#txtdatetimeshow").text(p.datestrshow);
             }
         });
-        jQuery("#content_1").mCustomScrollbar({
-            scrollButtons: {
-                enable: true
-            }
-        });
+//        jQuery("#content_1").mCustomScrollbar({
+//            scrollButtons: {
+//                enable: true
+//            }
+//        });
         $("button").click(function() {
             $this("#list2 li div").remove();
         });
 
 
-        $("#content_2").mCustomScrollbar({
-            scrollButtons: {
-                enable: true
-            }
-        });
-        jQuery('#user-popdown').popover(
-                {
-                    placement: 'bottom',
-                    html: true,
-                    content: '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="#" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" class="popup_link"><i class="icon-unlock"></i> Logout</a></span></div></div>',
-                }
-        );
+//        $("#content_2").mCustomScrollbar({
+//            scrollButtons: {
+//                enable: true
+//            }
+//        });
+//        jQuery('#user-popdown').popover(
+//                {
+//                    placement: 'bottom',
+//                    html: true,
+//                    content: '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="#" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" class="popup_link"><i class="icon-unlock"></i> Logout</a></span></div></div>',
+//                }
+//        );
 
 
 
@@ -958,6 +959,6 @@ jQuery(document).ready(function($) {
     }
     /* function on page load*/
     fetch_my_jobs();
-    onload_calendar();
+   
 });
 

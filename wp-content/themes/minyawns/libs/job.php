@@ -38,20 +38,33 @@ $app->post('/addjob', function() use ($app) {
                         wp_delete_object_term_relationships($postid, 'job_tags');
 
                     for ($i = 0; $i < count($tags); $i++) {
-
-
                         wp_set_post_terms($post_id, $tags[$i], 'job_tags', true);
                     }
                 } elseif ($key == "job_start_date") {
+                    $start=$value;
                     update_post_meta($post_id, $key, strtotime($value));
                 } elseif ($key == "job_start_time") {
+                   // print_r($start);print_r($value);
+                    $date=date("j-m-Y",  strtotime($start));
+                    $start_date_time=strtotime($date. $value);//print_r($value);
+                    //var_dump(strtotime(date("d-m-Y","24 August, 2013")."12:12:12 IST" ));
+//                    print_r($start1);
+//                    exit();
+                    //var_dump($start_datetime);exit();
                     update_post_meta($post_id, $key, strtotime($value));
+                    update_post_meta($post_id,'job_start_date_time',$start_date_time);
                 } elseif ($key == "job_end_date") {
+                    $end=$value;
                     update_post_meta($post_id, $key, strtotime($value));
                 } elseif ($key == "job_end_time") {
+                    $date=date("j-m-Y",  strtotime($end));
+                    $end_date_time=strtotime($date. $value);
+                    //print_r(date("j-m-Y",  strtotime($start)).$value);
                     update_post_meta($post_id, $key, strtotime($value));
+                    update_post_meta($post_id,'job_end_date_time',$end_date_time);
+                    
                 } elseif ($key !== 'job_details') {
-                    update_post_meta($post_id, $key, $value);
+                   update_post_meta($post_id, $key, $value);
                 }
             }
 
@@ -63,12 +76,14 @@ $app->post('/addjob', function() use ($app) {
 
 
 $app->get('/fetchjobs/', function() use ($app) {
+   //var_dump(strtotime(date("d-m-Y H:i:s","23 August, 2013 11:28:30")));exit();
+   
             global $post, $wpdb;
             $prefix = $wpdb->prefix;
 // AND $wpdb->postmeta.meta_key = 'job_start_date' 
             //AND $wpdb->postmeta.meta_value <= '" . current_time('timestamp') . "' 
 
-$current_user_id=  get_current_user_id();
+            $current_user_id = get_current_user_id();
             if (isset($_GET['my_jobs'])) {
                 $tables = "$wpdb->posts, $wpdb->postmeta,{$wpdb->prefix}userjobs";
                 $my_jobs_filter = "WHERE $wpdb->posts.post_author = $current_user_id  AND $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.job_id = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date'";
@@ -148,14 +163,15 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
 // AND $wpdb->postmeta.meta_key = 'job_start_date' 
             //AND $wpdb->postmeta.meta_value <= '" . current_time('timestamp') . "' 
 
-$current_user_id=  get_current_user_id();
+            $current_user_id = get_current_user_id();
             if (isset($_GET['my_jobs'])) {
                 $tables = "$wpdb->posts, $wpdb->postmeta,{$wpdb->prefix}userjobs";
                 $my_jobs_filter = "WHERE $wpdb->posts.post_author = $current_user_id  AND $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.job_id = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date'";
             } else {
                 $tables = "$wpdb->posts, $wpdb->postmeta";
                 $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+                            ";
+                //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
             }
 
             $querystr = "
@@ -168,10 +184,14 @@ $current_user_id=  get_current_user_id();
                             LIMIT " . trim($_GET['offset']) . ",2
                          ";
 
-           
-            $data = array();
-            $pageposts = $wpdb->get_results($querystr, OBJECT);
 
+            $data = array();
+            $data['events'][] = array();
+            $attendes=array();
+            $emails=array();
+            $gmtTimezone = new DateTimeZone('IST');
+            $pageposts = $wpdb->get_results($querystr, OBJECT);
+$cnt = count($pageposts);
             foreach ($pageposts as $pagepost) {
                 $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
                 //print_r(implode(",",$tags));exit();
@@ -200,9 +220,47 @@ $current_user_id=  get_current_user_id();
                     'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
                     'job_author_logo' => get_avatar($pagepost->post_author, '10')
                 );
+            //}
+            //return $data;
+            
+           // $attendes = array();
+            //$attendes_names = array();
+            //var_dump($calendar);
+          //  for ($i = 0; $i < $cnt; $i++) {
+
+                $fullday = 0;
+
+//                if (isset(date('d M Y', $post_meta['job_start_date'][0])))
+//                    $fullday = 0;
+
+
+                $location = isset($post_meta['job_location'][0]) ? $post_meta['job_location'][0] : '';
+               // print_r($post_meta['job_start_date_time'][0]);exit();
+                $st = date('d M Y H:i:s', $post_meta['job_start_date_time'][0]);
+                $et = date('d M Y H:i:s', $post_meta['job_end_date_time'][0]);
+//                for ($att_index = 0; $att_index < sizeof($calendar['items'][$i]['attendees']); $att_index++) {
+//
+//                    $attendes_names[] = $calendar['items'][$i]['attendees'][$att_index]['displayName'];
+//                    $attendes_emails[] = $calendar['items'][$i]['attendees'][$att_index]['email'];
+//                }
+//                $attendes = implode(",", $attendes_names);
+//                $emails = implode(",", $attendes_emails);
+                $data['events'][] = array(
+                    rand(10000, 99999),
+                    $pagepost->post_name,
+                    $st,
+                    $et,
+                    $fullday,
+                    0, //more than one day event
+                    0, //Recurring event
+                    rand(-1, 13),
+                    0, //editable,
+                    $location, //location
+                    $attendes, //attends
+                    $emails
+                );
             }
-            $total = count($pageposts);
-            $app->response()->header("Content-Type", "application/json");
+            //$app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
         });
 
