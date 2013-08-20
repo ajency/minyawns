@@ -142,7 +142,69 @@ $current_user_id=  get_current_user_id();
             echo json_encode($data);
         });
 
+$app->post('/fetchjobscalendar/', function() use ($app) {
+            global $post, $wpdb;
+            $prefix = $wpdb->prefix;
+// AND $wpdb->postmeta.meta_key = 'job_start_date' 
+            //AND $wpdb->postmeta.meta_value <= '" . current_time('timestamp') . "' 
 
+$current_user_id=  get_current_user_id();
+            if (isset($_GET['my_jobs'])) {
+                $tables = "$wpdb->posts, $wpdb->postmeta,{$wpdb->prefix}userjobs";
+                $my_jobs_filter = "WHERE $wpdb->posts.post_author = $current_user_id  AND $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.job_id = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date'";
+            } else {
+                $tables = "$wpdb->posts, $wpdb->postmeta";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+            }
+
+            $querystr = "
+                            SELECT $wpdb->posts.* 
+                            FROM $tables
+                            $my_jobs_filter
+                            AND $wpdb->posts.post_status = 'publish' 
+                            AND $wpdb->posts.post_type = 'job'
+                            ORDER BY $wpdb->posts.ID DESC
+                            LIMIT " . trim($_GET['offset']) . ",2
+                         ";
+
+           
+            $data = array();
+            $pageposts = $wpdb->get_results($querystr, OBJECT);
+
+            foreach ($pageposts as $pagepost) {
+                $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
+                //print_r(implode(",",$tags));exit();
+                $post_meta = get_post_meta($pagepost->ID);
+                $data[] = array(
+                    'post_name' => $pagepost->post_title,
+                    'post_date' => $pagepost->post_date,
+                    'post_title' => $pagepost->post_title,
+                    'post_id' => $pagepost->ID,
+                    'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
+                    'job_end_date' => date('d M Y', strtotime($post_meta['job_end_date'][0])),
+                    'job_day' => date('l', $post_meta['job_start_date'][0]),
+                    'job_wages' => $post_meta['job_wages'][0],
+                    'job_progress' => 'available',
+                    'job_start_day' => date('d', $post_meta['job_start_date'][0]),
+                    'job_start_month' => date('F', $post_meta['job_start_date'][0]),
+                    'job_start_year' => date('Y', $post_meta['job_start_date'][0]),
+                    'job_start_meridiem' => date('a', $post_meta['job_start_time'][0]),
+                    'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),
+                    'job_start_time' => date('H:i', $post_meta['job_start_time'][0]),
+                    'job_end_time' => date('H:i', $post_meta['job_end_time'][0]),
+                    'job_location' => $post_meta['job_location'][0],
+                    'job_details' => $pagepost->post_content,
+                    'tags' => $tags,
+                    'tags_count' => sizeof($tags),
+                    'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
+                    'job_author_logo' => get_avatar($pagepost->post_author, '10')
+                );
+            }
+            $total = count($pageposts);
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode($data);
+        });
 
 
 $app->run();

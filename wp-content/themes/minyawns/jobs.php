@@ -6,7 +6,6 @@
 get_header();
 ?>
 
-
 <!-- Row Div -->
 <script type="text/template" id="browse-jobs-table">
     <div style="clear:both;">	</div>
@@ -101,7 +100,7 @@ get_header();
 <script type="text/templates" id="no-result">
     <div class="alert alert-info myjobs no-job ">
     <b style="text-align: center">No Jobs Available ! </b>&nbsp;
- There doesn't seem to be anything here.
+    There doesn't seem to be anything here.
     </div>
 </script>
 <script type="text/templates" id="my-jobs">
@@ -207,10 +206,10 @@ get_header();
         <div class="tab-pane jobs_table " id="tab1">
             <div id="browse-jobs-table" class=" table-border">
                 <div class="row-fluid header_cell">
-<!--                    <div class="span7">
-                        <i class="icon-calendar"></i><h3 class="page-title"> Month</h3>  header label 
-                        JUN 2013
-                    </div>-->
+                    <!--                    <div class="span7">
+                                            <i class="icon-calendar"></i><h3 class="page-title"> Month</h3>  header label 
+                                            JUN 2013
+                                        </div>-->
 
                     <div class="span2">
 <!--                        <select name="small" class="select-block select-role">
@@ -220,8 +219,8 @@ get_header();
                                                         <option value="3">This Week</option>
                                                         <option value="4">This Month</option>
                         </select>-->
-                        
-                       <button class="btn btn-primary btn-wide mll" id="show-calendar">Show calendar</button>
+
+                        <button class="btn btn-primary btn-wide mll" id="show-calendar">Show calendar</button>
                     </div>
                     <!--                    <div class="span3">
                                             <div class="control-group small ctrl-grp">
@@ -247,6 +246,80 @@ get_header();
 
                 </div>
                 <button class="btn btn-primary btn-wide mll" id="load-more">Load more</button>
+            </div>
+            <div style=" width: 97%; ">
+
+                <div id="calhead" style="padding-left:1px;padding-right:1px;">          
+                    <div class="cHead"><div class="ftitle"></div>
+                        <div id="loadingpannel" class="ptogtitle loadicon" style="display: none;">Loading data...</div>
+                        <div id="errorpannel" class="ptogtitle loaderror" style="display: none;">Sorry, could not load your data, please try again later</div>
+                    </div>          
+
+                    <div id="caltoolbar" class="ctoolbar">
+                        <div id="faddbtn" class="fbutton">
+                            <div><span title='Click to Create New Event' class="addcal">
+
+                                    New Event                
+                                </span></div>
+                        </div>
+                        <div class="btnseparator"></div>
+                        <div id="showtodaybtn" class="fbutton">
+                            <div><span title='Click to back to today ' class="showtoday">
+                                    Today</span></div>
+                        </div>
+                        <div class="btnseparator"></div>
+
+                        <div id="showdaybtn" class="fbutton ">
+                            <div><span title='Day' class="showdayview">Day</span></div>
+                        </div>
+                        <div  id="showweekbtn" class="fbutton ">
+                            <div><span title='Week' class="showweekview">Week</span></div>
+                        </div>
+                        <div  id="showmonthbtn" class="fbutton fcurrent ">
+                            <div><span title='Month' class="showmonthview">Month</span></div>
+
+                        </div>
+                        <div class="btnseparator"></div>
+                        <div  id="showreflashbtn" class="fbutton">
+                            <div><span title='Refresh view' class="showdayflash">Refresh</span></div>
+                        </div>
+                        <div class="btnseparator"></div>
+                        <div id="sfprevbtn" title="Prev"  class="fbutton">
+                            <span class="fprev"></span>
+
+                        </div>
+                        <div id="sfnextbtn" title="Next" class="fbutton">
+                            <span class="fnext"></span>
+                        </div>
+                        <div class="fshowdatep fbutton">
+                            <div>
+                                <input type="hidden" name="txtshow" id="hdtxtshow" />
+                                <span id="txtdatetimeshow">Loading</span>
+
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div >
+
+                    <div class="t1 chromeColor">
+                        &nbsp;</div>
+                    <div class="t2 chromeColor">
+                        &nbsp;</div>
+                    <div id="dvCalMain" class="calmain printborder">
+                        <div id="gridcontainer" style="overflow-y: visible;">
+                        </div>
+                    </div>
+                    <div class="t2 chromeColor">
+
+                        &nbsp;</div>
+                    <div class="t1 chromeColor">
+                        &nbsp;
+                    </div>   
+                </div>
+
             </div>
         </div>
         <!-- /tabs -->
@@ -601,84 +674,11 @@ get_header();
                   </div>
                   </div>
                  */ ?>
-				 
-				 		    <div style=" width: 97%; ">
 
-      <div id="calhead" style="padding-left:1px;padding-right:1px;">          
-            <div class="cHead"><div class="ftitle"></div>
-            <div id="loadingpannel" class="ptogtitle loadicon" style="display: none;">Loading data...</div>
-             <div id="errorpannel" class="ptogtitle loaderror" style="display: none;">Sorry, could not load your data, please try again later</div>
-            </div>          
-            
-            <div id="caltoolbar" class="ctoolbar">
-              <div id="faddbtn" class="fbutton">
-                <div><span title='Click to Create New Event' class="addcal">
 
-                New Event                
-                </span></div>
-            </div>
-            <div class="btnseparator"></div>
-             <div id="showtodaybtn" class="fbutton">
-                <div><span title='Click to back to today ' class="showtoday">
-                Today</span></div>
-            </div>
-              <div class="btnseparator"></div>
-
-            <div id="showdaybtn" class="fbutton ">
-                <div><span title='Day' class="showdayview">Day</span></div>
-            </div>
-              <div  id="showweekbtn" class="fbutton ">
-                <div><span title='Week' class="showweekview">Week</span></div>
-            </div>
-              <div  id="showmonthbtn" class="fbutton fcurrent ">
-                <div><span title='Month' class="showmonthview">Month</span></div>
-
-            </div>
-            <div class="btnseparator"></div>
-              <div  id="showreflashbtn" class="fbutton">
-                <div><span title='Refresh view' class="showdayflash">Refresh</span></div>
-                </div>
-             <div class="btnseparator"></div>
-            <div id="sfprevbtn" title="Prev"  class="fbutton">
-              <span class="fprev"></span>
-
-            </div>
-            <div id="sfnextbtn" title="Next" class="fbutton">
-                <span class="fnext"></span>
-            </div>
-            <div class="fshowdatep fbutton">
-                    <div>
-                        <input type="hidden" name="txtshow" id="hdtxtshow" />
-                        <span id="txtdatetimeshow">Loading</span>
-
-                    </div>
-            </div>
-            
-            <div class="clear"></div>
-            </div>
-      </div>
-      <div >
-
-        <div class="t1 chromeColor">
-            &nbsp;</div>
-        <div class="t2 chromeColor">
-            &nbsp;</div>
-        <div id="dvCalMain" class="calmain printborder">
-            <div id="gridcontainer" style="overflow-y: visible;">
             </div>
         </div>
-        <div class="t2 chromeColor">
 
-            &nbsp;</div>
-        <div class="t1 chromeColor">
-            &nbsp;
-        </div>   
-        </div>
-     
-  </div>
-            </div>
-        </div>
-        
     </div>
 </div>
 </div>

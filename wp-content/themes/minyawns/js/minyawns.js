@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
 
     if (jQuery('#user-popdown').length > 0)
     {
-        jQuery('#user-popdown').popover(
+        $('#user-popdown').popover(
                 {
                     placement: 'bottom',
                     html: true,
@@ -23,7 +23,6 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         $('#change-avatar').click();
     });
-
     $('#change-avatar').fileupload({
         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
         dataType: 'json',
@@ -37,16 +36,11 @@ jQuery(document).ready(function($) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
         }
     });
-
-
-
     //reset height for first span
     $('#main-content .profile-wrapper').height($('#profile-edit').height() + 100);
-
     $(function() {
         $('.switch')['bootstrapSwitch']();
     });
-
     /** ANimate the profile view + edit views */
     $('.edit-user-profile').live('click', function(e) {
 
@@ -54,7 +48,6 @@ jQuery(document).ready(function($) {
         var span1 = $('#profile-view');
         var span2 = $('#profile-edit');
         var w = $(span1).width();
-
         if (!$(this).hasClass('loaded'))
         {
             if ($(this).hasClass('view'))
@@ -74,7 +67,6 @@ jQuery(document).ready(function($) {
             }
         }
     });
-
     //set emulateHTTP to true to send PUT requests as POST
     //Backbone.emulateHTTP = true;
     //Backbone.emulateJSON = true;
@@ -90,20 +82,16 @@ jQuery(document).ready(function($) {
         validate: function(attr) {
 
             var errors = [];
-
             _.each(attr, function(index, ele) {
 
                 if (ele == 'id')
                     return;
-
                 if (attr[ele] == '')
                 {
                     errors.push({field: ele, msg: 'Please enter ' + ele});
                 }
 
             });
-
-
             if (errors.length > 0)
                 return errors;
         },
@@ -113,17 +101,13 @@ jQuery(document).ready(function($) {
         }
 
     });
-
-
     $('a#update-profile-info').click(function(e) {
 
         e.preventDefault();
         var _this = $(this);
         $(this).attr('disabled', 'disabled');
-
         //remove previuous errors
         $('#profile-edit-form').find('span.form-error').remove();
-
         //attach it to global window so we can use it later to update the main profile view
         window.profile = new Profile();
         window.profile.bind('invalid', function(model, error, options) {
@@ -132,29 +116,20 @@ jQuery(document).ready(function($) {
                 $('#' + ele.field).parent().append('<br/><span class="form-error">' + ele.msg + '</span>');
             })
         });
-
-
-
         var data = $('#profile-edit-form').serializeArray();
-
-
         var profile_data = {};
         _.each(data, function(ele, index) {
             profile_data[ele.name] = ele.value;
-
             if (ele.name == 'user_skills')
                 profile_data[ele.name] = ele.value.split(',');
-
         });
-
         window.profile.save(profile_data, {
             wait: true,
             success: function(model, resp) {
 
-                //get model data
+//get model data
                 $(_this).removeAttr('disabled');
                 var data = model.toJSON();
-
                 //remove success
                 _.pluck(data, 'success');
                 if (data.last_name === undefined)
@@ -162,7 +137,6 @@ jQuery(document).ready(function($) {
                     data.last_name = '';
                 }
                 $('#profile-view').find('.name').html(data.first_name + ' ' + data.last_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
-
                 //minyawns role
                 $('#profile-view').find('.college').text(data.college);
                 $('#profile-view').find('.major').text(data.major);
@@ -171,26 +145,19 @@ jQuery(document).ready(function($) {
                     skills += "<span class='label label-small'>" + ele + "</span>";
                 });
                 $('#profile-view').find('.user_skills').html(skills);
-
-
                 //employer role
                 $('#profile-view').find('.location').text(data.location);
                 $('#profile-view').find('.profilebody').text(data.profilebody);
                 $('#profile-view').find('.company_website').html(' <a href="' + data.company_website + '">' + data.company_website + '</a>');
-
                 //show success message
                 $('#profile-edit').prepend('<div class="alert alert-success alert-box"><b>Profile</b> updated succesfully <button type="button" class="close fui-cross" data-dismiss="alert"></button></div>');
                 var span1 = $('#profile-view');
                 var span2 = $('#profile-edit');
                 var w = $(span1).width();
-
-
                 $(span1).animate({left: 0}, 500);
                 $(span2).hide();
                 // $(span1).show().animate({left: w}, 500);
                 $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
-
-
             },
             errors: function() {
                 $(_this).removeAttr('disabled');
@@ -198,7 +165,6 @@ jQuery(document).ready(function($) {
             }
         });
     });
-
     /********************************** PROFILE JS CODE *************************************/
 
     $("#add-job-button").live('click', function(e) {
@@ -209,9 +175,7 @@ jQuery(document).ready(function($) {
                 $(_this).html('<i class="fui-mail"></i> Add Jobs');
             else
                 $(_this).html('Cancel');
-
         });
-
     });
     var Job = Backbone.Model.extend({
         url: function() {
@@ -220,12 +184,10 @@ jQuery(document).ready(function($) {
         validate: function(attr) {
 
             var errors = [];
-
             if (attr.job_start_date !== '' && attr.job_end_Date !== '') {
                 if (Date.parse(attr.job_start_date) > Date.parse(attr.job_end_date))
                 {
                     errors.push({field: 'job_end_date', msg: 'End date cannot be less than start date.'});
-
                 }
             }
             if (attr.job_start_date == '')
@@ -244,41 +206,27 @@ jQuery(document).ready(function($) {
             }
             if (!attr.job_required_minyawns)
                 errors.push({field: 'job_required_minyawns', msg: 'Please enter required field'});
-
             if (!attr.job_location)
                 errors.push({field: 'job_location', msg: 'Please enter location'});
-
             if (!attr.job_tags)
                 errors.push({field: 'job_tags', msg: 'Please enter tags'});
-
             if (attr.job_required_minyawns == 0)
                 errors.push({field: 'job_required_minyawns', msg: 'Please select more then one'});
-
             if (!attr.job_details)
                 errors.push({field: 'job_details', msg: 'Please enter job details'});
-
-
             if (!attr.job_task)
                 errors.push({field: 'job_task', msg: 'Please enter ' + 'tasks'});
-
-
             if (errors.length > 0)
                 return errors;
-
-
         }
 
     });
-
-
     $('#add-job').click(function(e) {
 
         e.preventDefault();
         _this = $(this);
-
         //remove previuous errors
         $('#job-form').find('span.form-error').remove();
-
         //attach it to global window so we can use it later to update the main profile view
         window.job = new Job();
         window.job.bind('invalid', function(model, error, options) {
@@ -290,13 +238,10 @@ jQuery(document).ready(function($) {
         });
         var data = $("#job-form").serializeArray();
         $(this).attr('disabled', 'disabled');
-
         var job_data = {};
         _.each(data, function(ele, index) {
             job_data[ele.name] = ele.value;
-
         });
-
         window.job.save(job_data,
                 {
                     wait: true,
@@ -316,18 +261,13 @@ jQuery(document).ready(function($) {
                     }
                 });
     });
-
-
-
     $("#browse").click(function(e) {
         $("#accordion2").empty();
         var Fetchjobs = Backbone.Collection.extend({
             model: Job,
             url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
         });
-
         window.fetchj = new Fetchjobs;
-
         window.fetchj.fetch({
             data: {
                 'offset': 0
@@ -338,7 +278,6 @@ jQuery(document).ready(function($) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
                     $("#load-more").hide();
-
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
                     _.each(collection.models, function(model) {
@@ -352,22 +291,18 @@ jQuery(document).ready(function($) {
 
             },
             error: function(err) {
-                //console.log(err);
+//console.log(err);
             }
 
         });
-
-
-
     });
     $("#my_jobs").click(function(e) {
 
         fetch_my_jobs();
-
     });
     $("#load-more").click(function(e) {
 
-        // alert(window.fetchj.models.length);
+// alert(window.fetchj.models.length);
         window.fetchj.fetch({
             remove: false,
             add: true,
@@ -382,22 +317,14 @@ jQuery(document).ready(function($) {
                     console.log(collection.models.length);
                     var html = template(model.toJSON());
                     $("#accordion2").append(html);
-
                 });
-
-
-
             },
             error: function(err) {
-                //console.log(err);
+//console.log(err);
             }
 
         });
-
-
-
     });
-
     /*############POP UP############*/
     /*Function to etrieve password */
     jQuery("#user-submit").live("click", function() {
@@ -406,7 +333,7 @@ jQuery(document).ready(function($) {
 
 
     /*forgot password form validation */
-    jQuery('#frm_forgotpassword').validate({
+    $('#frm_forgotpassword').validate({
         rules: {
             'user_login': {
                 required: true
@@ -428,7 +355,6 @@ jQuery(document).ready(function($) {
                             jQuery("#user_login").val("");
                             jQuery("#div_forgotpass").hide();
                             jQuery("#div_msgforgotpass").html(response.msg);
-
                         }
                         else
                         {
@@ -451,7 +377,7 @@ jQuery(document).ready(function($) {
 
 
     /* reset password form validation */
-    jQuery('#resetpassform').validate({
+    $('#resetpassform').validate({
         rules: {
             'pass1': {
                 required: true,
@@ -486,7 +412,7 @@ jQuery(document).ready(function($) {
         jQuery("#div_msgforgotpass").html("");
         jQuery("#user_login").val("");
         jQuery("#div_loginmsg").html("");
-        jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="fb_chk_usersigninform" id="fb_chk_usersigninform" value="loginfrm" /> ');////jQuery("#usr_role").val('employer');
+        jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="fb_chk_usersigninform" id="fb_chk_usersigninform" value="loginfrm" /> '); ////jQuery("#usr_role").val('employer');
     })
 
     //user login form validation and user login
@@ -497,7 +423,7 @@ jQuery(document).ready(function($) {
 
 
 
-    jQuery('#frm_login').validate({
+    $('#frm_login').validate({
         rules: {
             'txt_pass': {
                 required: true,
@@ -549,14 +475,13 @@ jQuery(document).ready(function($) {
     /* POPUP SIGNUP */
     jQuery("#link_minyawnregister").live("click", function() {
         jQuery("#signup_role").val('minyawn');
-
         if (jQuery("#usr_role").length > 0)
         {
             jQuery("#usr_role").val("minyawn");
         }
         else
         {
-            jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> ');//jQuery("#usr_role").val('minyawn');
+            jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="minyawn" /> '); //jQuery("#usr_role").val('minyawn');
         }
 
         if (jQuery("#fb_chk_usersigninform").length > 0)
@@ -566,14 +491,12 @@ jQuery(document).ready(function($) {
         jQuery("#div_alreadyregister").html("Already a Minyawn?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
-
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
         jQuery("#signup_email").val("");
         jQuery("#signup_password").val("");
         jQuery("#signup_fname").val("");
         jQuery("#signup_lname").val("");
-
     })
 
     jQuery("#link_employerregister").live("click", function() {
@@ -584,7 +507,7 @@ jQuery(document).ready(function($) {
         }
         else
         {
-            jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> ');////jQuery("#usr_role").val('employer');
+            jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="usr_role" id="usr_role" value="employer" /> '); ////jQuery("#usr_role").val('employer');
         }
         if (jQuery("#fb_chk_usersigninform").length > 0)
         {
@@ -593,21 +516,19 @@ jQuery(document).ready(function($) {
         jQuery("#div_alreadyregister").html("Already registered to Minyawn?");
         jQuery("#signup_fname").attr("placeholder", "Name");
         jQuery("#signup_lname").attr("placeholder", "Company Name");
-
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
         jQuery("#signup_email").val("");
         jQuery("#signup_password").val("");
         jQuery("#signup_fname").val("");
         jQuery("#signup_lname").val("");
-
     })
 
     jQuery("#btn_signup").live("click", function() {
         jQuery('#frm_signup').submit();
     })
 
-    var validator_signup = jQuery('#frm_signup').validate({
+    var validator_signup = $('#frm_signup').validate({
         rules: {
             'signup_password': {
                 required: true,
@@ -659,7 +580,6 @@ jQuery(document).ready(function($) {
         }
 
     });
-
     /*END POPUP SIGNUP */
 
     $('.edit-job-data').live('click', function(e) {
@@ -668,7 +588,6 @@ jQuery(document).ready(function($) {
         var span1 = $('#single-jobs');
         var span2 = $('#edit-job-form');
         var w = $(span1).width();
-
         if ($(this).hasClass('view'))
         {
             $(span1).animate({left: 0}, 500);
@@ -682,18 +601,12 @@ jQuery(document).ready(function($) {
             $(span2).show().animate({left: 0}, 500);
         }
     });
-
-
-
-
     $('#update-job').click(function(e) {
 
         e.preventDefault();
         _this = $(this);
-
         //remove previuous errors
         $('#job-form').find('span.form-error').remove();
-
         //attach it to global window so we can use it later to update the main profile view
         window.job = new Job();
         window.job.bind('invalid', function(model, error, options) {
@@ -705,13 +618,10 @@ jQuery(document).ready(function($) {
         });
         var data = $("#job-form").serializeArray();
         $(this).attr('disabled', 'disabled');
-
         var job_data = {};
         _.each(data, function(ele, index) {
             job_data[ele.name] = ele.value;
-
         });
-
         window.job.save(job_data,
                 {
                     wait: true,
@@ -724,7 +634,6 @@ jQuery(document).ready(function($) {
                         var span1 = $('#single-jobs');
                         var span2 = $('#edit-job-form');
                         var w = $(span1).width();
-
                         if (!$(this).hasClass('loaded'))
                         {
                             if ($(this).hasClass('view'))
@@ -745,7 +654,7 @@ jQuery(document).ready(function($) {
                                 //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
                             }
                         }
-                        //$("#add-job-form").find('input:text').val('');
+//$("#add-job-form").find('input:text').val('');
 
                     },
                     errors: function() {
@@ -754,15 +663,12 @@ jQuery(document).ready(function($) {
                     }
                 });
     });
-
-
     /** Apply/UnApply code */
     $('#apply-job,#unapply-job').live('click', function(evt) {
         evt.preventDefault();
         var _this = $(this);
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
-
         $.post(ajaxurl,
                 {
                     action: 'minyawn_job_' + _action,
@@ -784,8 +690,6 @@ jQuery(document).ready(function($) {
 
         }, 'json');
     });
-
-
     $('#accordion2').bind('scroll', function()
     {
         if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
@@ -802,9 +706,7 @@ jQuery(document).ready(function($) {
             model: Job,
             url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
         });
-
         window.fetchj = new Fetchjobs;
-
         window.fetchj.fetch({
             data: {
                 'my_jobs': 1,
@@ -833,10 +735,229 @@ jQuery(document).ready(function($) {
             }
 
         });
-
     }
 
+
+    function onload_calendar()
+    {
+
+        var view = "month";
+        var DATA_FEED_URL = SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobscalendar';
+        var op = {
+            view: view,
+            theme: 3,
+            showday: new Date(),
+            EditCmdhandler: Edit,
+            DeleteCmdhandler: Delete,
+            ViewCmdhandler: View,
+            onWeekOrMonthToDay: wtd,
+            onBeforeRequestData: cal_beforerequest,
+            onAfterRequestData: cal_afterrequest,
+            onRequestDataError: cal_onerror,
+            autoload: true,
+            url: DATA_FEED_URL + "?method=list",
+            //quickAddUrl: DATA_FEED_URL + "?method=add",
+           // quickUpdateUrl: DATA_FEED_URL + "?method=update",
+            //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
+        };
+        var $dv = $("#calhead");
+        var _MH = document.documentElement.clientHeight;
+        var dvH = $dv.height() + 2;
+        op.height = _MH - dvH;
+        op.eventItems = [];
+        var p = jQuery("#gridcontainer").bcalendar(op).BcalGetOp();
+        if (p && p.datestrshow) {
+            $("#txtdatetimeshow").text(p.datestrshow);
+        }
+        jQuery("#caltoolbar").noSelect();
+        $("#hdtxtshow").datepicker({picker: "#txtdatetimeshow", showtarget: $("#txtdatetimeshow"),
+            onReturn: function(r) {
+                var p = $("#gridcontainer").gotoDate(r).BcalGetOp();
+                if (p && p.datestrshow) {
+                    $("#txtdatetimeshow").text(p.datestrshow);
+                }
+            }
+        });
+        function cal_beforerequest(type)
+        {
+            var t = "Loading data...";
+            switch (type)
+            {
+                case 1:
+                    t = "Loading data...";
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    t = "The request is being processed ...";
+                    break;
+            }
+            $("#errorpannel").hide();
+            $("#loadingpannel").html(t).show();
+        }
+        function cal_afterrequest(type)
+        {
+            switch (type)
+            {
+                case 1:
+                    $("#loadingpannel").hide();
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    $("#loadingpannel").html("Success!");
+                    window.setTimeout(function() {
+                        $("#loadingpannel").hide();
+                    }, 2000);
+                    break;
+            }
+
+        }
+        function cal_onerror(type, data)
+        {
+            $("#errorpannel").show();
+        }
+        function Edit(data)
+        {
+            var eurl = "edit.php?id={0}&start={2}&end={3}&isallday={4}&title={1}";
+            if (data)
+            {
+                var url = StrFormat(eurl, data);
+                OpenModelWindow(url, {width: 600, height: 400, caption: "Manage  The Calendar", onclose: function() {
+                        $("#gridcontainer").reload();
+                    }});
+            }
+        }
+        function View(data)
+        {
+            var str = "";
+            $.each(data, function(i, item) {
+                str += "[" + i + "]: " + item + "\n";
+            });
+            alert(str);
+        }
+        function Delete(data, callback)
+        {
+
+            $.alerts.okButton = "Ok";
+            $.alerts.cancelButton = "Cancel";
+            hiConfirm("Are You Sure to Delete this Event", 'Confirm', function(r) {
+                r && callback(0);
+            });
+        }
+        function wtd(p)
+        {
+            if (p && p.datestrshow) {
+                $("#txtdatetimeshow").text(p.datestrshow);
+            }
+            $("#caltoolbar div.fcurrent").each(function() {
+                $(this).removeClass("fcurrent");
+            })
+            $("#showdaybtn").addClass("fcurrent");
+        }
+//to show day view
+        $("#showdaybtn").click(function(e) {
+//document.location.href="#day";
+            $("#caltoolbar div.fcurrent").each(function() {
+                $(this).removeClass("fcurrent");
+            })
+            $(this).addClass("fcurrent");
+            var p = jQuery("#gridcontainer").swtichView("day").BcalGetOp();
+            if (p && p.datestrshow) {
+                $("#txtdatetimeshow").text(p.datestrshow);
+            }
+        });
+        //to show week view
+        $("#showweekbtn").click(function(e) {
+//document.location.href="#week";
+            $("#caltoolbar div.fcurrent").each(function() {
+                $(this).removeClass("fcurrent");
+            })
+            $(this).addClass("fcurrent");
+            var p = jQuery("#gridcontainer").swtichView("week").BcalGetOp();
+            if (p && p.datestrshow) {
+                $("#txtdatetimeshow").text(p.datestrshow);
+            }
+
+        });
+        //to show month view
+        $("#showmonthbtn").click(function(e) {
+//document.location.href="#month";
+            $("#caltoolbar div.fcurrent").each(function() {
+                $(this).removeClass("fcurrent");
+            })
+            $(this).addClass("fcurrent");
+            var p = $("#gridcontainer").swtichView("month").BcalGetOp();
+            if (p && p.datestrshow) {
+                $("#txtdatetimeshow").text(p.datestrshow);
+            }
+        });
+        $("#showreflashbtn").click(function(e) {
+            $("#gridcontainer").reload();
+        });
+        //Add a new event
+        $("#faddbtn").click(function(e) {
+            var url = "edit.html";
+            OpenModelWindow(url, {width: 500, height: 400, caption: "Create New Calendar"});
+        });
+        //go to today
+        $("#showtodaybtn").click(function(e) {
+            var p = jQuery("#gridcontainer").gotoDate().BcalGetOp();
+            if (p && p.datestrshow) {
+                $("#txtdatetimeshow").text(p.datestrshow);
+            }
+
+
+        });
+        //previous date range
+        $("#sfprevbtn").click(function(e) {
+            var p = jQuery("#gridcontainer").previousRange().BcalGetOp();
+            if (p && p.datestrshow) {
+                $("#txtdatetimeshow").text(p.datestrshow);
+            }
+
+        });
+        //next date range
+        $("#sfnextbtn").click(function(e) {
+            var p = jQuery("#gridcontainer").nextRange().BcalGetOp();
+            if (p && p.datestrshow) {
+                $("#txtdatetimeshow").text(p.datestrshow);
+            }
+        });
+        jQuery("#content_1").mCustomScrollbar({
+            scrollButtons: {
+                enable: true
+            }
+        });
+        $("button").click(function() {
+            $this("#list2 li div").remove();
+        });
+
+
+        $("#content_2").mCustomScrollbar({
+            scrollButtons: {
+                enable: true
+            }
+        });
+        jQuery('#user-popdown').popover(
+                {
+                    placement: 'bottom',
+                    html: true,
+                    content: '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="#" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" class="popup_link"><i class="icon-unlock"></i> Logout</a></span></div></div>',
+                }
+        );
+
+
+
+        $('.collapse').live('show', function() {
+            $(this).parent().find('a').addClass('open'); //add active state to button on open
+        });
+        $('.collapse').live('hide', function() {
+            $(this).parent().find('a').removeClass('open'); //remove active state to button on close
+        });
+    }
     /* function on page load*/
     fetch_my_jobs();
+    onload_calendar();
 });
 

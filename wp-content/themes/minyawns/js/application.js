@@ -168,13 +168,13 @@ e && e.preventDefault();
  
 });
         $.extend($.datepicker, {_checkOffset:function(inst, offset, isFixed){return offset}});
-        jQuery('#job_start_time').timepicker({
+        $('#job_start_time').timepicker({
 minuteStep: 1,
         template: 'modal',
         showSeconds: true,
         showMeridian: false
 });
-        jQuery('#job_end_time').timepicker({
+        $('#job_end_time').timepicker({
 minuteStep: 1,
         template: 'modal',
         showSeconds: true,
