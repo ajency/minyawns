@@ -1,10 +1,4 @@
-html
-{
-    margin:0px;
-    padding:0px;
-    height: 100%;
-    width:100%;
- }
+
 
 .toolBotton
 {	
@@ -31,15 +25,7 @@ html
     cursor:pointer;
 }
 
-body
-{
-	margin: 0;
-	
-	font-size: 12px;
-	padding: 0;
-	height: 100%;
-	width:100%;
-}
+
 
 div, span, td
 {
@@ -48,7 +34,7 @@ div, span, td
 a:link, a:visited
 {
 	text-decoration: none;
-	color: #333;
+	
 }
 input
 {

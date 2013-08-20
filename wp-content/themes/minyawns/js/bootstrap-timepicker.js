@@ -316,13 +316,13 @@
         template = '<div class="bootstrap-timepicker-widget modal hide fade in" data-backdrop="'+ (this.modalBackdrop ? 'true' : 'false') +'">'+
           '<div class="modal-header">'+
             '<a href="#" class="close" data-dismiss="modal">×</a>'+
-            '<h4>Pick a Time</h4>'+
+            '<B>Pick a Time</B>'+
           '</div>'+
           '<div class="modal-content">'+
             templateContent +
           '</div>'+
           '<div class="modal-footer">'+
-            '<a href="#" class="btn btn-primary" data-dismiss="modal">OK</a>'+
+            '<a href="#" class="btn btn-inverse " data-dismiss="modal">Save</a>'+
           '</div>'+
         '</div>';
         break;
