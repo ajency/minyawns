@@ -113,20 +113,9 @@ jQuery(document).ready(function($) {
 
 
 
-        if ($('#linkedin').length > 0) {
-            if (validateURL($("#linkedin").val()) === false){
-                $('#linkedin').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
-            return false;
-            }
-           
-        }
+        
 
-        if ($("#company_website").length > 0) {
-            if (validateURL($("#company_website").val()) === false){
-                $('#company_website').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
-            return false;
-            }
-        }
+       
 
 
 
@@ -136,8 +125,24 @@ jQuery(document).ready(function($) {
         window.profile.bind('invalid', function(model, error, options) {
 
             _.each(error, function(ele, index) {
+                var msg = ucfirst(ele.msg);
+               
+               if (ele.field == "linkedin") {
+            if (validateURL($("#linkedin").val()) === false) {
+                $('#linkedin').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
+                return false;
+            }
+            
+             if (ele.field == "company_website" ) {
+            if (validateURL($("#company_website").val()) === false) {
+                $('#company_website').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
+                return false;
+            }
+        }
 
-                $('#' + ele.field).parent().append('<br/><span class="form-error">' + ele.msg + '</span>');
+        }
+        
+                $('#' + ele.field).parent().append('<br/><span class="form-error">' + msg.replace('_', ' ') + '</span>');
 
 
 
@@ -165,8 +170,12 @@ jQuery(document).ready(function($) {
                 {
                     data.last_name = '';
                 }
+                if(data.first_name != undefined){
                 $('#profile-view').find('.name').html(data.first_name + ' ' + data.last_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
-                //minyawns role
+                }else{
+                    $('#profile-view').find('.name').html(data.company_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
+                }
+                    //minyawns role
                 $('#profile-view').find('.college').text(data.college);
                 $('#profile-view').find('.major').text(data.major);
                 var skills = '';
@@ -936,7 +945,7 @@ jQuery(document).ready(function($) {
             }
         });
         $("#showreflashbtn").click(function(e) {
-            $("#gridcontainer").reload();
+            jQuery("#gridcontainer").reload();
         });
         //Add a new event
         $("#faddbtn").click(function(e) {
@@ -979,10 +988,10 @@ jQuery(document).ready(function($) {
     }
 
     $("#show-calendar").live('click', function(e) {
-//        $("#calendar-jobs").show();/*bread crumbs*/
-//        $("#browse-jobs-table").css("display", "none");
-//        $("#calendar").show();
-        $("#calendar").show().animate({height: "120px"}, 50);
+        $("#calendar-jobs").show();/*bread crumbs*/
+        $("#browse-jobs-table").css("display", "none");
+        $("#calendar").show();
+        //$("#calendar").show().animate({height: "120px"}, 50);
 
 
 
@@ -998,4 +1007,14 @@ function validateURL(textval) {
             "^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
     return urlregex.test(textval);
 }
-
+function ucfirst(str) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // *     example 1: ucfirst('kevin van zonneveld');
+    // *     returns 1: 'Kevin van zonneveld'
+    str += '';
+    var f = str.charAt(0).toUpperCase();
+    return f + str.substr(1);
+}

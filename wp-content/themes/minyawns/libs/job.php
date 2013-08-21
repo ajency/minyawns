@@ -160,7 +160,7 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
-                            LIMIT " . trim($_GET['offset']) . ",2
+                            
                          ";
 
 

@@ -41,6 +41,8 @@ function setup_user_profile_data()
 
 	//set profile profile linked in
 	$current_user->data->company_website= isset($user_meta['company_website']) ? trim($user_meta['company_website'][0]) : '';
+        
+        $current_user->data->company_name= isset($user_meta['company_name']) ? trim($user_meta['company_name'][0]) : '';
 
 	//set profile profile linked in
 	$current_user->data->location		= isset($user_meta['location']) ? trim($user_meta['location'][0]) : '';
@@ -122,6 +124,13 @@ function get_user_profile_name()
 function user_profile_first_name()
 {
 	echo get_user_profile_first_name();
+}
+
+    function user_profile_company_name()
+{	
+	global $current_user;
+
+	return $current_user->data->company_name;
 }
 
 function get_user_profile_first_name()
