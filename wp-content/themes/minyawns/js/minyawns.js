@@ -271,7 +271,7 @@ jQuery(document).ready(function($) {
 
             _.each(error, function(ele, index) {
 
-                $('#' + ele.field).closest('div.controls').append('<br/><span class="form-error">' + ele.msg + '</span>');
+                $('#' + ele.field).closest('div.controls').append('<span class="form-error">' + ele.msg + '</span>');
             })
         });
         var data = $("#job-form").serializeArray();
