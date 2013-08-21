@@ -129,20 +129,20 @@ jQuery(document).ready(function($) {
                
                if (ele.field == "linkedin") {
             if (validateURL($("#linkedin").val()) === false) {
-                $('#linkedin').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
+                $('#linkedin').parent().append('<span class="form-error">Please enter a valid url</span>');
                 return false;
             }
             
              if (ele.field == "company_website" ) {
             if (validateURL($("#company_website").val()) === false) {
-                $('#company_website').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
+                $('#company_website').parent().append('<span class="form-error">Please enter a valid url</span>');
                 return false;
             }
         }
 
         }
         
-                $('#' + ele.field).parent().append('<br/><span class="form-error">' + msg.replace('_', ' ') + '</span>');
+                $('#' + ele.field).parent().append('<span class="form-error">' + msg.replace('_', ' ') + '</span>');
 
 
 

@@ -57,7 +57,7 @@ get_header();  ?>
 							<div class="span10 profileemail">
 									<?php user_profile_email(); ?>
 									<?php 
-										$socials = get_user_social_pages();
+										$socials = user_profile_linkedin();
 										if(is_array($socials))
 										{	
 											foreach ($socials as $social)

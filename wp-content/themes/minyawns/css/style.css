@@ -385,6 +385,7 @@ div.profile-wrapper #profile-edit,#edit-job-form{
 span.form-error{
 	color : red;
 	font-size: 12px;
+        display:block;
 }
 
 /*Vertical scrollbar - set width and height of a div you want to add a scrollbar to*/
