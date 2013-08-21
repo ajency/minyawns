@@ -206,8 +206,10 @@ jQuery(document).ready(function($) {
     /********************************** PROFILE JS CODE *************************************/
 
     $("#add-job-button").live('click', function(e) {
+        
         var _this = $(this);
         e.preventDefault();
+        $("#job-success").hide();
         $("#add-job-form").toggle("slow", function() {
             if ($("#add-job-form").is(':hidden'))
                 $(_this).html('<i class="fui-mail"></i> Add Jobs');
@@ -284,13 +286,16 @@ jQuery(document).ready(function($) {
                 {
                     wait: true,
                     success: function(model, resp) {
-                        $("#success_msg").show();
+                        $("#job-success").show();
                         $("#ajax-load").hide();
                         //get model data
                         // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
                         $("#add-job-button").html('<i class="fui-mail"></i> Add Jobs');
-                        //$("#add-job-form").find('input:text').val('');
+                        $("#add-job-form").find('input:text').val('');
+                        $("#job_task").val('');
+                        
+                        $('#job_tags_tagsinput').find('span').remove()
 
                     },
                     errors: function() {

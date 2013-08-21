@@ -383,6 +383,7 @@ $minyawn_job=new Minyawn_Job('');
                         <?php
                         if (check_access() === true) {
                             ?>
+                        <div class="alert alert-success alert-box " id="job-success" style="display:none;">  <button data-dismiss="alert" class="close" type="button">×</button>You have successfully add a job.</div>
                             <!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
                             <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
                             <form id="job-form" class="form-horizontal">
