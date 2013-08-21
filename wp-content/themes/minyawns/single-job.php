@@ -16,7 +16,10 @@ global $minyawn_job;
                           <?php endif; ?>
 		      </p>
 		   </div>
-		   <div id="single-jobs" class="row-fluid  list-jobs single-jobs ">
+		   <div   style="height: 680px; ">
+					<div id="single-jobs" class="span12" style=" margin-left: 0px; width: 100%; ">
+		   <div  class="row-fluid  list-jobs single-jobs ">
+		 
 		      <div class="span12 jobs-details">
 		         <div class="span2 img-logo"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/> </div>
 		         <div class="span3 minyawns-select">
@@ -73,7 +76,9 @@ global $minyawn_job;
 			     ?>
 		   </div>
 		</div>
-                    <div id="edit-job-form" class="span11" >
+		</div>
+                    <div id="edit-job-form" class="span12" style=" margin-left: 0px; width: 100%; " >
+					
                         <form id="job-form" class="form-horizontal">
                             
                             <input type="hidden" value="<?php echo $minyawn_job->get_job_id(); ?>" name="id"></input>
@@ -81,7 +86,8 @@ global $minyawn_job;
 
                                 <label class="control-label" for="inputtask">Tasks</label>
                                 <div class="controls ">
-                                    <input type="text" id="job_task" name="job_task" value="<?php echo get_the_title() ?>" placeholder="" class="span3">
+                                   <!-- <input type="text" id="job_task" name="job_task" value="<?php echo get_the_title() ?>" placeholder="" class="span3">-->
+									<textarea class="span6" name="job_task" rows="10" id="job_task" cols="4" placeholder="" style="height:70px;"><?php echo get_the_title() ?></textarea>
                                 </div>
                             </div>
                             <div class="control-group small float-left ">
@@ -141,7 +147,7 @@ global $minyawn_job;
                             <div class="control-group small">
                                 <label class="control-label" for="inputtask">Location</label>
                                 <div class="controls ">
-                                    <input type="text" name="job_location" id="job_location" value="<?php echo $minyawn_job->get_job_location(); ?>" placeholder="" class="span3">
+                                    <input type="text" name="job_location" id="job_location" value="<?php echo $minyawn_job->get_job_location(); ?>" placeholder="" class="span9">
                                 </div>
                             </div>
 
@@ -158,10 +164,11 @@ global $minyawn_job;
                                 </div>
                             </div>
                             <hr>
-                            <a id="update-job" href="#" class="btn btn-large btn-block btn-inverse span2" >Submit</a>
+                            <a id="update-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
                             <div class="clear"></div>
                         </form>
                     </div>
+					 </div>
 	</div>
 </div>
 </div>
