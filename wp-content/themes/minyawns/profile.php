@@ -287,7 +287,7 @@ get_header();  ?>
 					  	<div class="control-group">
 					    	<label class="control-label" for="LinkedIn">LinkedIn url</label>
 					    	<div class="controls">
-					     		<input type="text" id="linkedin"  name="linkedin" placeholder="" value="<?php user_profile_linkedin(); ?>" class="input">
+					     		<input type="text" id="linkedin"  name="linkedin" placeholder="http://www.linkedin.in/username" value="<?php user_profile_linkedin(); ?>" class="input">
 					    	</div>
 					  	</div>
 					  <?php else : ?>
