@@ -4,7 +4,7 @@
 
  */
 get_header();
-$minyawn_job=new Minyawn_Job;
+$minyawn_job=new Minyawn_Job('');
 
 ?>
 

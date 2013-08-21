@@ -1705,7 +1705,7 @@
                     }
                     else {
                         var html = "";
-                        html = "<div id='user_tags'>"'<div>' + data[10] + '</div>'"</div>";
+                        html = "<div id='user_tags'><div>" + data[10] + "</div></div>";
                         $("#bbit-cs-buddle-tags").html(html);
                     }
 

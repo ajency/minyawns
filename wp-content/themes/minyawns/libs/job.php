@@ -82,7 +82,7 @@ $app->get('/fetchjobs/', function() use ($app) {
             $current_user_id = get_current_user_id();
             if (isset($_GET['my_jobs'])) {
                 $tables = "$wpdb->posts, $wpdb->postmeta,{$wpdb->prefix}userjobs";
-                $my_jobs_filter = "WHERE $wpdb->posts.post_author = $current_user_id  AND $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.job_id = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date'";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.job_id = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date'";
             } else {
                 $tables = "$wpdb->posts, $wpdb->postmeta";
                 $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
