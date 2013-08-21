@@ -278,7 +278,7 @@ $minyawn_job=new Minyawn_Job('');
 
                 </div>
 
-                <button class="btn load_more" id="load-more">Load more</button>
+                <button class="btn load_more" id="load-more"><span class='load_ajax' style="display:block"></span>Load more</button>
             </div>
 			<br>
             <div style=" display:none; " id="calendar">
