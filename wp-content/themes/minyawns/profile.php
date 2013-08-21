@@ -55,15 +55,8 @@ get_header();  ?>
 								Social Page :
 							</div>
 							<div class="span10 profileemail">
-									<?php user_profile_email(); ?>
-									<?php 
-										$socials = user_profile_linkedin();
-										if(is_array($socials))
-										{	
-											foreach ($socials as $social)
-												echo "<a href='#' target='_blank'>$social</a>";
-										}
-									?>
+                                                            <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><?php echo user_profile_linkedin() ?></a>
+									
 							</div>
 							<div class="span2">
 								Skills :
@@ -287,7 +280,7 @@ get_header();  ?>
 					  	<div class="control-group">
 					    	<label class="control-label" for="LinkedIn">LinkedIn url</label>
 					    	<div class="controls">
-					     		<input type="text" id="linkedin"  name="linkedin" placeholder="http://www.linkedin.in/username" value="<?php user_profile_linkedin(); ?>" class="input">
+					     		<input type="text" id="linkedin"  name="linkedin" placeholder="www.linkedin.in/username" value="<?php user_profile_linkedin(); ?>" class="input">
 					    	</div>
 					  	</div>
 					  <?php else : ?>
