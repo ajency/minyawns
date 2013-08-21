@@ -38,6 +38,7 @@
         <script>
             var siteurl='<?php echo site_url(); ?>';
             var logouturl='<?php echo wp_logout_url();?>';
+            var email='<?php  echo get_user_profile_email() ?>';
             
             </script>
             
