@@ -264,16 +264,16 @@ jQuery(document).ready(function($) {
                 });
     });
     $("#browse-jobs").click(function(e) {
-       $("#calendar-jobs").hide();/*bread crumbs*/
+        $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
     });
     $("#browse").click(function(e) {
 
-    $("#accordion2").empty();
+        $("#accordion2").empty();
 
         load_browse_jobs();
     });
-        function load_browse_jobs(){
+    function load_browse_jobs() {
         $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
         $("#accordion2").empty();
@@ -308,9 +308,9 @@ jQuery(document).ready(function($) {
             error: function(err) {
 //console.log(err);
             }
- 
+
         });
-  onload_calendar(); /*load the calendar*/
+        onload_calendar(); /*load the calendar*/
     }
     $("#my_jobs").click(function(e) {
 
@@ -773,7 +773,7 @@ jQuery(document).ready(function($) {
             autoload: true,
             url: DATA_FEED_URL + "?calendar=true&offset=0",
             //quickAddUrl: DATA_FEED_URL + "?method=add",
-           // quickUpdateUrl: DATA_FEED_URL + "?method=update",
+            // quickUpdateUrl: DATA_FEED_URL + "?method=update",
             //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
         };
         var $dv = $("#calhead");
@@ -781,7 +781,7 @@ jQuery(document).ready(function($) {
         var dvH = $dv.height() + 2;
         op.height = _MH - dvH;
         op.eventItems = [];
-        var p = jQuery("#gridcontainer").bcalendar(op).BcalGetOp();
+        var p = $("#gridcontainer").bcalendar(op).BcalGetOp();
         if (p && p.datestrshow) {
             $("#txtdatetimeshow").text(p.datestrshow);
         }
@@ -927,6 +927,7 @@ jQuery(document).ready(function($) {
         });
         //previous date range
         $("#sfprevbtn").click(function(e) {
+           
             var p = jQuery("#gridcontainer").previousRange().BcalGetOp();
             if (p && p.datestrshow) {
                 $("#txtdatetimeshow").text(p.datestrshow);
@@ -949,15 +950,15 @@ jQuery(document).ready(function($) {
             $(this).parent().find('a').removeClass('open'); //remove active state to button on close
         });
     }
-    
-    $("#show-calendar").live('click',function(){
+
+    $("#show-calendar").live('click', function() {
         $("#calendar-jobs").show();/*bread crumbs*/
-        $("#browse-jobs-table").css("display","none");
+        $("#browse-jobs-table").css("display", "none");
         $("#calendar").show();
-        
+
     });
     /* function on page load*/
     fetch_my_jobs();
-   
+
 });
 
