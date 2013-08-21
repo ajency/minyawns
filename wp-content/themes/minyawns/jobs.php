@@ -235,6 +235,8 @@ $minyawn_job=new Minyawn_Job('');
                     <a href="#" id="calendar-jobs" style="display:none">Calendar Jobs</a>                
                 </p>
             </div>
+             <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
+                   
             <div id="browse-jobs-table" class=" table-border">
                 <div class="row-fluid header_cell">
                     <!--                    <div class="span7">
@@ -251,8 +253,7 @@ $minyawn_job=new Minyawn_Job('');
                                                         <option value="4">This Month</option>
                         </select>-->
 
-                        <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
-                    </div>
+                        </div>
                     <!--                    <div class="span3">
                                             <div class="control-group small ctrl-grp">
                                                 <div class="input-append">
@@ -278,7 +279,7 @@ $minyawn_job=new Minyawn_Job('');
 
                 </div>
 
-                <button class="btn load_more" id="load-more">Load more</button>
+                <button class="btn load_more" id="load-more"><span class='load_ajax' style="display:block"></span>Load more</button>
             </div>
 			<br>
             <div style=" display:none; " id="calendar">

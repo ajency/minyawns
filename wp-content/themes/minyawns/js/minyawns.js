@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
                 {
                     placement: 'bottom',
                     html: true,
-                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4></h4><p class="muted">'+email+'</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
+                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4></h4><p class="muted">' + email + '</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
                 }
         );
     }
@@ -104,19 +104,46 @@ jQuery(document).ready(function($) {
 
     });
     $('a#update-profile-info').click(function(e) {
-
+//alert(validateURL("asdasd"));
         e.preventDefault();
         var _this = $(this);
         $(this).attr('disabled', 'disabled');
         //remove previuous errors
         $('#profile-edit-form').find('span.form-error').remove();
+
+
+
+        if ($('#linkedin').length > 0) {
+            if (validateURL($("#linkedin").val()) === false){
+                $('#linkedin').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
+            return false;
+            }
+           
+        }
+
+        if ($("#company_website").length > 0) {
+            if (validateURL($("#company_website").val()) === false){
+                $('#company_website').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
+            return false;
+            }
+        }
+
+
+
+
         //attach it to global window so we can use it later to update the main profile view
         window.profile = new Profile();
         window.profile.bind('invalid', function(model, error, options) {
 
             _.each(error, function(ele, index) {
+
                 $('#' + ele.field).parent().append('<br/><span class="form-error">' + ele.msg + '</span>');
+
+
+
             })
+
+
         });
         var data = $('#profile-edit-form').serializeArray();
         var profile_data = {};
@@ -927,7 +954,7 @@ jQuery(document).ready(function($) {
         });
         //previous date range
         $("#sfprevbtn").click(function(e) {
-           
+
             var p = jQuery("#gridcontainer").previousRange().BcalGetOp();
             if (p && p.datestrshow) {
                 $("#txtdatetimeshow").text(p.datestrshow);
@@ -951,14 +978,24 @@ jQuery(document).ready(function($) {
         });
     }
 
-    $("#show-calendar").live('click', function() {
-        $("#calendar-jobs").show();/*bread crumbs*/
-        $("#browse-jobs-table").css("display", "none");
-        $("#calendar").show();
+    $("#show-calendar").live('click', function(e) {
+//        $("#calendar-jobs").show();/*bread crumbs*/
+//        $("#browse-jobs-table").css("display", "none");
+//        $("#calendar").show();
+        $("#calendar").show().animate({height: "120px"}, 50);
+
+
+
 
     });
     /* function on page load*/
     fetch_my_jobs();
 
 });
+
+function validateURL(textval) {
+    var urlregex = new RegExp(
+            "^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
+    return urlregex.test(textval);
+}
 
