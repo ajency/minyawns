@@ -1,4 +1,4 @@
-		<br /><br />
+	
 		<div class="row-fluid minyawns-grid">
             <ul class="thumbnails">
             <?php foreach($minyawn_job->minyawns as $minyawn): ?>
@@ -42,7 +42,6 @@
                <?php endforeach; ?>
             </ul>
          </div>
-         <hr class="border-color">
-         <img class="bottom-arrow" src="<?php echo get_template_directory_uri() ?>/images/bottom-arrow.png">
+        
          <a href="#fakelink" class="btn btn-medium btn-block green-btn btn-success ">Confirm & Hire</a>
  
