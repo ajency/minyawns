@@ -1965,3 +1965,15 @@ a:hover {
 .gray-like a .icon-thumbs-down {
   color: #ccc !important;
 }
+.div-box-block {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 0px;
+  width: 23%;
+}
+.div-box-block .btn {
+  width: 70%;
+  margin: auto;
+}
