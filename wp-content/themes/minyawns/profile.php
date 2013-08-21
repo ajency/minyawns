@@ -32,7 +32,7 @@ get_header();  ?>
 						<input id="change-avatar" type="file" name="files" style="visibility:hidden">
 					</div>
 					<div class="span8">
-                                            <h4 class="name"> <?php user_profile_first_name()." ".user_profile_last_name()   ?>  <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a></h4> 
+                                            <h4 class="name"> <?php if(get_user_role() === "employer"){ echo user_profile_company_name(); } else { user_profile_first_name()." ".user_profile_last_name();}   ?>  <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a></h4> 
 						<div class="row-fluid profile-list">
 							<?php
 
@@ -294,7 +294,7 @@ get_header();  ?>
                                              <div class="control-group">
                                                       <label class="control-label" for="inputFirst">Company Name</label>
 						    <div class="controls">
-                                                        <input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name() ?>" class="input">
+                                                        <input type="text" id="company_name" name="company_name" placeholder="" value="<?php echo user_profile_company_name() ?>" class="input">
                                                         
 						    </div>
 					  	</div>
