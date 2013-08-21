@@ -227,8 +227,9 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 	background:#fff;
 	border-top: 2px solid #8ED030;
 	min-height: 400px;
-	overflow-x:hidden;
+	overflow-y:hidden;
 	padding: 20px;
+	padding-bottom: 60px;
 }
 .jobs_menu.nav-append-content > li.active:first-child:before {
 background-color: #FFF;

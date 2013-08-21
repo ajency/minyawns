@@ -258,7 +258,8 @@ get_header();
 		
                 <button class="btn load_more" id="load-more">Load more</button>
             </div>
-            <div style=" width: 97%;display:none; " id="calendar">
+			<br>
+            <div style=" display:none; " id="calendar">
 
                 <div id="calhead" style="padding-left:1px;padding-right:1px;">          
                     <div class="cHead"><div class="ftitle"></div>

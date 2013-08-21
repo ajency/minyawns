@@ -29,7 +29,7 @@ border: 5px solid #D6D5D5;
 	line-height:14px
  }
 #gridcontainer {
-	height: 642px !important;
+	height: 677px !important;
 	background:#DDDFE4;
 	position:relative;
 	-webkit-user-select:none;
@@ -693,4 +693,15 @@ cursor:pointer;
 }
 #bbit-cal-quickAddBTN:hover{
 	background:#1CC515;
+}
+.cb-table b{ float:left; margin-right:10px;}
+.textbox-fill-mid a{
+	font-size: 18px;
+	margin-top: -8px;
+	display: block;
+}
+.cb-table #apply input{
+	color: #FFF;
+	background: #000;
+	border-radius: 5px
 }
