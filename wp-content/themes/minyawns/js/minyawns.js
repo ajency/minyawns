@@ -113,20 +113,9 @@ jQuery(document).ready(function($) {
 
 
 
-        if ($('#linkedin').length > 0) {
-            if (validateURL($("#linkedin").val()) === false) {
-                $('#linkedin').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
-                return false;
-            }
+        
 
-        }
-
-        if ($("#company_website").length > 0) {
-            if (validateURL($("#company_website").val()) === false) {
-                $('#company_website').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
-                return false;
-            }
-        }
+       
 
 
 
@@ -138,6 +127,21 @@ jQuery(document).ready(function($) {
             _.each(error, function(ele, index) {
                 var msg = ucfirst(ele.msg);
                
+               if (ele.field == "linkedin") {
+            if (validateURL($("#linkedin").val()) === false) {
+                $('#linkedin').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
+                return false;
+            }
+            
+             if (ele.field == "company_website" ) {
+            if (validateURL($("#company_website").val()) === false) {
+                $('#company_website').parent().append('<br/><span class="form-error">Please enter a valid url</span>');
+                return false;
+            }
+        }
+
+        }
+        
                 $('#' + ele.field).parent().append('<br/><span class="form-error">' + msg.replace('_', ' ') + '</span>');
 
 
@@ -166,9 +170,12 @@ jQuery(document).ready(function($) {
                 {
                     data.last_name = '';
                 }
+                if(data.first_name != undefined){
                 $('#profile-view').find('.name').html(data.first_name + ' ' + data.last_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
-               $('#profile-view').find('.name').html(data.company_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
-                //minyawns role
+                }else{
+                    $('#profile-view').find('.name').html(data.company_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
+                }
+                    //minyawns role
                 $('#profile-view').find('.college').text(data.college);
                 $('#profile-view').find('.major').text(data.major);
                 var skills = '';
