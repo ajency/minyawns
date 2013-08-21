@@ -60,7 +60,7 @@ input[type='radio']
 }
 textarea
 {
-    border: solid 1px #3C7FB1;	
+    
     overflow:auto;
 }
 .ellipsis

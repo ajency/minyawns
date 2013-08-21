@@ -391,7 +391,8 @@ $minyawn_job=new Minyawn_Job('');
                                 <div class="control-group small">
                                     <label class="control-label" for="inputtask">Tasks</label>
                                     <div class="controls ">
-                                        <input type="text" id="job_task" name="job_task" value="" placeholder="" class="span3">
+                                       <!-- <input type="text" id="job_task" name="job_task" value="" placeholder="" class="span3">-->
+										 <textarea class="span6" name="job_task" rows="10" id="job_task" cols="4" placeholder="" style="height:70px;"></textarea>
                                     </div>
                                 </div>
                                 <div class="control-group small float-left ">
@@ -451,7 +452,7 @@ $minyawn_job=new Minyawn_Job('');
                                 <div class="control-group small">
                                     <label class="control-label" for="inputtask">Location</label>
                                     <div class="controls ">
-                                        <input type="text" name="job_location" id="job_location" value="" placeholder="" class="span3">
+                                        <input type="text" name="job_location" id="job_location" value="" placeholder="" class="span8">
                                     </div>
                                 </div>
 
