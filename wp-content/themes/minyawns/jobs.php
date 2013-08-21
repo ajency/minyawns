@@ -67,7 +67,7 @@ global $minyawn_job;
     <div class="accordion-inner">
     <div class="row-fluid header-title">
     <div class="span12">
-    <h3> Walmart </h3>
+    <h3> Walmart <a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank" class="view-link btn btn-inverse" ><i class="icon-search"></i> View</a> </h3>
     </div>
     </div>
     <div class="row-fluid job-data">
@@ -88,9 +88,9 @@ global $minyawn_job;
     <div class="span3">
     <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-left.png">
 
-    <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
+   <a href="#" id="apply-job" class="btn btn-large btn-block btn-success btn-apply" data-action="apply" data-job-id="<%= post_id %>">Apply</a>
 
-    <a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank" class="btn btn-large btn-block btn-success btn-apply">View</a> <br>
+    
     </div>
     </div>
 
