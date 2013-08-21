@@ -108,7 +108,7 @@ get_header();  ?>
 					<?php if(get_user_role() === 'minyawn'): ?>
 					<div class="span2">
 						<br>
-						<div class="like_btn"><br><br>
+						<div class="like_btn gray-like"><br><br>
 							<a href="#fakelink" style="float:left;" >
 								<i class="icon-thumbs-up"></i><br>
 								<b class="like"><?php user_like_count(); ?></b>
