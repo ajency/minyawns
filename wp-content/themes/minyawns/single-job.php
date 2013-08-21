@@ -87,7 +87,7 @@ global $minyawn_job;
                                 <label class="control-label" for="inputtask">Tasks</label>
                                 <div class="controls ">
                                    <!-- <input type="text" id="job_task" name="job_task" value="<?php echo get_the_title() ?>" placeholder="" class="span3">-->
-									<textarea class="span6" name="job_task" rows="10" id="job_task" cols="4" placeholder="" style="height:70px;"><?php echo get_the_title() ?></textarea>
+									<textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="" style="height:70px;"><?php echo get_the_title() ?></textarea>
                                 </div>
                             </div>
                             <div class="control-group small float-left ">
