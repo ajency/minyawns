@@ -694,7 +694,7 @@ cursor:pointer;
 #bbit-cal-quickAddBTN:hover{
 	background:#1CC515;
 }
-.cb-table b{ float:left; margin-right:10px;}
+.cb-table b{ float:left; margin-right:10px; width: 50px;}
 .textbox-fill-mid a{
 	font-size: 18px;
 	margin-top: -8px;
@@ -706,7 +706,7 @@ cursor:pointer;
 	border-radius: 5px
 }
 .cb-table #apply input:hover{
-	color: #363636;
-	background: #000;
+	color: #fff;
+	background: #363636;
 	border-radius: 5px
 }
