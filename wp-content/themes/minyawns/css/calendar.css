@@ -705,3 +705,8 @@ cursor:pointer;
 	background: #000;
 	border-radius: 5px
 }
+.cb-table #apply input:hover{
+	color: #363636;
+	background: #000;
+	border-radius: 5px
+}

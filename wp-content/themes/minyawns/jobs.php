@@ -68,7 +68,7 @@ $minyawn_job=new Minyawn_Job;
     <div class="accordion-inner">
     <div class="row-fluid header-title">
     <div class="span12">
-    <h3> Walmart </h3>
+    <h3> Walmart <a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank" class="view-link btn btn-inverse" ><i class="icon-search"></i> View</a> </h3>
     </div>
     </div>
     <div class="row-fluid job-data">
@@ -89,6 +89,7 @@ $minyawn_job=new Minyawn_Job;
     <div class="span3">
     <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-left.png">
 
+
    <?php if(get_user_role() === 'minyawn'): ?> 
 		         	<hr class="border-color">
 		         	<img class="bottom-arrow" src="<?php echo get_template_directory_uri() ?>/images/bottom-arrow.png">
@@ -106,7 +107,8 @@ $minyawn_job=new Minyawn_Job;
 			     endif;
 			     ?>
 
-    <a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank" class="btn btn-large btn-block btn-success btn-apply">View</a> <br>
+
+    
     </div>
     </div>
 
