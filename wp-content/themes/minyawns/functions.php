@@ -75,7 +75,7 @@ function minyawns_scripts_styles() {
 
             wp_enqueue_style('bootstrap-timepicker', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
 
-            wp_dequeue_script('jquery');
+            
              //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
@@ -99,12 +99,14 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
 
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
+           // wp_dequeue_script('jquery');
+            if(is_page('jobs')){
             wp_enqueue_script('jquery-cal', get_template_directory_uri() . '/src/jquery.js', array(), null);
             wp_enqueue_script('wdCalendar_lang_US', get_template_directory_uri() . '/src/plugins/wdCalendar_lang_US.js', array('jquery-cal'), null);
             wp_enqueue_script('jquery.calendar', get_template_directory_uri() . '/src/plugins/jquery.calendar.js', array('jquery-cal'), null);
             
-			wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery-cal'), null);
-
+			wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), null);
+            }
 
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
             break;
