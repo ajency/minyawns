@@ -945,7 +945,7 @@ jQuery(document).ready(function($) {
             }
         });
         $("#showreflashbtn").click(function(e) {
-            $("#gridcontainer").reload();
+            jQuery("#gridcontainer").reload();
         });
         //Add a new event
         $("#faddbtn").click(function(e) {
