@@ -38,10 +38,6 @@ var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>"
 		
 ?>	
 </script>
-<script type="text/javascript">
-    $(window).load(function () {
-        $(".demo").customScrollbar();
-    });
-</script>
+
 </body>
 </html>

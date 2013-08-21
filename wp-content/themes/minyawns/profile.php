@@ -229,7 +229,7 @@ get_header();  ?>
 								<h4 style="text-align: center">No Jobs Available</h4>
 								<hr>
 								There doesn't seem to be anything here. you can apply for jobs
-								on the '<B>Browse Jobs</B>' page <a href="#fakelink"
+                                                                on the '<B>Browse Jobs</B>' page <a href="<?php echo site_url();?>/jobs/"
 									class="btn btn-large btn-block btn-success default-btn">Take Me
 									There</a>
 							</div>
