@@ -108,7 +108,7 @@ return "" +
 }
 });
         $('#job_required_minyawns').customspinner({
-min: - 99,
+min: 1,
         max: 99
 }).on('focus', function () {
 $(this).closest('.ui-spinner').addClass('focus');
