@@ -1550,7 +1550,7 @@
         function parseED(data) {
             if (data.length > 6) {
                 var e = [];
-                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10], data[11], data[12], data[13],data[14]);
+                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10], data[11], data[12], data[13],data[14],data[15]);
                 return e;
             }
             return null;
@@ -1730,7 +1730,7 @@
                         $("#bbit-cs-buddle-wages").html(html);
                     }
                     
-                    if (data[13] != "true")
+                    if (data[13] != "true" || data[15] === "employer")
                     {
                         $("#bbit-apply").hide();
                     } else

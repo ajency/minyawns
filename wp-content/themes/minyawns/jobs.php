@@ -236,6 +236,7 @@ $minyawn_job=new Minyawn_Job('');
                 </p>
             </div>
              <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
+             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
                    
             <div id="browse-jobs-table" class=" table-border">
                 <div class="row-fluid header_cell">

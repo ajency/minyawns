@@ -150,17 +150,22 @@ e && e.preventDefault();
 
         $('#job_start_date').focus();
 });
+
         $.extend($.datepicker, {_checkOffset:function(inst, offset, isFixed){return offset}});
         // Switch
         $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
         // Stackable tables
         $(".table-striped").stacktable({id: "rwd-table"});
+        var date = new Date();
+date.setDate(date.getDate()-1);
         $('#job_end_date').datepicker({
+            startDate:date,
 showOtherMonths: true,
         selectOtherMonths: true,
         dateFormat: "d MM, yy",
         yearRange: '-1:+1',
-        endDate: '+2d'
+        endDate: '+2d',
+        
 }).prev('.btn').on('click', function (e) {
 e && e.preventDefault();
 

@@ -113,9 +113,9 @@ jQuery(document).ready(function($) {
 
 
 
-        
 
-       
+
+
 
 
 
@@ -126,22 +126,22 @@ jQuery(document).ready(function($) {
 
             _.each(error, function(ele, index) {
                 var msg = ucfirst(ele.msg);
-               
-               if (ele.field == "linkedin") {
-            if (validateURL($("#linkedin").val()) === false) {
-                $('#linkedin').parent().append('<span class="form-error">Please enter a valid url</span>');
-                return false;
-            }
-            
-             if (ele.field == "company_website" ) {
-            if (validateURL($("#company_website").val()) === false) {
-                $('#company_website').parent().append('<span class="form-error">Please enter a valid url</span>');
-                return false;
-            }
-        }
 
-        }
-        
+                if (ele.field == "linkedin") {
+                    if (validateURL($("#linkedin").val()) === false) {
+                        $('#linkedin').parent().append('<span class="form-error">Please enter a valid url</span>');
+                        return false;
+                    }
+
+                    if (ele.field == "company_website") {
+                        if (validateURL($("#company_website").val()) === false) {
+                            $('#company_website').parent().append('<span class="form-error">Please enter a valid url</span>');
+                            return false;
+                        }
+                    }
+
+                }
+
                 $('#' + ele.field).parent().append('<span class="form-error">' + msg.replace('_', ' ') + '</span>');
 
 
@@ -170,12 +170,12 @@ jQuery(document).ready(function($) {
                 {
                     data.last_name = '';
                 }
-                if(data.first_name != undefined){
-                $('#profile-view').find('.name').html(data.first_name + ' ' + data.last_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
-                }else{
+                if (data.first_name != undefined) {
+                    $('#profile-view').find('.name').html(data.first_name + ' ' + data.last_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
+                } else {
                     $('#profile-view').find('.name').html(data.company_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
                 }
-                    //minyawns role
+                //minyawns role
                 $('#profile-view').find('.college').text(data.college);
                 $('#profile-view').find('.major').text(data.major);
                 var skills = '';
@@ -206,7 +206,7 @@ jQuery(document).ready(function($) {
     /********************************** PROFILE JS CODE *************************************/
 
     $("#add-job-button").live('click', function(e) {
-        
+
         var _this = $(this);
         e.preventDefault();
         $("#job-success").hide();
@@ -294,7 +294,7 @@ jQuery(document).ready(function($) {
                         $("#add-job-button").html('<i class="fui-mail"></i> Add Jobs');
                         $("#add-job-form").find('input:text').val('');
                         $("#job_task").val('');
-                        
+
                         $('#job_tags_tagsinput').find('span').remove()
 
                     },
@@ -993,23 +993,23 @@ jQuery(document).ready(function($) {
     }
 
     $("#show-calendar").live('click', function(e) {
-        $("#calendar-jobs").show();/*bread crumbs*/
-        $("#browse-jobs-table").css("display", "none");
-        $("#calendar").show();
-        //$("#calendar").show().animate({height: "120px"}, 50);
+        var c=0;
+        $("#hide-calendar").show();
+//        $("#calendar-jobs").show();/*bread crumbs*/
+//        $("#browse-jobs-table").css("display", "none");
+//        $("#calendar").show();
 
-
-
-
-    });
-    /* function on page load*/
-    fetch_my_jobs();
+        $("#browse-jobs-table").css('visibility', 'hidden');
+        $("#calendar").show().stop().animate({left: ++c%2*100 }, 'fast');
+   });
+            /* function on page load*/
+            fetch_my_jobs();
 
 });
 
 function validateURL(textval) {
     return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(textval);
-   
+
 }
 function ucfirst(str) {
     // http://kevin.vanzonneveld.net
