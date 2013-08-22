@@ -419,7 +419,7 @@ $minyawn_job=new Minyawn_Job('');
                                     <div class="controls">
                                         <div class="input-prepend input-datepicker">
                                             <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                            <input type="text"  name="job_end_date" class="span1" value="" id="job_end_date">
+                                            <input type="text"  name="job_end_date" class="span1 hasDatepicker" value="" disabled id="job_end_date">
                                         </div>
                                     </div>
 
