@@ -138,9 +138,9 @@ $minyawn_job=new Minyawn_Job('');
     <div class="posteddate"> Posted Date : <span><%= post_date %></span></div>
     <div class="jobsdate"> Jobs Date : <span><%= job_start_date %></span></div>
     </div>
-    <div class="span3 job-duration">
+    <div class="span3 job-duration duration_mob">
     <div class="row-fluid">
-    <div class="span5">
+    <div class="span5 mob-botm">
     <span data-count="0" class="total-exchange-count"><%= job_start_time %></span>
     <div>
     <%=job_start_meridiem %>

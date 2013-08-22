@@ -3684,9 +3684,9 @@ padding: 11px 6px 10px 12px;
 }
 .ui-spinner input {
   color: #95a5a6;
-  -webkit-border-radius: 6px 0 0 6px;
-  -moz-border-radius: 6px 0 0 6px;
-  border-radius: 6px 0 0 6px;
+  -webkit-border-radius: 6px 0px 0px 6px;
+  -moz-border-radius: 6px 0px 0px 6px;
+  border-radius: 6px 0px 0px 6px;
   text-align: center;
   text-indent: 0;
 }
@@ -3694,16 +3694,59 @@ padding: 11px 6px 10px 12px;
   .ui-spinner input {
     margin-top: 0;
   }
+  .ui-spinner input {
+  color: #95a5a6;
+  -webkit-border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 6px 6px 6px;
+  text-align: center;
+  text-indent: 0;
 }
+  .spinner {
+	border-right-width: 1px!important;
+	}
+	.ui-spinner-button {
+  cursor: default;
+  display: block;
+   display:none;
+  font-size: 0.5em;
+  line-height: 19px;
+  height: 19px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  width: 37px;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  background-color: #bdc3c7;
+  outline: none;
+}
+.ui-spinner.focus .ui-spinner-button {
+  background-color: #8ed030;
+  display:none;
+}
+.ui-spinner.focus .ui-spinner-button:hover {
+  background-color: #79B91E;
+   display:none;
+}
+	
+}
+
 .ui-spinner.focus input {
   color: #8ed030;
   border-color: #8ed030;
 }
 .ui-spinner.focus .ui-spinner-button {
   background-color: #8ed030;
+  
 }
 .ui-spinner.focus .ui-spinner-button:hover {
   background-color: #79B91E;
+ 
 }
 .ui-spinner.focus .ui-spinner-up {
   border-bottom-color: #79B91E;
@@ -3711,6 +3754,7 @@ padding: 11px 6px 10px 12px;
 .ui-spinner-button {
   cursor: default;
   display: block;
+  
   font-size: 0.5em;
   line-height: 19px;
   height: 19px;
@@ -3769,6 +3813,12 @@ padding: 11px 6px 10px 12px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
+}
+.ui-datepicker td {
+display: block;
+float: left;
+width: auto !important;
+
 }
 .ui-datepicker .ui-datepicker-header {
   background-color: #8ed030;

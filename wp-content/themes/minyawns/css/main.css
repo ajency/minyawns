@@ -1317,8 +1317,56 @@ a:hover {
   
   }
   body {
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  body div.profile-wrapper {
+    height: 100% !important;
+  }
+  body div.profile-wrapper .row-fluid {
+    width: 98%;
+  }
+  body .div-box-block {
+    position: relative;
+    top: 8px;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+  }
+  body .modal {
+    top: 51px;
+    position: absolute;
+  }
+  body .default-btn {
+    width: 100%;
+  }
+  body .top-menu {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 28px;
+  }
+  .list-jobs .div-box {
+    position: relative !important;
+    top: 0!important;
+    bottom: 0!important;
+    margin: auto!important;
+    height: 100%!important;
+    width: 100%!important;
+  }
+  .form-horizontal .float-left {
+    float: none;
+  }
+  .tab_content_login {
+    margin-top: 20px;
+  }
+  .tab_content_login #user-submit {
+    width: 100%;
+  }
+  .tab_content_login #user_login {
+    width: 100%;
+  }
+  .modal-body {
+    overflow-y: scroll;
   }
   .signup {
     width: 90% !important;
