@@ -127,7 +127,7 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
     </div>
 </script>
 <script type="text/templates" id="my-jobs">
-    <div class="row-fluid list-jobs"  style="background: #C7C9C5;">
+    <div id="job-list<%= post_id %>" class="row-fluid list-jobs"  style="background: #C7C9C5;">
     <div class="span12 jobs-details">
     <div class="span2 img-logo"> <%= job_author_logo %> </div>
     <div class="span3 minyawns-select"><span>4</span>

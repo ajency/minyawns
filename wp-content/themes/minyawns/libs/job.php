@@ -80,8 +80,14 @@ $app->get('/fetchjobs/', function() use ($app) {
 // AND $wpdb->postmeta.meta_key = 'job_start_date' 
             //AND $wpdb->postmeta.meta_value <= '" . current_time('timestamp') . "' 
 
+            
+            
             $current_user_id = get_current_user_id();
             if (isset($_GET['my_jobs'])) {
+            
+                if(get_user_role() == "employer")
+                return;
+            
                 $tables = "$wpdb->posts, $wpdb->postmeta,{$wpdb->prefix}userjobs";
                 $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.job_id = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date'";
             } else {
