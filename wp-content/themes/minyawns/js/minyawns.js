@@ -346,7 +346,7 @@ $("#job_wages").keydown(function(event) {
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
-                    $(".load_ajax").hide();
+                   
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
                     _.each(collection.models, function(model) {
@@ -748,6 +748,8 @@ $("#job_wages").keydown(function(event) {
         function(response) {
             if (response.success == 1)
             {
+                
+                $("#job-list"+_job_id).hide('slow', function(){ $("#job-list"+_job_id).remove(); });
                 if (response.new_action == 'apply')
                 {
                     $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
@@ -1020,9 +1022,7 @@ $("#job_wages").keydown(function(event) {
         var span2 = $('#calendar');
         var w = $(span1).width();
         
-            $(span1).hide().animate({left: -1 * w}, 500);
-            $(span2).css({'left': w, 'top': '600px'});
-            $(span2).show().animate({left: 0}, 500);
+           $(".browse-jobs-table").hide('slow', function(){ $('#calendar').show(); });
 //        
 //        else
 //        {
@@ -1044,10 +1044,7 @@ $("#job_wages").keydown(function(event) {
        var span1 = $('.browse-jobs-table');
         var span2 = $('#calendar');
         var w = $(span1).width();
-        
-            $(span2).hide().animate({left: -1 * w}, 500);
-            $(span1).css({'left': w, 'top': '60px'});
-            $(span1).show().animate({left: 0}, 500);
+         $("#calendar").hide('slow', function(){ $('.browse-jobs-table').show(); });
    });
             /* function on page load*/
             fetch_my_jobs();
