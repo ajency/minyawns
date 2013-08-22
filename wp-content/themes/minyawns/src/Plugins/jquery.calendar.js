@@ -1883,7 +1883,7 @@
         }
         function quickadd(start, end, isallday, pos) {
 
-            return; //to disable quick add new event
+            return ; //to disable quick add new event
 
             if ((!option.quickAddHandler && option.quickAddUrl == "") || option.readonly) {
                 return;

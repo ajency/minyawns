@@ -148,8 +148,27 @@ class Minyawn_Job {
         		if(!isset($user['rate_dislike'])) $user['rate_dislike'] = 0;
         			
        			$this->minyawns[$minyawn->ID] = $user;
+                        
         	}
         }
+//        global $post;
+//        print_r($post);exit();
+//       $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
+//                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id =$this->ID  AND {$wpdb->prefix}userjobs.job_id = $post->ID";
+//            
+//
+//            $querystr = "
+//                            SELECT $wpdb->posts.* 
+//                            FROM $tables
+//                            $my_jobs_filter
+//                            AND $wpdb->posts.post_status = 'publish' 
+//                            AND $wpdb->posts.post_type = 'job'
+//                            ORDER BY $wpdb->posts.ID DESC
+//                            
+//                         ";
+//print_r($querystr);exit();
+//            $data = array();
+//            $pageposts = $wpdb->get_results($querystr, OBJECT);
     }
 
     public function is_active() {
@@ -255,6 +274,8 @@ class Minyawn_Job {
         
         if($this->can_apply === 0 && array_key_exists(get_user_id(), $this->minyawns))
             $this->can_apply = 2;
+        
+        
     }
 
     public function get_job_id() {

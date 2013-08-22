@@ -6,6 +6,7 @@ $app = new \Slim\Slim(array('debug' => true));
 
 require '../../../../wp-load.php';
 
+
 /** Update the profile data */
 $app->post('/addjob', function() use ($app) {
 
@@ -71,6 +72,7 @@ $app->post('/addjob', function() use ($app) {
 
 
 $app->get('/fetchjobs/', function() use ($app) {
+    $minyawn_job =new Minyawn_Job('');
             //var_dump(strtotime(date("d-m-Y H:i:s","23 August, 2013 11:28:30")));exit();
 
             global $post, $wpdb;
@@ -105,6 +107,31 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
                 //print_r(implode(",",$tags));exit();
                 $post_meta = get_post_meta($pagepost->ID);
+                
+                /*check if user applied to job*/
+               
+                $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$pagepost->ID}' AND  {$wpdb->prefix}userjobs.user_id='".get_user_id()."'";
+                 
+                        $querystr = "
+                            SELECT $wpdb->posts.* 
+                            FROM $wpdb->posts,{$wpdb->prefix}userjobs
+                            $my_jobs_filter
+                            AND $wpdb->posts.post_status = 'publish' 
+                            AND $wpdb->posts.post_type = 'job'
+                            ORDER BY $wpdb->posts.ID DESC
+                               ";
+                         
+                 $user_applied_to = $wpdb->get_results($querystr, OBJECT);
+                
+                if(count($user_applied_to) > 0)
+                    $applied=1;
+                
+                else
+                    $applied=0;
+                
+                /*   */
+                
                 $data[] = array(
                     'post_name' => $pagepost->post_title,
                     'post_date' => $pagepost->post_date,
@@ -127,7 +154,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'tags' => $tags,
                     'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
-                    'job_author_logo' => get_avatar($pagepost->post_author, '10')
+                    'job_author_logo' => get_avatar($pagepost->post_author, '10'),
+                    'can_apply_job'=>$applied
                 );
             }
             $total = count($pageposts);
@@ -174,31 +202,6 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
                 $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
                 //print_r(implode(",",$tags));exit();
                 $post_meta = get_post_meta($pagepost->ID);
-//                $data[] = array(
-//                    'post_name' => $pagepost->post_title,
-//                    'post_date' => $pagepost->post_date,
-//                    'post_title' => $pagepost->post_title,
-//                    'post_id' => $pagepost->ID,
-//                    'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
-//                    'job_end_date' => date('d M Y', strtotime($post_meta['job_end_date'][0])),
-//                    'job_day' => date('l', $post_meta['job_start_date'][0]),
-//                    'job_wages' => $post_meta['job_wages'][0],
-//                    'job_progress' => 'available',
-//                    'job_start_day' => date('d', $post_meta['job_start_date'][0]),
-//                    'job_start_month' => date('F', $post_meta['job_start_date'][0]),
-//                    'job_start_year' => date('Y', $post_meta['job_start_date'][0]),
-//                    'job_start_meridiem' => date('a', $post_meta['job_start_time'][0]),
-//                    'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),
-//                    'job_start_time' => date('H:i', $post_meta['job_start_time'][0]),
-//                    'job_end_time' => date('H:i', $post_meta['job_end_time'][0]),
-//                    'job_location' => $post_meta['job_location'][0],
-//                    'job_details' => $pagepost->post_content,
-//                    'tags' => $tags,
-//                    'tags_count' => sizeof($tags),
-//                    'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
-//                    'job_author_logo' => get_avatar($pagepost->post_author, '10')
-//                );
-
 
                 $fullday = 0;
 
@@ -212,6 +215,7 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
                 // print_r($post_meta['job_start_date_time'][0]);exit();
                 $st = date('d M Y H:i:s', $post_meta['job_start_date_time'][0]);
                 $et = date('d M Y H:i:s', $post_meta['job_end_date_time'][0]);
+                //$et='';
                 $role = get_user_role($current_user_id);
                 $data['events'][] = array(
                     rand(10000, 99999),

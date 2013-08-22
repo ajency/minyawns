@@ -151,7 +151,7 @@ String.prototype.repeat = function(num) {
             endDate: '+2d',
             onSelect: function(dateText, inst) {
                    $("#job_end_date").val(dateText);
-                   $("#job_end_date").attr("disabled", "disabled"); 
+                   $("#job_end_date").attr("readonly", "readonly"); 
             }
         }).prev('.btn').on('click', function(e) {
             e && e.preventDefault();
