@@ -202,31 +202,6 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
                 $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
                 //print_r(implode(",",$tags));exit();
                 $post_meta = get_post_meta($pagepost->ID);
-//                $data[] = array(
-//                    'post_name' => $pagepost->post_title,
-//                    'post_date' => $pagepost->post_date,
-//                    'post_title' => $pagepost->post_title,
-//                    'post_id' => $pagepost->ID,
-//                    'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
-//                    'job_end_date' => date('d M Y', strtotime($post_meta['job_end_date'][0])),
-//                    'job_day' => date('l', $post_meta['job_start_date'][0]),
-//                    'job_wages' => $post_meta['job_wages'][0],
-//                    'job_progress' => 'available',
-//                    'job_start_day' => date('d', $post_meta['job_start_date'][0]),
-//                    'job_start_month' => date('F', $post_meta['job_start_date'][0]),
-//                    'job_start_year' => date('Y', $post_meta['job_start_date'][0]),
-//                    'job_start_meridiem' => date('a', $post_meta['job_start_time'][0]),
-//                    'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),
-//                    'job_start_time' => date('H:i', $post_meta['job_start_time'][0]),
-//                    'job_end_time' => date('H:i', $post_meta['job_end_time'][0]),
-//                    'job_location' => $post_meta['job_location'][0],
-//                    'job_details' => $pagepost->post_content,
-//                    'tags' => $tags,
-//                    'tags_count' => sizeof($tags),
-//                    'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
-//                    'job_author_logo' => get_avatar($pagepost->post_author, '10')
-//                );
-
 
                 $fullday = 0;
 
@@ -240,6 +215,7 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
                 // print_r($post_meta['job_start_date_time'][0]);exit();
                 $st = date('d M Y H:i:s', $post_meta['job_start_date_time'][0]);
                 $et = date('d M Y H:i:s', $post_meta['job_end_date_time'][0]);
+                //$et='';
                 $role = get_user_role($current_user_id);
                 $data['events'][] = array(
                     rand(10000, 99999),

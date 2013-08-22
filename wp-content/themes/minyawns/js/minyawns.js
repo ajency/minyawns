@@ -327,6 +327,7 @@ $("#job_wages").keydown(function(event) {
         load_browse_jobs();
     });
     function load_browse_jobs() {
+        $(".load_ajax").show();
         $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
         $("#accordion2").empty();
@@ -345,7 +346,7 @@ $("#job_wages").keydown(function(event) {
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
-                    $("#load-more").hide();
+                    $(".load_ajax").hide();
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
                     _.each(collection.models, function(model) {
@@ -353,6 +354,7 @@ $("#job_wages").keydown(function(event) {
                         var html = template(model.toJSON());
                         $("#accordion2").append(html);
                     });
+                    $(".load_ajax").hide();
                 }
 
 
