@@ -1197,7 +1197,7 @@ a:hover {
 #innermainimage .banner-content {
   position: absolute;
   z-index: 999;
-  margin-top: 10%;
+  margin-top: 120px;
 }
 #innermainimage .banner-content img {
   display: block;
