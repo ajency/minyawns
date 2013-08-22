@@ -4,14 +4,15 @@
 
  */
 get_header();
-$minyawn_job=new Minyawn_Job('');
+global $user_ID;
+$minyawn_job = new Minyawn_Job(get_current_user_id());
 
 ?>
 
 <!-- Row Div -->
 <script type="text/template" id="browse-jobs-table">
 
-   <div style="clear:both;">	</div>
+    <div style="clear:both;">	</div>
     <div class="accordion-group">
     <div id="last-job-id" last-job="<%= post_id %>" value="<%= post_id %>"></div>
     <div class="accordion-heading">
@@ -51,7 +52,7 @@ $minyawn_job=new Minyawn_Job('');
 
     <div class="job-progress header-sub">
     <span class="label label-small label-success">Available</span>
-        
+
     </div>
 
     <div class="job-action header-sub">
@@ -88,27 +89,25 @@ $minyawn_job=new Minyawn_Job('');
     </div>
     <div class="span3">
     <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-left.png">
-<div class="div-box-block">
+    <div class="div-box-block">
 
-   <?php if(get_user_role() === 'minyawn'): ?> 
-		         
-		         	
-		         
-                                <?php if($minyawn_job->can_apply == 0) : ?>
-			         	<a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?>">Apply</a>
-			         <?php elseif($minyawn_job->can_apply == 2) : ?>
-			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
-			         <?php elseif($minyawn_job->can_apply == 1) : ?>
-			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn ">Requirement Complete</a>
-			         <?php endif;
-			     else:  
-                                //show all applied minyanws data
-			     	include_once 'applied_minyaws.php';
-			     endif;
-			     ?>
+<?php if (get_user_role() === 'minyawn'): ?> 
 
- </div>
-    
+        <% if(can_apply_job == 1) %>
+        <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
+         <% else if(can_apply_job == 0) %>
+            <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
+       
+            
+            <?php
+    else:
+        //show all applied minyanws data
+        include_once 'applied_minyaws.php';
+    endif;
+    ?>
+
+    </div>
+
     </div>
     </div>
 
@@ -210,8 +209,7 @@ $minyawn_job=new Minyawn_Job('');
 
     <div class="span4">
     <div class="div-box">
-    <a href="#fakelink" class="btn btn-large btn-block btn-success btn-apply ">Apply</a> </br>
-    <a href="#fakelink" class="btn btn-large btn-block btn-danger btn-unapply">Un Apply</a>
+    <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
     </div>
     </div>
 
@@ -235,9 +233,9 @@ $minyawn_job=new Minyawn_Job('');
                     <a href="#" id="calendar-jobs" style="display:none">Calendar Jobs</a>                
                 </p>
             </div>
-             <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
-             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
-             <div class="clear"></div>
+            <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
+            <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
+            <div class="clear"></div>
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
                 <div class="row-fluid header_cell">
                     <!--                    <div class="span7">
@@ -254,7 +252,7 @@ $minyawn_job=new Minyawn_Job('');
                                                         <option value="4">This Month</option>
                         </select>-->
 
-                        </div>
+                    </div>
                     <!--                    <div class="span3">
                                             <div class="control-group small ctrl-grp">
                                                 <div class="input-append">
@@ -282,7 +280,7 @@ $minyawn_job=new Minyawn_Job('');
 
                 <button class="btn load_more" id="load-more"><span class='load_ajax' style="display:block"> Load more</span></button>
             </div>
-			<br>
+            <br>
             <div style=" display:none; " id="calendar">
 
                 <div id="calhead" style="padding-left:1px;padding-right:1px;">          
@@ -377,14 +375,14 @@ $minyawn_job=new Minyawn_Job('');
                             Add Jobs
                         </button>
                     </div>
-                    <?php //}   ?>
+<?php //}    ?>
 
                     <div id="add-job-form" style="display:none;">
 
                         <?php
                         if (check_access() === true) {
                             ?>
-                        <div class="alert alert-success alert-box " id="job-success" style="display:none;">  <button data-dismiss="alert" class="close" type="button">×</button>You have successfully add a job.</div>
+                            <div class="alert alert-success alert-box " id="job-success" style="display:none;">  <button data-dismiss="alert" class="close" type="button">×</button>You have successfully add a job.</div>
                             <!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
                             <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
                             <form id="job-form" class="form-horizontal">
@@ -394,7 +392,7 @@ $minyawn_job=new Minyawn_Job('');
                                     <label class="control-label" for="inputtask">Tasks</label>
                                     <div class="controls ">
                                        <!-- <input type="text" id="job_task" name="job_task" value="" placeholder="" class="span3">-->
-										 <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="" style="height:70px;"></textarea>
+                                        <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="" style="height:70px;"></textarea>
                                     </div>
                                 </div>
                                 <div class="control-group small float-left ">
@@ -474,7 +472,7 @@ $minyawn_job=new Minyawn_Job('');
                                 <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
                                 <div class="clear"></div>
                             </form>
-                        <?php } ?>
+<?php } ?>
                     </div>
                     <div id="list-my-jobs">
 

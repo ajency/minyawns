@@ -753,6 +753,7 @@ $("#job_wages").keydown(function(event) {
                 if (response.new_action == 'unapply')
                 {
                     $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
+                    $(_this).attr('data-action', 'unapply');
                 }
 
             }
