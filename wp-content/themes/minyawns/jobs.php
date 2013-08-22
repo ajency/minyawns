@@ -432,7 +432,7 @@ $minyawn_job=new Minyawn_Job('');
                                 </div>
                                 <div class="clear"></div>
                                 <div class="control-group small">
-                                    <label class="control-label" for="inputtask">Required</label>
+                                    <label class="control-label" for="inputtask">Minyawns Required</label>
                                     <div class="controls ">
                                         <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="1" class="spinner">
                                     </div>
