@@ -30,9 +30,9 @@ global $minyawn_job;
                              <div class="posteddate"> Posted Date : <span><?php echo $minyawn_job->get_job_posted_date(); ?></span></div>
 		            <div class="jobsdate"> Jobs Date : <span><?php echo $minyawn_job->get_job_date(); ?></span></div>
 		         </div>
-		         <div class="span3 job-duration">
+		         <div class="span3 job-duration duration_mob">
 		            <div class="row-fluid">
-		               <div class="span5">
+		               <div class="span5 mob-botm">
 		                  <span data-count="0" class="total-exchange-count"><?php echo $minyawn_job->get_job_start_time(); ?></span>
 		                  <div>
 		                    <?php echo $minyawn_job->get_job_start_time_ampm() ?>

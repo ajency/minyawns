@@ -62,7 +62,7 @@ a:hover{text-decoration:none !important;}
 	border:1px solid #ccc;
 	padding: 23px 23px 23px;
 }
-.page, .error404{
+.page, .error404, .single {
 	background:url(../images/pattern-bg.png)repeat;
 }
 .top-menu{
@@ -315,7 +315,7 @@ a:hover{text-decoration:none !important;}
 			height: 53px;
 			border-right:1px solid #ccc;
 			span {
-				font-size: 33px;
+				font-size: 31px;
 				text-align: center;
 				display: block;
 				color: #AEB1B4;
@@ -982,6 +982,9 @@ background: #F8F8F8!important;
 
 /* mobile resonsive */
 @media (max-width: 767px) {
+#innermainimage {
+	margin-top: -132px!important;
+}
 .pagination{
 	margin-left:0px !important;
 }
@@ -1052,7 +1055,7 @@ background: #F8F8F8!important;
 					}
 		}
 		.wages {
-			font-size: 16px;
+			font-size: 13px;
 			width: 10%;
 			float: left;
 			margin-left: 6px;
@@ -1743,8 +1746,10 @@ background-position: 60px 480px;
 				font-size: 19px;
 				.view-link{
 					margin-left: 10px;
-					font-size: 13px;
+					font-size: 11px!important;
 					font-weight: normal;
+					padding: 2px !important;
+					margin-top: -3px!important;
 					display: inline-block;
 				}
 			}

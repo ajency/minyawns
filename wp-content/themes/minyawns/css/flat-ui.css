@@ -3706,32 +3706,17 @@ padding: 11px 6px 10px 12px;
 	border-right-width: 1px!important;
 	}
 	.ui-spinner-button {
-  cursor: default;
-  display: block;
-   display:none;
-  font-size: 0.5em;
-  line-height: 19px;
-  height: 19px;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  width: 37px;
-  cursor: pointer;
-  color: #fff;
-  text-decoration: none;
-  background-color: #bdc3c7;
-  outline: none;
+ 
+   display:none !important;
+
 }
 .ui-spinner.focus .ui-spinner-button {
   background-color: #8ed030;
-  display:none;
+  display:none!important;
 }
 .ui-spinner.focus .ui-spinner-button:hover {
   background-color: #79B91E;
-   display:none;
+   display:none!important;
 }
 	
 }

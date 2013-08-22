@@ -58,7 +58,8 @@ a:hover {
   padding: 23px 23px 23px;
 }
 .page,
-.error404 {
+.error404,
+.single {
   background: url(../images/pattern-bg.png) repeat;
 }
 .top-menu {
@@ -290,7 +291,7 @@ a:hover {
   border-right: 1px solid #ccc;
 }
 .jobs_table .data-title .job-date span {
-  font-size: 33px;
+  font-size: 31px;
   text-align: center;
   display: block;
   color: #AEB1B4;
@@ -877,6 +878,9 @@ a:hover {
 }
 /* mobile resonsive */
 @media (max-width: 767px) {
+  #innermainimage {
+    margin-top: -132px !important;
+  }
   .pagination {
     margin-left: 0px !important;
   }
@@ -943,7 +947,7 @@ a:hover {
     margin-top: 4px;
   }
   .list-jobs .jobs-details .wages {
-    font-size: 16px;
+    font-size: 13px;
     width: 10%;
     float: left;
     margin-left: 6px;
@@ -1530,8 +1534,10 @@ a:hover {
   }
   .jobs_table .header-title h3 .view-link {
     margin-left: 10px;
-    font-size: 13px;
+    font-size: 11px!important;
     font-weight: normal;
+    padding: 2px !important;
+    margin-top: -3px !important;
     display: inline-block;
   }
   .jobs_table .header-title .header-sub {

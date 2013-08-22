@@ -235,33 +235,34 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
             </div>
             <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
-            <div class="clear"></div>
+			
+            <div class="clear"></div><br>
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
-                <div class="row-fluid header_cell">
-                    <!--                    <div class="span7">
+               <!--   <div class="row-fluid header_cell">
+                                   <div class="span7">
                                             <i class="icon-calendar"></i><h3 class="page-title"> Month</h3>  header label 
                                             JUN 2013
-                                        </div>-->
+                                        </div>
 
                     <div class="span12">
-<!--                        <select name="small" class="select-block select-role">
+                     <select name="small" class="select-block select-role">
                             <option value="0" selected="true">Upcoming</option>
                                                         <option value="1">Today</option>
                                                         <option value="2">Tommorow</option>
                                                         <option value="3">This Week</option>
                                                         <option value="4">This Month</option>
-                        </select>-->
+                        </select>
 
                     </div>
-                    <!--                    <div class="span3">
+                                    <div class="span3">
                                             <div class="control-group small ctrl-grp">
                                                 <div class="input-append">
                                                     <input class="span2" id="appendedInputButton-04" type="text" placeholder="Search">
                                                     <button class="btn btn-small" type="button"><span class="fui-search"></span></button>
                                                 </div>
                                             </div>
-                                        </div>-->
-                </div>
+                                        </div>
+                </div>-->
                 <!-- Row Div header -->
                 <div class="row-fluid ">
                     <div class="span12 header-title">
