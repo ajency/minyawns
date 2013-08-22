@@ -429,7 +429,7 @@
                     BuildMonthView(showday, events, config);
                     break;
                 default:
-                    alert(i18n.xgcalendar.no_implement);
+                    //alert(i18n.xgcalendar.no_implement);
                     break;
             }
             initevents(option.view);
@@ -836,7 +836,7 @@
             return ret.join("");
         }
         function BuildDayEvent(theme, e, index) {
-            alert(theme);
+            //alert(theme);
             var p = {bdcolor: theme[0], bgcolor2: theme[0], bgcolor1: theme[2], width: "70%", icon: "", title: "", data: ""};
             p.starttime = pZero(e.st.hour) + ":" + pZero(e.st.minute);
             p.endtime = pZero(e.et.hour) + ":" + pZero(e.et.minute);
@@ -1259,7 +1259,7 @@
                             if (option.onRequestDataError) {
                                 option.onRequestDataError(1, data);
                             } else {
-                                alert(i18n.xgcalendar.get_data_exception);
+                               // alert(i18n.xgcalendar.get_data_exception);
                             }
                             if (option.onAfterRequestData && $.isFunction(option.onAfterRequestData)) {
                                 option.onAfterRequestData(1);
@@ -1271,7 +1271,7 @@
                 });
             }
             else {
-                alert("url" + i18n.xgcalendar.i_undefined);
+              //  alert("url" + i18n.xgcalendar.i_undefined);
             }
         }
         function responseData(data, start, end) {
@@ -1608,7 +1608,7 @@
                 if (data != null) {
 
                     var csbuddle = '<div id="bbit-cs-buddle" style="z-index: 180; width: 400px;visibility:hidden;" class="bubble"><table class="bubble-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="bubble-cell-side"><div id="tl1" class="bubble-corner"><div class="bubble-sprite bubble-tl"></div></div><td class="bubble-cell-main"><div class="bubble-top"></div><td class="bubble-cell-side"><div id="tr1" class="bubble-corner"><div class="bubble-sprite bubble-tr"></div></div> <tr id="bbit-logo"><td class=cb-value><div id="bbit-cs-buddle-logo"></div></td></tr> <tr><td class="bubble-mid" colSpan="3"><div style="overflow: hidden" id="bubbleContent1"><div><div></div><div class="cb-root"><table class="cb-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="cb-value"><div class="textbox-fill-wrapper"><div class="textbox-fill-mid"><div id="bbit-cs-what" style="font-weight:bold;" title="'
-                            + i18n.xgcalendar.click_to_detail + '" ></div></div></div></td></tr><tr><td class=cb-value><b>When</b><div id="bbit-cs-buddle-timeshow"></div></td></tr><tr id="bbit-location" ><td class=cb-value><b>Where</b><div id="bbit-cs-buddle-location"></div></td></tr><tr id="bbit-tags"><td class=cb-value><b>Tags</b><div id="bbit-cs-buddle-tags"></div></td></tr><tr id="bbit-details"><td class=cb-value><b>Details</b><div id="bbit-cs-buddle-details"></div></td></tr><tr id="bbit-wages"><td class=cb-value><b>Wages</b><div id="bbit-cs-buddle-wages"></div></td></tr><tr id="bbit-apply"><td class=cb-value><b>Apply</b><div id="bbit-cs-buddle-apply"></div></td></tr></tbody></table><StrONG></StrONG></SPAN></div></div></div></div><tr><td><div id="bl1" class="bubble-corner"><div class="bubble-sprite bubble-bl"></div></div><td><div class="bubble-bottom"></div><td><div id="br1" class="bubble-corner"><div class="bubble-sprite bubble-br"></div></div></tr></tbody></table><div id="bubbleClose2" class="bubble-closebutton"></div><div id="prong1" class="prong"><div class=bubble-sprite></div></div></div>';
+                            + i18n.xgcalendar.click_to_detail + '" ></div></div></div></td></tr><tr><td class=cb-value><b>When</b><div id="bbit-cs-buddle-timeshow"></div></td></tr><tr id="bbit-location" ><td class=cb-value><b>Where</b><div id="bbit-cs-buddle-location"></div></td></tr><tr id="bbit-tags"><td class=cb-value><b>Tags</b><div id="bbit-cs-buddle-tags"></div></td></tr><tr id="bbit-details"><td class=cb-value><b>Details</b><div id="bbit-cs-buddle-details"></div></td></tr><tr id="bbit-wages"><td class=cb-value><b>Wages</b><div id="bbit-cs-buddle-wages"></div></td></tr><tr id="bbit-apply"><td class=cb-value><b></b><div id="bbit-cs-buddle-apply"></div></td></tr></tbody></table><StrONG></StrONG></SPAN></div></div></div></div><tr><td><div id="bl1" class="bubble-corner"><div class="bubble-sprite bubble-bl"></div></div><td><div class="bubble-bottom"></div><td><div id="br1" class="bubble-corner"><div class="bubble-sprite bubble-br"></div></div></tr></tbody></table><div id="bubbleClose2" class="bubble-closebutton"></div><div id="prong1" class="prong"><div class=bubble-sprite></div></div></div>';
                     var bud = $("#bbit-cs-buddle");
                     if (bud.length == 0) {
                         bud = $(csbuddle).appendTo(document.body);
@@ -1654,7 +1654,7 @@
 //                        });
                         lbtn.click(function(e) {
                             if (!option.EditCmdhandler) {
-                                alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
+                               // alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
                             }
                             else {
                                 if (option.EditCmdhandler && $.isFunction(option.EditCmdhandler)) {
@@ -1759,7 +1759,7 @@
                 }
                 else {
                     if (!option.ViewCmdhandler) {
-                        alert("ViewCmdhandler" + i18n.xgcalendar.i_undefined);
+                       // alert("ViewCmdhandler" + i18n.xgcalendar.i_undefined);
                     }
                     else {
                         if (option.ViewCmdhandler && $.isFunction(option.ViewCmdhandler)) {
@@ -1769,7 +1769,7 @@
                 }
             }
             else {
-                alert(i18n.xgcalendar.data_format_error);
+                //alert(i18n.xgcalendar.data_format_error);
             }
             return false;
         }
@@ -1982,7 +1982,7 @@
                 });
                 lbtn.click(function(e) {
                     if (!option.EditCmdhandler) {
-                        alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
+                       // alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
                     }
                     else {
                         if (option.EditCmdhandler && $.isFunction(option.EditCmdhandler)) {
@@ -2112,7 +2112,7 @@
                 var $dvwkcontaienr = $("#dvwkcontaienr");
                 var $dvtec = $("#dvtec");
                 if ($dvwkcontaienr.length == 0 || $dvtec.length == 0) {
-                    alert(i18n.xgcalendar.view_no_ready);
+                   // alert(i18n.xgcalendar.view_no_ready);
                     return;
                 }
                 var dvwkH = $dvwkcontaienr.height() + 2;

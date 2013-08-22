@@ -305,6 +305,7 @@ $("#job_wages").keydown(function(event) {
                         $("#add-job-button").html('<i class="fui-mail"></i> Add Jobs');
                         $("#add-job-form").find('input:text').val('');
                         $("#job_task").val('');
+                        $("#job_details").val(" ");
 
                         $('#job_tags_tagsinput').find('span').remove()
 
