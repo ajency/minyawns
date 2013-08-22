@@ -33,6 +33,9 @@ a:hover {
   color: #000;
   font-weight: bold;
 }
+.my-jobs-1 .img-logo img {
+  width: 20%!important;
+}
 .alert-box {
   padding: 10px 55px 10px 30px !important;
   font-family: arial;
@@ -700,6 +703,18 @@ a:hover {
 .list-jobs .expand .span4 .div-box .btn-unapply {
   width: 70%;
   margin-left: 42px;
+}
+.list-jobs .expand .span4 .div-box-block {
+  position: absolute;
+  top: 0%;
+  bottom: 0;
+  margin: auto;
+  height: 35px;
+  width: 30%;
+}
+.list-jobs .expand .span4 .div-box-block .btn {
+  width: 40%;
+  margin: auto;
 }
 .list-jobs .expand .span4 .div-box2 {
   position: absolute;

@@ -127,7 +127,7 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
     </div>
 </script>
 <script type="text/templates" id="my-jobs">
-    <div id="job-list<%= post_id %>" class="row-fluid list-jobs"  style="background: #C7C9C5;">
+    <div id="job-list<%= post_id %>" class="row-fluid list-jobs my-jobs-1"  style="background: #C7C9C5;">
     <div class="span12 jobs-details">
     <div class="span2 img-logo"> <%= job_author_logo %> </div>
     <div class="span3 minyawns-select"><span>4</span>
@@ -163,11 +163,11 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
     <div class="span12 expand">
     <div class="span8 details"> 
     <div class="row-fluid">
-    <div class="span4"> <img src="images/livefyre-logo.png"/></div>
+    <div class="span4"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/></div>
     <div class="span8"><%= job_details %></div>
     </div><br>
     <div class="row-fluid minyawansgrid">
-    <div class="span6"><img src="images/iconsult1.png"/><b> Simon Srewell</b>
+    <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult1.png"/><b> Simon Srewell</b>
     <a href="#fakelink" >
     <i class="icon-thumbs-up"></i> 100
     </a> 
@@ -175,7 +175,7 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
     <i class="icon-thumbs-down"></i> 200
     </a> 
     </div>
-    <div class="span6"> <img src="images/iconsult2.png"/><b> Riya mactheel</b>
+    <div class="span6"> <img src="<?php echo get_template_directory_uri(); ?>/images/iconsult2.png"/><b> Riya mactheel</b>
     <a href="#fakelink" >
     <i class="icon-thumbs-up"></i> 50
     </a> 
@@ -184,7 +184,7 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
     </a>
 
     </div>
-    <div class="span6"><img src="images/iconsult3.png"/><b> Richard Andrews</b>
+    <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult3.png"/><b> Richard Andrews</b>
     <a href="#fakelink" >
     <i class="icon-thumbs-up"></i> 10
     </a> 
@@ -193,7 +193,7 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
     </a>
 
     </div>
-    <div class="span6"><img src="images/iconsult4.png"/> <b> Albert Srewell</b>
+    <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult4.png"/> <b> Albert Srewell</b>
     <a href="#fakelink" >
     <i class="icon-thumbs-up"></i> 50
     </a> 
@@ -202,13 +202,13 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
     </a>
 
     </div>
-    <img src="images/left-arrow.png" class="arrow-left"/>
+    <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
     </div>
 
     </div>
 
     <div class="span4">
-    <div class="div-box">
+    <div class="div-box-block">
     <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
     </div>
     </div>
