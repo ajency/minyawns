@@ -250,7 +250,7 @@ class Minyawn_Job {
         $this->can_apply = 0;
         
         //check if requirement is complete
-        if((int)$this->required_minyawns === count($this->minyawns))
+        if((int)$this->required_minyawns === count($this->minyawns)+2)
             $this->can_apply = 1;
         
         if($this->can_apply === 0 && array_key_exists(get_user_id(), $this->minyawns))

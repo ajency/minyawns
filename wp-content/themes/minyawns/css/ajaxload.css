@@ -37,6 +37,16 @@ margin: auto;
     
    
 }
+
+.load_ajax_calendar {
+     background: url("../images/2.gif") no-repeat scroll 50% 50% rgba(0, 0, 0, 0.5);
+    float: none;
+    height: 100%;
+    margin: auto;
+    position: relative;
+    width: 100%;
+    z-index: 9999;
+}
 .modal_ajax_gif {
    
     

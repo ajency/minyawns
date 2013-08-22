@@ -837,6 +837,7 @@ $("#job_wages").keydown(function(event) {
         if (p && p.datestrshow) {
             $("#txtdatetimeshow").text(p.datestrshow);
         }
+        
         jQuery("#caltoolbar").noSelect();
         $("#hdtxtshow").datepicker({picker: "#txtdatetimeshow", showtarget: $("#txtdatetimeshow"),
             onReturn: function(r) {
@@ -844,6 +845,7 @@ $("#job_wages").keydown(function(event) {
                 if (p && p.datestrshow) {
                     $("#txtdatetimeshow").text(p.datestrshow);
                 }
+                
             }
         });
         function cal_beforerequest(type)
@@ -862,6 +864,7 @@ $("#job_wages").keydown(function(event) {
             }
             $("#errorpannel").hide();
             $("#loadingpannel").html(t).show();
+            $("#loader_ajax_calendar").hide();
         }
         function cal_afterrequest(type)
         {
@@ -1004,14 +1007,43 @@ $("#job_wages").keydown(function(event) {
     }
 
     $("#show-calendar").live('click', function(e) {
-        var c=0;
+//        var c=0;
+//        $(".browse-jobs-table").css('display','none');
+               $("#show-calendar").hide();
         $("#hide-calendar").show();
-//        $("#calendar-jobs").show();/*bread crumbs*/
-//        $("#browse-jobs-table").css("display", "none");
-//        $("#calendar").show();
-
-        $("#browse-jobs-table").css('visibility', 'hidden');
-        $("#calendar").show().stop().animate({left: ++c%2*100 }, 'fast');
+//        $("#calendar").show().animate({left: '11px'}, 'slow');
+         var span1 = $('.browse-jobs-table');
+        var span2 = $('#calendar');
+        var w = $(span1).width();
+        
+            $(span1).hide().animate({left: -1 * w}, 500);
+            $(span2).css({'left': w, 'top': '600px'});
+            $(span2).show().animate({left: 0}, 500);
+//        
+//        else
+//        {
+//            $('#edit-job-form').find('div.alert').remove();
+//            $(span1).animate({left: -1 * w}, 500);
+//            $(span2).css({'left': w, 'top': '60px'});
+//            $(span2).show().animate({left: 0}, 500);
+//        }
+        
+        
+        
+   });
+   
+    $("#hide-calendar").live('click', function(e) {
+        var c=0;
+        //$(".browse-jobs-table").css('display','block');
+        $("#show-calendar").show();
+        $("#hide-calendar").hide();
+       var span1 = $('.browse-jobs-table');
+        var span2 = $('#calendar');
+        var w = $(span1).width();
+        
+            $(span2).hide().animate({left: -1 * w}, 500);
+            $(span1).css({'left': w, 'top': '60px'});
+            $(span1).show().animate({left: 0}, 500);
    });
             /* function on page load*/
             fetch_my_jobs();

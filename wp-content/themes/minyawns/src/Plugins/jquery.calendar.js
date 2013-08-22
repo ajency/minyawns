@@ -492,7 +492,7 @@
             var html = [];
             html.push(cc);
             //build header
-            html.push("<div id=\"mvcontainer\" class=\"mv-container\">");
+            html.push("<div id=\"mvcontainer\" class=\"mv-container\"><span class='loader_ajax_calendar' style='display:block'></span>");
             html.push("<table id=\"mvweek\" class=\"mv-daynames-table\" cellSpacing=\"0\" cellPadding=\"0\"><tbody><tr>");
             for (var i = config.weekstartday, j = 0; j < 7; i++, j++) {
                 if (i > 6)
