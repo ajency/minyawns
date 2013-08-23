@@ -17,7 +17,7 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
     <div id="last-job-id" last-job="<%= post_id %>" value="<%= post_id %>"></div>
     <div class="accordion-heading">
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
-    <div class="span12 data-title">
+    <div class="span12 data-title available">
     <div class="job-logo header-sub"> <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"></div>
     <div class="job-date header-sub">
     <span class="service-total-demand" data-count="0"><%= job_start_day %></span>

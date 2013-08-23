@@ -3691,8 +3691,20 @@ padding: 11px 6px 10px 12px;
   text-indent: 0;
 }
 @media (max-width: 767px) {
+.ui-datepicker td {
+display: block;
+float: left;
+width: auto !important;
+}
+
   .ui-spinner input {
     margin-top: 0;
+  }
+  .ui-spinner-up {
+   display:none !important;
+  }
+  .ui-spinner-down{
+   display:none !important;
   }
   .ui-spinner input {
   color: #95a5a6;
@@ -3799,12 +3811,13 @@ padding: 11px 6px 10px 12px;
   -moz-border-radius: 6px;
   border-radius: 6px;
 }
+/*
 .ui-datepicker td {
 display: block;
 float: left;
 width: auto !important;
 
-}
+}*/
 .ui-datepicker .ui-datepicker-header {
   background-color: #8ed030;
   color: #ffffff;

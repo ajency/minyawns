@@ -1042,6 +1042,10 @@ a:hover {
   .Main-job .header_row {
     height: 140px !important;
   }
+  .container .brand {
+    margin-top: 5px!important;
+    margin-bottom: 10px!important;
+  }
   .container .brand img {
     margin: auto;
     display: block;
@@ -1053,6 +1057,7 @@ a:hover {
   .container .notify #logged-in {
     float: left;
     margin-right: 5px;
+    margin-bottom: 10px;
   }
   .container .profile-list .span2 {
     font-weight: bold;
@@ -1339,6 +1344,15 @@ a:hover {
     padding-right: 0px;
     padding-left: 0px;
   }
+  body .div-box-block {
+    position: relative !important;
+    margin: 10px auto!important;
+    height: auto!important;
+    width: 100%!important;
+  }
+  body .frm-edit .controls .input {
+    width: 287px!important;
+  }
   body div.profile-wrapper {
     height: 100% !important;
   }
@@ -1376,7 +1390,7 @@ a:hover {
     float: none;
   }
   .tab_content_login {
-    margin-top: 20px;
+    margin-top: 40px;
   }
   .tab_content_login #user-submit {
     width: 100%;
@@ -1586,6 +1600,12 @@ a:hover {
   }
   .jobs_table .job-action {
     display: none;
+  }
+  .jobs_table .available {
+    border-right: 3px solid #58C918;
+  }
+  .jobs_table .no-available {
+    border-right: 3px solid #58C918;
   }
   .jobs_table .data-title {
     height: 67px;
