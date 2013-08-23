@@ -3,7 +3,7 @@
             <ul class="thumbnails">
             <?php foreach($minyawn_job->minyawns as $minyawn): ?>
                <li class="span3">
-                  <div class="thumbnail">
+                  <div class="thumbnail" id="hire-thumb<?php echo $minyawn['user_id']?>">
                      <div class="caption">
                          <?php if($minyawn['image'] !== false): ?>
                         <img src="<?php echo $minyawn['image']; ?>" />
@@ -27,17 +27,19 @@
                         <span class="label label-small"><?php echo $skill ?></span>
                         <?php endforeach; } ?>
                         <hr>
-                        <div class="dwn-btn">
-                           <div class="onoffswitch">
+                        
+                          
                                
-                              <input type="checkbox"  data-user-id="<?php echo $minyawn['user_id']?>" data-job-id="<?php echo $minyawn['user_to_job']?>"    name="confirm-miny[]"class="" id="<?php echo $minyawn['user_login']?>" <?php if($minyawn['user_job_status'] == "hired"){ ?>checked<?php }?> >
                               
-                              <label class="onoffswitch-label" for="<?php echo $minyawn['user_login']?>">
-<!--                                 <div class="onoffswitch-inner"></div>
-                                 <div class="onoffswitch-switch"></div>-->
-                              </label>
-                           </div>
-                        </div>
+                              <div class="dwn-btn">
+					 <div class="roundedTwo">
+						  <input type="checkbox" id="roundedTwo<?php echo $minyawn['user_id']?>" data-user-id="<?php echo $minyawn['user_id']?>" data-job-id="<?php echo $minyawn['user_to_job']?>"    name="confirm-miny[]"  id="<?php echo $minyawn['user_login']?>" <?php if($minyawn['user_job_status'] == "hired"){ ?>checked class="minyans-select" <?php }?> >
+						  <label for="roundedTwo<?php echo $minyawn['user_id']?>"> </label>Select Donec id elit
+					  </div>
+				</div>
+                              
+                          
+           
                      </div>
                   </div>
                </li>

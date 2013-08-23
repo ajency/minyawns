@@ -1052,20 +1052,23 @@ jQuery(document).ready(function($) {
         evt.preventDefault();
         var _this = $(this);
         var _user_id = $(this).attr('data-user-id');
-        var _job_id = $(this).attr('data-job-id');
-        
+       
+       var _job_id;
+        var group_ids="";
+        var user_id="";
         $('input[name=confirm-miny\\[\\]]:checked').each(function() {
-                       
-                       alert($(this).attr('data-user-id'));
-                       
-                       
-                       
-        });
+                        user_id=$(this).attr('data-user-id');
+                         _job_id = $(this).attr('data-job-id');
+                        alert(_job_id);
+                     group_ids +=user_id+',';  
+                     alert(group_ids);
+                     $("#hire-thumb"+user_id).addClass('minyans-select');
+                  });
         
         
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
                 {
-                    user_id: _user_id,
+                    user_id: group_ids,
                     job_id: _job_id
                 },
         function(response) {

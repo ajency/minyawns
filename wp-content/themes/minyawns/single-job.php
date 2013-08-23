@@ -4,6 +4,103 @@ get_header();
 global $minyawn_job;
 
 ?>
+<style type="text/css">
+/* ROUNDED TWO */
+.single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn {
+position: absolute;
+bottom: 0px;
+width: 89%;
+}
+.minyans-select{
+	background: #dddddd;
+}
+.roundedTwo {
+	line-height: 25px;
+padding-left: 16px;
+
+	height: 28px;
+	background: #fcfff4;
+
+	background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+	margin: 20px auto;
+
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+
+	-webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	position: relative;
+}
+.roundedTwo input{
+	visibility: hidden !important;
+}
+.roundedTwo label {
+	cursor: pointer;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	left: 4px;
+	top: 4px;
+
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+
+	background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+	background: linear-gradient(top, #222 0%, #45484d 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+}
+
+.roundedTwo label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 5px;
+	left: 4px;
+	border: 3px solid #fcfff4;
+	border-top: none;
+	border-right: none;
+
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.roundedTwo label:hover::after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+
+.roundedTwo input[type=checkbox]:checked + label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+</style>
+
 <div class="container">
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab2">
@@ -61,12 +158,15 @@ global $minyawn_job;
 		         <?php if(get_user_role() === 'minyawn'): ?> 
 		         	<hr class="border-color">
 		         	<img class="bottom-arrow" src="<?php echo get_template_directory_uri() ?>/images/bottom-arrow.png">
-		         
-                                <?php if($minyawn_job->can_apply == 0) : ?>
+		         <?php if($minyawn_job->is_hired == "hired"){ ?>
+                                
+                                <a href="#" class="btn btn-medium btn-block btn-success red-btn">You are hired</a>
+                                
+                         <?php }else if($minyawn_job->can_apply == 0 && $minyawn_job->is_hired == "applied") : ?>
 			         	<a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?>">Apply</a>
-			         <?php elseif($minyawn_job->can_apply == 2) : ?>
+			         <?php elseif($minyawn_job->can_apply == 2 && $minyawn_job->is_hired == "applied") : ?>
 			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
-			         <?php elseif($minyawn_job->can_apply == 1) : ?>
+			         <?php elseif($minyawn_job->can_apply == 1 && $minyawn_job->is_hired == "applied") : ?>
 			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn">Requirement Complete</a>
 			         <?php endif;
 			     else:  

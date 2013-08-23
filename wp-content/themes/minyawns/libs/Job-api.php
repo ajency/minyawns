@@ -113,6 +113,8 @@ class Minyawn_Job {
        
         if (!empty($minyawns)) {
             foreach ($minyawns as $minyawn) {
+                
+                $this->is_hired = $minyawn->status;
                 $user = array(
                     'user_login' => $minyawn->user_login,
                     'profile_name' => $minyawn->display_name,
