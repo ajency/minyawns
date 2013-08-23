@@ -158,15 +158,15 @@ padding-left: 16px;
 		         <?php if(get_user_role() === 'minyawn'): ?> 
 		         	<hr class="border-color">
 		         	<img class="bottom-arrow" src="<?php echo get_template_directory_uri() ?>/images/bottom-arrow.png">
-		         <?php if($minyawn_job->is_hired == "hired"){ ?>
+		         <?php if($minyawn_job->can_apply == 3){ ?>
                                 
                                 <a href="#" class="btn btn-medium btn-block btn-success red-btn">You are hired</a>
                                 
-                         <?php }else if($minyawn_job->can_apply == 0 && $minyawn_job->is_hired == "applied") : ?>
+                         <?php }else if($minyawn_job->can_apply == 0 ) : ?>
 			         	<a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?>">Apply</a>
-			         <?php elseif($minyawn_job->can_apply == 2 && $minyawn_job->is_hired == "applied") : ?>
+			         <?php elseif($minyawn_job->can_apply == 2 ) : ?>
 			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
-			         <?php elseif($minyawn_job->can_apply == 1 && $minyawn_job->is_hired == "applied") : ?>
+			         <?php elseif($minyawn_job->can_apply == 1 ) : ?>
 			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn">Requirement Complete</a>
 			         <?php endif;
 			     else:  

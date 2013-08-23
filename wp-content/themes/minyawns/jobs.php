@@ -92,13 +92,13 @@ get_header();
 
 <?php if (get_user_role() === 'minyawn'): ?> 
 
-    <%  if(user_job_status == 'hired') %>
+    <%  if(can_apply_job == 3) %>
             <a href="#" class="required">You are hired!</a>
-        <% else if(can_apply_job == 2 && user_job_status ==  'applied')%>
+        <% else if(can_apply_job == 2 )%>
         <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
-         <% else if(can_apply_job == 0 && user_job_status ==  'applied') %>
+         <% else if(can_apply_job == 0 ) %>
             <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
-            <% else if(can_apply_job == 1 && user_job_status ==  'applied') %>
+            <% else if(can_apply_job == 1 ) %>
             <a href="#" class="required">Requirement Complete</a>
        
             
@@ -212,7 +212,7 @@ get_header();
 
     <div class="span4">
     <div class="div-box-block">
-    <% if(user_job_status == 'hired'){%>
+    <% if(can_apply_job == 3){%>
     <a href="#" class="required">You are hired!</a>
     <% }else{%>
     <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>

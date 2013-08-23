@@ -110,23 +110,23 @@ class Minyawn_Job {
 
 
         $minyawns = $wpdb->get_results($sql);
-       
+
         if (!empty($minyawns)) {
             foreach ($minyawns as $minyawn) {
-                
+
                 $this->is_hired = $minyawn->status;
                 $user = array(
                     'user_login' => $minyawn->user_login,
                     'profile_name' => $minyawn->display_name,
                     'user_email' => $minyawn->user_email,
                     'user_id' => $minyawn->ID,
-                    'user_to_job'=>$minyawn->job_id,
-                 'user_job_status'=>$minyawn->status
-                        );
-                
-                
-                
-                
+                    'user_to_job' => $minyawn->job_id,
+                    'user_job_status' => $minyawn->status
+                );
+
+
+
+
 
                 //convert the meta string to php array
                 $usermeta = explode(',', $minyawn->usermeta);
@@ -275,11 +275,23 @@ class Minyawn_Job {
         $this->can_apply = 0;
 
         //check if requirement is complete
-        if ((int) $this->required_minyawns === count($this->minyawns) + 2)
-            $this->can_apply = 1;
+        if (count($min_job->minyawns) > 0) {
+            if ((int) $min_job->required_minyawns === count($min_job->minyawns) + 2)
+                $this->can_apply = 1;
+        }else {
+            $this->can_apply = 0;
+        }
 
         if ($this->can_apply === 0 && array_key_exists(get_user_id(), $this->minyawns))
             $this->can_apply = 2;
+
+
+        if (!is_null($this->is_hired)) {
+            if ($this->is_hired == 'applied')
+                $this->can_apply = 2;
+            else
+                $this->can_apply = 3;
+        }
     }
 
     public function get_job_id() {
