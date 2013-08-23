@@ -566,11 +566,18 @@ table.qlabs_grid_container tbody.data_container tr.expanded td div.expanded .col
     /* --- Overall Table Width --- */
 }
 /* --- Change Apperance --- */
-table,thead,tbody,tr,td {
+
+/*table.qlabs_grid_container ,thead,tbody,tr,td {
 	display: block;
 	float: left;
 	width: 100%;
-}
+} */
+table.qlabs_grid_container  td {
+	display: block;
+	float: left;
+	width: 100%;
+} 
+
 /* --- Cell Works Like A Row --- */
 table.qlabs_grid_container tbody.data_container tr.data_even td.data_cell,table.qlabs_grid_container tbody.data_container tr.data_odd td.data_cell,table.qlabs_grid_container tbody.data_container tr.data_even td.label_cell,table.qlabs_grid_container tbody.data_container tr.data_odd td.label_cell {
     padding:6px 8px 6px 8px !important;
