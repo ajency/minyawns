@@ -85,8 +85,8 @@ $app->get('/fetchjobs/', function() use ($app) {
             $current_user_id = get_current_user_id();
             if (isset($_GET['my_jobs'])) {
 
-                if (get_user_role() == "employer")
-                    return;
+//                if (get_user_role() == "employer")
+//                    return;
 
                 $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
                 $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='" . get_current_user_id() . "' ";
