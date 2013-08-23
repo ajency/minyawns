@@ -88,8 +88,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                 if(get_user_role() == "employer")
                 return;
             
-                $tables = "$wpdb->posts, $wpdb->postmeta,{$wpdb->prefix}userjobs";
-                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.job_id = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date'";
+                $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='".get_user_id()."'";
             } else {
                 $tables = "$wpdb->posts, $wpdb->postmeta";
                 $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
@@ -103,7 +103,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
-                            LIMIT " . trim($_GET['offset']) . ",2
+                            
                          ";
 
             $data = array();
@@ -116,25 +116,36 @@ $app->get('/fetchjobs/', function() use ($app) {
                 
                 /*check if user applied to job*/
                
-                $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
-                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$pagepost->ID}' AND  {$wpdb->prefix}userjobs.user_id='".get_user_id()."'";
+               // $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
+                               
+//                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$pagepost->ID}' ";
+//                 //AND  {$wpdb->prefix}userjobs.user_id='".get_user_id()."'
+//                        $querystr = "
+//                            SELECT $wpdb->posts.* 
+//                            FROM $wpdb->posts,{$wpdb->prefix}userjobs
+//                            $my_jobs_filter
+//                            AND $wpdb->posts.post_status = 'publish' 
+//                            AND $wpdb->posts.post_type = 'job'
+//                            ORDER BY $wpdb->posts.ID DESC
+//                               ";
+//                         
+//                 $user_applied_to = $wpdb->get_results($querystr, OBJECT);
+               
+                
+                /*if job assigned to user*/
+                
+                     
+                     
+                    /* count for number of minyawns applied*/
+                     
+                
+                
                  
-                        $querystr = "
-                            SELECT $wpdb->posts.* 
-                            FROM $wpdb->posts,{$wpdb->prefix}userjobs
-                            $my_jobs_filter
-                            AND $wpdb->posts.post_status = 'publish' 
-                            AND $wpdb->posts.post_type = 'job'
-                            ORDER BY $wpdb->posts.ID DESC
-                               ";
-                         
-                 $user_applied_to = $wpdb->get_results($querystr, OBJECT);
-                
-                if(count($user_applied_to) > 0)
-                    $applied=1;
-                
-                else
-                    $applied=0;
+//                if(count($user_applied_to) >0  )
+//                    $applied=1;
+//                
+//                else
+//                    $applied=0;
                 
                 /*   */
                 
