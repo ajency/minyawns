@@ -286,7 +286,7 @@ get_header();
 
                 </div>
 
-                <button class="btn load_more" id="load-more"><span class='load_ajax' style="display:block"></span> Load more</button>
+                <button class="btn load_more" id="load-more"><span class='load_ajax' style="display:block"></span> <b>Load more</b></button>
             </div>
             <br>
             <div style=" display:none; " id="calendar">
