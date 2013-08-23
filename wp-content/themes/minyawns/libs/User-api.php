@@ -360,10 +360,12 @@ class MN_User_Jobs {
 }
 
 function minyawn_job_apply() {
+
     if ('POST' !== $_SERVER['REQUEST_METHOD'])
         return;
 
     global $user_ID, $wpdb;
+
 
     //get job ID
     $job_id = $_POST['job_id'];
@@ -380,17 +382,31 @@ function minyawn_job_apply() {
         );
 
         $new_action = "apply";
+        $status = 1;
     } else {
+        $min_job = new Minyawn_Job($job_id);
 
-        $wpdb->insert($wpdb->prefix . 'userjobs', array(
-            'user_id' => $user_ID,
-            'job_id' => $job_id,
-            'status' => 'applied',
-            'rating' => 0
-                ), array('%d', '%d', '%s', '%d'));
-        $new_action = "unapply";
+        if ((int) $min_job->required_minyawns === count($min_job->minyawns) + 1) {
+            $status = 2;
+        } else {
+
+            $wpdb->insert($wpdb->prefix . 'userjobs', array(
+                'user_id' => $user_ID,
+                'job_id' => $job_id,
+                'status' => 'applied',
+                'rating' => 0
+                    ), array('%d', '%d', '%s', '%d'));
+            $new_action = "unapply";
+            $status = 1;
+        
+            $check_limit=new Minyawn_Job($job_id);            
+            
+            if ((int) $check_limit->required_minyawns === count($check_limit->minyawns) + 1) 
+            $status = 2;
+            
+        }
     }
-    echo json_encode(array('success' => 1, 'new_action' => $new_action));
+    echo json_encode(array('success' => $status, 'new_action' => $new_action));
 
     die;
 }
