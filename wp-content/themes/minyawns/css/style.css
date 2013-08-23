@@ -424,3 +424,8 @@ span.form-error{
             width: 1000px;
         }
 	
+        .required{
+            margin-left: 37px;
+font-size: 18px;
+            
+        }

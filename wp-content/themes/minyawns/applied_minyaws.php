@@ -23,16 +23,18 @@
                         <div class="social-link">
                            <?php echo $minyawn['user_email']; ?> -<a href="<?php echo $minyawn['linkedin']; ?>" target="_BLANK"> <?php echo $minyawn['linkedin']; ?> </a> 
                         </div>
-                        <?php foreach($minyawn['user_skills'] as $skill): ?>
+                        <?php  if(isset($minyawn['user_skills'])){foreach($minyawn['user_skills'] as $skill): ?>
                         <span class="label label-small"><?php echo $skill ?></span>
-                        <?php endforeach; ?>
+                        <?php endforeach; } ?>
                         <hr>
                         <div class="dwn-btn">
                            <div class="onoffswitch">
-                              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="<?php echo $minyawn['user_login']?>" checked>
+                               
+                              <input type="checkbox"  data-user-id="<?php echo $minyawn['user_id']?>" data-job-id="<?php echo $minyawn['user_to_job']?>"    name="confirm-miny[]"class="" id="<?php echo $minyawn['user_login']?>" <?php if($minyawn['user_job_status'] == "hired"){ ?>checked<?php }?> >
+                              
                               <label class="onoffswitch-label" for="<?php echo $minyawn['user_login']?>">
-                                 <div class="onoffswitch-inner"></div>
-                                 <div class="onoffswitch-switch"></div>
+<!--                                 <div class="onoffswitch-inner"></div>
+                                 <div class="onoffswitch-switch"></div>-->
                               </label>
                            </div>
                         </div>
@@ -43,5 +45,5 @@
             </ul>
          </div>
         
-         <a href="#fakelink" class="btn btn-medium btn-block green-btn btn-success ">Confirm & Hire</a>
+         <a href="#fakelink" id="confirm-hire"  class="btn btn-medium btn-block green-btn btn-success ">Confirm & Hire</a>
  

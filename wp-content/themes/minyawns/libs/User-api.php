@@ -401,7 +401,7 @@ function minyawn_job_apply() {
         
             $check_limit=new Minyawn_Job($job_id);            
             
-            if ((int) $check_limit->required_minyawns === count($check_limit->minyawns) + 1) 
+            if ((int) $check_limit->required_minyawns === count($check_limit->minyawns) + 2) 
             $status = 2;
             
         }

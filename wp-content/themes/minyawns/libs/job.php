@@ -89,7 +89,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 return;
             
                 $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
-                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='".  get_current_user_id()."'";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='".  get_current_user_id()."' AND {$wpdb->prefix}userjobs.status='applied'";
             } else {
                 
                 if(get_user_role() == "employer"){
@@ -112,7 +112,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
-                            
+                            LIMIT ".$_GET['offset'].",2
                          ";
 
             $data = array();

@@ -97,7 +97,7 @@ get_header();
          <% else if(can_apply_job == 0) %>
             <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
             <% else if(can_apply_job == 1) %>
-            <a href="#" class="btn btn-medium btn-block btn-success red-btn">Requirement Complete</a>
+            <a href="#" class="required">Requirement Complete</a>
        
             
             <?php
