@@ -89,7 +89,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 return;
             
                 $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
-                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='".  get_current_user_id()."'";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='".  get_current_user_id()."' ";
             } else {
                 
                 if(get_user_role() == "employer"){
@@ -112,7 +112,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
-                            
+                            LIMIT ".$_GET['offset'].",2
                          ";
 
             $data = array();
@@ -149,9 +149,11 @@ $app->get('/fetchjobs/', function() use ($app) {
           
                 $min_job=new Minyawn_Job($pagepost->ID);
  
-       if((int)$min_job->required_minyawns === count($min_job->minyawns)+1)
+       if((int)$min_job->required_minyawns === count($min_job->minyawns)+2)
                      $applied=1;
            
+       
+       
            
                 /*   */
                 
@@ -178,7 +180,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
                     'job_author_logo' => get_avatar($pagepost->post_author, '10'),
-                    'can_apply_job'=>$applied
+                    'can_apply_job'=>$applied,
+                    'user_job_status'=>$min_job->is_hired
                 );
             }
             $total = count($pageposts);
@@ -263,5 +266,24 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
             echo json_encode($data);
         });
 
+$app->post('/confirm', function() use ($app) {
+    
+   global $wpdb;
+    $split_user=explode(",",$_POST['user_id']);
+    for($i=0;$i<sizeof($split_user);$i++){
+    $wpdb->get_results(
+	"
+	UPDATE {$wpdb->prefix}userjobs 
+	SET status = 'hired'
+	WHERE user_id = '".$split_user[$i]."' 
+		AND job_id = '".$_POST['job_id']."'
+	"
+);
+    }
+    
+    
+});
 
+        
+        
 $app->run();
