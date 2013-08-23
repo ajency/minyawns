@@ -758,11 +758,15 @@ jQuery(document).ready(function($) {
                 }
                 if (response.new_action == 'unapply')
                 {
-                    $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
+                    $(_this).addClass('green-btn btn-success').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
                     $(_this).attr('data-action', 'unapply');
                 }
 
-            }
+            }else if(response.success == 2)
+                {
+                   $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
+                    $(_this).attr('data-action', 'req_complete'); 
+                }
 
         }, 'json');
     });

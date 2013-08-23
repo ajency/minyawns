@@ -74,6 +74,7 @@ class Minyawn_Job {
 
         $job = $wpdb->get_row($sql);
 
+        
         $this->job_details = $job->post_content;
 
         $this->posted_date = $job->post_date;
@@ -151,24 +152,24 @@ class Minyawn_Job {
                         
         	}
         }
-//        global $post;
-//        print_r($post);exit();
-//       $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
-//                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id =$this->ID  AND {$wpdb->prefix}userjobs.job_id = $post->ID";
-//            
-//
-//            $querystr = "
-//                            SELECT $wpdb->posts.* 
-//                            FROM $tables
-//                            $my_jobs_filter
-//                            AND $wpdb->posts.post_status = 'publish' 
-//                            AND $wpdb->posts.post_type = 'job'
-//                            ORDER BY $wpdb->posts.ID DESC
-//                            
-//                         ";
-//print_r($querystr);exit();
-//            $data = array();
-//            $pageposts = $wpdb->get_results($querystr, OBJECT);
+       // global $post;
+       
+       $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.job_id =$this->ID";
+            
+
+            $querystr = "
+                            SELECT $wpdb->posts.* 
+                            FROM $tables
+                            $my_jobs_filter
+                            AND $wpdb->posts.post_status = 'publish' 
+                            AND $wpdb->posts.post_type = 'job'
+                            ORDER BY $wpdb->posts.ID DESC
+                            
+                         ";
+
+            $data = array();
+            $pageposts = $wpdb->get_results($querystr, OBJECT);
     }
 
     public function is_active() {

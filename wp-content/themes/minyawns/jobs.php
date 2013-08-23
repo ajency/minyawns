@@ -4,8 +4,7 @@
 
  */
 get_header();
-global $user_ID;
-$minyawn_job = new Minyawn_Job(get_current_user_id());
+
 
 ?>
 
@@ -97,6 +96,8 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
         <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
          <% else if(can_apply_job == 0) %>
             <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
+            <% else if(can_apply_job == 1) %>
+            <a href="#" class="btn btn-medium btn-block btn-success red-btn">Requirement Complete</a>
        
             
             <?php
