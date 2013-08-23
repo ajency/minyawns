@@ -379,12 +379,10 @@ a:hover {
   border: 1px solid #EEEBEB;
 }
 .jobs_table .accordion-inner .header-title .view-link {
-  margin-left: 10px;
   font-size: 13px;
   font-weight: normal;
   display: inline-block;
   padding: 3px;
-  float: right;
 }
 .jobs_table .accordion-inner .job-data {
   border: 1px solid #EEEBEB;
@@ -1566,14 +1564,6 @@ a:hover {
   }
   .jobs_table .header-title h3 {
     font-size: 19px;
-  }
-  .jobs_table .header-title h3 .view-link {
-    margin-left: 10px;
-    font-size: 11px!important;
-    font-weight: normal;
-    padding: 2px !important;
-    margin-top: -3px !important;
-    display: inline-block;
   }
   .jobs_table .header-title .header-sub {
     text-align: center;

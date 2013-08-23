@@ -68,7 +68,7 @@ get_header();
     <div class="accordion-inner">
     <div class="row-fluid header-title">
     <div class="span12">
-    <h3> Walmart <a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank" class="view-link btn btn-inverse" ><i class="icon-search"></i> View</a> </h3>
+    <h3><a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank" > Walmart <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
     </div>
     </div>
     <div class="row-fluid job-data">
