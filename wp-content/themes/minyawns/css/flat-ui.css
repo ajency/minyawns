@@ -3691,11 +3691,7 @@ padding: 11px 6px 10px 12px;
   text-indent: 0;
 }
 @media (max-width: 767px) {
-.ui-datepicker td {
-display: block;
-float: left;
-width: auto !important;
-}
+
 
   .ui-spinner input {
     margin-top: 0;

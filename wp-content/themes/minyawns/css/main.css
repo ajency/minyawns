@@ -1351,7 +1351,7 @@ a:hover {
     width: 100%!important;
   }
   body .frm-edit .controls .input {
-    width: 287px!important;
+    width: 255px!important;
   }
   body div.profile-wrapper {
     height: 100% !important;
@@ -1377,6 +1377,12 @@ a:hover {
     padding: 0px;
     margin: 0px;
     margin-bottom: 28px;
+  }
+  .bootstrap-timepicker-widget {
+    width: 200%;
+  }
+  .bootstrap-timepicker-widget table td input {
+    width: 43px !important;
   }
   .list-jobs .div-box {
     position: relative !important;
@@ -1419,10 +1425,10 @@ a:hover {
   .home #btn__login {
     float: none;
     display: block;
-    background: #8ed030;
+    background: #8ED030;
     width: 20%;
-    margin: auto;
-    padding: 5px;
+    margin: -11px auto;
+    padding: 3px;
     text-align: center;
     color: #FFF;
     border-radius: 5px;
@@ -1449,9 +1455,9 @@ a:hover {
     display: none;
   }
   .home #innermainimage .banner-content {
-    margin-top: 3%;
+    margin-top: 2%;
     background: #535353;
-    padding-top: 94px;
+    padding-top: 110px;
   }
   .home #innermainimage .banner-content .log-img {
     width: 22%;
