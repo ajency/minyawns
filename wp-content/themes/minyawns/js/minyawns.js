@@ -8,17 +8,17 @@ jQuery(document).ready(function($) {
     /********************************** PROFILE JS CODE *************************************/
 
 
-$("#job_wages").keydown(function(event) {
-    	// Allow only backspace and delete
-    	if ( event.keyCode == 46 || event.keyCode == 8 ) {
-    		// let it happen, don't do anything
-    	}
-    	else {
-    		// Ensure that it is a number and stop the keypress
-    		if (event.keyCode < 48 || event.keyCode > 57 ) {
-    			event.preventDefault();	
-    		}	
-    	}
+    $("#job_wages").keydown(function(event) {
+        // Allow only backspace and delete
+        if (event.keyCode == 46 || event.keyCode == 8) {
+            // let it happen, don't do anything
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.keyCode < 48 || event.keyCode > 57) {
+                event.preventDefault();
+            }
+        }
     });
 
     if (jQuery('#user-popdown').length > 0)
@@ -327,7 +327,7 @@ $("#job_wages").keydown(function(event) {
         load_browse_jobs();
     });
     function load_browse_jobs() {
-        $(".load_ajax").show();
+        $(".load_ajax").css('display','block');
         $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
         $("#accordion2").empty();
@@ -346,7 +346,7 @@ $("#job_wages").keydown(function(event) {
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
-                   
+
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
                     _.each(collection.models, function(model) {
@@ -748,8 +748,10 @@ $("#job_wages").keydown(function(event) {
         function(response) {
             if (response.success == 1)
             {
-                
-                $("#job-list"+_job_id).hide('slow', function(){ $("#job-list"+_job_id).remove(); });
+
+                $("#job-list" + _job_id).hide('slow', function() {
+                    $("#job-list" + _job_id).remove();
+                });
                 if (response.new_action == 'apply')
                 {
                     $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
@@ -843,7 +845,7 @@ $("#job_wages").keydown(function(event) {
         if (p && p.datestrshow) {
             $("#txtdatetimeshow").text(p.datestrshow);
         }
-        
+
         jQuery("#caltoolbar").noSelect();
         $("#hdtxtshow").datepicker({picker: "#txtdatetimeshow", showtarget: $("#txtdatetimeshow"),
             onReturn: function(r) {
@@ -851,7 +853,7 @@ $("#job_wages").keydown(function(event) {
                 if (p && p.datestrshow) {
                     $("#txtdatetimeshow").text(p.datestrshow);
                 }
-                
+
             }
         });
         function cal_beforerequest(type)
@@ -1013,41 +1015,36 @@ $("#job_wages").keydown(function(event) {
     }
 
     $("#show-calendar").live('click', function(e) {
-//        var c=0;
-//        $(".browse-jobs-table").css('display','none');
-               $("#show-calendar").hide();
+
+        $("#calendar-jobs").show();
+        $("#show-calendar").hide();
         $("#hide-calendar").show();
-//        $("#calendar").show().animate({left: '11px'}, 'slow');
-         var span1 = $('.browse-jobs-table');
+
+        var span1 = $('.browse-jobs-table');
         var span2 = $('#calendar');
         var w = $(span1).width();
-        
-           $(".browse-jobs-table").hide('slow', function(){ $('#calendar').show(); });
-//        
-//        else
-//        {
-//            $('#edit-job-form').find('div.alert').remove();
-//            $(span1).animate({left: -1 * w}, 500);
-//            $(span2).css({'left': w, 'top': '60px'});
-//            $(span2).show().animate({left: 0}, 500);
-//        }
-        
-        
-        
-   });
-   
+
+        $(".browse-jobs-table").hide('slow', function() {
+            $('#calendar').show();
+        });
+
+    });
+
     $("#hide-calendar").live('click', function(e) {
-        var c=0;
-        //$(".browse-jobs-table").css('display','block');
+        var c = 0;
+        $("#calendar-jobs").hide();
+       
         $("#show-calendar").show();
         $("#hide-calendar").hide();
-       var span1 = $('.browse-jobs-table');
+        var span1 = $('.browse-jobs-table');
         var span2 = $('#calendar');
         var w = $(span1).width();
-         $("#calendar").hide('slow', function(){ $('.browse-jobs-table').show(); });
-   });
-            /* function on page load*/
-            fetch_my_jobs();
+        $("#calendar").hide('slow', function() {
+            $('.browse-jobs-table').show();
+        });
+    });
+    /* function on page load*/
+    fetch_my_jobs();
 
 });
 

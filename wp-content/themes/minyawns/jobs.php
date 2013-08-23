@@ -93,7 +93,7 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
 
 <?php if (get_user_role() === 'minyawn'): ?> 
 
-        <% if(can_apply_job == 1) %>
+        <% if(can_apply_job == 2) %>
         <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
          <% else if(can_apply_job == 0) %>
             <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
@@ -279,7 +279,7 @@ $minyawn_job = new Minyawn_Job(get_current_user_id());
 
                 </div>
 
-                <button class="btn load_more" id="load-more"><span class='load_ajax' style="display:block"> Load more</span></button>
+                <button class="btn load_more" id="load-more"><span class='load_ajax' style="display:block"></span> Load more</button>
             </div>
             <br>
             <div style=" display:none; " id="calendar">
