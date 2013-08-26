@@ -800,10 +800,15 @@ a:hover {
   margin: auto;
 }
 .single-jobs .minyawns-grid .thumbnails {
-  margin-left: 31px;
+  margin: 0 0 0 28px;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
 }
 .single-jobs .minyawns-grid .thumbnails .span3 {
   margin-right: 16px;
+  float: none !important;
+  display: inline-block !important;
   margin-left: 0px !important;
 }
 .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail {
@@ -879,6 +884,12 @@ a:hover {
 }
 .single-jobs .minyawns-grid .thumbnails .span3:hover .caption img {
   border: 7px solid #8ed030;
+}
+.single-jobs .minyawns-grid .apply-job .rating a {
+  color: #ccc;
+}
+.single-jobs .minyawns-grid .apply-job .rating .icon-thumbs {
+  color: #ccc !important;
 }
 .frm-edit .control-label {
   width: 175px;
