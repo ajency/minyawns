@@ -29,10 +29,10 @@ position: absolute;
 .load_ajax {
    
       background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
-float: none;
+float: left;
 height: 21px;
 position: inherit;
-width: 138px;
+width: 20px;
 margin: auto;
     
    

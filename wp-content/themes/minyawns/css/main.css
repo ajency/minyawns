@@ -33,8 +33,11 @@ a:hover {
   color: #000;
   font-weight: bold;
 }
-.load_more b {
-  margin-top: -22px;
+.load_more div {
+  width: 13%;
+  margin: auto;
+}
+.load_more div b {
   display: inherit;
 }
 .my-jobs-1 .img-logo img {
