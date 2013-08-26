@@ -88,7 +88,7 @@ get_header();
     <div class="span3 "><b>Location :</b></div><div class="span9"><%= job_location %> </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Details :</b></div><div class="span9"><%= job_details %> </div>
+    <div class="span3 "><b>Details :</b></div><div class="span9"><%= job_details.substring(0, 140); %> </div>
     </div>
     <div class="row-fluid minywans_list">
     <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<tags_count;i++){ %> <span class="label"><%= tags[i] %></span><%}%> </div>
