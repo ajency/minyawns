@@ -319,6 +319,9 @@ jQuery(document).ready(function($) {
     $("#browse-jobs").click(function(e) {
         $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
+        $("#hide-calendar").hide();
+        $("#show-calendar").show();
+        $(".browse-jobs-table").show();
     });
     $("#browse").click(function(e) {
 
@@ -365,7 +368,7 @@ jQuery(document).ready(function($) {
             }
 
         });
-        
+
     }
     $("#my_jobs").click(function(e) {
 
@@ -1019,7 +1022,7 @@ jQuery(document).ready(function($) {
     }
 
     $("#show-calendar").live('click', function(e) {
-onload_calendar(); /*load the calendar*/
+        onload_calendar(); /*load the calendar*/
         $("#calendar-jobs").show();
         $("#show-calendar").hide();
         $("#hide-calendar").show();
@@ -1056,13 +1059,13 @@ onload_calendar(); /*load the calendar*/
         var _job_id;
         var group_ids = "";
         var user_id = "";
-        var sList="";
+        var sList = "";
         $('input[name=confirm-miny\\[\\]]').each(function() {
             user_id = $(this).attr('data-user-id');
             _job_id = $(this).attr('data-job-id');
-           // var status=$(this).prop("checked","checked");
-           sList += "" + $(this).attr('data-user-id') + "," + (this.checked ? "hired" : "applied") + "-";
-           //alert(sList);
+            // var status=$(this).prop("checked","checked");
+            sList += "" + $(this).attr('data-user-id') + "," + (this.checked ? "hired" : "applied") + "-";
+            //alert(sList);
             //alert(_job_id);
             group_ids += user_id + ',';
 
@@ -1076,11 +1079,11 @@ onload_calendar(); /*load the calendar*/
                 {
                     user_id: group_ids,
                     job_id: _job_id,
-                    status:sList
+                    status: sList
                 },
         function(response) {
-            alert(response);           
-                       
+            alert(response);
+
 //           $("#hire-thumb"+)
 //            if (response.success == 1)
 //            {
