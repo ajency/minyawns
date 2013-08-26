@@ -327,7 +327,7 @@ jQuery(document).ready(function($) {
         load_browse_jobs();
     });
     function load_browse_jobs() {
-        $(".load_ajax").css('display','block');
+        $(".load_ajax").css('display', 'block');
         $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
         $("#accordion2").empty();
@@ -365,7 +365,7 @@ jQuery(document).ready(function($) {
             }
 
         });
-        onload_calendar(); /*load the calendar*/
+        
     }
     $("#my_jobs").click(function(e) {
 
@@ -762,11 +762,11 @@ jQuery(document).ready(function($) {
                     $(_this).attr('data-action', 'unapply');
                 }
 
-            }else if(response.success == 2)
-                {
-                   $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
-                    $(_this).attr('data-action', 'req_complete'); 
-                }
+            } else if (response.success == 2)
+            {
+                $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
+                $(_this).attr('data-action', 'req_complete');
+            }
 
         }, 'json');
     });
@@ -1019,7 +1019,7 @@ jQuery(document).ready(function($) {
     }
 
     $("#show-calendar").live('click', function(e) {
-
+onload_calendar(); /*load the calendar*/
         $("#calendar-jobs").show();
         $("#show-calendar").hide();
         $("#hide-calendar").show();
@@ -1037,7 +1037,7 @@ jQuery(document).ready(function($) {
     $("#hide-calendar").live('click', function(e) {
         var c = 0;
         $("#calendar-jobs").hide();
-       
+
         $("#show-calendar").show();
         $("#hide-calendar").hide();
         var span1 = $('.browse-jobs-table');
@@ -1047,32 +1047,41 @@ jQuery(document).ready(function($) {
             $('.browse-jobs-table').show();
         });
     });
-    
+
     $('#confirm-hire').live('click', function(evt) {
         evt.preventDefault();
         var _this = $(this);
         var _user_id = $(this).attr('data-user-id');
-       
-       var _job_id;
-        var group_ids="";
-        var user_id="";
-        $('input[name=confirm-miny\\[\\]]:checked').each(function() {
-                        user_id=$(this).attr('data-user-id');
-                         _job_id = $(this).attr('data-job-id');
-                        alert(_job_id);
-                     group_ids +=user_id+',';  
-                     alert(group_ids);
-                     $("#hire-thumb"+user_id).addClass('minyans-select');
-                  });
-        
-        
+
+        var _job_id;
+        var group_ids = "";
+        var user_id = "";
+        var sList="";
+        $('input[name=confirm-miny\\[\\]]').each(function() {
+            user_id = $(this).attr('data-user-id');
+            _job_id = $(this).attr('data-job-id');
+           // var status=$(this).prop("checked","checked");
+           sList += "" + $(this).attr('data-user-id') + "," + (this.checked ? "hired" : "applied") + "-";
+           //alert(sList);
+            //alert(_job_id);
+            group_ids += user_id + ',';
+
+            $("#hire-thumb" + user_id).addClass('minyans-select');
+            $("#edit-selection").show();
+            $("#confirm-hire").hide();
+        });
+
+
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
                 {
                     user_id: group_ids,
-                    job_id: _job_id
+                    job_id: _job_id,
+                    status:sList
                 },
         function(response) {
-            alert("here");
+            alert(response);           
+                       
+//           $("#hire-thumb"+)
 //            if (response.success == 1)
 //            {
 //
@@ -1097,15 +1106,19 @@ jQuery(document).ready(function($) {
 
         }, 'json');
     });
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+    $("#edit-selection").live('click', function(evt) {
+        $("#edit-selection").hide();
+        $("#confirm-hire").show();
+
+    });
+
+
+
+
+
+
     /* function on page load*/
     fetch_my_jobs();
 

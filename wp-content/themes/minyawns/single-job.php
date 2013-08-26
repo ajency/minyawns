@@ -175,7 +175,7 @@ padding-left: 16px;
                   <div class="caption">
                       <?php if(count($minyawn_job->minyawns)>0){
                       foreach($minyawn_job->minyawns as $min){
-                          echo get_avatar($min->user_id,20);
+                          //echo get_avatar($min->user_id,20);
                           ?>                    
 				      <div class="rating">
 					<a href="#fakelink">
