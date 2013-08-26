@@ -909,6 +909,13 @@ a:hover {
 }
 /* mobile resonsive */
 @media (max-width: 767px) {
+  .singlejobedit #single-jobs {
+    width: 99%!important;
+  }
+  .singlejobedit #edit-job-form {
+    margin-left: 45px!important;
+    width: 82%!important;
+  }
   #innermainimage {
     margin-top: -132px !important;
   }
