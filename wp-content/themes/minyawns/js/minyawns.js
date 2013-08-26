@@ -521,7 +521,7 @@ jQuery(document).ready(function($) {
                             if (jQuery("#noaccess_redirect_url").length > 0)
                                 window.location.href = jQuery("#noaccess_redirect_url").val();
                             else
-                                window.location.href = jQuery("#hdn_siteurl").val() + '/profile/';
+                                window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/';
                         }
                         else
                         {
