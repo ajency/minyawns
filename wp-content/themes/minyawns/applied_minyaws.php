@@ -2,8 +2,8 @@
 		<div class="row-fluid minyawns-grid">
             <ul class="thumbnails">
             <?php foreach($minyawn_job->minyawns as $minyawn): ?>
-               <li class="span3">
-                  <div class="thumbnail minyans-select" id="hire-thumb<?php echo $minyawn['user_id']?>">
+               <li class="span3 minyans-select">
+                  <div class="thumbnail " id="hire-thumb<?php echo $minyawn['user_id']?>">
                      <div class="caption">
                          <?php if($minyawn['image'] !== false): ?>
                         <img src="<?php echo $minyawn['image']; ?>" />

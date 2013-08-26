@@ -11,9 +11,7 @@ position: absolute;
 bottom: 0px;
 width: 89%;
 }
-.minyans-select{
-	background: #dddddd;
-}
+
 .roundedTwo {
 	line-height: 25px;
 padding-left: 16px;
@@ -101,8 +99,12 @@ padding-left: 16px;
 
 .minyans-select{
 	border: 2px solid #23CF1C;
-        background:url(<?php echo get_template_directory_uri()?>/images/selectminyawns.png)no-repeat;
-	background-position: 10px 10px;
+        background:url(<?php echo get_template_directory_uri()?>/images/selectminyawns.png)no-repeat !important;
+	background-position: 10px 10px !important;
+}
+.minyans-select:hover img{
+	border: 5px solid #CCC !important;
+	cursor: auto!important;
 }
 
 </style>

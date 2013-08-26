@@ -754,7 +754,7 @@ a:hover {
 .single-jobs .minyawns-grid .thumbnails .span3 {
   margin-right: 16px;
   float: none !important;
-  display: inline-block !important;
+  display: inline-table !important;
   margin-left: 0px !important;
 }
 .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail {
