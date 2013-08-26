@@ -85,18 +85,29 @@ $app->get('/fetchjobs/', function() use ($app) {
             $current_user_id = get_current_user_id();
             if (isset($_GET['my_jobs'])) {
 
-//                if (get_user_role() == "employer")
-//                    return;
+                if (get_user_role() == "employer") {
 
-                $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
-                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='" . get_current_user_id() . "' ";
+                    $tables = "$wpdb->posts,{$wpdb->prefix}userjobs,{$wpdb->prefix}users";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND $wpdb->posts.post_author='" . get_current_user_id() . "' ";
+                } else {
+
+                    $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='" . get_current_user_id() . "' ";
+                }
+
+
+
+                $data = array();
+                $pageposts = $wpdb->get_results($querystr, OBJECT);
             } else {
 
                 if (get_user_role() == "employer") {
+
                     $tables = "$wpdb->posts, $wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "' AND $wpdb->posts.post_author='" . get_current_user_id() . "'";
                 } else {
+
                     $tables = "$wpdb->posts, $wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
@@ -121,51 +132,17 @@ $app->get('/fetchjobs/', function() use ($app) {
                 //print_r(implode(",",$tags));exit();
                 $post_meta = get_post_meta($pagepost->ID);
 
-                /* check if user applied to job */
-
-                // $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
-
-                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$pagepost->ID}' AND  {$wpdb->prefix}userjobs.user_id='" . get_user_id() . "'";
-                //AND  {$wpdb->prefix}userjobs.user_id='".get_user_id()."'
-                $querystr = "
-                            SELECT $wpdb->posts.* 
-                            FROM $wpdb->posts,{$wpdb->prefix}userjobs
-                            $my_jobs_filter
-                            AND $wpdb->posts.post_status = 'publish' 
-                            AND $wpdb->posts.post_type = 'job'
-                            ORDER BY $wpdb->posts.ID DESC
-                               ";
-
-                $user_applied_to = $wpdb->get_results($querystr, OBJECT);
-
-                if (count($user_applied_to) > 0)
-                    $applied = 2;
-//                
-                else
-                    $applied = 0;
-
 
                 $min_job = new Minyawn_Job($pagepost->ID);
-
-                if (count($min_job->minyawns) > 0) {
-                    if ((int) $min_job->required_minyawns === count($min_job->minyawns) + 2)
-                        $applied = 1;
-                }else {
-                    $applied = 0;
-                }
-               
-                if (!is_null($min_job->is_hired)){
-                if($min_job->is_hired == 'applied')
-                    $applied = 2;
-                 else
-                     $applied=3;
                 
-                
+                $minyawns_have_applied=$min_job->get_applied_by();
+                $user_data = array();
+                foreach ($min_job->minyawns as $min) {
+                    $user = array_push($user_data, $min['profile_name']);
                 }
 
+                $applied = $min_job->check_minyawn_job_status($pagepost->ID);
 
-
-                /*   */
 
                 $data[] = array(
                     'post_name' => $pagepost->post_title,
@@ -191,9 +168,15 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
                     'job_author_logo' => get_avatar($pagepost->post_author, '10'),
                     'can_apply_job' => $applied,
-                    'user_job_status' => is_null($min_job->is_hired) ? $min_job->is_hired : 'can_apply'
+                    'user_job_status' => is_null($min_job->is_hired) ? $min_job->is_hired : 'can_apply',
+                    'job_end_time_check' => $post_meta['job_end_date_time'][0],
+                    'todays_date_time' => current_time('timestamp'),
+                    'post_slug' => wp_unique_post_slug($pagepost->post_name, $pagepost->ID, 'published', 'job', ''),
+                    'users_applied'=>$user_data,
+                    'minyawns_have_applied'=>$minyawns_have_applied
                 );
             }
+
             $total = count($pageposts);
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);

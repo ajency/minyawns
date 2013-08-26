@@ -4,8 +4,6 @@
 
  */
 get_header();
-
-
 ?>
 
 <!-- Row Div -->
@@ -50,7 +48,17 @@ get_header();
     </div>
 
     <div class="job-progress header-sub">
-    <span class="label label-small label-success">Available</span>
+    
+     <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
+        <span class="label label-small label-success">Available</span>
+
+        <% else if (todays_date_time > job_end_time_check){%>
+         <span class="label label-small label-important">UnAvailable</span>
+        <% }else {%>
+         <span class="label label-small label-important">UnAvailable</span>
+        <% }
+        %> 
+    
 
     </div>
 
@@ -68,7 +76,7 @@ get_header();
     <div class="accordion-inner">
     <div class="row-fluid header-title">
     <div class="span12">
-    <h3><a href=<?php echo site_url() ?>/job/<%= post_name %> target="_blank" > Walmart <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
+    <h3><a href=<?php echo site_url() ?>/job/<%= post_slug %> target="_blank" > Walmart <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
     </div>
     </div>
     <div class="row-fluid job-data">
@@ -90,22 +98,32 @@ get_header();
     <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-left.png">
     <div class="div-box-block">
 
-<?php if (get_user_role() === 'minyawn'): ?> 
+    <?php if (get_user_role() === 'minyawn'): ?> 
 
-    <%  if(can_apply_job == 3) %>
-            <a href="#" class="required">You are hired!</a>
+        <%  if(can_apply_job == 3) %>
+        <a href="#" class="required">You are hired!</a>
         <% else if(can_apply_job == 2 )%>
         <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
-         <% else if(can_apply_job == 0 ) %>
-            <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
-            <% else if(can_apply_job == 1 ) %>
-            <a href="#" class="required">Requirement Complete</a>
-       
-            
-            <?php
+        <% else if(can_apply_job == 0 ) %>
+        <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
+        <% else if(can_apply_job == 1 ) %>
+        <a href="#" class="required">Requirement Complete</a>
+
+
+        <?php
     else:
-        //show all applied minyanws data
-        include_once 'applied_minyaws.php';
+        ?>
+        <%  if(can_apply_job == 1 || todays_date_time > job_end_time_check) %>
+        <a href="#" class="required">Requirement Complete</a>
+
+        <% else if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
+        <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
+        <% }
+        %> 
+
+    <?php
     endif;
     ?>
 
@@ -133,13 +151,19 @@ get_header();
     <div id="job-list<%= post_id %>" class="row-fluid list-jobs my-jobs-1"  style="background: #C7C9C5;">
     <div class="span12 jobs-details">
     <div class="span2 img-logo"> <%= job_author_logo %> </div>
-    <div class="span3 minyawns-select"><span>4</span>
+    <div class="span3 minyawns-select"><span><%= minyawns_have_applied %></span>
     <div>Minyawns Have Applied</div> 
     </div>
+    <% if(todays_date_time > job_end_time_check){%>)
+    <div class="span3 jobs-date"> 
+    Job Completed
+    </div>
+    <%}else{ %>
     <div class="span3 jobs-date"> 
     <div class="posteddate"> Posted Date : <span><%= post_date %></span></div>
     <div class="jobsdate"> Jobs Date : <span><%= job_start_date %></span></div>
     </div>
+    <% }%>
     <div class="span3 job-duration duration_mob">
     <div class="row-fluid">
     <div class="span5 mob-botm">
@@ -169,56 +193,44 @@ get_header();
     <div class="span4"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/></div>
     <div class="span8"><%= job_details %></div>
     </div><br>
-    <div class="row-fluid minyawansgrid">
-    <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult1.png"/><b> Simon Srewell</b>
-    <a href="#fakelink" >
-    <i class="icon-thumbs-up"></i> 100
-    </a> 
-    <a href="#fakelink"  class="icon-thumbs">
-    <i class="icon-thumbs-down"></i> 200
-    </a> 
-    </div>
-    <div class="span6"> <img src="<?php echo get_template_directory_uri(); ?>/images/iconsult2.png"/><b> Riya mactheel</b>
-    <a href="#fakelink" >
-    <i class="icon-thumbs-up"></i> 50
-    </a> 
-    <a href="#fakelink"  class="icon-thumbs">
-    <i class="icon-thumbs-down"></i> 50
-    </a>
-
-    </div>
-    <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult3.png"/><b> Richard Andrews</b>
-    <a href="#fakelink" >
-    <i class="icon-thumbs-up"></i> 10
-    </a> 
-    <a href="#fakelink"  class="icon-thumbs">
-    <i class="icon-thumbs-down"></i> 20
-    </a>
-
-    </div>
-    <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult4.png"/> <b> Albert Srewell</b>
+    <% for(i=0;i<2;i++){ %>
+   <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult4.png"/> <b><%= users_applied[i]%></b>
+   
     <a href="#fakelink" >
     <i class="icon-thumbs-up"></i> 50
     </a> 
     <a href="#fakelink"  class="icon-thumbs">
     <i class="icon-thumbs-down"></i> 100
     </a>
-
+    
     </div>
+    <% }  %>
     <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
     </div>
-
+    
     </div>
-
-    <div class="span4">
-    <div class="div-box-block">
-    <% if(can_apply_job == 3){%>
-    <a href="#" class="required">You are hired!</a>
-    <% }else{%>
-    <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
-    <% } %>
-    </div>
-    </div>
+    <?php if (get_user_role() == "minyawn") { ?>
+        <div class="span4">
+        <div class="div-box-block">
+        <% if(can_apply_job == 3){%>
+        <a href="#" class="required">You are hired!</a>
+        <% }else{%>
+        <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
+        <% } %>
+        </div>
+        </div>
+    <?php } else { ?>
+        <div class="span4">
+        <div class="div-box-block">
+        <% if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
+        <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
+        <% }
+        %> 
+        </div>
+        </div>
+    <?php } ?>
 
     </div>
     </div>
@@ -242,34 +254,34 @@ get_header();
             </div>
             <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
-			
+
             <div class="clear"></div><br>
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
-               <!--   <div class="row-fluid header_cell">
-                                   <div class="span7">
-                                            <i class="icon-calendar"></i><h3 class="page-title"> Month</h3>  header label 
-                                            JUN 2013
-                                        </div>
-
-                    <div class="span12">
-                     <select name="small" class="select-block select-role">
-                            <option value="0" selected="true">Upcoming</option>
-                                                        <option value="1">Today</option>
-                                                        <option value="2">Tommorow</option>
-                                                        <option value="3">This Week</option>
-                                                        <option value="4">This Month</option>
-                        </select>
-
-                    </div>
-                                    <div class="span3">
-                                            <div class="control-group small ctrl-grp">
-                                                <div class="input-append">
-                                                    <input class="span2" id="appendedInputButton-04" type="text" placeholder="Search">
-                                                    <button class="btn btn-small" type="button"><span class="fui-search"></span></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                </div>-->
+                <!--   <div class="row-fluid header_cell">
+                                    <div class="span7">
+                                             <i class="icon-calendar"></i><h3 class="page-title"> Month</h3>  header label 
+                                             JUN 2013
+                                         </div>
+ 
+                     <div class="span12">
+                      <select name="small" class="select-block select-role">
+                             <option value="0" selected="true">Upcoming</option>
+                                                         <option value="1">Today</option>
+                                                         <option value="2">Tommorow</option>
+                                                         <option value="3">This Week</option>
+                                                         <option value="4">This Month</option>
+                         </select>
+ 
+                     </div>
+                                     <div class="span3">
+                                             <div class="control-group small ctrl-grp">
+                                                 <div class="input-append">
+                                                     <input class="span2" id="appendedInputButton-04" type="text" placeholder="Search">
+                                                     <button class="btn btn-small" type="button"><span class="fui-search"></span></button>
+                                                 </div>
+                                             </div>
+                                         </div>
+                 </div>-->
                 <!-- Row Div header -->
                 <div class="row-fluid ">
                     <div class="span12 header-title">
@@ -375,7 +387,7 @@ get_header();
             <div id="jobs-list">
                 <div class="tab-pane" id="tab2">
                     <?php
-                    //if (is_user_logged_in() == TRUE) {
+//if (is_user_logged_in() == TRUE) {
                     ?>
                     <div class="dialog dialog-success">
                         <button class="btn btn-primary btn-wide mll" id="add-job-button">
@@ -383,7 +395,7 @@ get_header();
                             Add Jobs
                         </button>
                     </div>
-<?php //}    ?>
+                    <?php //}     ?>
 
                     <div id="add-job-form" style="display:none;">
 
@@ -480,7 +492,7 @@ get_header();
                                 <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
                                 <div class="clear"></div>
                             </form>
-<?php } ?>
+                        <?php } ?>
                     </div>
                     <div id="list-my-jobs">
 
