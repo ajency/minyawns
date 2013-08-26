@@ -171,6 +171,22 @@ padding-left: 16px;
                 <div class="thumbnail">
         
                   <div class="caption">
+                      <?php if(count($minyawn_job->minyawns)>0){
+                      foreach($minyawn_job->minyawns as $min){
+                          echo get_avatar($min->user_id,20);
+                          ?>                    
+				      <div class="rating">
+					<a href="#fakelink">
+						<i class="icon-thumbs-up"></i> <?php echo $min->rate_like; ?>
+					</a>
+					
+					<a href="#fakelink"  class="icon-thumbs">
+					<i class="icon-thumbs-down"></i> <?php echo $min->rate_dislike; ?>
+					</a>
+                      
+                      
+                      
+                      <?php } } else{ ?>
                       <img src="<?php echo get_template_directory_uri() ?>/images/profile.png"/>
 				      <div class="rating">
 					<a href="#fakelink">
@@ -180,8 +196,9 @@ padding-left: 16px;
 					<a href="#fakelink"  class="icon-thumbs">
 					<i class="icon-thumbs-down"></i> 0
 					</a>
+                      <?php }?>
 					</div>
-                   <h4> Apply Job</h4>
+<!--                   <h4> </h4>-->
                   <div class="collage">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
 				 
 					

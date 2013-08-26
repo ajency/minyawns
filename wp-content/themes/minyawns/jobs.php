@@ -193,6 +193,7 @@ get_header();
     <div class="span4"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/></div>
     <div class="span8"><%= job_details %></div>
     </div><br>
+    <div class="row-fluid minyawansgrid">
     <% for(i=0;i<2;i++){ %>
    <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult4.png"/> <b><%= users_applied[i]%></b>
    
@@ -205,10 +206,11 @@ get_header();
     
     </div>
     <% }  %>
+    </div>
     <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
     </div>
     
-    </div>
+   
     <?php if (get_user_role() == "minyawn") { ?>
         <div class="span4">
         <div class="div-box-block">
@@ -223,11 +225,12 @@ get_header();
         <div class="span4">
         <div class="div-box-block">
         <% if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
-        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>" style="width:70%;">Select Your Minyawns</a>
         <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
         <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
         <% }
         %> 
+         </div>
         </div>
         </div>
     <?php } ?>
