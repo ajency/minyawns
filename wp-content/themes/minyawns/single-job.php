@@ -121,7 +121,7 @@ padding-left: 16px;
                           <?php endif; ?>
 		      </p>
 		   </div>
-		   <div   style="height: 680px; ">
+		   <div class="singlejobedit" style="height: 680px; ">
 					<div id="single-jobs" class="span12" style=" margin-left: 0px; width: 100%; ">
 		   <div  class="row-fluid  list-jobs single-jobs ">
 		 
@@ -234,7 +234,7 @@ padding-left: 16px;
 		   </div>
 		</div>
 		</div>
-                    <div id="edit-job-form" class="span12" style=" margin-left: 0px; width: 100%; " >
+                    <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%; " >
 					
                         <form id="job-form" class="form-horizontal">
                             

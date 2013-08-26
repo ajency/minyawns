@@ -667,7 +667,7 @@ jQuery(document).ready(function($) {
         else
         {
             $('#edit-job-form').find('div.alert').remove();
-            $(span1).animate({left: -1 * w}, 500);
+            $(span1).animate({left: -2 * w}, 500);
             $(span2).css({'left': w, 'top': '60px'});
             $(span2).show().animate({left: 0}, 500);
         }
