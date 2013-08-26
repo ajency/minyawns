@@ -4,6 +4,7 @@
 
  */
 get_header();
+global $minyawn_job;
 ?>
 
 <!-- Row Div -->
@@ -390,7 +391,7 @@ get_header();
             <div id="jobs-list">
                 <div class="tab-pane" id="tab2">
                     <?php
-//if (is_user_logged_in() == TRUE) {
+if (get_user_role() === "employer") {
                     ?>
                     <div class="dialog dialog-success">
                         <button class="btn btn-primary btn-wide mll" id="add-job-button">
@@ -398,7 +399,7 @@ get_header();
                             Add Jobs
                         </button>
                     </div>
-                    <?php //}     ?>
+                    <?php }     ?>
 
                     <div id="add-job-form" style="display:none;">
 
