@@ -924,6 +924,12 @@ a:hover {
 }
 /* mobile resonsive */
 @media (max-width: 767px) {
+  .tab-content {
+    min-height: 950px!important;
+  }
+  .control-group.small .add-on {
+    margin-top: 1px;
+  }
   .singlejobedit #single-jobs {
     width: 99%!important;
   }
@@ -1382,6 +1388,10 @@ a:hover {
     padding-right: 0px;
     padding-left: 0px;
   }
+  body .load_more div {
+    width: 43%;
+    margin: auto;
+  }
   body .div-box-block {
     position: relative !important;
     margin: 10px auto!important;
@@ -1657,7 +1667,7 @@ a:hover {
     width: 18%;
   }
   .jobs_table .data-title .job-date span {
-    font-size: 19px;
+    font-size: 17px;
     display: inline-block;
     float: left;
     margin-right: 2px;
@@ -1666,7 +1676,7 @@ a:hover {
   }
   .jobs_table .data-title .job-date div {
     color: #616161;
-    font-size: 11px;
+    font-size: 9px;
   }
   .jobs_table .data-title .job-date div b {
     display: none;
