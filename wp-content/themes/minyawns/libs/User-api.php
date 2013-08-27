@@ -262,7 +262,16 @@ class MN_User_Jobs {
     var $job_count = 0;
     var $current_job = -1;
     var $in_the_loop = false;
-
+public $include_meta = array('job_date',
+        'job_task',
+        'job_start_date',
+        'job_end_date',
+        'job_start_time',
+        'job_end_time',
+        'job_required_minyawns',
+        'job_wages',
+        'job_location');
+    public $include_user_meta = array('college', 'major', 'linkedin', 'user_skills');
     function __construct($args = null) {
         if (!empty($args)) {
 
@@ -288,33 +297,65 @@ class MN_User_Jobs {
         if (false !== $qv['status'])
             $and = $wpdb->prepare("AND ub.status=%s", $qv['status']);
 
-        $sql = $wpdb->prepare("	SELECT ub.status, ub.rating,
-        						GROUP_CONCAT(CONCAT(jm.meta_key,'|',jm.meta_value)) as meta
-         						FROM {$wpdb->prefix}userjobs as ub JOIN {$wpdb->prefix}postmeta as jm
-							 	ON ub.job_id = jm.post_id 
-							 	WHERE ub.user_id = %d 
-							 	$and 
-							 	GROUP BY jm.post_id", $qv['user_id']);
+         $sql = $wpdb->prepare("SELECT {$wpdb->prefix}users.*, GROUP_CONCAT(CONCAT({$wpdb->prefix}usermeta.meta_key,'|',{$wpdb->prefix}usermeta.meta_value)) AS usermeta,{$wpdb->prefix}userjobs.*
+                              FROM {$wpdb->prefix}users
+                              JOIN {$wpdb->prefix}usermeta ON user_id = {$wpdb->prefix}users.ID
+                              JOIN {$wpdb->prefix}userjobs ON {$wpdb->prefix}userjobs.user_id = {$wpdb->prefix}users.ID
+                              WHERE {$wpdb->prefix}userjobs.user_id = %d
+                              GROUP BY {$wpdb->prefix}userjobs.user_id", $qv['user_id']);
 
-        $this->jobs = $wpdb->get_results($sql);
+                            
+        $minyawns = $wpdb->get_results($sql);
 
         $this->job_count = count($this->jobs);
 
-        if ($this->job_count > 0) {
-            $include_meta = array('job_start_date_time', 'job_end_date_time', 'job_wages');
+       if (!empty($minyawns)) {
+            foreach ($minyawns as $minyawn) {
 
-            //convert the meta string to php array
-            foreach ($this->jobs as &$value) {
-                $meta = explode(',', $value->meta);
+                
+                $user = array(
+                    'user_login' => $minyawn->user_login,
+                    'profile_name' => $minyawn->display_name,
+                    'user_email' => $minyawn->user_email,
+                    'user_id' => $minyawn->ID,
+                    'user_to_job' => $minyawn->job_id,
+                    'user_job_status' => $minyawn->status
+                );
 
-                $parsedmeta = array();
-                foreach ($meta as $m) {
-                    $mt = explode('|', $m);
 
-                    if (in_array($m[0], $include_meta))
-                        $parsedmeta[$mt[0]] = $mt[1];
+
+
+
+                //convert the meta string to php array
+                $usermeta = explode(',', $minyawn->usermeta);
+               
+                $fb_uid = false;
+                foreach ($usermeta as $meta) {
+
+                    $meta = explode('|', $meta);
+
+                    if (in_array($meta[0], $this->include_user_meta))
+                        $user[$meta[0]] = maybe_unserialize($meta[1]);
+
+                    if ($meta[0] == 'avatar_attachment')
+                        $user['image'] = wp_get_attachment_thumb_url($meta[1]);
+
+                    if ($meta[0] == 'facebook_uid')
+                        $fb_uid = $meta[1];
                 }
-                $value->meta = $parsedmeta;
+
+                //set image
+                if (!isset($user['image']) && $fb_uid !== false)
+                    $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
+                elseif (!isset($user['image']))
+                    $user['image'] = false;
+
+                if (!isset($user['rate_like']))
+                    $user['rate_like'] = 0;
+                if (!isset($user['rate_dislike']))
+                    $user['rate_dislike'] = 0;
+
+                $this->minyawns[$minyawn->ID] = $user;
             }
         }
     }

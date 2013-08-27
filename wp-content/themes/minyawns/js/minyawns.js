@@ -125,14 +125,6 @@ jQuery(document).ready(function($) {
         $('#profile-edit-form').find('span.form-error').remove();
 
 
-
-
-
-
-
-
-
-
         //attach it to global window so we can use it later to update the main profile view
         window.profile = new Profile();
         window.profile.bind('invalid', function(model, error, options) {
@@ -830,15 +822,34 @@ jQuery(document).ready(function($) {
                     //$("#list-my-jobs").hide();
 
                 } else {
+                    if(window.location.href.indexOf("jobs") > -1) {
+       
+    
                     var template = _.template($("#my-jobs").html());
                     _.each(collection.models, function(model) {
 
                         var html = template(model.toJSON());
                         $("#list-my-jobs").append(html);
                     });
+                    }
+                    else
+                        {
+                            $("#accordion22").empty();
+                            var template = _.template($("#browse-jobs-table-profile").html());
+                    _.each(collection.models, function(model) {
+                       
+                        if (model.toJSON().load_more === 1)
+                            $("#load-more").hide();
+
+
+                        var html = template(model.toJSON());
+                        $("#accordion22").append(html);
+                    });
+                    $(".load_ajax").hide();
+                   
+                        }
+               
                 }
-
-
             },
             error: function(err) {
                 //console.log(err);
@@ -1130,7 +1141,10 @@ $(".load_ajax4").hide();
 
 
     /* function on page load*/
-    fetch_my_jobs();
+   
+      fetch_my_jobs();
+    
+    
 
 });
 
