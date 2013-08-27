@@ -110,8 +110,8 @@ class Minyawn_Job {
 
 
         $minyawns = $wpdb->get_results($sql);
-       
-        $this->applied_by=count($minyawns);
+
+        $this->applied_by = count($minyawns);
 
         if (!empty($minyawns)) {
             foreach ($minyawns as $minyawn) {
@@ -274,7 +274,7 @@ class Minyawn_Job {
 
     //can user apply
     public function can_apply() {
-        
+
         $this->can_apply = 0;
 
         //check if requirement is complete
@@ -319,12 +319,11 @@ class Minyawn_Job {
         return implode(',', $this->job_tags);
     }
 
-    public function check_minyawn_job_status($jobID)
-    {
+    public function check_minyawn_job_status($jobID) {
         global $wpdb;
-             $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND  {$wpdb->prefix}userjobs.user_id='" . get_user_id() . "'";
-                //AND  {$wpdb->prefix}userjobs.user_id='".get_user_id()."'
-                $querystr = "
+        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND  {$wpdb->prefix}userjobs.user_id='" . get_user_id() . "'";
+        //AND  {$wpdb->prefix}userjobs.user_id='".get_user_id()."'
+        $querystr = "
                             SELECT $wpdb->posts.*,{$wpdb->prefix}userjobs.*
                             FROM $wpdb->posts,{$wpdb->prefix}userjobs
                             $my_jobs_filter
@@ -333,32 +332,45 @@ class Minyawn_Job {
                             ORDER BY $wpdb->posts.ID DESC
                                ";
 
-                $user_applied_to = $wpdb->get_results($querystr, OBJECT);
+        $user_applied_to = $wpdb->get_results($querystr, OBJECT);
 
-                if(count($user_applied_to) >0){
-                foreach($user_applied_to as $applied)
-                {
-                    if($applied->status == "hired")
-                        $applied=3;
-                    
-                    if($applied->status == "applied")
-                        $applied=2;
-                    
-                }
-                }else
-                {
-                    $applied=0;
-                }
-                
-                  if ((int) $min_job->required_minyawns === count($min_job->minyawns) + 2)
-                      $applied=1;
-                
-                
-                return $applied;
-        
-        
+        if (count($user_applied_to) > 0) {
+            foreach ($user_applied_to as $applied) {
+                if ($applied->status == "hired")
+                    $applied = 3;
+
+                if ($applied->status == "applied")
+                    $applied = 2;
+            }
+        }else {
+            $applied = 0;
+        }
+
+        if ((int) $min_job->required_minyawns === count($min_job->minyawns) + 2)
+            $applied = 1;
+
+
+        return $applied;
     }
-    
-    
+
+    function get_total_jobs() {
+        global $wpdb;
+           $tables = "$wpdb->posts, $wpdb->postmeta";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+           
+
+            $querystr = "
+                            SELECT $wpdb->posts.* 
+                            FROM $tables
+                            $my_jobs_filter
+                            AND $wpdb->posts.post_status = 'publish' 
+                            AND $wpdb->posts.post_type = 'job'
+                            
+                         ";
+
+        return $wpdb->get_results($querystr, OBJECT);
+    }
+
 }
 

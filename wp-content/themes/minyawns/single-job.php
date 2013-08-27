@@ -121,12 +121,27 @@ padding-left: 16px;
                           <?php endif; ?>
 		      </p>
 		   </div>
+                    <span class='load_ajax3' style="display:none"></span>
+                    <?php 
+                      if(get_user_role() == "minyawn"){ 
+                         if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3){ ?>
+                                
+                                <a href="#" class="btn btn-medium btn-block btn-success red-btn">You are hired</a>
+                                
+                         <?php }else if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 0 ) : ?>
+			         	<a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success" data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?>">Apply</a>
+			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2 ) : ?>
+			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
+			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 1 ) : ?>
+			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn">Requirement Complete</a>
+			         <?php endif;
+                      }?>
 		   <div class="singlejobedit" style="height: 680px; ">
 					<div id="single-jobs" class="span12" style=" margin-left: 0px; width: 100%; ">
 		   <div  class="row-fluid  list-jobs single-jobs ">
 		 
 		      <div class="span12 jobs-details">
-		         <div class="span2 img-logo"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/> </div>
+		         <div class="span2 img-logo"> <?php echo get_avatar($minyawn_job->ID,20) ?> </div>
 		         <div class="span3 minyawns-select">
 		            <span><?php echo $minyawn_job->get_job_applied_minyawns(); ?></span>
 		            <div><b>Minyawns Have Applied</b></div>
@@ -163,73 +178,12 @@ padding-left: 16px;
 		            <div class="span3 jobsimg"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/></div>
 		            <div class="span9 job-details"><?php echo $minyawn_job->get_job_details() ?></div>
 		         </div>
-		         <?php if(get_user_role() === 'minyawn'){ ?> 
-		         	<hr class="border-color">
-		         	<img class="bottom-arrow" src="<?php echo get_template_directory_uri() ?>/images/bottom-arrow.png">
-                                <div class="row-fluid minyawns-grid">
-                                <ul class="thumbnails apply-job">
-              <li class="span3">
-                  
-                <div class="thumbnail">
-        
-                  <div class="caption">
-                      <?php if(count($minyawn_job->minyawns)>0){
-                      foreach($minyawn_job->minyawns as $min){
-                          //echo get_avatar($min->user_id,20);
-                          ?>                    
-				      <div class="rating">
-					<a href="#fakelink">
-						<i class="icon-thumbs-up"></i> <?php echo $min->rate_like; ?>
-					</a>
-					
-					<a href="#fakelink"  class="icon-thumbs">
-					<i class="icon-thumbs-down"></i> <?php echo $min->rate_dislike; ?>
-					</a>
-                      
-                      
-                      
-                      <?php } } else{ ?>
-                      <img src="<?php echo get_template_directory_uri() ?>/images/profile.png"/>
-				      <div class="rating">
-					<a href="#fakelink">
-						<i class="icon-thumbs-up"></i> 0
-					</a>
-					
-					<a href="#fakelink"  class="icon-thumbs">
-					<i class="icon-thumbs-down"></i> 0
-					</a>
-                      <?php }?>
-					</div>
-<!--                   <h4> </h4>-->
-                  <div class="collage">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
-				 
-					
-					<hr>
-					  <?php 
-                       
-                         if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3){ ?>
-                                
-                                <a href="#" class="btn btn-medium btn-block btn-success red-btn">You are hired</a>
-                                
-                         <?php }else if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 0 ) : ?>
-			         	<a href="#" id="apply-job" class="btn btn-medium btn-block  btn-primary" data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?>">Apply</a>
-			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2 ) : ?>
-			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block  btn-danger red-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
-			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 1 ) : ?>
-			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn">Requirement Complete</a>
-			         <?php endif;?>
-                  </div>
-                </div>
-              </li>
-			  </ul>
-                                </div>
-		        <?php
-                         }  else{  
+		       <?php
                                 //show all applied minyanws data
 			     	include_once 'applied_minyaws.php';
                          
                                 
-                         };
+                        
 			     ?>
 		   </div>
 		</div>

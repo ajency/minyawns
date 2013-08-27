@@ -6,7 +6,9 @@
 jQuery(document).ready(function($) {
 
     /********************************** PROFILE JS CODE *************************************/
-
+//$('html').click(function(e) {
+//    $('#user-popdown').popover('hide');
+//});
 
     $("#job_wages").keydown(function(event) {
         // Allow only backspace and delete
@@ -27,8 +29,9 @@ jQuery(document).ready(function($) {
                 {
                     placement: 'bottom',
                     html: true,
-                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4></h4><p class="muted">' + email + '</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
-                }
+                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4></h4><p class="muted">' + email + '</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
+                   
+        }
         );
     }
 
@@ -353,7 +356,10 @@ jQuery(document).ready(function($) {
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
                     _.each(collection.models, function(model) {
-
+                if(model.toJSON().load_more == "1")
+                    $("#load-more").hide();
+                    
+                    
                         var html = template(model.toJSON());
                         $("#accordion2").append(html);
                     });
@@ -743,12 +749,14 @@ jQuery(document).ready(function($) {
         var _this = $(this);
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
+        $(".load_ajax1").show();
         $.post(ajaxurl,
                 {
                     action: 'minyawn_job_' + _action,
                     job_id: parseInt(_job_id)
                 },
         function(response) {
+            $(".load_ajax1").hide();
             if (response.success == 1)
             {
 
@@ -758,6 +766,7 @@ jQuery(document).ready(function($) {
                 if (response.new_action == 'apply')
                 {
                     $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
+                    $(_this).attr('data-action', 'apply');
                 }
                 if (response.new_action == 'unapply')
                 {

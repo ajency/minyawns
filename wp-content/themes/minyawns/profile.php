@@ -168,7 +168,7 @@ get_header();  ?>
 											<table class="ins_table profile">
 												 <tr class="data_even completed">
 														<td class="data_cell awm_service_title profile-logo" >
-															<img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/>
+															<?php echo get_avatar(get_user_id(),50)?>
 														</td>
 														<td class="data_cell awm_service_demand profile-date">
 														   <span class="service-total-demand" data-count="1">10</span>
