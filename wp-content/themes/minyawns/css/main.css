@@ -1759,12 +1759,13 @@ a:hover {
     margin: 10px auto;
   }
   .page-error {
-    width: 90%;
+    width: auto;
     margin: auto;
     border: 10px solid rgba(204, 204, 204, 0.57);
   }
   .page-error .green-btn {
     margin: auto !important;
+    width: 100%;
   }
 }
 @media (max-width: 767px) and only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
