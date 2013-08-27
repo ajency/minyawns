@@ -4,7 +4,146 @@
   Template Name: Profile Page
  */
 get_header();  ?>
+<script type="text/template" id="browse-jobs-table-profile">
 
+    <div style="clear:both;">	</div>
+    <div class="accordion-group">
+    <div id="last-job-id" last-job="<%= post_id %>" value="<%= post_id %>"></div>
+    <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
+    <div class="span12 data-title available">
+    <div class="job-logo header-sub"> <%= job_author_logo %></div>
+    <div class="job-date header-sub">
+    <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
+    <div>
+    <%= job_start_month %><b class="service-client-demand" data-count="0"><%= job_start_year %></b>
+    </div>
+    <div class="demand"><%= job_day %></div>
+    </div>
+    <div class="job-time header-sub duration_mob">
+    <div class="row-fluid">
+    <div class="span5 mob-botm">
+    <span data-count="0" class="total-exchange-count"><%= job_start_time %></span>
+    <div>
+    <%= job_start_meridiem %>
+    </div>
+    </div>
+    <div class="span2">
+    <b class="time-bold">to</b>
+    </div>
+    <div class="span5">
+    <span data-count="0" class="total-exchange-count"><%= job_end_time %></span>
+    <div>
+    <%= job_end_meridiem %>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="job-wage header-sub">
+    <ins><span class="amount">$ <%= job_wages %></span></ins>
+    </div>
+
+    <div class="job-progress header-sub">
+    
+     <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
+        <span class="label-available">Available</span>
+
+
+        <% else if (todays_date_time > job_end_time_check){%>
+         <span class="label-unavailable">This job is complete</span>
+
+        <% }else if (can_apply_job == 3){%>
+         <span class="label-hired">You are hired for this job.</span>
+        <% }else if (can_apply_job == 2) {%>
+         <span class="label-available">You have applied for this job.</span>
+
+        <% }
+        %> 
+    
+
+    </div>
+
+    <div class="job-action header-sub">
+
+    <div class="arrow-down">
+    </div>
+
+    </div>
+    </div>
+    </a>
+    </div>
+
+    <div id="collapse<%= post_id %>" class="accordion-body collapse ">
+    <div class="accordion-inner">
+    <div class="row-fluid header-title">
+    <div class="span12">
+    <h3><a href=<?php echo site_url() ?>/job/<%= post_slug %> target="_blank" > <%= post_title %> <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
+    </div>
+    </div>
+    <div class="row-fluid job-data">
+    <div class="span9 inner-data">
+    <div class="row-fluid minywans_list">
+    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link"><%= job_author %></a>  </div>
+    </div>
+    <div class="row-fluid minywans_list">
+    <div class="span3 "><b>Location :</b></div><div class="span9"><%= job_location %> </div>
+    </div>
+    <div class="row-fluid minywans_list">
+    <div class="span3 "><b>Details :</b></div><div class="span9"><%= job_details.substring(0, 140) %> </div>
+    </div>
+    <div class="row-fluid minywans_list">
+    <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<tags_count;i++){ %> <span class="label"><%= tags[i] %></span><%}%> </div>
+    </div>
+    </div>
+    <div class="span3">
+    <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-left.png">
+    <div class="div-box-block">
+<span class='load_ajax1' style="display:none"></span>
+<?php if (get_user_role() === 'minyawn'): ?> 
+
+            <%  if(can_apply_job == 3) %>
+            <a href="#" class="required">You are hired!</a>
+            <% else if(can_apply_job == 2 )%>
+            <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
+            <% else if(can_apply_job == 0 ) %>
+            <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
+            
+            <% else if(can_apply_job == 1 ) %>
+            <a href="#" class="required">Requirement Complete</a>
+  
+    
+
+    <?php
+else:
+    ?>
+            <%  if(can_apply_job == 1 || todays_date_time > job_end_time_check) %>
+            <a href="#" class="required">Requirement Complete</a>
+
+            <% else if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
+            <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
+            <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
+            <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
+            <% }
+            %> 
+
+<?php
+endif;
+?>
+
+    </div>
+
+    </div>
+    </div>
+
+
+
+    </div>
+
+    <!-- Row Div -->
+
+
+</script>
 <div class="container">
 	<div id="main-content" class="main-content bg-white">
 		<div class="breadcrumb-text">
@@ -128,111 +267,29 @@ get_header();  ?>
 				</div>
 
 				<hr>
-				<div id="my-history" class="row-fluid">
-					<div class="span12">
-						<section id="no-more-tables">
-							<?php $jobs = new MN_User_Jobs(array('user_id' => get_user_id())); ?>
+				<div class="clear"></div><br>
+                                <div class="jobs_table">
+            <div id="browse-jobs-table" class="table-border browse-jobs-table">
+               
+                <!-- Row Div header -->
+                <div class="row-fluid ">
+                    <div class="span12 header-title">
+                        <div class="job-logo header-sub"> Logo</div>
+                        <div class="job-date header-sub"> Session Date</div>
+                        <div class="job-time header-sub">Duration</div>
+                        <div class="job-wage header-sub">Wages</div>
+                        <div class="job-progress header-sub">Progress</div>
+                        <div class="job-action header-sub">Action</div>
+                    </div>
+                </div>
 
-							<?php if($jobs->have_jobs()): ?>
-							<table class="qlabs_grid_container tablesorter jobs_table">
-								<thead>
-									<tr class="header_row">
-										<td colspan="7" class="header_cell">
-											<div class="row-fluid">
-												<div class="span12">
-													<h3 class="page-title">My History</h3>
-													<!-- header label -->
-													Applied, pending and completed job history
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr class="subheader_row profile">
-										<th
-											class="subheader_cell awm_exchange_service_tlt service_tlt headerSortDown profile-logo">Logo</th>
-										<th
-											class="subheader_cell awm_exchange_service_demand headerSortDown profile-date">Session
-											Date</th>
-										<th
-											class="subheader_cell awm_exchange_service_supply headerSortDown profile-time">Duration</th>
-										<th
-											class="subheader_cell awm_exchange_service_discount headerSortDown profile-wages">Wages</th>
-											<th class="subheader_cell awm_exchange_service_discount headerSortDown profile-status">Status </th>
-										<th class="subheader_cell awm_exchange_services_action profile-rating">Ratings</th>
-									</tr>
-								</thead>
-								<tbody class="data_container">
-									<tr class="data_even">
-										<!-- table 1-->
-										<td colspan="7">
-											<table class="ins_table profile">
-												 <tr class="data_even completed">
-														<td class="data_cell awm_service_title profile-logo" >
-															<?php echo get_avatar(get_user_id(),50)?>
-														</td>
-														<td class="data_cell awm_service_demand profile-date">
-														   <span class="service-total-demand" data-count="1">10</span>
-														   <div>
-															 June<b  class="service-client-demand" data-count="1">2013</b>
-														   </div>
-														   <div class="demand"> Thusrday</div>
-														</td>
-														<td  class="data_cell awm_service_supply duration_mob profile-time">
-															 <div class="row-fluid">
-														  <div class="span5">
-															<span data-count="0" class="total-exchange-count">8:00</span>
-															   <div>
-																 am
-															   </div>
-															</div>
-														  <div class="span2">
-															<b class="time-bold">to</b>
-														</div>
-														<div class="span5">
-															 <span data-count="0" class="total-exchange-count">12:00</span>
-																<div>
-																pm
-																</div>
-														 </div>
-														   </div>
-														</td>
-														<td   class="data_cell awm_service_discount profile-wages">
-														   <ins><span class="amount">$28</span></ins>
-														</td>
-														<td   class="data_cell awm_service_discount profile-status">
-														  <!--<span class="label label-small label-success">Completd</span>-->
-													<span class="label label-small label-important">Pending</span>
-														 <!-- <span class="label label-small label-warning">Applied</span> -->
-														</td>
-													   <td   class="data_cell awm_service_action rating profile-rating">
-														 <span class="ratings"> +1</span>
-														</td>
-													 </tr>
-											</table>
-										</td>
-									</tr>
+                <div class="row-fluid " id="accordion22" >
 
-								</tbody>
-							</table>
-						<?php else: ?>
+                </div>
 
-							<!--show html here if user doesn't have any jobs-->
-
-							<div class="alert alert-info myjobs ">
-								<h4 style="text-align: center">No Jobs Available</h4>
-								<hr>
-								There doesn't seem to be anything here. you can apply for jobs
-                                                                on the '<B>Browse Jobs</B>' page <a href="<?php echo site_url();?>/jobs/"
-									class="btn btn-large btn-block btn-success default-btn">Take Me
-									There</a>
-							</div>
-
-
-							<?php endif; ?>
-						</section>
-						<br>
-					</div>
-				</div>
+                <button class="btn load_more" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
+            </div>
+                        </div>
 				<div class="clear"></div>
 			</div>
 			<div class="span12" id="profile-edit">
