@@ -743,12 +743,14 @@ jQuery(document).ready(function($) {
         var _this = $(this);
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
+        $(".load_ajax1").show();
         $.post(ajaxurl,
                 {
                     action: 'minyawn_job_' + _action,
                     job_id: parseInt(_job_id)
                 },
         function(response) {
+            $(".load_ajax1").hide();
             if (response.success == 1)
             {
 

@@ -38,6 +38,30 @@ margin: auto;
    
 }
 
+.load_ajax1 {
+   
+      background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
+float: left;
+    height: 21px;
+    margin: 11px auto auto 114px;
+    position: inherit;
+    width: 20px;
+    
+   
+}
+
+
+.load_ajax2 {
+   
+      background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
+float: left;
+    height: 21px;
+    margin: 11px auto auto 114px;
+    position: inherit;
+    width: 20px;
+    
+   
+}
 .load_ajax_calendar {
      background: url("../images/2.gif") no-repeat scroll 50% 50% rgba(0, 0, 0, 0.5);
     float: none;

@@ -121,7 +121,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
-                            LIMIT " . $_GET['offset'] . ",2
+                            LIMIT " . $_GET['offset'] . ",1
                          ";
 
             $data = array();
@@ -159,8 +159,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_start_year' => date('Y', $post_meta['job_start_date'][0]),
                     'job_start_meridiem' => date('a', $post_meta['job_start_time'][0]),
                     'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),
-                    'job_start_time' => date('H:i', $post_meta['job_start_time'][0]),
-                    'job_end_time' => date('H:i', $post_meta['job_end_time'][0]),
+                    'job_start_time' => date('g:i', $post_meta['job_start_time'][0]),
+                    'job_end_time' => date('g:i', $post_meta['job_end_time'][0]),
                     'job_location' => $post_meta['job_location'][0],
                     'job_details' => $pagepost->post_content,
                     'tags' => $tags,
