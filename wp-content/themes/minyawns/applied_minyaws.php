@@ -1,8 +1,9 @@
 	
 <div class="row-fluid minyawns-grid">
     <ul class="thumbnails">
-        <?php if (count($minyawn_job->minyawns) > 0) {
+        <?php  
             foreach ($minyawn_job->minyawns as $minyawn):
+               
                 ?>
                 <li id="hire-thumb<?php echo $minyawn['user_id'] ?>" <?php if ($minyawn['user_job_status'] == "hired") { ?>class="span3 minyans-select" <?php } else { ?>class="span3" <?php } ?>>
                     <div class="thumbnail " >
@@ -32,8 +33,9 @@
         } ?>
                             <hr>
 
-
-
+<?php
+	  if(get_user_role() == "employer"){
+                                 ?>
 
                             <div class="dwn-btn">
                                 <div class="roundedTwo">
@@ -41,14 +43,16 @@
                                     <label for="roundedTwo<?php echo $minyawn['user_id'] ?>"> </label>Select Donec id elit
                                 </div>
                             </div>
-
+                      <?php }?>
 
 
                         </div>
                     </div>
                 </li>
     <?php endforeach;
-} else { ?>
+    
+    function show_single_user($jobId,$minyawn_job){
+?>
             <li class="span3">
                 <div class="thumbnail">
 
@@ -63,7 +67,21 @@
                                 <i class="icon-thumbs-down"></i> 0
                             </a>
                         </div>
-                        <h4> Apply Job</h4>
+                         <?php 
+                      if(get_user_role() == "minyawn"){ 
+                         if($minyawn_job->check_minyawn_job_status($jobId) == 3){ ?>
+                                
+                                <a href="#" class="btn btn-medium btn-block btn-success red-btn">You are hired</a>
+                                
+                         <?php }else if($minyawn_job->check_minyawn_job_status($jobId) == 0 ) : ?>
+			         	<a href="#" id="apply-job" class="btn btn-medium btn-block  btn-primary" data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?>">Apply</a>
+			         <?php elseif($minyawn_job->check_minyawn_job_status($jobId) == 2 ) : ?>
+			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block  btn-danger red-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
+			         <?php elseif($minyawn_job->check_minyawn_job_status($jobId) == 1 ) : ?>
+			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn">Requirement Complete</a>
+			         <?php endif;
+                      }
+                                 ?>
                         <div class="collage">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
 
 
@@ -74,10 +92,11 @@
                     </div>
                 </div>
             </li>
+    <?php } ?>
 
-<?php } ?>
     </ul>
 </div>
-
+<?php if(get_user_role() == "employer") { ?>
 <a href="#fakelink" id="confirm-hire"  class="btn btn-medium btn-block green-btn btn-success" <?php if(count($minyawn_job->minyawns) == 0){?>style="display:none" <?php } ?> >Confirm & Hire</a>
 <a href="#fakelink" id="edit-selection"  class="btn btn-medium btn-block green-btn btn-success" style="display: none">Edit Selection</a>
+<?php } ?>

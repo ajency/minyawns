@@ -301,7 +301,7 @@ class MN_User_Jobs {
         $this->job_count = count($this->jobs);
 
         if ($this->job_count > 0) {
-            $include_meta = array('job_logo', 'startdatetime', 'enddatetime', 'wages');
+            $include_meta = array('job_start_date_time', 'job_end_date_time', 'job_wages');
 
             //convert the meta string to php array
             foreach ($this->jobs as &$value) {
