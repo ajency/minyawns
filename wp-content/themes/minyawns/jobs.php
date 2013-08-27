@@ -55,9 +55,9 @@ global $minyawn_job;
 
 
         <% else if (todays_date_time > job_end_time_check){%>
-         <span class="label-unavailable">UnAvailable</span>
+         <span class="label-unavailable">This job is complete</span>
 
-        <% else if (can_apply_job == 3){%>
+        <% }else if (can_apply_job == 3){%>
          <span class="label label-small label-important">You are hired for this job.</span>
         <% }else if (can_apply_job == 2) {%>
          <span class="label label-small label-important">You have applied for this job.</span>
