@@ -110,6 +110,7 @@ class Minyawn_Job {
 
 
         $minyawns = $wpdb->get_results($sql);
+       
         $this->applied_by=count($minyawns);
 
         if (!empty($minyawns)) {

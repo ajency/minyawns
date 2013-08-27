@@ -4,6 +4,7 @@
 
  */
 get_header();
+global $minyawn_job;
 ?>
 
 <!-- Row Div -->
@@ -15,7 +16,7 @@ get_header();
     <div class="accordion-heading">
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
     <div class="span12 data-title available">
-    <div class="job-logo header-sub"> <img src="<?php echo get_template_directory_uri(); ?>/images/walmart-logo.png"></div>
+    <div class="job-logo header-sub"> <%= job_author_logo %></div>
     <div class="job-date header-sub">
     <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
     <div>
@@ -76,7 +77,7 @@ get_header();
     <div class="accordion-inner">
     <div class="row-fluid header-title">
     <div class="span12">
-    <h3><a href=<?php echo site_url() ?>/job/<%= post_slug %> target="_blank" > Walmart <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
+    <h3><a href=<?php echo site_url() ?>/job/<%= post_slug %> target="_blank" > <%= post_title %> <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
     </div>
     </div>
     <div class="row-fluid job-data">
@@ -88,7 +89,7 @@ get_header();
     <div class="span3 "><b>Location :</b></div><div class="span9"><%= job_location %> </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Details :</b></div><div class="span9"><%= job_details %> </div>
+    <div class="span3 "><b>Details :</b></div><div class="span9"><%= job_details.substring(0, 140) %> </div>
     </div>
     <div class="row-fluid minywans_list">
     <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<tags_count;i++){ %> <span class="label"><%= tags[i] %></span><%}%> </div>
@@ -190,7 +191,7 @@ get_header();
     <div class="span12 expand">
     <div class="span8 details"> 
     <div class="row-fluid">
-    <div class="span4"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/></div>
+    <div class="span4"> <%= job_author_logo %></div>
     <div class="span8"><%= job_details %></div>
     </div><br>
     <div class="row-fluid minyawansgrid">
@@ -390,7 +391,7 @@ get_header();
             <div id="jobs-list">
                 <div class="tab-pane" id="tab2">
                     <?php
-//if (is_user_logged_in() == TRUE) {
+if (get_user_role() === "employer") {
                     ?>
                     <div class="dialog dialog-success">
                         <button class="btn btn-primary btn-wide mll" id="add-job-button">
@@ -398,7 +399,7 @@ get_header();
                             Add Jobs
                         </button>
                     </div>
-                    <?php //}     ?>
+                    <?php }     ?>
 
                     <div id="add-job-form" style="display:none;">
 

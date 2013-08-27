@@ -134,8 +134,8 @@ $app->get('/fetchjobs/', function() use ($app) {
 
 
                 $min_job = new Minyawn_Job($pagepost->ID);
-                
-                $minyawns_have_applied=$min_job->get_applied_by();
+
+                $minyawns_have_applied = $min_job->get_applied_by();
                 $user_data = array();
                 foreach ($min_job->minyawns as $min) {
                     $user = array_push($user_data, $min['profile_name']);
@@ -172,8 +172,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_end_time_check' => $post_meta['job_end_date_time'][0],
                     'todays_date_time' => current_time('timestamp'),
                     'post_slug' => wp_unique_post_slug($pagepost->post_name, $pagepost->ID, 'published', 'job', ''),
-                    'users_applied'=>$user_data,
-                    'minyawns_have_applied'=>$minyawns_have_applied
+                    'users_applied' => $user_data,
+                    'minyawns_have_applied' => $minyawns_have_applied
                 );
             }
 
@@ -262,17 +262,24 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
 $app->post('/confirm', function() use ($app) {
 
             global $wpdb;
-            $split_user = explode(",", $_POST['user_id']);
+            $split_user = explode("-", $_POST['status']);
             for ($i = 0; $i < sizeof($split_user); $i++) {
-                $wpdb->get_results(
-                        "
+
+                $split_status = explode(",", $split_user[$i]);
+               // for ($j = 0; $j < sizeof($split_status); $j++) {
+
+                    $wpdb->get_results(
+                            "
 	UPDATE {$wpdb->prefix}userjobs 
-	SET status = 'hired'
-	WHERE user_id = '" . $split_user[$i] . "' 
+	SET status = '".$split_status[1]."'
+	WHERE user_id = '" . $split_status[0] . "' 
 		AND job_id = '" . $_POST['job_id'] . "'
 	"
-                );
+                    );
+               // }
             }
+
+            echo json_encode($_POST['user_id']);
         });
 
 
