@@ -24,6 +24,14 @@ a:hover {
 .bootstrap-timepicker-widget {
   z-index: 9999 !important;
 }
+.label-available {
+  color: #8ed030;
+  line-height: 36px;
+}
+.label-unavailable {
+  color: red;
+  line-height: 36px;
+}
 .load_more {
   width: 98%;
   margin: 10px auto;
@@ -355,6 +363,7 @@ a:hover {
   text-align: center;
   color: #707070;
   font-weight: bold;
+  text-decoration: none;
   line-height: 30px;
   display: block;
 }
@@ -389,7 +398,13 @@ a:hover {
   font-size: 13px;
   font-weight: normal;
   display: inline-block;
-  padding: 3px;
+  adding: 2px 10px;
+  float: right;
+  height: 27px;
+  color: #928C8C;
+}
+.jobs_table .accordion-inner .header-title .view-link:hover {
+  color: #8ed030;
 }
 .jobs_table .accordion-inner .job-data {
   border: 1px solid #EEEBEB;
@@ -2086,4 +2101,7 @@ a:hover {
 .div-box-block .btn {
   width: 70%;
   margin: auto;
+}
+.accordion-heading a.open .arrow-down {
+  background: url(../images/tablepsd_09.png) no-repeat !important;
 }

@@ -44,18 +44,18 @@ get_header();
     </div>
 
     <div class="job-wage header-sub">
-    <ins><span class="amount"><%= job_wages %></span></ins>
+    <ins><span class="amount">$ <%= job_wages %></span></ins>
     </div>
 
     <div class="job-progress header-sub">
     
      <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
-        <span class="label label-small label-success">Available</span>
+        <span class="label-available">Available</span>
 
         <% else if (todays_date_time > job_end_time_check){%>
-         <span class="label label-small label-important">UnAvailable</span>
+         <span class="label-unavailable">UnAvailable</span>
         <% }else {%>
-         <span class="label label-small label-important">UnAvailable</span>
+         <span class="label-unavailable">UnAvailable</span>
         <% }
         %> 
     

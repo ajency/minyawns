@@ -1126,3 +1126,11 @@ function ucfirst(str) {
     var f = str.charAt(0).toUpperCase();
     return f + str.substr(1);
 }
+
+jQuery('.collapse').live('show', function(){
+    $(this).parent().find('a').addClass('open'); //add active state to button on open
+});
+
+jQuery('.collapse').live('hide', function(){
+    $(this).parent().find('a').removeClass('open'); //remove active state to button on close
+});
