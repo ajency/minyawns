@@ -229,6 +229,11 @@ jQuery(document).ready(function($) {
             else
                 $(_this).html('Cancel');
         });
+        $("#add-job-form").find('input:text').val('');
+                        $("#job_task").val('');
+                        $("#job_details").val(" ");
+
+                        $('#job_tags_tagsinput').find('span').remove();
     });
     var Job = Backbone.Model.extend({
         url: function() {

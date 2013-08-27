@@ -431,7 +431,7 @@ endif;
                                     <div class="controls">
                                         <div class="input-prepend input-datepicker">
                                             <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                            <input type="text" class="span1" name="job_start_date" value="" id="job_start_date">
+                                            <input type="text" class="span1" readonly name="job_start_date" value="" id="job_start_date">
                                         </div>
 
                                     </div>
