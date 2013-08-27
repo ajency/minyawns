@@ -39,7 +39,7 @@
 
                             <div class="dwn-btn">
                                 <div class="roundedTwo">
-                                    <input type="checkbox" id="roundedTwo<?php echo $minyawn['user_id'] ?>" data-user-id="<?php echo $minyawn['user_id'] ?>" data-job-id="<?php echo $minyawn['user_to_job'] ?>"    name="confirm-miny[]"  id="<?php echo $minyawn['user_login'] ?>" <?php if ($minyawn['user_job_status'] == "hired") { ?>checked class="minyans-select" <?php } ?> >
+                                    <input type="checkbox" id="roundedTwo<?php echo $minyawn['user_id'] ?>" data-user-id="<?php echo $minyawn['user_id'] ?>" data-job-id="<?php echo $minyawn['user_to_job'] ?>"    name="confirm-miny[]"  id="<?php echo $minyawn['user_login'] ?>" <?php if ($minyawn['user_job_status'] == "hired") { ?>checked disabled class="minyans-select" <?php } ?> >
                                     <label for="roundedTwo<?php echo $minyawn['user_id'] ?>"> </label>Select Donec id elit
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
 
     </ul>
 </div>
-<?php if(get_user_role() == "employer") { ?>
+<?php if(get_user_role() == "employer" && $minyawn['user_job_status'] != "hired") { ?>
 <a href="#fakelink" id="confirm-hire"  class="btn btn-medium btn-block green-btn btn-success" <?php if(count($minyawn_job->minyawns) == 0){?>style="display:none" <?php } ?> >Confirm & Hire</a>
-<a href="#fakelink" id="edit-selection"  class="btn btn-medium btn-block green-btn btn-success" style="display: none">Edit Selection</a>
+<span class='load_ajax4' style="display:none"></span>
 <?php } ?>

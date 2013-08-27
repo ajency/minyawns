@@ -230,10 +230,10 @@ jQuery(document).ready(function($) {
                 $(_this).html('Cancel');
         });
         $("#add-job-form").find('input:text').val('');
-                        $("#job_task").val('');
-                        $("#job_details").val(" ");
+        $("#job_task").val('');
+        $("#job_details").val(" ");
 
-                        $('#job_tags_tagsinput').find('span').remove();
+        $('#job_tags_tagsinput').find('span').remove();
     });
     var Job = Backbone.Model.extend({
         url: function() {
@@ -344,14 +344,19 @@ jQuery(document).ready(function($) {
 
         var Fetchjobs = Backbone.Collection.extend({
             model: Job,
-            url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
-        });
+            url:function(){
+                
+                return SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
+        }
+    });
         window.fetchj = new Fetchjobs;
+       
         window.fetchj.fetch({
             data: {
                 'offset': 0
 
             },
+            reset: true,
             success: function(collection, response) {
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
@@ -360,7 +365,8 @@ jQuery(document).ready(function($) {
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
                     _.each(collection.models, function(model) {
-                        if (model.toJSON().load_more == "1")
+                       
+                        if (model.toJSON().load_more === 1)
                             $("#load-more").hide();
 
 
@@ -398,6 +404,9 @@ jQuery(document).ready(function($) {
                 var template = _.template($("#browse-jobs-table").html());
                 $("#accordion2").empty();
                 _.each(collection.models, function(model) {
+                    
+                   if (model.toJSON().load_more === 1)
+                            $("#load-more").hide();
                     console.log(collection.models.length);
                     var html = template(model.toJSON());
                     $("#accordion2").append(html);
@@ -1070,6 +1079,8 @@ jQuery(document).ready(function($) {
     });
 
     $('#confirm-hire').live('click', function(evt) {
+        $("#confirm-hire").unbind('click',handler);
+        $(".load_ajax4").show();
         evt.preventDefault();
         var _this = $(this);
         var _user_id = $(this).attr('data-user-id');
@@ -1088,8 +1099,8 @@ jQuery(document).ready(function($) {
             group_ids += user_id + ',';
 
             $("#hire-thumb" + user_id).addClass('minyans-select');
-            $("#edit-selection").show();
-            $("#confirm-hire").hide();
+
+
         });
 
 
@@ -1100,31 +1111,9 @@ jQuery(document).ready(function($) {
                     status: sList
                 },
         function(response) {
-            alert(response);
 
-//           $("#hire-thumb"+)
-//            if (response.success == 1)
-//            {
-//
-//                $("#job-list" + _job_id).hide('slow', function() {
-//                    $("#job-list" + _job_id).remove();
-//                });
-//                if (response.new_action == 'apply')
-//                {
-//                    $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
-//                }
-//                if (response.new_action == 'unapply')
-//                {
-//                    $(_this).addClass('green-btn btn-success').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
-//                    $(_this).attr('data-action', 'unapply');
-//                }
-//
-//            }else if(response.success == 2)
-//                {
-//                   $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
-//                    $(_this).attr('data-action', 'req_complete'); 
-//                }
-
+            
+$(".load_ajax4").hide();
         }, 'json');
     });
 

@@ -236,13 +236,13 @@ class Minyawn_Job {
 
     public function get_job_start_time() {
         global $minyawn_job;
-        return date('H:i', $this->job_start_time);
+        return date('g:i', $this->job_start_time);
     }
 
     public function get_job_end_time() {
         global $minyawn_job;
 
-        return date('H:i', $this->job_end_time);
+        return date('g:i', $this->job_end_time);
     }
 
     public function get_job_end_date() {
@@ -353,7 +353,10 @@ class Minyawn_Job {
         return $applied;
     }
 
-    function get_total_jobs() {
+    
+
+}
+function get_total_jobs() {
         global $wpdb;
            $tables = "$wpdb->posts, $wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
@@ -371,6 +374,3 @@ class Minyawn_Job {
 
         return $wpdb->get_results($querystr, OBJECT);
     }
-
-}
-

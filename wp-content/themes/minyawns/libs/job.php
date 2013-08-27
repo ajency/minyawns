@@ -126,8 +126,8 @@ $app->get('/fetchjobs/', function() use ($app) {
 
             $data = array();
             $pageposts = $wpdb->get_results($querystr, OBJECT);
-            $min_job = new Minyawn_Job('');
-            $total = count($min_job->get_total_jobs());
+
+            $total = count(get_total_jobs());
             
             $no_of_pages=ceil($total/2);
             $has_more_results=0;
@@ -148,7 +148,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $applied = $min_job->check_minyawn_job_status($pagepost->ID);
                
 
-                if($has_more_results == $no_of_pages){ 
+                if($total <= $_GET['offset']+2){ 
                     $show_load=1;
                 }
                 else{
