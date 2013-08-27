@@ -121,12 +121,16 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
-                            LIMIT " . $_GET['offset'] . ",1
+                            LIMIT " . $_GET['offset'] . ",2
                          ";
 
             $data = array();
             $pageposts = $wpdb->get_results($querystr, OBJECT);
-
+            $min_job = new Minyawn_Job('');
+            $total = count($min_job->get_total_jobs());
+            
+            $no_of_pages=ceil($total/2);
+            $has_more_results=0;
             foreach ($pageposts as $pagepost) {
                 $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
                 //print_r(implode(",",$tags));exit();
@@ -142,9 +146,16 @@ $app->get('/fetchjobs/', function() use ($app) {
                 }
 
                 $applied = $min_job->check_minyawn_job_status($pagepost->ID);
+               
 
-
-                $data[] = array(
+                if($has_more_results == $no_of_pages){ 
+                    $show_load=1;
+                }
+                else{
+                    $show_load=0;
+                }
+                 $has_more_results++;
+                  $data[] = array(
                     'post_name' => $pagepost->post_title,
                     'post_date' => $pagepost->post_date,
                     'post_title' => $pagepost->post_title,
@@ -173,11 +184,12 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'todays_date_time' => current_time('timestamp'),
                     'post_slug' => wp_unique_post_slug($pagepost->post_name, $pagepost->ID, 'published', 'job', ''),
                     'users_applied' => $user_data,
-                    'minyawns_have_applied' => $minyawns_have_applied
-                );
+                    'minyawns_have_applied' => $minyawns_have_applied,
+                    'load_more'=>$show_load 
+                        );
             }
 
-            $total = count($pageposts);
+           
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
         });
@@ -266,17 +278,17 @@ $app->post('/confirm', function() use ($app) {
             for ($i = 0; $i < sizeof($split_user); $i++) {
 
                 $split_status = explode(",", $split_user[$i]);
-               // for ($j = 0; $j < sizeof($split_status); $j++) {
+                // for ($j = 0; $j < sizeof($split_status); $j++) {
 
-                    $wpdb->get_results(
-                            "
+                $wpdb->get_results(
+                        "
 	UPDATE {$wpdb->prefix}userjobs 
-	SET status = '".$split_status[1]."'
+	SET status = '" . $split_status[1] . "'
 	WHERE user_id = '" . $split_status[0] . "' 
 		AND job_id = '" . $_POST['job_id'] . "'
 	"
-                    );
-               // }
+                );
+                // }
             }
 
             echo json_encode($_POST['user_id']);

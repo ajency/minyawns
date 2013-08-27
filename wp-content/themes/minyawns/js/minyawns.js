@@ -353,7 +353,10 @@ jQuery(document).ready(function($) {
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
                     _.each(collection.models, function(model) {
-
+                if(model.toJSON().load_more == "1")
+                    $("#load-more").hide();
+                    
+                    
                         var html = template(model.toJSON());
                         $("#accordion2").append(html);
                     });

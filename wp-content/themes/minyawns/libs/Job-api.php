@@ -353,15 +353,23 @@ class Minyawn_Job {
         return $applied;
     }
 
-    function get_total_jobs($job_id) {
+    function get_total_jobs() {
+        global $wpdb;
+           $tables = "$wpdb->posts, $wpdb->postmeta";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+           
 
-        $querystr = "
-                            SELECT {$wpdb->prefix}userjobs.*
-                            FROM {$wpdb->prefix}userjobs
-                           WHERE job_id='" . $job_id . "'
-                               ";
+            $querystr = "
+                            SELECT $wpdb->posts.* 
+                            FROM $tables
+                            $my_jobs_filter
+                            AND $wpdb->posts.post_status = 'publish' 
+                            AND $wpdb->posts.post_type = 'job'
+                            
+                         ";
 
-        $count_total = $wpdb->get_results($querystr, OBJECT);
+        return $wpdb->get_results($querystr, OBJECT);
     }
 
 }
