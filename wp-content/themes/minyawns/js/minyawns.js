@@ -30,8 +30,7 @@ jQuery(document).ready(function($) {
                     placement: 'bottom',
                     html: true,
                     content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4></h4><p class="muted">' + email + '</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
-                   
-        }
+                }
         );
     }
 
@@ -356,10 +355,10 @@ jQuery(document).ready(function($) {
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
                     _.each(collection.models, function(model) {
-                if(model.toJSON().load_more == "1")
-                    $("#load-more").hide();
-                    
-                    
+                        if (model.toJSON().load_more == "1")
+                            $("#load-more").hide();
+
+
                         var html = template(model.toJSON());
                         $("#accordion2").append(html);
                     });
@@ -493,6 +492,9 @@ jQuery(document).ready(function($) {
         jQuery("#user_login").val("");
         jQuery("#div_loginmsg").html("");
         jQuery("#wp-fb-ac-fm").append('<input type="hidden" name ="fb_chk_usersigninform" id="fb_chk_usersigninform" value="loginfrm" /> '); ////jQuery("#usr_role").val('employer');
+        jQuery("#frm_login").trigger("reset");
+        $("#txt_email").removeClass("error");
+        $(".error").hide();
     })
 
     //user login form validation and user login
@@ -577,6 +579,7 @@ jQuery(document).ready(function($) {
         jQuery("#signup_password").val("");
         jQuery("#signup_fname").val("");
         jQuery("#signup_lname").val("");
+        jQuery("#signup_email").removeClass('error');
     })
 
     jQuery("#link_employerregister").live("click", function() {
@@ -602,6 +605,7 @@ jQuery(document).ready(function($) {
         jQuery("#signup_password").val("");
         jQuery("#signup_fname").val("");
         jQuery("#signup_lname").val("");
+        jQuery("#signup_email").removeClass("error");
     })
 
     jQuery("#btn_signup").live("click", function() {
@@ -1152,10 +1156,10 @@ function ucfirst(str) {
     return f + str.substr(1);
 }
 
-jQuery('.collapse').live('show', function(){
+jQuery('.collapse').live('show', function() {
     $(this).parent().find('a').addClass('open'); //add active state to button on open
 });
 
-jQuery('.collapse').live('hide', function(){
+jQuery('.collapse').live('hide', function() {
     $(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
