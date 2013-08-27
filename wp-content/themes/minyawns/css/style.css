@@ -129,6 +129,7 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 .popover #profile-data .profile-actions span {
 	 padding: 5px 0 0;
 	 display: block;
+	 text-align: center;
 	 border-top: 1px dotted #c5c5c5;
 }
 .popover #profile-data:hover .change-avatar span {
@@ -226,7 +227,7 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 	border-radius:0px!important;
 	background:#fff;
 	border-top: 2px solid #8ED030;
-	min-height: 630px;
+	/*min-height: 630px;*/
 	/*overflow-y:hidden;*/
 	overflow-x:hidden;
 	padding: 20px;
