@@ -151,8 +151,10 @@ jQuery(document).ready(function($) {
 
                 }
                
+                var msg_new=msg.replace('_', ' ');
+    
 
-                $('#' + ele.field).parent().append('<span class="form-error">' + msg.replace('_', ' ') + '</span>');
+                $('#' + ele.field).parent().append('<span class="form-error">' + msg_new.replace('skills2', 'skills') + '</span>');
     
 
 
