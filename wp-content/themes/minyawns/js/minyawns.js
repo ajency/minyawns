@@ -1123,7 +1123,7 @@ jQuery(document).ready(function($) {
         var group_ids = "";
         var user_id = "";
         var sList = "";
-        $('input[name=confirm-miny\\[\\]]').each(function() {
+        $('input[name=confirm-miny\\[\\]]:checked').each(function() {
             user_id = $(this).attr('data-user-id');
             _job_id = $(this).attr('data-job-id');
             // var status=$(this).prop("checked","checked");
