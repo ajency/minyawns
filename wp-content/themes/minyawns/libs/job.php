@@ -105,7 +105,7 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                 if (get_user_role() == "employer") {
 
-                    $tables = "$wpdb->posts";
+                    $tables = "$wpdb->posts, $wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "' AND $wpdb->posts.post_author='" . get_current_user_id() . "'";
                      $limit="LIMIT " . $_GET['offset'] . ",2";
