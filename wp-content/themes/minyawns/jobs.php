@@ -60,7 +60,7 @@ global $minyawn_job;
         <% }else if (can_apply_job == 3){%>
          <span class="label-hired">You are hired for this job.</span>
         <% }else if (can_apply_job == 2) {%>
-         <span class="label-available">You have applied for this job.</span>
+         <span >You have applied for this job.</span>
 
         <% }
         %> 

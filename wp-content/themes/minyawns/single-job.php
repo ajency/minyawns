@@ -121,21 +121,21 @@ padding-left: 16px;
                           <?php endif; ?>
 		      </p>
 		   </div>
-                    <span class='load_ajax3' style="display:none"></span>
+                   <!-- <span class='load_ajax3' style="display:none"></span>
                     <?php 
                       if(get_user_role() == "minyawn"){ 
                          if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3){ ?>
                                 
-                                <a href="#" class="btn btn-medium btn-block btn-success red-btn">You are hired</a>
+                                <a href="#" class="btn btn-medium btn-block btn-success red-btn" style=" width: 58%; margin: auto; ">You are hired</a>
                                 
                          <?php }else if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 0 ) : ?>
-			         	<a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success" data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?>">Apply</a>
+			         	<a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success" style=" width: 58%; margin: auto; " data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?> ">Apply</a>
 			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2 ) : ?>
-			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
+			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" style=" width: 58%; margin: auto; " data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
 			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 1 ) : ?>
-			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn">Requirement Complete</a>
+			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn" style=" width: 58%; margin: auto; ">Requirement Complete</a>
 			         <?php endif;
-                      }?>
+                      }?>-->
 		   <div class="singlejobedit" style="height: 680px; ">
 					<div id="single-jobs" class="span12" style=" margin-left: 0px; width: 100%; ">
 		   <div  class="row-fluid  list-jobs single-jobs ">
@@ -175,7 +175,24 @@ padding-left: 16px;
 		      </div>
 		      <div class="span12 expand">
 		         <div class="row-fluid jobdesc">
-		            <div class="span3 jobsimg"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/></div>
+		            <div class="span3 jobsimg"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/>
+					<br>
+					<span class='load_ajax3' style="display:none"></span>
+                    <?php 
+                      if(get_user_role() == "minyawn"){ 
+                         if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3){ ?>
+                                
+                                <a href="#" class="btn btn-medium btn-block btn-success red-btn" style=" width: 58%; margin: auto; ">You are hired</a>
+                                
+                         <?php }else if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 0 ) : ?>
+			         	<a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success" style=" width: 58%; margin: auto; " data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?> ">Apply</a>
+			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2 ) : ?>
+			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" style=" width: 58%; margin: auto; " data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
+			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 1 ) : ?>
+			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn" style=" width: 58%; margin: auto; ">Requirement Complete</a>
+			         <?php endif;
+                      }?>
+					</div>
 		            <div class="span9 job-details"><?php echo $minyawn_job->get_job_details() ?></div>
 		         </div>
 		       <?php

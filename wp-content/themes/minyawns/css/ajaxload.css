@@ -67,12 +67,13 @@ float: left;
 
 .load_ajax3 {
    
-      background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
-float: left;
-    height: 21px;
-    margin: 11px auto auto 114px;
-    position: inherit;
-    width: 20px;
+    background: url("../images/2.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+height: 22px;
+margin: 11px auto auto 202px;
+position: absolute;
+width: 20px;
+z-index: 999;
+
     
    
 }
