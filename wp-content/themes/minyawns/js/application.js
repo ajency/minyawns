@@ -196,6 +196,7 @@ String.prototype.repeat = function(num) {
             showSeconds: true,
             showMeridian: false
         });
+	
         $('#job_end_time').timepicker({
             minuteStep: 1,
             template: 'modal',
