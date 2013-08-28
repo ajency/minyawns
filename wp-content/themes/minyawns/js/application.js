@@ -33,6 +33,11 @@ String.prototype.repeat = function(num) {
         $(".tagsinput").tagsInput({
             onAddTag: onAddTag
         });
+        
+        $("#user_skills2").tagsInput({
+            onAddTag: onAddTag1,
+            
+        });
         // jQuery UI Sliders
         var $slider = $("#slider");
         if ($slider.length > 0) {
@@ -212,6 +217,34 @@ String.prototype.repeat = function(num) {
 
         $("#user_skills").val(uniqueTags);
     }
+    
+    function onAddTag1(tag){
+       var $keywords = $("#user_skills2").siblings(".tagsinput").children(".tag");
+        var tags = [];
+        for (var i = $keywords.length; i--; ) {
+            tags.push($($keywords[i]).text().substring(0, $($keywords[i]).text().length - 1).trim());
+        }
+
+        /*Then if you only want the unique tags entered:*/
+        var uniqueTags = $.unique(tags);
+
+        $("#user_skills2").val(uniqueTags);
+        
+    }
+    
+    function onRemoveTag1(tag) { /*removes tags from the hidden field*/
+        var $keywords = $("#user_skills2").siblings(".tagsinput").children(".tag");
+        var tags = [];
+        for (var i = $keywords.length; i--; ) {
+            tags.push($($keywords[i]).text().substring(0, $($keywords[i]).text().length - 1).trim());
+        }
+
+        /*Then if you only want the unique tags entered:*/
+        var uniqueTags = $.unique(tags);
+
+        $("#user_skills2").val(uniqueTags);
+    }
+    
     function onRemoveTag(tag) { /*removes tags from the hidden field*/
         var $keywords = $("#job_tags").siblings(".tagsinput").children(".tag");
         var tags = [];

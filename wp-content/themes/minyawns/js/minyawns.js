@@ -101,6 +101,10 @@ jQuery(document).ready(function($) {
 
                 if (ele == 'id')
                     return;
+                
+                if(ele == 'user_skills')
+                    return;
+                
                 if (attr[ele] == '')
                 {
                     errors.push({field: ele, msg: 'Please enter ' + ele});
@@ -146,9 +150,10 @@ jQuery(document).ready(function($) {
                     }
 
                 }
+               
 
                 $('#' + ele.field).parent().append('<span class="form-error">' + msg.replace('_', ' ') + '</span>');
-
+    
 
 
             })
@@ -184,9 +189,17 @@ jQuery(document).ready(function($) {
                 $('#profile-view').find('.college').text(data.college);
                 $('#profile-view').find('.major').text(data.major);
                 var skills = '';
-                _.each(data.user_skills, function(ele, index) {
-                    skills += "<span class='label label-small'>" + ele + "</span>";
-                });
+                var skill_name='';
+                
+//                _.each(data.user_skills2, function(ele, index) {
+//                    skills += "<span class='label label-small'>" + ele + "</span>";
+//                });
+                               skill_name=data.user_skills2.split(',');
+                for(i=0;i<skill_name.length;i++)
+                    {
+                       skills += "<span class='label label-small'>" + skill_name[i] + "</span>";
+                    }
+               
                 $('#profile-view').find('.user_skills').html(skills);
                 //employer role
                 $('#profile-view').find('.location').text(data.location);

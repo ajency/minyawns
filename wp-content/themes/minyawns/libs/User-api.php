@@ -28,8 +28,10 @@ function setup_user_profile_data() {
     $current_user->data->major = isset($user_meta['major']) ? trim($user_meta['major'][0]) : '';
 
     //set skills
+    
     $current_user->data->user_skills = isset($user_meta['user_skills']) ? maybe_unserialize($user_meta['user_skills'][0]) : array();
 
+    
     //set socials
     $current_user->data->socials = isset($user_meta['socials']) ? maybe_unserialize($user_meta['socials'][0]) : array();
 
