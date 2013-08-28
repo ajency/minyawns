@@ -93,7 +93,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 } else {
 
                     $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
-                    $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='" . get_current_user_id() . "' ";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.status='applied' ";
                      $limit="LIMIT 10";
                 }
 

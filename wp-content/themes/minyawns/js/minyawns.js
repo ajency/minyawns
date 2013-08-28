@@ -1113,7 +1113,7 @@ jQuery(document).ready(function($) {
     });
 
     $('#confirm-hire').live('click', function(evt) {
-        $("#confirm-hire").unbind('click',handler);
+        $("#confirm-hire").attr('disabled','disabled');
         $(".load_ajax4").show();
         evt.preventDefault();
         var _this = $(this);
