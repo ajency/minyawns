@@ -429,7 +429,7 @@ function minyawn_job_apply() {
     } else {
         $min_job = new Minyawn_Job($job_id);
 
-        if ((int) $min_job->required_minyawns === count($min_job->minyawns) + 1) {
+        if ((int) ($min_job->required_minyawns)+2 <= count($min_job->minyawns)) {
             $status = 2;
         } else {
 
@@ -444,10 +444,13 @@ function minyawn_job_apply() {
         
             $check_limit=new Minyawn_Job($job_id);            
             
-            if ((int) $check_limit->required_minyawns === count($check_limit->minyawns) + 2) 
+            if ((int) ($check_limit->required_minyawns)+2 <= count($check_limit->minyawns)); 
             $status = 2;
             
+            
+            
         }
+        
     }
     echo json_encode(array('success' => $status, 'new_action' => $new_action));
 

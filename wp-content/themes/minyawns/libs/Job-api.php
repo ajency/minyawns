@@ -279,7 +279,7 @@ class Minyawn_Job {
 
         //check if requirement is complete
         if (count($min_job->minyawns) > 0) {
-            if ((int) $min_job->required_minyawns === count($min_job->minyawns) + 2)
+            if ((int) ($min_job->required_minyawns)+2 <= count($min_job->minyawns))
                 $this->can_apply = 1;
         }else {
             $this->can_apply = 0;
@@ -346,7 +346,7 @@ class Minyawn_Job {
             $applied = 0;
         }
 
-        if ((int) $min_job->required_minyawns === count($min_job->minyawns) + 2)
+        if ((int) ($min_job->required_minyawns)+2 <= count($min_job->minyawns))
             $applied = 1;
 
 
