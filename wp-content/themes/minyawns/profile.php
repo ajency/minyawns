@@ -4,6 +4,13 @@
   Template Name: Profile Page
  */
 get_header();  ?>
+
+<script type="text/templates" id="no-result">
+    <div class="alert alert-info myjobs no-job ">
+    <b style="text-align: center">No Jobs Available ! </b>&nbsp;
+    There doesn't seem to be anything here.
+    </div>
+</script>
 <script type="text/template" id="browse-jobs-table-profile">
 
     <div style="clear:both;">	</div>

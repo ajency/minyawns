@@ -368,6 +368,7 @@ jQuery(document).ready(function($) {
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
+                    $("#load-more").hide();
 
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
@@ -831,10 +832,17 @@ jQuery(document).ready(function($) {
 
             },
             success: function(collection, response) {
+               
                 if (collection.length === 0) {
+                     
                     var template = _.template($("#no-result").html());
+                    
+                    if($("#browse-jobs-table").length >0)
+                        $("#browse-jobs-table").append(template);
+                    else
                     $("#list-my-jobs").append(template);
                     //$("#list-my-jobs").hide();
+                    $("#load-more").hide();
 
                 } else {
                     if(window.location.href.indexOf("jobs") > -1) {
