@@ -680,9 +680,34 @@ a:hover {
   margin-bottom: 1%;
   position: relative;
 }
+.list-jobs .expand .header-title {
+  font-weight: normal;
+  border-top: 0px solid #C5C5C5;
+  border-bottom: 0px solid #C5C5C5;
+  color: #747474 !important;
+  background: url(../images/tablepsd_03.png);
+  font-size: 11px !important;
+  font-family: arial !important;
+  margin-top: -10px;
+  height: 43px;
+}
+.list-jobs .expand .header-title h3 {
+  font-size: 25px !important;
+  padding: 5px!important;
+}
+.list-jobs .expand .header-title .view-link {
+  font-size: 13px;
+  font-weight: normal;
+  display: inline-block;
+  padding: 0px 8px;
+  float: right;
+  height: 27px;
+  color: #928C8C;
+}
 .list-jobs .expand .details {
   border-right: 1px solid #ccc;
   position: relative;
+  margin-left: 0px;
 }
 .list-jobs .expand .details .span4 img {
   margin: auto;
@@ -733,7 +758,7 @@ a:hover {
   top: 0%;
   bottom: 0;
   margin: auto;
-  height: 35px;
+  height: 0px;
   width: 30%;
 }
 .list-jobs .expand .span4 .div-box-block .btn {
