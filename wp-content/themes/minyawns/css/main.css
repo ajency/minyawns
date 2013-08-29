@@ -1389,6 +1389,18 @@ a:hover {
     padding-right: 0px;
     padding-left: 0px;
   }
+  body .papypalform {
+    left: 8%;
+    width: 85%;
+  }
+  body .papypalform .pay-title {
+    width: 40%;
+    float: left;
+  }
+  body .papypalform .pay-data {
+    width: 40%;
+    float: left;
+  }
   body .load_more div {
     width: 43%;
     margin: auto;
