@@ -23,7 +23,8 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 	text-align: right;
 }
 #logged-in a img {
-	width: 30px;
+	width: 26px;
+	height:26px;
 	padding: 2px;
 	border: 1px solid #DFDFDF;
 }

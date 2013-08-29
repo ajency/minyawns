@@ -1389,6 +1389,18 @@ a:hover {
     padding-right: 0px;
     padding-left: 0px;
   }
+  body .papypalform {
+    left: 8%;
+    width: 85%;
+  }
+  body .papypalform .pay-title {
+    width: 40%;
+    float: left;
+  }
+  body .papypalform .pay-data {
+    width: 40%;
+    float: left;
+  }
   body .load_more div {
     width: 43%;
     margin: auto;
@@ -2135,8 +2147,7 @@ a:hover {
 }
 .papypalform .pay-title {
   margin-left: 0px !important;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 14px;
   color: #918D8D;
 }
 .papypalform .pay-data {
@@ -2147,4 +2158,17 @@ a:hover {
 }
 .papypalform .modal-footer {
   text-align: center;
+  padding: 5px;
+}
+.cropimage {
+  top: 6% !important;
+}
+.cropimage .modal-body {
+  max-height: 100% !important;
+  overflow: hidden;
+}
+.cropimage .modal-body .help-block {
+  margin-left: 128px;
+  font-size: 11px;
+  line-height: 20px;
 }
