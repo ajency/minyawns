@@ -300,7 +300,142 @@ $app->post('/confirm', function() use ($app) {
                 // }
             }
 
-            echo json_encode($_POST['user_id']);
+            /*aded on 28aug2013*/
+            
+            
+            $inc = 0;
+            if(require_once('../adaptive_paypal/samples/PPBootStrap.php'))
+            	$inc = 1;
+            require_once('../adaptive_paypal/samples/Common/Constants.php');
+            define("DEFAULT_SELECT", "- Select -");
+             
+            
+            
+            //get user
+            $users__ = explode(",", $_POST['user_id']);
+            //end get user
+            
+            
+            if(isset($_POST['jobwages']))
+            {
+            	$single_wages = $_POST['jobwages'];
+            }
+             
+            
+             
+            
+            $cnt_users = 0 ;
+            foreach($users__ as $user___)
+            {  	if($user___!="")
+            {
+            
+            	//check if the user is already hired.
+            	$querystr = "
+            		SELECT count(*) as user_hired from ".$wpdb->prefix."userjobs
+            		 where job_id = ".$_POST['job_id']." and user_id = $user___";
+            
+            	$users_already_hired = $wpdb->get_results($querystr, OBJECT);
+            	if($users_already_hired['user_hired']<=0)
+            		$cnt_users++;
+            
+            
+            }
+            }
+            $total_wages = $cnt_users * $single_wages;
+            //  echo "total wages ".$total_wages;
+            // echo "<br/> single ".$_REQUEST['hdn_jobwages'];
+            
+            if($cnt_users>0)
+            {
+            	$receiver = array();
+            	$receiver = new Receiver();
+            	$receiver->email = 'parag@ajency.in';
+            	$receiver->amount = $total_wages;
+            	$receiverList = new ReceiverList($receiver);
+            }
+            $payRequest = new PayRequest(new RequestEnvelope("en_US"), $_POST['actionType'], $_POST['cancelUrl'], $_POST['currencyCode'], $receiverList, $_POST['returnUrl']);
+            $payRequest->ipnNotificationUrl ='http://www.minyawns.ajency.in/paypal-ipn';
+            /* $html.="action :".$_POST['actionType'];
+             $html.="cancelurl :".$_POST['cancelUrl'];
+            $html.="currencycode :".$_POST['currencyCode'];
+            $html.="returnurl :".$_POST['returnUrl'];
+            $html.="wages :".$_POST['jobwages'];
+            */
+            
+            /*
+             * 	 ## Creating service wrapper object
+            Creating service wrapper object to make API call and loading
+            Configuration::getAcctAndConfig() returns array that contains credential and config parameters
+            */
+            $service = new AdaptivePaymentsService(Configuration::getAcctAndConfig());
+            try {
+            	/* wrap API method calls on the service object with a try catch */
+            	$response = $service->Pay($payRequest);
+            } catch(Exception $ex) {
+            	require_once '../adaptive_paypal/samples/Common/Error.php';
+            	exit;
+            }
+            /* Make the call to PayPal to get the Pay token
+             If the API call succeded, then redirect the buyer to PayPal
+            to begin to authorize payment.  If an error occured, show the
+            resulting errors */
+            
+            
+            
+            
+            
+            
+            $ack = strtoupper($response->responseEnvelope->ack);
+            if($ack != "SUCCESS") {
+            	$html.="<b>Error </b>";
+            	$html.="<pre>";
+            	$html.="</pre>";
+            } else
+            {
+            	$payKey = $response->payKey;
+            	$payPalURL = PAYPAL_REDIRECT_URL . '_ap-payment&paykey=' . $payKey;
+            
+            	 
+            	 
+            
+            	$html.='<script src="https://www.paypalobjects.com/js/external/dg.js" type="text/javascript"></script>';
+            	$html.='<form action="https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay" target="PPDGFrame" class="standard">';
+            	$html.= "<table>
+            	<tr>
+            	<td colspan='2' >Minyawns</td>
+            	</tr>
+            	 
+            	<tr>
+            	<td >Pay Key</td>
+            	<td>$payKey</td>
+            	</tr>
+            	<tr>
+            	<td >Amount</td>
+            	<td>$total_wages</td>
+            	</tr>
+            	";
+            
+            	$html.= "</table>";
+            	 
+            	$html.='<input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">';
+	            $html.='<input id="type" type="hidden" name="expType" value="light">';
+	            $html.='<input id="paykey" type="hidden" name="paykey" value="'.$payKey.'">';
+	            $html.='</form>';
+            	            		 
+            	            $html.='<script type="text/javascript" charset="utf-8">var embeddedPPFlow = new PAYPAL.apps.DGFlow({trigger: \'submitBtn\'});
+</script>';
+            }
+       
+            echo json_encode(array('user_ids'=>$_POST['user_id'],'content'=>$html,'inc'=>$inc));
+            
+            
+            
+            
+            
+            /*end added on 29aug2013 */
+            
+            
+            
         });
 
 

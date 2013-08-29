@@ -1199,11 +1199,19 @@ jQuery(document).ready(function($) {
                 {
                     user_id: group_ids,
                     job_id: _job_id,
-                    status: sList,                    
+                    status: sList,       
+                    actionType:$("#actionType").val(),
+                    returnUrl:$("#returnUrl").val(),
+                    cancelUrl:$("#cancelUrl").val(),
+                    currencyCode:$("#currencyCode").val(),
+                    jobwages : $("#hdn_jobwages").val()
                 },
         function(response) {
 
-
+                	console.log(response);
+                	$("#single-jobs").html("response"+response.content);
+                	
+                	
             $(".load_ajax4").hide();
         }, 'json');
     });
