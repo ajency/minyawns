@@ -52,10 +52,10 @@ foreach ($myPost as $key => $value)
 
 
 
-$url = 'https://www.sandbox.paypal.com/webscr';
+//$url = 'https://www.sandbox.paypal.com/webscr';
 //$url = $paypal_adr;
 //$url = "https://www.paypal.com/cgi-bin/webscr";
-//$url = 'https://www.paypal.com/webscr';
+$url = 'https://www.paypal.com/webscr';
 $curl_result=$curl_err='';
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$url);
@@ -154,16 +154,6 @@ else
 	
 	//$total_amount = $amount + $tax;
 	$total_amount = trim($_POST['mc_gross']);
-	
-	
-	if(($payment_status=="Completed")
-	{
-		
-		
-				
-	}
-	
-	
 	
 	$SUBJECT = 'FAILED Ver---minyawns';
 	$BODY    = 'SECURITY CHECK FAILED TO VERIFY---minyawns';
