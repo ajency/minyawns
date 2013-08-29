@@ -59,8 +59,11 @@ global $minyawn_job;
 
         <% }else if (can_apply_job == 3){%>
          <span class="label-hired">You are hired for this job.</span>
-        <% }else if (can_apply_job == 2) {%>
+        <% }else if (can_apply_job == 1) {%>
          <span >You have applied for this job.</span>
+
+        <% }else if (can_apply_job == 2) {%>
+         <span >Minyawn application complete.</span>
 
         <% }
         %> 
@@ -108,12 +111,12 @@ global $minyawn_job;
 
             <%  if(can_apply_job == 3) %>
             <a href="#" class="required">You are hired!</a>
-            <% else if(can_apply_job == 2 )%>
+            <% else if(can_apply_job == 1)%>
             <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
             <% else if(can_apply_job == 0 ) %>
             <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
             
-            <% else if(can_apply_job == 1 ) %>
+            <% else if(can_apply_job == 2 ) %>
             <a href="#" class="required">Requirement Complete</a>
   
     
@@ -121,7 +124,7 @@ global $minyawn_job;
     <?php
 else:
     ?>
-            <%  if(can_apply_job == 1 || todays_date_time > job_end_time_check) %>
+            <%  if(can_apply_job == 2 || todays_date_time > job_end_time_check) %>
             <a href="#" class="required">Requirement Complete</a>
 
             <% else if (todays_date_time < job_end_time_check && can_apply_job == 0){%>

@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
         var thumb_width = obj.width;
         var thumb_height = obj.height;
         if (thumb_width > 0) {
-          
+          $("#done-cropping").show();
             $("#image_height").val(thumb_height);
             $("#image_width").val(thumb_width)
             $("#image_x_axis").val(x_axis);
@@ -46,7 +46,8 @@ jQuery(document).ready(function($) {
     }
     $('img#uploaded-image').imgAreaSelect({
         aspectRatio: $("#aspect_ratio").val(),
-        onSelectEnd: getSizes
+        onSelectEnd: getSizes,
+        
     });
 
     $("#job_wages").keydown(function(event) {
@@ -87,6 +88,15 @@ jQuery(document).ready(function($) {
             $('#change-avatar').removeAttr("disabled");
             $("#uploaded-image").attr('src', data.result.image);
             $("#image_name").val(data.result.image_name);
+           
+            if(data.result.image_height > 500)
+              $("#uploaded-image").css('height','500');
+            
+            if(data.result.image_width > 500)
+                $("#uploaded-image").css('width','500');
+            
+            
+                
         },
         start: function(e, data) {
             $('#change-avatar').attr("disabled", "disabled");

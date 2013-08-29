@@ -10,6 +10,9 @@
 	$url = dirname('http://' . $serverName . ':' . $serverPort . $_SERVER['REQUEST_URI']);
 	$returnUrl = $url . "/adaptive_paypal/samples/ExecutePayment.php";
 	$cancelUrl =  $url . "/";
+	
+	//$Path=site_$_SERVER['REQUEST_URI'];
+	
 ?>
 			<form action="<?php echo site_url().'/adaptive-payment/'; ?>" method="post">
 				<input type='hidden' name="actionType" id="actionType" value="PAY" readonly="readonly"/>

@@ -153,7 +153,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                 }
 
                 $applied = $min_job->check_minyawn_job_status($pagepost->ID);
-               
+                
+
+        if ((int) ($min_job->required_minyawns)+2 <= count($min_job->minyawns))
+            $applied = 2;
 
                 if($total <= $_GET['offset']+2){ 
                     $show_load=1;
@@ -327,19 +330,22 @@ $app->post('/confirm', function() use ($app) {
             $cnt_users = 0 ;
             foreach($users__ as $user___)
             {  	if($user___!="")
-            {
+            	{
             
-            	//check if the user is already hired.
-            	$querystr = "
+            	//check if the user is already hired. if already hired do not add wages for the selected user
+            	/*$querystr = "
             		SELECT count(*) as user_hired from ".$wpdb->prefix."userjobs
             		 where job_id = ".$_POST['job_id']." and user_id = $user___";
-            
+            	            
             	$users_already_hired = $wpdb->get_results($querystr, OBJECT);
-            	if($users_already_hired['user_hired']<=0)
-            		$cnt_users++;
+				foreach($users_already_hired as $hired_user_check)
+					if($hired_user_check->user_hired <=0)*/
+            			$cnt_users++;
             
             
-            }
+           		 }
+           		 
+           		 $html.=$querystr.''.$users_already_hired['user_hired'];
             }
             $total_wages = $cnt_users * $single_wages;
             //  echo "total wages ".$total_wages;
@@ -354,7 +360,9 @@ $app->post('/confirm', function() use ($app) {
             	$receiverList = new ReceiverList($receiver);
             }
             $payRequest = new PayRequest(new RequestEnvelope("en_US"), $_POST['actionType'], $_POST['cancelUrl'], $_POST['currencyCode'], $receiverList, $_POST['returnUrl']);
-            $payRequest->ipnNotificationUrl ='http://www.minyawns.ajency.in/paypal-ipn';
+            $payRequest->ipnNotificationUrl ='http://www.minyawns.ajency.in/paypal-ipn/';
+            
+            
             /* $html.="action :".$_POST['actionType'];
              $html.="cancelurl :".$_POST['cancelUrl'];
             $html.="currencycode :".$_POST['currencyCode'];
@@ -393,6 +401,10 @@ $app->post('/confirm', function() use ($app) {
             } else
             {
             	$payKey = $response->payKey;
+            	
+            	$paypal_payment = array('pay_key'=>$payKey,'status'=>'');
+            	update_post_meta($_POST['job_id'], 'paypal_payment', $paypal_payment);
+            	
             	$payPalURL = PAYPAL_REDIRECT_URL . '_ap-payment&paykey=' . $payKey;
             
             	 
