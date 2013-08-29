@@ -89,8 +89,14 @@ $app->post('/resize-user-avatar', function() use($app) {
             $nw = ceil($w * $ratio);
             $nh = ceil($h * $ratio);
             $nimg = imagecreatetruecolor($nw, $nh);
-            $im_src = imagecreatefromjpeg($targetFolder . $image_name);
 
+            if (stripos($image_name, "png") !== false) 
+            $im_src = imagecreatefrompng($targetFolder . $image_name);
+
+             else
+                 $im_src=imagecreatefromjpeg($targetFolder . $image_name);
+                 
+                 
             imagecopyresampled($nimg, $im_src, 0, 0, $x1, $y1, $nw, $nh, $w, $h);
             imagejpeg($nimg, $targetFolder . $new_name, 90);
             //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);

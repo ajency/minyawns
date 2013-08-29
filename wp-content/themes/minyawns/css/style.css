@@ -430,3 +430,11 @@ span.form-error{
 font-size: 18px;
             
         }
+		#uploaded-image{
+			width:60% !important;
+		}
+		.cropimage input{
+			border: solid 1px #CCD3D8;
+			padding: 5px;
+			border-radius: 10px;
+		}

@@ -151,10 +151,10 @@ endif;
 
 
 </script>
-<div id="myprofilepic" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myprofilepic" class="modal hide fade cropimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
+    <h4 id="myModalLabel">Change Avatar</h4>
   </div>
   <div class="modal-body">
     <div style="margin:0 auto; width:600px">
@@ -163,7 +163,10 @@ endif;
 <div style="width:600px" id="image_upload_body">
 
 <form id="cropimage" method="post" enctype="multipart/form-data">
-	Upload your image <input type="file" name="files" id="photoimg" />Done Cropping? <input type="button" class="btn btn-primary" id="done-cropping" ></input>
+
+	Upload your image <input type="file" name="files" id="photoimg" /><br>
+	<a type="button" class="btn btn-primary" id="done-cropping" style=" margin-left: 118px; margin-top: 5px; margin-bottom: 10px; ">Done Cropping? </a>
+	</br>
 	<input type="hidden" name="image_name" id="image_name" value="" />
 	<img id="uploaded-image"></img>
         <input type="hidden"  id="image_height">
@@ -177,10 +180,7 @@ endif;
 </div>
 </div>
   </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
+  
 </div>
 <div class="container">
 	<div id="main-content" class="main-content bg-white">
