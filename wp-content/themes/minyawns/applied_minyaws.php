@@ -8,10 +8,15 @@
 	$serverName = $_SERVER['SERVER_NAME'];
 	$serverPort = $_SERVER['SERVER_PORT'];
 	$url = dirname('http://' . $serverName . ':' . $serverPort . $_SERVER['REQUEST_URI']);
-	$returnUrl = $url . "/adaptive_paypal/samples/ExecutePayment.php";
+	/*$returnUrl = $url . "/adaptive_paypal/samples/ExecutePayment.php";
 	$cancelUrl =  $url . "/";
+	*/
+	
+	$returnUrl = get_permalink( $post->ID ) ;
+	$cancelUrl =  get_permalink( $post->ID );
 	
 	//$Path=site_$_SERVER['REQUEST_URI'];
+	 
 	
 ?>
 			<form action="<?php echo site_url().'/adaptive-payment/'; ?>" method="post">

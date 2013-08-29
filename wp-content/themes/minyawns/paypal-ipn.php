@@ -52,10 +52,10 @@ foreach ($myPost as $key => $value)
 
 
 
-//$url = 'https://www.sandbox.paypal.com/webscr';
+$url = 'https://www.sandbox.paypal.com/webscr';
 //$url = $paypal_adr;
 //$url = "https://www.paypal.com/cgi-bin/webscr";
-$url = 'https://www.paypal.com/webscr';
+//$url = 'https://www.paypal.com/webscr';
 $curl_result=$curl_err='';
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$url);
@@ -135,6 +135,35 @@ if ($curl_result== "VERIFIED")
 else
 {
 	$req .= "\n\nData NOT verified from Paypal!";
+	
+	
+	$payment_status = trim($_POST['payment_status']);
+	$txn_id = trim($_POST['txn_id']);
+	$receiver_email = trim($_POST['receiver_email']);
+	$currency_type = trim($_POST['mc_currency']);
+	$tax = trim($_POST['tax']);
+	$shipping = trim($_POST['shipping']);
+	$item_name = trim($_POST['item_name']);
+	$item_number = trim($_POST['item_number']);
+	$receiver_id = trim($_POST['receiver_id']);
+	$payer_email = trim($_POST['payer_email']);
+	
+	$amount = trim($_POST['mc_fee']);
+	//$mc_gross = $_POST['mc_gross'];
+	$mc_gross1	 = trim($_POST['mc_gross1']);
+	
+	//$total_amount = $amount + $tax;
+	$total_amount = trim($_POST['mc_gross']);
+	
+	
+	if(($payment_status=="Completed")
+	{
+		
+		
+				
+	}
+	
+	
 	
 	$SUBJECT = 'FAILED Ver---minyawns';
 	$BODY    = 'SECURITY CHECK FAILED TO VERIFY---minyawns';
