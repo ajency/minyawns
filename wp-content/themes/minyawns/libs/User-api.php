@@ -95,6 +95,9 @@ function get_mn_user_avatar() {
     global $current_user;
     if ($current_user->data->avatar !== false) {
         return wp_get_attachment_thumb_url($current_user->data->avatar);
+    }else
+    {
+        return false;
     }
 }
     
