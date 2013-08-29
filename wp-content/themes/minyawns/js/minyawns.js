@@ -317,7 +317,7 @@ jQuery(document).ready(function($) {
 
             var errors = [];
 
-            
+
             if (attr.job_start_date !== '' && attr.job_end_Date !== '') {
                 if (Date.parse(attr.job_start_date) > Date.parse(attr.job_end_date))
                 {
@@ -1201,6 +1201,7 @@ jQuery(document).ready(function($) {
         var group_ids = "";
         var user_id = "";
         var sList = "";
+        var no_of_minyawns = 0;
         $('input[name=confirm-miny\\[\\]]:checked').each(function() {
             user_id = $(this).attr('data-user-id');
             _job_id = $(this).attr('data-job-id');
@@ -1211,9 +1212,13 @@ jQuery(document).ready(function($) {
             group_ids += user_id + ',';
 
             $("#hire-thumb" + user_id).addClass('minyans-select');
-
+            no_of_minyawns = no_of_minyawns + 1;
 
         });
+        $("#no_of_minyawns").html(no_of_minyawns);
+        $("#wages_per_minyawns").html($("#job_wages").val());
+        var total=no_of_minyawns*$("#job_wages").val();
+                $("#total_wages").html(total);
         return;
 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
