@@ -28,8 +28,10 @@ function setup_user_profile_data() {
     $current_user->data->major = isset($user_meta['major']) ? trim($user_meta['major'][0]) : '';
 
     //set skills
+    
     $current_user->data->user_skills = isset($user_meta['user_skills']) ? maybe_unserialize($user_meta['user_skills'][0]) : array();
 
+    
     //set socials
     $current_user->data->socials = isset($user_meta['socials']) ? maybe_unserialize($user_meta['socials'][0]) : array();
 
@@ -427,7 +429,7 @@ function minyawn_job_apply() {
     } else {
         $min_job = new Minyawn_Job($job_id);
 
-        if ((int) $min_job->required_minyawns === count($min_job->minyawns) + 1) {
+        if ((int) ($min_job->required_minyawns)+2 <= count($min_job->minyawns)) {
             $status = 2;
         } else {
 
@@ -442,10 +444,13 @@ function minyawn_job_apply() {
         
             $check_limit=new Minyawn_Job($job_id);            
             
-            if ((int) $check_limit->required_minyawns === count($check_limit->minyawns) + 2) 
+            if ((int) ($check_limit->required_minyawns)+2 <= count($check_limit->minyawns)); 
             $status = 2;
             
+            
+            
         }
+        
     }
     echo json_encode(array('success' => $status, 'new_action' => $new_action));
 

@@ -4,6 +4,13 @@
   Template Name: Profile Page
  */
 get_header();  ?>
+
+<script type="text/templates" id="no-result">
+    <div class="alert alert-info myjobs no-job ">
+    <b style="text-align: center">No Jobs Available ! </b>&nbsp;
+    There doesn't seem to be anything here.
+    </div>
+</script>
 <script type="text/template" id="browse-jobs-table-profile">
 
     <div style="clear:both;">	</div>
@@ -202,12 +209,12 @@ endif;
 							</div>
 							<div class="span10 user_skills">
 									<?php 
-										$skills = get_user_skills();
-										if(is_array($skills))
-										{	
-											foreach ($skills as $skill)
-												echo "<span class='label label-small'>$skill</span>";
-										}
+                                                                        if(is_array(get_user_skills())){
+										$skills = explode(',',get_user_skills());
+                                                                              	
+											for ($skill=0;$skill<sizeof($skills);$skill++)
+												echo "<span class='label label-small'>$skills[$skill]</span>";
+                                                                        }
 									?>
 							</div>
 							<?php
@@ -331,7 +338,8 @@ endif;
 					    <div class="control-group">
 					    	<label class="control-label" for="inputskill">Skill</label>
 					    	<div class="controls">
-					    		<input name="user_skills" id="user_skills" class="tagsinput " value="<?php echo get_user_skills(); ?>"  style="width:60%;"/>
+                                                   
+					    		<input name="user_skills2" id="user_skills2" class="tagsinput1" value="<?php echo get_user_skills(); ?>"  style="width:60%;"/>
 					    	</div>
 					  	</div>
 					  	<div class="control-group">

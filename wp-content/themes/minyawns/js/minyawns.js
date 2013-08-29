@@ -2,7 +2,7 @@
  */
 
 
-
+ 
 jQuery(document).ready(function($) {
 
     /********************************** PROFILE JS CODE *************************************/
@@ -101,6 +101,10 @@ jQuery(document).ready(function($) {
 
                 if (ele == 'id')
                     return;
+                
+                if(ele == 'user_skills')
+                    return;
+                
                 if (attr[ele] == '')
                 {
                     errors.push({field: ele, msg: 'Please enter ' + ele});
@@ -146,9 +150,12 @@ jQuery(document).ready(function($) {
                     }
 
                 }
+               
+                var msg_new=msg.replace('_', ' ');
+    
 
-                $('#' + ele.field).parent().append('<span class="form-error">' + msg.replace('_', ' ') + '</span>');
-
+                $('#' + ele.field).parent().append('<span class="form-error">' + msg_new.replace('skills2', 'skills') + '</span>');
+    
 
 
             })
@@ -184,9 +191,17 @@ jQuery(document).ready(function($) {
                 $('#profile-view').find('.college').text(data.college);
                 $('#profile-view').find('.major').text(data.major);
                 var skills = '';
-                _.each(data.user_skills, function(ele, index) {
-                    skills += "<span class='label label-small'>" + ele + "</span>";
-                });
+                var skill_name='';
+                
+//                _.each(data.user_skills2, function(ele, index) {
+//                    skills += "<span class='label label-small'>" + ele + "</span>";
+//                });
+                               skill_name=data.user_skills2.split(',');
+                for(i=0;i<skill_name.length;i++)
+                    {
+                       skills += "<span class='label label-small'>" + skill_name[i] + "</span>";
+                    }
+               
                 $('#profile-view').find('.user_skills').html(skills);
                 //employer role
                 $('#profile-view').find('.location').text(data.location);
@@ -353,6 +368,7 @@ jQuery(document).ready(function($) {
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
+                    $("#load-more").hide();
 
                 } else {
                     var template = _.template($("#browse-jobs-table").html());
@@ -816,10 +832,17 @@ jQuery(document).ready(function($) {
 
             },
             success: function(collection, response) {
+               
                 if (collection.length === 0) {
+                     
                     var template = _.template($("#no-result").html());
+                    
+                    if($("#browse-jobs-table").length >0)
+                        $("#browse-jobs-table").append(template);
+                    else
                     $("#list-my-jobs").append(template);
                     //$("#list-my-jobs").hide();
+                    $("#load-more").hide();
 
                 } else {
                     if(window.location.href.indexOf("jobs") > -1) {
@@ -1090,7 +1113,7 @@ jQuery(document).ready(function($) {
     });
 
     $('#confirm-hire').live('click', function(evt) {
-        $("#confirm-hire").unbind('click',handler);
+        $("#confirm-hire").attr('disabled','disabled');
         $(".load_ajax4").show();
         evt.preventDefault();
         var _this = $(this);
@@ -1100,7 +1123,7 @@ jQuery(document).ready(function($) {
         var group_ids = "";
         var user_id = "";
         var sList = "";
-        $('input[name=confirm-miny\\[\\]]').each(function() {
+        $('input[name=confirm-miny\\[\\]]:checked').each(function() {
             user_id = $(this).attr('data-user-id');
             _job_id = $(this).attr('data-job-id');
             // var status=$(this).prop("checked","checked");

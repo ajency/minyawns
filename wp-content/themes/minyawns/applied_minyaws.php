@@ -26,7 +26,7 @@
                             <div class="social-link">
                             <?php echo $minyawn['user_email']; ?> -<a href="<?php echo $minyawn['linkedin']; ?>" target="_BLANK"> <?php echo $minyawn['linkedin']; ?> </a> 
                             </div>
-                            <?php if (isset($minyawn['user_skills'])) {
+                            <?php if (is_array($minyawn['user_skills'])) {
                                 foreach ($minyawn['user_skills'] as $skill): ?>
                                     <span class="label label-small"><?php echo $skill ?></span>
             <?php endforeach;

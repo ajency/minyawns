@@ -16,9 +16,15 @@ $app->post('/user', function() use ($app) {
 
 	//start updating profile data
 	foreach($json_a as $key => $value) {
-		if($key !== 'profileemail')
-			update_user_meta($user_id, $key, $value);
-	}
+		if($key !== 'profileemail'){
+		
+                    if($key == 'user_skills2')
+                        $key='user_skills';
+                    
+                    update_user_meta($user_id, $key, $value);
+                }
+                        
+                }
 
     $app->response()->header("Content-Type", "application/json");
     echo json_encode(array('success' => 1));
