@@ -444,7 +444,7 @@ endif;
 
                                     </div>
                                 </div>
-                                <div class="input-append bootstrap-timepicker">
+                                <div class="input-append bootstrap-timepicker controls">
                                     <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" >
                                     <span class="add-on">
                                         <i class="icon-time"></i>
@@ -461,7 +461,7 @@ endif;
                                     </div>
 
                                 </div>
-                                <div class="input-append bootstrap-timepicker">
+                                <div class="input-append bootstrap-timepicker controls">
                                     <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time">
                                     <span class="add-on">
                                         <i class="icon-time"></i>
