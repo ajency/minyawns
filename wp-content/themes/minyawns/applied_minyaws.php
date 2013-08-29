@@ -28,7 +28,7 @@
 				<input type="hidden" name="receiverAmount[]" id="amount_0" value="1.0" class="smallfield">
 				<?php /*<input type="submit" name = "submitBtn" value="Submit" />*/ ?>
 				<input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='<?php echo $minyawn_job->get_job_wages(); ?>' />
-				
+		
 				
 <div class="row-fluid minyawns-grid">
     <ul class="thumbnails">
@@ -128,7 +128,10 @@
     </ul>
 </div>
  </form>
+<a href="#confirminyawn" role="button" class="btn" data-toggle="modal">confirmhire</a>
+
 <?php if(get_user_role() == "employer" && $minyawn['user_job_status'] != "hired") { ?>
 <a href="#fakelink" id="confirm-hire"  class="btn btn-medium btn-block green-btn btn-success" <?php if(count($minyawn_job->minyawns) == 0){?>style="display:none" <?php } ?> >Confirm & Hire</a>
 <span class='load_ajax4' style="display:none"></span>
 <?php } ?>
+

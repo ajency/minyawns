@@ -153,7 +153,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                 }
 
                 $applied = $min_job->check_minyawn_job_status($pagepost->ID);
-               
+                
+
+        if ((int) ($min_job->required_minyawns)+2 <= count($min_job->minyawns))
+            $applied = 2;
 
                 if($total <= $_GET['offset']+2){ 
                     $show_load=1;

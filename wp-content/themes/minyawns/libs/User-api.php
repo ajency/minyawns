@@ -474,7 +474,9 @@ function minyawn_job_apply() {
         
             $check_limit=new Minyawn_Job($job_id);            
             
-            if ((int) ($check_limit->required_minyawns)+2 <= count($check_limit->minyawns)); 
+            //print_r(($min_job->required_minyawns)+2);print_r(count($min_job->minyawns));exit();
+            /* plus one because it is checking before insert*/
+             if ((int) ($min_job->required_minyawns)+2 <= count($min_job->minyawns)+1) 
             $status = 2;
             
             
