@@ -145,8 +145,11 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                 $minyawns_have_applied = $min_job->get_applied_by();
                 $user_data = array();
+                $user_image=array();
                 foreach ($min_job->minyawns as $min) {
                     $user = array_push($user_data, $min['profile_name']);
+                    $user_profileimage=array_push($user_image,get_user_company_logo($min['user_id']));
+                   
                 }
 
                 $applied = $min_job->check_minyawn_job_status($pagepost->ID);
@@ -181,7 +184,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'tags' => $tags,
                     'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
-                    'job_author_logo' => get_avatar($pagepost->post_author, '10'),
+                    'job_author_logo' => get_user_company_logo($pagepost->post_author),
                     'can_apply_job' => $applied,
                     'user_job_status' => is_null($min_job->is_hired) ? $min_job->is_hired : 'can_apply',
                     'job_end_time_check' => $post_meta['job_end_date_time'][0],
@@ -189,7 +192,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'post_slug' => wp_unique_post_slug($pagepost->post_name, $pagepost->ID, 'published', 'job', ''),
                     'users_applied' => $user_data,
                     'minyawns_have_applied' => $minyawns_have_applied,
-                    'load_more'=>$show_load 
+                    'load_more'=>$show_load,
+                     'user_profile_image'=>$user_image,
+                      'default_user_avatar'=>get_avatar($pagepost->ID)
                         );
             }
 

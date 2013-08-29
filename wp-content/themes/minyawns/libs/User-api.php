@@ -91,9 +91,20 @@ function get_user_fb_avatar($type = 'thumb') {
 }
 
 function get_mn_user_avatar() {
+    
     global $current_user;
     if ($current_user->data->avatar !== false) {
         return wp_get_attachment_thumb_url($current_user->data->avatar);
+    }
+}
+    
+    function get_mn_user_avatar_profile($role) {
+        $upload_dir = wp_upload_dir();
+    global $current_user;
+    if ($current_user->data->avatar !== false) {
+        //return wp_get_attachment_thumb_url($current_user->data->avatar);
+    return  'http://localhost/minyawns/wp-content/uploads/user_avatars/'.get_user_id().'/'.$role.get_user_id().'.jpg';
+        
     }
 
     if (is_user_fb_registered())
@@ -251,6 +262,22 @@ function user_dislike_count() {
 function get_user_dislike_count() {
     global $current_user;
     return isset($current_user->data->like_count) ? $current_user->data->like_count : 0;
+}
+
+function get_user_company_logo($user_id)
+{
+ 
+    $user_meta=  get_user_meta($user_id);
+    $post_attachment_id = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
+    
+    if($post_attachment_id)
+       return wp_get_attachment_thumb_url($post_attachment_id);
+    
+    else
+        return false;
+    
+   
+    
 }
 
 /**

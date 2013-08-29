@@ -16,7 +16,7 @@ global $minyawn_job;
     <div class="accordion-heading">
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
     <div class="span12 data-title available">
-    <div class="job-logo header-sub"> <%= job_author_logo %></div>
+    <div class="job-logo header-sub"> <img src="<%= job_author_logo %>"/></div>
     <div class="job-date header-sub">
     <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
     <div>
@@ -158,7 +158,7 @@ endif;
 <script type="text/templates" id="my-jobs">
     <div id="job-list<%= post_id %>" class="row-fluid list-jobs my-jobs-1"  style="background: #C7C9C5;">
     <div class="span12 jobs-details">
-    <div class="span2 img-logo"> <%= job_author_logo %> </div>
+    <div class="span2 img-logo"> <img src="<%= job_author_logo %>"/></div>
     <div class="span3 minyawns-select"><span><%= minyawns_have_applied %></span>
     <div>Minyawns Have Applied</div> 
     </div>
@@ -198,12 +198,12 @@ endif;
     <div class="span12 expand">
     <div class="span8 details"> 
     <div class="row-fluid">
-    <div class="span4"> <%= job_author_logo %></div>
+    <div class="span4"> <img src="<%= job_author_logo %>"/></div>
     <div class="span8"><%= job_details %></div>
     </div><br>
     <div class="row-fluid minyawansgrid">
     <% for(i=0;i<users_applied.length;i++){ %>
-   <div class="span6"><img src="<?php echo get_template_directory_uri(); ?>/images/iconsult4.png"/> <b><%= users_applied[i]%></b>
+   <div class="span6"><img src="<%= user_profile_image[i] %>"/><b><%= users_applied[i]%></b>
    
     <a href="#fakelink" >
     <i class="icon-thumbs-up"></i> 50
