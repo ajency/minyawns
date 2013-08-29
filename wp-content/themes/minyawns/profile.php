@@ -19,7 +19,7 @@ get_header();  ?>
     <div class="accordion-heading">
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
     <div class="span12 data-title available">
-    <div class="job-logo header-sub"> <%= job_author_logo %></div>
+    <div class="job-logo header-sub"> <img src="<%= job_author_logo %>"/></div>
     <div class="job-date header-sub">
     <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
     <div>
@@ -73,8 +73,8 @@ get_header();  ?>
 
     <div class="job-action header-sub">
 
-    <div class="arrow-down">
-    </div>
+<!--    <div class="arrow-down">
+    </div>-->
 
     </div>
     </div>
@@ -151,6 +151,37 @@ endif;
 
 
 </script>
+<div id="myprofilepic" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <div style="margin:0 auto; width:600px">
+
+<div id="thumbs" style="padding:5px; width:600px"></div>
+<div style="width:600px" id="image_upload_body">
+
+<form id="cropimage" method="post" enctype="multipart/form-data">
+	Upload your image <input type="file" name="files" id="photoimg" />Done Cropping? <input type="button" class="btn btn-primary" id="done-cropping" ></input>
+	<input type="hidden" name="image_name" id="image_name" value="" />
+	<img id="uploaded-image"></img>
+        <input type="hidden"  id="image_height">
+        <input type="hidden"  id="image_width">
+        <input type="hidden"  id="image_x_axis">
+       <input type="hidden"  id="image_y_axis">
+       <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '3:1' : '1:1')?>" id="aspect_ratio">
+        
+</form>
+
+</div>
+</div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
 <div class="container">
 	<div id="main-content" class="main-content bg-white">
 		<div class="breadcrumb-text">
@@ -167,7 +198,7 @@ endif;
 				<div class="row-fluid min_profile">
 
 					<div class="span2">
-						<a href="#" id="change-avatar-span" class="change-avtar">
+						<a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
 							<?php 	if(get_mn_user_avatar() !== false)
 										echo '<img src="' . get_mn_user_avatar() .'" width="168" height="168" />';
 									else
@@ -209,12 +240,12 @@ endif;
 							</div>
 							<div class="span10 user_skills">
 									<?php 
-                                                                        if(is_array(get_user_skills())){
+                                                                        //if(is_array(get_user_skills())){
 										$skills = explode(',',get_user_skills());
                                                                               	
 											for ($skill=0;$skill<sizeof($skills);$skill++)
 												echo "<span class='label label-small'>$skills[$skill]</span>";
-                                                                        }
+                                                                        //}
 									?>
 							</div>
 							<?php
