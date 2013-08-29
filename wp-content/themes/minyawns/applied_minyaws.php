@@ -1,4 +1,4 @@
- 
+
 <div class="row-fluid minyawns-grid">
     <ul class="thumbnails">
         <?php  
@@ -26,7 +26,7 @@
                             <div class="social-link">
                             <?php echo $minyawn['user_email']; ?> -<a href="<?php echo $minyawn['linkedin']; ?>" target="_BLANK"> <?php echo $minyawn['linkedin']; ?> </a> 
                             </div>
-                            <?php if (is_array($minyawn['user_skills'])) {
+                            <?php if (isset($minyawn['user_skills'])) {
                                 foreach ($minyawn['user_skills'] as $skill): ?>
                                     <span class="label label-small"><?php echo $skill ?></span>
             <?php endforeach;
@@ -39,7 +39,7 @@
 
                             <div class="dwn-btn">
                                 <div class="roundedTwo">
-                                    <input type="checkbox" id="roundedTwo<?php echo $minyawn['user_id'] ?>" value="<?php echo $minyawn['user_id'] ?>"  data-user-id="<?php echo $minyawn['user_id'] ?>" data-job-id="<?php echo $minyawn['user_to_job'] ?>"    name="confirm-miny[]"  id="<?php echo $minyawn['user_login'] ?>" <?php if ($minyawn['user_job_status'] == "hired") { ?>checked  disabled class="minyans-select" <?php } ?> />
+                                    <input type="checkbox" id="roundedTwo<?php echo $minyawn['user_id'] ?>" value="<?php echo $minyawn['user_id'] ?>"  data-user-id="<?php echo $minyawn['user_id'] ?>" data-job-id="<?php echo $minyawn['user_to_job'] ?>"    name="confirm-miny[]"  id="<?php echo $minyawn['user_login'] ?>" <?php if ($minyawn['user_job_status'] == "hired") { ?> checked disabled class="minyans-select" <?php } ?> >
                                     <label for="roundedTwo<?php echo $minyawn['user_id'] ?>"> </label>Select Donec id elit
                                 </div>
                             </div>
@@ -96,6 +96,7 @@
 
     </ul>
 </div>
+ 
 <?php if(get_user_role() == "employer" && $minyawn['user_job_status'] != "hired") { ?>
 <a href="#fakelink" id="confirm-hire"  class="btn btn-medium btn-block green-btn btn-success" <?php if(count($minyawn_job->minyawns) == 0){?>style="display:none" <?php } ?> >Confirm & Hire</a>
 <span class='load_ajax4' style="display:none"></span>

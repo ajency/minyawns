@@ -1142,7 +1142,7 @@ jQuery(document).ready(function($) {
                 {
                     user_id: group_ids,
                     job_id: _job_id,
-                    status: sList
+                    status: sList,                    
                 },
         function(response) {
 
