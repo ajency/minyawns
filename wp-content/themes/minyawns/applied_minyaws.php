@@ -52,7 +52,7 @@
                             <div class="social-link">
                             <?php echo $minyawn['user_email']; ?> -<a href="<?php echo $minyawn['linkedin']; ?>" target="_BLANK"> <?php echo $minyawn['linkedin']; ?> </a> 
                             </div>
-                            <?php if (isset($minyawn['user_skills'])) {
+                            <?php if (is_array($minyawn['user_skills'])) {
                                 foreach ($minyawn['user_skills'] as $skill): ?>
                                     <span class="label label-small"><?php echo $skill ?></span>
             <?php endforeach;
@@ -123,10 +123,10 @@
     </ul>
 </div>
  </form>
-<a href="#confirminyawn" role="button" class="btn" data-toggle="modal">confirmhire</a>
+
 
 <?php if(get_user_role() == "employer" && $minyawn['user_job_status'] != "hired") { ?>
-<a href="#fakelink" id="confirm-hire"  class="btn btn-medium btn-block green-btn btn-success" <?php if(count($minyawn_job->minyawns) == 0){?>style="display:none" <?php } ?> >Confirm & Hire</a>
+<a href="#confirminyawn" id="confirm-hire" data-toggle="modal" class="btn btn-medium btn-block green-btn btn-success" <?php if(count($minyawn_job->minyawns) == 0){?>style="display:none" <?php } ?> >Confirm & Hire</a>
 <span class='load_ajax4' style="display:none"></span>
 <?php } ?>
 

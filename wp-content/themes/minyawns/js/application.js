@@ -194,14 +194,16 @@ String.prototype.repeat = function(num) {
             minuteStep: 1,
             template: 'modal',
             showSeconds: true,
-            showMeridian: false
+            showMeridian: false,
+            defaultTime:'current'
         });
 	
         $('#job_end_time').timepicker({
             minuteStep: 1,
             template: 'modal',
             showSeconds: true,
-            showMeridian: false
+            showMeridian: false,
+            defaultTime:'current'
         });
     });
 

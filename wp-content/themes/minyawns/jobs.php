@@ -200,6 +200,11 @@ endif;
     </div>
     <div class="span12 expand">
     <div class="span8 details"> 
+    <div class="row-fluid header-title">
+    <div class="span12">
+    <h3><a href=<?php echo site_url() ?>/job/<%= post_slug %> target="_blank" > <%= post_title %> <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
+    </div>
+    </div>
     <div class="row-fluid">
     <div class="span4"> <img src="<%= job_author_logo %>"/></div>
     <div class="span8"><%= job_details %></div>
