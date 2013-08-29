@@ -189,7 +189,7 @@ padding-left: 16px;
 			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2 ) : ?>
 			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" style=" width: 58%; margin: auto; " data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
 			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 1 ) : ?>
-			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn" style=" width: 58%; margin: auto; ">Requirement Complete</a>
+			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn" style=" width: 72%; margin: auto; ">Requirement Complete</a>
 			         <?php endif;
                       }?>
 					</div>
@@ -300,5 +300,34 @@ padding-left: 16px;
 	</div>
 </div>
 </div>
+
+
+	<div id="confirminyawn" class="modal hide fade in papypalform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h4 id="myModalLabel">Your Selection</h4>
+  </div>
+  <div class="modal-body">
+	<div class="row-fluid main-pay ">
+		<div class="row-fluid ">
+		<div class="span6 pay-title"> No of Minayawns</div>
+		<div class="span6 pay-data">= 3</div>
+		</div>
+		<div class="row-fluid ">
+		<div class="span6 pay-title">Wage</div>
+		<div class="span6 pay-data">= $ 100</div>
+		</div>
+		<div class="row-fluid " style="border:0px;">
+		<div class="span6 pay-title">Total</div>
+		<div class="span6 pay-data">= $ 300</div>
+		</div>
+	</div>
+   
+  </div>
+  <div class="modal-footer">
+   <div>To Confirm & pay</div></br>
+    <button class="btn btn-warning">Paypal</button>
+  </div>
+</div>	
 <?php
 get_footer();

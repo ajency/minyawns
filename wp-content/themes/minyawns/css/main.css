@@ -2117,3 +2117,34 @@ a:hover {
 .accordion-heading a.open .arrow-down {
   background: url(../images/tablepsd_09.png) no-repeat !important;
 }
+.papypalform {
+  left: 58%;
+  width: 25%;
+}
+.papypalform .modal-header {
+  text-align: center;
+}
+.papypalform .modal-header h4 {
+  font-weight: 600 !important;
+}
+.papypalform .main-pay .row-fluid {
+  padding: 5px;
+  line-height: 32px;
+  border-bottom: 1px dotted #CCC;
+  margin-left: -5px;
+}
+.papypalform .pay-title {
+  margin-left: 0px !important;
+  font-size: 16px;
+  font-weight: bold;
+  color: #918D8D;
+}
+.papypalform .pay-data {
+  font-size: 19px;
+  font-weight: bold;
+  color: #2CA4AD;
+  font-family: Arial;
+}
+.papypalform .modal-footer {
+  text-align: center;
+}
