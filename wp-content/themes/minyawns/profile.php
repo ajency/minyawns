@@ -240,12 +240,12 @@ endif;
 							</div>
 							<div class="span10 user_skills">
 									<?php 
-                                                                        if(is_array(get_user_skills())){
+                                                                        //if(is_array(get_user_skills())){
 										$skills = explode(',',get_user_skills());
                                                                               	
 											for ($skill=0;$skill<sizeof($skills);$skill++)
 												echo "<span class='label label-small'>$skills[$skill]</span>";
-                                                                        }
+                                                                        //}
 									?>
 							</div>
 							<?php

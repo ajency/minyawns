@@ -114,7 +114,7 @@ $app->post('/resize-user-avatar', function() use($app) {
             update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
             
             $app->response()->header("Content-Type", "application/json");
-            echo json_encode($attach_id);
+            echo json_encode(get_user_company_logo($user_ID));
         });
 
 $app->run();

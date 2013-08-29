@@ -100,8 +100,9 @@ jQuery(document).ready(function($) {
             type: "POST",
             url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
             data: {w: $("#image_width").val(), h: $("#image_height").val(),'x1':$("#image_x_axis").val(),'y1':$("#image_y_axis").val(),image_name:$("#image_name").val()}
-        }).done(function(msg) {
-            alert("Data Saved: " + msg);
+        }).done(function(img_link) {
+           $('#change-avatar-span').find('img').attr('src', img_link);
+           $('#logged-in').find('img').attr('src',img_link);
         });
     });
 
