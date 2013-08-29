@@ -314,8 +314,10 @@ jQuery(document).ready(function($) {
         },
         validate: function(attr) {
             $("#ajax-load").hide();
-            
+
             var errors = [];
+
+            
             if (attr.job_start_date !== '' && attr.job_end_Date !== '') {
                 if (Date.parse(attr.job_start_date) > Date.parse(attr.job_end_date))
                 {
@@ -332,14 +334,14 @@ jQuery(document).ready(function($) {
                 errors.push({field: 'job_end_date', msg: 'Please fill the  end date field.'});
             }
 
-            if(attr.job_end_time == ''){
-                
+            if (attr.job_end_time == '') {
+
                 errors.push({field: 'job_end_time', msg: 'Please fill the  end time.'});
             }
-            
-             if(attr.job_start_time == ''){
+
+            if (attr.job_start_time == '') {
                 errors.push({field: 'job_start_time', msg: 'Please fill the  start time.'});
-             }
+            }
 
             if (!attr.job_wages) {
                 errors.push({field: 'job_wages', msg: 'Please fill wages field.'});
