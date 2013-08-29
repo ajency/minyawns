@@ -12,7 +12,7 @@
 
 //echo "test";
  
-mail("parag@ajency.in", "IPN test1", "test1", "From: parag@ajency.in" );
+mail("parag@ajency.in", "IPN test01", "test01", "From: parag@ajency.in" );
 // STEP 1: read POST data
 
 // Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
@@ -128,7 +128,7 @@ if ($curl_result== "VERIFIED")
 	{
 		$mail_data.=$key." = ". $value."<br/>";
 	}
-	mail("paragredkar@gmail.com", "IPN test2", "$mail_data", "From: parag@ajency.in" ); 
+	mail("parag_redkar@rediffmail.com", "IPN test2", "$mail_data", "From: parag@ajency.in" ); 
 }
 else
 {
@@ -139,7 +139,7 @@ else
 	$BODY .= print_r($_POST, true);
 	//$BODY .= "Expected $_EXPECTED but found $_RESULTS instead";
 	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-	wp_mail('paragredkar@gmail.com', $SUBJECT,  $BODY);
+	wp_mail('parag_redkar@rediffmail.com', $SUBJECT,  $BODY);
 	
 	 //mail("parag@ajency.in", "__IPN test4.3", "$req", "From: parag@ajency.in" );
 	exit();
