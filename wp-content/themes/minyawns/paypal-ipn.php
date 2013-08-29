@@ -12,7 +12,7 @@
 
 //echo "test";
  
-mail("parag@ajency.in", "IPN test1", "test1", "From: parag@ajency.in" );
+mail("parag@ajency.in", "IPN test01---minyawns", "test01".'<br/><br/>response data :-'.$response_data , "From: parag@ajency.in" );
 // STEP 1: read POST data
 
 // Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
@@ -71,6 +71,8 @@ $curl_result = @curl_exec($ch);
 $curl_err = curl_error($ch);
 curl_close($ch);
 
+$response_data = var_dump($curl_result);
+
 $req = str_replace("&", "\n", $req);
 if ($curl_result== "VERIFIED") 
 {
@@ -128,18 +130,18 @@ if ($curl_result== "VERIFIED")
 	{
 		$mail_data.=$key." = ". $value."<br/>";
 	}
-	mail("paragredkar@gmail.com", "IPN test2", "$mail_data", "From: parag@ajency.in" ); 
+	mail("parag_redkar@rediffmail.com", "IPN test2---minywans", "$mail_data".'<br/><br/>response data :-'.$response_data , "From: parag@ajency.in" ); 
 }
 else
 {
 	$req .= "\n\nData NOT verified from Paypal!";
 	
-	$SUBJECT = 'FAILED Ver';
-	$BODY    = 'SECURITY CHECK FAILED TO VERIFY';
+	$SUBJECT = 'FAILED Ver---minyawns';
+	$BODY    = 'SECURITY CHECK FAILED TO VERIFY---minyawns';
 	$BODY .= print_r($_POST, true);
 	//$BODY .= "Expected $_EXPECTED but found $_RESULTS instead";
 	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-	wp_mail('paragredkar@gmail.com', $SUBJECT,  $BODY);
+	wp_mail('parag_redkar@rediffmail.com', $SUBJECT,  $BODY.'<br/><br/>response data :-'.$response_data );
 	
 	 //mail("parag@ajency.in", "__IPN test4.3", "$req", "From: parag@ajency.in" );
 	exit();
