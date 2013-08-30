@@ -174,27 +174,34 @@ padding-left: 16px;
 		         </div>
 		      </div>
 		      <div class="span12 expand">
-		         <div class="row-fluid jobdesc">
-		            <div class="span3 jobsimg"> <?php if(get_user_company_logo($pagepost->post_author)){?> <img src="<?php echo  get_user_company_logo($pagepost->post_author) ?>"/> <?php }else { echo get_avatar($minyawn_job->ID,20); }?> 
-					<br>
-					<span class='load_ajax3' style="display:none"></span>
+			     <div class="row-fluid header-title">
+					<div class="span12">
+					<h3><a href="#" target="_blank" >Jobtitle</a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
                     <?php 
                       if(get_user_role() == "minyawn"){ 
                          if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3){ ?>
                                 
-                                <a href="#" class="btn btn-medium btn-block btn-success red-btn" style=" width: 58%; margin: auto; ">You are hired</a>
+                                <a href="#" class="btn btn-medium btn-block btn-success red-btn header-btn" >You are hired</a>
                                 
                          <?php }else if($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 0 ) : ?>
-			         	<a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success" style=" width: 58%; margin: auto; " data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?> ">Apply</a>
+			         	<a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success header-btn"  data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?> ">Apply</a>
 			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2 ) : ?>
-			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" style=" width: 58%; margin: auto; " data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
+			         	<a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn header-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
 			         <?php elseif($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 1 ) : ?>
-			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn" style=" width: 72%; margin: auto; ">Requirement Complete</a>
+			         	<a href="#" class="btn btn-medium btn-block btn-success red-btn header-btn" >Requirement Complete</a>
 			         <?php endif;
-                      }?>
+                      }?></span> </h3>
 					</div>
-		            <div class="span9 job-details"><?php echo $minyawn_job->get_job_details() ?></div>
+					</div>
+		         <div class="row-fluid jobdesc">
+		           <!--<div class="span3 jobsimg"> <?php if(get_user_company_logo($pagepost->post_author)){?> <img src="<?php echo  get_user_company_logo($pagepost->post_author) ?>"/> <?php }else { echo get_avatar($minyawn_job->ID,20); }?> 
+					<br>
+					
+					</div>-->
+		            <div class="span12 job-details"><?php echo $minyawn_job->get_job_details() ?></div>
+					
 		         </div>
+				 <hr>
 		       <?php
                                 //show all applied minyanws data
 			     	include_once 'applied_minyaws.php';
