@@ -1175,6 +1175,11 @@ jQuery(document).ready(function($) {
         });
 
     });
+    
+    $(".roundedTwo").live('click',function(e){
+    $("#roundedTwo10").attr("checked","checked");
+        
+    });
 
     $("#hide-calendar").live('click', function(e) {
         var c = 0;

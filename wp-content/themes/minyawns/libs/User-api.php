@@ -8,10 +8,19 @@
  * Set up all existing profile data for the logged in user
  */
 function setup_user_profile_data() {
-    if (!is_user_logged_in())
-        return;
+   // if (!is_user_logged_in())
+     //   return;
 
     global $current_user;
+   
+    $get_user_id=  explode("/",$_SERVER['REQUEST_URI']);
+    
+   // var_dump(sizeof($get_user_id));exit();
+     
+    if(sizeof($get_user_id) > 4)
+    $current_user=  wp_set_current_user($get_user_id[3]);
+    
+   
 
     $user_meta = get_user_meta($current_user->data->ID);
 

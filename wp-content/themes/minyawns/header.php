@@ -42,7 +42,7 @@
             
             </script>
             
-<body <?php body_class(); ?>>
+<body <?php body_class('logged-out'); ?>>
 	<div class=" pbl mtn top-menu">
 		<div class="bottom-menu  bottom-menu-inverse top-menu">
 			<div class="container">
