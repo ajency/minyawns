@@ -12,7 +12,7 @@
 
 //echo "test";
  
-mail("parag@ajency.in", "IPN test01---minyawns", "test01".'<br/><br/>response data :-'.$response_data , "From: parag@ajency.in" );
+mail("paragredkar@gmail.com", "IPN test01---minyawns", "test01".'<br/><br/>response data :-'.$response_data , "From: parag@ajency.in" );
 // STEP 1: read POST data
 
 // Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
