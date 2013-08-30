@@ -141,7 +141,7 @@ padding-left: 16px;
 		   <div  class="row-fluid  list-jobs single-jobs ">
 		 
 		      <div class="span12 jobs-details">
-		         <div class="span2 img-logo"> <?php echo get_avatar($minyawn_job->ID,20) ?> </div>
+                         <div class="span2 img-logo"><?php if(get_user_company_logo($pagepost->post_author)){?> <img src="<?php echo  get_user_company_logo($pagepost->post_author) ?>"/> <?php }else { echo get_avatar($minyawn_job->ID,20); }?> </div>
 		         <div class="span3 minyawns-select">
 		            <span><?php echo $minyawn_job->get_job_applied_minyawns(); ?></span>
 		            <div><b>Minyawns Have Applied</b></div>
@@ -175,7 +175,7 @@ padding-left: 16px;
 		      </div>
 		      <div class="span12 expand">
 		         <div class="row-fluid jobdesc">
-		            <div class="span3 jobsimg"> <img src="<?php echo get_template_directory_uri() ?>/images/livefyre-logo.png"/>
+		            <div class="span3 jobsimg"> <?php if(get_user_company_logo($pagepost->post_author)){?> <img src="<?php echo  get_user_company_logo($pagepost->post_author) ?>"/> <?php }else { echo get_avatar($minyawn_job->ID,20); }?> 
 					<br>
 					<span class='load_ajax3' style="display:none"></span>
                     <?php 
@@ -311,22 +311,22 @@ padding-left: 16px;
 	<div class="row-fluid main-pay ">
 		<div class="row-fluid ">
 		<div class="span6 pay-title"> No of Minayawns</div>
-		<div class="span6 pay-data">= 3</div>
+		<div class="span6 pay-data" id="no_of_minyawns">= <span id="no_of_minyawns"></span></div>
 		</div>
 		<div class="row-fluid ">
 		<div class="span6 pay-title">Wage</div>
-		<div class="span6 pay-data">= $ 100</div>
+		<div class="span6 pay-data" >= $ <span id="wages_per_minyawns"></span></div>
 		</div>
 		<div class="row-fluid " style="border:0px;">
 		<div class="span6 pay-title">Total</div>
-		<div class="span6 pay-data">= $ 300</div>
+                <div class="span6 pay-data" >= $ <span id="total_wages"></span></div>
 		</div>
 	</div>
    
   </div>
   <div class="modal-footer">
    <div>To Confirm & pay</div></br>
-    <button class="btn btn-warning">Paypal</button>
+    <input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
   </div>
 </div>	
 <?php

@@ -165,6 +165,7 @@ endif;
 <form id="cropimage" method="post" enctype="multipart/form-data">
 
 	Upload your image <input type="file" name="files" id="photoimg" /><br>
+	<p class="help-block meta">Upload an image for your profile.</p></br>
 	<a type="button" class="btn btn-primary" id="done-cropping" style=" margin-left: 118px; margin-top: 5px; margin-bottom: 10px; display:none">Done Cropping? </a>
 	</br>
 	<input type="hidden" name="image_name" id="image_name" value="" />

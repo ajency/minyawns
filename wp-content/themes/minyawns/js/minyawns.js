@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
         var thumb_width = obj.width;
         var thumb_height = obj.height;
         if (thumb_width > 0) {
-          $("#done-cropping").show();
+            $("#done-cropping").show();
             $("#image_height").val(thumb_height);
             $("#image_width").val(thumb_width)
             $("#image_x_axis").val(x_axis);
@@ -47,10 +47,9 @@ jQuery(document).ready(function($) {
     $('img#uploaded-image').imgAreaSelect({
         aspectRatio: $("#aspect_ratio").val(),
         onSelectEnd: getSizes,
-        
     });
 
-    $("#job_wages").keydown(function(event) {
+    $("#job_wages,#job_required_minyawns").keydown(function(event) {
         // Allow only backspace and delete
         if (event.keyCode == 46 || event.keyCode == 8) {
             // let it happen, don't do anything
@@ -88,15 +87,15 @@ jQuery(document).ready(function($) {
             $('#change-avatar').removeAttr("disabled");
             $("#uploaded-image").attr('src', data.result.image);
             $("#image_name").val(data.result.image_name);
-           
-            if(data.result.image_height > 500)
-              $("#uploaded-image").css('height','500');
-            
-            if(data.result.image_width > 500)
-                $("#uploaded-image").css('width','500');
-            
-            
-                
+
+            if (data.result.image_height > 500)
+                $("#uploaded-image").css('height', '500');
+
+            if (data.result.image_width > 500)
+                $("#uploaded-image").css('width', '500');
+
+
+
         },
         start: function(e, data) {
             $('#change-avatar').attr("disabled", "disabled");
@@ -109,10 +108,10 @@ jQuery(document).ready(function($) {
         $.ajax({
             type: "POST",
             url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
-            data: {w: $("#image_width").val(), h: $("#image_height").val(),'x1':$("#image_x_axis").val(),'y1':$("#image_y_axis").val(),image_name:$("#image_name").val()}
+            data: {w: $("#image_width").val(), h: $("#image_height").val(), 'x1': $("#image_x_axis").val(), 'y1': $("#image_y_axis").val(), image_name: $("#image_name").val()}
         }).done(function(img_link) {
-           $('#change-avatar-span').find('img').attr('src', img_link);
-           $('#logged-in').find('img').attr('src',img_link);
+            $('#change-avatar-span').find('img').attr('src', img_link);
+            $('#logged-in').find('img').attr('src', img_link);
         });
     });
 
@@ -314,8 +313,11 @@ jQuery(document).ready(function($) {
             return SITEURL + '/wp-content/themes/minyawns/libs/job.php/addjob';
         },
         validate: function(attr) {
+            $("#ajax-load").hide();
 
             var errors = [];
+
+
             if (attr.job_start_date !== '' && attr.job_end_Date !== '') {
                 if (Date.parse(attr.job_start_date) > Date.parse(attr.job_end_date))
                 {
@@ -332,18 +334,26 @@ jQuery(document).ready(function($) {
                 errors.push({field: 'job_end_date', msg: 'Please fill the  end date field.'});
             }
 
+            if (attr.job_end_time == '') {
+
+                errors.push({field: 'job_end_time', msg: 'Please fill the  end time.'});
+            }
+
+            if (attr.job_start_time == '') {
+                errors.push({field: 'job_start_time', msg: 'Please fill the  start time.'});
+            }
 
             if (!attr.job_wages) {
                 errors.push({field: 'job_wages', msg: 'Please fill wages field.'});
             }
             if (!attr.job_required_minyawns)
-                errors.push({field: 'job_required_minyawns', msg: 'Please enter required field'});
-            if (!attr.job_location)
-                errors.push({field: 'job_location', msg: 'Please enter location'});
+                //errors.push({field: 'job_required_minyawns', msg: 'Please enter required field'});
+                if (!attr.job_location)
+                    errors.push({field: 'job_location', msg: 'Please enter location'});
             if (!attr.job_tags)
                 errors.push({field: 'job_tags', msg: 'Please enter tags'});
             if (attr.job_required_minyawns == 0)
-                errors.push({field: 'job_required_minyawns', msg: 'Please select more then one'});
+                errors.push({field: 'job_required_minyawns', msg: 'Please select more than one'});
             if (!attr.job_details)
                 errors.push({field: 'job_details', msg: 'Please enter job details'});
             if (!attr.job_task)
@@ -357,6 +367,7 @@ jQuery(document).ready(function($) {
 
         e.preventDefault();
         _this = $(this);
+        $("#ajax-load").show();
         //remove previuous errors
         $('#job-form').find('span.form-error').remove();
         //attach it to global window so we can use it later to update the main profile view
@@ -389,7 +400,7 @@ jQuery(document).ready(function($) {
                         $("#job_details").val(" ");
 
                         $('#job_tags_tagsinput').find('span').remove()
-
+                        $('html, body').animate({scrollTop: '0px'}, 300);
                     },
                     errors: function() {
                         $(_this).removeAttr('disabled');
@@ -1190,6 +1201,7 @@ jQuery(document).ready(function($) {
         var group_ids = "";
         var user_id = "";
         var sList = "";
+        var no_of_minyawns = 0;
         $('input[name=confirm-miny\\[\\]]:checked').each(function() {
             user_id = $(this).attr('data-user-id');
             _job_id = $(this).attr('data-job-id');
@@ -1200,28 +1212,32 @@ jQuery(document).ready(function($) {
             group_ids += user_id + ',';
 
             $("#hire-thumb" + user_id).addClass('minyans-select');
-
+            no_of_minyawns = no_of_minyawns + 1;
 
         });
-
+        $("#no_of_minyawns").html(no_of_minyawns);
+        $("#wages_per_minyawns").html($("#job_wages").val());
+        var total=no_of_minyawns*$("#job_wages").val();
+                $("#total_wages").html(total);
+        return;
 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
                 {
                     user_id: group_ids,
                     job_id: _job_id,
-                    status: sList,       
-                    actionType:$("#actionType").val(),
-                    returnUrl:$("#returnUrl").val(),
-                    cancelUrl:$("#cancelUrl").val(),
-                    currencyCode:$("#currencyCode").val(),
-                    jobwages : $("#hdn_jobwages").val()
+                    status: sList,
+                    actionType: $("#actionType").val(),
+                    returnUrl: $("#returnUrl").val(),
+                    cancelUrl: $("#cancelUrl").val(),
+                    currencyCode: $("#currencyCode").val(),
+                    jobwages: $("#hdn_jobwages").val()
                 },
         function(response) {
 
-                	console.log(response);
-                	$("#single-jobs").html("response"+response.content);
-                	
-                	
+            console.log(response);
+            $("#single-jobs").html("response" + response.content);
+
+
             $(".load_ajax4").hide();
         }, 'json');
     });

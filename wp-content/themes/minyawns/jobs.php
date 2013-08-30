@@ -199,7 +199,14 @@ endif;
     </div>
     </div>
     <div class="span12 expand">
+	 <div class="row-fluid header-title">
+    <div class="span12">
+    <h3><a href=<?php echo site_url() ?>/job/<%= post_slug %> target="_blank" > <%= post_title %> <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
+    </div>
+    </div>
+	<br>
     <div class="span8 details"> 
+   
     <div class="row-fluid">
     <div class="span4"> <img src="<%= job_author_logo %>"/></div>
     <div class="span8"><%= job_details %></div>
@@ -439,14 +446,14 @@ endif;
 
                                     </div>
                                 </div>
-                                <div class="input-append bootstrap-timepicker">
+                                <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
                                     <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" >
                                     <span class="add-on">
                                         <i class="icon-time"></i>
                                     </span>
                                 </div>
                                 <div class="clear"></div>
-                                <div class="control-group small float-left">
+                                <div class="control-group small float-left" >
                                     <label class="control-label" for="inputtask">End</label>
                                     <div class="controls">
                                         <div class="input-prepend input-datepicker">
@@ -456,7 +463,7 @@ endif;
                                     </div>
 
                                 </div>
-                                <div class="input-append bootstrap-timepicker">
+                                <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
                                     <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time">
                                     <span class="add-on">
                                         <i class="icon-time"></i>
