@@ -1190,7 +1190,7 @@ jQuery(document).ready(function($) {
 
     $('#confirm-hire').live('click', function(evt) {
         $("#confirm-hire").attr('disabled', 'disabled');
-        $(".load_ajax4").show();
+        $(".load_ajaxconfirm").show();
         evt.preventDefault();
         var _this = $(this);
         var _user_id = $(this).attr('data-user-id');

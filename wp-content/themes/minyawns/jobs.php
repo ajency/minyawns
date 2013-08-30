@@ -205,7 +205,7 @@ endif;
     </div>
     </div>
 	<br>
-    <div class="span8 details"> 
+    <div class="span9 details"> 
    
     <div class="row-fluid">
     <div class="span4"> <img src="<%= job_author_logo %>"/></div>
@@ -227,11 +227,12 @@ endif;
     </div>
     <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
     </div>
-    <span class='load_ajax1' style="display:none"></span>
+  
    
 <?php if (get_user_role() == "minyawn") { ?>
-            <div class="span4">
+            <div class="span3">
             <div class="div-box-block">
+			  <span class='load_ajax1' style="display:none"></span>
             <% if(can_apply_job == 3){%>
             <a href="#" class="required">You are hired!</a>
             <% }else{%>
@@ -240,8 +241,9 @@ endif;
             </div>
             </div>
 <?php } else { ?>
-            <div class="span4">
+            <div class="span3">
             <div class="div-box-block">
+			  <span class='load_ajax1' style="display:none"></span>
             <% if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
             <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>" style="width:70%;">Select Your Minyawns</a>
             <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
