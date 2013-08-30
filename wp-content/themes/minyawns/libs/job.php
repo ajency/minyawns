@@ -108,13 +108,13 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $tables = "$wpdb->posts, $wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "' AND $wpdb->posts.post_author='" . get_current_user_id() . "'";
-                     $limit="LIMIT " . $_GET['offset'] . ",2";
+                     $limit="LIMIT " . $_GET['offset'] . ",5";
                 } else {
 
                     $tables = "$wpdb->posts, $wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
-                    $limit="LIMIT " . $_GET['offset'] . ",2";
+                    $limit="LIMIT " . $_GET['offset'] . ",5";
                 }
             }
 
@@ -133,7 +133,7 @@ $app->get('/fetchjobs/', function() use ($app) {
 
             $total = count(get_total_jobs());
             
-            $no_of_pages=ceil($total/2);
+            $no_of_pages=ceil($total/5);
             $has_more_results=0;
             foreach ($pageposts as $pagepost) {
                 $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
@@ -158,7 +158,7 @@ $app->get('/fetchjobs/', function() use ($app) {
         if ((int) ($min_job->required_minyawns)+2 <= count($min_job->minyawns))
             $applied = 2;
 
-                if($total <= $_GET['offset']+2){ 
+                if($total <= $_GET['offset']+5){ 
                     $show_load=1;
                 }
                 else{
