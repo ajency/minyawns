@@ -262,7 +262,9 @@ jQuery(document).ready(function($) {
 //                _.each(data.user_skills2, function(ele, index) {
 //                    skills += "<span class='label label-small'>" + ele + "</span>";
 //                });
+if(data.first_name != undefined)
                 skill_name = data.user_skills2.split(',');
+                
                 for (i = 0; i < skill_name.length; i++)
                 {
                     skills += "<span class='label label-small'>" + skill_name[i] + "</span>";

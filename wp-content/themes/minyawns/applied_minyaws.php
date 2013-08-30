@@ -37,8 +37,11 @@
             foreach ($minyawn_job->minyawns as $minyawn):
                
                 ?>
+         <a href="<?php echo site_url() ?>/profile/<?php echo $minyawn['user_id'] ?>" target="_blank">
                 <li id="hire-thumb<?php echo $minyawn['user_id'] ?>" <?php if ($minyawn['user_job_status'] == "hired") { ?>class="span3 minyans-select" <?php } else { ?>class="span3" <?php } ?>>
+                    
                     <div class="thumbnail " >
+                       
                         <div class="caption">
                             <?php if ($minyawn['image'] !== false): ?>
                                 <img src="<?php echo $minyawn['image']; ?>" />
@@ -79,8 +82,11 @@
 
 
                         </div>
+                            
                     </div>
+                   
                 </li>
+                 </a>
     <?php endforeach;
     ?>
 

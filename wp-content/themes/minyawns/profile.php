@@ -191,8 +191,8 @@ endif;
 			</p>
 		</div>
 		<div class="row-fluid profile-wrapper">
-		<?php if(check_access()===true)
-		{
+		<?php //if(check_access()===true)
+		//{
 			 
 		?>
 			<div class="span12" id="profile-view">
@@ -416,7 +416,7 @@ endif;
 			</div>
 			<div class="clear"></div>
 			<?php
-		} 
+		//} 
 			?>
 		</div>
 	</div>

@@ -157,9 +157,11 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                 $user_data = array();
                 $user_image = array();
+                $user_id_applied=array();
                 foreach ($min_job->minyawns as $min) {
                     $user = array_push($user_data, $min['profile_name']);
                     $user_profileimage = array_push($user_image, get_user_company_logo($min['user_id']));
+                    $applied_user_id=array_push($user_id_applied,$min['user_id']);
                 }
 
                 $applied = $min_job->check_minyawn_job_status($pagepost->ID);
@@ -196,6 +198,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'tags' => $tags,
                     'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
+                    'job_author_id'=>get_the_author_meta('ID',$pagepost->post_author),
                     'job_author_logo' => get_user_company_logo($pagepost->post_author),
                     'can_apply_job' => $applied,
                     'user_job_status' => is_null($min_job->is_hired) ? $min_job->is_hired : 'can_apply',
@@ -207,7 +210,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'load_more' => $show_load,
                     'user_profile_image' => $user_image,
                     'default_user_avatar' => get_avatar($pagepost->ID),
-                    'is_job_owner' => $is_job_owner
+                    'is_job_owner' => $is_job_owner,
+                    'applied_user_id'=>$user_id_applied
                 );
             }
 

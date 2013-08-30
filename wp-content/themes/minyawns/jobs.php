@@ -16,7 +16,7 @@ global $minyawn_job;
     <div class="accordion-heading">
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
     <div class="span12 data-title available">
-    <div class="job-logo header-sub"> <div class="logo"><img src="<%= job_author_logo %>"/></div></div>
+    <div class="job-logo header-sub"> <div class="logo"><a href="<?php echo site_url() ?>/profile/<%= job_author_id%>" target="_blank"><img src="<%= job_author_logo %>"/></a></div></div>
     <div class="job-date header-sub">
     <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
     <div>
@@ -91,7 +91,7 @@ global $minyawn_job;
     <div class="row-fluid job-data">
     <div class="span9 inner-data">
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link"><%= job_author %></a>  </div>
+    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="<?php echo site_url() ?>/profile/<%= job_author_id%>" target="_blank" class="request_link"><%= job_author %></a>  </div>
     </div>
     <div class="row-fluid minywans_list">
     <div class="span3 "><b>Location :</b></div><div class="span9"><%= job_location %> </div>
@@ -164,7 +164,7 @@ endif;
 <script type="text/templates" id="my-jobs">
     <div id="job-list<%= post_id %>" class="row-fluid list-jobs my-jobs-1"  style="background: #C7C9C5;">
     <div class="span12 jobs-details">
-    <div class="span2 img-logo"> <img src="<%= job_author_logo %>"/></div>
+    <div class="span2 img-logo"><a href="<?php echo site_url() ?>/profile/<%= job_author_id%>" target="_blank"> <img src="<%= job_author_logo %>"/></a></div>
     <div class="span3 minyawns-select"><span><%= minyawns_have_applied %></span>
     <div>Minyawns Have Applied</div> 
     </div>
@@ -216,7 +216,7 @@ endif;
     </div><br>
     <div class="row-fluid minyawansgrid">
     <% for(i=0;i<users_applied.length;i++){ %>
-   <div class="span6"><img src="<%= user_profile_image[i] %>"/><b><%= users_applied[i]%></b>
+   <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><img src="<%= user_profile_image[i] %>"/><b><%= users_applied[i]%></b></a>
    
     <a href="#fakelink" >
     <i class="icon-thumbs-up"></i> 50
