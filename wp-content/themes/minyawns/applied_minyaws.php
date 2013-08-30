@@ -131,7 +131,8 @@
 
 
 <?php if(get_user_role() == "employer" && $minyawn['user_job_status'] != "hired") { ?>
+<span class='load_ajaxconfirm' style="display:none"></span>
 <a href="#confirminyawn" id="confirm-hire" data-toggle="modal" class="btn btn-medium btn-block green-btn btn-success" <?php if(count($minyawn_job->minyawns) == 0){?>style="display:none" <?php } ?> >Confirm & Hire</a>
-<span class='load_ajax4' style="display:none"></span>
+
 <?php } ?>
 

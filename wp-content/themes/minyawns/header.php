@@ -154,7 +154,7 @@
 
 
 								</div>
-								<div class="span6">
+								<div class="span6 fb-login">
 									<h6 class="align-center" style="margin-bottom: 0px;">Login
 										Using Facebook</h6>
 									<p class="align-center">Get using minyawns, faster !</p>
