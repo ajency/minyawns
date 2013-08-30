@@ -391,7 +391,7 @@ function get_total_jobs() {
                             AND $wpdb->posts.post_type = 'job'
                             
                          ";
-             
+            
             $is_author=$wpdb->get_results($querystr, OBJECT);
             
             if(count($is_author) >0)
