@@ -12,7 +12,7 @@
 
 //echo "test";
  
-mail("parag@ajency.in", "IPN test01---minyawns", "test01".'<br/><br/>response data :-'.$response_data , "From: parag@ajency.in" );
+mail("paragredkar@gmail.com", "IPN test01---minyawns", "test01".'<br/><br/>response data :-'.$response_data , "From: parag@ajency.in" );
 // STEP 1: read POST data
 
 // Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
@@ -52,10 +52,10 @@ foreach ($myPost as $key => $value)
 
 
 
-$url = 'https://www.sandbox.paypal.com/webscr';
+//$url = 'https://www.sandbox.paypal.com/webscr';
 //$url = $paypal_adr;
 //$url = "https://www.paypal.com/cgi-bin/webscr";
-//$url = 'https://www.paypal.com/webscr';
+$url = 'https://www.paypal.com/webscr';
 $curl_result=$curl_err='';
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$url);
@@ -154,16 +154,6 @@ else
 	
 	//$total_amount = $amount + $tax;
 	$total_amount = trim($_POST['mc_gross']);
-	
-	
-	if(($payment_status=="Completed")
-	{
-		
-		
-				
-	}
-	
-	
 	
 	$SUBJECT = 'FAILED Ver---minyawns';
 	$BODY    = 'SECURITY CHECK FAILED TO VERIFY---minyawns';

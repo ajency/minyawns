@@ -361,7 +361,8 @@ $app->post('/confirm', function() use ($app) {
             }
             $payRequest = new PayRequest(new RequestEnvelope("en_US"), $_POST['actionType'], $_POST['cancelUrl'], $_POST['currencyCode'], $receiverList, $_POST['returnUrl']);
             $payRequest->ipnNotificationUrl ='http://www.minyawns.ajency.in/paypal-ipn/';
-            
+            $payRequest->item_number =$_POST['job_id'];
+            $payRequest->memo =$_POST['job_id'];
             
             /* $html.="action :".$_POST['actionType'];
              $html.="cancelurl :".$_POST['cancelUrl'];
