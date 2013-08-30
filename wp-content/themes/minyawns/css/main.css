@@ -32,6 +32,10 @@ a:hover {
   color: red;
   line-height: 36px;
 }
+.header-btn {
+  padding: 5px 25px;
+  margin-top: -2px;
+}
 .label-hired {
   color: #FF8808;
   line-height: 36px;
@@ -395,6 +399,11 @@ a:hover {
   line-height: 150% !important;
   padding: 17px 8px 0px 13px !important;
 }
+.jobs_table .data-title .header-sub .logo {
+  height: 57px;
+  margin-top: -10px;
+  overflow: hidden;
+}
 .jobs_table .accordion-inner .header-title {
   border: 1px solid #EEEBEB;
 }
@@ -571,14 +580,15 @@ a:hover {
 }
 .list-jobs .jobs-details .img-logo {
   border-right: 1px solid #E6E6E6;
-  height: 55px;
+  height: 50px;
+  overflow: hidden;
 }
 .list-jobs .jobs-details .img-logo img {
   width: 60%;
   display: block;
   -webkit-filter: grayscale(100%);
   opacity: 0.5;
-  margin-top: 14px !important;
+  margin-top: 6px !important;
   margin: auto;
 }
 .list-jobs .jobs-details .minyawns-select {
@@ -841,6 +851,8 @@ a:hover {
   font-size: 12px;
   line-height: 19px;
   color: #857F7F;
+  padding: 7px;
+  min-height: 122px;
 }
 .single-jobs .minyawns-grid {
   width: 98%;
@@ -1052,8 +1064,10 @@ a:hover {
   .list-jobs .expand .minyawansgrid .span6 b {
     width: auto;
   }
-  .list-jobs .expand .btn-success {
-    margin-top: 10px !important;
+  .list-jobs .expand .header-btn {
+    padding: 3px 9px;
+    font-size: 11px;
+    margin-top: 2px;
   }
   .jobs_menu {
     width: 274px;

@@ -336,6 +336,7 @@ $app->post('/confirm', function() use ($app) {
 
 
 
+
             $cnt_users = 0;
             foreach ($users__ as $user___) {
                 if ($user___ != "") {
@@ -352,6 +353,7 @@ $app->post('/confirm', function() use ($app) {
                 }
 
                 $html.=$querystr . '' . $users_already_hired['user_hired'];
+
             }
             $total_wages = $cnt_users * $single_wages;
             //  echo "total wages ".$total_wages;
@@ -400,46 +402,31 @@ $app->post('/confirm', function() use ($app) {
 
 
             $ack = strtoupper($response->responseEnvelope->ack);
-            if ($ack != "SUCCESS") {
-                $html.="<b>Error </b>";
-                $html.="<pre>";
-                $html.="</pre>";
-            } else {
-                $payKey = $response->payKey;
 
-                $paypal_payment = array('pay_key' => $payKey, 'status' => '');
-                update_post_meta($_POST['job_id'], 'paypal_payment', $paypal_payment);
-
-                $payPalURL = PAYPAL_REDIRECT_URL . '_ap-payment&paykey=' . $payKey;
-
-
-
-
-                $html.='<script src="https://www.paypalobjects.com/js/external/dg.js" type="text/javascript"></script>';
-                $html.='<form action="https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay" target="PPDGFrame" class="standard">';
-                $html.= "<table>
-            	<tr>
-            	<td colspan='2' >Minyawns</td>
-            	</tr>
+            if($ack != "SUCCESS") {
+            	$html.="<b>Error </b>";
+            	$html.="<pre>";
+            	$html.="</pre>";
+            } else
+            {
+            	$payKey = $response->payKey;
+            	
+            	$paypal_payment = array('pay_key'=>$payKey,'status'=>'');
+            	update_post_meta($_POST['job_id'], 'paypal_payment', $paypal_payment);
+            	
+            	$payPalURL = PAYPAL_REDIRECT_URL . '_ap-payment&paykey=' . $payKey;
+            
             	 
-            	<tr>
-            	<td >Pay Key</td>
-            	<td>$payKey</td>
-            	</tr>
-            	<tr>
-            	<td >Amount</td>
-            	<td>$total_wages</td>
-            	</tr>
-            	";
+            	 
+            
+            //	$html.='<script src="https://www.paypalobjects.com/js/external/dg.js" type="text/javascript"></script>';
+            	$html.='<form action="https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay" target="PPDGFrame" class="standard">';
+            	$html.='<input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">';
+	            $html.='<input id="type" type="hidden" name="expType" value="light">';
+	            $html.='<input id="paykey" type="hidden" name="paykey" value="'.$payKey.'">';
+	            $html.='</form>';
+            	 $html.='<script type="text/javascript" charset="utf-8">var embeddedPPFlow = new PAYPAL.apps.DGFlow({trigger: \'submitBtn\'});
 
-                $html.= "</table>";
-
-                $html.='<input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">';
-                $html.='<input id="type" type="hidden" name="expType" value="light">';
-                $html.='<input id="paykey" type="hidden" name="paykey" value="' . $payKey . '">';
-                $html.='</form>';
-
-                $html.='<script type="text/javascript" charset="utf-8">var embeddedPPFlow = new PAYPAL.apps.DGFlow({trigger: \'submitBtn\'});
 </script>';
             }
 
