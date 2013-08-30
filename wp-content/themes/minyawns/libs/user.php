@@ -156,7 +156,7 @@ function upload_attachment($file_handler, $user_id) {
 
     remove_filter('upload_dir', 'change_user_avatar_upload_dir');
 
-    update_user_meta($user_id, 'avatar_attachment', $attach_id);
+    //update_user_meta($user_id, 'avatar_attachment', $attach_id);
     return $attach_id;
 }
 
