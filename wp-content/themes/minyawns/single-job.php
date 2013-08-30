@@ -311,7 +311,7 @@ padding-left: 16px;
 	<div class="row-fluid main-pay ">
 		<div class="row-fluid ">
 		<div class="span6 pay-title"> No of Minayawns</div>
-		<div class="span6 pay-data" id="no_of_minyawns">= 3</div>
+		<div class="span6 pay-data" id="no_of_minyawns">= <span id="no_of_minyawns"></span></div>
 		</div>
 		<div class="row-fluid ">
 		<div class="span6 pay-title">Wage</div>
@@ -326,7 +326,7 @@ padding-left: 16px;
   </div>
   <div class="modal-footer">
    <div>To Confirm & pay</div></br>
-    <button class="btn btn-warning">Paypal</button>
+    <input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
   </div>
 </div>	
 <?php
