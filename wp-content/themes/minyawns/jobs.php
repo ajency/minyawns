@@ -175,7 +175,7 @@ endif;
     <%}else{ %>
     <div class="span3 jobs-date"> 
     <div class="posteddate"> Posted Date : <span><%= post_date %></span></div>
-    <div class="jobsdate"> Jobs Date : <span><%= job_start_date %></span></div>
+    <div class="jobsdate"> Job Date : <span><%= job_start_date %></span></div>
     </div>
     <% }%>
     <div class="span3 job-duration duration_mob">

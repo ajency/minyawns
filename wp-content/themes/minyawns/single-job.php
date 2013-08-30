@@ -151,7 +151,7 @@ global $minyawn_job;
                             </div>
                             <div class="span3 jobs-date">
                                 <div class="posteddate"> Posted Date : <span><?php echo $minyawn_job->get_job_posted_date(); ?></span></div>
-                                <div class="jobsdate"> Jobs Date : <span><?php echo $minyawn_job->get_job_date(); ?></span></div>
+                                <div class="jobsdate"> Job Date : <span><?php echo $minyawn_job->get_job_date(); ?></span></div>
                             </div>
                             <div class="span3 job-duration duration_mob">
                                 <div class="row-fluid">
