@@ -4,8 +4,9 @@
 <script type="text/javascript" src="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/jquery.qtip-1.0.0-rc3.min.js"></script>
 */?>
  <script src="https://www.paypalobjects.com/js/external/dg.js" type="text/javascript"></script>
+ 
 <?php	
-	$serverName = $_SERVER['SERVER_NAME'];
+ 	$serverName = $_SERVER['SERVER_NAME'];
 	$serverPort = $_SERVER['SERVER_PORT'];
 	$url = dirname('http://' . $serverName . ':' . $serverPort . $_SERVER['REQUEST_URI']);
 	/*$returnUrl = $url . "/adaptive_paypal/samples/ExecutePayment.php";

@@ -1191,6 +1191,7 @@ jQuery(document).ready(function($) {
     });
 
     $('#confirm-hire').live('click', function(evt) {
+    	
         $("#confirm-hire").attr('disabled', 'disabled');
         $(".load_ajaxconfirm").show();
         evt.preventDefault();
@@ -1219,7 +1220,7 @@ jQuery(document).ready(function($) {
         $("#wages_per_minyawns").html($("#job_wages").val());
         var total=no_of_minyawns*$("#job_wages").val();
                 $("#total_wages").html(total);
-        return;
+        //return;
 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
                 {
@@ -1235,7 +1236,7 @@ jQuery(document).ready(function($) {
         function(response) {
 
             console.log(response);
-            $("#single-jobs").html("response" + response.content);
+            $("#paypal_pay").html(response.content);
 
 
             $(".load_ajax4").hide();

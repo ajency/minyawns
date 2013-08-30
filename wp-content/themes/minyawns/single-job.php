@@ -326,7 +326,8 @@ padding-left: 16px;
   </div>
   <div class="modal-footer">
    <div>To Confirm & pay</div></br>
-    <input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
+   <span id='paypal_pay'><img src="<?php echo site_url()."/wp-content/themes/minyawns/images/2.gif"?>" width="20" height="20" /><input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"></span>
+    
   </div>
 </div>	
 <?php
