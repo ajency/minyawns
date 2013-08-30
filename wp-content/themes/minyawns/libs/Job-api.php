@@ -373,3 +373,39 @@ function get_total_jobs() {
 
         return $wpdb->get_results($querystr, OBJECT);
     }
+    
+    function is_job_owner($user_id,$job_id)
+    {
+        global $wpdb;
+        
+        if(get_user_role() != 'minyawn')
+        {
+             $tables = "$wpdb->posts";
+                    $my_jobs_filter = "WHERE $wpdb->posts.post_author = '".$user_id."' AND $wpdb->posts.ID='".$job_id."'";
+                    
+             $querystr = "
+                            SELECT $wpdb->posts.* 
+                            FROM $tables
+                            $my_jobs_filter
+                            AND $wpdb->posts.post_status = 'publish' 
+                            AND $wpdb->posts.post_type = 'job'
+                            
+                         ";
+             
+            $is_author=$wpdb->get_results($querystr, OBJECT);
+            
+            if(count($is_author) >0)
+                return 1;
+            
+            else
+                return 0;
+            
+        }else
+            return false;
+        
+        
+        
+    }
+    
+    
+    

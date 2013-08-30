@@ -48,12 +48,12 @@ $app->post('/change-avatar', function() use($app) {
                     'error' => $files['error'],
                     'size' => $files['size']
                 );
-if (isset($_FILES['files'])) {
-    $filename = $_FILES['files']['tmp_name'];
-    list($width, $height) = getimagesize($filename);
-    $image_width=$width; 
-    $image_height=$height;    
-}
+                if (isset($_FILES['files'])) {
+                    $filename = $_FILES['files']['tmp_name'];
+                    list($width, $height) = getimagesize($filename);
+                    $image_width = $width;
+                    $image_height = $height;
+                }
 
                 $_FILES = array("upload_attachment" => $file);
 
@@ -69,7 +69,7 @@ if (isset($_FILES['files'])) {
             }
 
             $app->response()->header("Content-Type", "application/json");
-            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => $files['name'],'image_height'=>$image_height,'image_width'=>$image_width));
+            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => $files['name'], 'image_height' => $image_height, 'image_width' => $image_width));
         });
 
 $app->post('/resize-user-avatar', function() use($app) {
@@ -95,35 +95,33 @@ $app->post('/resize-user-avatar', function() use($app) {
             $nh = ceil($h * $ratio);
             $nimg = imagecreatetruecolor($nw, $nh);
 
-            if (stripos($image_name, "png") !== false) 
-            $im_src = imagecreatefrompng($targetFolder . $image_name);
+            if (stripos($image_name, "png") !== false)
+                $im_src = imagecreatefrompng($targetFolder . $image_name);
+            else
+                $im_src = imagecreatefromjpeg($targetFolder . $image_name);
 
-             else
-                 $im_src=imagecreatefromjpeg($targetFolder . $image_name);
-                 
-                 
+
             imagecopyresampled($nimg, $im_src, 0, 0, $x1, $y1, $nw, $nh, $w, $h);
             imagejpeg($nimg, $targetFolder . $new_name, 90);
             //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
             $post_data = array(
-           'post_author' => get_user_id(),          
-            'post_content' => '',
-            'post_date' => date('Y-m-d H:i:s'),
-            'post_date_gmt' =>date('Y-m-d H:i:s'),
-            'post_excerpt' => '',
-            'post_name' => $new_name,
-            'post_parent' => 0,
-            'post_status' =>'inherit',
-            'post_title' => $new_name,
-            'post_type' => 'attachment',
-            'post_mime_type'=>'image/jpeg',
-            'guid'=>  site_url()."/wp-content/uploads/user-avatars/".$user_ID."/".$new_name,
-           
+                'post_author' => get_user_id(),
+                'post_content' => '',
+                'post_date' => date('Y-m-d H:i:s'),
+                'post_date_gmt' => date('Y-m-d H:i:s'),
+                'post_excerpt' => '',
+                'post_name' => $new_name,
+                'post_parent' => 0,
+                'post_status' => 'inherit',
+                'post_title' => $new_name,
+                'post_type' => 'attachment',
+                'post_mime_type' => 'image/jpeg',
+                'guid' => site_url() . "/wp-content/uploads/user-avatars/" . $user_ID . "/" . $new_name,
             );
-            $atach_post_id=  wp_insert_post($post_data);
-            $attachment_id_photo=update_post_meta($atach_post_id,'_wp_attached_file',$for_user_meta);
+            $atach_post_id = wp_insert_post($post_data);
+            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
             update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
-            
+
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(get_user_company_logo($user_ID));
         });
