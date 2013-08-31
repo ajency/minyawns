@@ -115,7 +115,7 @@ global $minyawn_job;
                 <p>
                     <a href="#">My Jobs</a>
                     <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
-                    <?php if (get_user_role() === 'employer'): ?> 
+                    <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(),$minyawn_job->ID) == "1"): ?> 
                         <a href="#edit-job-form" class="edit loaded edit-job-data"><i class="icon-edit"></i> Edit</a>
                     <?php endif; ?>
                 </p>
@@ -181,7 +181,7 @@ if (get_user_role() == "minyawn") {
                                                 endif;
                                             }
 
-                                            if (check_access() == 1) {
+                                            if (!is_user_logged_in()) {
                                                 ?>
                                                 <a href="<?php echo site_url(); ?>" target="_blank" id="login-to-apply-job" class="btn btn-medium btn-block btn-primary header-btn"  data-action="apply" >Apply</a>
 <?php }
