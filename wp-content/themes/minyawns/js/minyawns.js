@@ -445,6 +445,7 @@ if(data.first_name != undefined)
             },
             reset: true,
             success: function(collection, response) {
+        
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);

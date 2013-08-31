@@ -15,7 +15,7 @@ function setup_user_profile_data() {
 //        
 //    }
     //global $current_user_new;
-
+  error_reporting(E_ERROR | E_PARSE);
     $get_user_id = explode("/", $_SERVER['REQUEST_URI']);
     //global $current_user_new;
     //$current_user_new = new stdclass;
@@ -55,7 +55,7 @@ function setup_user_profile_data() {
 
     //set skills
 
-    $current_user_new->data->user_skills = isset($user_meta['user_skills']) ? maybe_unserialize($user_meta['user_skills'][0]) : array();
+    $current_user_new->data->user_skills = isset($user_meta['user_skills']) ? maybe_unserialize($user_meta['user_skills'][0]) : '';
 
 
     //set socials
@@ -272,7 +272,7 @@ function get_user_social_pages() {
 //User social pages
 function get_user_skills() {
     global $current_user_new;
-    return isset($current_user_new->data->user_skills) ? $current_user_new->data->user_skills : array();
+    return isset($current_user_new->data->user_skills) ? $current_user_new->data->user_skills : '';
 }
 
 //User like count
