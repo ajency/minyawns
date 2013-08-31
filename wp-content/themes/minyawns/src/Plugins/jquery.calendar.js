@@ -1150,7 +1150,7 @@
 
             var p = {color: theme[2], title: "", extendClass: "", extendHTML: "", data: ""};
 
-            p.title = getTitle(e.event);
+           // p.title = getTitle(e.event);
             p.id = "bbit_cal_event_" + e.event[0];
             if (option.enableDrag && e.event[8] == 1) {
                 p.eclass = "drag";
