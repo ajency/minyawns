@@ -1534,9 +1534,11 @@
                 height: h - 4,
                 i: "-1",
                 drag: "drag-chip",
-                redisplay: resize ? "block" : "none"
+                redisplay: resize ? "block" : "none",
+                display:'block'
             });
-            return newtemp;
+            // return newtemp; original
+            return false;
         }
 
         function getdata(chip) {
@@ -1917,7 +1919,8 @@
         }
         function quickadd(start, end, isallday, pos) {
 
-            return ; //to disable quick add new event
+
+            return false; //to disable quick add new event
 
             if ((!option.quickAddHandler && option.quickAddUrl == "") || option.readonly) {
                 return;

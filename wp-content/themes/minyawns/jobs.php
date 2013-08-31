@@ -336,22 +336,22 @@ endif;
                     </div>          
 
                     <div id="caltoolbar" class="ctoolbar">
-                        <div id="faddbtn" class="fbutton">
+<!--                        <div id="faddbtn" class="fbutton">
                             <div><span title='Click to Create New Event' class="addcal">
 
                                     New Event                
                                 </span></div>
-                        </div>
+                        </div>-->
                         <div class="btnseparator"></div>
-                        <div id="showtodaybtn" class="fbutton">
+<!--                        <div id="showtodaybtn" class="fbutton">
                             <div><span title='Click to back to today ' class="showtoday">
                                     Today</span></div>
-                        </div>
+                        </div>-->
                         <div class="btnseparator"></div>
 
-                        <div id="showdaybtn" class="fbutton ">
+<!--                        <div id="showdaybtn" class="fbutton ">
                             <div><span title='Day' class="showdayview">Day</span></div>
-                        </div>
+                        </div>-->
                         <div  id="showweekbtn" class="fbutton ">
                             <div><span title='Week' class="showweekview">Week</span></div>
                         </div>
