@@ -1551,14 +1551,14 @@
             if (data.length > 6) {
                 var e = [];
                 e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10], data[11], data[12], data[13],data[14],data[15],data[16]);
-                alert(data[16]);
+                
                 if(data[16] === '1')
                 $(".container").append("<input type='hidden' id='"+data[0]+"' value='1' >"); 
             
-            if(data[16] == '3')
+            if(data[16] === '3')
                  $(".container").append("<input type='hidden' id='"+data[0]+"' value='3' >");
              
-             if(data[16] == '2')
+             if(data[16] === '2')
                  $(".container").append("<input type='hidden' id='"+data[0]+"' value='2' >");
                 
                 return e;
@@ -1752,10 +1752,10 @@
                         if($("#"+data[0]).val() === "1")
                        html="<a href='#' id='unapply-job' class='btn btn-medium btn-block btn-danger red-btn' data-action='unapply' data-job-id='"+data[0]+"'>Unapply</a>"; 
                         
-                       else if($("#"+data[16]) === "3") 
+                       else if($("#"+data[0]).val() === "3") 
                         html="<a href='#' class='required'>You are hired!</a>";    
                         
-                        else if($("#"+data[16] == "2"))
+                        else if($("#"+data[16].val() === "2"))
                             html="<a href='#' class='required'>Requirement Complete</a>";
                         
                         else
