@@ -518,7 +518,8 @@ endif;
                                 <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
                                 <div class="clear"></div>
                             </form>
-                        <?php } ?>
+                        <?php } ?>                   
+                       
                     </div>
                     <div id="list-my-jobs">
 

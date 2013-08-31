@@ -654,7 +654,8 @@ function check_access() {
     $queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  " . $wpdb->base_prefix . "userpermissions where role = %s and  noperm_slug = %s ", $user_role, $page_slug), OBJECT);
     foreach ($queryresult as $res)
         if ($res->cnt_perm > 0) {
-            no_access_page($user_role, $page_slug);
+           // no_access_page($user_role, $page_slug);
+           return false;
         }
         else
             return true;

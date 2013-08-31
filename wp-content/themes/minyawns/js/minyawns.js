@@ -420,7 +420,7 @@ if(data.first_name != undefined)
     $("#browse").click(function(e) {
 
         $("#accordion2").empty();
-
+$(".browse-jobs-table").show();
         load_browse_jobs();
     });
     function load_browse_jobs() {
