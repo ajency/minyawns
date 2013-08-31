@@ -16,13 +16,14 @@ function setup_user_profile_data() {
 //    }
     //global $current_user_new;
   error_reporting(E_ERROR | E_PARSE);
-    $get_user_id = explode("/", $_SERVER['REQUEST_URI']);
+    //$get_user_id = explode("/", $_SERVER['REQUEST_URI']);
     //global $current_user_new;
     //$current_user_new = new stdclass;
     // var_dump(sizeof($get_user_id));exit();
     // if (!is_user_logged_in()) {
     //preg_match("/\/(\d+)$/",$_SERVER['REQUEST_URI'],$matches);
-    $end = end((explode('/', rtrim($_SERVER['REQUEST_URI'], '/'))));
+    $end = check_direct_access();
+   
     //var_dump($end);exit();
     global $current_user, $current_user_new;
 
@@ -31,7 +32,7 @@ function setup_user_profile_data() {
 
     if (is_numeric($end)) {
         $current_user_new->data = new stdClass;
-      $current_user_new = wp_set_current_user_profile($get_user_id[3]);
+      $current_user_new = wp_set_current_user_profile($end);
     } else {
        $current_user_new->data = new stdClass;
         $current_user_new = $current_user;
@@ -88,7 +89,7 @@ function setup_user_profile_data() {
     $current_user_new->data->avatar = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
     // global $current_user_new;
-    // var_dump($current_user_new);exit();
+     
 }
 
 add_action('wp_loaded', 'setup_user_profile_data');
@@ -545,4 +546,11 @@ function wp_set_current_user_profile($id, $name = '') {
     //do_action('set_current_user');
 
     return $current_user_new;
+}
+
+
+function check_direct_access()
+{
+    
+    return end((explode('/', rtrim($_SERVER['REQUEST_URI'], '/'))));
 }
