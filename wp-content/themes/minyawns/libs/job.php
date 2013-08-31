@@ -271,6 +271,9 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
             $pageposts = $wpdb->get_results($querystr, OBJECT);
             $cnt = count($pageposts);
             foreach ($pageposts as $pagepost) {
+                $min_job = new Minyawn_Job($pagepost->ID);
+                 $applied = $min_job->check_minyawn_job_status($pagepost->ID);
+                 
                 $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
                 //print_r(implode(",",$tags));exit();
                 $post_meta = get_post_meta($pagepost->ID);
@@ -290,7 +293,7 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
                 //$et='';
                 $role = get_user_role($current_user_id);
                 $data['events'][] = array(
-                    rand(10000, 99999),
+                    $pagepost->ID,
                     $pagepost->post_name,
                     $st,
                     $et,
@@ -305,7 +308,8 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
                     $wages,
                     $apply,
                     $logo,
-                    $role
+                    $role,
+                    $applied,
                 );
             }
             //$app->response()->header("Content-Type", "application/json");

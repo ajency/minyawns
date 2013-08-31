@@ -1550,7 +1550,17 @@
         function parseED(data) {
             if (data.length > 6) {
                 var e = [];
-                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10], data[11], data[12], data[13],data[14],data[15]);
+                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10], data[11], data[12], data[13],data[14],data[15],data[16]);
+                alert(data[16]);
+                if(data[16] === '1')
+                $(".container").append("<input type='hidden' id='"+data[0]+"' value='1' >"); 
+            
+            if(data[16] == '3')
+                 $(".container").append("<input type='hidden' id='"+data[0]+"' value='3' >");
+             
+             if(data[16] == '2')
+                 $(".container").append("<input type='hidden' id='"+data[0]+"' value='2' >");
+                
                 return e;
             }
             return null;
@@ -1735,11 +1745,35 @@
                         $("#bbit-apply").hide();
                     } else
                     {
-                        var html = "";
-                        html = "<div id='apply'><input type='button' value='Apply'></input></div>";
+                       
+                                  var html = "";
+                                 
+                        
+                        if($("#"+data[0]).val() === "1")
+                       html="<a href='#' id='unapply-job' class='btn btn-medium btn-block btn-danger red-btn' data-action='unapply' data-job-id='"+data[0]+"'>Unapply</a>"; 
+                        
+                       else if($("#"+data[16]) === "3") 
+                        html="<a href='#' class='required'>You are hired!</a>";    
+                        
+                        else if($("#"+data[16] == "2"))
+                            html="<a href='#' class='required'>Requirement Complete</a>";
+                        
+                        else
+                            html = "<div id='apply'><a href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</a></div>";
+                            
+                        
+                        
+                        if( $("#"+data[0]).length == 0)
+                        html = "<div id='apply'><a href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</a></div>";
+                            
+                            
+                            
                         $("#bbit-cs-buddle-apply").html(html);
+                                
+//                            }
+                      
                     }
-                    
+                   
                     if(data[14].length == "0" )
                         {
                             $("#bbit-logo").hide();
@@ -1752,9 +1786,9 @@
                     bud.data("cdata", data);
                     bud.css({"visibility": "visible", left: pos.left, top: pos.top});
 
-                    $(document).one("click", function() {
-                        $("#bbit-cs-buddle").css("visibility", "hidden");
-                    });
+//                    $(document).one("click", function() {
+//                        $("#bbit-cs-buddle").css("visibility", "hidden");
+//                    });
                     $("#bbit-cs-buddle").show();
                 }
                 else {
@@ -2986,3 +3020,45 @@ $('.collapse').live('show', function() {
 $('.collapse').live('hide', function() {
     $(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
+
+   $('#apply-job').live('click', function(evt) {
+       
+        evt.preventDefault();
+        var _this = $(this);
+        var _action = $(this).attr('data-action');
+        var _job_id = $(this).attr('data-job-id');
+        $(".load_ajax1").show();
+        $.post(ajaxurl,
+                {
+                    action: 'minyawn_job_' + _action,
+                    job_id: parseInt(_job_id)
+                },
+        function(response) {
+            
+            $(".load_ajax1").hide();
+            if (response.success == 1)
+            {
+
+                $("#job-list" + _job_id).hide('slow', function() {
+                    $("#job-list" + _job_id).remove();
+                });
+                if (response.new_action == 'apply')
+                {
+                    $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
+                    $(_this).attr('data-action', 'apply');
+                }
+                if (response.new_action == 'unapply')
+                {
+                    $(_this).addClass('green-btn btn-success').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
+                    $(_this).attr('data-action', 'unapply');
+                    
+                    $(".cb-table").append("<input type='hidden' id='"+_job_id+"' value='1' >");               }
+
+            } else if (response.success == 2)
+            {
+                $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
+                $(_this).attr('data-action', 'req_complete');
+            }
+
+        }, 'json');
+    });
