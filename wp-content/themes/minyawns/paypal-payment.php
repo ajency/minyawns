@@ -21,7 +21,8 @@ $paypal_email = "parag0246@yahoo.co.in";
 if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 
 	// Firstly Append paypal account to querystring
-	$querystring .= "?business=".urlencode($paypal_email)."&";	
+	$querystring .= "?notify_url=".urlencode($notify_url)."&";
+	$querystring .= "business=".urlencode($paypal_email)."&";	
 	
 	// Append amount& currency (£) to quersytring so it cannot be edited in html
 	
@@ -42,10 +43,10 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	*/
 	// Append querystring with custom field
 	//$querystring .= "&custom=".USERID;
-	
+	 
 	$querystring .= "return=".urlencode(stripslashes($return_url))."&";
-	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."&";
-	$querystring .= "notify_url=".urlencode($notify_url);
+	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url));
+	
 	
 	
 	// Redirect to paypal IPN
