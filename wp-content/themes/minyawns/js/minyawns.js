@@ -82,7 +82,7 @@ jQuery(document).ready(function($) {
         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
         dataType: 'json',
         done: function(e, data) {
-
+ $(".load_ajax-crop-upload").hide();
             //$('#change-avatar-span').find('img').attr('src', data.result.image);
             $('#change-avatar').removeAttr("disabled");
             $("#uploaded-image").attr('src', data.result.image);
@@ -98,20 +98,25 @@ jQuery(document).ready(function($) {
 
         },
         start: function(e, data) {
+    $(".load_ajax-crop-upload").show();
+   
             $('#change-avatar').attr("disabled", "disabled");
             var progress = parseInt(data.loaded / data.total * 100, 10);
         }
     });
 
     $("#done-cropping").live('click', function() {
-
+$(".load_ajax-crop-upload").show();
         $.ajax({
             type: "POST",
             url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
             data: {w: $("#image_width").val(), h: $("#image_height").val(), 'x1': $("#image_x_axis").val(), 'y1': $("#image_y_axis").val(), image_name: $("#image_name").val()}
         }).done(function(img_link) {
-            $('#change-avatar-span').find('img').attr('src', img_link);
-            $('#logged-in').find('img').attr('src', img_link);
+            $('#myprofilepic').modal('hide')
+//            $('#change-avatar-span').find('img').attr('src', img_link);
+//            $('#logged-in').find('img').attr('src', img_link);
+location.reload();
+        $(".load_ajax-crop-upload").hide();
         });
     });
 
@@ -1253,6 +1258,49 @@ jQuery(document).ready(function($) {
         }, 'json');
     });
 
+
+
+    $('#vote-up,#vote-down').live('click', function(evt) {
+
+       if($(this).attr('is_rated') != "0")
+           return false;
+
+        $(".rating").find('a').prop('disabled', true);
+        // $(".load_ajaxconfirm").show();
+        evt.preventDefault();
+        var _this = $(this);
+        var _rating = $(this).attr('employer-vote');
+        var _job_id = $(this).attr('job-id');
+        var _user_id = $(this).attr('user_id');
+        var _action = $(this).attr('action');
+
+
+        $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
+                {
+                    rating: _rating,
+                    job_id: _job_id,
+                    user_id: _user_id,
+                    action: _action
+
+
+                },
+        function(response) {
+            $(".rating").find('a').prop('disabled', false);
+            if (response.action == "vote-up") {
+                $("#vote-up").prop('disabled', true)
+                $("#vote-up,#vote-down").contents().filter(function(){ return this.nodeType != 1; }).remove();
+                $("#vote-up").append(response.rating);
+                $("#vote-down").append("0");        
+            }
+            if (response.action == "vote-down") {
+                $("#vote-down").prop('disabled', true)
+                $("#vote-down,#vote-up").contents().filter(function(){ return this.nodeType != 1; }).remove();
+                      $("#vote-down").append(response.rating);
+                      $("#vote-up").append("0");
+            }
+
+        }, 'json');
+    });
 
     $("#edit-selection").live('click', function(evt) {
         $("#edit-selection").hide();

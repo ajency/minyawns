@@ -218,10 +218,10 @@ endif;
     <% for(i=0;i<users_applied.length;i++){ %>
    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><img src="<%= user_profile_image[i] %>"/><b><%= users_applied[i]%></b></a>
    
-    <a href="#fakelink" >
+    <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= post_id %>">
     <i class="icon-thumbs-up"></i> 50
     </a> 
-    <a href="#fakelink"  class="icon-thumbs">
+    <a id="vote-down" href="#fakelink"  class="icon-thumbs" employer-vote="-1" job-id="<%= post_id %>">
     <i class="icon-thumbs-down"></i> 100
     </a>
     

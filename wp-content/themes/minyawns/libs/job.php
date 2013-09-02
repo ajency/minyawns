@@ -432,6 +432,26 @@ $app->post('/confirm', function() use ($app) {
 
             /* end added on 1sep2013 */
         });
+        
+        
+   $app->post('/user-vote', function() use ($app) {
+   global $wpdb;
+     $wpdb->get_results(
+                        "
+	UPDATE {$wpdb->prefix}userjobs 
+	SET rating = '" . trim($_POST['rating']) . "'
+	WHERE user_id = '" . $_POST['user_id'] . "' 
+		AND job_id = '" . $_POST['job_id'] . "'
+	"
+                );
+       
+       
+       echo json_encode(array('action'=>$_POST['action'],'rating' => $_POST['rating'],'user_id'=>$_POST['user_id']));
+       
+       
+   });
+     
+       
 
 
 
