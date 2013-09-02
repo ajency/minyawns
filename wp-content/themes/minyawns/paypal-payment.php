@@ -33,10 +33,10 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	}
 	
 	// Append paypal return addresses
-	$querystring .= "return=".urlencode(stripslashes($return_url))."&";
+	/*$querystring .= "return=".urlencode(stripslashes($return_url))."&";
 	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."&";
 	$querystring .= "notify_url=".urlencode($notify_url);
-	
+	*/
 	// Append querystring with custom field
 	//$querystring .= "&custom=".USERID;
 	
