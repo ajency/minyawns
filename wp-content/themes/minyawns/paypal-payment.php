@@ -218,7 +218,7 @@ else
 				//$total_amount = $amount + $tax;
 				$data['total_amount'] = trim($_POST['mc_gross']);
 				
-				if(($payment_status=="Completed")      )
+				if(($data['payment_status']=="Completed")      )
 				{
 					//if($currency_type=="USD")
 						
