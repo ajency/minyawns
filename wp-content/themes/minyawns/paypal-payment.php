@@ -188,6 +188,11 @@ else
 			if ($curl_result== "VERIFIED") 
 			{
 				 
+				add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+				wp_mail('paragredkar@gmail.com', 'notify verify2',  $req.'curl result'.$curl_result );
+				
+				
+				
 				$mail_data = "\n\nPaypal Verified OK";
 				
 				
@@ -276,9 +281,9 @@ else
 					}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
 					*/
 
-					$ipn_data = print_r($data,true);
+					 
 					add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-					wp_mail('paragredkar@gmail.com', $SUBJECT,  $ipn_data );
+					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );
 					
 					
 							
