@@ -7,13 +7,6 @@
 
 global $minyawn_job;
 global $wpdb;
-//$item_number = $_POST['item_number'];
-/*$paypal_email = $_POST['payer_email'];
-$item_amount = $_POST['total_amount'];
-$return_url = $_POST['returnUrl'];
-$cancel_url = $_POST['cancelUrl'];
-$notify_url = $_POST['notify_url'];*/
-
 
 
 $return_url = 'http://www.minyawns.ajency.in/';
@@ -22,25 +15,12 @@ $notify_url = 'http://www.minyawns.ajency.in/paypal-payments/';
 $paypal_email = 'parag0246@yahoo.co.in';
 
 
-
-/*$return_url = 'htttp://localhost/minyawns/';
-$cancel_url = 'http://localhost/minyawns/';
-$notify_url = 'http://localhost/minyawns/paypal-payments/';
-$paypal_email = 'parag0246@yahoo.co.in';*/
-
-
 // Check if paypal request or response
 if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 
 	// Firstly Append paypal account to querystring
-	//$querystring .= "?notify_url=".urlencode($notify_url)."&";
+	 
 	$querystring .= "?business=".urlencode($paypal_email)."&";	
-	
-	// Append amount& currency (£) to quersytring so it cannot be edited in html
-	
-	//The item name and amount can be brought in dynamically by querying the $_POST['item_number'] variable.
-	//$querystring .= "item_number=".urlencode($item_name)."&";
-	//$querystring .= "amount=".urlencode($item_amount)."&";
 	
 	//loop for posted values and append to querystring
 	foreach($_POST as $key => $value){
@@ -48,13 +28,7 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 		$querystring .= "$key=$value&";
 	}
 	
-	// Append paypal return addresses
-	/*$querystring .= "return=".urlencode(stripslashes($return_url))."&";
-	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."&";
-	$querystring .= "notify_url=".urlencode($notify_url);
-	*/
-	// Append querystring with custom field
-	//$querystring .= "&custom=".USERID;
+	 
 	 
 	$querystring .= "return=".urlencode(stripslashes($return_url))."&";
 	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."& ";
@@ -71,69 +45,9 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 else
 {
 	
-	
-	
-	
-	
-	
-	
-	
-	function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
-	{
-		global $wpdb;
-		
-		//echo "transaction id".$transaction_id;
-		$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx_id."%'  ");
-		//echo "SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx_id."%'  ";
-		 
-		foreach($paypal_tx as $res)
-		{
-			$paypal_payment = unserialize($res->paypal_payment);
-			
-		}
-		
-		$new_paypal_payment = array();
-		foreach($paypal_payment as $key_pp => $payment_tx)
-		{
-			 //echo "<br/>".$key_pp." => ".$payment_tx;
-			switch($key_pp)
-			{
-				case 'minyawn_txn_id':
-					$new_paypal_payment['minyawn_txn_id'] = $payment_tx ;
-					break;
-				case 'paypal_txn_id':
-					$new_paypal_payment['paypal_txn_id'] = $transaction_id ;
-					break;
-				case 'status'				:
-					$new_paypal_payment['status'] = $status ;
-					break;
-			}//end switch($key_pp)
-				
-		}//end foreach($paypal_payment as $key_pp => $payment_tx)
-		
-		//update postmeta for the job with transaction id
-		$new_updated_paypal_payment =   serialize($new_paypal_payment);
-	 $wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
-		
-		//echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
-		
-	}
-	
-	
 			if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
 			{	
-				//commented on 2sep2013 update_paypal_payment($_POST["txn_id"],$_POST["custom"],'',$_POST['item_number']);
-				
-				//update_paypal_payment('abcd',"d4b76f9290762f403da0c6771617036dacb486b6",'mystatus',65);
-				
-				$SUBJECT = 'transaction check';
-				$BODY    = 'Checking for transaction';
-				$BODY .= print_r($_POST, true);				 
-				add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-				wp_mail('paragredkar@gmail.com', $SUBJECT,  $BODY );
-				
-				
-				
+				update_paypal_payment($_POST["txn_id"],$_POST["custom"],'',$_POST['item_number']);
 				
 			}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )	
 	
@@ -199,24 +113,10 @@ else
 			$req = str_replace("&", "\n", $req);
 			
 			
-			
-			add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-			wp_mail('paragredkar@gmail.com', 'notify verify',  $req.'curl result'.$curl_result );
-			
-			
-			
-			
 			if ($curl_result== "VERIFIED") 
 			{
-				 
-				add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-				wp_mail('paragredkar@gmail.com', 'notify verify2',  $req.'curl result'.$curl_result );
-				
-				
-				
-				$mail_data = "\n\nPaypal Verified OK";
-				
-				
+								
+				$mail_data = "\n\nPaypal Verified OK";			
 				
 				$data['receiver_id']			= $_POST['receiver_id'];
 				$data['shipping']			= $_POST['shipping'];				
@@ -239,91 +139,83 @@ else
 				//$total_amount = $amount + $tax;
 				$data['total_amount'] = trim($_POST['mc_gross']);
 				
-				if(($data['payment_status']=="Completed")      )
+				if(($data['payment_status']=="Completed") )
 				{
-					//if($currency_type=="USD")
-						
-					/*global $wpdb;				
-					$new_user_table = $wpdb->base_prefix.'new_users';				
-					// $is_registered = $wpdb->get_var("SELECT transaction_id FROM $new_user_table WHERE  transaction_type ='payment' and  email_id ='".$payer_email."' ");
-					$is_registered = $wpdb->get_row($wpdb->prepare("SELECT transaction_id FROM $new_user_table WHERE  transaction_type ='payment' and  email_id ='".$payer_email."' and transaction_id ='".$txn_id."'  "));
-					if(!$is_registered)
-					{
-						wv_update_new_user_table($payer_email, $txn_id ,'payment', $total_amount);
-						
-						$SUBJECT = 'Paypal Verified';
-						$BODY    = 'Paypal verification for ipn is successfull';
-						$BODY .= print_r($_POST, true);
-						//$BODY .= "SELECT transaction_id FROM $new_user_table WHERE  transaction_type ='payment' and  email_id ='".$payer_email."' and transaction_id ='".$txn_id."'  ";
-						//$BODY .= "Expected $_EXPECTED but found $_RESULTS instead";
-						add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-						wp_mail('parag@ajency.in', $SUBJECT,  $BODY);					
-						//mail("parag@ajency.in", "_IPN test4.3", "$req".$BODY, "From: parag@ajency.in" );
-					}*/
+					  
+					update_paypal_payment($data['txn_id'],$data['custom'] ,$data['payment_status'],$data['item_number']);
+					  	 
+					/*add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );*/
 					
-					
-					
-					
+					$receiver_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
+					$receiver_message.="Hi,<br/><br/>
 							
-					
-					
-					/*		// Used for debugging
-							//@mail("you@youremail.com", "PAYPAL DEBUGGING", "Verified Response<br />data = <pre>".print_r($post, true)."</pre>");
+							Payment for '".$data['item_name']."' successfully transferred .
+							<br/><b>Transaction ID  :</b> ".$data[' txn_id']."
+							<br/><b>Job    			:</b> ".$data['item_name']."
+							<br/><b>Amount 			:</b> ".$data['total_amount']."
 									
-							// Validate payment (Check unique txnid & correct price)
-							$valid_txnid = check_txnid($data['txn_id']);
-							$valid_price = check_price($data['payment_amount'], $data['item_number']);
-							// PAYMENT VALIDATED & VERIFIED!
-							if($valid_txnid && $valid_price)
-							{				
-								$orderid = updatePayments($data);		
-								if($orderid)
-								{					
-									// Payment has been made & successfully inserted into the Database								
-								}
-								else
-								{								
-									// Error inserting into DB
-									// E-mail admin or alert user
-								}
-							}//end if($valid_txnid && $valid_price)
-							else
-							{					
-								// Payment made but data has been changed
-								// E-mail admin or alert user
-							}	
+							<br/><br/><br/>
+							";
 					
-					*/
-					 					
-				 
-						update_paypal_payment($data['txn_id'],$data['custom'] ,$data['payment_status'],$data['item_number']);
-							
-					 
-					 
-
-					 
 					add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );
+					$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+					wp_mail($data['receiver_email'], $subject, email_header() . $receiver_message . email_signature(), $headers);
 					
+					$sender_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
+					$sender_message.="Hi,<br/><br/>
+				
+							Your Payment for '".$data['item_name']."' successfully Completed .
+							<br/><b>Transaction ID :</b> ".$data[' txn_id']."
+							<br/><b>Job    		   :</b> ".$data['item_name']."
+							<br/><b>Amount         :</b> ".$data['total_amount']."
+					
+							<br/><br/><br/>
+							";
+						
+					add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+					$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+					wp_mail($data['payer_email'], $sender_subject, email_header() . $sender_message . email_signature(), $headers);
 					
 							
 				}
 				
 		
 			}
-			else
+			else if($curl_result=="Failed")
 			{
-				$req .= "\n\nData NOT verified from Paypal!";
+				 
+				$receiver_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
+				$receiver_message.="Hi,<br/><br/>
 				
-				$SUBJECT = 'FAILED Ver';
-				$BODY    = 'SECURITY CHECK FAILED TO VERIFY';
-				$BODY .= print_r($_POST, true);
-				//$BODY .= "Expected $_EXPECTED but found $_RESULTS instead";
-				//add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+							Payment failed for '".$data['item_name']."'.
+							<br/><b>Transaction ID  :</b> ".$data[' txn_id']."
+							<br/><b>Job    			:</b> ".$data['item_name']."
+							<br/><b>Amount 			:</b> ".$data['total_amount']."
+					
+							<br/><br/><br/>
+							";
+					
 				add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-				wp_mail('paragredkar@gmail.com', $SUBJECT,  $BODY );
+				$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+				wp_mail($data['receiver_email'], $subject, email_header() . $receiver_message . email_signature(), $headers);
+					
+					
+				$sender_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
+				$sender_message.="Hi,<br/><br/>
 				
-				 //mail("parag@ajency.in", "__IPN test4.3", "$req", "From: parag@ajency.in" );
+							Your Payment failed for '".$data['item_name']."'.
+							<br/><b>Transaction ID  	:</b> ".$data[' txn_id']."
+							<br/><b>Job    				:</b> ".$data['item_name']."
+							<br/><b>Amount 				:</b> ".$data['total_amount']."
+			
+							<br/><br/><br/>
+							";
+				
+				add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+				$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+				wp_mail($data['payer_email'], $sender_subject, email_header() . $sender_message . email_signature(), $headers);
+					
 				exit();
 			}
 
@@ -336,11 +228,7 @@ else
 
 
 get_header();
-
-
-
-
-
+ 
 
 ?>
  
