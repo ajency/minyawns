@@ -13,12 +13,24 @@ $item_amount = $_POST['total_amount'];
 $return_url = $_POST['returnUrl'];
 $cancel_url = $_POST['cancelUrl'];
 $notify_url = $_POST['notify_url'];*/
-$return_url = 'http://www.minyawns.ajency.in/';
+
+
+
+/*$return_url = 'http://www.minyawns.ajency.in/';
 $cancel_url = 'http://www.minyawns.ajency.in/';
 $notify_url = 'http://www.minyawns.ajency.in/paypal-payments/';
 $paypal_email = 'parag0246@yahoo.co.in';
+*/
+
+
+$return_url = 'htttp://localhost/minyawns/';
+$cancel_url = 'http://localhost/minyawns/';
+$notify_url = 'http://localhost/minyawns/paypal-payments/';
+$paypal_email = 'parag0246@yahoo.co.in';
+
+
 // Check if paypal request or response
-if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
+if (isset($_POST["txn_id"]) && isset($_POST["txn_type"])){
 
 	// Firstly Append paypal account to querystring
 	//$querystring .= "?notify_url=".urlencode($notify_url)."&";
@@ -68,15 +80,22 @@ else
 	
 	function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
 	{
-		$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$_POST["txn_id"]."%' and  meta_value like '%".$_POST["custom"]."%'");
+		global $wpdb;
+		
+		//echo "transaction id".$transaction_id;
+		$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx_id."%'  ");
+		//echo "SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx_id."%'  ";
+		 
 		foreach($paypal_tx as $res)
 		{
 			$paypal_payment = unserialize($res->paypal_payment);
+			
 		}
 		
 		$new_paypal_payment = array();
 		foreach($paypal_payment as $key_pp => $payment_tx)
 		{
+			 //echo "<br/>".$key_pp." => ".$payment_tx;
 			switch($key_pp)
 			{
 				case 'minyawn_txn_id':
@@ -86,25 +105,26 @@ else
 					$new_paypal_payment['paypal_txn_id'] = $transaction_id ;
 					break;
 				case 'status'				:
-					$new_paypal_payment['paypal_txn_id'] = $status ;
+					$new_paypal_payment['status'] = $status ;
 					break;
 			}//end switch($key_pp)
 				
 		}//end foreach($paypal_payment as $key_pp => $payment_tx)
 		
 		//update postmeta for the job with transaction id
-		$new_paypal_payment_serialized = serialize($new_paypal_payment);
+		$new_updated_paypal_payment =   serialize($new_paypal_payment);
+	 $wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
 		
-	 $wpdb->get_results("update {$wpdb->prefix}postmeta  set paypal_payment = ".$new_paypal_payment_serialized." WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
-		
-		
+		//echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
 		
 	}
 	
 	
 			if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
 			{	
-				update_paypal_payment($_POST["txn_id"],$_POST["custom"],'',$_POST['item_number']);
+				//commented on 2sep2013 update_paypal_payment($_POST["txn_id"],$_POST["custom"],'',$_POST['item_number']);
+				
+				//update_paypal_payment('abcd',"d4b76f9290762f403da0c6771617036dacb486b6",'mystatus',65);
 				
 				$SUBJECT = 'transaction check';
 				$BODY    = 'Checking for transaction';

@@ -350,7 +350,7 @@ $app->post('/confirm', function() use ($app) {
 
             $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
-            $paypal_payment = serialize(array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>''));
+            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'');
             add_post_meta($_POST['job_id'], 'paypal_payment' , $paypal_payment);
             
             
@@ -413,7 +413,7 @@ $app->post('/confirm', function() use ($app) {
 			    <input type="hidden" name="item_name" value="'.get_the_title($_POST['job_id']).'" / >			   
 			    
 			   
-           	<input type="submit" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
+           	<input type="submit" id="submitBtn" value=" " style="margin:auto; width:140px; height:27px; border:none; display:block;background-image:url(\'https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif\');" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
            	</form>
            	';
             
