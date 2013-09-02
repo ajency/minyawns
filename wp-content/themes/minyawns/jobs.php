@@ -117,7 +117,7 @@ global $minyawn_job;
             <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
             
             <% else if(can_apply_job == 2 ) %>
-            <a href="#" class="required">Requirement Complete</a>
+            <a href="#" class="required"><%=   can_apply_job %></a>
   
     
 
@@ -127,7 +127,7 @@ else:
             
             <% if(is_job_owner == 1){%>
             <%  if(can_apply_job == 2 || todays_date_time > job_end_time_check) %>
-            <a href="#" class="required">Requirement Complete</a>
+             <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
 
             <% else if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
             <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
