@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php /* <link rel="stylesheet" type="text/css" href="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/sdk.css" />
   <script type="text/javascript" src="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/sdk_functions.js"></script>
   <script type="text/javascript" src="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/jquery-1.3.2.min.js"></script>
@@ -64,10 +63,10 @@ foreach ($minyawn_job->minyawns as $minyawn):
                                     <?php echo get_avatar($minyawn['user_email'], 168); ?>
                                 <?php endif; ?>
                                 <div class="rating"  >
-                                    <a id="vote-up" href="#like" is_rated="<?php echo $minyawn['is_job_rated']; ?>" employer-vote="1"   job-id="<?php echo  $minyawn['user_to_job']?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-up">
+                                    <a id="vote-up<?php echo $minyawn['user_id']; ?>" class="vote-up" href="#like" is_rated="<?php echo $minyawn['is_job_rated']; ?>" employer-vote="1"   job-id="<?php echo  $minyawn['user_to_job']?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-up">
                                         <i class="icon-thumbs-up"></i> <?php echo $minyawn['like']; ?>
                                     </a> 
-                                    <a id="vote-down" href="#dislike" is_rated="<?php echo $minyawn['is_job_rated']; ?>"  class="icon-thumbs" employer-vote="-1" job-id="<?php echo  $minyawn['user_to_job']?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-down">
+                                    <a id="vote-down<?php echo $minyawn['user_id']; ?>"  href="#dislike" is_rated="<?php echo $minyawn['is_job_rated']; ?>"  class="icon-thumbs vote-down" employer-vote="-1" job-id="<?php echo  $minyawn['user_to_job']?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-down">
                                         <i class="icon-thumbs-down"></i> <?php echo $minyawn['dislike']; ?>
                                     </a>
                                 </div>

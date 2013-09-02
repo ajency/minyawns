@@ -89,7 +89,23 @@ function setup_user_profile_data() {
     $current_user_new->data->avatar = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
     // global $current_user_new;
-     
+    global $wpdb;
+    $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
+                              FROM {$wpdb->prefix}userjobs
+                              WHERE {$wpdb->prefix}userjobs.user_id = %d
+                              GROUP BY {$wpdb->prefix}userjobs.user_id",$current_user_new->data->ID);
+
+                $minyawns_rating = $wpdb->get_row($sql);
+
+                foreach ($minyawns_rating as $rating) {
+                    $current_user_new->data->like_count = $rating->positive;
+                    $current_user_new->data->dislike_count = $rating->negative;
+                    
+//                    if($user['like'] != "0" || $user['dislike'] != "0")
+//                        $user['is_job_rated']=1;
+                } 
+    
+    
 }
 
 add_action('wp_loaded', 'setup_user_profile_data');
@@ -293,7 +309,7 @@ function user_dislike_count() {
 
 function get_user_dislike_count() {
     global $current_user_new;
-    return isset($current_user_new->data->like_count) ? $current_user_new->data->like_count : 0;
+    return isset($current_user_new->data->dis_like_count) ? $current_user_new->data->dis_like_count : 0;
 }
 
 function get_user_company_logo($user_id) {
