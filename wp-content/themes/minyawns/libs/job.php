@@ -407,13 +407,13 @@ $app->post('/confirm', function() use ($app) {
 			   
 			    <input type="hidden" name="amount" value="'.$total_wages.'" />
 			    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
-			    <input type="hidden" name="first_name" value="Customer  First Name"  />
-			    <input type="hidden" name="last_name" value="Customer  Last Name"  />			    
+			    <input type="hidden" name="first_name" value="Customer First Name"  />
+			    <input type="hidden" name="last_name" value="Customer Last Name"  />			    
 			    <input type="hidden" name="item_number" value="'.$_POST['job_id'].'" / >
 			    <input type="hidden" name="item_name" value="'.get_the_title($_POST['job_id']).'" / >			   
 			    
 			   
-           	<input type="submit" id="submitBtn" value=" " style="margin:auto; width:140px; height:27px; border:none; display:block;background-image:url(\'https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif\');" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
+           	<input type="submit" id="submitBtn" value=" " style="margin:auto; width:140px; height:47px; border:none; display:block;background-image:url(\'https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif\');" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
            	</form>
            	';
             
