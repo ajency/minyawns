@@ -1757,7 +1757,7 @@
                        else if($("#"+data[0]).val() === "3") 
                         html="<a href='#' class='required'>You are hired!</a>";    
                         
-                        else if($("#"+data[16].val() === "2"))
+                        else if($("#"+data[0]).val() === "2")
                             html="<a href='#' class='required'>Requirement Complete</a>";
                         
                         else

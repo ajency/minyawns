@@ -262,9 +262,9 @@ jQuery(document).ready(function($) {
 //                _.each(data.user_skills2, function(ele, index) {
 //                    skills += "<span class='label label-small'>" + ele + "</span>";
 //                });
-if(data.first_name != undefined)
-                skill_name = data.user_skills2.split(',');
-                
+                if (data.first_name != undefined)
+                    skill_name = data.user_skills2.split(',');
+
                 for (i = 0; i < skill_name.length; i++)
                 {
                     skills += "<span class='label label-small'>" + skill_name[i] + "</span>";
@@ -420,7 +420,9 @@ if(data.first_name != undefined)
     $("#browse").click(function(e) {
 
         $("#accordion2").empty();
-$(".browse-jobs-table").show();
+        $(".browse-jobs-table").show();
+        $("#hide-calendar").hide();
+        $("#show-calendar").show();
         load_browse_jobs();
     });
     function load_browse_jobs() {
@@ -445,7 +447,7 @@ $(".browse-jobs-table").show();
             },
             reset: true,
             success: function(collection, response) {
-        
+
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
@@ -1178,10 +1180,10 @@ $(".browse-jobs-table").show();
         });
 
     });
-    
-    $(".roundedTwo").live('click',function(e){
-    $("#roundedTwo10").attr("checked","checked");
-        
+
+    $(".roundedTwo").live('click', function(e) {
+        $("#roundedTwo10").attr("checked", "checked");
+
     });
 
     $("#hide-calendar").live('click', function(e) {
@@ -1199,7 +1201,7 @@ $(".browse-jobs-table").show();
     });
 
     $('#confirm-hire').live('click', function(evt) {
-    	
+
         $("#confirm-hire").attr('disabled', 'disabled');
         $(".load_ajaxconfirm").show();
         evt.preventDefault();
@@ -1226,8 +1228,8 @@ $(".browse-jobs-table").show();
         });
         $("#no_of_minyawns").html(no_of_minyawns);
         $("#wages_per_minyawns").html($("#job_wages").val());
-        var total=no_of_minyawns*$("#job_wages").val();
-                $("#total_wages").html(total);
+        var total = no_of_minyawns * $("#job_wages").val();
+        $("#total_wages").html(total);
         //return;
 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
