@@ -14,6 +14,8 @@ $return_url = $_POST['returnUrl'];
 $cancel_url = $_POST['cancelUrl'];
 $notify_url = $_POST['notify_url'];*/
 
+$notify_url = "http://www.minyawns.ajency.in/paypal-payments/";
+$paypal_email = "parag0246@yahoo.co.in";
 // Check if paypal request or response
 if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 
@@ -40,9 +42,13 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	// Append querystring with custom field
 	//$querystring .= "&custom=".USERID;
 	
+	
+	$querystring .= "notify_url=".urlencode($notify_url);
+	
+	
 	// Redirect to paypal IPN
-	//echo "location:https://www.sandbox.paypal.com/cgi-bin/webscr".$querystring;
-	header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
+	echo "location:https://www.sandbox.paypal.com/cgi-bin/webscr".$querystring;
+	//header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
 	exit();
 
 }
@@ -85,7 +91,7 @@ else
 		//update postmeta for the job with transaction id
 		$new_paypal_payment_serialized = serialize($new_paypal_payment);
 		
-		$wpdb->get_results("update {$wpdb->prefix}postmeta  set paypal_payment = ".$new_paypal_payment_serialized." WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
+	//commented on 2sep2013	$wpdb->get_results("update {$wpdb->prefix}postmeta  set paypal_payment = ".$new_paypal_payment_serialized." WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
 		
 		
 		
