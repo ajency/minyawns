@@ -28,6 +28,9 @@ a:hover{text-decoration:none !important;}
 	font-size: 12px;
 	line-height: 22px;
 }
+.fb-mobile{
+	display:none!important;
+}
 .bootstrap-timepicker-widget{
 	z-index:9999 !important;
 }
@@ -797,6 +800,7 @@ background: #F8F8F8!important;
 					.arrow-left{
 						position: absolute;
 						top: 0;
+						height: 51px;
 						bottom: 0;
 						margin: auto;
 						right: -40px;
@@ -1081,7 +1085,12 @@ background: #F8F8F8!important;
 
 /* mobile resonsive */
 @media (max-width: 767px) {
-
+.fb-mobile{
+	display:block!important;
+}
+.fb-deskstop{
+	display:none!important;
+}
 .control-group.small .add-on {
 	margin-top: 1px;
 }
@@ -1631,9 +1640,12 @@ background: #F8F8F8!important;
 				input{
 					display: block;
 					margin-top: 10px;
+					width:40%;
+					line-height: 29px;
 				}
 				.btn-primary{
-				margin-left: 0px;
+				margin-left: 0px !important;
+				
 				}
 			.help-block{
 				margin-left: 0px;
@@ -2514,7 +2526,7 @@ background-position: 60px 480px;
 	top: 0;
 	bottom: 0;
 	margin: auto;
-	height: 0px;
+	height: 0%;
 	width: 23%;
 	.btn{
 		width:70%;

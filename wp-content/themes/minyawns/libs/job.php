@@ -339,122 +339,90 @@ $app->post('/confirm', function() use ($app) {
                 // }
             }
 
-            /* aded on 28aug2013 */
+            /* aded on 1sep2013 */
 
 
-            $inc = 0;
-            if (require_once('../adaptive_paypal/samples/PPBootStrap.php'))
-                $inc = 1;
-            require_once('../adaptive_paypal/samples/Common/Constants.php');
-            define("DEFAULT_SELECT", "- Select -");
+            
 
 
 
+             
+
+            $salt_job = wp_generate_password(20); // 20 character "random" string
+            $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
+            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'');
+            add_post_meta($_POST['job_id'], 'paypal_payment' , $paypal_payment);
+            
+            
+            
+             
+            
+            
+            
             //get user
             $users__ = explode(",", $_POST['user_id']);
             //end get user
-
-
-            if (isset($_POST['jobwages'])) {
-                $single_wages = $_POST['jobwages'];
+            
+            /*
+             if (isset($_POST['jobwages'])) {
+            $single_wages = $_POST['jobwages'];
             }
-
-
-
-
-
+            
+            
+            
+            
+            
             $cnt_users = 0;
             foreach ($users__ as $user___) {
-                if ($user___ != "") {
-
-                    //check if the user is already hired. if already hired do not add wages for the selected user
-                    /* $querystr = "
-                      SELECT count(*) as user_hired from ".$wpdb->prefix."userjobs
-                      where job_id = ".$_POST['job_id']." and user_id = $user___";
-
-                      $users_already_hired = $wpdb->get_results($querystr, OBJECT);
-                      foreach($users_already_hired as $hired_user_check)
-                      if($hired_user_check->user_hired <=0) */
-                    $cnt_users++;
-                }
-
-                $html.=$querystr . '' . $users_already_hired['user_hired'];
-
+            if ($user___ != "") {
+            
+            //check if the user is already hired. if already hired do not add wages for the selected user
+            /* $querystr = "
+            SELECT count(*) as user_hired from ".$wpdb->prefix."userjobs
+            where job_id = ".$_POST['job_id']." and user_id = $user___";
+            
+            $users_already_hired = $wpdb->get_results($querystr, OBJECT);
+            foreach($users_already_hired as $hired_user_check)
+            	if($hired_user_check->user_hired <=0) * /
+            $cnt_users++;
+            }
+            
+            $html.=$querystr . '' . $users_already_hired['user_hired'];
+            
             }
             $total_wages = $cnt_users * $single_wages;
-            //  echo "total wages ".$total_wages;
-            // echo "<br/> single ".$_REQUEST['hdn_jobwages'];
-
-            if ($cnt_users > 0) {
-                $receiver = array();
-                $receiver = new Receiver();
-                $receiver->email = 'parag@ajency.in';
-                $receiver->amount = $total_wages;
-                $receiverList = new ReceiverList($receiver);
-            }
-            $payRequest = new PayRequest(new RequestEnvelope("en_US"), $_POST['actionType'], $_POST['cancelUrl'], $_POST['currencyCode'], $receiverList, $_POST['returnUrl']);
-            $payRequest->ipnNotificationUrl = 'http://www.minyawns.ajency.in/paypal-ipn/';
-            $payRequest->item_number = $_POST['job_id'];
-            $payRequest->memo = $_POST['job_id'];
-
-            /* $html.="action :".$_POST['actionType'];
-              $html.="cancelurl :".$_POST['cancelUrl'];
-              $html.="currencycode :".$_POST['currencyCode'];
-              $html.="returnurl :".$_POST['returnUrl'];
-              $html.="wages :".$_POST['jobwages'];
-             */
-
-            /*
-             * 	 ## Creating service wrapper object
-              Creating service wrapper object to make API call and loading
-              Configuration::getAcctAndConfig() returns array that contains credential and config parameters
-             */
-            $service = new AdaptivePaymentsService(Configuration::getAcctAndConfig());
-            try {
-                /* wrap API method calls on the service object with a try catch */
-                $response = $service->Pay($payRequest);
-            } catch (Exception $ex) {
-                require_once '../adaptive_paypal/samples/Common/Error.php';
-                exit;
-            }
-            /* Make the call to PayPal to get the Pay token
-              If the API call succeded, then redirect the buyer to PayPal
-              to begin to authorize payment.  If an error occured, show the
-              resulting errors */
-
-
-
-
-
-
-            $ack = strtoupper($response->responseEnvelope->ack);
-
-            if($ack != "SUCCESS") {
-            	$html.="<b>Error </b>";
-            	$html.="<pre>";
-            	$html.="</pre>";
-            } else
-            {
-            	$payKey = $response->payKey;
-            	
-            	$paypal_payment = array('pay_key'=>$payKey,'status'=>'');
-            	update_post_meta($_POST['job_id'], 'paypal_payment', $paypal_payment);
-            	
-            	$payPalURL = PAYPAL_REDIRECT_URL . '_ap-payment&paykey=' . $payKey;
+             
+            */
+            $total_wages = trim($_POST['jobwages']);
+            $returnUrl = $_POST['returnUrl'];
+            $cancelUrl = $_POST['cancelUrl'];
             
-            	 
-            	 
             
-            //	$html.='<script src="https://www.paypalobjects.com/js/external/dg.js" type="text/javascript"></script>';
-            	$html.='<form action="https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay" target="PPDGFrame" class="standard">';
-            	$html.='<input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">';
-	            $html.='<input id="type" type="hidden" name="expType" value="light">';
-	            $html.='<input id="paykey" type="hidden" name="paykey" value="'.$payKey.'">';
-	            $html.='</form>';
-            	 $html.='<script type="text/javascript" charset="utf-8">var embeddedPPFlow = new PAYPAL.apps.DGFlow({trigger: \'submitBtn\'});
+            
+            $html.='<form class="paypal" action="'.site_url().'/paypal-payments/" method="post" id="paypal_form" target="_blank">
+				<input type="hidden" name="cmd" value="_xclick" />
+			    <input type="hidden" name="no_note" value="1" />
+            	<input type="hidden" name="custom" value="'.$key_job.'" />
+			    <input type="hidden" name="lc" value="UK" />
+			   
+			    <input type="hidden" name="amount" value="'.$total_wages.'" />
+			    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
+			    <input type="hidden" name="first_name" value="Customer  First Name"  />
+			    <input type="hidden" name="last_name" value="Customer  Last Name"  />			    
+			    <input type="hidden" name="item_number" value="'.$_POST['job_id'].'" / >
+			    <input type="hidden" name="item_name" value="'.get_the_title($_POST['job_id']).'" / >			   
+			    
+			   
+           	<input type="submit" id="submitBtn" value=" " style="margin:auto; width:140px; height:27px; border:none; display:block;background-image:url(\'https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif\');" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
+           	</form>
+           	';
+            
+ 
 
-</script>';
-            }
+
+
+
+            
 
             echo json_encode(array('user_ids' => $_POST['user_id'], 'content' => $html, 'inc' => $inc));
 
@@ -462,7 +430,7 @@ $app->post('/confirm', function() use ($app) {
 
 
 
-            /* end added on 29aug2013 */
+            /* end added on 1sep2013 */
         });
         
         

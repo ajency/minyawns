@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php /* <link rel="stylesheet" type="text/css" href="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/sdk.css" />
   <script type="text/javascript" src="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/sdk_functions.js"></script>
   <script type="text/javascript" src="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/jquery-1.3.2.min.js"></script>
@@ -27,6 +28,22 @@ $cancelUrl = get_permalink($post->ID);
     <input type="hidden" name="receiverAmount[]" id="amount_0" value="1.0" class="smallfield">
 <?php /* <input type="submit" name = "submitBtn" value="Submit" /> */ ?>
     <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='<?php echo $minyawn_job->get_job_wages(); ?>' />
+
+<?php	
+ 	 
+	$returnUrl = get_permalink( $post->ID ) ;
+	$cancelUrl =  get_permalink( $post->ID );
+	 
+	
+?>
+			<form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">   
+				 
+			    <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $returnUrl; ?>" / >
+			    <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
+			    <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url().'/paypal-payments/' ; ?>" / >
+			     <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='<?php echo $minyawn_job->get_job_wages(); ?>' />
+		
+		
 
 
     <div class="row-fluid minyawns-grid">
