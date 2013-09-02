@@ -1237,11 +1237,11 @@ jQuery(document).ready(function($) {
                     user_id: group_ids,
                     job_id: _job_id,
                     status: sList,
-                    actionType: $("#actionType").val(),
                     returnUrl: $("#returnUrl").val(),
                     cancelUrl: $("#cancelUrl").val(),
+                    notify_url: $("#notify_url").val(),
                     currencyCode: $("#currencyCode").val(),
-                    jobwages: $("#hdn_jobwages").val()
+                    jobwages: total
                 },
         function(response) {
 

@@ -1,34 +1,18 @@
-<?php /*<link rel="stylesheet" type="text/css" href="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/sdk.css" />
-<script type="text/javascript" src="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/sdk_functions.js"></script>
-<script type="text/javascript" src="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="http://localhost/minyawns/wp-content/themes/minyawns/adaptive_paypal/samples/Common/jquery.qtip-1.0.0-rc3.min.js"></script>
-*/?>
- <script src="https://www.paypalobjects.com/js/external/dg.js" type="text/javascript"></script>
- 
 <?php	
- 	$serverName = $_SERVER['SERVER_NAME'];
-	$serverPort = $_SERVER['SERVER_PORT'];
-	$url = dirname('http://' . $serverName . ':' . $serverPort . $_SERVER['REQUEST_URI']);
-	/*$returnUrl = $url . "/adaptive_paypal/samples/ExecutePayment.php";
-	$cancelUrl =  $url . "/";
-	*/
-	
+ 	 
 	$returnUrl = get_permalink( $post->ID ) ;
 	$cancelUrl =  get_permalink( $post->ID );
-	
-	//$Path=site_$_SERVER['REQUEST_URI'];
 	 
 	
 ?>
-			<form action="<?php echo site_url().'/adaptive-payment/'; ?>" method="post">
-				<input type='hidden' name="actionType" id="actionType" value="PAY" readonly="readonly"/>
-				<input type='hidden' name="returnUrl" id="returnUrl" value="<?php echo $returnUrl;?>" />			
-				<input type='hidden' name="cancelUrl" id="cancelUrl" value="<?php echo $cancelUrl;?>" />
-				<input type='hidden' name="currencyCode"  id="currencyCode"value="USD" />
-				<input type="hidden" name="receiverEmail[]" id="receiveremail_0" value="platfo_1255612361_per@gmail.com">
-				<input type="hidden" name="receiverAmount[]" id="amount_0" value="1.0" class="smallfield">
-				<?php /*<input type="submit" name = "submitBtn" value="Submit" />*/ ?>
-				<input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='<?php echo $minyawn_job->get_job_wages(); ?>' />
+			<form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">   
+				 
+			    <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $returnUrl; ?>" / >
+			    <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
+			    <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url().'/paypal-payments/' ; ?>" / >
+			     <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='<?php echo $minyawn_job->get_job_wages(); ?>' />
+		
+		
 		
 				
 <div class="row-fluid minyawns-grid">
