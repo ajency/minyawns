@@ -168,9 +168,9 @@ endif;
     <div class="span3 minyawns-select"><span><%= minyawns_have_applied %></span>
     <div>Minyawns Have Applied</div> 
     </div>
-    <% if(todays_date_time > job_end_time_check){%>)
+    <% if(todays_date_time > job_end_time_check){%>
     <div class="span3 jobs-date"> 
-    Job Completed
+ <div class="job-complete"> Job Completed</div>
     </div>
     <%}else{ %>
     <div class="span3 jobs-date"> 
