@@ -350,7 +350,7 @@ $app->post('/confirm', function() use ($app) {
 
             $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
-            $paypal_payment = serialize(array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>''));
+            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'');
             add_post_meta($_POST['job_id'], 'paypal_payment' , $paypal_payment);
             
             
@@ -404,38 +404,20 @@ $app->post('/confirm', function() use ($app) {
 			    <input type="hidden" name="no_note" value="1" />
             	<input type="hidden" name="custom" value="'.$key_job.'" />
 			    <input type="hidden" name="lc" value="UK" />
-			    <input type="hidden" name="currency_code" value="USD" />
+			   
 			    <input type="hidden" name="amount" value="'.$total_wages.'" />
 			    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
 			    <input type="hidden" name="first_name" value="Customer  First Name"  />
-			    <input type="hidden" name="last_name" value="Customer  Last Name"  />
-			    <input type="hidden" name="business" value="parag0246@yahoo.co.in"  />
+			    <input type="hidden" name="last_name" value="Customer  Last Name"  />			    
 			    <input type="hidden" name="item_number" value="'.$_POST['job_id'].'" / >
 			    <input type="hidden" name="item_name" value="'.get_the_title($_POST['job_id']).'" / >			   
-			    <input type="hidden"  name="return" id="returnUrl" value="'.$returnUrl.'" / >
-			    <input type="hidden" name="cancel_return" id="cancelUrl"  value="'.$cancelUrl.'" / >
-			    <input type="hidden"  name="notify_url" id="notify_url" value="'.site_url().'/paypal-payments/" / >
-           	<input type="submit" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
+			    
+			   
+           	<input type="submit" id="submitBtn" value=" " style="margin:auto; width:140px; height:27px; border:none; display:block;background-image:url(\'https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif\');" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
            	</form>
            	';
             
-            
-
-
-
-
-            
-             
-
-             
-            
-
-            
-             
-           
-            
-            
-
+ 
 
 
 
@@ -450,6 +432,26 @@ $app->post('/confirm', function() use ($app) {
 
             /* end added on 1sep2013 */
         });
+        
+        
+   $app->post('/user-vote', function() use ($app) {
+   global $wpdb;
+     $wpdb->get_results(
+                        "
+	UPDATE {$wpdb->prefix}userjobs 
+	SET rating = '" . trim($_POST['rating']) . "'
+	WHERE user_id = '" . $_POST['user_id'] . "' 
+		AND job_id = '" . $_POST['job_id'] . "'
+	"
+                );
+       
+       
+       echo json_encode(array('action'=>$_POST['action'],'rating' => $_POST['rating'],'user_id'=>$_POST['user_id']));
+       
+       
+   });
+     
+       
 
 
 
