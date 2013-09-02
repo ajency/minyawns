@@ -13,16 +13,16 @@ $item_amount = $_POST['total_amount'];
 $return_url = $_POST['returnUrl'];
 $cancel_url = $_POST['cancelUrl'];
 $notify_url = $_POST['notify_url'];*/
-$return_url = "http://www.minyawns.ajency.in/";
-$cancel_url = "http://www.minyawns.ajency.in/";
-$notify_url = "http://www.minyawns.ajency.in/paypal-payments/";
-$paypal_email = "parag0246@yahoo.co.in";
+$return_url = 'http://www.minyawns.ajency.in/';
+$cancel_url = 'http://www.minyawns.ajency.in/';
+$notify_url = 'http://www.minyawns.ajency.in/paypal-payments/';
+$paypal_email = 'parag0246@yahoo.co.in';
 // Check if paypal request or response
 if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 
 	// Firstly Append paypal account to querystring
-	$querystring .= "?notify_url=".urlencode($notify_url)."&";
-	$querystring .= "business=".urlencode($paypal_email)."&";	
+	//$querystring .= "?notify_url=".urlencode($notify_url)."&";
+	$querystring .= "?business=".urlencode($paypal_email)."&";	
 	
 	// Append amount& currency (£) to quersytring so it cannot be edited in html
 	
@@ -45,8 +45,9 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	//$querystring .= "&custom=".USERID;
 	 
 	$querystring .= "return=".urlencode(stripslashes($return_url))."&";
-	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url));
-	
+	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."& ";
+	$querystring .= "notify_url=".urlencode($notify_url)."& ";
+	$querystring .= "currency_code=USD";
 	
 	
 	// Redirect to paypal IPN
