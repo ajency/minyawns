@@ -731,6 +731,7 @@ a:hover {
 .list-jobs .expand .details .arrow-left {
   position: absolute;
   top: 0;
+  height: 51px;
   bottom: 0;
   margin: auto;
   right: -40px;
@@ -2177,7 +2178,7 @@ a:hover {
   top: 0;
   bottom: 0;
   margin: auto;
-  height: 0px;
+  height: 0%;
   width: 23%;
 }
 .div-box-block .btn {
