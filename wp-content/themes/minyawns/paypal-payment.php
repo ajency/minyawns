@@ -50,8 +50,8 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	
 	
 	// Redirect to paypal IPN
-	echo "location:https://www.sandbox.paypal.com/cgi-bin/webscr".$querystring;
-	//header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
+	//echo "location:https://www.sandbox.paypal.com/cgi-bin/webscr".$querystring;
+	header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
 	exit();
 
 }
@@ -176,6 +176,15 @@ else
 			curl_close($ch);
 			
 			$req = str_replace("&", "\n", $req);
+			
+			
+			
+			add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+			wp_mail('paragredkar@gmail.com', 'notify verify',  $req.'curl result'.$curl_result );
+			
+			
+			
+			
 			if ($curl_result== "VERIFIED") 
 			{
 				 
