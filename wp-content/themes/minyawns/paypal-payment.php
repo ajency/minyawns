@@ -16,17 +16,17 @@ $notify_url = $_POST['notify_url'];*/
 
 
 
-/*$return_url = 'http://www.minyawns.ajency.in/';
+$return_url = 'http://www.minyawns.ajency.in/';
 $cancel_url = 'http://www.minyawns.ajency.in/';
 $notify_url = 'http://www.minyawns.ajency.in/paypal-payments/';
 $paypal_email = 'parag0246@yahoo.co.in';
-*/
 
 
-$return_url = 'htttp://localhost/minyawns/';
+
+/*$return_url = 'htttp://localhost/minyawns/';
 $cancel_url = 'http://localhost/minyawns/';
 $notify_url = 'http://localhost/minyawns/paypal-payments/';
-$paypal_email = 'parag0246@yahoo.co.in';
+$paypal_email = 'parag0246@yahoo.co.in';*/
 
 
 // Check if paypal request or response
