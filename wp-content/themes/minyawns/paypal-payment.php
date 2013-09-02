@@ -95,7 +95,7 @@ else
 		//update postmeta for the job with transaction id
 		$new_paypal_payment_serialized = serialize($new_paypal_payment);
 		
-	//commented on 2sep2013	$wpdb->get_results("update {$wpdb->prefix}postmeta  set paypal_payment = ".$new_paypal_payment_serialized." WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
+	 $wpdb->get_results("update {$wpdb->prefix}postmeta  set paypal_payment = ".$new_paypal_payment_serialized." WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
 		
 		
 		
@@ -104,7 +104,7 @@ else
 	
 			if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
 			{	
-				//update_paypal_payment($_POST["txn_id"],$_POST["custom"],$_POST["status"],$_POST["item_id"]);
+				update_paypal_payment($_POST["txn_id"],$_POST["custom"],'',$_POST['item_number']);
 				
 				$SUBJECT = 'transaction check';
 				$BODY    = 'Checking for transaction';
@@ -274,13 +274,12 @@ else
 							}	
 					
 					*/
-					/* #########################################################					
-					if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
-					{
-						update_paypal_payment($_POST["txn_id"],$_POST["custom"],$_POST["status"],$_POST["item_id"]);
+					 					
+				 
+						update_paypal_payment($data['txn_id'],$data['custom'] ,$data['payment_status'],$data['item_number']);
 							
-					}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
-					*/
+					 
+					 
 
 					 
 					add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));

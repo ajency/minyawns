@@ -404,38 +404,20 @@ $app->post('/confirm', function() use ($app) {
 			    <input type="hidden" name="no_note" value="1" />
             	<input type="hidden" name="custom" value="'.$key_job.'" />
 			    <input type="hidden" name="lc" value="UK" />
-			    <input type="hidden" name="currency_code" value="USD" />
+			   
 			    <input type="hidden" name="amount" value="'.$total_wages.'" />
 			    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
 			    <input type="hidden" name="first_name" value="Customer  First Name"  />
-			    <input type="hidden" name="last_name" value="Customer  Last Name"  />
-			    <input type="hidden" name="business" value="parag0246@yahoo.co.in"  />
+			    <input type="hidden" name="last_name" value="Customer  Last Name"  />			    
 			    <input type="hidden" name="item_number" value="'.$_POST['job_id'].'" / >
 			    <input type="hidden" name="item_name" value="'.get_the_title($_POST['job_id']).'" / >			   
-			    <input type="hidden"  name="return" id="returnUrl" value="'.$returnUrl.'" / >
-			    <input type="hidden" name="cancel_return" id="cancelUrl"  value="'.$cancelUrl.'" / >
-			    <input type="hidden"  name="notify_url" id="notify_url" value="'.site_url().'/paypal-payments/" / >
+			    
+			   
            	<input type="submit" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
            	</form>
            	';
             
-            
-
-
-
-
-            
-             
-
-             
-            
-
-            
-             
-           
-            
-            
-
+ 
 
 
 
