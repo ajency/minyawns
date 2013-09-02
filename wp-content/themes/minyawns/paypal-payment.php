@@ -30,7 +30,7 @@ $paypal_email = 'parag0246@yahoo.co.in';*/
 
 
 // Check if paypal request or response
-if (isset($_POST["txn_id"]) && isset($_POST["txn_type"])){
+if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 
 	// Firstly Append paypal account to querystring
 	//$querystring .= "?notify_url=".urlencode($notify_url)."&";
