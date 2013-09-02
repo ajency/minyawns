@@ -13,11 +13,15 @@ $item_amount = $_POST['total_amount'];
 $return_url = $_POST['returnUrl'];
 $cancel_url = $_POST['cancelUrl'];
 $notify_url = $_POST['notify_url'];*/
-
+$return_url = 'http://www.minyawns.ajency.in/';
+$cancel_url = 'http://www.minyawns.ajency.in/';
+$notify_url = 'http://www.minyawns.ajency.in/paypal-payments/';
+$paypal_email = 'parag0246@yahoo.co.in';
 // Check if paypal request or response
 if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 
 	// Firstly Append paypal account to querystring
+	//$querystring .= "?notify_url=".urlencode($notify_url)."&";
 	$querystring .= "?business=".urlencode($paypal_email)."&";	
 	
 	// Append amount& currency (£) to quersytring so it cannot be edited in html
@@ -39,6 +43,12 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	*/
 	// Append querystring with custom field
 	//$querystring .= "&custom=".USERID;
+	 
+	$querystring .= "return=".urlencode(stripslashes($return_url))."&";
+	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."& ";
+	$querystring .= "notify_url=".urlencode($notify_url)."& ";
+	$querystring .= "currency_code=USD";
+	
 	
 	// Redirect to paypal IPN
 	//echo "location:https://www.sandbox.paypal.com/cgi-bin/webscr".$querystring;
@@ -85,7 +95,7 @@ else
 		//update postmeta for the job with transaction id
 		$new_paypal_payment_serialized = serialize($new_paypal_payment);
 		
-		$wpdb->get_results("update {$wpdb->prefix}postmeta  set paypal_payment = ".$new_paypal_payment_serialized." WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
+	//commented on 2sep2013	$wpdb->get_results("update {$wpdb->prefix}postmeta  set paypal_payment = ".$new_paypal_payment_serialized." WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
 		
 		
 		
@@ -167,9 +177,23 @@ else
 			curl_close($ch);
 			
 			$req = str_replace("&", "\n", $req);
+			
+			
+			
+			add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+			wp_mail('paragredkar@gmail.com', 'notify verify',  $req.'curl result'.$curl_result );
+			
+			
+			
+			
 			if ($curl_result== "VERIFIED") 
 			{
 				 
+				add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+				wp_mail('paragredkar@gmail.com', 'notify verify2',  $req.'curl result'.$curl_result );
+				
+				
+				
 				$mail_data = "\n\nPaypal Verified OK";
 				
 				
@@ -195,7 +219,7 @@ else
 				//$total_amount = $amount + $tax;
 				$data['total_amount'] = trim($_POST['mc_gross']);
 				
-				if(($payment_status=="Completed")      )
+				if(($data['payment_status']=="Completed")      )
 				{
 					//if($currency_type=="USD")
 						
@@ -258,9 +282,9 @@ else
 					}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
 					*/
 
-					$ipn_data = print_r($data,true);
+					 
 					add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-					wp_mail('paragredkar@gmail.com', $SUBJECT,  $ipn_data );
+					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );
 					
 					
 							
