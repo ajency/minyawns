@@ -323,7 +323,8 @@ $app->post('/confirm', function() use ($app) {
 
             global $wpdb;
             $split_user = explode("-", $_POST['status']);
-            for ($i = 0; $i < sizeof($split_user); $i++) {
+            for ($i = 0; $i < sizeof($split_user); $i++) 
+            {
 
                 $split_status = explode(",", $split_user[$i]);
                 // for ($j = 0; $j < sizeof($split_status); $j++) {
@@ -336,27 +337,81 @@ $app->post('/confirm', function() use ($app) {
 		AND job_id = '" . $_POST['job_id'] . "'
 	"
                 );
+                
+                
+                
+                
+                ////to do
+                $job_metadata = get_post_meta($_POST['job_id']);  
+                $job_data = get_post($_POST['job_id']);
+                $t=print_r($job_metadata,true);
+                
+				//get minyawn email id
+                $minyawns_data = get_userdata($split_status[0]);
+               
+                //Send mail to minyawns
+                $minyawns_subject ="Minyawns - You have been hired for ".get_the_title($_POST['job_id']);
+                $minyawns_message = "Hi,<br/><br/>
+                		Congratulations, You have been hired for the job '".get_the_title($_POST['job_id'])."'<br/><br/>
+                		<h6>Job:".get_the_title($_POST['job_id'])."</h6>
+                				
+                		<br/><b>Start date:</b>". date('d M Y',  $job_metadata->job_start_date)."
+                		<br/><b>Start Time:</b>". date('g:i',  $job_metadata->job_start_time)."
+                		<br/><b>End Date:</b>". date('d M Y',  $job_metadata->job_end_date)."
+					    <br/><b>end Time:</b>". date('g:i',  $job_metadata->job_end_time)."
+                				
+                		<br/><b>Location:</b>". $job_metadata->job_location."	
+						<br/><b>Wages:</b>". $job_metadata->job_wages."	
+                		<br/><b>details:</b>".$job_data->post_content."
+                				
+                		<br/><br/>
+                		
+                		";
+                
+                
+                
+                
+                
+                
+                
+                
+                
+             /*  'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
+                'job_end_date' => date('d M Y', strtotime($post_meta['job_end_date'][0])),
+                'job_day' => date('l', $post_meta['job_start_date'][0]),
+                'job_wages' => $post_meta['job_wages'][0],
+                'job_progress' => 'available',
+                'job_start_day' => date('d', $post_meta['job_start_date'][0]),
+                'job_start_month' => date('F', $post_meta['job_start_date'][0]),
+                'job_start_year' => date('Y', $post_meta['job_start_date'][0]),
+                'job_start_meridiem' => date('a', $post_meta['job_start_time'][0]),
+                'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),
+                'job_start_time' => date('g:i', $post_meta['job_start_time'][0]),
+                'job_end_time' => date('g:i', $post_meta['job_end_time'][0]),
+                'job_location' => $post_meta['job_location'][0],
+                'job_details' => $pagepost->post_content,
+                
+                */
+                
+                add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+                $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+                wp_mail($minyawns_data->user_email,  $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
+                
+                
                 // }
             }
-
-            /* aded on 1sep2013 */
-
-
+            
+            
+            
+            
             
 
-
-
-             
-
+            /* aded on 1sep2013 */
+            
             $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
             $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'');
             add_post_meta($_POST['job_id'], 'paypal_payment' , $paypal_payment);
-            
-            
-            
-             
-            
             
             
             //get user
