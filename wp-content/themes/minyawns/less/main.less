@@ -28,6 +28,9 @@ a:hover{text-decoration:none !important;}
 	font-size: 12px;
 	line-height: 22px;
 }
+.fb-mobile{
+	display:none!important;
+}
 .bootstrap-timepicker-widget{
 	z-index:9999 !important;
 }
@@ -1082,7 +1085,12 @@ background: #F8F8F8!important;
 
 /* mobile resonsive */
 @media (max-width: 767px) {
-
+.fb-mobile{
+	display:block!important;
+}
+.fb-deskstop{
+	display:none!important;
+}
 .control-group.small .add-on {
 	margin-top: 1px;
 }
