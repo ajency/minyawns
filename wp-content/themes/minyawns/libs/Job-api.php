@@ -101,14 +101,14 @@ class Minyawn_Job {
         $this->job_tags = ($job_tags) > 0 ? $job_tags : '';
 
         //get all users applied for the job
-        $sql = $wpdb->prepare("SELECT {$wpdb->prefix}users.*, GROUP_CONCAT(CONCAT({$wpdb->prefix}usermeta.meta_key,'|',{$wpdb->prefix}usermeta.meta_value)) AS usermeta,{$wpdb->prefix}userjobs.*
+        $sql = $wpdb->prepare("SELECT {$wpdb->prefix}users.*, GROUP_CONCAT(CONCAT({$wpdb->prefix}usermeta.meta_key,'|',{$wpdb->prefix}usermeta.meta_value)) AS usermeta,{$wpdb->prefix}userjobs.*, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}users
                               JOIN {$wpdb->prefix}usermeta ON user_id = {$wpdb->prefix}users.ID
                               JOIN {$wpdb->prefix}userjobs ON {$wpdb->prefix}userjobs.user_id = {$wpdb->prefix}users.ID
                               WHERE {$wpdb->prefix}userjobs.job_id = %d
                               GROUP BY {$wpdb->prefix}userjobs.user_id", $this->ID);
 
-
+        
         $minyawns = $wpdb->get_results($sql);
 
         $this->applied_by = count($minyawns);
@@ -123,9 +123,12 @@ class Minyawn_Job {
                     'user_email' => $minyawn->user_email,
                     'user_id' => $minyawn->ID,
                     'user_to_job' => $minyawn->job_id,
-                    'user_job_status' => $minyawn->status
+                    'user_job_status' => $minyawn->status,
                 );
 
+                
+                    
+                
 
 
 
@@ -152,15 +155,31 @@ class Minyawn_Job {
                     $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
                 elseif (!isset($user['image']))
                     $user['image'] = false;
+//                if (!isset($user['rate_like']))
+//                    $user['rate_like'] = 0;
+//                if (!isset($user['rate_dislike']))
+//                    $user['rate_dislike'] = 0;
 
-                if (!isset($user['rate_like']))
-                    $user['rate_like'] = 0;
-                if (!isset($user['rate_dislike']))
-                    $user['rate_dislike'] = 0;
+                $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
+                              FROM {$wpdb->prefix}userjobs
+                              WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id
+                              GROUP BY {$wpdb->prefix}userjobs.user_id", $minyawn->ID,$minyawn->job_id);
+
+                $minyawns_rating = $wpdb->get_results($sql);
+
+                foreach ($minyawns_rating as $rating) {
+                    $user['like'] = $rating->positive;
+                    $user['dislike'] = $rating->negative;
+                    
+                    if($user['like'] != "0" || $user['dislike'] != "0")
+                        $user['is_job_rated']=1;
+                }
 
                 $this->minyawns[$minyawn->ID] = $user;
             }
+            
         }
+       
         // global $post;
 
         $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
@@ -279,7 +298,7 @@ class Minyawn_Job {
 
         //check if requirement is complete
         if (count($min_job->minyawns) > 0) {
-            if ((int) ($min_job->required_minyawns)+2 <= count($min_job->minyawns))
+            if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns))
                 $this->can_apply = 1;
         }else {
             $this->can_apply = 0;
@@ -322,7 +341,7 @@ class Minyawn_Job {
     public function check_minyawn_job_status($jobID) {
         global $wpdb;
         $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND  {$wpdb->prefix}userjobs.user_id='" . get_user_id() . "'";
-       
+
         $querystr = "
                             SELECT $wpdb->posts.*,{$wpdb->prefix}userjobs.*
                             FROM $wpdb->posts,{$wpdb->prefix}userjobs
@@ -346,23 +365,22 @@ class Minyawn_Job {
             $applied = 0;
         }
 
-        
+
 
 
         return $applied;
     }
 
-    
-
 }
+
 function get_total_jobs() {
-        global $wpdb;
-           $tables = "$wpdb->posts, $wpdb->postmeta";
-                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
+    global $wpdb;
+    $tables = "$wpdb->posts, $wpdb->postmeta";
+    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
-           
 
-            $querystr = "
+
+    $querystr = "
                             SELECT $wpdb->posts.* 
                             FROM $tables
                             $my_jobs_filter
@@ -371,19 +389,17 @@ function get_total_jobs() {
                             
                          ";
 
-        return $wpdb->get_results($querystr, OBJECT);
-    }
-    
-    function is_job_owner($user_id,$job_id)
-    {
-        global $wpdb;
-        
-        if(get_user_role() != 'minyawn')
-        {
-             $tables = "$wpdb->posts";
-                    $my_jobs_filter = "WHERE $wpdb->posts.post_author = '".$user_id."' AND $wpdb->posts.ID='".$job_id."'";
-                    
-             $querystr = "
+    return $wpdb->get_results($querystr, OBJECT);
+}
+
+function is_job_owner($user_id, $job_id) {
+    global $wpdb;
+
+    if (get_user_role() != 'minyawn') {
+        $tables = "$wpdb->posts";
+        $my_jobs_filter = "WHERE $wpdb->posts.post_author = '" . $user_id . "' AND $wpdb->posts.ID='" . $job_id . "'";
+
+        $querystr = "
                             SELECT $wpdb->posts.* 
                             FROM $tables
                             $my_jobs_filter
@@ -391,21 +407,19 @@ function get_total_jobs() {
                             AND $wpdb->posts.post_type = 'job'
                             
                          ";
-            
-            $is_author=$wpdb->get_results($querystr, OBJECT);
-            
-            if(count($is_author) >0)
-                return 1;
-            
-            else
-                return 0;
-            
-        }else
-            return false;
-        
-        
-        
+
+        $is_author = $wpdb->get_results($querystr, OBJECT);
+
+        if (count($is_author) > 0)
+            return 1;
+        else
+            return 0;
     }
+    else
+        return false;
+}
+
+function get_user_rating($user_id, $job_id) {
     
-    
-    
+}
+
