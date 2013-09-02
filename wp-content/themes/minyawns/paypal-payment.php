@@ -13,7 +13,8 @@ $item_amount = $_POST['total_amount'];
 $return_url = $_POST['returnUrl'];
 $cancel_url = $_POST['cancelUrl'];
 $notify_url = $_POST['notify_url'];*/
-
+$return_url = "http://www.minyawns.ajency.in/";
+$cancel_url = "http://www.minyawns.ajency.in/";
 $notify_url = "http://www.minyawns.ajency.in/paypal-payments/";
 $paypal_email = "parag0246@yahoo.co.in";
 // Check if paypal request or response
@@ -42,7 +43,8 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	// Append querystring with custom field
 	//$querystring .= "&custom=".USERID;
 	
-	
+	$querystring .= "return=".urlencode(stripslashes($return_url))."&";
+	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."&";
 	$querystring .= "notify_url=".urlencode($notify_url);
 	
 	
