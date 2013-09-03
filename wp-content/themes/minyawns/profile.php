@@ -71,28 +71,7 @@ get_header();  ?>
 
     </div>
 
-    <div class="job-progress header-sub">
-    
-     <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
-        <span class="label-available">Available</span>
-
-
-        <% else if (todays_date_time > job_end_time_check){%>
-         <span class="label-unavailable">This job is complete</span>
-
-        <% }else if (can_apply_job == 3){%>
-         <span class="label-hired">You are hired for this job.</span>
-        <% }else if (can_apply_job == 1) {%>
-         <span >You have applied for this job.</span>
-
-        <% }else if (can_apply_job == 2) {%>
-         <span >Minyawn application complete.</span>
-
-        <% }
-        %> 
-    
-
-    </div>
+   
     </div>
     </a>
     </div>
@@ -337,7 +316,7 @@ endif;
                         <div class="job-time header-sub">Duration</div>
                         <div class="job-wage header-sub">Wages</div>
                         <div class="job-progress header-sub">Progress</div>
-                        <div class="job-action header-sub">Action</div>
+<!--                        <div class="job-action header-sub">Action</div>-->
                     </div>
                 </div>
 
