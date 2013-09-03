@@ -22,9 +22,13 @@ foreach ($minyawn_job->minyawns as $minyawn):
 
                             <div class="caption">
     <?php if ($minyawn['image'] !== false): ?>
+									<div class="minyawns-img">
                                     <img src="<?php echo $minyawn['image']; ?>" />
+									</div>
                                 <?php else : ?>
+								<div class="minyawns-img">
                                     <?php echo get_avatar($minyawn['user_email'], 168); ?>
+									</div>
                                 <?php endif; ?>
                                 <div class="rating"  >
                                     <a id="vote-up<?php echo $minyawn['user_id']; ?>" class="vote-up" href="#like" is_rated="<?php echo $minyawn['is_job_rated']; ?>" employer-vote="1"   job-id="<?php echo  $minyawn['user_to_job']?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-up">

@@ -51,7 +51,7 @@ get_header();  ?>
     <ins><span class="amount">$ <%= job_wages %></span></ins>
     </div>
 
-    <div class="job-progress header-sub">
+    <div class="job-progress profile-job header-sub">
     
      <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
         <span class="label-available">Available</span>
@@ -71,14 +71,7 @@ get_header();  ?>
 
     </div>
 
-    <div class="job-action header-sub">
 
-<!--    <div class="arrow-down">
-    </div>-->
-
-    </div>
-    </div>
-    </a>
     </div>
 
     <div id="collapse<%= post_id %>" class="accordion-body collapse ">
@@ -320,8 +313,8 @@ endif;
                         <div class="job-date header-sub"> Session Date</div>
                         <div class="job-time header-sub">Duration</div>
                         <div class="job-wage header-sub">Wages</div>
-                        <div class="job-progress header-sub">Progress</div>
-                        <div class="job-action header-sub">Action</div>
+                        <div class="job-progress profile-job header-sub">Progress</div>
+                       
                     </div>
                 </div>
 
