@@ -694,6 +694,29 @@ function no_access_page($user_role, $page_slug) {
 
 
 
+function get_paypal_payment_meta($transaction_id,$minyawns_tx_id,$jobid)
+{
+	global $wpdb;
+	$qry_paypal_payment = "SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' ";
+	if($transaction_id!="")
+		$qry_paypal_payment.=" and meta_value like '%".$transaction_id."%' ";
+	if($minyawns_tx_id!="")
+		$qry_paypal_payment.=" and meta_value like '%".$minyawns_tx_id."%' ";
+	if($jobid!="")
+		$qry_paypal_payment.=" and post_id ='".$jobid."' ";
+	
+	$paypal_tx  = $wpdb->get_results($qry_paypal_payment);
+	
+	foreach($paypal_tx as $res)
+	{
+		$paypal_payment = unserialize($res->paypal_payment);
+			
+	}
+	return $paypal_payment;	
+	
+}
+
+
 /*
  * Function to update paypal payment details for hired minyawns
  * 
@@ -738,16 +761,16 @@ function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
 	if($status=="Failed")
 	{
 		
-		$split_user = explode("-", $new_paypal_payment['minyawns_selected']);
+		$split_user = explode(",", $new_paypal_payment['minyawns_selected']);
             for ($i = 0; $i < sizeof($split_user); $i++) 
             {
-                $split_status = explode(",", $split_user[$i]);
+                //$split_status = explode(",", $split_user[$i]);
                 // for ($j = 0; $j < sizeof($split_status); $j++) {
 
                 $wpdb->get_results("
 					UPDATE {$wpdb->prefix}userjobs 
 					SET status = 'applied'
-					WHERE user_id = '" . $split_status[0] . "' 
+					WHERE user_id = '" . $split_user[$i] . "' 
 					AND job_id = '" . $_POST['job_id'] . "'
 					"
                 );

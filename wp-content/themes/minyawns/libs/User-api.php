@@ -15,7 +15,7 @@ function setup_user_profile_data() {
 //        
 //    }
     //global $current_user_new;
-  error_reporting(E_ERROR | E_PARSE);
+    error_reporting(E_ERROR | E_PARSE);
     //$get_user_id = explode("/", $_SERVER['REQUEST_URI']);
     //global $current_user_new;
     //$current_user_new = new stdclass;
@@ -23,7 +23,7 @@ function setup_user_profile_data() {
     // if (!is_user_logged_in()) {
     //preg_match("/\/(\d+)$/",$_SERVER['REQUEST_URI'],$matches);
     $end = check_direct_access();
-   
+
     //var_dump($end);exit();
     global $current_user, $current_user_new;
 
@@ -32,16 +32,16 @@ function setup_user_profile_data() {
 
     if (is_numeric($end)) {
         $current_user_new->data = new stdClass;
-      $current_user_new = wp_set_current_user_profile($end);
+        $current_user_new = wp_set_current_user_profile($end);
     } else {
-       $current_user_new->data = new stdClass;
+        $current_user_new->data = new stdClass;
         $current_user_new = $current_user;
     }
- 
+
 //var_dump($current_user_new);exit();
     $user_meta = get_user_meta($current_user_new->data->ID);
 
-    $current_user_new->data->user_id=$current_user_new->data->ID;
+    $current_user_new->data->user_id = $current_user_new->data->ID;
     //set profile first name
     $current_user_new->data->first_name = trim($user_meta['first_name'][0]);
 
@@ -93,19 +93,17 @@ function setup_user_profile_data() {
     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
                               WHERE {$wpdb->prefix}userjobs.user_id = %d
-                              GROUP BY {$wpdb->prefix}userjobs.user_id",$current_user_new->data->ID);
+                              GROUP BY {$wpdb->prefix}userjobs.user_id", $current_user_new->data->ID);
 
-                $minyawns_rating = $wpdb->get_row($sql);
+    $minyawns_rating = $wpdb->get_row($sql);
 
-                foreach ($minyawns_rating as $rating) {
-                    $current_user_new->data->like_count = $rating->positive;
-                    $current_user_new->data->dislike_count = $rating->negative;
-                    
+    foreach ($minyawns_rating as $rating) {
+        $current_user_new->data->like_count = $rating->positive;
+        $current_user_new->data->dislike_count = $rating->negative;
+
 //                    if($user['like'] != "0" || $user['dislike'] != "0")
 //                        $user['is_job_rated']=1;
-                } 
-    
-    
+    }
 }
 
 add_action('wp_loaded', 'setup_user_profile_data');
@@ -395,8 +393,7 @@ class MN_User_Jobs {
                     'user_job_status' => $minyawn->status
                 );
 
-
-
+               
 
 
                 //convert the meta string to php array
@@ -473,6 +470,50 @@ class MN_User_Jobs {
 
 }
 
+
+function send_mail_employer_apply_job($job_id,$action)
+{
+	global $user_ID, $wpdb;
+	global $current_user;
+	get_currentuserinfo();
+	$job_data = get_post($job_id);
+	$employer_id =  $job_data->post_author;
+	$employer_data = get_userdata($employer_id);
+	 
+	//Send mail to Emplyer
+	$mail_subject ="Minyawns - ".$current_user->display_name." have ".$action." for ".get_the_title($job_id);	
+	
+	$mail_message = "Hi,<br/><br/>".
+			$current_user->display_name." have ".$action." for the job '".get_the_title($job_id)."'
+	
+                		<br/><br/><h3>Minaywn Details</h3>
+                		<br/><b>Username : ".$current_user->user_login."</b>
+                		<br/><b>First name : ". $current_user->user_firstname."</b>
+                		<br/><b>Last Name : ".$current_user->user_lastname."</b>
+                		<br/><b>Email : ".$current_user->user_email."</b>
+	
+                		<br/><br/><h3>Job Details</h3>
+                		<br/><br/><b>Job : ".get_the_title($_POST['job_id'])."</h6>
+                		<br/><b>Start date : </b>". date('d M Y',   get_post_meta($_POST['job_id'],'job_start_date',true))."
+                		<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_start_time',true))."
+                		<br/><b>End Date : </b>". date('d M Y',  get_post_meta($_POST['job_id'],'job_end_date',true))."
+					    <br/><b>end Time : </b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_end_time',true))."
+                		<br/><b>Location : </b>". get_post_meta($_POST['job_id'],'job_location',true)."
+						<br/><b>Wages : </b>".get_post_meta($_POST['job_id'],'job_wages',true)."
+                		<br/><b>details : </b>".$job_data->post_content."
+	
+                		<br/><br/>
+	
+                		";
+	
+	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+	wp_mail($employer_data->user_email,  $mail_subject, email_header() . $mail_message . email_signature(), $headers); 
+	
+	
+	
+}
+
 function minyawn_job_apply() {
 
     if ('POST' !== $_SERVER['REQUEST_METHOD'])
@@ -480,6 +521,11 @@ function minyawn_job_apply() {
 
     global $user_ID, $wpdb;
 
+    
+  
+    
+    
+    
 
     //get job ID
     $job_id = $_POST['job_id'];
@@ -497,6 +543,10 @@ function minyawn_job_apply() {
 
         $new_action = "apply";
         $status = 1;
+        
+        
+        
+        
     } else {
         $min_job = new Minyawn_Job($job_id);
 
@@ -519,8 +569,18 @@ function minyawn_job_apply() {
             /* plus one because it is checking before insert */
             if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns) + 1)
                 $status = 2;
+            
+            
+           
+            
         }
+         
+        
     }
+    
+    // send mail to employer who created job
+    send_mail_employer_apply_job($job_id,'applied');
+    
     echo json_encode(array('success' => $status, 'new_action' => $new_action));
 
     die;
@@ -541,7 +601,9 @@ function minyawn_job_unapply() {
         'user_id' => $user_ID,
         'job_id' => $job_id
     ));
-
+    // send mail to employer who created job
+    send_mail_employer_apply_job($job_id,'unapplied');
+    
     echo json_encode(array('success' => 1, 'new_action' => 'apply'));
 
     die;
@@ -564,9 +626,7 @@ function wp_set_current_user_profile($id, $name = '') {
     return $current_user_new;
 }
 
+function check_direct_access() {
 
-function check_direct_access()
-{
-    
     return end((explode('/', rtrim($_SERVER['REQUEST_URI'], '/'))));
 }

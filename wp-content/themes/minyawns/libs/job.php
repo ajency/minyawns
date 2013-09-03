@@ -348,6 +348,7 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
 $app->post('/confirm', function() use ($app) {
 
             global $wpdb;
+            $paypal_minyawns_hired="";
             $split_user = explode("-", $_POST['status']);
             for ($i = 0; $i < sizeof($split_user); $i++) 
             {
@@ -365,37 +366,41 @@ $app->post('/confirm', function() use ($app) {
                 );
                 
                 
+                if($split_status[0]!="") 
+				{
+					if($i>0)
+		                	$paypal_minyawns_hired.= ",";
                 
-                
-                ////to do
-                $job_metadata = get_post_meta($_POST['job_id']);  
-                $job_data = get_post($_POST['job_id']);
-                $t=print_r($job_metadata,true);
+                	$paypal_minyawns_hired.=$split_status[0];
+				}            
+               
+               // $job_metadata = get_post_meta($_POST['job_id']);  
+                $job_data = get_post($_POST['job_id']); 
                 
 				//get minyawn email id
                 $minyawns_data = get_userdata($split_status[0]);
                
                 //Send mail to minyawns
                 $minyawns_subject ="Minyawns - You have been hired for ".get_the_title($_POST['job_id']);
+                
+                
+                
                 $minyawns_message = "Hi,<br/><br/>
                 		Congratulations, You have been hired for the job '".get_the_title($_POST['job_id'])."'<br/><br/>
-                		<h6>Job:".get_the_title($_POST['job_id'])."</h6>
-                				
-                		<br/><b>Start date:</b>". date('d M Y',  $job_metadata->job_start_date)."
-                		<br/><b>Start Time:</b>". date('g:i',  $job_metadata->job_start_time)."
-                		<br/><b>End Date:</b>". date('d M Y',  $job_metadata->job_end_date)."
-					    <br/><b>end Time:</b>". date('g:i',  $job_metadata->job_end_time)."
-                				
-                		<br/><b>Location:</b>". $job_metadata->job_location."	
-						<br/><b>Wages:</b>". $job_metadata->job_wages."	
+                		<h3>Job:".get_the_title($_POST['job_id'])."</h3>
+                
+                		<br/><b>Start date:</b>". date('d M Y',   get_post_meta($_POST['job_id'],'job_start_date',true))."
+                		<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_start_time',true))."
+                		<br/><b>End Date:</b>". date('d M Y',  get_post_meta($_POST['job_id'],'job_end_date',true))."
+					    <br/><b>end Time:</b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_end_time',true))."		 		
+					    		
+                		<br/><b>Location:</b>". get_post_meta($_POST['job_id'],'job_location',true)."
+						<br/><b>Wages:</b>".get_post_meta($_POST['job_id'],'job_wages',true)."
                 		<br/><b>details:</b>".$job_data->post_content."
-                				
+                
                 		<br/><br/>
-                		
+                
                 		";
-                
-                
-                
                 
                 
                 
@@ -445,13 +450,13 @@ $app->post('/confirm', function() use ($app) {
             $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
  
-            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'','minyawns_selected'=>$split_user);
+            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'','minyawns_selected'=>$paypal_minyawns_hired);
             add_post_meta($_POST['job_id'], 'paypal_payment' , $paypal_payment);
             
             
  
             //get user
-            $users__ = explode(",", $_POST['user_id']);
+           // $users__ = explode(",", $_POST['user_id']);
             //end get user
 
             /*

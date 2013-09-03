@@ -43,12 +43,17 @@ foreach ($minyawn_job->minyawns as $minyawn):
                                 <div class="social-link">
     <?php echo $minyawn['user_email']; ?> -<a href="<?php echo $minyawn['linkedin']; ?>" target="_BLANK"> <?php echo $minyawn['linkedin']; ?> </a> 
                                 </div>
-                                    <?php if (is_array($minyawn['user_skills'])) {
-                                        foreach ($minyawn['user_skills'] as $skill):
+                                    <?php 
+                                    
+                                    
+                                    
+                                    //if (is_array($minyawn['user_skills'])) {
+                                 $user_skills=explode(",",$minyawn['user_skills']);
+                                    for ($i= 0;$i<sizeof($user_skills);$i++):
                                             ?>
-                                        <span class="label label-small"><?php echo $skill ?></span>
-                                    <?php endforeach;
-                                }
+                                <span class="label label-small"><?php echo $user_skills[$i] ?></span>
+                                    <?php endfor;
+                               // }
                                 ?>
                                 <hr>
 

@@ -313,8 +313,10 @@ endif;
                         <div class="job-date header-sub"> Session Date</div>
                         <div class="job-time header-sub">Duration</div>
                         <div class="job-wage header-sub">Wages</div>
+
                         <div class="job-progress profile-job header-sub">Progress</div>
                        
+
                     </div>
                 </div>
 
