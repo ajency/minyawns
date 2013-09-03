@@ -44,6 +44,9 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 }
 else
 {
+	get_header();
+	
+	
 	
 			if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
 			{	
@@ -160,19 +163,21 @@ else
 					
 					
 					$receiver_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
+					$item__number = $data['item_number'];
 					$receiver_message.="Hi,<br/><br/>
 							item num ".$data['item_number']."
 							Payment for '".$data['item_name']."' successfully transferred .
 							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
 							<br/><b>Job    			:</b> ".$data['item_name']."
 							<br/><b>Total Amount 			:</b> ".$data['total_amount']."
-							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($data['item_humber'],'job_start_date',true))."
-							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_start_time',true))."
-							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($data['item_humber'],'job_end_date',true))."
-							<br/><b>end Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_end_time',true))."							 
-							<br/><b>Location:</b>". get_post_meta($data['item_humber'],'job_location',true)."
-							<br/><b>Wages:</b>".get_post_meta($data['item_humber'],'job_wages',true)."
-							<br/><b>details:</b>".$job_data->post_content."		
+							 
+	                		<br/><b>Start date : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
+	                		<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."
+	                		<br/><b>End Date : </b>". date('d M Y',  get_post_meta($item__number,'job_end_date',true))."
+						    <br/><b>end Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."
+	                		<br/><b>Location : </b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages : </b>".get_post_meta($item__number,'job_wages',true)."
+	                		<br/><b>details : </b>".$job_data->post_content."
 									
 									
 							<br/><br/><br/>
@@ -193,10 +198,10 @@ else
 							<br/><b>Transaction ID :</b> ".$data['txn_id']."
 							<br/><b>Total Amount 			:</b> ".$data['total_amount']."
 							<br/><b>Job    		   :</b> ".$data['item_name']."
-							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($data['item_humber'],'job_start_date',true))."
-							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_start_time',true))."
-							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($data['item_humber'],'job_end_date',true))."
-							<br/><b>end Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_end_time',true))."							 
+							<br/><b>Start date:</b>". date('d M Y',get_post_meta($data['item_humber'],'job_start_date',true))."
+							<br/><b>Start Time:</b>". date('g:i a',get_post_meta($data['item_humber'],'job_start_time',true))."
+							<br/><b>End Date:</b>". date('d M Y',get_post_meta($data['item_humber'],'job_end_date',true))."
+							<br/><b>end Time:</b>". date('g:i a',get_post_meta($data['item_humber'],'job_end_time',true))."							 
 							<br/><b>Location:</b>". get_post_meta($data['item_humber'],'job_location',true)."
 							<br/><b>Wages:</b>".get_post_meta($data['item_humber'],'job_wages',true)."
 							<br/><b>details:</b>".$job_data->post_content."		
@@ -265,23 +270,13 @@ else
 
 
 
-
+			get_footer();
 	
 	
 }
 
 
-get_header();
- 
-
-?>
- 
-
-<div class="container">
-    
-</div>
-
 
  
-<?php
-get_footer();
+
+ 
