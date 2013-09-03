@@ -163,7 +163,7 @@ global $minyawn_job;
                         <div class="span12 expand">
                             <div class="row-fluid header-title">
                                 <div class="span12">
-                                    <h3><a href="#" target="_blank" >Jobtitle</a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
+                                    <h3><a href="#" target="_blank" ><?php echo get_the_title() ?></a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
 <?php
 if (get_user_role() == "minyawn") {
     if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3) {
