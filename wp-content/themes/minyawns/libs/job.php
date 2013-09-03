@@ -495,7 +495,7 @@ $app->post('/confirm', function() use ($app) {
 
 
 
-            $html.='<form class="paypal" action="' . site_url() . '/paypal-payments/" method="post" id="paypal_form" target="_blank">
+            $html.='<form class="paypal" action="' . site_url() . '/paypal-payments/" method="post" id="paypal_form" target="_self">
 				<input type="hidden" name="cmd" value="_xclick" />
 			    <input type="hidden" name="no_note" value="1" />
             	<input type="hidden" name="custom" value="' . $key_job . '" />

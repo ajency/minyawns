@@ -141,8 +141,31 @@ else
 				
 				//$total_amount = $amount + $tax;
 				$data['total_amount'] = trim($_POST['mc_gross']);
+				
+				
+				
 				$item__number = $data['item_number'];
 				$job_data = get_post($item__number);
+				$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
+				$meta_sel_minyawns=array();
+				foreach($paypal_payment_meta as $k_meta_pay=>$v_meta_pay )
+				{
+					if($k_meta_pay=='minyawns_selected')
+					{
+						$meta_sel_minyawns = explode(",",$v_meta_pay);
+						//get user details
+						foreach($meta_sel_minyawns as $k=>$v)
+						{
+							if($v!="")
+							{
+								$minyawn_data[] = get_userdata($v);
+									
+							}
+						}
+							
+					}
+				}
+				
 				
 				
 				if(($data['payment_status']=="Completed") )
@@ -152,39 +175,7 @@ else
 					  	 
 					/*add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );*/
-					
-					
-					
-					
-					
-					
-					
-					$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
-					$meta_sel_minyawns=array();
-					foreach($paypal_payment_meta as $k_meta_pay=>$v_meta_pay )
-					{
-						if($k_meta_pay=='minyawns_selected')
-						{
-							$meta_sel_minyawns = explode(",",$v_meta_pay);
-							//get user details
-							foreach($meta_sel_minyawns as $k=>$v)
-							{
-								if($v!="")
-								{
-									$minyawn_data[] = get_userdata($v);
-					
-								}
-							}
-					
-						}
-					}
-					
-					
-					
-					
-					
-					
-					
+					 
 					$receiver_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
 					
 					$receiver_message.="Hi,<br/><br/>
@@ -197,10 +188,15 @@ else
 					<br/><b>selected Minyawns	:</b> ";
 					
 					
-					$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
+					//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
+					$cnt_sel_minyawns  = 1;
 					foreach($minyawn_data as $key=>$value)
 					{
-					$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+						//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+					
+						$receiver_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+
+					$cnt_sel_minyawns++;
 					}
 							 
 									
@@ -232,6 +228,26 @@ else
 							Your Payment for '".$data['item_name']."' successfully Completed .
 							<br/><b>Transaction ID :</b> ".$data['txn_id']."
 							<br/><b>Total Amount 			:</b> ".$data['total_amount']."
+									
+									
+							<br/><b>selected Minyawns	:</b> ";					
+					
+							//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
+							$cnt_sel_minyawns  = 1;
+							foreach($minyawn_data as $key=>$value)
+							{
+								//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+							
+								$sender_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+		
+							$cnt_sel_minyawns++;
+							}
+							 
+									
+					$sender_message.= "		
+									
+									
+									
 							<br/><b>Job    		   :</b> ".$data['item_name']."
 							<br/><b>Start date:</b>". date('d M Y',get_post_meta($item__number,'job_start_date',true))."
 							<br/><b>Start Time:</b>". date('g:i a',get_post_meta($item__number,'job_start_time',true))."
@@ -269,6 +285,25 @@ else
 							Payment failed for '".$data['item_name']."'.
 							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
 							<br/><b>Total Amount 			:</b> ".$data['total_amount']."	
+						
+							<br/><b>selected Minyawns	:</b> ";
+					
+					
+							//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
+							$cnt_sel_minyawns  = 1;
+							foreach($minyawn_data as $key=>$value)
+							{
+								//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+							
+								$receiver_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+		
+							$cnt_sel_minyawns++;
+							}
+								 
+									
+					$receiver_message.= "			
+									
+									
 							<br/><b>Job    			:</b> ".$data['item_name']."							
 							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
 							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."
@@ -294,6 +329,33 @@ else
 							<br/><b>Job    				:</b> ".$data['item_name']."
 							<br/><b>Amount 				:</b> ".$data['total_amount']."
 			
+							<br/><b>selected Minyawns	:</b> ";
+					
+					
+							//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
+							$cnt_sel_minyawns  = 1;
+							foreach($minyawn_data as $key=>$value)
+							{
+								//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+							
+								$sender_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+		
+							$cnt_sel_minyawns++;
+							}
+								 
+									
+					$sender_message.= "			
+									
+									
+							<br/><b>Job    			:</b> ".$data['item_name']."							
+							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
+							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."
+							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($item__number,'job_end_date',true))."
+							<br/><b>End Time:</b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
+							<br/><b>Location:</b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages:</b>".get_post_meta($item__number,'job_wages',true)."
+							<br/><b>details:</b>".$job_data->post_content."		
+					
 							<br/><br/><br/>
 							";
 				
