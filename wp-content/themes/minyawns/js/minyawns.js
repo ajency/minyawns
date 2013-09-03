@@ -820,6 +820,69 @@ jQuery(document).ready(function($) {
                 {
                     wait: true,
                     success: function(model, resp) {
+
+                        var data = model.toJSON();
+                        alert(data.job_task);
+//remove success
+                        _.pluck(data, 'success');
+                        if (data.job_task === undefined)
+                        {
+                            data.job_task = '';
+                        }
+                        if (data.job_task !== undefined) {
+                            $('#single-jobs').find('a').html(data.job_task);
+                        }
+
+                        if (data.job_start_date !== undefined)
+                        {
+                            $('.jobsdate').find('span').html(data.job_start_date);
+                        }
+
+                        if (data.job_wages !== undefined)
+                        {
+                            $(".wages").html("$" + data.job_wages);
+
+                        }
+                        /* to be done
+                        var jsDate = new Date(data.job_start_time);
+                       
+                        if (data.job_start_time !== undefined)
+                        {
+
+                        }
+                        if (data.job_end_time !== undefined)
+                        {
+
+                        } */
+                         if(data.job_details !== undefined)
+                            {
+                                $(".jobdesc").find('div').html(data.job_details);
+                            }
+
+//                //minyawns role
+//                $('#profile-view').find('.college').text(data.college);
+//                $('#profile-view').find('.major').text(data.major);
+//                var skills = '';
+//                var skill_name = '';
+//
+////                _.each(data.user_skills2, function(ele, index) {
+////                    skills += "<span class='label label-small'>" + ele + "</span>";
+////                });
+//                if (data.first_name != undefined)
+//                    skill_name = data.user_skills2.split(',');
+//
+//                for (i = 0; i < skill_name.length; i++)
+//                {
+//                    skills += "<span class='label label-small'>" + skill_name[i] + "</span>";
+//                }
+//
+//                $('#profile-view').find('.user_skills').html(skills);
+//                //employer role
+//                $('#profile-view').find('.location').text(data.location);
+//                $('#profile-view').find('.profilebody').text(data.profilebody);
+//                $('#profile-view').find('.company_website').html(' <a href="' + data.company_website + '">' + data.company_website + '</a>');
+
+
                         $("#success_msg").show();
                         $("#ajax-load").hide();
                         //get model data
@@ -1287,19 +1350,19 @@ jQuery(document).ready(function($) {
         function(response) {
             $(".rating").find('a').prop('disabled', false);
             if (response.action == "vote-up") {
-                $("#vote-up"+_user_id).prop('disabled', true)
-                $("#vote-up"+_user_id).contents().filter(function() {
+                $("#vote-up" + _user_id).prop('disabled', true)
+                $("#vote-up" + _user_id).contents().filter(function() {
                     return this.nodeType != 1;
                 }).remove();
-                $("#vote-up"+_user_id).append(response.rating);
+                $("#vote-up" + _user_id).append(response.rating);
                 //$("#vote-down").append("0");
             }
             if (response.action == "vote-down") {
-                $("#vote-down"+_user_id).prop('disabled', true)
-                $("#vote-down"+_user_id).contents().filter(function() {
+                $("#vote-down" + _user_id).prop('disabled', true)
+                $("#vote-down" + _user_id).contents().filter(function() {
                     return this.nodeType != 1;
                 }).remove();
-                $("#vote-down"+_user_id).append(response.rating);
+                $("#vote-down" + _user_id).append(response.rating);
                 //$("#vote-up").append("0");
             }
 
