@@ -77,7 +77,8 @@ class Minyawn_Job {
 
         $this->posted_date = $job->post_date;
 
-
+        $this->post_author=$job->post_author;
+        
         $job_meta = get_post_meta($this->ID);
 
         $this->task = trim($job_meta['job_task'][0]);
