@@ -15,7 +15,7 @@ function setup_user_profile_data() {
 //        
 //    }
     //global $current_user_new;
-  error_reporting(E_ERROR | E_PARSE);
+    error_reporting(E_ERROR | E_PARSE);
     //$get_user_id = explode("/", $_SERVER['REQUEST_URI']);
     //global $current_user_new;
     //$current_user_new = new stdclass;
@@ -23,7 +23,7 @@ function setup_user_profile_data() {
     // if (!is_user_logged_in()) {
     //preg_match("/\/(\d+)$/",$_SERVER['REQUEST_URI'],$matches);
     $end = check_direct_access();
-   
+
     //var_dump($end);exit();
     global $current_user, $current_user_new;
 
@@ -32,16 +32,16 @@ function setup_user_profile_data() {
 
     if (is_numeric($end)) {
         $current_user_new->data = new stdClass;
-      $current_user_new = wp_set_current_user_profile($end);
+        $current_user_new = wp_set_current_user_profile($end);
     } else {
-       $current_user_new->data = new stdClass;
+        $current_user_new->data = new stdClass;
         $current_user_new = $current_user;
     }
- 
+
 //var_dump($current_user_new);exit();
     $user_meta = get_user_meta($current_user_new->data->ID);
 
-    $current_user_new->data->user_id=$current_user_new->data->ID;
+    $current_user_new->data->user_id = $current_user_new->data->ID;
     //set profile first name
     $current_user_new->data->first_name = trim($user_meta['first_name'][0]);
 
@@ -93,19 +93,17 @@ function setup_user_profile_data() {
     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
                               WHERE {$wpdb->prefix}userjobs.user_id = %d
-                              GROUP BY {$wpdb->prefix}userjobs.user_id",$current_user_new->data->ID);
+                              GROUP BY {$wpdb->prefix}userjobs.user_id", $current_user_new->data->ID);
 
-                $minyawns_rating = $wpdb->get_row($sql);
+    $minyawns_rating = $wpdb->get_row($sql);
 
-                foreach ($minyawns_rating as $rating) {
-                    $current_user_new->data->like_count = $rating->positive;
-                    $current_user_new->data->dislike_count = $rating->negative;
-                    
+    foreach ($minyawns_rating as $rating) {
+        $current_user_new->data->like_count = $rating->positive;
+        $current_user_new->data->dislike_count = $rating->negative;
+
 //                    if($user['like'] != "0" || $user['dislike'] != "0")
 //                        $user['is_job_rated']=1;
-                } 
-    
-    
+    }
 }
 
 add_action('wp_loaded', 'setup_user_profile_data');
@@ -395,8 +393,7 @@ class MN_User_Jobs {
                     'user_job_status' => $minyawn->status
                 );
 
-
-
+               
 
 
                 //convert the meta string to php array
@@ -564,9 +561,7 @@ function wp_set_current_user_profile($id, $name = '') {
     return $current_user_new;
 }
 
+function check_direct_access() {
 
-function check_direct_access()
-{
-    
     return end((explode('/', rtrim($_SERVER['REQUEST_URI'], '/'))));
 }
