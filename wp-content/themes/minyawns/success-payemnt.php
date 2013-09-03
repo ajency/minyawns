@@ -12,8 +12,8 @@ get_header(); ?>
 		<div id="content" class="site-content" role="main">
 		<i class="icon-ok-sign"></i>
 <h2>Paypal Payment Successfull !</h2>
-<span>Thank you for your purchase
-You will receive an order confirmation email with details of your order </span>
+<span>Thank you, You have successfully hired minyawns for your job. 
+ </span>
 		<hr>
 <a href="#" class="btn green-btn" style="display: block;"> Continue</a>		
 

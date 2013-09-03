@@ -69,6 +69,45 @@ if(isset($_GET['mntx']))
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	$job_data = get_post($jobid);
+		
+		
+	$employer_id = $job_data->post_author;
+	$employer_data = get_userdata($employer_id);
+
+	
+		
+	$subject = "Minyawns - Paypal payment is cancelled for '".$job_data->post_title."'";
+	$message.="Hi,<br/><br/>
+				
+							Paypal Payment is cancelled for  the job '".$job_data->post_title."'.
+							<br/><b>Amount:</b>". $_GET['amnt']."
+							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($jobid,'job_start_date',true))."
+							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($jobid,'job_start_time',true))."
+							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($jobid,'job_end_date',true))."
+							<br/><b>end Time:</b>". date('g:i a',  get_post_meta($jobid,'job_end_time',true))."
+							<br/><b>Location:</b>". get_post_meta($jobid,'job_location',true)."
+							<br/><b>Wages:</b>".get_post_meta($jobid,'job_wages',true)."
+							<br/><b>details:</b>".$job_data->post_content."
+							<br/><br/><br/>
+							";
+		
+	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+	wp_mail($employer_data->user_email, $subject, email_header() . $message . email_signature(), $headers);
+		
+	
+	
+	
+	
+	
+	
 }
 
 ?>
