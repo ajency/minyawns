@@ -470,7 +470,9 @@ class MN_User_Jobs {
 
 }
 
-
+/*Funtion to send mail to employer when minyawn applies for a job
+ * Date : 3sep2013
+ */
 function send_mail_employer_apply_job($job_id,$action)
 {
 	global $user_ID, $wpdb;
@@ -486,7 +488,7 @@ function send_mail_employer_apply_job($job_id,$action)
 	$mail_message = "Hi,<br/><br/>".
 			$current_user->display_name." have ".$action." for the job '".get_the_title($job_id)."'
 	
-                		<br/><br/><h3>Minaywn Details</h3>
+                		<br/><br/><h3>Minyawn Details</h3>
                 		<br/><b>Username : ".$current_user->user_login."</b>
                 		<br/><b>First name : ". $current_user->user_firstname."</b>
                 		<br/><b>Last Name : ".$current_user->user_lastname."</b>
@@ -520,13 +522,7 @@ function minyawn_job_apply() {
         return;
 
     global $user_ID, $wpdb;
-
-    
   
-    
-    
-    
-
     //get job ID
     $job_id = $_POST['job_id'];
 

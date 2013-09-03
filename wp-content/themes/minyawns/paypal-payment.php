@@ -119,8 +119,7 @@ else
 			if ($curl_result== "VERIFIED") 
 			{
 								
-				$mail_data = "\n\nPaypal Verified OK";			
-				
+				$mail_data = "\n\nPaypal Verified OK";							
 				$data['receiver_id']			= $_POST['receiver_id'];
 				$data['shipping']			= $_POST['shipping'];				
 				$data['item_name']			= $_POST['item_name'];
@@ -131,14 +130,10 @@ else
 				$data['txn_id']				= $_POST['txn_id'];
 				$data['receiver_email'] 	= $_POST['receiver_email'];
 				$data['payer_email'] 		= $_POST['payer_email'];
-				$data['custom'] 			= $_POST['custom'];
-	
-	
-				
+				$data['custom'] 			= $_POST['custom'];	
 				$data['mc_fee'] = trim($_POST['mc_fee']);
 				//$mc_gross = $_POST['mc_gross'];
-				$data['mc_gross1']	 = trim($_POST['mc_gross1']);
-				
+				$data['mc_gross1']	 = trim($_POST['mc_gross1']);				
 				//$total_amount = $amount + $tax;
 				$data['total_amount'] = trim($_POST['mc_gross']);
 				
@@ -146,6 +141,7 @@ else
 				
 				$item__number = $data['item_number'];
 				$job_data = get_post($item__number);
+				
 				$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
 				$meta_sel_minyawns=array();
 				foreach($paypal_payment_meta as $k_meta_pay=>$v_meta_pay )
@@ -202,13 +198,12 @@ else
 									
 					$receiver_message.= "
 
-	                		<br/><b>Start date : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
-	                		<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."
-	                		<br/><b>End Date : </b>". date('d M Y',  get_post_meta($item__number,'job_end_date',true))."
-						    <br/><b>end Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."
+	                		<br/><b>Job Date : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
+	                		<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."	                		
+						    <br/><b>End Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."
 	                		<br/><b>Location : </b>". get_post_meta($item__number,'job_location',true)."
 							<br/><b>Wages : </b> $".get_post_meta($item__number,'job_wages',true)."
-	                		<br/><b>details : </b>".$job_data->post_content."
+	                		<br/><b>Details : </b>".$job_data->post_content."
 									
 									
 							<br/><br/><br/>
@@ -226,11 +221,11 @@ else
 					$sender_message.="Hi,<br/><br/>
 				
 							Your Payment for '".$data['item_name']."' successfully Completed .
-							<br/><b>Transaction ID :</b> ".$data['txn_id']."
-							<br/><b>Total Amount 			:</b> ".$data['total_amount']."
+							<br/><b>Transaction ID : </b> ".$data['txn_id']."
+							<br/><b>Total Amount 			: </b> ".$data['total_amount']."
 									
 									
-							<br/><b>selected Minyawns	:</b> ";					
+							<br/><b>Selected Minyawns	: </b> ";					
 					
 							//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
 							$cnt_sel_minyawns  = 1;
@@ -249,13 +244,12 @@ else
 									
 									
 							<br/><b>Job    		   :</b> ".$data['item_name']."
-							<br/><b>Start date:</b>". date('d M Y',get_post_meta($item__number,'job_start_date',true))."
-							<br/><b>Start Time:</b>". date('g:i a',get_post_meta($item__number,'job_start_time',true))."
-							<br/><b>End Date:</b>". date('d M Y',get_post_meta($item__number,'job_end_date',true))."
-							<br/><b>End Time:</b>". date('g:i a',get_post_meta($item__number,'job_end_time',true))."							 
-							<br/><b>Location:</b>". get_post_meta($item__number,'job_location',true)."
-							<br/><b>Wages:</b>".get_post_meta($item__number,'job_wages',true)."
-							<br/><b>details:</b>".$job_data->post_content."		
+							<br/><b>Job Date : </b>". date('d M Y',get_post_meta($item__number,'job_start_date',true))."
+							<br/><b>Start Time : </b>". date('g:i a',get_post_meta($item__number,'job_start_time',true))."							
+							<br/><b>End Time : </b>". date('g:i a',get_post_meta($item__number,'job_end_time',true))."							 
+							<br/><b>Location : </b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages : </b>".get_post_meta($item__number,'job_wages',true)."
+							<br/><b>Details : </b>".$job_data->post_content."		
 					
 							<br/><br/><br/>
 							";
@@ -283,10 +277,10 @@ else
 				$receiver_message.="Hi,<br/><br/>
 				
 							Payment failed for '".$data['item_name']."'.
-							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
+							<br/><b>Transaction ID  : </b> ".$data['txn_id']."
 							<br/><b>Total Amount 			:</b> ".$data['total_amount']."	
 						
-							<br/><b>selected Minyawns	:</b> ";
+							<br/><b>Selected Minyawns	: </b> ";
 					
 					
 							//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
@@ -304,14 +298,13 @@ else
 					$receiver_message.= "			
 									
 									
-							<br/><b>Job    			:</b> ".$data['item_name']."							
-							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
-							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."
-							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($item__number,'job_end_date',true))."
-							<br/><b>End Time:</b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
-							<br/><b>Location:</b>". get_post_meta($item__number,'job_location',true)."
-							<br/><b>Wages:</b>".get_post_meta($item__number,'job_wages',true)."
-							<br/><b>details:</b>".$job_data->post_content."		
+							<br/><b>Job    			: </b> ".$data['item_name']."							
+							<br/><b>Job Date : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
+							<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."							
+							<br/><b>End Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
+							<br/><b>Location : </b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages : </b>".get_post_meta($item__number,'job_wages',true)."
+							<br/><b>details : </b>".$job_data->post_content."		
 					
 							<br/><br/><br/>
 							";
@@ -325,11 +318,11 @@ else
 				$sender_message.="Hi,<br/><br/>
 				
 							Your Payment failed for '".$data['item_name']."'.
-							<br/><b>Transaction ID  	:</b> ".$data['txn_id']."
-							<br/><b>Job    				:</b> ".$data['item_name']."
-							<br/><b>Amount 				:</b> ".$data['total_amount']."
+							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."
+							<br/><b>Job    				: </b> ".$data['item_name']."
+							<br/><b>Amount 				: </b> ".$data['total_amount']."
 			
-							<br/><b>selected Minyawns	:</b> ";
+							<br/><b>selected Minyawns	: </b> ";
 					
 					
 							//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
@@ -348,13 +341,12 @@ else
 									
 									
 							<br/><b>Job    			:</b> ".$data['item_name']."							
-							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
-							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."
-							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($item__number,'job_end_date',true))."
-							<br/><b>End Time:</b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
-							<br/><b>Location:</b>". get_post_meta($item__number,'job_location',true)."
-							<br/><b>Wages:</b>".get_post_meta($item__number,'job_wages',true)."
-							<br/><b>details:</b>".$job_data->post_content."		
+							<br/><b>Job Date : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
+							<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."						 
+							<br/><b>End Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
+							<br/><b>Location : </b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages : </b>".get_post_meta($item__number,'job_wages',true)."
+							<br/><b>details : </b>".$job_data->post_content."		
 					
 							<br/><br/><br/>
 							";

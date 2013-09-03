@@ -694,6 +694,46 @@ function no_access_page($user_role, $page_slug) {
 
 
 
+
+function paypal_payment_mail($email, $subject, $premail_msg, $data_paypal,$sel_minyawn_data)
+{
+	$item__number	= $data_paypal['item_number'];//job id
+	$job_data = get_post($item__number);		
+	
+	$mail_message.=" 
+						<br/><b>Transaction ID 		: </b> ".$data['txn_id']."
+						<br/><b>Total Amount 		: </b> ".$data['total_amount']."
+						<br/><b>Selected Minyawns	: </b> ";
+		
+	
+	$cnt_sel_minyawns  = 1;
+	foreach($sel_minyawn_data as $key=>$value)
+	{		
+		$mail_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;	
+		$cnt_sel_minyawns++;
+	}
+		
+	$mail_message.= "
+						<br/><b>Job    		   		:</b> ".$data['item_name']."
+						<br/><b>Job Date 			: </b>". date('d M Y',get_post_meta($item__number,'job_start_date',true))."
+						<br/><b>Start Time 			: </b>". date('g:i a',get_post_meta($item__number,'job_start_time',true))."
+						<br/><b>End Time 			: </b>". date('g:i a',get_post_meta($item__number,'job_end_time',true))."
+						<br/><b>Location 			: </b>". get_post_meta($item__number,'job_location',true)."
+						<br/><b>Wages 				: </b>".get_post_meta($item__number,'job_wages',true)."
+						<br/><b>Details 			: </b>".$job_data->post_content."
+						<br/><br/><br/>
+						";
+	
+	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+	wp_mail($email, $subject, email_header() . $mail_message . email_signature(), $headers);
+	
+	
+}
+
+
+
+
 function get_paypal_payment_meta($transaction_id,$minyawns_tx_id,$jobid)
 {
 	global $wpdb;
@@ -719,7 +759,7 @@ function get_paypal_payment_meta($transaction_id,$minyawns_tx_id,$jobid)
 
 /*
  * Function to update paypal payment details for hired minyawns
- * 
+ * Date:2sep2013
  */
 function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
 {
