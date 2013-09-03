@@ -348,6 +348,7 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
 $app->post('/confirm', function() use ($app) {
 
             global $wpdb;
+            $paypal_minyawns_hired="";
             $split_user = explode("-", $_POST['status']);
             for ($i = 0; $i < sizeof($split_user); $i++) 
             {
@@ -365,8 +366,13 @@ $app->post('/confirm', function() use ($app) {
                 );
                 
                 
+                if($split_status[0]!="") 
+				{
+					if($i>0)
+		                	$paypal_minyawns_hired.= ",";
                 
-                
+                	$paypal_minyawns_hired.=$split_status[0];
+				}            
                
                // $job_metadata = get_post_meta($_POST['job_id']);  
                 $job_data = get_post($_POST['job_id']); 
@@ -444,13 +450,13 @@ $app->post('/confirm', function() use ($app) {
             $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
  
-            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'','minyawns_selected'=>$split_user);
+            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'','minyawns_selected'=>$paypal_minyawns_hired);
             add_post_meta($_POST['job_id'], 'paypal_payment' , $paypal_payment);
             
             
  
             //get user
-            $users__ = explode(",", $_POST['user_id']);
+           // $users__ = explode(",", $_POST['user_id']);
             //end get user
 
             /*

@@ -8,16 +8,16 @@
 get_header(); 
 
 
-if(isset($_POST['mntx']))
+if(isset($_GET['mntx']))
 {
-	$minyawns_tx = $_POST['mntx'];
-	$jobid = $_POST['jb'];
+	$minyawns_tx = $_GET['mntx'];
+	$jobid = $_GET['jb'];
 	
 	
 	
 	global $wpdb;
 	$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx."%'  ");
-	
+		
 	foreach($paypal_tx as $res)
 	{
 		$paypal_payment = unserialize($res->paypal_payment);
@@ -48,22 +48,22 @@ if(isset($_POST['mntx']))
 	
 	//update postmeta for the job with transaction id
 	$new_updated_paypal_payment =   serialize($new_paypal_payment);
-	$wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
+	$wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx."%'");
 	
 	
 	
 	
-	$split_user = explode("-", $new_paypal_payment['minyawns_selected']);
+	$split_user = explode(",", $new_paypal_payment['minyawns_selected']);
 	for ($i = 0; $i < sizeof($split_user); $i++)
 	{
-	$split_status = explode(",", $split_user[$i]);
+	 
 	// for ($j = 0; $j < sizeof($split_status); $j++) {
 	
 	$wpdb->get_results("
 	UPDATE {$wpdb->prefix}userjobs
 	SET status = 'applied'
-	WHERE user_id = '" . $split_status[0] . "'
-	AND job_id = '" . $_POST['job_id'] . "'
+	WHERE user_id = '" . $split_user[$i] . "'
+	AND job_id = '" . $jobid . "'
 	"
 	);
 	}
@@ -78,10 +78,10 @@ if(isset($_POST['mntx']))
 		<div id="content" class="site-content" role="main">
 		<i class="icon-remove-sign red"></i>
 <h2>Paypal Payment Cancelled !</h2>
-<span>Are you sure you want to cancel Paypal Payment ?<br>
-Click the button below to confirm that you still wish to cancel</span>
+<span>Please click below to browse jobs and hire minyawns for the jobs<br>
+</span>
 		<hr>
-<a href="#" class="btn green-btn" style="display: block;"> Cancel</a>		
+<a href="<?php echo site_url()?>/jobs/" class="btn green-btn" style="display: block;"> Jobs</a>		
 
 		</div><!-- #content -->
 	</div><!-- #primary -->

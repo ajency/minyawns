@@ -738,16 +738,16 @@ function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
 	if($status=="Failed")
 	{
 		
-		$split_user = explode("-", $new_paypal_payment['minyawns_selected']);
+		$split_user = explode(",", $new_paypal_payment['minyawns_selected']);
             for ($i = 0; $i < sizeof($split_user); $i++) 
             {
-                $split_status = explode(",", $split_user[$i]);
+                //$split_status = explode(",", $split_user[$i]);
                 // for ($j = 0; $j < sizeof($split_status); $j++) {
 
                 $wpdb->get_results("
 					UPDATE {$wpdb->prefix}userjobs 
 					SET status = 'applied'
-					WHERE user_id = '" . $split_status[0] . "' 
+					WHERE user_id = '" . $split_user[$i] . "' 
 					AND job_id = '" . $_POST['job_id'] . "'
 					"
                 );
