@@ -373,8 +373,6 @@ class Minyawn_Job {
                 if ($applied->status == "applied")
                     $applied = 1;
             }
-        }else {
-            $applied = 0;
         }
 
 
