@@ -367,35 +367,34 @@ $app->post('/confirm', function() use ($app) {
                 
                 
                 
-                ////to do
-                $job_metadata = get_post_meta($_POST['job_id']);  
-                $job_data = get_post($_POST['job_id']);
-                $t=print_r($job_metadata,true);
+               
+               // $job_metadata = get_post_meta($_POST['job_id']);  
+                $job_data = get_post($_POST['job_id']); 
                 
 				//get minyawn email id
                 $minyawns_data = get_userdata($split_status[0]);
                
                 //Send mail to minyawns
                 $minyawns_subject ="Minyawns - You have been hired for ".get_the_title($_POST['job_id']);
+                
+                
+                
                 $minyawns_message = "Hi,<br/><br/>
                 		Congratulations, You have been hired for the job '".get_the_title($_POST['job_id'])."'<br/><br/>
-                		<h6>Job:".get_the_title($_POST['job_id'])."</h6>
-                				
-                		<br/><b>Start date:</b>". date('d M Y',  $job_metadata->job_start_date)."
-                		<br/><b>Start Time:</b>". date('g:i',  $job_metadata->job_start_time)."
-                		<br/><b>End Date:</b>". date('d M Y',  $job_metadata->job_end_date)."
-					    <br/><b>end Time:</b>". date('g:i',  $job_metadata->job_end_time)."
-                				
-                		<br/><b>Location:</b>". $job_metadata->job_location."	
-						<br/><b>Wages:</b>". $job_metadata->job_wages."	
+                		<h3>Job:".get_the_title($_POST['job_id'])."</h3>
+                
+                		<br/><b>Start date:</b>". date('d M Y',   get_post_meta($_POST['job_id'],'job_start_date',true))."
+                		<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_start_time',true))."
+                		<br/><b>End Date:</b>". date('d M Y',  get_post_meta($_POST['job_id'],'job_end_date',true))."
+					    <br/><b>end Time:</b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_end_time',true))."		 		
+					    		
+                		<br/><b>Location:</b>". get_post_meta($_POST['job_id'],'job_location',true)."
+						<br/><b>Wages:</b>".get_post_meta($_POST['job_id'],'job_wages',true)."
                 		<br/><b>details:</b>".$job_data->post_content."
-                				
+                
                 		<br/><br/>
-                		
+                
                 		";
-                
-                
-                
                 
                 
                 

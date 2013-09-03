@@ -470,6 +470,50 @@ class MN_User_Jobs {
 
 }
 
+
+function send_mail_employer_apply_job($job_id,$action)
+{
+	global $user_ID, $wpdb;
+	global $current_user;
+	get_currentuserinfo();
+	$job_data = get_post($job_id);
+	$employer_id =  $job_data->post_author;
+	$employer_data = get_userdata($employer_id);
+	 
+	//Send mail to Emplyer
+	$mail_subject ="Minyawns - ".$current_user->display_name." have ".$action." for ".get_the_title($job_id);	
+	
+	$mail_message = "Hi,<br/><br/>".
+			$current_user->display_name." have ".$action." for the job '".get_the_title($job_id)."'
+	
+                		<br/><br/><h3>Minaywn Details</h3>
+                		<br/><b>Username : ".$current_user->user_login."</b>
+                		<br/><b>First name : ". $current_user->user_firstname."</b>
+                		<br/><b>Last Name : ".$current_user->user_lastname."</b>
+                		<br/><b>Email : ".$current_user->user_email."</b>
+	
+                		<br/><br/><h3>Job Details</h3>
+                		<br/><br/><b>Job : ".get_the_title($_POST['job_id'])."</h6>
+                		<br/><b>Start date : </b>". date('d M Y',   get_post_meta($_POST['job_id'],'job_start_date',true))."
+                		<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_start_time',true))."
+                		<br/><b>End Date : </b>". date('d M Y',  get_post_meta($_POST['job_id'],'job_end_date',true))."
+					    <br/><b>end Time : </b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_end_time',true))."
+                		<br/><b>Location : </b>". get_post_meta($_POST['job_id'],'job_location',true)."
+						<br/><b>Wages : </b>".get_post_meta($_POST['job_id'],'job_wages',true)."
+                		<br/><b>details : </b>".$job_data->post_content."
+	
+                		<br/><br/>
+	
+                		";
+	
+	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+	wp_mail($employer_data->user_email,  $mail_subject, email_header() . $mail_message . email_signature(), $headers); 
+	
+	
+	
+}
+
 function minyawn_job_apply() {
 
     if ('POST' !== $_SERVER['REQUEST_METHOD'])
@@ -477,6 +521,11 @@ function minyawn_job_apply() {
 
     global $user_ID, $wpdb;
 
+    
+  
+    
+    
+    
 
     //get job ID
     $job_id = $_POST['job_id'];
@@ -494,6 +543,10 @@ function minyawn_job_apply() {
 
         $new_action = "apply";
         $status = 1;
+        
+        
+        
+        
     } else {
         $min_job = new Minyawn_Job($job_id);
 
@@ -516,8 +569,18 @@ function minyawn_job_apply() {
             /* plus one because it is checking before insert */
             if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns) + 1)
                 $status = 2;
+            
+            
+           
+            
         }
+         
+        
     }
+    
+    // send mail to employer who created job
+    send_mail_employer_apply_job($job_id,'applied');
+    
     echo json_encode(array('success' => $status, 'new_action' => $new_action));
 
     die;
@@ -538,7 +601,9 @@ function minyawn_job_unapply() {
         'user_id' => $user_ID,
         'job_id' => $job_id
     ));
-
+    // send mail to employer who created job
+    send_mail_employer_apply_job($job_id,'unapplied');
+    
     echo json_encode(array('success' => 1, 'new_action' => 'apply'));
 
     die;
