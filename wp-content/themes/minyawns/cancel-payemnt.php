@@ -78,10 +78,10 @@ if(isset($_GET['mntx']))
 		<div id="content" class="site-content" role="main">
 		<i class="icon-remove-sign red"></i>
 <h2>Paypal Payment Cancelled !</h2>
-<span>Are you sure you want to cancel Paypal Payment ?<br>
-Click the button below to confirm that you still wish to cancel</span>
+<span>Please click below to browse jobs and hire minyawns for the jobs<br>
+</span>
 		<hr>
-<a href="#" class="btn green-btn" style="display: block;"> Cancel</a>		
+<a href="<?php echo site_url()?>/jobs/" class="btn green-btn" style="display: block;"> Jobs</a>		
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
