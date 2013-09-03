@@ -141,6 +141,9 @@ else
 				
 				//$total_amount = $amount + $tax;
 				$data['total_amount'] = trim($_POST['mc_gross']);
+				$item__number = $data['item_number'];
+				$job_data = get_post($item__number);
+				
 				
 				if(($data['payment_status']=="Completed") )
 				{
@@ -155,17 +158,10 @@ else
 					
 					
 					
-					
-					$job_data = get_post($data['item_humber']);
-					
-					
-					
-					
-					
 					$receiver_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
-					$item__number = $data['item_number'];
+					
 					$receiver_message.="Hi,<br/><br/>
-							item num ".$data['item_number']."
+							
 							Payment for '".$data['item_name']."' successfully transferred .
 							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
 							<br/><b>Job    			:</b> ".$data['item_name']."
@@ -176,7 +172,7 @@ else
 	                		<br/><b>End Date : </b>". date('d M Y',  get_post_meta($item__number,'job_end_date',true))."
 						    <br/><b>end Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."
 	                		<br/><b>Location : </b>". get_post_meta($item__number,'job_location',true)."
-							<br/><b>Wages : </b>".get_post_meta($item__number,'job_wages',true)."
+							<br/><b>Wages : </b> $".get_post_meta($item__number,'job_wages',true)."
 	                		<br/><b>details : </b>".$job_data->post_content."
 									
 									
@@ -198,12 +194,12 @@ else
 							<br/><b>Transaction ID :</b> ".$data['txn_id']."
 							<br/><b>Total Amount 			:</b> ".$data['total_amount']."
 							<br/><b>Job    		   :</b> ".$data['item_name']."
-							<br/><b>Start date:</b>". date('d M Y',get_post_meta($data['item_humber'],'job_start_date',true))."
-							<br/><b>Start Time:</b>". date('g:i a',get_post_meta($data['item_humber'],'job_start_time',true))."
-							<br/><b>End Date:</b>". date('d M Y',get_post_meta($data['item_humber'],'job_end_date',true))."
-							<br/><b>end Time:</b>". date('g:i a',get_post_meta($data['item_humber'],'job_end_time',true))."							 
-							<br/><b>Location:</b>". get_post_meta($data['item_humber'],'job_location',true)."
-							<br/><b>Wages:</b>".get_post_meta($data['item_humber'],'job_wages',true)."
+							<br/><b>Start date:</b>". date('d M Y',get_post_meta($item__number,'job_start_date',true))."
+							<br/><b>Start Time:</b>". date('g:i a',get_post_meta($item__number,'job_start_time',true))."
+							<br/><b>End Date:</b>". date('d M Y',get_post_meta($item__number,'job_end_date',true))."
+							<br/><b>End Time:</b>". date('g:i a',get_post_meta($item__number,'job_end_time',true))."							 
+							<br/><b>Location:</b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages:</b>".get_post_meta($item__number,'job_wages',true)."
 							<br/><b>details:</b>".$job_data->post_content."		
 					
 							<br/><br/><br/>
@@ -223,7 +219,7 @@ else
 				 
 				
 				update_paypal_payment($data['txn_id'],$data['custom'] ,$data['payment_status'],$data['item_number']);
-				
+			 
 				
 				
 				
@@ -234,12 +230,12 @@ else
 							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
 							<br/><b>Total Amount 			:</b> ".$data['total_amount']."	
 							<br/><b>Job    			:</b> ".$data['item_name']."							
-							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($data['item_humber'],'job_start_date',true))."
-							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_start_time',true))."
-							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($data['item_humber'],'job_end_date',true))."
-							<br/><b>end Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_end_time',true))."							 
-							<br/><b>Location:</b>". get_post_meta($data['item_humber'],'job_location',true)."
-							<br/><b>Wages:</b>".get_post_meta($data['item_humber'],'job_wages',true)."
+							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
+							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."
+							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($item__number,'job_end_date',true))."
+							<br/><b>End Time:</b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
+							<br/><b>Location:</b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages:</b>".get_post_meta($item__number,'job_wages',true)."
 							<br/><b>details:</b>".$job_data->post_content."		
 					
 							<br/><br/><br/>
