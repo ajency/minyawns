@@ -43,7 +43,7 @@ class Minyawn_Job {
         'job_required_minyawns',
         'job_wages',
         'job_location');
-    public $include_user_meta = array('college', 'major', 'linkedin', 'user_skills');
+    public $include_user_meta = array('college', 'major', 'linkedin');
 
     //constructor
     public function __construct($ID) {
@@ -90,6 +90,8 @@ class Minyawn_Job {
         $this->job_start_time = trim($job_meta['job_start_time'][0]);
 
         $this->job_end_time = trim($job_meta['job_end_time'][0]);
+        
+        //$this->user_skills = isset($job_meta['user_skills']) ? maybe_unserialize($job_meta['user_skills'][0]) : '';
 
         $this->wages = trim($job_meta['job_wages'][0]);
 
@@ -126,9 +128,9 @@ class Minyawn_Job {
                     'user_to_job' => $minyawn->job_id,
                     'user_job_status' => $minyawn->status,
                 );
-
-                
-                    
+                  $user_meta=get_user_meta($minyawn->ID);
+                $get_user_meta=$user_meta['user_skills'][0];
+                    $user['user_skills']=$get_user_meta;
                 
 
 
@@ -139,6 +141,7 @@ class Minyawn_Job {
                 $fb_uid = false;
                 foreach ($usermeta as $meta) {
 
+                    
                     $meta = explode('|', $meta);
 
                     if (in_array($meta[0], $this->include_user_meta))
@@ -149,8 +152,11 @@ class Minyawn_Job {
 
                     if ($meta[0] == 'facebook_uid')
                         $fb_uid = $meta[1];
+                    
+                    
+                        
                 }
-
+                
                 //set image
                 if (!isset($user['image']) && $fb_uid !== false)
                     $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
@@ -183,7 +189,7 @@ class Minyawn_Job {
 
                 $this->minyawns[$minyawn->ID] = $user;
             }
-            
+           
         }
        
         // global $post;
