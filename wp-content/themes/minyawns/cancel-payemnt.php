@@ -35,14 +35,49 @@ if(isset($_GET['mntx']))
 				$new_paypal_payment['paypal_txn_id'] = $transaction_id ;
 				break;
 			case 'status'				:
-				$new_paypal_payment['status'] = "canceled" ;
+				$new_paypal_payment['status'] = "cancelled" ;
 				break;
 			case 'minyawns_selected'				:
 				$new_paypal_payment['minyawns_selected'] = $payment_tx ;
+				//get the selected minyawns details from paypal_meta
+				
+				 
+				$sel_minyawn_data=array();
+				foreach($paypal_payment_meta as $k_meta_pay=>$v_meta_pay )
+				{
+					if($k_meta_pay=='minyawns_selected')
+					{
+						$meta_sel_minyawns = explode(",",$v_meta_pay);
+						//get user details
+						foreach($meta_sel_minyawns as $k=>$v)
+						{
+							if($v!="")
+							{
+								$sel_minyawn_data[] = get_userdata($v);
+									
+							}
+						}							
+					}
+				}
+				
+				
+								
+				
 				break;
 		}//end switch($key_pp)
 	
 	}//end foreach($paypal_payment as $key_pp => $payment_tx)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -71,13 +106,7 @@ if(isset($_GET['mntx']))
 	
 	
 	
-	
-	
-	
-	
 	$job_data = get_post($jobid);
-		
-		
 	$employer_id = $job_data->post_author;
 	$employer_data = get_userdata($employer_id);
 
@@ -88,13 +117,29 @@ if(isset($_GET['mntx']))
 				
 							Paypal Payment is cancelled for  the job '".$job_data->post_title."'.
 							<br/><b>Amount:</b>". $_GET['amnt']."
-							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($jobid,'job_start_date',true))."
-							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($jobid,'job_start_time',true))."
-							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($jobid,'job_end_date',true))."
-							<br/><b>end Time:</b>". date('g:i a',  get_post_meta($jobid,'job_end_time',true))."
+							
+							<br/><b>selected Minyawns	:</b> ";
+					
+					
+					 
+							$cnt_sel_minyawns  = 1;
+							foreach($sel_minyawn_data as $key=>$value)
+							{
+								//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+							
+								$message.=" <br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+		
+							$cnt_sel_minyawns++;
+							}
+									 
+											
+							$message.="  
+							<br/><b>Job Date:</b>". date('d M Y',   get_post_meta($jobid,'job_start_date',true))."
+							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($jobid,'job_start_time',true))."							
+							<br/><b>End Time:</b>". date('g:i a',  get_post_meta($jobid,'job_end_time',true))."
 							<br/><b>Location:</b>". get_post_meta($jobid,'job_location',true)."
 							<br/><b>Wages:</b>".get_post_meta($jobid,'job_wages',true)."
-							<br/><b>details:</b>".$job_data->post_content."
+							<br/><b>Details:</b>".$job_data->post_content."
 							<br/><br/><br/>
 							";
 		

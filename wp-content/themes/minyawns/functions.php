@@ -719,7 +719,7 @@ function get_paypal_payment_meta($transaction_id,$minyawns_tx_id,$jobid)
 
 /*
  * Function to update paypal payment details for hired minyawns
- * 
+ * Date:2sep2013
  */
 function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
 {
