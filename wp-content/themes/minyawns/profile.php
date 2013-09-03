@@ -166,8 +166,10 @@ endif;
 <form id="cropimage" method="post" enctype="multipart/form-data">
 
 	Upload your image <input type="file" name="files" id="photoimg" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
+        <br>
+        Please drag to select/crop your picture.
 	<p class="help-block meta">Upload an image for your profile.</p></br>
-	<a type="button" class="btn btn-primary" id="done-cropping" style=" margin-left: 118px; margin-top: 5px; margin-bottom: 10px; display:none">Done Cropping? </a>
+	
 	</br>
 	<input type="hidden" name="image_name" id="image_name" value="" />
 	<img id="uploaded-image"></img>
@@ -176,7 +178,7 @@ endif;
         <input type="hidden"  id="image_x_axis">
        <input type="hidden"  id="image_y_axis">
        <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '3:1' : '1:1')?>" id="aspect_ratio">
-        
+        <a type="button" class="btn btn-primary" id="done-cropping" style=" margin-left: 118px; margin-top: 5px; margin-bottom: 10px; display:none">Done? </a>
 </form>
 
 </div>
