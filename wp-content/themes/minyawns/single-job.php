@@ -126,7 +126,7 @@ global $minyawn_job;
                     <div  class="row-fluid  list-jobs single-jobs ">
 
                         <div class="span12 jobs-details">
-                            <div class="span2 img-logo"><?php if (get_user_company_logo($pagepost->post_author)) { ?> <img src="<?php echo get_user_company_logo($pagepost->post_author) ?>"/> <?php } else {
+                            <div class="span2 img-logo"><?php if (get_user_company_logo($minyawn_job->post_author)) { ?> <img src="<?php echo get_user_company_logo($minyawn_job->post_author) ?>"/> <?php } else {
                 echo get_avatar($minyawn_job->ID, 20);
             } ?> </div>
                             <div class="span3 minyawns-select">
@@ -163,7 +163,7 @@ global $minyawn_job;
                         <div class="span12 expand">
                             <div class="row-fluid header-title">
                                 <div class="span12">
-                                    <h3><a href="#" target="_blank" >Jobtitle</a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
+                                    <h3><a href="#" target="_blank" ><?php echo get_the_title() ?></a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
 <?php
 if (get_user_role() == "minyawn") {
     if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3) {

@@ -689,3 +689,69 @@ function no_access_page($user_role, $page_slug) {
     return false;
 }
 
+
+
+
+
+
+/*
+ * Function to update paypal payment details for hired minyawns
+ * 
+ */
+function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
+{
+	global $wpdb;	
+	$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx_id."%'  ");
+		
+	foreach($paypal_tx as $res)
+	{
+		$paypal_payment = unserialize($res->paypal_payment);
+			
+	}
+	$new_paypal_payment = array();
+	foreach($paypal_payment as $key_pp => $payment_tx)
+	{
+		switch($key_pp)
+		{
+			case 'minyawn_txn_id':
+				$new_paypal_payment['minyawn_txn_id'] = $payment_tx ;
+				break;
+			case 'paypal_txn_id':
+				$new_paypal_payment['paypal_txn_id'] = $transaction_id ;
+				break;
+			case 'status'				:
+				$new_paypal_payment['status'] = $status ;
+				break;
+			case 'minyawns_selected'				:
+				$new_paypal_payment['minyawns_selected'] = $payment_tx ;
+				break;
+		}//end switch($key_pp)
+
+	}//end foreach($paypal_payment as $key_pp => $payment_tx)
+
+	//update postmeta for the job with transaction id
+	$new_updated_paypal_payment =   serialize($new_paypal_payment);
+	$wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
+
+	//echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
+
+	if($status=="Failed")
+	{
+		
+		$split_user = explode("-", $new_paypal_payment['minyawns_selected']);
+            for ($i = 0; $i < sizeof($split_user); $i++) 
+            {
+                $split_status = explode(",", $split_user[$i]);
+                // for ($j = 0; $j < sizeof($split_status); $j++) {
+
+                $wpdb->get_results("
+					UPDATE {$wpdb->prefix}userjobs 
+					SET status = 'applied'
+					WHERE user_id = '" . $split_status[0] . "' 
+					AND job_id = '" . $_POST['job_id'] . "'
+					"
+                );
+            }
+	}
+	
+}

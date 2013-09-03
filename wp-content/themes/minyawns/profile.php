@@ -186,7 +186,9 @@ endif;
 <div class="container">
 	<div id="main-content" class="main-content bg-white">
 		<div class="breadcrumb-text">
-			<p id="bread-crumbs-id">
+                    <p id="bread-crumbs-id">
+				<a href="<?php echo site_url() ?>/jobs/" class="view loaded edit-user-profile">My Jobs</a>
+			
 				<a href="#" class="view loaded edit-user-profile">My Profile</a>
 			</p>
 		</div>
@@ -280,7 +282,7 @@ endif;
 					<?php if(get_user_role() === 'minyawn'): ?>
 					<div class="span2">
 						<br>
-						<div class="like_btn gray-like"><br><br>
+						<div class="like_btn"><br><br>
 							<a href="#fakelink" style="float:left;" >
 								<i class="icon-thumbs-up"></i><br>
 								<b class="like"><?php user_like_count(); ?></b>

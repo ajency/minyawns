@@ -77,7 +77,8 @@ class Minyawn_Job {
 
         $this->posted_date = $job->post_date;
 
-
+        $this->post_author=$job->post_author;
+        
         $job_meta = get_post_meta($this->ID);
 
         $this->task = trim($job_meta['job_task'][0]);
@@ -162,7 +163,7 @@ class Minyawn_Job {
 
                 $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
-                              WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id
+                              WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id =%d
                               GROUP BY {$wpdb->prefix}userjobs.user_id", $minyawn->ID,$minyawn->job_id);
 
                 $minyawns_rating = $wpdb->get_results($sql);
@@ -173,7 +174,12 @@ class Minyawn_Job {
                     
                     if($user['like'] != "0" || $user['dislike'] != "0")
                         $user['is_job_rated']=1;
+                    
+                    else
+                        $user['is_job_rated']=0;
                 }
+                
+                $user['is_job_owner']=  is_job_owner($minyawn->ID, $minyawn->job_id);
 
                 $this->minyawns[$minyawn->ID] = $user;
             }
