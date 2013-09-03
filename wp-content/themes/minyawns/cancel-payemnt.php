@@ -53,16 +53,16 @@ if(isset($_GET['mntx']))
 	
 	
 	
-	$split_user = explode("-", $new_paypal_payment['minyawns_selected']);
+	$split_user = explode(",", $new_paypal_payment['minyawns_selected']);
 	for ($i = 0; $i < sizeof($split_user); $i++)
 	{
-	$split_status = explode(",", $split_user[$i]);
+	 
 	// for ($j = 0; $j < sizeof($split_status); $j++) {
 	
 	$wpdb->get_results("
 	UPDATE {$wpdb->prefix}userjobs
 	SET status = 'applied'
-	WHERE user_id = '" . $split_status[0] . "'
+	WHERE user_id = '" . $split_user[0] . "'
 	AND job_id = '" . $jobid . "'
 	"
 	);
