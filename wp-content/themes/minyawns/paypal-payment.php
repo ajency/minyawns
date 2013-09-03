@@ -119,8 +119,7 @@ else
 			if ($curl_result== "VERIFIED") 
 			{
 								
-				$mail_data = "\n\nPaypal Verified OK";			
-				
+				$mail_data = "\n\nPaypal Verified OK";							
 				$data['receiver_id']			= $_POST['receiver_id'];
 				$data['shipping']			= $_POST['shipping'];				
 				$data['item_name']			= $_POST['item_name'];
@@ -131,14 +130,10 @@ else
 				$data['txn_id']				= $_POST['txn_id'];
 				$data['receiver_email'] 	= $_POST['receiver_email'];
 				$data['payer_email'] 		= $_POST['payer_email'];
-				$data['custom'] 			= $_POST['custom'];
-	
-	
-				
+				$data['custom'] 			= $_POST['custom'];	
 				$data['mc_fee'] = trim($_POST['mc_fee']);
 				//$mc_gross = $_POST['mc_gross'];
-				$data['mc_gross1']	 = trim($_POST['mc_gross1']);
-				
+				$data['mc_gross1']	 = trim($_POST['mc_gross1']);				
 				//$total_amount = $amount + $tax;
 				$data['total_amount'] = trim($_POST['mc_gross']);
 				
@@ -146,6 +141,7 @@ else
 				
 				$item__number = $data['item_number'];
 				$job_data = get_post($item__number);
+				
 				$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
 				$meta_sel_minyawns=array();
 				foreach($paypal_payment_meta as $k_meta_pay=>$v_meta_pay )
