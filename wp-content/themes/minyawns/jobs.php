@@ -48,23 +48,25 @@ global $minyawn_job;
     <ins><span class="amount">$ <%= job_wages %></span></ins>
     </div>
 
-     <div class="job-progress header-sub">
+    <div class="job-progress header-sub">
+
+    <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
+    <span class="label-available">Available</span>
     
-     <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
-        <span class="label-available">Available</span>
+    <%  else if(can_apply_job == 2) %>
+    <span class="label-available">Requirement complete</span>
 
+    <% else if (todays_date_time > job_end_time_check){%>
+    <span class="label-unavailable">This job is complete</span>
 
-        <% else if (todays_date_time > job_end_time_check){%>
-         <span class="label-unavailable">This job is complete</span>
+    <% }else if (can_apply_job == 3){%>
+    <span class="label-hired">You are hired for this job.</span>
+    <% }else if (can_apply_job == 1) {%>
+    <span class="label-available">You have applied for this job.</span>
 
-        <% }else if (can_apply_job == 3){%>
-         <span class="label-hired">You are hired for this job.</span>
-        <% }else if (can_apply_job == 2) {%>
-         <span class="label-available">You have applied for this job.</span>
+    <% }
+    %> 
 
-        <% }
-        %> 
-    
 
     </div>
 
@@ -103,40 +105,40 @@ global $minyawn_job;
     <div class="span3">
     <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-left.png">
     <div class="div-box-block">
-<span class='load_ajax1' style="display:none"></span>
-<?php if (get_user_role() === 'minyawn'): ?> 
+    <span class='load_ajax1' style="display:none"></span>
+    <?php if (get_user_role() === 'minyawn'): ?> 
 
-            <%  if(can_apply_job == 3) %>
-            <a href="#" class="required">You are hired!</a>
-            <% else if(can_apply_job == 1)%>
-            <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
-            <% else if(can_apply_job == 0 ) %>
-            <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
-            
-            <% else if(can_apply_job == 2 ) %>
-            <a href="#" class="required"><%=   can_apply_job %></a>
-  
-    
+        <%  if(can_apply_job == 3) %>
+        <a href="#" class="required">You are hired!</a>
+        <% else if(can_apply_job == 1)%>
+        <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
+        <% else if(can_apply_job == 0 ) %>
+        <a href="#" id="apply-job-browse" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
+
+        <% else if(can_apply_job == 2 ) %>
+        <a href="#" class="required">Requirement Complete</a>
+
+
+
+        <?php
+    else:
+        ?>
+
+        <% if(is_job_owner == 1){%>
+        <%  if(can_apply_job == 2 || todays_date_time > job_end_time_check) %>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
+
+        <% else if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
+        <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
+        <% }
+        }
+        %> 
 
     <?php
-else:
+    endif;
     ?>
-            
-            <% if(is_job_owner == 1){%>
-            <%  if(can_apply_job == 2 || todays_date_time > job_end_time_check) %>
-             <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
-
-            <% else if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
-            <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
-            <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
-            <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
-            <% }
-            }
-            %> 
-
-<?php
-endif;
-?>
 
     </div>
 
@@ -167,7 +169,7 @@ endif;
     </div>
     <% if(todays_date_time > job_end_time_check){%>
     <div class="span3 jobs-date"> 
- <div class="job-complete"> Job Completed</div>
+    <div class="job-complete"> Job Completed</div>
     </div>
     <%}else{ %>
     <div class="span3 jobs-date"> 
@@ -199,61 +201,61 @@ endif;
     </div>
     </div>
     <div class="span12 expand">
-	 <div class="row-fluid header-title">
+    <div class="row-fluid header-title">
     <div class="span12">
     <h3><a href=<?php echo site_url() ?>/job/<%= post_slug %> target="_blank" > <%= post_title %> <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
     </div>
     </div>
-	<br>
+    <br>
     <div class="span9 details"> 
-   
+
     <div class="row-fluid">
     <div class="span4"> <img src="<%= job_author_logo %>"/></div>
     <div class="span8"><%= job_details %></div>
     </div><br>
     <div class="row-fluid minyawansgrid">
     <% for(i=0;i<users_applied.length;i++){ %>
-   <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><img src="<%= user_profile_image[i] %>"/><b><%= users_applied[i]%></b></a>
-   
+    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><img src="<%= user_profile_image[i] %>"/><b><%= users_applied[i]%></b></a>
+
     <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= post_id %>">
     <i class="icon-thumbs-up"></i> <%= user_rating_like[i] %>
     </a> 
     <a id="vote-down" href="#fakelink"  class="icon-thumbs" employer-vote="-1" job-id="<%= post_id %>">
     <i class="icon-thumbs-down"></i> <%= user_rating_dislike[i] %>
     </a>
-    
+
     </div>
     <% }  %>
     </div>
     <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
     </div>
-  
-   
-<?php if (get_user_role() == "minyawn") { ?>
-            <div class="span3">
-            <div class="div-box-block">
-			  <span class='load_ajax1' style="display:none"></span>
-            <% if(can_apply_job == 3){%>
-            <a href="#" class="required">You are hired!</a>
-            <% }else{%>
-            <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
-            <% } %>
-            </div>
-            </div>
-<?php } else { ?>
-            <div class="span3">
-            <div class="div-box-block">
-			  <span class='load_ajax1' style="display:none"></span>
-            <% if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
-            <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>" style="width:70%;">Select Your Minyawns</a>
-            <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
-            <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
-            <% }
-            %> 
-             </div>
-            </div>
-            </div>
-<?php } ?>
+
+
+    <?php if (get_user_role() == "minyawn") { ?>
+        <div class="span3">
+        <div class="div-box-block">
+        <span class='load_ajax1' style="display:none"></span>
+        <% if(can_apply_job == 3){%>
+        <a href="#" class="required">You are hired!</a>
+        <% }else{%>
+        <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
+        <% } %>
+        </div>
+        </div>
+    <?php } else { ?>
+        <div class="span3">
+        <div class="div-box-block">
+        <span class='load_ajax1' style="display:none"></span>
+        <% if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>" style="width:70%;">Select Your Minyawns</a>
+        <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
+        <% }
+        %> 
+        </div>
+        </div>
+        </div>
+    <?php } ?>
 
     </div>
     </div>
@@ -333,22 +335,22 @@ endif;
                     </div>          
 
                     <div id="caltoolbar" class="ctoolbar">
-<!--                        <div id="faddbtn" class="fbutton">
-                            <div><span title='Click to Create New Event' class="addcal">
-
-                                    New Event                
-                                </span></div>
-                        </div>-->
+                        <!--                        <div id="faddbtn" class="fbutton">
+                                                    <div><span title='Click to Create New Event' class="addcal">
+                        
+                                                            New Event                
+                                                        </span></div>
+                                                </div>-->
                         <div class="btnseparator"></div>
-<!--                        <div id="showtodaybtn" class="fbutton">
-                            <div><span title='Click to back to today ' class="showtoday">
-                                    Today</span></div>
-                        </div>-->
+                        <!--                        <div id="showtodaybtn" class="fbutton">
+                                                    <div><span title='Click to back to today ' class="showtoday">
+                                                            Today</span></div>
+                                                </div>-->
                         <div class="btnseparator"></div>
 
-<!--                        <div id="showdaybtn" class="fbutton ">
-                            <div><span title='Day' class="showdayview">Day</span></div>
-                        </div>-->
+                        <!--                        <div id="showdaybtn" class="fbutton ">
+                                                    <div><span title='Day' class="showdayview">Day</span></div>
+                                                </div>-->
                         <div  id="showweekbtn" class="fbutton ">
                             <div><span title='Week' class="showweekview">Week</span></div>
                         </div>
@@ -516,7 +518,7 @@ endif;
                                 <div class="clear"></div>
                             </form>
                         <?php } ?>                   
-                       
+
                     </div>
                     <div id="list-my-jobs">
 

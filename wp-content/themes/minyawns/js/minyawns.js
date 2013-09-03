@@ -923,7 +923,9 @@ jQuery(document).ready(function($) {
                 });
     });
     /** Apply/UnApply code */
-    $('#apply-job,#unapply-job').live('click', function(evt) {
+    $('#apply-job-browse,#unapply-job').live('click', function(evt) {
+        //alert("here");
+        
         evt.preventDefault();
         var _this = $(this);
         var _action = $(this).attr('data-action');
@@ -961,13 +963,7 @@ jQuery(document).ready(function($) {
 
         }, 'json');
     });
-    $('#accordion2').bind('scroll', function()
-    {
-        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
-        {
-            alert('end reached');
-        }
-    })
+    
 
     function fetch_my_jobs()
     {

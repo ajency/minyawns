@@ -172,7 +172,7 @@ if (get_user_role() == "minyawn") {
                                                     <a href="#" class="btn btn-medium btn-block btn-success red-btn header-btn" >You are hired</a>
 
                                                 <?php } else if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 0) : ?>
-                                                    <a href="#" id="apply-job" class="btn btn-medium btn-block btn-primary header-btn"  data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?> ">Apply</a>
+                                                    <a href="#" id="apply-job-browse" class="btn btn-medium btn-block btn-primary header-btn"  data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?> ">Apply</a>
                                                 <?php elseif ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2) : ?>
                                                     <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn header-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
                                                 <?php elseif ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 1) : ?>
