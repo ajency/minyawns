@@ -145,7 +145,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             $order_by
                             $limit
                          ";
-
+          
             $data = array();
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
@@ -552,23 +552,16 @@ $app->post('/user-vote', function() use ($app) {
             $minyawns_rating = $wpdb->get_row($sql);
 
 
-            $user_rating = $rating->positive;
-            $user_dislike = $rating->negative;
+            $user_rating = $minyawns_rating->positive;
+            $user_dislike = $minyawns_rating->negative;
             //$user['dislike'] = $rating->negative;
 
-            if ($_POST['action'] == "vote_up")
-                $like_count = $user_rating;
-            else
+            if ($_POST['action'] == "vote-up")
+            {                $like_count = $user_rating;
+            }else{
                 $like_count = $user_dislike;
-
-
-
-
-
-
-
-
-            echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id']));
+            }
+                echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id']));
         });
 
 

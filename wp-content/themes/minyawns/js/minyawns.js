@@ -846,20 +846,20 @@ jQuery(document).ready(function($) {
 
                         }
                         /* to be done
-                        var jsDate = new Date(data.job_start_time);
-                       
-                        if (data.job_start_time !== undefined)
+                         var jsDate = new Date(data.job_start_time);
+                         
+                         if (data.job_start_time !== undefined)
+                         {
+                         
+                         }
+                         if (data.job_end_time !== undefined)
+                         {
+                         
+                         } */
+                        if (data.job_details !== undefined)
                         {
-
+                            $(".jobdesc").find('div').html(data.job_details);
                         }
-                        if (data.job_end_time !== undefined)
-                        {
-
-                        } */
-                         if(data.job_details !== undefined)
-                            {
-                                $(".jobdesc").find('div').html(data.job_details);
-                            }
 
 //                //minyawns role
 //                $('#profile-view').find('.college').text(data.college);
@@ -925,7 +925,7 @@ jQuery(document).ready(function($) {
     /** Apply/UnApply code */
     $('#apply-job-browse,#unapply-job').live('click', function(evt) {
         //alert("here");
-        
+
         evt.preventDefault();
         var _this = $(this);
         var _action = $(this).attr('data-action');
@@ -963,7 +963,7 @@ jQuery(document).ready(function($) {
 
         }, 'json');
     });
-    
+
 
     function fetch_my_jobs()
     {
@@ -1310,7 +1310,7 @@ jQuery(document).ready(function($) {
                     jobwages: total
                 },
         function(response) {
-
+            $(".load_ajaxconfirm").hide();
             console.log(response);
             $("#paypal_pay").html(response.content);
 

@@ -246,7 +246,7 @@ global $minyawn_job;
         <div class="span3">
         <div class="div-box-block">
         <span class='load_ajax1' style="display:none"></span>
-        <% if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
+        <% if (todays_date_time < job_end_time_check && is_job_owner == 1){%>
         <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>" style="width:70%;">Select Your Minyawns</a>
         <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
         <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>

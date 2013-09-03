@@ -351,7 +351,7 @@ class Minyawn_Job {
     }
 
     public function check_minyawn_job_status($jobID) {
-        global $wpdb;
+         global $wpdb;
         $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND  {$wpdb->prefix}userjobs.user_id='" . get_user_id() . "'";
 
         $querystr = "
@@ -362,7 +362,7 @@ class Minyawn_Job {
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
                                ";
-
+       
         $user_applied_to = $wpdb->get_results($querystr, OBJECT);
 
         if (count($user_applied_to) > 0) {

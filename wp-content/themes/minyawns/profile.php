@@ -53,6 +53,7 @@ get_header();  ?>
 
     <div class="job-progress profile-job header-sub">
     
+    <?php if(get_user_role() == 'minyawn') { ?>
      <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
         <span class="label-available">Available</span>
 
@@ -67,8 +68,15 @@ get_header();  ?>
 
         <% }
         %> 
-    
+    <?php }else{ ?>
 
+        <%  if(is_job_owner == 1 && can_apply_job == 2) %>
+        <span class="label-available">No Applications yet</span>
+        <%  else if(can_apply_job == 3)%>
+        <span class="label-available">Minyawns Hired</span>
+        <% else if(can_apply_job == 1 )%>
+                <span class="label-available">Minyawns Have </span>
+    <?php }?>
     </div>
 
 
