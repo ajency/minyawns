@@ -41,7 +41,7 @@ function setup_user_profile_data() {
 //var_dump($current_user_new);exit();
     $user_meta = get_user_meta($current_user_new->data->ID);
 
-    
+    $current_user_new->data->user_id=$current_user_new->data->ID;
     //set profile first name
     $current_user_new->data->first_name = trim($user_meta['first_name'][0]);
 
