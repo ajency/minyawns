@@ -10,7 +10,7 @@ global $wpdb;
 
 
 $return_url = 'http://www.minyawns.ajency.in/success-payment/';
-$cancel_url = 'http://www.minyawns.ajency.in/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['item_number'];
+$cancel_url = 'http://www.minyawns.ajency.in/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
 $notify_url = 'http://www.minyawns.ajency.in/paypal-payments/';
 $paypal_email = 'parag0246@yahoo.co.in';
 
@@ -161,7 +161,7 @@ else
 					
 					$receiver_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
 					$receiver_message.="Hi,<br/><br/>
-							
+							item num ".$data['item_number']."
 							Payment for '".$data['item_name']."' successfully transferred .
 							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
 							<br/><b>Job    			:</b> ".$data['item_name']."
@@ -178,9 +178,13 @@ else
 							<br/><br/><br/>
 							";
 					
+					
+					
+					
+					
 					add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 					$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-					wp_mail($data['receiver_email'], $subject, email_header() . $receiver_message . email_signature(), $headers);
+					wp_mail($data['receiver_email'], $receiver_subject, email_header() . $receiver_message . email_signature(), $headers);
 					
 					$sender_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
 					$sender_message.="Hi,<br/><br/>
