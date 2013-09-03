@@ -71,10 +71,26 @@ get_header();  ?>
 
     </div>
 
-    <div class="job-action header-sub">
+    <div class="job-progress header-sub">
+    
+     <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
+        <span class="label-available">Available</span>
 
-<!--    <div class="arrow-down">
-    </div>-->
+
+        <% else if (todays_date_time > job_end_time_check){%>
+         <span class="label-unavailable">This job is complete</span>
+
+        <% }else if (can_apply_job == 3){%>
+         <span class="label-hired">You are hired for this job.</span>
+        <% }else if (can_apply_job == 1) {%>
+         <span >You have applied for this job.</span>
+
+        <% }else if (can_apply_job == 2) {%>
+         <span >Minyawn application complete.</span>
+
+        <% }
+        %> 
+    
 
     </div>
     </div>
