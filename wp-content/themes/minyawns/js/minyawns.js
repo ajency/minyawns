@@ -822,7 +822,8 @@ jQuery(document).ready(function($) {
                     success: function(model, resp) {
 
                         var data = model.toJSON();
-                        alert(data.job_task);
+                        $('html, body').animate({scrollTop: '0px'}, 300);
+// alert(data.job_task);
 //remove success
                         _.pluck(data, 'success');
                         if (data.job_task === undefined)
