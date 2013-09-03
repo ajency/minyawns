@@ -147,13 +147,33 @@ else
 					/*add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );*/
 					
+					
+					
+					
+					
+					
+					
+					$job_data = get_post($data['item_humber']);
+					
+					
+					
+					
+					
 					$receiver_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
 					$receiver_message.="Hi,<br/><br/>
 							
 							Payment for '".$data['item_name']."' successfully transferred .
-							<br/><b>Transaction ID  :</b> ".$data[' txn_id']."
+							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
 							<br/><b>Job    			:</b> ".$data['item_name']."
-							<br/><b>Amount 			:</b> ".$data['total_amount']."
+							<br/><b>Total Amount 			:</b> ".$data['total_amount']."
+							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($data['item_humber'],'job_start_date',true))."
+							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_start_time',true))."
+							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($data['item_humber'],'job_end_date',true))."
+							<br/><b>end Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_end_time',true))."							 
+							<br/><b>Location:</b>". get_post_meta($data['item_humber'],'job_location',true)."
+							<br/><b>Wages:</b>".get_post_meta($data['item_humber'],'job_wages',true)."
+							<br/><b>details:</b>".$job_data->post_content."		
+									
 									
 							<br/><br/><br/>
 							";
@@ -166,9 +186,16 @@ else
 					$sender_message.="Hi,<br/><br/>
 				
 							Your Payment for '".$data['item_name']."' successfully Completed .
-							<br/><b>Transaction ID :</b> ".$data[' txn_id']."
+							<br/><b>Transaction ID :</b> ".$data['txn_id']."
+							<br/><b>Total Amount 			:</b> ".$data['total_amount']."
 							<br/><b>Job    		   :</b> ".$data['item_name']."
-							<br/><b>Amount         :</b> ".$data['total_amount']."
+							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($data['item_humber'],'job_start_date',true))."
+							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_start_time',true))."
+							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($data['item_humber'],'job_end_date',true))."
+							<br/><b>end Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_end_time',true))."							 
+							<br/><b>Location:</b>". get_post_meta($data['item_humber'],'job_location',true)."
+							<br/><b>Wages:</b>".get_post_meta($data['item_humber'],'job_wages',true)."
+							<br/><b>details:</b>".$job_data->post_content."		
 					
 							<br/><br/><br/>
 							";
@@ -195,9 +222,16 @@ else
 				$receiver_message.="Hi,<br/><br/>
 				
 							Payment failed for '".$data['item_name']."'.
-							<br/><b>Transaction ID  :</b> ".$data[' txn_id']."
-							<br/><b>Job    			:</b> ".$data['item_name']."
-							<br/><b>Amount 			:</b> ".$data['total_amount']."
+							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
+							<br/><b>Total Amount 			:</b> ".$data['total_amount']."	
+							<br/><b>Job    			:</b> ".$data['item_name']."							
+							<br/><b>Start date:</b>". date('d M Y',   get_post_meta($data['item_humber'],'job_start_date',true))."
+							<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_start_time',true))."
+							<br/><b>End Date:</b>". date('d M Y',  get_post_meta($data['item_humber'],'job_end_date',true))."
+							<br/><b>end Time:</b>". date('g:i a',  get_post_meta($data['item_humber'],'job_end_time',true))."							 
+							<br/><b>Location:</b>". get_post_meta($data['item_humber'],'job_location',true)."
+							<br/><b>Wages:</b>".get_post_meta($data['item_humber'],'job_wages',true)."
+							<br/><b>details:</b>".$job_data->post_content."		
 					
 							<br/><br/><br/>
 							";
@@ -211,7 +245,7 @@ else
 				$sender_message.="Hi,<br/><br/>
 				
 							Your Payment failed for '".$data['item_name']."'.
-							<br/><b>Transaction ID  	:</b> ".$data[' txn_id']."
+							<br/><b>Transaction ID  	:</b> ".$data['txn_id']."
 							<br/><b>Job    				:</b> ".$data['item_name']."
 							<br/><b>Amount 				:</b> ".$data['total_amount']."
 			
