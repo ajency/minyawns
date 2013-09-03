@@ -90,11 +90,13 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $tables = "$wpdb->posts";
                     $my_jobs_filter = "WHERE $wpdb->posts.post_author='" . get_current_user_id() . "' ";
                     $limit = "LIMIT 10";
+                    $order_by="ORDER BY $wpdb->posts.ID DESC";
                 } else {
 
                     $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.status='applied' ";
                     $limit = "LIMIT 10";
+                    $order_by="ORDER BY $wpdb->posts.ID DESC";
 
 
 
@@ -118,8 +120,10 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                     $tables = "$wpdb->posts, $wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    $order_by="AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            ORDER BY $wpdb->postmeta.meta_value DESC";
                 } else {
 
 
@@ -127,6 +131,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    $order_by="AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            ORDER BY $wpdb->postmeta.meta_value DESC";
                 }
             }
 
@@ -136,7 +142,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             $my_jobs_filter
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
-                            ORDER BY $wpdb->posts.ID DESC
+                            $order_by
                             $limit
                          ";
 
@@ -146,6 +152,7 @@ $app->get('/fetchjobs/', function() use ($app) {
             $total = count(get_total_jobs());
 
             $no_of_pages = ceil($total / 5);
+            
             $has_more_results = 0;
             foreach ($pageposts as $pagepost) {
 
