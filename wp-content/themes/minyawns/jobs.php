@@ -219,10 +219,10 @@ endif;
    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><img src="<%= user_profile_image[i] %>"/><b><%= users_applied[i]%></b></a>
    
     <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= post_id %>">
-    <i class="icon-thumbs-up"></i> 50
+    <i class="icon-thumbs-up"></i> <%= user_rating_like[i] %>
     </a> 
     <a id="vote-down" href="#fakelink"  class="icon-thumbs" employer-vote="-1" job-id="<%= post_id %>">
-    <i class="icon-thumbs-down"></i> 100
+    <i class="icon-thumbs-down"></i> <%= user_rating_dislike[i] %>
     </a>
     
     </div>

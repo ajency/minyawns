@@ -1,5 +1,5 @@
- 
-			<form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">   
+
+ <form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">   
 				 
 			    <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $returnUrl; ?>" / >
 			    <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
@@ -27,10 +27,10 @@ foreach ($minyawn_job->minyawns as $minyawn):
                                     <?php echo get_avatar($minyawn['user_email'], 168); ?>
                                 <?php endif; ?>
                                 <div class="rating"  >
-                                    <a id="vote-up" href="#like" is_rated="<?php echo $minyawn['is_job_rated']; ?>" employer-vote="1"   job-id="<?php echo  $minyawn['user_to_job']?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-up">
+                                    <a id="vote-up<?php echo $minyawn['user_id']; ?>" class="vote-up" href="#like" is_rated="<?php echo $minyawn['is_job_rated']; ?>" employer-vote="1"   job-id="<?php echo  $minyawn['user_to_job']?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-up">
                                         <i class="icon-thumbs-up"></i> <?php echo $minyawn['like']; ?>
                                     </a> 
-                                    <a id="vote-down" href="#dislike" is_rated="<?php echo $minyawn['is_job_rated']; ?>"  class="icon-thumbs" employer-vote="-1" job-id="<?php echo  $minyawn['user_to_job']?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-down">
+                                    <a id="vote-down<?php echo $minyawn['user_id']; ?>"  href="#dislike" is_rated="<?php echo $minyawn['is_job_rated']; ?>"  class="icon-thumbs vote-down" employer-vote="-1" job-id="<?php echo  $minyawn['user_to_job']?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-down">
                                         <i class="icon-thumbs-down"></i> <?php echo $minyawn['dislike']; ?>
                                     </a>
                                 </div>

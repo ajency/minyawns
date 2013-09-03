@@ -82,7 +82,7 @@ jQuery(document).ready(function($) {
         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
         dataType: 'json',
         done: function(e, data) {
- $(".load_ajax-crop-upload").hide();
+            $(".load_ajax-crop-upload").hide();
             //$('#change-avatar-span').find('img').attr('src', data.result.image);
             $('#change-avatar').removeAttr("disabled");
             $("#uploaded-image").attr('src', data.result.image);
@@ -98,15 +98,15 @@ jQuery(document).ready(function($) {
 
         },
         start: function(e, data) {
-    $(".load_ajax-crop-upload").show();
-   
+            $(".load_ajax-crop-upload").show();
+
             $('#change-avatar').attr("disabled", "disabled");
             var progress = parseInt(data.loaded / data.total * 100, 10);
         }
     });
 
     $("#done-cropping").live('click', function() {
-$(".load_ajax-crop-upload").show();
+        $(".load_ajax-crop-upload").show();
         $.ajax({
             type: "POST",
             url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
@@ -115,8 +115,8 @@ $(".load_ajax-crop-upload").show();
             $('#myprofilepic').modal('hide')
 //            $('#change-avatar-span').find('img').attr('src', img_link);
 //            $('#logged-in').find('img').attr('src', img_link);
-location.reload();
-        $(".load_ajax-crop-upload").hide();
+            location.reload();
+            $(".load_ajax-crop-upload").hide();
         });
     });
 
@@ -1260,10 +1260,10 @@ location.reload();
 
 
 
-    $('#vote-up,#vote-down').live('click', function(evt) {
+    $('.vote-up,.vote-down').live('click', function(evt) {
 
-       if($(this).attr('is_rated') != "0")
-           return false;
+        if ($(this).attr('is_rated') != "0")
+            return false;
 
         $(".rating").find('a').prop('disabled', true);
         // $(".load_ajaxconfirm").show();
@@ -1287,16 +1287,20 @@ location.reload();
         function(response) {
             $(".rating").find('a').prop('disabled', false);
             if (response.action == "vote-up") {
-                $("#vote-up").prop('disabled', true)
-                $("#vote-up,#vote-down").contents().filter(function(){ return this.nodeType != 1; }).remove();
-                $("#vote-up").append(response.rating);
-                $("#vote-down").append("0");        
+                $("#vote-up"+_user_id).prop('disabled', true)
+                $("#vote-up"+_user_id).contents().filter(function() {
+                    return this.nodeType != 1;
+                }).remove();
+                $("#vote-up"+_user_id).append(response.rating);
+                //$("#vote-down").append("0");
             }
             if (response.action == "vote-down") {
-                $("#vote-down").prop('disabled', true)
-                $("#vote-down,#vote-up").contents().filter(function(){ return this.nodeType != 1; }).remove();
-                      $("#vote-down").append(response.rating);
-                      $("#vote-up").append("0");
+                $("#vote-down"+_user_id).prop('disabled', true)
+                $("#vote-down"+_user_id).contents().filter(function() {
+                    return this.nodeType != 1;
+                }).remove();
+                $("#vote-down"+_user_id).append(response.rating);
+                //$("#vote-up").append("0");
             }
 
         }, 'json');
