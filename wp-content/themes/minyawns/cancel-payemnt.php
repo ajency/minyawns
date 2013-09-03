@@ -17,8 +17,7 @@ if(isset($_GET['mntx']))
 	
 	global $wpdb;
 	$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx."%'  ");
-	echo "SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx."%'  ";
-	
+		
 	foreach($paypal_tx as $res)
 	{
 		$paypal_payment = unserialize($res->paypal_payment);
@@ -27,8 +26,6 @@ if(isset($_GET['mntx']))
 	$new_paypal_payment = array();
 	foreach($paypal_payment as $key_pp => $payment_tx)
 	{
-		echo $key_pp." => ".$payment_tx;
-		
 		switch($key_pp)
 		{
 			case 'minyawn_txn_id':
@@ -51,8 +48,8 @@ if(isset($_GET['mntx']))
 	
 	//update postmeta for the job with transaction id
 	$new_updated_paypal_payment =   serialize($new_paypal_payment);
-	$wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
-	echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
+	$wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx."%'");
+	
 	
 	
 	
@@ -66,7 +63,7 @@ if(isset($_GET['mntx']))
 	UPDATE {$wpdb->prefix}userjobs
 	SET status = 'applied'
 	WHERE user_id = '" . $split_status[0] . "'
-	AND job_id = '" . $_POST['job_id'] . "'
+	AND job_id = '" . $jobid . "'
 	"
 	);
 	}
