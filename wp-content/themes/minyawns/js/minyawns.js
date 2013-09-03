@@ -408,6 +408,7 @@ jQuery(document).ready(function($) {
 
                         $('#job_tags_tagsinput').find('span').remove()
                         $('html, body').animate({scrollTop: '0px'}, 300);
+                        fetch_my_jobs();
                     },
                     errors: function() {
                         $(_this).removeAttr('disabled');
