@@ -437,15 +437,12 @@ $app->post('/confirm', function() use ($app) {
 
             $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
-            $paypal_payment = array('minyawn_txn_id' => $key_job, 'paypal_txn_id' => '', 'status' => '');
-            add_post_meta($_POST['job_id'], 'paypal_payment', $paypal_payment);
-
-
-
-
-
-
-
+ 
+            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'','minyawns_selected'=>$split_user);
+            add_post_meta($_POST['job_id'], 'paypal_payment' , $paypal_payment);
+            
+            
+ 
             //get user
             $users__ = explode(",", $_POST['user_id']);
             //end get user
@@ -494,17 +491,12 @@ $app->post('/confirm', function() use ($app) {
 			   
 			    <input type="hidden" name="amount" value="' . $total_wages . '" />
 			    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
-<<<<<<< HEAD
+ 
 			    <input type="hidden" name="first_name" value="Customer  First Name"  />
 			    <input type="hidden" name="last_name" value="Customer  Last Name"  />			    
 			    <input type="hidden" name="item_number" value="' . $_POST['job_id'] . '" / >
 			    <input type="hidden" name="item_name" value="' . get_the_title($_POST['job_id']) . '" / >			   
-=======
-			    <input type="hidden" name="first_name" value="Customer First Name"  />
-			    <input type="hidden" name="last_name" value="Customer Last Name"  />			    
-			    <input type="hidden" name="item_number" value="'.$_POST['job_id'].'" / >
-			    <input type="hidden" name="item_name" value="'.get_the_title($_POST['job_id']).'" / >			   
->>>>>>> d509d858488af68a103fb7e33a519e06546bb785
+ 
 			    
 			   
            	<input type="submit" id="submitBtn" value=" " style="margin:auto; width:140px; height:47px; border:none; display:block;background-image:url(\'https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif\');" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
