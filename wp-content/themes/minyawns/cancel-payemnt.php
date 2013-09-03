@@ -8,10 +8,10 @@
 get_header(); 
 
 
-if(isset($_POST['mntx']))
+if(isset($_GET['mntx']))
 {
-	$minyawns_tx = $_POST['mntx'];
-	$jobid = $_POST['jb'];
+	$minyawns_tx = $_GET['mntx'];
+	$jobid = $_GET['jb'];
 	
 	
 	
