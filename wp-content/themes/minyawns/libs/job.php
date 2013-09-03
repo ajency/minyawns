@@ -410,7 +410,7 @@ $app->post('/confirm', function() use ($app) {
             
             $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
-            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'');
+            $paypal_payment = array('minyawn_txn_id'=>$key_job,'paypal_txn_id'=>'','status'=>'','minyawns_selected'=>$split_user);
             add_post_meta($_POST['job_id'], 'paypal_payment' , $paypal_payment);
             
             

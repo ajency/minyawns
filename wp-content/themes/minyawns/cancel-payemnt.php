@@ -5,7 +5,65 @@
  * Template Name: Cancel Payment
  */
 
-get_header(); ?>
+get_header(); 
+
+
+if(isset($_POST['mntx']))
+{
+	$minyawns_tx = $_POST['mntx'];
+	$jobid = $_POST['jb'];
+	
+	
+	
+	global $wpdb;
+	$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx."%'  ");
+	
+	foreach($paypal_tx as $res)
+	{
+		$paypal_payment = unserialize($res->paypal_payment);
+			
+	}
+	$new_paypal_payment = array();
+	foreach($paypal_payment as $key_pp => $payment_tx)
+	{
+		switch($key_pp)
+		{
+			case 'minyawn_txn_id':
+				$new_paypal_payment['minyawn_txn_id'] = $payment_tx ;
+				break;
+			case 'paypal_txn_id':
+				$new_paypal_payment['paypal_txn_id'] = $transaction_id ;
+				break;
+			case 'status'				:
+				$new_paypal_payment['status'] = $status ;
+				break;
+			case 'minyawns_selected'				:
+				$new_paypal_payment['minyawns_selected'] = $payment_tx ;
+				break;
+		}//end switch($key_pp)
+	
+	}//end foreach($paypal_payment as $key_pp => $payment_tx)
+	
+	
+	$split_user = explode("-", $new_paypal_payment['minyawns_selected']);
+	for ($i = 0; $i < sizeof($split_user); $i++)
+	{
+	$split_status = explode(",", $split_user[$i]);
+	// for ($j = 0; $j < sizeof($split_status); $j++) {
+	
+	$wpdb->get_results("
+	UPDATE {$wpdb->prefix}userjobs
+	SET status = 'applied'
+	WHERE user_id = '" . $split_status[0] . "'
+	AND job_id = '" . $_POST['job_id'] . "'
+	"
+	);
+	}
+	
+	
+}
+
+?>
 <div class="container">
 	<div id="main-content" class="main-content bg-white main-page">
 	<div id="primary" class="content-area paypal-success">

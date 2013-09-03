@@ -9,8 +9,8 @@ global $minyawn_job;
 global $wpdb;
 
 
-$return_url = 'http://www.minyawns.ajency.in/';
-$cancel_url = 'http://www.minyawns.ajency.in/';
+$return_url = 'http://www.minyawns.ajency.in/success-payment/';
+$cancel_url = 'http://www.minyawns.ajency.in/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['item_number'];
 $notify_url = 'http://www.minyawns.ajency.in/paypal-payments/';
 $paypal_email = 'parag0246@yahoo.co.in';
 
@@ -185,6 +185,12 @@ else
 			else if($curl_result=="Failed")
 			{
 				 
+				
+				update_paypal_payment($data['txn_id'],$data['custom'] ,$data['payment_status'],$data['item_number']);
+				
+				
+				
+				
 				$receiver_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
 				$receiver_message.="Hi,<br/><br/>
 				
