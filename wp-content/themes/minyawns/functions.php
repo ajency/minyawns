@@ -747,7 +747,7 @@ function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
                 $wpdb->get_results("
 					UPDATE {$wpdb->prefix}userjobs 
 					SET status = 'applied'
-					WHERE user_id = '" . $split_user[0] . "' 
+					WHERE user_id = '" . $split_user[$i] . "' 
 					AND job_id = '" . $_POST['job_id'] . "'
 					"
                 );

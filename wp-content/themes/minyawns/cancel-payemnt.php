@@ -62,7 +62,7 @@ if(isset($_GET['mntx']))
 	$wpdb->get_results("
 	UPDATE {$wpdb->prefix}userjobs
 	SET status = 'applied'
-	WHERE user_id = '" . $split_user[0] . "'
+	WHERE user_id = '" . $split_user[$i] . "'
 	AND job_id = '" . $jobid . "'
 	"
 	);
