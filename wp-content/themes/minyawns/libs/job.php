@@ -367,7 +367,7 @@ $app->post('/confirm', function() use ($app) {
                 
                 
                 
-                ////to do
+               
                // $job_metadata = get_post_meta($_POST['job_id']);  
                 $job_data = get_post($_POST['job_id']); 
                 
@@ -381,7 +381,7 @@ $app->post('/confirm', function() use ($app) {
                 
                 $minyawns_message = "Hi,<br/><br/>
                 		Congratulations, You have been hired for the job '".get_the_title($_POST['job_id'])."'<br/><br/>
-                		<h6>Job:".get_the_title($_POST['job_id'])."</h6>
+                		<h3>Job:".get_the_title($_POST['job_id'])."</h3>
                 
                 		<br/><b>Start date:</b>". date('d M Y',   get_post_meta($_POST['job_id'],'job_start_date',true))."
                 		<br/><b>Start Time:</b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_start_time',true))."
