@@ -130,9 +130,10 @@ get_header();  ?>
 <div class="container">
 	<div id="main-content" class="main-content bg-white">
 		<div class="breadcrumb-text">
+                    
                     <p id="bread-crumbs-id">
-				<a href="<?php echo site_url() ?>/jobs/" class="view loaded edit-user-profile">My Jobs</a>
-			
+				
+			<a href="<?php echo site_url() ?>/jobs/" class="view loaded">My Jobs</a>
 				<a href="#" class="view loaded edit-user-profile">My Profile</a>
 			</p>
 		</div>
