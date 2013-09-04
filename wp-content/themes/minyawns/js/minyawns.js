@@ -1404,9 +1404,9 @@ function ucfirst(str) {
 }
 
 jQuery('.collapse').live('show', function() {
-    $(this).parent().find('a').addClass('open'); //add active state to button on open
+    jQuery(this).parent().find('a').addClass('open'); //add active state to button on open
 });
 
 jQuery('.collapse').live('hide', function() {
-    $(this).parent().find('a').removeClass('open'); //remove active state to button on close
+    jQuery(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
