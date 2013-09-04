@@ -389,16 +389,13 @@ $app->post('/confirm', function() use ($app) {
 
                 $minyawns_message = "Hi,<br/><br/>
                 		Congratulations, You have been hired for the job '" . get_the_title($_POST['job_id']) . "'<br/><br/>
-                		<h3>Job:" . get_the_title($_POST['job_id']) . "</h3>
-                
-                		<br/><b>Start date:</b>" . date('d M Y', get_post_meta($_POST['job_id'], 'job_start_date', true)) . "
-                		<br/><b>Start Time:</b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_start_time', true)) . "
-                		<br/><b>End Date:</b>" . date('d M Y', get_post_meta($_POST['job_id'], 'job_end_date', true)) . "
-					    <br/><b>end Time:</b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_end_time', true)) . "		 		
-					    		
-                		<br/><b>Location:</b>" . get_post_meta($_POST['job_id'], 'job_location', true) . "
-						<br/><b>Wages:</b>" . get_post_meta($_POST['job_id'], 'job_wages', true) . "
-                		<br/><b>details:</b>" . $job_data->post_content . "
+                		<h3>Job:" . get_the_title($_POST['job_id']) . "</h3>                
+                		<br/><b>Start date: </b>" . date('d M Y', get_post_meta($_POST['job_id'], 'job_start_date', true)) . "
+                		<br/><b>Start Time: </b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_start_time', true)) . "                		 
+					    <br/><b>End Time: </b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_end_time', true)) . "	
+                		<br/><b>Location: </b>" . get_post_meta($_POST['job_id'], 'job_location', true) . "
+						<br/><b>Wages: </b> $" . get_post_meta($_POST['job_id'], 'job_wages', true) . "
+                		<br/><b>Details: </b>" . $job_data->post_content . "
                 
                 		<br/><br/>
                 
@@ -555,7 +552,7 @@ $app->post('/user-vote', function() use ($app) {
             if ($_POST['action'] == "vote-up")
             {   $like_count = $user_rating;
             	$mail_subject =  "Minyawns - You have received a Thumbs Up. ";
-            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/> 
+            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/> 
             			Congratulations, <br/><br/>
 
             			You have received Thumbs Up from <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
@@ -568,7 +565,7 @@ $app->post('/user-vote', function() use ($app) {
             }else{
                 $like_count = $user_dislike;
                 $mail_subject =  "Minyawns - You have received Thumbs Down. ";                 
-            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/>            			
+            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/>            			
             			You have received Thumbs Down from  <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
             			Put little more efforts to receive Thumbs Up.<br/><br/>
             			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>          			
