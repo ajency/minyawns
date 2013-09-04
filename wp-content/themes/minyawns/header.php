@@ -157,7 +157,7 @@
 								<div class="span6 fb-login fb-deskstop">
 									<h6 class="align-center" style="margin-bottom: 0px;">Login
 										Using Facebook</h6>
-									<p class="align-center">Get using minyawns, faster !</p>
+									<p class="align-center">Get using Minions, faster !</p>
 									<br>
 
 									<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
@@ -197,7 +197,7 @@
 									<div class="span6 fb-login fb-mobile">
 									<h6 class="align-center" style="margin-bottom: 0px;">Login
 										Using Facebook</h6>
-									<p class="align-center">Get using minyawns, faster !</p>
+									<p class="align-center">Get using Minions, faster !</p>
 									<br>
 
 									<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>

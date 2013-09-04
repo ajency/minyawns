@@ -4,9 +4,9 @@
 	<ul class="footer_menu">
 		<li><a href="#">About</a></li>
 		<li><a href="#">Careers</a></li>
-		<li><a href="#">Blog</a></li>
-		<li><a href="#">Tech City</a></li>
-		<li><a href="#">Directory</a></li>
+		<li><a href="#">Terms</a></li>
+		<li><a href="#">Privacy</a></li>
+		<li><a href="#">Contact</a></li>
 	</ul>
 	<?php /* commented  on 4sep2013 
 	<div class="social-icon">
@@ -17,7 +17,7 @@
 		</a>
 	</div>
 	*/?>
-	<div class="site_link">All rights reserved 2013 @ Minyawn</div>
+	<div class="site_link">All rights reserved 2013 @ Minyawns</div>
 </footer>
 
 </div>
