@@ -107,7 +107,7 @@ get_header();  ?>
 <form id="cropimage" method="post" enctype="multipart/form-data">
  <a type="button" class="btn btn-primary" id="done-cropping" style="display:none">Done? </a>
 	Upload your image <input type="file" name="files" id="photoimg" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
-        <br>
+<!--        <br>
         Please drag to select/crop your picture.
 	<p class="help-block meta">Upload an image for your profile.</p></br>
 	
@@ -118,7 +118,7 @@ get_header();  ?>
         <input type="hidden"  id="image_width">
         <input type="hidden"  id="image_x_axis">
        <input type="hidden"  id="image_y_axis">
-       <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '2:1' : '1:1')?>" id="aspect_ratio">
+       <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '2:1' : '1:1')?>" id="aspect_ratio">-->
        
 </form>
 
@@ -148,7 +148,7 @@ get_header();  ?>
 					<div class="span2">
 						<a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
 							<?php 	if(get_mn_user_avatar() !== false)
-										echo '<img src="' . get_mn_user_avatar() .'" width="168" height="168" />';
+										echo  get_mn_user_avatar();
 									else
 										echo get_avatar( get_user_profile_email(), 168 )
 							?>

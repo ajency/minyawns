@@ -923,7 +923,7 @@ $(".load-ajax-browse").hide();
     });
     /** Apply/UnApply code */
     $('#apply-job-browse,#unapply-job').live('click', function(evt) {
-        alert("here");
+       
 
         evt.preventDefault();
         var _this = $(this);

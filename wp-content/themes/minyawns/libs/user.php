@@ -64,7 +64,7 @@ $app->post('/change-avatar', function() use($app) {
                 foreach ($_FILES as $file => $array) {
                     $attach_id = upload_attachment($file, $user_ID);
                     $attachment_id = $attach_id;
-                    $attachment_url = wp_get_attachment_url($attach_id);
+                   // $attachment_url = wp_get_attachment_link($attach_id,'medium');
                 }
             }
 
@@ -156,7 +156,7 @@ function upload_attachment($file_handler, $user_id) {
 
     remove_filter('upload_dir', 'change_user_avatar_upload_dir');
 
-    //update_user_meta($user_id, 'avatar_attachment', $attach_id);
+    update_user_meta($user_id, 'avatar_attachment', $attach_id);
     return $attach_id;
 }
 
