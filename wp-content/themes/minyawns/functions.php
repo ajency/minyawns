@@ -246,7 +246,7 @@ function minyawns_initial_checks() {
 add_action('init', 'minyawns_initial_checks');
 
 //Allow only active users to login in 
-//add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
+
 function authenticate_active_user($user, $password) {
     //do any extra validation stuff here
     global $wpdb;
@@ -263,6 +263,9 @@ function authenticate_active_user($user, $password) {
     else
         return false;
 }
+add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
+
+
 
 //added on 6aug2013 to add a custom role for the fb user, overrides plugin's default user role
 add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user', 11, 2);
@@ -373,15 +376,13 @@ function email_signature() {
 			<div style="clear:both;"></div>
 
 			<div style="background:#f8f8f8;clear:both;margin:5px 5px 5px 5px;height:40px;padding-left: 10px;">
-			<div style="float:left;"><h3 style="line-height:6px;">Find Us On</h3></div>
-			<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="' . site_url() . '/wp-content/themes/minyawns/images/facebook.png" /></a></div>
-					<div style="float:right;margin-top: 5px;margin-right: 10px;"><a href="#"><img src="' . site_url() . '/wp-content/themes/minyawns/images/LinkedIn.png" /></a></div>
-							</div>
+			
 							<br>
 
 							<div style="background:url(' . site_url() . '/wp-content/themes/minyawns/images/arro-up.png)repeat-x;clear:both;margin:5px 5px 5px 5px;height:80px;padding-left: 10px;padding: 1px;">
 
 									<h5 style="color:#ffffff;text-align:center;">Replies to this message are not monitored. Our Customer Service team is available to assist you here: </h5>
+									<a href="mailto:support@minyawns.com">support@minyawns.com</a>
 									</div>
 									</div>
 									<!--End of footer -->
@@ -761,9 +762,18 @@ function get_paypal_payment_meta($transaction_id,$minyawns_tx_id,$jobid)
  * Function to update paypal payment details for hired minyawns
  * Date:2sep2013
  */
-function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
+function update_paypal_payment($data,$curl_result)
 {
 	global $wpdb;	
+	$transaction_id = $data['txn_id'];
+	$minyawns_tx_id = $data['custom'];
+	if($curl_result=="VERIFIED")
+		$status = $data['payment_status'];
+	else
+		$status = "";
+	$jobid  = $data['item_number'];
+	
+	
 	$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx_id."%'  ");
 		
 	foreach($paypal_tx as $res)
@@ -788,19 +798,22 @@ function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
 			case 'minyawns_selected'				:
 				$new_paypal_payment['minyawns_selected'] = $payment_tx ;
 				break;
+				
 		}//end switch($key_pp)
 
 	}//end foreach($paypal_payment as $key_pp => $payment_tx)
 
+	$new_paypal_payment['date_time'] = strtotime(date('D-M-Y G:i:s')) ;
+	$new_paypal_payment['paypal_date'] = strtotime(date('D-M-Y G:i:s')) ;
 	//update postmeta for the job with transaction id
 	$new_updated_paypal_payment =   serialize($new_paypal_payment);
 	$wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
 
 	//echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
 
+	
 	if($status=="Failed")
-	{
-		
+	{		
 		$split_user = explode(",", $new_paypal_payment['minyawns_selected']);
             for ($i = 0; $i < sizeof($split_user); $i++) 
             {
@@ -814,7 +827,32 @@ function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
 					AND job_id = '" . $_POST['job_id'] . "'
 					"
                 );
-            }
-	}
+            }//end for ($i = 0; $i < sizeof($split_user); $i++) 
+	}//end if($status=="Failed")
+	/*else TODO
+	{
+		
+		//store completed transaction in paypal_payment for cron job
+		
+		$wpdb->get_results("insert into  {$wpdb->prefix}paypal_payment
+				(job_id,job_author,job_email,trans_id,status,payment_date)values()");
+				
+		
+		
+	}*/
+			
 	
+}//end function update_paypal_payment($data,$curl_result)
+
+
+
+/* TODO
+ * function cron_paypal_payment_complete()
+{
+	
+	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+	wp_mail("paragredkar@gmail.com", "test cron job", email_header() . "test message" . email_signature(), $headers);
 }
+add_action('payment_complete_cron_job', 'cron_paypal_payment_complete');
+*/

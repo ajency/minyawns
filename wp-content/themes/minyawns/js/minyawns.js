@@ -1331,15 +1331,15 @@ jQuery(document).ready(function($) {
         var _job_id = $(this).attr('job-id');
         var _user_id = $(this).attr('user_id');
         var _action = $(this).attr('action');
-
+        var _emp_id = $(this).attr('emp_id');
 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
                 {
                     rating: _rating,
                     job_id: _job_id,
                     user_id: _user_id,
-                    action: _action
-
+                    action: _action,
+                    emp_id: _emp_id
 
                 },
         function(response) {
