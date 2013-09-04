@@ -70,78 +70,19 @@ get_header();  ?>
         %> 
     <?php }else{ ?>
 
-        <%  if(is_job_owner == 1 && can_apply_job == 2) %>
+        <%  if(is_job_owner == 1 && can_apply_job == 0) %>
         <span class="label-available">No Applications yet</span>
         <%  else if(can_apply_job == 3)%>
         <span class="label-available">Minyawns Hired</span>
-        <% else if(can_apply_job == 1 )%>
-                <span class="label-available">Minyawns Have </span>
-    <?php }?>
+        <% else if(can_apply_job == 2 )%>
+                <span class="label-available">Minyawns Have Applied</span>
+    <?php } ?>
     </div>
 
 
     </div>
 
-    <div id="collapse<%= post_id %>" class="accordion-body collapse ">
-    <div class="accordion-inner">
-    <div class="row-fluid header-title">
-    <div class="span12">
-    <h3><a href=<?php echo site_url() ?>/job/<%= post_slug %> target="_blank" > <%= post_title %> <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
-    </div>
-    </div>
-    <div class="row-fluid job-data">
-    <div class="span9 inner-data">
-    <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="#" class="request_link"><%= job_author %></a>  </div>
-    </div>
-    <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Location :</b></div><div class="span9"><%= job_location %> </div>
-    </div>
-    <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Details :</b></div><div class="span9"><%= job_details.substring(0, 140) %> </div>
-    </div>
-    <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<tags_count;i++){ %> <span class="label"><%= tags[i] %></span><%}%> </div>
-    </div>
-    </div>
-    <div class="span3">
-    <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-left.png">
-    <div class="div-box-block">
-<span class='load_ajax1' style="display:none"></span>
-<?php if (get_user_role() === 'minyawn'): ?> 
 
-            <%  if(can_apply_job == 3) %>
-            <a href="#" class="required">You are hired!</a>
-            <% else if(can_apply_job == 2 )%>
-            <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
-            <% else if(can_apply_job == 0 ) %>
-            <a href="#" id="apply-job" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Apply</a>
-            
-            <% else if(can_apply_job == 1 ) %>
-            <a href="#" class="required">Requirement Complete</a>
-  
-    
-
-    <?php
-else:
-    ?>
-            <%  if(can_apply_job == 1 || todays_date_time > job_end_time_check) %>
-            <a href="#" class="required">Requirement Complete</a>
-
-            <% else if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
-            <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
-            <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
-            <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
-            <% }
-            %> 
-
-<?php
-endif;
-?>
-
-    </div>
-
-    </div>
     </div>
 
 
@@ -164,7 +105,7 @@ endif;
 <div style="width:600px" id="image_upload_body">
 
 <form id="cropimage" method="post" enctype="multipart/form-data">
-
+ <a type="button" class="btn btn-primary" id="done-cropping" style="display:none">Done? </a>
 	Upload your image <input type="file" name="files" id="photoimg" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
         <br>
         Please drag to select/crop your picture.
@@ -172,13 +113,13 @@ endif;
 	
 	</br>
 	<input type="hidden" name="image_name" id="image_name" value="" />
-	<img id="uploaded-image" style="max-height: 500px"></img>
+	<img id="uploaded-image" ></img>
         <input type="hidden"  id="image_height">
         <input type="hidden"  id="image_width">
         <input type="hidden"  id="image_x_axis">
        <input type="hidden"  id="image_y_axis">
        <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '2:1' : '1:1')?>" id="aspect_ratio">
-        <a type="button" class="btn btn-primary" id="done-cropping" style=" margin-left: 118px; margin-top:-1070px; margin-bottom: 10px; display:none">Done? </a>
+       
 </form>
 
 </div>

@@ -434,6 +434,7 @@ font-size: 18px;
 		#uploaded-image{
 			/*width:60% !important;*/
                         width:auto !important;
+                        /*max-width: auto*/
 		}
 		.cropimage input{
 			border: solid 1px #CCD3D8;

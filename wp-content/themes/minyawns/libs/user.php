@@ -87,7 +87,7 @@ $app->post('/resize-user-avatar', function() use($app) {
 
 
             $t_width = 100; // Maximum thumbnail width
-            $t_height = 100; // Maximum thumbnail height
+            $t_height =100; // Maximum thumbnail height
 
             extract($_POST);
             $ratio = ($t_width / $w);
