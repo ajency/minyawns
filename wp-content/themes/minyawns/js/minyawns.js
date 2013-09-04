@@ -923,7 +923,7 @@ $(".load-ajax-browse").hide();
     });
     /** Apply/UnApply code */
     $('#apply-job-browse,#unapply-job').live('click', function(evt) {
-        //alert("here");
+        alert("here");
 
         evt.preventDefault();
         var _this = $(this);
@@ -1404,9 +1404,9 @@ function ucfirst(str) {
 }
 
 jQuery('.collapse').live('show', function() {
-    jQuery(this).parent().find('a').addClass('open'); //add active state to button on open
+    $(this).parent().find('a').addClass('open'); //add active state to button on open
 });
 
 jQuery('.collapse').live('hide', function() {
-    jQuery(this).parent().find('a').removeClass('open'); //remove active state to button on close
+    $(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
