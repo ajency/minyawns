@@ -13,14 +13,14 @@ get_header();
                 <div class="span12">
                     <img class="log-img" src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
                     <div class="banner-desc">
-                        Minyawans is an easy to use. on-demand,<br>
+                        Minyawns is an easy to use. on-demand,<br>
                         student labour sourcing application
                     </div>
                     <hr>
                     <div class="row-fluid">
                         <div class="span4"></div>
-                        <div class="span2"><a  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minyawn</a></div>
-                        <div class="span2"><a href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minyawn</a></div>
+                        <div class="span2"><a  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minion </a></div>
+                        <div class="span2"><a href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minion</a></div>
                         <div class="span4"></div>
                     </div>	
                 </div>
@@ -40,32 +40,33 @@ get_header();
                     <div class="workflow1">
                         <i class="icon-calendar-empty i-cal"></i>
                     </div>
-                    <h3 class="small-header">Request a Minyawan</h3>
-                    <p class="small-desc">Pick a time and describe <br> your task.</p>
+                    <h3 class="small-header">Request a Minion</h3>
+                    <p class="small-desc">Pick a time, place, price and <br>describe your task.</p>
                 </div>
                 <div class="span2">
-                    <div class="workflow">
+				  <div class="workflow2">
+                        <i class="icon-heart i-money"></i>
+                    </div>
+                    <h3 class="small-header">Pick your favorite</h3>
+                    <p class="small-desc">Put your minion to work when they arrive.</p>
+                    </div>
+                <div class="span3">
+                  <div class="workflow">
                         <i class="icon-user i-user"></i>
                     </div>
                     <h3 class="small-header">Get Work Done</h3>
-                    <p class="small-desc">Take care of projects on your
-                        to-do list.</p>
+                    <p class="small-desc">Sit back, relax and enjoy <br>checking off your to-do list.</p>
                 </div>
-                <div class="span3">
-                    <div class="workflow2">
-                        <i class="icon-dollar i-money"></i>
-                    </div>
-                    <h3 class="small-header">Profit !</h3>
-                    <p class="small-desc">Enjoy having less <br>
-                        work to do.</p>
+						
+						
                 </div>
                 <div class="span2"></div>
             </div>
             <div class="row-fluid">
                 <div class="span12">
-                    <h3 class="big-heading-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit </h3>
-                    <p class="big-heading-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <h3 class="big-heading-title">The power and resources of an elite billion-dollar institution, awaiting your command. </h3>
+                    <p class="big-heading-desc">Minyawns - minions so good you can yawn- is an online service that is revolutionizing traditional staffing temp agencies through on-demand short time minions. 
+Businesses and Individual Professionals can post tasks and immediately receive assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. Additionally Minyawns provides a marketplace for students to strengthen resumes and gain experience, while business can help mold the future generation.</p>
                 </div>
             </div>
             
@@ -108,7 +109,7 @@ get_header();
 		<div class="span6">
 			<h6 class="align-center" style=" margin-bottom: 0px; ">
 		Sign Up Using Facebook</h6>
-<p class="align-center">Get using minyawns, faster !</p><br><br><br>
+<p class="align-center">Get using Minions, faster !</p><br><br><br>
 
 
 		<?php 	
