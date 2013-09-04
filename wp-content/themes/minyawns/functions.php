@@ -246,7 +246,7 @@ function minyawns_initial_checks() {
 add_action('init', 'minyawns_initial_checks');
 
 //Allow only active users to login in 
-//add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
+
 function authenticate_active_user($user, $password) {
     //do any extra validation stuff here
     global $wpdb;
@@ -263,6 +263,9 @@ function authenticate_active_user($user, $password) {
     else
         return false;
 }
+add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
+
+
 
 //added on 6aug2013 to add a custom role for the fb user, overrides plugin's default user role
 add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user', 11, 2);
@@ -810,9 +813,9 @@ function update_paypal_payment($data,$curl_result)
 
 	//echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
 
+	
 	if($status=="Failed")
-	{
-		
+	{		
 		$split_user = explode(",", $new_paypal_payment['minyawns_selected']);
             for ($i = 0; $i < sizeof($split_user); $i++) 
             {
@@ -826,7 +829,26 @@ function update_paypal_payment($data,$curl_result)
 					AND job_id = '" . $_POST['job_id'] . "'
 					"
                 );
-            }
-	}
+            }//end for ($i = 0; $i < sizeof($split_user); $i++) 
+	}//end if($status=="Failed")
+	/*else
+	{
+		
+		//store completed transaction in paypal_payment for cron job
+		
+		$wpdb->get_results("insert into  {$wpdb->prefix}paypal_payment
+				(job_id,trans_id,status,payment_date)values()");
+				
+		
+	}*/
+			
 	
+}//end function update_paypal_payment($data,$curl_result)
+
+
+
+function cron_paypal_payment_complete()
+{
+	
+
 }

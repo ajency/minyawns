@@ -403,28 +403,8 @@ $app->post('/confirm', function() use ($app) {
                 		<br/><br/>
                 
                 		";
-
-
-
-
-
-
-                /*  'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
-                  'job_end_date' => date('d M Y', strtotime($post_meta['job_end_date'][0])),
-                  'job_day' => date('l', $post_meta['job_start_date'][0]),
-                  'job_wages' => $post_meta['job_wages'][0],
-                  'job_progress' => 'available',
-                  'job_start_day' => date('d', $post_meta['job_start_date'][0]),
-                  'job_start_month' => date('F', $post_meta['job_start_date'][0]),
-                  'job_start_year' => date('Y', $post_meta['job_start_date'][0]),
-                  'job_start_meridiem' => date('a', $post_meta['job_start_time'][0]),
-                  'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),
-                  'job_start_time' => date('g:i', $post_meta['job_start_time'][0]),
-                  'job_end_time' => date('g:i', $post_meta['job_end_time'][0]),
-                  'job_location' => $post_meta['job_location'][0],
-                  'job_details' => $pagepost->post_content,
-
-                 */
+ 
+                
 
                 add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
                 $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
@@ -435,9 +415,7 @@ $app->post('/confirm', function() use ($app) {
             }
 
 
-
-
-
+ 
 
             /* aded on 1sep2013 */
 
