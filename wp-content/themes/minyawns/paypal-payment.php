@@ -44,13 +44,37 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 }
 else
 {
-			get_header();
-	
+			get_header();			
+			
+			$data['receiver_id']			= $_POST['receiver_id'];
+			$data['shipping']			= $_POST['shipping'];
+			$data['item_name']			= $_POST['item_name'];
+			$data['item_number'] 		= $_POST['item_number'];
+			$data['payment_status'] 	= $_POST['payment_status'];
+			$data['payment_amount'] 	= $_POST['mc_gross'];
+			$data['payment_currency']	= $_POST['mc_currency'];
+			$data['txn_id']				= $_POST['txn_id'];
+			$data['receiver_email'] 	= $_POST['receiver_email'];
+			$data['payer_email'] 		= $_POST['payer_email'];
+			$data['custom'] 			= $_POST['custom'];
+			$data['mc_fee'] = trim($_POST['mc_fee']);
+			//$mc_gross = $_POST['mc_gross'];
+			$data['mc_gross1']	 = trim($_POST['mc_gross1']);
+			//$total_amount = $amount + $tax;
+			$data['total_amount'] = trim($_POST['mc_gross']);
+			
+			
+			
+			$item__number = $data['item_number'];
+			
+			
+			
+			
 	
 	
 			if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
 			{	
-				update_paypal_payment($_POST["txn_id"],$_POST["custom"],'',$_POST['item_number']);
+				update_paypal_payment($data,'');
 				
 			}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )	
 	
@@ -120,26 +144,7 @@ else
 			{
 								
 				$mail_data = "\n\nPaypal Verified OK";							
-				$data['receiver_id']			= $_POST['receiver_id'];
-				$data['shipping']			= $_POST['shipping'];				
-				$data['item_name']			= $_POST['item_name'];
-				$data['item_number'] 		= $_POST['item_number'];
-				$data['payment_status'] 	= $_POST['payment_status'];
-				$data['payment_amount'] 	= $_POST['mc_gross'];
-				$data['payment_currency']	= $_POST['mc_currency'];
-				$data['txn_id']				= $_POST['txn_id'];
-				$data['receiver_email'] 	= $_POST['receiver_email'];
-				$data['payer_email'] 		= $_POST['payer_email'];
-				$data['custom'] 			= $_POST['custom'];	
-				$data['mc_fee'] = trim($_POST['mc_fee']);
-				//$mc_gross = $_POST['mc_gross'];
-				$data['mc_gross1']	 = trim($_POST['mc_gross1']);				
-				//$total_amount = $amount + $tax;
-				$data['total_amount'] = trim($_POST['mc_gross']);
 				
-				
-				
-				$item__number = $data['item_number'];
 				$job_data = get_post($item__number);
 				
 				$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
@@ -167,7 +172,7 @@ else
 				if(($data['payment_status']=="Completed") )
 				{
 					  
-					update_paypal_payment($data['txn_id'],$data['custom'] ,$data['payment_status'],$data['item_number']);
+					update_paypal_payment($data,$curl_result);
 					  	 
 					/*add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );*/
@@ -267,7 +272,7 @@ else
 			{
 				 
 				
-				update_paypal_payment($data['txn_id'],$data['custom'] ,$data['payment_status'],$data['item_number']);
+				update_paypal_payment($data,$curl_result);
 			 
 				
 				

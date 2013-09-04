@@ -761,9 +761,18 @@ function get_paypal_payment_meta($transaction_id,$minyawns_tx_id,$jobid)
  * Function to update paypal payment details for hired minyawns
  * Date:2sep2013
  */
-function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
+function update_paypal_payment($data,$curl_result)
 {
 	global $wpdb;	
+	$transaction_id = $data['txn_id'];
+	$minyawns_tx_id = $data['custom'];
+	if($curl_result=="VERIFIED")
+		$status = $data['payment_status'];
+	else
+		$status = "";
+	$jobid  = $data['item_number'];
+	
+	
 	$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx_id."%'  ");
 		
 	foreach($paypal_tx as $res)
@@ -788,10 +797,13 @@ function update_paypal_payment($transaction_id,$minyawns_tx_id,$status,$jobid)
 			case 'minyawns_selected'				:
 				$new_paypal_payment['minyawns_selected'] = $payment_tx ;
 				break;
+				
 		}//end switch($key_pp)
 
 	}//end foreach($paypal_payment as $key_pp => $payment_tx)
 
+	$new_paypal_payment['date_time'] = strtotime(date('D-M-Y G:i:s')) ;
+	$new_paypal_payment['paypal_date'] = strtotime(date('D-M-Y G:i:s')) ;
 	//update postmeta for the job with transaction id
 	$new_updated_paypal_payment =   serialize($new_paypal_payment);
 	$wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
