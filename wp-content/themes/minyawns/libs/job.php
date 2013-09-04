@@ -213,6 +213,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                   if(is_null($applied))
                       $applied=0;
                   
+                  
+                  
+                  
                 if ($total <= $_GET['offset'] + 5) {
                     $show_load = 1;
                 } else {

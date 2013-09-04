@@ -960,6 +960,10 @@ $(".load-ajax-browse").hide();
                 $(_this).attr('data-action', 'req_complete');
             }
 
+
+      if($("#is_singluar").length >0)
+          window.location.reload();
+
         }, 'json');
     });
 

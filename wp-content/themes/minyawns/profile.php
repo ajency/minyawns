@@ -145,7 +145,7 @@ get_header();  ?>
 			<div class="span12" id="profile-view">
 				<div class="row-fluid min_profile">
 
-					<div class="span2">
+                                        <div class="span2 <?php if(get_user_role() == 'employer'){ echo 'employer-image'; }?>">
 						<a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
 							<?php 	if(get_mn_user_avatar() !== false)
 										echo  get_mn_user_avatar();

@@ -375,6 +375,9 @@ class Minyawn_Job {
             }
         }
 
+        $min_job = new Minyawn_Job($jobID);
+         if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns)) 
+                        $applied = 2;
 
 
 

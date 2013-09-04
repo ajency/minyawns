@@ -163,9 +163,11 @@ global $minyawn_job;
                         <div class="span12 expand">
                             <div class="row-fluid header-title">
                                 <div class="span12">
+                                    <input type="hidden" value="<?php echo is_singular() ?>" id="is_singluar">
                                     <h3><a href="#" target="_blank" ><?php echo get_the_title() ?></a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
 <?php
 if (get_user_role() == "minyawn") {
+   
     if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3) {
         ?>
 
@@ -173,9 +175,9 @@ if (get_user_role() == "minyawn") {
 
                                                 <?php } else if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 0) : ?>
                                                     <a href="#" id="apply-job-browse" class="btn btn-medium btn-block btn-primary header-btn"  data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?> ">Apply</a>
-                                                <?php elseif ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2) : ?>
-                                                    <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn header-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
                                                 <?php elseif ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 1) : ?>
+                                                    <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn header-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
+                                                <?php elseif ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2) : ?>
                                                     <a href="#" class="btn btn-medium btn-block btn-success red-btn header-btn" >Requirement Complete</a>
                                                 <?php
                                                 endif;

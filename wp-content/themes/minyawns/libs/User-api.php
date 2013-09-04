@@ -524,8 +524,12 @@ function minyawn_job_apply() {
     if ('POST' !== $_SERVER['REQUEST_METHOD'])
         return;
 
+  
+    
     global $user_ID, $wpdb;
   
+    
+    
     //get job ID
     $job_id = $_POST['job_id'];
 
@@ -580,9 +584,9 @@ function minyawn_job_apply() {
     // send mail to employer who created job
     send_mail_employer_apply_job($job_id,'applied');
     
-    echo json_encode(array('success' => $status, 'new_action' => $new_action));
+    //echo json_encode(array('success' => $status, 'new_action' => $new_action));
 
-    die;
+   // die;
 }
 
 add_action('wp_ajax_minyawn_job_apply', 'minyawn_job_apply');
