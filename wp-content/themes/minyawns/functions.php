@@ -382,7 +382,7 @@ function email_signature() {
 							<div style="background:url(' . site_url() . '/wp-content/themes/minyawns/images/arro-up.png)repeat-x;clear:both;margin:5px 5px 5px 5px;height:80px;padding-left: 10px;padding: 1px;">
 
 									<h5 style="color:#ffffff;text-align:center;">Replies to this message are not monitored. Our Customer Service team is available to assist you here: </h5>
-									<br/><a href="mailto:support@minyawns.com">support@minyawns.com</a>
+									<a href="mailto:support@minyawns.com">support@minyawns.com</a>
 									</div>
 									</div>
 									<!--End of footer -->
