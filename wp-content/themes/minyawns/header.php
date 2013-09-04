@@ -34,6 +34,16 @@
 	
 	<!-- wordpress head functions -->
 	<?php wp_head(); ?>
+	<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-43096826-1', 'minyawns.com');
+ga('send', 'pageview');
+
+</script>
 	</head>
         <script>
             var siteurl='<?php echo site_url(); ?>';
@@ -57,7 +67,7 @@
 
 					if (is_user_logged_in() == TRUE) {
                             ?>
-					<div class="span2 notify">
+					<div class="span3 notify">
 						<div id="logged-in">
                                                    
 							<a id="user-popdown" href="javascript:void(0);"> <?php 
@@ -69,9 +79,9 @@
                                                         </a>
 						</div>
 					</div>
-					<div class="span1">
+					<!--<div class="span1">
 						<a href="#" class="help_icon"><i class="icon-question-sign"></i> </a>
-					</div>
+					</div>-->
 					<?php } else {
 						?>
 
