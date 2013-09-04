@@ -172,13 +172,13 @@ endif;
 	
 	</br>
 	<input type="hidden" name="image_name" id="image_name" value="" />
-	<img id="uploaded-image"></img>
+	<img id="uploaded-image" style="max-height: 500px"></img>
         <input type="hidden"  id="image_height">
         <input type="hidden"  id="image_width">
         <input type="hidden"  id="image_x_axis">
        <input type="hidden"  id="image_y_axis">
-       <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '3:1' : '1:1')?>" id="aspect_ratio">
-        <a type="button" class="btn btn-primary" id="done-cropping" style=" margin-left: 118px; margin-top: 5px; margin-bottom: 10px; display:none">Done? </a>
+       <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '2:1' : '1:1')?>" id="aspect_ratio">
+        <a type="button" class="btn btn-primary" id="done-cropping" style=" margin-left: 118px; margin-top:-1070px; margin-bottom: 10px; display:none">Done? </a>
 </form>
 
 </div>

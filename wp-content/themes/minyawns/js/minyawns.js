@@ -86,10 +86,10 @@ jQuery(document).ready(function($) {
             $("#image_name").val(data.result.image_name);
 
             if (data.result.image_height > 500)
-                $("#uploaded-image").css('height', '500');
+                $("#uploaded-image").css('height', 'auto');
 
             if (data.result.image_width > 500)
-                $("#uploaded-image").css('width', '500');
+                $("#uploaded-image").css('width', 'auto');
 
 
 
