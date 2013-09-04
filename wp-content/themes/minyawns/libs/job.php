@@ -210,7 +210,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                     }
                 }
 
-
+                  if(is_null($applied))
+                      $applied=0;
+                  
                 if ($total <= $_GET['offset'] + 5) {
                     $show_load = 1;
                 } else {
@@ -555,12 +557,56 @@ $app->post('/user-vote', function() use ($app) {
             $user_rating = $minyawns_rating->positive;
             $user_dislike = $minyawns_rating->negative;
             //$user['dislike'] = $rating->negative;
+            
+            
+            //get  emplyer details
+            $emp_data = get_userdata($_POST['emp_id']);
+            $emp_name = ucfirst($emp_data->display_name);
+            
+            
+            //get minyawns details
+            $min_data = get_userdata($_POST['user_id']);
+            $min_name = ucfirst($min_data->display_name);
+            $min_email =$min_data->user_email;
+            
+            
+            
 
             if ($_POST['action'] == "vote-up")
-            {                $like_count = $user_rating;
+            {   $like_count = $user_rating;
+            	$mail_subject =  "Minyawns - You have received a Thumbs Up. ";
+            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/> 
+            			Congratulations, <br/><br/>
+
+            			You have received Thumbs Up from <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
+            			Great Job! Keep it up.		<br/><br/>
+            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>
+            			
+            			";
+            	
+            				 
             }else{
                 $like_count = $user_dislike;
+                $mail_subject =  "Minyawns - You have received Thumbs Down. ";                 
+            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/>            			
+            			You have received Thumbs Down from  <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
+            			Put little more efforts to receive Thumbs Up.<br/><br/>
+            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>          			
+            			
+            			";
             }
+            
+            
+            
+            //send mail to minyawn for vote-up & vote down
+            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+            wp_mail($min_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
+            	
+            
+            
+            
+            
                 echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id']));
         });
 

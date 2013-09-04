@@ -17,32 +17,29 @@ jQuery(document).ready(function($) {
         var y2_axis = obj.y2;
         var thumb_width = obj.width;
         var thumb_height = obj.height;
-        if (thumb_width > 0) {
-            $("#done-cropping").show();
+//        if (thumb_width > 0) {
+//            $("#done-cropping").show();
+//            $("#image_height").val(thumb_height);
+//            $("#image_width").val(thumb_width)
+//            $("#image_x_axis").val(x_axis);
+//            $("#image_y_axis").val(y_axis);
+//        }
+        if (thumb_width > 0)
+        {
+            //if (confirm("Do you want to save image..!"))
+            //{
+
+
+                 $("#done-cropping").show();
             $("#image_height").val(thumb_height);
             $("#image_width").val(thumb_width)
             $("#image_x_axis").val(x_axis);
             $("#image_y_axis").val(y_axis);
+
+            //}
         }
-//		if(thumb_width > 0)
-//			{
-//				if(confirm("Do you want to save image..!"))
-//					{
-//						$.ajax({
-//							type:"GET",
-//							url:"ajax_image.php?t=ajax&img="+$("#image_name").val()+"&w="+thumb_width+"&h="+thumb_height+"&x1="+x_axis+"&y1="+y_axis,
-//							cache:false,
-//							success:function(rsponse)
-//								{
-//								 $("#cropimage").hide();
-//								    $("#thumbs").html("");
-//									$("#thumbs").html("<img src='uploads/"+rsponse+"' />");
-//								}
-//						});
-//					}
-//			}
-//		else
-//			alert("Please select portion..!");
+        else
+            alert("Please select portion..!");
     }
     $('img#uploaded-image').imgAreaSelect({
         aspectRatio: $("#aspect_ratio").val(),
@@ -89,10 +86,10 @@ jQuery(document).ready(function($) {
             $("#image_name").val(data.result.image_name);
 
             if (data.result.image_height > 500)
-                $("#uploaded-image").css('height', '500');
+                $("#uploaded-image").css('height', 'auto');
 
             if (data.result.image_width > 500)
-                $("#uploaded-image").css('width', '500');
+                $("#uploaded-image").css('width', 'auto');
 
 
 
@@ -1334,15 +1331,15 @@ jQuery(document).ready(function($) {
         var _job_id = $(this).attr('job-id');
         var _user_id = $(this).attr('user_id');
         var _action = $(this).attr('action');
-
+        var _emp_id = $(this).attr('emp_id');
 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
                 {
                     rating: _rating,
                     job_id: _job_id,
                     user_id: _user_id,
-                    action: _action
-
+                    action: _action,
+                    emp_id: _emp_id
 
                 },
         function(response) {
