@@ -429,11 +429,13 @@ jQuery(document).ready(function($) {
         load_browse_jobs();
     });
     function load_browse_jobs() {
+        
         $(".load_ajax").css('display', 'block');
         $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
         $("#accordion2").empty();
-
+        $(".load_more").show();
+$(".load-ajax-browse").hide();
         var Fetchjobs = Backbone.Collection.extend({
             model: Job,
             url: function() {
@@ -450,7 +452,7 @@ jQuery(document).ready(function($) {
             },
             reset: true,
             success: function(collection, response) {
-
+                   $(".load_more").hide();
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
@@ -1345,7 +1347,8 @@ jQuery(document).ready(function($) {
         function(response) {
             $(".rating").find('a').prop('disabled', false);
             if (response.action == "vote-up") {
-                $("#vote-up" + _user_id).prop('disabled', true)
+                $("#vote-up" + _user_id).prop('disabled', true);
+                $("#vote-down" + _user_id).prop('disabled', true)
                 $("#vote-up" + _user_id).contents().filter(function() {
                     return this.nodeType != 1;
                 }).remove();
@@ -1353,7 +1356,8 @@ jQuery(document).ready(function($) {
                 //$("#vote-down").append("0");
             }
             if (response.action == "vote-down") {
-                $("#vote-down" + _user_id).prop('disabled', true)
+                $("#vote-down" + _user_id).prop('disabled', true);
+                $("#vote-up" + _user_id).prop('disabled', true)
                 $("#vote-down" + _user_id).contents().filter(function() {
                     return this.nodeType != 1;
                 }).remove();
