@@ -1385,7 +1385,7 @@ body .jobs_table .data-title .profile-job {
 .home .big-heading-title {
   display: block;
   padding-top: 45px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   font-size: 22px;
   font-weight: bold;
   text-align: center;
@@ -2295,4 +2295,16 @@ body .jobs_table .data-title .profile-job {
   margin-left: 128px;
   font-size: 11px;
   line-height: 20px;
+}
+.employer-image {
+  overflow: hidden;
+  width: 180px;
+  height: 88px;
+  border: 2px solid ;
+}
+.employer-image img {
+  border: 0px !important;
+}
+.employer-image .change-avtar span {
+  top: -35px;
 }
