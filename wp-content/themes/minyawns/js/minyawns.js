@@ -429,11 +429,13 @@ jQuery(document).ready(function($) {
         load_browse_jobs();
     });
     function load_browse_jobs() {
+        
         $(".load_ajax").css('display', 'block');
         $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
         $("#accordion2").empty();
-
+        $(".load_more").show();
+$(".load-ajax-browse").hide();
         var Fetchjobs = Backbone.Collection.extend({
             model: Job,
             url: function() {
@@ -450,7 +452,7 @@ jQuery(document).ready(function($) {
             },
             reset: true,
             success: function(collection, response) {
-
+                   $(".load_more").hide();
                 if (collection.length == 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);

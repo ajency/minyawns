@@ -281,6 +281,7 @@ global $minyawn_job;
             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
 
             <div class="clear"></div><br>
+            <span class='load-ajax-browse' style="display:block"></span> 
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
                 <!--   <div class="row-fluid header_cell">
                                     <div class="span7">

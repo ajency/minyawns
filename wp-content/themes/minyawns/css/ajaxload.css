@@ -37,6 +37,17 @@ margin: auto;
     
    
 }
+.load-ajax-browse {
+   
+      background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
+float: none;
+height: 21px;
+position: inherit;
+width: 20px;
+margin: auto;
+    
+   
+}
 
 /*.load_ajax1 {
    
