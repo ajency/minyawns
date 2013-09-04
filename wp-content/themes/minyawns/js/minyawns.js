@@ -1347,7 +1347,8 @@ $(".load-ajax-browse").hide();
         function(response) {
             $(".rating").find('a').prop('disabled', false);
             if (response.action == "vote-up") {
-                $("#vote-up" + _user_id).prop('disabled', true)
+                $("#vote-up" + _user_id).prop('disabled', true);
+                $("#vote-down" + _user_id).prop('disabled', true)
                 $("#vote-up" + _user_id).contents().filter(function() {
                     return this.nodeType != 1;
                 }).remove();
@@ -1355,7 +1356,8 @@ $(".load-ajax-browse").hide();
                 //$("#vote-down").append("0");
             }
             if (response.action == "vote-down") {
-                $("#vote-down" + _user_id).prop('disabled', true)
+                $("#vote-down" + _user_id).prop('disabled', true);
+                $("#vote-up" + _user_id).prop('disabled', true)
                 $("#vote-down" + _user_id).contents().filter(function() {
                     return this.nodeType != 1;
                 }).remove();
