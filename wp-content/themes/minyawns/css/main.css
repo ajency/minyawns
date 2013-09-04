@@ -2298,13 +2298,19 @@ body .jobs_table .data-title .profile-job {
 }
 .employer-image {
   overflow: hidden;
-  width: 180px;
+  width: 170px;
   height: 88px;
-  border: 2px solid ;
+  border: 2px solid #8ed030;
 }
 .employer-image img {
   border: 0px !important;
 }
 .employer-image .change-avtar span {
   top: -35px;
+}
+.employer-image2 {
+  overflow: hidden;
+  width: 170px;
+  height: 88px;
+  border: 2px solid #8ed030;
 }
