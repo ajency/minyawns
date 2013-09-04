@@ -434,6 +434,8 @@ $app->post('/confirm', function() use ($app) {
             add_post_meta($_POST['job_id'], 'paypal_payment', $paypal_payment);
 
 
+            
+            
 
             //get user
             // $users__ = explode(",", $_POST['user_id']);

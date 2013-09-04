@@ -8,6 +8,7 @@
 		<li><a href="#">Tech City</a></li>
 		<li><a href="#">Directory</a></li>
 	</ul>
+	<?php /* commented  on 4sep2013 
 	<div class="social-icon">
 		<a href="#"><img
 			src="<?php echo get_template_directory_uri() ?>/images/twiiter.png" />
@@ -15,6 +16,7 @@
 			src="<?php echo get_template_directory_uri() ?>/images/facebook.png" />
 		</a>
 	</div>
+	*/?>
 	<div class="site_link">All rights reserved 2013 @ Minyawn</div>
 </footer>
 
