@@ -57,7 +57,7 @@
 
 					if (is_user_logged_in() == TRUE) {
                             ?>
-					<div class="span2 notify">
+					<div class="span3 notify">
 						<div id="logged-in">
                                                    
 							<a id="user-popdown" href="javascript:void(0);"> <?php 
@@ -69,9 +69,9 @@
                                                         </a>
 						</div>
 					</div>
-					<div class="span1">
+					<!--<div class="span1">
 						<a href="#" class="help_icon"><i class="icon-question-sign"></i> </a>
-					</div>
+					</div>-->
 					<?php } else {
 						?>
 

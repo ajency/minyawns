@@ -2,11 +2,10 @@
 <footer>
 	<hr style="border-top: 1px solid #C7C3C3;">
 	<ul class="footer_menu">
-		<li><a href="#">About</a></li>
-		<li><a href="#">Careers</a></li>
-		<li><a href="#">Terms</a></li>
-		<li><a href="#">Privacy</a></li>
-		<li><a href="#">Contact</a></li>
+		<li><a href="<?php echo site_url(); ?>/about/">About</a></li>
+		<li><a href="<?php echo site_url(); ?>/terms-of-service/">Terms</a></li>
+		<li><a href="<?php echo site_url(); ?>/privacy/">Privacy</a></li>
+		<li><a href="<?php echo site_url(); ?>/contact/">Contact</a></li>
 	</ul>
 	<?php /* commented  on 4sep2013 
 	<div class="social-icon">
