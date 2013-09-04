@@ -58,7 +58,7 @@ function minyawns_scripts_styles() {
         default:
             wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
             wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array(), null);
-            
+
             wp_enqueue_style('flat-ui', get_template_directory_uri() . '/css/flat-ui.css', array(), null);
             wp_enqueue_style('mains', get_template_directory_uri() . '/css/main.css', array(), null);
             wp_enqueue_style('style', get_template_directory_uri() . '/css/style.css', array(), null);
@@ -80,20 +80,21 @@ function minyawns_scripts_styles() {
 
             wp_enqueue_style('bootstrap-timepicker', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
 
-            
-             //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
+
+            //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
 
             //if(is_page('profile'))
-            
+
             wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
 
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery', 'jquery-ui'), null);
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
-            wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('jquery'), null);
-            wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
+
+
+
 //            wp_enqueue_script('bootstrap-lightbox', get_template_directory_uri() . '/js/bootstrap-lightbox.min.js', array('jquery'), null);
             wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
@@ -105,15 +106,16 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('jquery.stacktable', get_template_directory_uri() . '/js/jquery.stacktable.js', array('jquery'), null);
             wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
-
+            wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('jquery'), null);
+            wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
-           // wp_dequeue_script('jquery');
-            if(is_page('jobs')){
-            wp_enqueue_script('jquery-cal', get_template_directory_uri() . '/src/jquery.js', array(), null);
-            wp_enqueue_script('wdCalendar_lang_US', get_template_directory_uri() . '/src/plugins/wdCalendar_lang_US.js', array('jquery-cal'), null);
-            wp_enqueue_script('jquery.calendar', get_template_directory_uri() . '/src/plugins/jquery.calendar.js', array('jquery-cal'), null);
-            
-			wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), null);
+            // wp_dequeue_script('jquery');
+            if (is_page('jobs')) {
+                wp_enqueue_script('jquery-cal', get_template_directory_uri() . '/src/jquery.js', array(), null);
+                wp_enqueue_script('wdCalendar_lang_US', get_template_directory_uri() . '/src/plugins/wdCalendar_lang_US.js', array('jquery-cal'), null);
+                wp_enqueue_script('jquery.calendar', get_template_directory_uri() . '/src/plugins/jquery.calendar.js', array('jquery-cal'), null);
+
+                wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), null);
             }
 
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
@@ -263,7 +265,8 @@ function authenticate_active_user($user, $password) {
     else
         return false;
 }
-add_filter('wp_authenticate_user', 'authenticate_active_user',10,2);
+
+add_filter('wp_authenticate_user', 'authenticate_active_user', 10, 2);
 
 
 
@@ -656,7 +659,7 @@ function check_access() {
     foreach ($queryresult as $res)
         if ($res->cnt_perm > 0) {
             no_access_page($user_role, $page_slug);
-           //return false;
+            //return false;
         }
         else
             return true;
@@ -690,159 +693,133 @@ function no_access_page($user_role, $page_slug) {
     return false;
 }
 
+function paypal_payment_mail($email, $subject, $premail_msg, $data_paypal, $sel_minyawn_data) {
+    $item__number = $data_paypal['item_number']; //job id
+    $job_data = get_post($item__number);
 
-
-
-
-
-
-function paypal_payment_mail($email, $subject, $premail_msg, $data_paypal,$sel_minyawn_data)
-{
-	$item__number	= $data_paypal['item_number'];//job id
-	$job_data = get_post($item__number);		
-	
-	$mail_message.=" 
-						<br/><b>Transaction ID 		: </b> ".$data['txn_id']."
-						<br/><b>Total Amount 		: </b> ".$data['total_amount']."
+    $mail_message.=" 
+						<br/><b>Transaction ID 		: </b> " . $data['txn_id'] . "
+						<br/><b>Total Amount 		: </b> " . $data['total_amount'] . "
 						<br/><b>Selected Minyawns	: </b> ";
-		
-	
-	$cnt_sel_minyawns  = 1;
-	foreach($sel_minyawn_data as $key=>$value)
-	{		
-		$mail_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;	
-		$cnt_sel_minyawns++;
-	}
-		
-	$mail_message.= "
-						<br/><b>Job    		   		:</b> ".$data['item_name']."
-						<br/><b>Job Date 			: </b>". date('d M Y',get_post_meta($item__number,'job_start_date',true))."
-						<br/><b>Start Time 			: </b>". date('g:i a',get_post_meta($item__number,'job_start_time',true))."
-						<br/><b>End Time 			: </b>". date('g:i a',get_post_meta($item__number,'job_end_time',true))."
-						<br/><b>Location 			: </b>". get_post_meta($item__number,'job_location',true)."
-						<br/><b>Wages 				: </b>".get_post_meta($item__number,'job_wages',true)."
-						<br/><b>Details 			: </b>".$job_data->post_content."
+
+
+    $cnt_sel_minyawns = 1;
+    foreach ($sel_minyawn_data as $key => $value) {
+        $mail_message.= "<br/>" . $cnt_sel_minyawns . ". " . $value->display_name . "  " . $value->user_email;
+        $cnt_sel_minyawns++;
+    }
+
+    $mail_message.= "
+						<br/><b>Job    		   		:</b> " . $data['item_name'] . "
+						<br/><b>Job Date 			: </b>" . date('d M Y', get_post_meta($item__number, 'job_start_date', true)) . "
+						<br/><b>Start Time 			: </b>" . date('g:i a', get_post_meta($item__number, 'job_start_time', true)) . "
+						<br/><b>End Time 			: </b>" . date('g:i a', get_post_meta($item__number, 'job_end_time', true)) . "
+						<br/><b>Location 			: </b>" . get_post_meta($item__number, 'job_location', true) . "
+						<br/><b>Wages 				: </b>" . get_post_meta($item__number, 'job_wages', true) . "
+						<br/><b>Details 			: </b>" . $job_data->post_content . "
 						<br/><br/><br/>
 						";
-	
-	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-	wp_mail($email, $subject, email_header() . $mail_message . email_signature(), $headers);
-	
-	
+
+    add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+    $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+    wp_mail($email, $subject, email_header() . $mail_message . email_signature(), $headers);
 }
 
+function get_paypal_payment_meta($transaction_id, $minyawns_tx_id, $jobid) {
+    global $wpdb;
+    $qry_paypal_payment = "SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' ";
+    if ($transaction_id != "")
+        $qry_paypal_payment.=" and meta_value like '%" . $transaction_id . "%' ";
+    if ($minyawns_tx_id != "")
+        $qry_paypal_payment.=" and meta_value like '%" . $minyawns_tx_id . "%' ";
+    if ($jobid != "")
+        $qry_paypal_payment.=" and post_id ='" . $jobid . "' ";
 
+    $paypal_tx = $wpdb->get_results($qry_paypal_payment);
 
-
-function get_paypal_payment_meta($transaction_id,$minyawns_tx_id,$jobid)
-{
-	global $wpdb;
-	$qry_paypal_payment = "SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' ";
-	if($transaction_id!="")
-		$qry_paypal_payment.=" and meta_value like '%".$transaction_id."%' ";
-	if($minyawns_tx_id!="")
-		$qry_paypal_payment.=" and meta_value like '%".$minyawns_tx_id."%' ";
-	if($jobid!="")
-		$qry_paypal_payment.=" and post_id ='".$jobid."' ";
-	
-	$paypal_tx  = $wpdb->get_results($qry_paypal_payment);
-	
-	foreach($paypal_tx as $res)
-	{
-		$paypal_payment = unserialize($res->paypal_payment);
-			
-	}
-	return $paypal_payment;	
-	
+    foreach ($paypal_tx as $res) {
+        $paypal_payment = unserialize($res->paypal_payment);
+    }
+    return $paypal_payment;
 }
-
 
 /*
  * Function to update paypal payment details for hired minyawns
  * Date:2sep2013
  */
-function update_paypal_payment($data,$curl_result)
-{
-	global $wpdb;	
-	$transaction_id = $data['txn_id'];
-	$minyawns_tx_id = $data['custom'];
-	if($curl_result=="VERIFIED")
-		$status = $data['payment_status'];
-	else
-		$status = "";
-	$jobid  = $data['item_number'];
-	
-	
-	$paypal_tx  = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='".$jobid."' AND meta_value like '%".$minyawns_tx_id."%'  ");
-		
-	foreach($paypal_tx as $res)
-	{
-		$paypal_payment = unserialize($res->paypal_payment);
-			
-	}
-	$new_paypal_payment = array();
-	foreach($paypal_payment as $key_pp => $payment_tx)
-	{
-		switch($key_pp)
-		{
-			case 'minyawn_txn_id':
-				$new_paypal_payment['minyawn_txn_id'] = $payment_tx ;
-				break;
-			case 'paypal_txn_id':
-				$new_paypal_payment['paypal_txn_id'] = $transaction_id ;
-				break;
-			case 'status'				:
-				$new_paypal_payment['status'] = $status ;
-				break;
-			case 'minyawns_selected'				:
-				$new_paypal_payment['minyawns_selected'] = $payment_tx ;
-				break;
-				
-		}//end switch($key_pp)
 
-	}//end foreach($paypal_payment as $key_pp => $payment_tx)
+function update_paypal_payment($data, $curl_result) {
+    global $wpdb;
+    $transaction_id = $data['txn_id'];
+    $minyawns_tx_id = $data['custom'];
+    if ($curl_result == "VERIFIED")
+        $status = $data['payment_status'];
+    else
+        $status = "";
+    $jobid = $data['item_number'];
 
-	$new_paypal_payment['date_time'] = strtotime(date('D-M-Y G:i:s')) ;
-	$new_paypal_payment['paypal_date'] = strtotime(date('D-M-Y G:i:s')) ;
-	//update postmeta for the job with transaction id
-	$new_updated_paypal_payment =   serialize($new_paypal_payment);
-	$wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'");
 
-	//echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
+    $paypal_tx = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='" . $jobid . "' AND meta_value like '%" . $minyawns_tx_id . "%'  ");
 
-	
-	if($status=="Failed")
-	{		
-		$split_user = explode(",", $new_paypal_payment['minyawns_selected']);
-            for ($i = 0; $i < sizeof($split_user); $i++) 
-            {
-                //$split_status = explode(",", $split_user[$i]);
-                // for ($j = 0; $j < sizeof($split_status); $j++) {
+    foreach ($paypal_tx as $res) {
+        $paypal_payment = unserialize($res->paypal_payment);
+    }
+    $new_paypal_payment = array();
+    foreach ($paypal_payment as $key_pp => $payment_tx) {
+        switch ($key_pp) {
+            case 'minyawn_txn_id':
+                $new_paypal_payment['minyawn_txn_id'] = $payment_tx;
+                break;
+            case 'paypal_txn_id':
+                $new_paypal_payment['paypal_txn_id'] = $transaction_id;
+                break;
+            case 'status' :
+                $new_paypal_payment['status'] = $status;
+                break;
+            case 'minyawns_selected' :
+                $new_paypal_payment['minyawns_selected'] = $payment_tx;
+                break;
+        }//end switch($key_pp)
+    }//end foreach($paypal_payment as $key_pp => $payment_tx)
 
-                $wpdb->get_results("
+    $new_paypal_payment['date_time'] = strtotime(date('D-M-Y G:i:s'));
+    $new_paypal_payment['paypal_date'] = strtotime(date('D-M-Y G:i:s'));
+    //update postmeta for the job with transaction id
+    $new_updated_paypal_payment = serialize($new_paypal_payment);
+    $wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '" . $new_updated_paypal_payment . "' WHERE post_id = " . $jobid . " and meta_key ='paypal_payment'  AND    meta_value like '%" . $minyawns_tx_id . "%'");
+
+    //echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
+
+
+    if ($status == "Failed") {
+        $split_user = explode(",", $new_paypal_payment['minyawns_selected']);
+        for ($i = 0; $i < sizeof($split_user); $i++) {
+            //$split_status = explode(",", $split_user[$i]);
+            // for ($j = 0; $j < sizeof($split_status); $j++) {
+
+            $wpdb->get_results("
 					UPDATE {$wpdb->prefix}userjobs 
 					SET status = 'applied'
 					WHERE user_id = '" . $split_user[$i] . "' 
 					AND job_id = '" . $_POST['job_id'] . "'
 					"
-                );
-            }//end for ($i = 0; $i < sizeof($split_user); $i++) 
-	}//end if($status=="Failed")
-	/*else TODO
-	{
-		
-		//store completed transaction in paypal_payment for cron job
-		
-		$wpdb->get_results("insert into  {$wpdb->prefix}paypal_payment
-				(job_id,job_author,job_email,trans_id,status,payment_date)values()");
-				
-		
-		
-	}*/
-			
-	
-}//end function update_paypal_payment($data,$curl_result)
+            );
+        }//end for ($i = 0; $i < sizeof($split_user); $i++) 
+    }//end if($status=="Failed")
+    /* else TODO
+      {
+
+      //store completed transaction in paypal_payment for cron job
+
+      $wpdb->get_results("insert into  {$wpdb->prefix}paypal_payment
+      (job_id,job_author,job_email,trans_id,status,payment_date)values()");
+
+
+
+      } */
+}
+
+//end function update_paypal_payment($data,$curl_result)
 
 
 

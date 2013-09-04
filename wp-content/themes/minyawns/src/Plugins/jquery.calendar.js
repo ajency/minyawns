@@ -1752,7 +1752,7 @@
                                  
                         
                         if($("#"+data[0]).val() === "1")
-                       html="<a href='#' id='unapply-job' class='btn btn-medium btn-block btn-danger red-btn' data-action='unapply' data-job-id='"+data[0]+"'>Unapply</a>"; 
+                       html="<button href='#' id='unapply-job' class='btn btn-medium btn-block btn-danger red-btn' data-action='unapply' data-job-id='"+data[0]+"'>Unapply</button>"; 
                         
                        else if($("#"+data[0]).val() === "3") 
                         html="<a href='#' class='required'>You are hired!</a>";    
@@ -1761,12 +1761,12 @@
                             html="<a href='#' class='required'>Requirement Complete</a>";
                         
                         else
-                            html = "<div id='apply'><a href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</a></div>";
+                            html = "<div id='apply'><button href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</button></div>";
                             
                         
                         
                         if( $("#"+data[0]).length == 0)
-                        html = "<div id='apply'><a href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</a></div>";
+                        html = "<div id='apply'><button href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</button></div>";
                             
                             
                             
@@ -3016,16 +3016,16 @@
 
 })(jQuery);
 
-$('.collapse').live('show', function() {
-    $(this).parent().find('a').addClass('open'); //add active state to button on open
-});
-
-$('.collapse').live('hide', function() {
-    $(this).parent().find('a').removeClass('open'); //remove active state to button on close
-});
+//$('.collapse').live('show', function() {
+//    $(this).parent().find('a').addClass('open'); //add active state to button on open
+//});
+//
+//$('.collapse').live('hide', function() {
+//    $(this).parent().find('a').removeClass('open'); //remove active state to button on close
+//});
 
    $('#apply-job').live('click', function(evt) {
-       
+       alert("here");
         evt.preventDefault();
         var _this = $(this);
         var _action = $(this).attr('data-action');
