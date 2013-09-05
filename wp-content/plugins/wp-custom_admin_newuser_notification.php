@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Custom New User Notification
- * @version 1.6
+ * @version 1
  */
 /*
 Plugin Name: Custom New User Notification
@@ -28,9 +28,9 @@ function wp_new_user_notification($user_id, $plaintext_pass = '') {
 	
 	
 	
-	if ( empty($plaintext_pass) )
+	/*if ( empty($plaintext_pass) )
 		return;
-/*
+
 	$message  = sprintf(__('testUsername: %s'), $user->user_login) . "\r\n";
 	$message .= sprintf(__('Password: %s'), $plaintext_pass) . "\r\n";
 	$message .= wp_login_url() . "\r\n";
