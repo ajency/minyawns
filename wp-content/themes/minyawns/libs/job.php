@@ -128,7 +128,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            ORDER BY $wpdb->postmeta.meta_value DESC";
+                            ORDER BY $wpdb->postmeta.meta_value ASC";
                 } else {
 
 
@@ -137,7 +137,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            ORDER BY $wpdb->postmeta.meta_value DESC";
+                            ORDER BY $wpdb->postmeta.meta_value ASC";
                 }
             }
 
