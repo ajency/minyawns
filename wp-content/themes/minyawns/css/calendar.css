@@ -417,8 +417,8 @@ height: 40px;
 .st-dtitle {
 border-left: 1px solid #CACBCE;
 border-top: 1px solid #CACBCE;
-background-color: rgba(0, 0, 0, 0.66);
-color: #FFF;
+background-color: rgba(199, 195, 195, 0.66);
+color: #444343;
 padding-right: 2px;
 text-align: right;
 line-height: 26px;
@@ -683,7 +683,7 @@ font-family: arial;
     text-decoration:underline;
 }
 .st-bg:hover {
-background:#000;
+background:#ccc;
 cursor:pointer;
 }
 #bbit-cal-quickAddBTN{
