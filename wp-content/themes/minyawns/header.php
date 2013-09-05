@@ -75,7 +75,7 @@ ga('send', 'pageview');
 									if(get_mn_user_avatar() !== false)
 										echo get_mn_user_avatar() ;
 									else
-										echo get_avatar( get_user_profile_email(), 168 )?> <b class="caret"></b>
+										echo get_avatar(get_user_id(), 168 )?> <b class="caret"></b>
 							
                                                         </a>
 						</div>

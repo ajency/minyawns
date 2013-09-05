@@ -139,9 +139,7 @@ function get_mn_user_avatar() {
     global $current_user_new;
     if ($current_user_new->data->avatar !== false) {
          return wp_get_attachment_image($current_user_new->data->avatar,get_user_role());
-        
-    
-        
+            
     } else {
         return false;
     }
@@ -197,7 +195,7 @@ function user_profile_last_name() {
 function get_user_profile_last_name() {
     global $current_user_new;
 
-    return ($current_user_new->data->last_name) > 0 ? $current_user_new->data->last_name : '';
+    return strlen($current_user_new->data->last_name) > 0 ? $current_user_new->data->last_name : '';
 }
 
 //User profile body

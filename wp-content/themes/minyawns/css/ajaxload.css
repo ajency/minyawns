@@ -73,6 +73,17 @@
 
 
 }
+.load_ajax_single_page{
+    
+   background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 21px;
+    margin: 12px auto auto 223px;
+    position: inherit;
+    width: 20px;
+    z-index: 99999;  
+    
+}
 .load_ajax1_myjobs{
     background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
     float: left;
