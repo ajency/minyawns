@@ -958,6 +958,9 @@ body .jobs_table .data-title .profile-job {
   text-align: center;
   font-size: 12px;
   margin-bottom: 10px;
+  text-overflow: ellipsis;
+  width: 18em;
+  overflow: hidden;
 }
 .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .label-small {
   margin-bottom: 5px;
