@@ -359,122 +359,56 @@ $app->post('/confirm', function() use ($app) {
             global $wpdb;
             $paypal_minyawns_hired = "";
             $split_user = explode("-", $_POST['status']);
-            for ($i = 0; $i < sizeof($split_user); $i++) {
-
+            for ($i = 0; $i < sizeof($split_user); $i++) 
+            {
                 $split_status = explode(",", $split_user[$i]);
                 // for ($j = 0; $j < sizeof($split_status); $j++) {
 
-                $wpdb->get_results(
+               /* $wpdb->get_results(
                         "
 	UPDATE {$wpdb->prefix}userjobs 
 	SET status = '" . $split_status[1] . "'
 	WHERE user_id = '" . $split_status[0] . "' 
 		AND job_id = '" . $_POST['job_id'] . "'
 	"
-                );
-
-
-                if ($split_status[0] != "") {
+                );*/
+                if ($split_status[0] != "") 
+                {
                     if ($i > 0)
                         $paypal_minyawns_hired.= ",";
 
                     $paypal_minyawns_hired.=$split_status[0];
                 }
-
-                 
-
                 // }
             }
 
 
- 
-
-            /* aded on 1sep2013 */
-
-  
+            /* aded on 1sep2013 */  
             $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
 
             $paypal_payment = array('minyawn_txn_id' => $key_job, 'paypal_txn_id' => '', 'status' => '', 'minyawns_selected' => $paypal_minyawns_hired);
             add_post_meta($_POST['job_id'], 'paypal_payment', $paypal_payment);
-
-
-            
-            
-
-            //get user
-            // $users__ = explode(",", $_POST['user_id']);
-            //end get user
-
-            /*
-              if (isset($_POST['jobwages'])) {
-              $single_wages = $_POST['jobwages'];
-              }
-
-
-
-
-
-              $cnt_users = 0;
-              foreach ($users__ as $user___) {
-              if ($user___ != "") {
-
-              //check if the user is already hired. if already hired do not add wages for the selected user
-              /* $querystr = "
-              SELECT count(*) as user_hired from ".$wpdb->prefix."userjobs
-              where job_id = ".$_POST['job_id']." and user_id = $user___";
-
-              $users_already_hired = $wpdb->get_results($querystr, OBJECT);
-              foreach($users_already_hired as $hired_user_check)
-              if($hired_user_check->user_hired <=0) * /
-              $cnt_users++;
-              }
-
-              $html.=$querystr . '' . $users_already_hired['user_hired'];
-
-              }
-              $total_wages = $cnt_users * $single_wages;
-
-             */
+   
             $total_wages = trim($_POST['jobwages']);
             $returnUrl = $_POST['returnUrl'];
             $cancelUrl = $_POST['cancelUrl'];
-
-
-
             $html.='<form class="paypal" action="' . site_url() . '/paypal-payments/" method="post" id="paypal_form" target="_self">
 				<input type="hidden" name="cmd" value="_xclick" />
 			    <input type="hidden" name="no_note" value="1" />
             	<input type="hidden" name="custom" value="' . $key_job . '" />
-			    <input type="hidden" name="lc" value="UK" />
-			   
+			    <input type="hidden" name="lc" value="UK" />			   
 			    <input type="hidden" name="amount" value="' . $total_wages . '" />
-			    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
- 
+			    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" /> 
 			    <input type="hidden" name="first_name" value="Customer  First Name"  />
 			    <input type="hidden" name="last_name" value="Customer  Last Name"  />			    
 			    <input type="hidden" name="item_number" value="' . $_POST['job_id'] . '" / >
 			    <input type="hidden" name="item_name" value="' . get_the_title($_POST['job_id']) . '" / >			   
- 
-			    
-			   
-           	<input type="submit" id="submitBtn" value=" " style="margin:auto; width:140px; height:47px; border:none; display:block;background-image:url(\'https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif\');" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
+            	<input type="submit" id="submitBtn" value=" " style="margin:auto; width:140px; height:47px; border:none; display:block;background-image:url(\'https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif\');" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
            	</form>
            	';
-
-
-
-
-
-
-
-
             echo json_encode(array('user_ids' => $_POST['user_id'], 'content' => $html, 'inc' => $inc));
-
-
-
-
-
+ 
             /* end added on 1sep2013 */
         });
 

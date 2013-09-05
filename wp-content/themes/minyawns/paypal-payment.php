@@ -199,6 +199,8 @@ else
 						
 						
 						
+						//update selected minyawns status to hired
+						$wpdb->get_results("UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'");
 						
 						//send mail to hired minyawns						
 						$job_data = get_post($data['item_number']);						
@@ -220,8 +222,9 @@ else
 		                $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
 		                wp_mail($value->user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
 								
-						
-						
+		                
+		                
+		                
 						
 						
 						

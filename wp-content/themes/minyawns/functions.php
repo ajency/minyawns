@@ -250,7 +250,7 @@ function minyawns_initial_checks() {
     minyawns_prevent_dashboard_access();
 }
 
-add_action('init', 'minyawns_initial_checks');
+//add_action('init', 'minyawns_initial_checks');
 
 //Allow only active users to login in 
 
