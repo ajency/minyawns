@@ -407,7 +407,7 @@ height: 40px;
 	background:url(images/calendar/load-bg.png);
 }
 .st-bg-today {
-	background-color:#ffc;
+background-color: #74EC24;
 }
 .bg-exists .st-bg-today {
 	background-color:#eee;
@@ -644,10 +644,10 @@ font-family: arial;
 	POSITION: absolute; 
 	FILTER: alpha(opacity=50); 
 	LINE-HEIGHT: 0; 
-	BACKGROUND-COLOR: #c3d9ff; 
+	BACKGROUND-COLOR: #fff; 
 	FONT-SIZE: 0px; 
-	opacity: 0.5; 
-	-khtml-opacity: 0.5
+	opacity: 0.0; 
+	-khtml-opacity: 0.0;
 }
 .drag-event {
 	Z-INDEX: 1000; 
@@ -683,7 +683,7 @@ font-family: arial;
     text-decoration:underline;
 }
 .st-bg:hover {
-background:#ccc;
+background:#ccc !important;
 cursor:pointer;
 }
 #bbit-cal-quickAddBTN{
@@ -709,4 +709,8 @@ cursor:pointer;
 	color: #fff;
 	background: #363636;
 	border-radius: 5px
+}
+.textbox-fill-wrapper .textbox-fill-mid{
+	border-bottom: 1px dashed #B4B1B1;
+	padding-bottom: 2px;
 }

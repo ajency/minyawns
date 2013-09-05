@@ -2313,4 +2313,5 @@ body .jobs_table .data-title .profile-job {
   width: 150px !important;
   height: 88px;
   border: 2px solid #8ed030;
+  margin-left: 20px;
 }
