@@ -180,12 +180,17 @@ function popup_usersignup() {
     $userdata_['user_email'] = $_REQUEST['pdemail_'];
     $userdata_['user_pass'] = $_REQUEST['pdpass_'];
     $userdata_['first_name'] = $_REQUEST['pdfname_'];
-    $userdata_['last_name'] = $_REQUEST['pdlname_'];
+    
     $userdata_['role'] = $_REQUEST['pdrole_'];
     $userdata_['user_status'] = 2;
     $userdata_['user_activation_key'] = $user_activation_key;
-
-
+    if($_REQUEST['pdrole_']=="minyawn")
+    {
+    	$userdata_['last_name'] = $_REQUEST['pdlname_'];
+    	
+    }
+    
+    
 
 
     $user_ = get_user_by('email', $userdata_['user_email']);
@@ -203,6 +208,11 @@ function popup_usersignup() {
             $response = array("success" => true, 'msg' => $msg);
             wp_send_json($response);
         } else {
+        	
+        	if($_REQUEST['pdrole_']=="employer")
+        		add_user_meta($user_id, 'company_name', $_REQUEST['pdlname_']);
+        	
+        	
             /* $msg = "Error occured while creating a new user. Please try again.";			
               $response = array('success' => true,'user'=>$user_->user_login.$pd_pass );
               wp_send_json($response);
@@ -250,7 +260,7 @@ function minyawns_initial_checks() {
     minyawns_prevent_dashboard_access();
 }
 
-//add_action('init', 'minyawns_initial_checks');
+add_action('init', 'minyawns_initial_checks');
 
 //Allow only active users to login in 
 
