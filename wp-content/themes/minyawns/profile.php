@@ -150,7 +150,7 @@ get_header();  ?>
 							<?php 	if(get_mn_user_avatar() !== false)
 										echo  get_mn_user_avatar();
 									else
-										echo get_avatar( get_user_profile_email(), 168 )
+										echo get_avatar( get_user_id(), 168 )
 							?>
 							<span >Change Avatar</span>
 						</a>
@@ -255,7 +255,7 @@ get_header();  ?>
 
 				<hr>
 				<div class="clear"></div><br>
-                                <h3> <a target="_blank" href="<?php echo site_url() ?>/jobs">To Visit Jobs Section Click Here</a></h3><br/><br/><br/>
+                                <h3> <a href="<?php echo site_url() ?>/jobs">To Visit Jobs Section Click Here</a></h3><br/><br/><br/>
                                 <div class="jobs_table">
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
                

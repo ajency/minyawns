@@ -227,6 +227,14 @@ $app->get('/fetchjobs/', function() use ($app) {
                 } else {
                     $show_load = 0;
                 }
+                if(get_user_company_logo($pagepost->post_author) == false)
+                    { 
+                     $logo=get_avatar( $pagepost->post_author, 168 );
+                     
+                    }else {
+                       $logo= get_user_company_logo($pagepost->post_author);
+                        
+                    }
                 $has_more_results++;
                 $data[] = array(
                     'post_name' => $pagepost->post_title,
@@ -251,7 +259,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
                     'job_author_id' => get_the_author_meta('ID', $pagepost->post_author),
-                    'job_author_logo' => get_user_company_logo($pagepost->post_author),
+                    'job_author_logo' => $logo,
                     'can_apply_job' => $applied,
                     'user_job_status' => is_null($min_job->is_hired) ? $min_job->is_hired : 'can_apply',
                     'job_start_date_time' => $post_meta['job_start_date'][0],

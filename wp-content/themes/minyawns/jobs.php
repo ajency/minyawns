@@ -16,7 +16,7 @@ global $minyawn_job;
     <div class="accordion-heading">
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
     <div class="span12 data-title available">
-    <div class="job-logo header-sub"> <div class="logo "><img src="<%= job_author_logo %>"/></div></div>
+    <div class="job-logo header-sub"> <div class="logo "><%= job_author_logo %></div></div>
     <div class="job-date header-sub">
     <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
     <div>

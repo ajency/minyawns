@@ -139,9 +139,7 @@ function get_mn_user_avatar() {
     global $current_user_new;
     if ($current_user_new->data->avatar !== false) {
          return wp_get_attachment_image($current_user_new->data->avatar,get_user_role());
-        
-    
-        
+            
     } else {
         return false;
     }
