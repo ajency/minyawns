@@ -256,7 +256,7 @@ get_header();  ?>
 				<hr>
 				<div class="clear"></div><br>
 
-                                                        <h4><a target="_blank" href="<?php echo site_url() ?>/jobs" class="btn btn-large btn-primary btn-embossed mlm"><i class="fui-arrow-right "></i> To Visit Jobs Section Click Here</a></h4>
+                                                        <h4><a href="<?php echo site_url() ?>/jobs" class="btn btn-large btn-primary btn-embossed mlm"><i class="fui-arrow-right "></i> To Visit Jobs Section Click Here</a></h4>
 
                                 <div class="jobs_table">
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
