@@ -113,7 +113,7 @@ global $minyawn_job;
         <div class="tab-pane active" id="tab2">
             <div class="breadcrumb-text">
                 <p>
-                    <a href="#">My Jobs</a>
+                    <a href="<?php echo site_url()?>/jobs/">My Jobs</a>
                     <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
                     <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(),$minyawn_job->ID) == "1"): ?> 
                         <a href="#edit-job-form" class="edit loaded edit-job-data"><i class="icon-edit"></i> Edit</a>

@@ -39,7 +39,9 @@ foreach ($minyawn_job->minyawns as $minyawn):
                                     </a>
                                 </div>
                                 <h4> <?php echo $minyawn['profile_name']; ?></h4>
+                                
                                 <div class="collage"> <?php echo $minyawn['college']; ?> </div>
+                                <h4> <?php echo $minyawn['major']; ?></h4>
                                 <div class="social-link">
     <?php echo $minyawn['user_email']; ?> -<a href="<?php echo $minyawn['linkedin']; ?>" target="_BLANK"> <?php echo $minyawn['linkedin']; ?> </a> 
                                 </div>
