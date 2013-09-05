@@ -1074,7 +1074,7 @@
                             y[j + m]++;
                         }
                     }
-                }
+                } 
             }
             //var htr=[];
             var tdtemp = "<td class='${cssclass}' axis='${axis}' ch='${ch}' abbr='${abbr}' title='${title}' ${otherAttr}>${html}</td>";
