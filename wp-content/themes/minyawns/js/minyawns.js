@@ -79,19 +79,19 @@ jQuery(document).ready(function($) {
         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
         dataType: 'json',
         done: function(e, data) {
-            $(".load_ajax-crop-upload").hide();
-            //$('#change-avatar-span').find('img').attr('src', data.result.image);
-            $('#change-avatar').removeAttr("disabled");
-            $("#uploaded-image").attr('src', data.result.image);
-            $("#image_name").val(data.result.image_name);
+//            $(".load_ajax-crop-upload").hide();
+//            //$('#change-avatar-span').find('img').attr('src', data.result.image);
+//            $('#change-avatar').removeAttr("disabled");
+//            $("#uploaded-image").attr('src', data.result.image);
+//            $("#image_name").val(data.result.image_name);
+//
+//            if (data.result.image_height > 500)
+//                $("#uploaded-image").css('height', 'auto');
+//
+//            if (data.result.image_width > 500)
+//                $("#uploaded-image").css('width', 'auto');
 
-            if (data.result.image_height > 500)
-                $("#uploaded-image").css('height', 'auto');
-
-            if (data.result.image_width > 500)
-                $("#uploaded-image").css('width', 'auto');
-
-
+window.location.reload();
 
         },
         start: function(e, data) {
@@ -959,6 +959,10 @@ $(".load-ajax-browse").hide();
                 $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
                 $(_this).attr('data-action', 'req_complete');
             }
+
+
+      if($("#is_singluar").length >0)
+          window.location.reload();
 
         }, 'json');
     });

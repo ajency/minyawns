@@ -524,8 +524,12 @@ function minyawn_job_apply() {
     if ('POST' !== $_SERVER['REQUEST_METHOD'])
         return;
 
+  
+    
     global $user_ID, $wpdb;
   
+    
+    
     //get job ID
     $job_id = $_POST['job_id'];
 
