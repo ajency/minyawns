@@ -135,7 +135,7 @@ global $minyawn_job;
         <% }
         }else{ 
         %> 
-        <span style=" display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;"> Please Log-in as a Minyawn to apply to this job.</span>
+        <span style=" display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;">Please Log-in as a Minion to apply to this job.</span>
         <% } %>
 
     <?php
