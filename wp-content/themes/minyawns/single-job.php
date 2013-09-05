@@ -164,8 +164,9 @@ global $minyawn_job;
                             <div class="row-fluid header-title">
                                 <div class="span12">
                                     <input type="hidden" value="<?php echo is_singular() ?>" id="is_singluar">
+                                   
                                     <h3><a href="#" target="_blank" ><?php echo get_the_title() ?></a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
-<span class='load_ajax_single_page' style="display:block"></span>
+
                                         <?php
 if (get_user_role() == "minyawn") {
    
