@@ -126,7 +126,7 @@ global $minyawn_job;
                     <div  class="row-fluid  list-jobs single-jobs ">
 
                         <div class="span12 jobs-details">
-                            <div class="span2 img-logo"><?php if (get_user_company_logo($minyawn_job->post_author)) { ?> <img src="<?php echo get_user_company_logo($minyawn_job->post_author) ?>"/> <?php } else {
+                            <div class="span2 img-logo"><?php if (get_user_company_logo($minyawn_job->post_author)) { ?> <?php echo get_user_company_logo($minyawn_job->post_author) ?> <?php } else {
                 echo get_avatar($minyawn_job->ID, 20);
             } ?> </div>
                             <div class="span3 minyawns-select">
