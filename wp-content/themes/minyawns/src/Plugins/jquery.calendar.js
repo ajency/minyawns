@@ -1593,7 +1593,7 @@
         }
         function getbuddlepos(x, y) {
             var tleft = x - 110;
-            var ttop = y - 217;
+            var ttop = y - 320;
             var maxLeft = document.documentElement.clientWidth;
             var maxTop = document.documentElement.clientHeight;
             var ishide = false;
@@ -1766,7 +1766,7 @@
                         
                         
                         if( $("#"+data[0]).length == 0)
-                        html = "<div id='apply'><a type='button' href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"' onClick='apply_job(event)'>Apply</a></div>";
+                        html = "<div id='apply'><a type='button' style=' width: 40%; margin-top: 13px; ' href='#' id='apply-job' class='btn btn-medium btn-block btn-primary' data-action='apply' data-job-id='"+data[0]+"' onClick='apply_job(event)'>Apply</a></div>";
                             
                             
                             
