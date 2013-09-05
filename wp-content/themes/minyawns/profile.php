@@ -299,7 +299,7 @@ get_header();  ?>
 					    <div class="control-group">
 					    	<label class="control-label" for="inputlast">Last Name</label>
 					    	<div class="controls">
-					      		<input type="text" id="last_name"  name="last_name" placeholder="" value="<?php user_profile_last_name() ?>" class="input">
+					      		<input type="text" id="last_name"  name="last_name" placeholder="" value="<?php echo user_profile_last_name() ?>" class="input">
 					   		</div>
 					  	</div>
 					   	<div class="control-group">
