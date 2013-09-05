@@ -31,7 +31,7 @@ show_admin_bar(false);
 //add image for profile
 add_image_size('minyawn',168, 300, false);
 
-add_image_size('employer',0,200, FALSE);
+add_image_size('employer',168,100, FALSE);
 
 /**
  * Child theme Path

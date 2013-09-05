@@ -63,18 +63,18 @@ get_header();  ?>
 
         <% }else if (can_apply_job == 3){%>
          <span class="label-hired">You are hired for this job.</span>
-        <% }else if (can_apply_job == 2) {%>
+        <% }else if (can_apply_job == 2 || can_apply_job == 1) {%>
          <span class="label-available">You have applied for this job.</span>
 
         <% }
         %> 
     <?php }else{ ?>
 
-        <%  if(is_job_owner == 1 && can_apply_job == 0) %>
+        <%  if(is_job_owner == 1 && can_apply_job == 0 && minyawns_have_applied == 0 ) %>
         <span class="label-available">No Applications yet</span>
         <%  else if(can_apply_job == 3)%>
         <span class="label-available">Minyawns Hired</span>
-        <% else if(can_apply_job == 2 )%>
+        <% else if(can_apply_job == 2 || minyawns_have_applied == 1)%>
                 <span class="label-available">Minyawns Have Applied</span>
     <?php } ?>
     </div>
