@@ -1,10 +1,8 @@
 /**
- * @description {Class} wdCalendar
- * This is the main class of wdCalendar.
- */
-;
-(function($) {
-
+  * @description {Class} wdCalendar
+  * This is the main class of wdCalendar.
+  */
+; (function($) {
     var __WDAY = new Array(i18n.xgcalendar.dateformat.sun, i18n.xgcalendar.dateformat.mon, i18n.xgcalendar.dateformat.tue, i18n.xgcalendar.dateformat.wed, i18n.xgcalendar.dateformat.thu, i18n.xgcalendar.dateformat.fri, i18n.xgcalendar.dateformat.sat);
     var __MonthName = new Array(i18n.xgcalendar.dateformat.jan, i18n.xgcalendar.dateformat.feb, i18n.xgcalendar.dateformat.mar, i18n.xgcalendar.dateformat.apr, i18n.xgcalendar.dateformat.may, i18n.xgcalendar.dateformat.jun, i18n.xgcalendar.dateformat.jul, i18n.xgcalendar.dateformat.aug, i18n.xgcalendar.dateformat.sep, i18n.xgcalendar.dateformat.oct, i18n.xgcalendar.dateformat.nov, i18n.xgcalendar.dateformat.dec);
     if (!Clone || typeof (Clone) != "function") {
@@ -66,30 +64,14 @@
                 date = new Date(idate.toString());
             }
             switch (interval) {
-                case "y":
-                    date.setFullYear(date.getFullYear() + number);
-                    break;
-                case "m":
-                    date.setMonth(date.getMonth() + number);
-                    break;
-                case "d":
-                    date.setDate(date.getDate() + number);
-                    break;
-                case "w":
-                    date.setDate(date.getDate() + 7 * number);
-                    break;
-                case "h":
-                    date.setHours(date.getHours() + number);
-                    break;
-                case "n":
-                    date.setMinutes(date.getMinutes() + number);
-                    break;
-                case "s":
-                    date.setSeconds(date.getSeconds() + number);
-                    break;
-                case "l":
-                    date.setMilliseconds(date.getMilliseconds() + number);
-                    break;
+                case "y": date.setFullYear(date.getFullYear() + number); break;
+                case "m": date.setMonth(date.getMonth() + number); break;
+                case "d": date.setDate(date.getDate() + number); break;
+                case "w": date.setDate(date.getDate() + 7 * number); break;
+                case "h": date.setHours(date.getHours() + number); break;
+                case "n": date.setMinutes(date.getMinutes() + number); break;
+                case "s": date.setSeconds(date.getSeconds() + number); break;
+                case "l": date.setMilliseconds(date.getMilliseconds() + number); break;
             }
             return date;
         }
@@ -118,30 +100,14 @@
             var t1 = d1.getTime(), t2 = d2.getTime();
             var diff = NaN;
             switch (interval) {
-                case "y":
-                    diff = d2.getFullYear() - d1.getFullYear();
-                    break; //y
-                case "m":
-                    diff = (d2.getFullYear() - d1.getFullYear()) * 12 + d2.getMonth() - d1.getMonth();
-                    break;    //m
-                case "d":
-                    diff = Math.floor(t2 / 86400000) - Math.floor(t1 / 86400000);
-                    break;
-                case "w":
-                    diff = Math.floor((t2 + 345600000) / (604800000)) - Math.floor((t1 + 345600000) / (604800000));
-                    break; //w
-                case "h":
-                    diff = Math.floor(t2 / 3600000) - Math.floor(t1 / 3600000);
-                    break; //h
-                case "n":
-                    diff = Math.floor(t2 / 60000) - Math.floor(t1 / 60000);
-                    break; //
-                case "s":
-                    diff = Math.floor(t2 / 1000) - Math.floor(t1 / 1000);
-                    break; //s
-                case "l":
-                    diff = t2 - t1;
-                    break;
+                case "y": diff = d2.getFullYear() - d1.getFullYear(); break; //y
+                case "m": diff = (d2.getFullYear() - d1.getFullYear()) * 12 + d2.getMonth() - d1.getMonth(); break;    //m
+                case "d": diff = Math.floor(t2 / 86400000) - Math.floor(t1 / 86400000); break;
+                case "w": diff = Math.floor((t2 + 345600000) / (604800000)) - Math.floor((t1 + 345600000) / (604800000)); break; //w
+                case "h": diff = Math.floor(t2 / 3600000) - Math.floor(t1 / 3600000); break; //h
+                case "n": diff = Math.floor(t2 / 60000) - Math.floor(t1 / 60000); break; //
+                case "s": diff = Math.floor(t2 / 1000) - Math.floor(t1 / 1000); break; //s
+                case "l": diff = t2 - t1; break;
             }
             return diff;
 
@@ -155,32 +121,21 @@
                 prevent = p;
             if (prevent) {
                 return this.each(function() {
-                    if ($.browser.msie || $.browser.safari)
-                        $(this).bind('selectstart', function() {
-                            return false;
-                        });
+                    if ($.browser.msie || $.browser.safari) $(this).bind('selectstart', function() { return false; });
                     else if ($.browser.mozilla) {
                         $(this).css('MozUserSelect', 'none');
                         $('body').trigger('focus');
                     }
-                    else if ($.browser.opera)
-                        $(this).bind('mousedown', function() {
-                            return false;
-                        });
-                    else
-                        $(this).attr('unselectable', 'on');
+                    else if ($.browser.opera) $(this).bind('mousedown', function() { return false; });
+                    else $(this).attr('unselectable', 'on');
                 });
 
             } else {
                 return this.each(function() {
-                    if ($.browser.msie || $.browser.safari)
-                        $(this).unbind('selectstart');
-                    else if ($.browser.mozilla)
-                        $(this).css('MozUserSelect', 'inherit');
-                    else if ($.browser.opera)
-                        $(this).unbind('mousedown');
-                    else
-                        $(this).removeAttr('unselectable', 'on');
+                    if ($.browser.msie || $.browser.safari) $(this).unbind('selectstart');
+                    else if ($.browser.mozilla) $(this).css('MozUserSelect', 'inherit');
+                    else if ($.browser.opera) $(this).unbind('mousedown');
+                    else $(this).removeAttr('unselectable', 'on');
                 });
 
             }
@@ -192,99 +147,100 @@
              * @description {Config} view  
              * {String} Three calendar view provided, 'day','week','month'. 'week' by default.
              */
-            view: "week",
+            view: "week", 
             /**
              * @description {Config} weekstartday  
              * {Number} First day of week 0 for Sun, 1 for Mon, 2 for Tue.
              */
-            weekstartday: 1, //start from Monday by default
+            weekstartday: 1,  //start from Monday by default
             theme: 0, //theme no
             /**
              * @description {Config} height  
              * {Number} Calendar height, false for page height by default.
              */
-            height: false,
+            height: false, 
             /**
              * @description {Config} url  
              * {String} Url to request calendar data.
              */
-            url: "",
+            url: "", 
             /**
              * @description {Config} eventItems  
              * {Array} event items for initialization.
-             */
-            eventItems: [],
-            method: "POST",
+             */   
+            eventItems: [], 
+            method: "POST", 
             /**
              * @description {Config} showday  
              * {Date} Current date. today by default.
              */
-            showday: new Date(),
+            showday: new Date(), 
             /**
-             * @description {Event} onBeforeRequestData:function(stage)
-             * Fired before any ajax request is sent.
-             * @param {Number} stage. 1 for retrieving events, 2 - adding event, 3 - removiing event, 4 - update event.
-             */
-            onBeforeRequestData: false,
+	 	         * @description {Event} onBeforeRequestData:function(stage)
+	 	         * Fired before any ajax request is sent.
+	 	         * @param {Number} stage. 1 for retrieving events, 2 - adding event, 3 - removiing event, 4 - update event.
+	           */
+            onBeforeRequestData: false, 
             /**
-             * @description {Event} onAfterRequestData:function(stage)
-             * Fired before any ajax request is finished.
-             * @param {Number} stage. 1 for retrieving events, 2 - adding event, 3 - removiing event, 4 - update event.
-             */
-            onAfterRequestData: false,
+	 	         * @description {Event} onAfterRequestData:function(stage)
+	 	         * Fired before any ajax request is finished.
+	 	         * @param {Number} stage. 1 for retrieving events, 2 - adding event, 3 - removiing event, 4 - update event.
+	           */
+            onAfterRequestData: false, 
             /**
-             * @description {Event} onAfterRequestData:function(stage)
-             * Fired when some errors occur while any ajax request is finished.
-             * @param {Number} stage. 1 for retrieving events, 2 - adding event, 3 - removiing event, 4 - update event.
-             */
-            onRequestDataError: false,
-            onWeekOrMonthToDay: false,
+	 	         * @description {Event} onAfterRequestData:function(stage)
+	 	         * Fired when some errors occur while any ajax request is finished.
+	 	         * @param {Number} stage. 1 for retrieving events, 2 - adding event, 3 - removiing event, 4 - update event.
+	           */
+            onRequestDataError: false,              
+            
+            onWeekOrMonthToDay: false, 
             /**
-             * @description {Event} quickAddHandler:function(calendar, param )
-             * Fired when user quick adds an item. If this function is set, ajax request to quickAddUrl will abort. 
-             * @param {Object} calendar Calendar object.
-             * @param {Array} param Format [{name:"name1", value:"value1"}, ...]
-             * 	 	         
-             */
-            quickAddHandler: false,
+	 	         * @description {Event} quickAddHandler:function(calendar, param )
+	 	         * Fired when user quick adds an item. If this function is set, ajax request to quickAddUrl will abort. 
+	 	         * @param {Object} calendar Calendar object.
+	 	         * @param {Array} param Format [{name:"name1", value:"value1"}, ...]
+	 	         * 	 	         
+	           */
+            quickAddHandler: false, 
             /**
              * @description {Config} quickAddUrl  
              * {String} Url for quick adding. 
              */
-            quickAddUrl: "",
+            quickAddUrl: "", 
             /**
              * @description {Config} quickUpdateUrl  
              * {String} Url for time span update.
              */
-            quickUpdateUrl: "",
+            quickUpdateUrl: "", 
             /**
              * @description {Config} quickDeleteUrl  
              * {String} Url for removing an event.
              */
-            quickDeleteUrl: "",
+            quickDeleteUrl: "", 
             /**
              * @description {Config} autoload  
              * {Boolean} If event items is empty, and this param is set to true. 
              * Event will be retrieved by ajax call right after calendar is initialized.
-             */
+             */  
             autoload: false,
             /**
              * @description {Config} readonly  
              * {Boolean} Indicate calendar is readonly or editable 
              */
-            readonly: false,
+            readonly: false, 
             /**
              * @description {Config} extParam  
              * {Array} Extra params submitted to server. 
              * Sample - [{name:"param1", value:"value1"}, {name:"param2", value:"value2"}]
              */
-            extParam: [],
+            extParam: [], 
             /**
              * @description {Config} enableDrag  
              * {Boolean} Whether end user can drag event item by mouse. 
              */
-            enableDrag: true,
-            loadDateR: []
+            enableDrag: true, 
+            loadDateR: [] 
         };
         var eventDiv = $("#gridEvent");
         if (eventDiv.length == 0) {
@@ -317,7 +273,7 @@
 
         //populate events data for first display.
         if (option.url && option.autoload) {
-            populate();
+            populate(); 
         }
         else {
             //contruct HTML          
@@ -333,7 +289,7 @@
         }
         //get range
         function getRdate() {
-            return {start: option.vstart, end: option.vend};
+            return { start: option.vstart, end: option.vend };
         }
         //add date range to cache.
         function pushER(start, end) {
@@ -342,7 +298,7 @@
                 end = start;
             }
             if (ll == 0) {
-                option.loadDateR.push({startdate: start, enddate: end});
+                option.loadDateR.push({ startdate: start, enddate: end });
             }
             else {
                 for (var i = 0; i < ll; i++) {
@@ -357,7 +313,7 @@
                     else if (diff > 1) {
                         var d2 = DateDiff("d", end, dr.startdate);
                         if (d2 > 1) {
-                            option.loadDateR.splice(0, 0, {startdate: start, enddate: end});
+                            option.loadDateR.splice(0, 0, { startdate: start, enddate: end });
                         }
                         else {
                             dr.startdate = start;
@@ -377,7 +333,7 @@
                             }
                             else {
                                 if (i == ll - 1) {
-                                    option.loadDateR.push({startdate: start, enddate: end});
+                                    option.loadDateR.push({ startdate: start, enddate: end });
                                 }
                             }
                         }
@@ -407,11 +363,10 @@
         //contruct DOM 
         function render() {
             //params needed
-            //viewType, showday, events, config	
-
+            //viewType, showday, events, config			
             var showday = new Date(option.showday.getFullYear(), option.showday.getMonth(), option.showday.getDate());
             var events = option.eventItems;
-            var config = {view: option.view, weekstartday: option.weekstartday, theme: option.theme};
+            var config = { view: option.view, weekstartday: option.weekstartday, theme: option.theme };
             if (option.view == "day" || option.view == "week") {
                 var $dvtec = $("#dvtec");
                 if ($dvtec.length > 0) {
@@ -429,10 +384,10 @@
                     BuildMonthView(showday, events, config);
                     break;
                 default:
-                    //alert(i18n.xgcalendar.no_implement);
+                    alert(i18n.xgcalendar.no_implement);
                     break;
             }
-            initevents(option.view);
+            initevents(option.view); 
             ResizeView();
         }
 
@@ -441,7 +396,7 @@
             var days = [];
             if (l == 1) {
                 var show = dateFormat.call(startday, i18n.xgcalendar.dateformat.Md);
-                days.push({display: show, date: startday, day: startday.getDate(), year: startday.getFullYear(), month: startday.getMonth() + 1});
+                days.push({ display: show, date: startday, day: startday.getDate(), year: startday.getFullYear(), month: startday.getMonth() + 1 });
                 option.datestrshow = CalDateShow(days[0].date);
                 option.vstart = days[0].date;
                 option.vend = days[0].date;
@@ -450,14 +405,13 @@
                 var w = 0;
                 if (l == 7) {
                     w = config.weekstartday - startday.getDay();
-                    if (w > 0)
-                        w = w - 7;
+                    if (w > 0) w = w - 7;
                 }
                 var ndate;
                 for (var i = w, j = 0; j < l; i = i + 1, j++) {
                     ndate = DateAdd("d", i, startday);
                     var show = dateFormat.call(ndate, i18n.xgcalendar.dateformat.Md);
-                    days.push({display: show, date: ndate, day: ndate.getDate(), year: ndate.getFullYear(), month: ndate.getMonth() + 1});
+                    days.push({ display: show, date: ndate, day: ndate.getDate(), year: ndate.getFullYear(), month: ndate.getMonth() + 1 });
                 }
                 option.vstart = days[0].date;
                 option.vend = days[l - 1].date;
@@ -492,12 +446,11 @@
             var html = [];
             html.push(cc);
             //build header
-            html.push("<div id=\"mvcontainer\" class=\"mv-container\"><span class='loader_ajax_calendar' style='display:block'></span>");
+            html.push("<div id=\"mvcontainer\" class=\"mv-container\">");
             html.push("<table id=\"mvweek\" class=\"mv-daynames-table\" cellSpacing=\"0\" cellPadding=\"0\"><tbody><tr>");
             for (var i = config.weekstartday, j = 0; j < 7; i++, j++) {
-                if (i > 6)
-                    i = 0;
-                var p = {dayname: __WDAY[i]};
+                if (i > 6) i = 0;
+                var p = { dayname: __WDAY[i] };
                 html.push("<th class=\"mv-dayname\" title=\"", __WDAY[i], "\">", __WDAY[i], "");
             }
             html.push("</tr></tbody></table>");
@@ -514,7 +467,7 @@
         function closeCc() {
             $("#cal-month-cc").css("visibility", "hidden");
         }
-
+        
         //all-day event, including more-than-one-day events 
         function PropareEvents(dayarrs, events, aDE, sDE) {
             var l = dayarrs.length;
@@ -547,8 +500,7 @@
             var dMax = 0;
             for (var i = 0; i < l; i++) {
                 var da = dayarrs[i];
-                deA[i] = [];
-                deB[i] = [];
+                deA[i] = []; deB[i] = [];
                 da.daystr = da.year + "/" + da.month + "/" + da.day;
                 for (var j = 0; j < fE.length; j++) {
                     if (!fE[j].crossday && !fE[j].allday) {
@@ -584,18 +536,16 @@
             //for all-day events
             for (var i = 0; i < l; i++) {
                 var de = deA[i];
-                if (de.length > 0) {
-                    var x = [];
-                    var y = [];
+                if (de.length > 0) { 
+                    var x = []; 
+                    var y = []; 
                     var D = [];
                     var dl = de.length;
                     var Ia;
                     for (var j = 0; j < dl; ++j) {
                         var ge = de[j];
-                        for (var La = ge.st.p, Ia = 0; y[Ia] > La; )
-                            Ia++;
-                        ge.PO = Ia;
-                        ge.ne = []; //PO is how many events before this one
+                        for (var La = ge.st.p, Ia = 0; y[Ia] > La; ) Ia++;
+                        ge.PO = Ia; ge.ne = []; //PO is how many events before this one
                         y[Ia] = ge.et.p || 1440;
                         x[Ia] = ge;
                         if (!D[Ia]) {
@@ -606,8 +556,7 @@
                             ge.pe = [x[Ia - 1]]; //previous event
                             x[Ia - 1].ne.push(ge); //next event
                         }
-                        for (Ia = Ia + 1; y[Ia] <= La; )
-                            Ia++;
+                        for (Ia = Ia + 1; y[Ia] <= La; ) Ia++;
                         if (x[Ia]) {
                             var k = x[Ia];
                             ge.ne.push(k);
@@ -635,11 +584,10 @@
                     for (var y = 0; y < t; y++) {
                         var x = k[y];
                         x.left = 0;
-                        if (x.pe)
-                            for (var D = x.pe.length; D--; ) {
-                                var H = x.pe[D];
-                                x.left = Math.max(x.left, H.left + H.width);
-                            }
+                        if (x.pe) for (var D = x.pe.length; D--; ) {
+                            var H = x.pe[D];
+                            x.left = Math.max(x.left, H.left + H.width);
+                        }
                         var p = (1 - x.left) / x.VL;
                         x.width = Math.max(x.width, p);
                         x.aQ = Math.min(1 - x.left, x.width + 0.7 * p); //width offset
@@ -761,9 +709,7 @@
             ht.push("<td style=\"width: 60px\" class=\"tg-times\">");
 
             //get current time 
-            var now = new Date();
-            var h = now.getHours();
-            var m = now.getMinutes();
+            var now = new Date(); var h = now.getHours(); var m = now.getMinutes();
             var mHg = gP(h, m) - 4; //make middle alignment vertically
             ht.push("<div id=\"tgnowptr\" class=\"tg-nowptr\" style=\"left:0px;top:", mHg, "px\"></div>");
             var tmt = "";
@@ -811,7 +757,7 @@
                 hv.push(tt);
             }
         }
-        function getTitle(event) {
+        function getTitle(event) {			
             var timeshow, locationshow, attendsshow, eventshow;
             var showtime = event[4] != 1;
             eventshow = event[1];
@@ -822,22 +768,21 @@
             attendsshow = (event[10] != undefined && event[10] != "") ? event[10] : "";
             var ret = [];
             if (event[4] == 1) {
-                ret.push("[" + i18n.xgcalendar.allday_event + "]", $.browser.mozilla ? "" : "\r\n");
+                ret.push("[" + i18n.xgcalendar.allday_event + "]",$.browser.mozilla?"":"\r\n" );
             }
             else {
                 if (event[5] == 1) {
-                    ret.push("[" + i18n.xgcalendar.repeat_event + "]", $.browser.mozilla ? "" : "\r\n");
+                    ret.push("[" + i18n.xgcalendar.repeat_event + "]",$.browser.mozilla?"":"\r\n");
                 }
             }
-            ret.push(i18n.xgcalendar.time + ":", timeshow, $.browser.mozilla ? "" : "\r\n", i18n.xgcalendar.event + ":", eventshow, $.browser.mozilla ? "" : "\r\n", i18n.xgcalendar.location + ":", locationshow);
+            ret.push(i18n.xgcalendar.time + ":", timeshow, $.browser.mozilla?"":"\r\n", i18n.xgcalendar.event + ":", eventshow,$.browser.mozilla?"":"\r\n", i18n.xgcalendar.location + ":", locationshow);
             if (attendsshow != "") {
-                ret.push($.browser.mozilla ? "" : "\r\n", i18n.xgcalendar.participant + ":", attendsshow);
+                ret.push($.browser.mozilla?"":"\r\n", i18n.xgcalendar.participant + ":", attendsshow);
             }
             return ret.join("");
         }
         function BuildDayEvent(theme, e, index) {
-            //alert(theme);
-            var p = {bdcolor: theme[0], bgcolor2: theme[0], bgcolor1: theme[2], width: "70%", icon: "", title: "", data: ""};
+            var p = { bdcolor: theme[0], bgcolor2: theme[0], bgcolor1: theme[2], width: "70%", icon: "", title: "", data: "" };
             p.starttime = pZero(e.st.hour) + ":" + pZero(e.st.minute);
             p.endtime = pZero(e.et.hour) + ":" + pZero(e.et.minute);
             p.content = e.event[1];
@@ -951,7 +896,7 @@
                 var titletemp = "<td class=\"st-dtitle${titleClass}\" ch='qkadd' abbr='${abbr}' axis='00:00' title=\"${title}\"><span class='monthdayshow'>${dayshow}</span></a></td>";
 
                 for (var i = 0; i < 7; i++) {
-                    var o = {titleClass: "", dayshow: ""};
+                    var o = { titleClass: "", dayshow: "" };
                     var day = C[j * 7 + i];
                     if (dateFormat.call(day, "yyyyMMdd") == dateFormat.call(new Date(), "yyyyMMdd")) {
                         o.titleClass = " st-dtitle-today";
@@ -987,7 +932,7 @@
             formatevents = B = C = hastdata = null;
             //return htb;
         }
-
+        
         //formate datetime 
         function formartEventsInHashtable(events, startday, daylength, rbdate, redate) {
             var hast = new Object();
@@ -1022,9 +967,7 @@
                         eD = redate;
                     }
                     var f = startday - sD.getDay();
-                    if (f > 0) {
-                        f -= daylength;
-                    }
+                    if (f > 0) { f -= daylength; }
                     var sdtemp = DateAdd("d", f, sD);
                     for (; sdtemp <= eD; sD = sdtemp = DateAdd("d", daylength, sdtemp)) {
                         var d = Clone(s);
@@ -1051,10 +994,10 @@
             return hast;
         }
         function BuildMonthRow(htr, events, dMax, sc, day) {
-            var x = [];
-            var y = [];
-            var z = [];
-            var cday = [];
+            var x = []; 
+            var y = []; 
+            var z = []; 
+            var cday = [];  
             var l = events.length;
             var el = 0;
             //var c = tc();
@@ -1074,7 +1017,7 @@
                             y[j + m]++;
                         }
                     }
-                } 
+                }
             }
             //var htr=[];
             var tdtemp = "<td class='${cssclass}' axis='${axis}' ch='${ch}' abbr='${abbr}' title='${title}' ${otherAttr}>${html}</td>";
@@ -1083,10 +1026,10 @@
                 //var gridtr = $(__TRTEMP);
                 for (var h = 0; h < l; ) {
                     var e = events[h] ? events[h][x[h]] : undefined;
-                    var tempdata = {"class": "", axis: "", ch: "", title: "", abbr: "", html: "", otherAttr: "", click: "javascript:void(0);"};
+                    var tempdata = { "class": "", axis: "", ch: "", title: "", abbr: "", html: "", otherAttr: "", click: "javascript:void(0);" };
                     var tempCss = ["st-c"];
 
-                    if (e) {
+                    if (e) { 
                         x[h] = x[h] + 1;
                         //last event of the day
                         var bs = false;
@@ -1095,7 +1038,7 @@
                         }
                         if (!bs && j == (sc - 1) && z[h] < y[h]) {
                             el++;
-                            $.extend(tempdata, {"axis": h, ch: "more", "abbr": dateFormat.call(cday[h], i18n.xgcalendar.dateformat.fulldayvalue), html: i18n.xgcalendar.others + (y[h] - z[h]) + i18n.xgcalendar.item, click: "javascript:alert('more event');"});
+                            $.extend(tempdata, { "axis": h, ch: "more", "abbr": dateFormat.call(cday[h], i18n.xgcalendar.dateformat.fulldayvalue), html: i18n.xgcalendar.others + (y[h] - z[h]) + i18n.xgcalendar.item, click: "javascript:alert('more event');" });
                             tempCss.push("st-more st-moreul");
                             h++;
                         }
@@ -1119,12 +1062,12 @@
                     }
                     else {
                         if (j == (sc - 1) && z[h] < y[h] && y[h] > 0) {
-                            $.extend(tempdata, {"axis": h, ch: "more", "abbr": dateFormat.call(cday[h], i18n.xgcalendar.dateformat.fulldayvalue), html: i18n.xgcalendar.others + (y[h] - z[h]) + i18n.xgcalendar.item, click: "javascript:alert('more event');"});
+                            $.extend(tempdata, { "axis": h, ch: "more", "abbr": dateFormat.call(cday[h], i18n.xgcalendar.dateformat.fulldayvalue), html: i18n.xgcalendar.others + (y[h] - z[h]) + i18n.xgcalendar.item, click: "javascript:alert('more event');" });
                             tempCss.push("st-more st-moreul");
                             h++;
                         }
                         else {
-                            $.extend(tempdata, {html: "&nbsp;", ch: "qkadd", "axis": "00:00", "abbr": dateFormat.call(cday[h], i18n.xgcalendar.dateformat.fulldayvalue), title: ""});
+                            $.extend(tempdata, { html: "&nbsp;", ch: "qkadd", "axis": "00:00", "abbr": dateFormat.call(cday[h], i18n.xgcalendar.dateformat.fulldayvalue), title: "" });
                             tempCss.push("st-s");
                             h++;
                         }
@@ -1147,10 +1090,9 @@
             else {
                 theme = tc();
             }
+            var p = { color: theme[2], title: "", extendClass: "", extendHTML: "", data: "" };
 
-            var p = {color: theme[2], title: "", extendClass: "", extendHTML: "", data: ""};
-
-           // p.title = getTitle(e.event);
+            p.title = getTitle(e.event);
             p.id = "bbit_cal_event_" + e.event[0];
             if (option.enableDrag && e.event[8] == 1) {
                 p.eclass = "drag";
@@ -1173,9 +1115,7 @@
                     p.extendClass = "st-ad-mpad ";
                 }
                 if (ef)
-                {
-                    arrm.push(mr);
-                }
+                { arrm.push(mr); }
                 p.extendHTML = arrm.join("");
 
             }
@@ -1187,12 +1127,10 @@
                 cen = e.event[1];
             }
             var content = [];
-            content.push(Tp(sp, {content: cen}));
+            content.push(Tp(sp, { content: cen }));
             content.push(i);
             if (e.reevent)
-            {
-                content.push(i2);
-            }
+            { content.push(i2); }
             p.content = content.join("");
             return Tp(__ALLDAYEVENTTEMP, p);
         }
@@ -1207,32 +1145,31 @@
                 if (option.onBeforeRequestData && $.isFunction(option.onBeforeRequestData)) {
                     option.onBeforeRequestData(1);
                 }
-
                 var zone = new Date().getTimezoneOffset() / 60 * -1;
                 var param = [
-                    {name: "showdate", value: dateFormat.call(option.showday, i18n.xgcalendar.dateformat.fulldayvalue)},
-                    {name: "viewtype", value: option.view},
-                    {name: "timezone", value: zone},
+                { name: "showdate", value: dateFormat.call(option.showday, i18n.xgcalendar.dateformat.fulldayvalue) },
+                { name: "viewtype", value: option.view },
+				 { name: "timezone", value: zone }
                 ];
                 if (option.extParam) {
                     for (var pi = 0; pi < option.extParam.length; pi++) {
                         param[param.length] = option.extParam[pi];
                     }
                 }
-
+				
                 $.ajax({
                     type: option.method, //
                     url: option.url,
-                    data: param,
-                    //dataType: "text",  // fixed jquery 1.4 not support Ms Date Json Format /Date(@Tickets)/
+                    data: param,				   
+			        //dataType: "text",  // fixed jquery 1.4 not support Ms Date Json Format /Date(@Tickets)/
                     dataType: "json",
-                    dataFilter: function(data, type) {
+                    dataFilter: function(data, type) { 
                         //return data.replace(/"\\\/(Date\([0-9-]+\))\\\/"/gi, "new $1");
-
+                        
                         return data;
-                    },
+                      },
                     success: function(data) {//function(datastr) {									
-                        //datastr =datastr.replace(/"\\\/(Date\([0-9-]+\))\\\/"/gi, 'new $1');						
+						//datastr =datastr.replace(/"\\\/(Date\([0-9-]+\))\\\/"/gi, 'new $1');						
                         //var data = (new Function("return " + datastr))();
                         if (data != null && data.error != null) {
                             if (option.onRequestDataError) {
@@ -1242,9 +1179,9 @@
                         else {
                             data["start"] = parseDate(data["start"]);
                             data["end"] = parseDate(data["end"]);
-                            $.each(data.events, function(index, value) {
+                            $.each(data.events, function(index, value) { 
                                 value[2] = parseDate(value[2]);
-                                value[3] = parseDate(value[3]);
+                                value[3] = parseDate(value[3]); 
                             });
                             responseData(data, data.start, data.end);
                             pushER(data.start, data.end);
@@ -1254,33 +1191,30 @@
                         }
                         option.isloading = false;
                     },
-                    error: function(data) {
-                        try {
+                    error: function(data) {	
+						try {							
                             if (option.onRequestDataError) {
                                 option.onRequestDataError(1, data);
                             } else {
-                               // alert(i18n.xgcalendar.get_data_exception);
+                                alert(i18n.xgcalendar.get_data_exception);
                             }
                             if (option.onAfterRequestData && $.isFunction(option.onAfterRequestData)) {
                                 option.onAfterRequestData(1);
                             }
                             option.isloading = false;
-                        } catch (e) {
-                        }
+                        } catch (e) { }
                     }
                 });
             }
             else {
-              //  alert("url" + i18n.xgcalendar.i_undefined);
+                alert("url" + i18n.xgcalendar.i_undefined);
             }
         }
         function responseData(data, start, end) {
             var events;
             if (data.issort == false) {
                 if (data.events && data.events.length > 0) {
-                    events = data.sort(function(l, r) {
-                        return l[2] > r[2] ? -1 : 1;
-                    });
+                    events = data.sort(function(l, r) { return l[2] > r[2] ? -1 : 1; });
                 }
                 else {
                     events = [];
@@ -1337,7 +1271,7 @@
                         option.eventItems = events.concat(option.eventItems);
                         return;
                     }
-                    if (option.eventItems[sl - 1][2] < s)
+                    if (option.eventItems[sl - 1][2] < s) 
                     {
                         option.eventItems = option.eventItems.concat(events);
                         return;
@@ -1372,7 +1306,7 @@
             }
             return false;
         }
-        function parseDate(str) {
+        function parseDate(str){
             return new Date(Date.parse(str));
         }
         function gP(h, m) {
@@ -1385,7 +1319,7 @@
             var t4 = ts2 / 42;
             var t5 = parseInt(t4);
             var t6 = t4 - t5 >= 0.5 ? 30 : 0;
-            return {sh: t2, sm: t3, eh: t5, em: t6, h: ts2 - ts1};
+            return { sh: t2, sm: t3, eh: t5, em: t6, h: ts2 - ts1 };
         }
         function gH(y1, y2, pt) {
             var sy1 = Math.min(y1, y2);
@@ -1396,7 +1330,7 @@
             var t4 = (sy2 - pt) / 42;
             var t5 = parseInt(t4);
             var t6 = t4 - t5 >= 0.5 ? 30 : 0;
-            return {sh: t2, sm: t3, eh: t5, em: t6, h: sy2 - sy1};
+            return { sh: t2, sm: t3, eh: t5, em: t6, h: sy2 - sy1 };
         }
         function pZero(n) {
             return n < 10 ? "0" + n : "" + n;
@@ -1411,24 +1345,10 @@
             return [zc(c, 0), zc(c, 1), zc(c, 2), zc(c, 3)];
         }
         function Tp(temp, dataarry) {
-            return temp.replace(/\$\{([\w]+)\}/g, function(s1, s2) {
-                var s = dataarry[s2];
-                if (typeof (s) != "undefined") {
-                    return s;
-                } else {
-                    return s1;
-                }
-            });
+            return temp.replace(/\$\{([\w]+)\}/g, function(s1, s2) { var s = dataarry[s2]; if (typeof (s) != "undefined") { return s; } else { return s1; } });
         }
         function Ta(temp, dataarry) {
-            return temp.replace(/\{([\d])\}/g, function(s1, s2) {
-                var s = dataarry[s2];
-                if (typeof (s) != "undefined") {
-                    return encodeURIComponent(s);
-                } else {
-                    return "";
-                }
-            });
+            return temp.replace(/\{([\d])\}/g, function(s1, s2) { var s = dataarry[s2]; if (typeof (s) != "undefined") { return encodeURIComponent(s); } else { return ""; } });
         }
         function fomartTimeShow(h) {
             return h < 10 ? "0" + h + ":00" : h + ":00";
@@ -1443,9 +1363,9 @@
                 showyear = comparedate.getFullYear() != date.getFullYear();
                 //showmonth = comparedate.getFullYear() != date.getFullYear() || date.getMonth() != comparedate.getMonth();
                 if (comparedate.getFullYear() == date.getFullYear() &&
-                        date.getMonth() == comparedate.getMonth() &&
-                        date.getDate() == comparedate.getDate()
-                        ) {
+					date.getMonth() == comparedate.getMonth() &&
+					date.getDate() == comparedate.getDate()
+					) {
                     showyear = showmonth = showday = showweek = false;
                 }
             }
@@ -1463,17 +1383,16 @@
         }
         function CalDateShow(startday, endday, isshowtime, isshowweek) {
             if (!endday) {
-                return dateFormat.call(startday, getymformat(startday, null, isshowtime));
+                return dateFormat.call(startday, getymformat(startday,null,isshowtime));
             } else {
-                var strstart = dateFormat.call(startday, getymformat(startday, null, isshowtime, isshowweek));
-                var strend = dateFormat.call(endday, getymformat(endday, startday, isshowtime, isshowweek));
-                var join = (strend != "" ? " - " : "");
-                return [strstart, strend].join(join);
+                var strstart= dateFormat.call(startday, getymformat(startday, null, isshowtime, isshowweek));
+				var strend=dateFormat.call(endday, getymformat(endday, startday, isshowtime, isshowweek));
+				var join = (strend!=""? " - ":"");
+				return [strstart,strend].join(join);
             }
         }
 
         function dochange() {
-
             var d = getRdate();
             var loaded = checkInEr(d.start, d.end);
             if (!loaded) {
@@ -1498,9 +1417,7 @@
                     r = true;
                 }
                 if (!end)
-                {
-                    r2 = true;
-                }
+                { r2 = true; }
                 else {
                     if (end >= dr.startdate && end <= dr.enddate) {
                         r2 = true;
@@ -1534,11 +1451,9 @@
                 height: h - 4,
                 i: "-1",
                 drag: "drag-chip",
-                redisplay: resize ? "block" : "none",
-                display:'block'
+                redisplay: resize ? "block" : "none"
             });
-            // return newtemp; original
-            return false;
+            return newtemp;
         }
 
         function getdata(chip) {
@@ -1552,27 +1467,17 @@
         function parseED(data) {
             if (data.length > 6) {
                 var e = [];
-                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10], data[11], data[12], data[13],data[14],data[15],data[16]);
-                
-                if(data[16] === '1')
-                $(".container").append("<input type='hidden' id='"+data[0]+"' value='1' >"); 
-            
-            if(data[16] === '3')
-                 $(".container").append("<input type='hidden' id='"+data[0]+"' value='3' >");
-             
-             if(data[16] === '2')
-                 $(".container").append("<input type='hidden' id='"+data[0]+"' value='2' >");
-                
+                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10]);
                 return e;
             }
             return null;
 
         }
         function quickd(type) {
-            //$("#bbit-cs-buddle").css("visibility", "hidden");
+            $("#bbit-cs-buddle").css("visibility", "hidden");
             var calid = $("#bbit-cs-id").val();
-            var param = [{"name": "calendarId", value: calid},
-                {"name": "type", value: type}];
+            var param = [{ "name": "calendarId", value: calid },
+                        { "name": "type", value: type}];
             var de = rebyKey(calid, true);
             option.onBeforeRequestData && option.onBeforeRequestData(3);
             $.post(option.quickDeleteUrl, param, function(data) {
@@ -1592,8 +1497,8 @@
             render();
         }
         function getbuddlepos(x, y) {
-            var tleft = x - 110;
-            var ttop = y - 217;
+            var tleft = x - 110; 
+            var ttop = y - 217; 
             var maxLeft = document.documentElement.clientWidth;
             var maxTop = document.documentElement.clientHeight;
             var ishide = false;
@@ -1608,19 +1513,18 @@
                 }
                 ishide = true;
             }
-            return {left: tleft, top: ttop, hide: ishide};
+            return { left: tleft, top: ttop, hide: ishide };
         }
         function dayshow(e, data) {
             if (data == undefined) {
                 data = getdata($(this));
             }
-
             if (data != null) {
-
-                if (data != null) {
-
-                    var csbuddle = '<div id="bbit-cs-buddle" style="z-index: 180; width: 400px;visibility:hidden;" class="bubble"><table class="bubble-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="bubble-cell-side"><div id="tl1" class="bubble-corner"><div class="bubble-sprite bubble-tl"></div></div><td class="bubble-cell-main"><div class="bubble-top"></div><td class="bubble-cell-side"><div id="tr1" class="bubble-corner"><div class="bubble-sprite bubble-tr"></div></div> <tr id="bbit-logo"><td class=cb-value><div id="bbit-cs-buddle-logo"></div></td></tr> <tr><td class="bubble-mid" colSpan="3"><div style="overflow: hidden" id="bubbleContent1"><div><div></div><div class="cb-root"><table class="cb-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="cb-value"><div class="textbox-fill-wrapper"><div class="textbox-fill-mid"><div id="bbit-cs-what" style="font-weight:bold;" title="'
-                            + i18n.xgcalendar.click_to_detail + '" ></div></div></div></td></tr><tr><td class=cb-value><b>When</b><div id="bbit-cs-buddle-timeshow"></div></td></tr><tr id="bbit-location" ><td class=cb-value><b>Where</b><div id="bbit-cs-buddle-location"></div></td></tr><tr id="bbit-tags"><td class=cb-value><b>Tags</b><div id="bbit-cs-buddle-tags"></div></td></tr><tr id="bbit-details"><td class=cb-value><b>Details</b><div id="bbit-cs-buddle-details"></div></td></tr><tr id="bbit-wages"><td class=cb-value><b>Wages</b><div id="bbit-cs-buddle-wages"></div></td></tr><tr id="bbit-apply"><td class=cb-value><b></b><div id="bbit-cs-buddle-apply"></div></td></tr></tbody></table><StrONG></StrONG></SPAN></div></div></div></div><tr><td><div id="bl1" class="bubble-corner"><div class="bubble-sprite bubble-bl"></div></div><td><div class="bubble-bottom"></div><td><div id="br1" class="bubble-corner"><div class="bubble-sprite bubble-br"></div></div></tr></tbody></table><div id="bubbleClose2" class="bubble-closebutton"></div><div id="prong1" class="prong"><div class=bubble-sprite></div></div></div>';
+                if (option.quickDeleteUrl != "" && data[8] == 1 && option.readonly != true) {
+                    var csbuddle = '<div id="bbit-cs-buddle" style="z-index: 180; width: 400px;visibility:hidden;" class="bubble"><table class="bubble-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="bubble-cell-side"><div id="tl1" class="bubble-corner"><div class="bubble-sprite bubble-tl"></div></div><td class="bubble-cell-main"><div class="bubble-top"></div><td class="bubble-cell-side"><div id="tr1" class="bubble-corner"><div class="bubble-sprite bubble-tr"></div></div>  <tr><td class="bubble-mid" colSpan="3"><div style="overflow: hidden" id="bubbleContent1"><div><div></div><div class="cb-root"><table class="cb-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="cb-value"><div class="textbox-fill-wrapper"><div class="textbox-fill-mid"><div id="bbit-cs-what" title="'
+                    	+ i18n.xgcalendar.click_to_detail + '" class="textbox-fill-div lk" style="cursor:pointer;"></div></div></div></td></tr><tr><td class=cb-value><div id="bbit-cs-buddle-timeshow"></div></td></tr></tbody></table><div class="bbit-cs-split"><input id="bbit-cs-id" type="hidden" value=""/>[ <span id="bbit-cs-delete" class="lk">'
+                    	+ i18n.xgcalendar.i_delete + '</span> ]&nbsp; <SPAN id="bbit-cs-editLink" class="lk">'
+                    	+ i18n.xgcalendar.update_detail + ' <StrONG>&gt;&gt;</StrONG></SPAN></div></div></div></div><tr><td><div id="bl1" class="bubble-corner"><div class="bubble-sprite bubble-bl"></div></div><td><div class="bubble-bottom"></div><td><div id="br1" class="bubble-corner"><div class="bubble-sprite bubble-br"></div></div></tr></tbody></table><div id="bubbleClose2" class="bubble-closebutton"></div><div id="prong1" class="prong"><div class=bubble-sprite></div></div></div>';
                     var bud = $("#bbit-cs-buddle");
                     if (bud.length == 0) {
                         bud = $(csbuddle).appendTo(document.body);
@@ -1652,33 +1556,31 @@
                                 }
                             }
                         });
-//                        $("#bbit-cs-what").click(function(e) {
-//                            if (!option.ViewCmdhandler) {
-//                                alert("ViewCmdhandler" + i18n.xgcalendar.i_undefined);
-//                            }
-//                            else {
-//                                if (option.ViewCmdhandler && $.isFunction(option.ViewCmdhandler)) {
-//                                    option.ViewCmdhandler.call(this, $("#bbit-cs-buddle").data("cdata"));
-//                                }
-//                            }
-//                            //$("#bbit-cs-buddle").css("visibility", "hidden");
-//                            return false;
-//                        });
+                        $("#bbit-cs-what").click(function(e) {
+                            if (!option.ViewCmdhandler) {
+                                alert("ViewCmdhandler" + i18n.xgcalendar.i_undefined);
+                            }
+                            else {
+                                if (option.ViewCmdhandler && $.isFunction(option.ViewCmdhandler)) {
+                                    option.ViewCmdhandler.call(this, $("#bbit-cs-buddle").data("cdata"));
+                                }
+                            }
+                            $("#bbit-cs-buddle").css("visibility", "hidden");
+                            return false;
+                        });
                         lbtn.click(function(e) {
                             if (!option.EditCmdhandler) {
-                               // alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
+                                alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
                             }
                             else {
                                 if (option.EditCmdhandler && $.isFunction(option.EditCmdhandler)) {
                                     option.EditCmdhandler.call(this, $("#bbit-cs-buddle").data("cdata"));
                                 }
                             }
-                            // $("#bbit-cs-buddle").css("visibility", "hidden");
+                            $("#bbit-cs-buddle").css("visibility", "hidden");
                             return false;
                         });
-                        bud.click(function() {
-                            return false
-                        });
+                        bud.click(function() { return false });
                     }
                     var pos = getbuddlepos(e.pageX, e.pageY);
                     if (pos.hide) {
@@ -1694,108 +1596,25 @@
                         ss.push(",", dateFormat.call(data[2], "HH:mm"));
                     }
 
-
-                    // if (iscos) {
-                    ss.push(" - ", dateFormat.call(data[3], i18n.xgcalendar.dateformat.Md3), " (", __WDAY[data[3].getDay()], ")");
-                    if (data[4] != 1) {
-                        ss.push(",", dateFormat.call(data[3], "HH:mm"));
-
+                    if (iscos) {
+                        ss.push(" - ", dateFormat.call(data[3], i18n.xgcalendar.dateformat.Md3), " (", __WDAY[data[3].getDay()], ")");
+                        if (data[4] != 1) {
+                            ss.push(",", dateFormat.call(data[3], "HH:mm"));
+                        }
                     }
-                    //}
-                    // alert(ss);
                     var ts = $("#bbit-cs-buddle-timeshow").html(ss.join(""));
-                    var html="";
-                    html="<a href="+siteurl+"/jobs/"+data[1]+" target='_blank'>"+data[1]+"</a>";
-                    $("#bbit-cs-what").html(html);
-                    if (data[9].length == "0")
-                        $("#bbit-location").hide();
-                    else
-                        $("#bbit-cs-buddle-location").html(data[9]);
-
-                    if (data[10].length == "0") {
-                        $("#bbit-tags").hide();
-                    }
-                    else {
-                        var html = "";
-
-                        html = "<div id='user_tags'>" + data[10] + "</div>";
-
-                        $("#bbit-cs-buddle-tags").html(html);
-                    }
-
-                    if (data[11].length == "0")
-                    {
-                        $("#bbit-details").hide();
-                    } else {
-                        var html = "";
-                        html = "<div id='details'>" + data[11] + "</div>";
-                        $("#bbit-cs-buddle-details").html(html);
-                    }
-
-                    if (data[12].length == "0")
-                    {
-                        $("#bbit-wages").hide();
-                    } else
-                    {
-                        var html = "";
-                        html = "<div id='wages'>" + data[12] + "</div>";
-                        $("#bbit-cs-buddle-wages").html(html);
-                    }
-                    
-                    if (data[13] != "true" || data[15] === "employer")
-                    {
-                        $("#bbit-apply").hide();
-                    } else
-                    {
-                       
-                                  var html = "";
-                                 
-                        
-                        if($("#"+data[0]).val() === "1")
-                       html="<button href='#' style=' width: 40%; margin-top: 13px; '  id='unapply-job' class='btn btn-medium btn-block btn-danger red-btn' data-action='unapply' data-job-id='"+data[0]+"'>Unapply</button>"; 
-                        
-                       else if($("#"+data[0]).val() === "3") 
-                        html="<a href='#' class='required'>You are hired!</a>";    
-                        
-                        else if($("#"+data[0]).val() === "2")
-                            html="<a href='#' class='required'>Requirement Complete</a>";
-                        
-                        else
-                            html = "<div id='apply'><button href='#'  style=' width: 40%; margin-top: 13px; ' id='apply-job' class='btn btn-medium btn-block btn-primary  btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</button></div>";
-                            
-                        
-                        
-                        if( $("#"+data[0]).length == 0)
-                        html = "<div id='apply'><a type='button' href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"' onClick='apply_job(event)'>Apply</a></div>";
-                            
-                            
-                            
-                        $("#bbit-cs-buddle-apply").html(html);
-                                
-//                            }
-                      
-                    }
-                   
-                    if(data[14].length == "0" )
-                        {
-                            $("#bbit-logo").hide();
-                        }else
-                            {
-                                $("#bbit-cs-buddle-logo").html(data[14]);
-                            }
-
+                    $("#bbit-cs-what").html(data[1]);
                     $("#bbit-cs-id").val(data[0]);
                     bud.data("cdata", data);
-                    bud.css({"visibility": "visible", left: pos.left, top: pos.top});
+                    bud.css({ "visibility": "visible", left: pos.left, top: pos.top });
 
-//                    $(document).one("click", function() {
-//                        $("#bbit-cs-buddle").css("visibility", "hidden");
-//                    });
-                    $("#bbit-cs-buddle").show();
+                    $(document).one("click", function() {
+                        $("#bbit-cs-buddle").css("visibility", "hidden");
+                    });
                 }
                 else {
                     if (!option.ViewCmdhandler) {
-                       // alert("ViewCmdhandler" + i18n.xgcalendar.i_undefined);
+                        alert("ViewCmdhandler" + i18n.xgcalendar.i_undefined);
                     }
                     else {
                         if (option.ViewCmdhandler && $.isFunction(option.ViewCmdhandler)) {
@@ -1805,7 +1624,7 @@
                 }
             }
             else {
-                //alert(i18n.xgcalendar.data_format_error);
+                alert(i18n.xgcalendar.data_format_error);
             }
             return false;
         }
@@ -1862,7 +1681,7 @@
             if (top + height >= maxtop) {
                 top = maxtop - height - 2;
             }
-            var newOff = {left: left, top: top, "z-index": 180, width: width, "visibility": "visible"};
+            var newOff = { left: left, top: top, "z-index": 180, width: width, "visibility": "visible" };
             cc.css(newOff);
             $(document).one("click", closeCc);
             return false;
@@ -1877,11 +1696,11 @@
                 var os = data[2];
                 var od = data[3];
                 var zone = new Date().getTimezoneOffset() / 60 * -1;
-                var param = [{"name": "calendarId", value: id},
-                    {"name": "CalendarStartTime", value: dateFormat.call(start, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm")},
-                    {"name": "CalendarEndTime", value: dateFormat.call(end, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm")},
-                    {"name": "timezone", value: zone}
-                ];
+                var param = [{ "name": "calendarId", value: id },
+							{ "name": "CalendarStartTime", value: dateFormat.call(start, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm") },
+							{ "name": "CalendarEndTime", value: dateFormat.call(end, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm") },
+							{ "name": "timezone", value: zone }
+						   ];
                 var d;
                 if (option.quickUpdateHandler && $.isFunction(option.quickUpdateHandler)) {
                     option.quickUpdateHandler.call(this, param);
@@ -1896,7 +1715,7 @@
                             }
                             else {
                                 option.onRequestDataError && option.onRequestDataError(4, data);
-                                option.isloading = false;
+                                option.isloading = false;									
                                 d = rebyKey(id, true);
                                 d[2] = os;
                                 d[3] = od;
@@ -1906,7 +1725,7 @@
                                 option.onAfterRequestData && option.onAfterRequestData(4);
                             }
                         }
-                    }, "json");
+                    }, "json");					
                     d = rebyKey(id, true);
                     if (d) {
                         d[2] = start;
@@ -1918,14 +1737,9 @@
             }
         }
         function quickadd(start, end, isallday, pos) {
-
-
-            return false; //to disable quick add new event
-
             if ((!option.quickAddHandler && option.quickAddUrl == "") || option.readonly) {
                 return;
             }
-
             var buddle = $("#bbit-cal-buddle");
             if (buddle.length == 0) {
                 var temparr = [];
@@ -1965,11 +1779,11 @@
                         return false;
                     }
                     var zone = new Date().getTimezoneOffset() / 60 * -1;
-                    var param = [{"name": "CalendarTitle", value: what},
-                        {"name": "CalendarStartTime", value: datestart},
-                        {"name": "CalendarEndTime", value: dateend},
-                        {"name": "IsAllDayEvent", value: allday},
-                        {"name": "timezone", value: zone}];
+                    var param = [{ "name": "CalendarTitle", value: what },
+						{ "name": "CalendarStartTime", value: datestart },
+						{ "name": "CalendarEndTime", value: dateend },
+						{ "name": "IsAllDayEvent", value: allday },
+						{ "name": "timezone", value: zone}];
 
                     if (option.extParam) {
                         for (var pi = 0; pi < option.extParam.length; pi++) {
@@ -2011,7 +1825,7 @@
                         var ed = strtodate(dateend);
                         var diff = DateDiff("d", sd, ed);
                         newdata.push(sd, ed, allday == "1" ? 1 : 0, diff > 0 ? 1 : 0, 0);
-                        newdata.push(-1, 0, "", "");
+                        newdata.push(-1, 0, "", ""); 
                         tId = Ind(newdata);
                         realsedragevent();
                         render();
@@ -2019,7 +1833,7 @@
                 });
                 lbtn.click(function(e) {
                     if (!option.EditCmdhandler) {
-                       // alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
+                        alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
                     }
                     else {
                         if (option.EditCmdhandler && $.isFunction(option.EditCmdhandler)) {
@@ -2030,12 +1844,10 @@
                     }
                     return false;
                 });
-                buddle.mousedown(function(e) {
-                    return false
-                });
+                buddle.mousedown(function(e) { return false });
             }
-
-            var dateshow = CalDateShow(start, end, !isallday, true);
+			
+            var dateshow = CalDateShow(start, end, !isallday, true);			
             var off = getbuddlepos(pos.left, pos.top);
             if (off.hide) {
                 $("#prong2").hide()
@@ -2048,8 +1860,8 @@
             $("#bbit-cal-allday").val(isallday ? "1" : "0");
             $("#bbit-cal-start").val(dateFormat.call(start, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm"));
             $("#bbit-cal-end").val(dateFormat.call(end, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm"));
-            buddle.css({"visibility": "visible", left: off.left, top: off.top});
-            calwhat.blur().focus(); //add 2010-01-26 blur() fixed chrome 
+            buddle.css({ "visibility": "visible", left: off.left, top: off.top });			
+			calwhat.blur().focus(); //add 2010-01-26 blur() fixed chrome 
             $(document).one("mousedown", function() {
                 $("#bbit-cal-buddle").css("visibility", "hidden");
                 realsedragevent();
@@ -2131,17 +1943,15 @@
                 if (i == option.eventItems.length) {
                     option.eventItems.push(event);
                 }
-                else {
-                    option.eventItems.splice(i, d, event);
-                }
+                else { option.eventItems.splice(i, d, event); }
             }
             else {
                 option.eventItems = [event];
             }
             return i;
         }
-
-
+        
+        
         function ResizeView() {
             var _MH = document.documentElement.clientHeight;
             var _viewType = option.view;
@@ -2149,8 +1959,7 @@
                 var $dvwkcontaienr = $("#dvwkcontaienr");
                 var $dvtec = $("#dvtec");
                 if ($dvwkcontaienr.length == 0 || $dvtec.length == 0) {
-                   // alert(i18n.xgcalendar.view_no_ready);
-                    return;
+                    alert(i18n.xgcalendar.view_no_ready); return;
                 }
                 var dvwkH = $dvwkcontaienr.height() + 2;
                 var calH = option.height - 8 - dvwkH;
@@ -2163,10 +1972,8 @@
                     var ch = $dvtec.attr("clientHeight");
                     var sh = th - 0.5 * ch;
                     var ph = $dvtec.attr("scrollHeight");
-                    if (sh < 0)
-                        sh = 0;
-                    if (sh > ph - ch)
-                        sh = ph - ch - 10 * (23 - h);
+                    if (sh < 0) sh = 0;
+                    if (sh > ph - ch) sh = ph - ch - 10 * (23 - h);
                     $dvtec.attr("scrollTop", sh);
                 }
                 else {
@@ -2186,14 +1993,10 @@
                     var chip = $(this);
                     chip.click(dayshow);
                     if (chip.hasClass("drag")) {
-                        chip.mousedown(function(e) {
-                            dragStart.call(this, "dw3", e);
-                            return false;
-                        });
+                        chip.mousedown(function(e) { dragStart.call(this, "dw3", e); return false; });
                         //resize                      
                         chip.find("div.resizer").mousedown(function(e) {
-                            dragStart.call($(this).parent().parent(), "dw4", e);
-                            return false;
+                            dragStart.call($(this).parent().parent(), "dw4", e); return false;
                         });
                     }
                     else {
@@ -2205,10 +2008,7 @@
                     chip.click(dayshow);
                     if (chip.hasClass("drag") && viewtype == "week") {
                         //drag;
-                        chip.mousedown(function(e) {
-                            dragStart.call(this, "dw5", e);
-                            return false;
-                        });
+                        chip.mousedown(function(e) { dragStart.call(this, "dw5", e); return false; });
                     }
                     else {
                         chip.mousedown(returnfalse)
@@ -2216,15 +2016,9 @@
                 });
                 if (option.readonly == false) {
                     $("td.tg-col", gridcontainer).each(function(i) {
-                        $(this).mousedown(function(e) {
-                            dragStart.call(this, "dw1", e);
-                            return false;
-                        });
+                        $(this).mousedown(function(e) { dragStart.call(this, "dw1", e); return false; });
                     });
-                    $("#weekViewAllDaywk").mousedown(function(e) {
-                        dragStart.call(this, "dw2", e);
-                        return false;
-                    });
+                    $("#weekViewAllDaywk").mousedown(function(e) { dragStart.call(this, "dw2", e); return false; });
                 }
 
                 if (viewtype == "week") {
@@ -2241,10 +2035,7 @@
                     chip.click(dayshow);
                     if (chip.hasClass("drag")) {
                         //drag;
-                        chip.mousedown(function(e) {
-                            dragStart.call(this, "m2", e);
-                            return false;
-                        });
+                        chip.mousedown(function(e) { dragStart.call(this, "m2", e); return false; });
                     }
                     else {
                         chip.mousedown(returnfalse)
@@ -2253,17 +2044,11 @@
                 $("td.st-more", gridcontainer).each(function(i) {
 
                     $(this).click(function(e) {
-                        moreshow.call(this, $(this).parent().parent().parent().parent()[0]);
-                        return false;
-                    }).mousedown(function() {
-                        return false;
-                    });
+                        moreshow.call(this, $(this).parent().parent().parent().parent()[0]); return false;
+                    }).mousedown(function() { return false; });
                 });
                 if (option.readonly == false) {
-                    $("#mvEventContainer").mousedown(function(e) {
-                        dragStart.call(this, "m1", e);
-                        return false;
-                    });
+                    $("#mvEventContainer").mousedown(function(e) { dragStart.call(this, "m1", e); return false; });
                 }
             }
 
@@ -2279,10 +2064,10 @@
             var source = e.srcElement || e.target;
             realsedragevent();
             switch (type) {
-                case "dw1":
-                    _dragdata = {type: 1, target: obj, sx: e.pageX, sy: e.pageY};
+                case "dw1": 
+                    _dragdata = { type: 1, target: obj, sx: e.pageX, sy: e.pageY };
                     break;
-                case "dw2":
+                case "dw2": 
                     var w = obj.width();
                     var h = obj.height();
                     var offset = obj.offset();
@@ -2297,20 +2082,20 @@
                     var xa = [];
                     var ya = [];
                     for (var i = 0; i < l; i++) {
-                        xa.push({s: i * pw + left, e: (i + 1) * pw + left});
+                        xa.push({ s: i * pw + left, e: (i + 1) * pw + left });
                     }
-                    ya.push({s: top, e: top + h});
-                    _dragdata = {type: 2, target: obj, sx: e.pageX, sy: e.pageY, pw: pw, xa: xa, ya: ya, h: h};
+                    ya.push({ s: top, e: top + h });
+                    _dragdata = { type: 2, target: obj, sx: e.pageX, sy: e.pageY, pw: pw, xa: xa, ya: ya, h: h };
                     w = left = l = py = pw = xa = null;
                     break;
-                case "dw3":
+                case "dw3": 
                     var evid = obj.parent().attr("id").replace("tgCol", "");
                     var p = obj.parent();
                     var pos = p.offset();
                     var w = p.width() + 10;
                     var h = obj.height();
                     var data = getdata(obj);
-                    _dragdata = {type: 4, target: obj, sx: e.pageX, sy: e.pageY,
+                    _dragdata = { type: 4, target: obj, sx: e.pageX, sy: e.pageY,
                         pXMin: pos.left, pXMax: pos.left + w, pw: w, h: h,
                         cdi: parseInt(evid), fdi: parseInt(evid), data: data
                     };
@@ -2318,7 +2103,7 @@
                 case "dw4": //resize;
                     var h = obj.height();
                     var data = getdata(obj);
-                    _dragdata = {type: 5, target: obj, sx: e.pageX, sy: e.pageY, h: h, data: data};
+                    _dragdata = { type: 5, target: obj, sx: e.pageX, sy: e.pageY, h: h, data: data };
                     break;
                 case "dw5":
                     var con = $("#weekViewAllDaywk");
@@ -2338,18 +2123,18 @@
                     var ya = [];
                     var di = 0;
                     for (var i = 0; i < l; i++) {
-                        xa.push({s: i * pw + left, e: (i + 1) * pw + left});
+                        xa.push({ s: i * pw + left, e: (i + 1) * pw + left });
                         if (moffset.left >= xa[i].s && moffset.left < xa[i].e) {
                             di = i;
                         }
                     }
-                    var fdi = {x: di, y: 0, di: di};
-                    ya.push({s: top, e: top + h});
+                    var fdi = { x: di, y: 0, di: di };
+                    ya.push({ s: top, e: top + h });
                     var data = getdata(obj);
                     var dp = DateDiff("d", data[2], data[3]) + 1;
-                    _dragdata = {type: 6, target: obj, sx: e.pageX, sy: e.pageY, data: data, xa: xa, ya: ya, fdi: fdi, h: h, dp: dp, pw: pw};
+                    _dragdata = { type: 6, target: obj, sx: e.pageX, sy: e.pageY, data: data, xa: xa, ya: ya, fdi: fdi, h: h, dp: dp, pw: pw };
                     break;
-                case "m1":
+                case "m1": 
                     var w = obj.width();
                     var offset = obj.offset();
                     var left = offset.left;
@@ -2365,19 +2150,19 @@
                     var xa = [];
                     var ya = [];
                     for (var i = 0; i < l; i++) {
-                        xa.push({s: i * pw + left, e: (i + 1) * pw + left});
+                        xa.push({ s: i * pw + left, e: (i + 1) * pw + left });
                     }
                     var xa = [];
                     var ya = [];
                     for (var i = 0; i < l; i++) {
-                        xa.push({s: i * pw + left, e: (i + 1) * pw + left});
+                        xa.push({ s: i * pw + left, e: (i + 1) * pw + left });
                     }
                     for (var i = 0; i < yl; i++) {
-                        ya.push({s: i * h + top, e: (i + 1) * h + top});
+                        ya.push({ s: i * h + top, e: (i + 1) * h + top });
                     }
-                    _dragdata = {type: 3, target: obj, sx: e.pageX, sy: e.pageY, pw: pw, xa: xa, ya: ya, h: h};
+                    _dragdata = { type: 3, target: obj, sx: e.pageX, sy: e.pageY, pw: pw, xa: xa, ya: ya, h: h };
                     break;
-                case "m2":
+                case "m2": 
                     var row0 = $("#mvrow_0");
                     var row1 = $("#mvrow_1");
                     var w = row0.width();
@@ -2399,21 +2184,21 @@
                     var xi = 0;
                     var yi = 0;
                     for (var i = 0; i < l; i++) {
-                        xa.push({s: i * pw + left, e: (i + 1) * pw + left});
+                        xa.push({ s: i * pw + left, e: (i + 1) * pw + left });
                         if (moffset.left >= xa[i].s && moffset.left < xa[i].e) {
                             xi = i;
                         }
                     }
                     for (var i = 0; i < yl; i++) {
-                        ya.push({s: i * h + top, e: (i + 1) * h + top});
+                        ya.push({ s: i * h + top, e: (i + 1) * h + top });
                         if (moffset.top >= ya[i].s && moffset.top < ya[i].e) {
                             yi = i;
                         }
                     }
-                    var fdi = {x: xi, y: yi, di: yi * 7 + xi};
+                    var fdi = { x: xi, y: yi, di: yi * 7 + xi };
                     var data = getdata(obj);
                     var dp = DateDiff("d", data[2], data[3]) + 1;
-                    _dragdata = {type: 7, target: obj, sx: e.pageX, sy: e.pageY, data: data, xa: xa, ya: ya, fdi: fdi, h: h, dp: dp, pw: pw};
+                    _dragdata = { type: 7, target: obj, sx: e.pageX, sy: e.pageY, data: data, xa: xa, ya: ya, fdi: fdi, h: h, dp: dp, pw: pw };
                     break;
             }
             $('body').noSelect();
@@ -2421,8 +2206,8 @@
         function dragMove(e) {
             if (_dragdata) {
                 if (e.pageX < 0 || e.pageY < 0
-                        || e.pageX > document.documentElement.clientWidth
-                        || e.pageY >= document.documentElement.clientHeight) {
+					|| e.pageX > document.documentElement.clientWidth
+					|| e.pageY >= document.documentElement.clientHeight) {
                     dragEnd(e);
                     return false;
                 }
@@ -2433,9 +2218,7 @@
                         var y = e.pageY;
                         var diffy = y - sy;
                         if (diffy > 11 || diffy < -11 || d.cpwrap) {
-                            if (diffy == 0) {
-                                diffy = 21;
-                            }
+                            if (diffy == 0) { diffy = 21; }
                             var dy = diffy % 21;
                             if (dy != 0) {
                                 diffy = dy > 0 ? diffy + 21 - dy : diffy - 21 - dy;
@@ -2518,7 +2301,7 @@
                             if (diffx > 5 || diffx < -5 || diffy > 5 || diffy < -5 || d.cpwrap) {
                                 var gh, ny, tempdata;
                                 if (!d.cpwrap) {
-                                    gh = {sh: data[2].getHours(),
+                                    gh = { sh: data[2].getHours(),
                                         sm: data[2].getMinutes(),
                                         eh: data[3].getHours(),
                                         em: data[3].getMinutes(),
@@ -2582,7 +2365,7 @@
                             if (diffy != 0 || d.cpwrap) {
                                 var gh, ny, tempdata;
                                 if (!d.cpwrap) {
-                                    gh = {sh: data[2].getHours(),
+                                    gh = { sh: data[2].getHours(),
                                         sm: data[2].getMinutes(),
                                         eh: data[3].getHours(),
                                         em: data[3].getMinutes(),
@@ -2634,7 +2417,7 @@
                             fixcppostion(d.cpwrap, e, d.xa, d.ya);
                             var ndi = getdi(d.xa, d.ya, x, e.pageY);
                             if (!d.cdi || d.cdi.di != ndi.di) {
-                                addlasso(d.lasso, ndi, {x: ndi.x, y: ndi.y, di: ndi.di + d.dp - 1}, d.xa, d.ya, d.h);
+                                addlasso(d.lasso, ndi, { x: ndi.x, y: ndi.y, di: ndi.di + d.dp - 1 }, d.xa, d.ya, d.h);
                             }
                             d.cdi = ndi;
                         }
@@ -2662,7 +2445,7 @@
                             fixcppostion(d.cpwrap, e, d.xa, d.ya);
                             var ndi = getdi(d.xa, d.ya, x, e.pageY);
                             if (!d.cdi || d.cdi.di != ndi.di) {
-                                addlasso(d.lasso, ndi, {x: ndi.x, y: ndi.y, di: ndi.di + d.dp - 1}, d.xa, d.ya, d.h);
+                                addlasso(d.lasso, ndi, { x: ndi.x, y: ndi.y, di: ndi.di + d.dp - 1 }, d.xa, d.ya, d.h);
                             }
                             d.cdi = ndi;
                         }
@@ -2691,22 +2474,19 @@
                         d.cpwrap.attr("id", wrapid);
                         var start = strtodate(d.target.attr("abbr") + " " + d.cgh.sh + ":" + d.cgh.sm);
                         var end = strtodate(d.target.attr("abbr") + " " + d.cgh.eh + ":" + d.cgh.em);
-                        _dragevent = function() {
-                            $("#" + wrapid).remove();
-                            $("#bbit-cal-buddle").css("visibility", "hidden");
-                        };
+                        _dragevent = function() { $("#" + wrapid).remove(); $("#bbit-cal-buddle").css("visibility", "hidden"); };
                         quickadd(start, end, false, pos);
                         break;
                     case 2: //week view
                     case 3: //month view					
-                        var source = e.srcElement || e.target;
+                        var source = e.srcElement || e.target;                       
                         var lassoid = new Date().getTime();
                         if (!d.lasso) {
-                            if ($(source).hasClass("monthdayshow"))
-                            {
-                                weekormonthtoday.call($(source).parent()[0], e);
-                                break;
-                            }
+							 if ($(source).hasClass("monthdayshow"))
+							{
+								weekormonthtoday.call($(source).parent()[0],e);
+								break;
+							}
                             d.fdi = d.sdi = getdi(d.xa, d.ya, d.sx, d.sy);
                             d.lasso = $("<div style='z-index: 10; display: block' class='drag-lasso-container'/>");
                             $(document.body).append(d.lasso);
@@ -2718,10 +2498,8 @@
                         var firstday = option.vstart;
                         var start = DateAdd("d", si, firstday);
                         var end = DateAdd("d", ei, firstday);
-                        _dragevent = function() {
-                            $("#" + lassoid).remove();
-                        };
-                        quickadd(start, end, true, {left: e.pageX, top: e.pageY});
+                        _dragevent = function() { $("#" + lassoid).remove(); };
+                        quickadd(start, end, true, { left: e.pageX, top: e.pageY });
                         break;
                     case 4: // event moving
                         if (d.cpwrap) {
@@ -2811,7 +2589,7 @@
                     }
                 }
             }
-            return {x: tx, y: ty, di: ty * lx + tx};
+            return { x: tx, y: ty, di: ty * lx + tx };
         }
         function addlasso(lasso, sdi, edi, xa, ya, height) {
             var diff = sdi.di > edi.di ? sdi.di - edi.di : edi.di - sdi.di;
@@ -2821,7 +2599,7 @@
             var l = xa.length > 0 ? xa.length : 1;
             var h = ya.length > 0 ? ya.length : 1;
             var play = [];
-            var width = xa[0].e - xa[0].s;
+            var width = xa[0].e - xa[0].s; 
             var i = sp.x;
             var j = sp.y;
             var max = Math.min(document.documentElement.clientWidth, xa[l - 1].e) - 2;
@@ -2833,7 +2611,7 @@
                 while (left + wid >= max) {
                     wid--;
                 }
-                play.push(Tp(__LASSOTEMP, {left: left, top: ya[j].s, height: height, width: wid}));
+                play.push(Tp(__LASSOTEMP, { left: left, top: ya[j].s, height: height, width: wid }));
                 i = 0;
                 diff = diff - d;
                 j++;
@@ -2861,11 +2639,11 @@
             if (y > tmax) {
                 y = tmax;
             }
-            cpwrap.css({left: x, top: y});
+            cpwrap.css({ left: x, top: y });
         }
         $(document)
-                .mousemove(dragMove)
-                .mouseup(dragEnd);
+		.mousemove(dragMove)
+		.mouseup(dragEnd);
         //.mouseout(dragEnd);
 
         var c = {
@@ -2876,7 +2654,7 @@
                 clearcontainer();
                 option.view = view;
                 render();
-                //dochange();
+                dochange();
             },
             rf: function() {
                 populate();
@@ -2887,8 +2665,9 @@
                 }
                 option.showday = d;
                 render();
-                //dochange();
+                dochange();
             },
+
             pv: function() {
                 switch (option.view) {
                     case "day":
@@ -2902,9 +2681,9 @@
                         break;
                 }
                 render();
-                //dochange();
+                dochange();
             },
-            nt: function() {
+            nt: function() {				
                 switch (option.view) {
                     case "day":
                         option.showday = DateAdd("d", 1, option.showday);
@@ -2913,17 +2692,17 @@
                         option.showday = DateAdd("w", 1, option.showday);
                         break;
                     case "month":
-                        var od = option.showday.getDate();
-                        option.showday = DateAdd("m", 1, option.showday);
-                        var nd = option.showday.getDate();
-                        if (od != nd) //we go to the next month
-                        {
-                            option.showday = DateAdd("d", 0 - nd, option.showday); //last day of last month
-                        }
+						var od = option.showday.getDate();
+						option.showday = DateAdd("m", 1, option.showday);
+						var nd = option.showday.getDate();
+						if(od !=nd) //we go to the next month
+						{
+							option.showday= DateAdd("d", 0-nd, option.showday); //last day of last month
+						}
                         break;
                 }
                 render();
-                //dochange();
+                dochange();
             },
             go: function() {
                 return option;
@@ -2935,7 +2714,7 @@
         this[0].bcal = c;
         return this;
     };
-
+    
     /**
      * @description {Method} swtichView To switch to another view.
      * @param {String} view View name, one of 'day', 'week', 'month'. 
@@ -2947,7 +2726,7 @@
             }
         })
     };
-
+    
     /**
      * @description {Method} reload To reload event of current time range.
      */
@@ -2958,7 +2737,7 @@
             }
         })
     };
-
+    
     /**
      * @description {Method} gotoDate To go to a range containing date.
      * If view is week, it will go to a week containing date. 
@@ -2972,7 +2751,7 @@
             }
         })
     };
-
+    
     /**
      * @description {Method} previousRange To go to previous date range.
      * If view is week, it will go to previous week. 
@@ -2985,7 +2764,7 @@
             }
         })
     };
-
+    
     /**
      * @description {Method} nextRange To go to next date range.
      * If view is week, it will go to next week. 
@@ -2998,76 +2777,20 @@
             }
         })
     };
-
-
+    
+    
     $.fn.BcalGetOp = function() {
         if (this[0].bcal) {
             return this[0].bcal.go();
         }
         return null;
     };
-
-
+    
+    
     $.fn.BcalSetOp = function(p) {
         if (this[0].bcal) {
             return this[0].bcal.so(p);
         }
     };
     
-    
-
 })(jQuery);
-
-
-
-function apply_job(event) {
-      
-        event.preventDefault();
-        var _this = $(event.target);
-        var _action = $(event.target).attr('data-action');
-        var _job_id = $(event.target).attr('data-job-id');
-        $(".load_ajax1").show();
-        $.post(ajaxurl,
-                {
-                    action: 'minyawn_job_' + _action,
-                    job_id: parseInt(_job_id)
-                },
-        function(response) {
-            
-            $(".load_ajax1").hide();
-            if (response.success == 1)
-            {
-
-                $("#job-list" + _job_id).hide('slow', function() {
-                    $("#job-list" + _job_id).remove();
-                });
-                if (response.new_action == 'apply')
-                {
-                    $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
-                    $(_this).attr('data-action', 'apply');
-                }
-                if (response.new_action == 'unapply')
-                {
-                    $(_this).addClass('green-btn btn-success').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
-                    $(_this).attr('data-action', 'unapply');
-                    
-                    $(".cb-table").append("<input type='hidden' id='"+_job_id+"' value='1' >");               }
-
-            } else if (response.success == 2)
-            {
-                $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
-                $(_this).attr('data-action', 'req_complete');
-            }
-
-        }, 'json');
-    }
-
-//$('.collapse').live('show', function() {
-//    $(this).parent().find('a').addClass('open'); //add active state to button on open
-//});
-//
-//$('.collapse').live('hide', function() {
-//    $(this).parent().find('a').removeClass('open'); //remove active state to button on close
-//});
-
-   
