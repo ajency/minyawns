@@ -986,14 +986,17 @@ jQuery(document).ready(function($) {
             },
             success: function(collection, response) {
                 $(".load_ajax1_myjobs").hide();
+               
                 if (collection.length === 0) {
 
                     var template = _.template($("#no-result").html());
 
-                    if ($("#browse-jobs-table").length > 0)
+                    if ($("#browse-jobs-table").length > 0 && $("#list-my-jobs").length == 0){
+                        
                         $("#browse-jobs-table").append(template);
-                    else
-                        $("#list-my-jobs").append(template);
+                    }else{
+                        $("#list-my-jobs").html(template);
+                    }
                     //$("#list-my-jobs").hide();
                     $("#load-more").hide();
 

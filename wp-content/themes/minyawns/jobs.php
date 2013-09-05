@@ -52,7 +52,7 @@ global $minyawn_job;
 
     <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
     <span class="label-available">Available</span>
-    
+
     <%  else if(can_apply_job == 2) %>
     <span class="label-available">Requirement complete</span>
 
@@ -133,8 +133,10 @@ global $minyawn_job;
         <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
         <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
         <% }
-        }
+        }else{ 
         %> 
+        <span style=" display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;"> Please Log-in as a Minyawn to apply to this job.</span>
+        <% } %>
 
     <?php
     endif;
@@ -243,6 +245,7 @@ global $minyawn_job;
         </div>
         </div>
     <?php } else { ?>
+
         <div class="span3">
         <div class="div-box-block">
         <span class='load_ajax1' style="display:none"></span>
@@ -250,8 +253,7 @@ global $minyawn_job;
         <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>" style="width:70%;">Select Your Minyawns</a>
         <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
         <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
-        <% }
-        %> 
+        <% } %>
         </div>
         </div>
         </div>
@@ -527,7 +529,7 @@ global $minyawn_job;
 
                     </div>
                 </div>
-               
+
 
 
             </div>
