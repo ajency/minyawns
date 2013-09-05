@@ -255,7 +255,9 @@ get_header();  ?>
 
 				<hr>
 				<div class="clear"></div><br>
+
                                 <h3> <a href="<?php echo site_url() ?>/jobs">To Visit Jobs Section Click Here</a></h3><br/><br/><br/>
+
                                 <div class="jobs_table">
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
                
