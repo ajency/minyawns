@@ -120,7 +120,7 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                     $tables = "$wpdb->posts, $wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            ";
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value DESC";
@@ -175,12 +175,13 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $user_id_applied = array();
                 $user_rating_like = array();
                 $user_rating_dislike = array();
+                $user_avatar=array();
                 foreach ($min_job->minyawns as $min) {
                     $user = array_push($user_data, $min['profile_name']);
                     $user_profileimage = array_push($user_image, get_user_company_logo($min['user_id']));
                     $applied_user_id = array_push($user_id_applied, $min['user_id']);
 
-
+                    $default_user_avatar=array_push($user_avatar,  get_avatar($min['user_id']));  
 
                     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
@@ -262,7 +263,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'user_rating_dislike' => $user_rating_dislike,
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'is_job_owner' => $is_job_owner,
-                    'applied_user_id' => $user_id_applied
+                    'applied_user_id' => $user_id_applied,
+                    'user_avatar'=>$user_avatar
                 );
             }
 
