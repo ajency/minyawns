@@ -453,7 +453,7 @@ $(".load-ajax-browse").hide();
             reset: true,
             success: function(collection, response) {
                    $(".load_more").hide();
-                if (collection.length == 0) {
+                if (collection.length === 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
                     $("#load-more").hide();
