@@ -31,7 +31,7 @@ show_admin_bar(false);
 //add image for profile
 add_image_size('minyawn',168, 300, false);
 
-add_image_size('employer',0,200, FALSE);
+add_image_size('employer',168,0, FALSE);
 
 /**
  * Child theme Path
@@ -117,7 +117,7 @@ function minyawns_scripts_styles() {
                 wp_enqueue_script('wdCalendar_lang_US', get_template_directory_uri() . '/src/plugins/wdCalendar_lang_US.js', array('jquery-cal'), null);
                 wp_enqueue_script('jquery.calendar', get_template_directory_uri() . '/src/plugins/jquery.calendar.js', array('jquery-cal'), null);
 
-                wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), null);
+                wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery-cal'), null);
             }
 
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
