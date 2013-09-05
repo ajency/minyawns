@@ -13,8 +13,8 @@ get_header();
                 <div class="span12">
                     <img class="log-img" src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
                     <div class="banner-desc">
-                        Minyawns is an easy to use. on-demand,<br>
-                        student labour sourcing application
+                        Minyawns is an easy to use. on-demand.<br>
+                         reliable way to find work help fast.
                     </div>
                     <hr>
                     <div class="row-fluid">
