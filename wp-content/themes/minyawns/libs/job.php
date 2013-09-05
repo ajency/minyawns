@@ -379,37 +379,7 @@ $app->post('/confirm', function() use ($app) {
                     $paypal_minyawns_hired.=$split_status[0];
                 }
 
-                // $job_metadata = get_post_meta($_POST['job_id']);  
-                $job_data = get_post($_POST['job_id']);
-
-                //get minyawn email id
-                $minyawns_data = get_userdata($split_status[0]);
-
-                //Send mail to minyawns
-                $minyawns_subject = "Minyawns - You have been hired for " . get_the_title($_POST['job_id']);
-
-
-
-                $minyawns_message = "Hi,<br/><br/>
-                		Congratulations, You have been hired for the job '" . get_the_title($_POST['job_id']) . "'<br/><br/>
-                		<h3>Job:" . get_the_title($_POST['job_id']) . "</h3>                
-                		<br/><b>Start date: </b>" . date('d M Y', get_post_meta($_POST['job_id'], 'job_start_date', true)) . "
-                		<br/><b>Start Time: </b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_start_time', true)) . "                		 
-					    <br/><b>End Time: </b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_end_time', true)) . "	
-                		<br/><b>Location: </b>" . get_post_meta($_POST['job_id'], 'job_location', true) . "
-						<br/><b>Wages: </b> $" . get_post_meta($_POST['job_id'], 'job_wages', true) . "
-                		<br/><b>Details: </b>" . $job_data->post_content . "
-                
-                		<br/><br/>
-                
-                		";
- 
-                
-
-                add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-                $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-                wp_mail($minyawns_data->user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
-
+                 
 
                 // }
             }
@@ -419,14 +389,7 @@ $app->post('/confirm', function() use ($app) {
 
             /* aded on 1sep2013 */
 
-
-
-
-
-
-
-
-
+  
             $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
 

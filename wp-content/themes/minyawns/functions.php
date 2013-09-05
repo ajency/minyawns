@@ -224,8 +224,11 @@ function popup_usersignup() {
             $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
             wp_mail($userdata_['user_email'], $subject, email_header() . $message . email_signature(), $headers);
 
+            wp_new_user_notification( $user_id,  $userdata_['user_pass'] );
             $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
             wp_send_json($response);
+            
+            
         }
     }
 }

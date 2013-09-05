@@ -196,6 +196,35 @@ else
 						//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
 					
 						$receiver_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+						
+						
+						
+						
+						//send mail to hired minyawns						
+						$job_data = get_post($data['item_number']);						
+						$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
+               			$minyawns_message = "Hi,<br/><br/>
+                		Congratulations, You have been hired for the job '" . get_the_title($data['item_number'] ) . "'<br/><br/>
+                		<h3>Job:" . get_the_title($data['item_number'] ) . "</h3>                
+                		<br/><b>Start date: </b>" . date('d M Y', get_post_meta($data['item_number'] , 'job_start_date', true)) . "
+                		<br/><b>Start Time: </b>" . date('g:i a', get_post_meta($data['item_number'] , 'job_start_time', true)) . "                		 
+					    <br/><b>End Time: </b>" . date('g:i a', get_post_meta($data['item_number'] , 'job_end_time', true)) . "	
+                		<br/><b>Location: </b>" . get_post_meta($data['item_number'] , 'job_location', true) . "
+						<br/><b>Wages: </b> $" . get_post_meta($data['item_number'] , 'job_wages', true) . "
+                		<br/><b>Details: </b>" . $job_data->post_content . "
+                
+                		<br/><br/>
+               
+                		";
+		                add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+		                $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+		                wp_mail($value->user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
+								
+						
+						
+						
+						
+						
 
 					$cnt_sel_minyawns++;
 					}
@@ -245,9 +274,6 @@ else
 							 
 									
 					$sender_message.= "		
-									
-									
-									
 							<br/><b>Job    		   :</b> ".$data['item_name']."
 							<br/><b>Job Date : </b>". date('d M Y',get_post_meta($item__number,'job_start_date',true))."
 							<br/><b>Start Time : </b>". date('g:i a',get_post_meta($item__number,'job_start_time',true))."							
