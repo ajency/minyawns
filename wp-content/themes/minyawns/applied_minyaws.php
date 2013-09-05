@@ -29,13 +29,16 @@
                                         <?php echo get_avatar($minyawn['user_email'], 168); ?>
                                     </div>
                                 <?php endif; ?>
-                                <div class="rating"  >
-                                    <a  id="total-like<?php echo $minyawn['user_id']; ?>" class="vote-up" href="#like" is_rated="<?php echo $minyawn['is_job_rated']; ?>" employer-vote="1"   job-id="<?php echo $minyawn['user_to_job'] ?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-up" emp_id="<?php echo $user_ID; ?>">
+                                
+                                <div class='rating'>
+                                            <a  id="total-like<?php echo $minyawn['user_id']; ?>" class="vote-up" href="#like" is_rated="<?php echo $minyawn['is_job_rated']; ?>" employer-vote="1"   job-id="<?php echo $minyawn['user_to_job'] ?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-up" emp_id="<?php echo $user_ID; ?>">
                                         <i class="icon-thumbs-up"></i> <?php echo $minyawn['like']; ?>
                                     </a> 
+                                          
                                     <a  id="total-dislike<?php echo $minyawn['user_id']; ?>" href="#dislike" is_rated="<?php echo $minyawn['is_job_rated']; ?>"  class="icon-thumbs vote-down" employer-vote="-1" job-id="<?php echo $minyawn['user_to_job'] ?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-down"  emp_id="<?php echo $user_ID; ?>">
                                         <i class="icon-thumbs-down"></i> <?php echo $minyawn['dislike']; ?>
                                     </a>
+                                          
                                 </div>
                                 <h4> <?php echo $minyawn['profile_name']; ?></h4>
 
@@ -44,6 +47,7 @@
                                 <div class="social-link">
                                     <?php echo $minyawn['user_email']; ?> -<a href="<?php echo $minyawn['linkedin']; ?>" target="_BLANK"> <?php echo $minyawn['linkedin']; ?> </a> 
                                 </div>
+                                <div id='skills-div' style=' height: 84px;overflow: hidden;'>
                                 <?php
                                 //if (is_array($minyawn['user_skills'])) {
                                 $user_skills = explode(",", $minyawn['user_skills']);
@@ -54,6 +58,7 @@
                                 endfor;
                                 // }
                                 ?>
+                                </div>
                                 <hr>
 
                                 <?php
@@ -71,15 +76,20 @@
                                         if ($minyawn_job->get_current_date_time() < $minyawn_job->get_job_end_date_time()) {
                                             ?>
 
-                                            <div class="rating"  >
+                                             <div class='dwn-btn'>
+                                        <div class='row-fluid'>
+                                            <div class='span6'>
                                                 <a id="vote-up<?php echo $minyawn['user_id']; ?>" class="btn btn-small btn-block  btn-success well-done" href="#like" is_rated="<?php echo $minyawn['is_job_rated']; ?>" employer-vote="1"   job-id="<?php echo $minyawn['user_to_job'] ?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-up" emp_id="<?php echo $user_ID; ?>">
                                                     +1 Well Done
                                                 </a> 
+                                            </div>
+                                            <div class='span6'>
                                                 <a id="vote-down<?php echo $minyawn['user_id']; ?>"  href="#dislike" is_rated="<?php echo $minyawn['is_job_rated']; ?>"  class="btn btn-small btn-block  btn-danger terrible" employer-vote="-1" job-id="<?php echo $minyawn['user_to_job'] ?>" user_id="<?php echo $minyawn['user_id']; ?>" action="vote-down"  emp_id="<?php echo $user_ID; ?>">
                                                    -1 Terrible Job
                                                 </a>
                                             </div> 
-
+                                        </div>
+                                             </div>
 
                                         <?php } else { ?><!-- if minyawns not rated and minyawns only applied/hired   -->
 
