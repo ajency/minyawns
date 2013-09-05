@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
             //{
 
 
-                 $("#done-cropping").show();
+            $("#done-cropping").show();
             $("#image_height").val(thumb_height);
             $("#image_width").val(thumb_width)
             $("#image_x_axis").val(x_axis);
@@ -91,7 +91,7 @@ jQuery(document).ready(function($) {
 //            if (data.result.image_width > 500)
 //                $("#uploaded-image").css('width', 'auto');
 
-window.location.reload();
+            window.location.reload();
 
         },
         start: function(e, data) {
@@ -429,13 +429,13 @@ window.location.reload();
         load_browse_jobs();
     });
     function load_browse_jobs() {
-        
+
         $(".load_ajax").css('display', 'block');
         $("#calendar-jobs").hide();/*bread crumbs*/
         $("#calendar").hide();
         $("#accordion2").empty();
         $(".load_more").show();
-$(".load-ajax-browse").hide();
+        $(".load-ajax-browse").hide();
         var Fetchjobs = Backbone.Collection.extend({
             model: Job,
             url: function() {
@@ -452,7 +452,7 @@ $(".load-ajax-browse").hide();
             },
             reset: true,
             success: function(collection, response) {
-                   $(".load_more").hide();
+                $(".load_more").hide();
                 if (collection.length === 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
@@ -923,7 +923,7 @@ $(".load-ajax-browse").hide();
     });
     /** Apply/UnApply code */
     $('#apply-job-browse,#unapply-job').live('click', function(evt) {
-       
+
 
         evt.preventDefault();
         var _this = $(this);
@@ -961,8 +961,8 @@ $(".load-ajax-browse").hide();
             }
 
 
-      if($("#is_singluar").length >0)
-          window.location.reload();
+            if ($("#is_singluar").length > 0)
+                window.location.reload();
 
         }, 'json');
     });
@@ -972,6 +972,7 @@ $(".load-ajax-browse").hide();
     {
         $("#accordion2").empty();
         $("#list-my-jobs").empty();
+
         var Fetchjobs = Backbone.Collection.extend({
             model: Job,
             url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
@@ -984,7 +985,7 @@ $(".load-ajax-browse").hide();
 
             },
             success: function(collection, response) {
-
+                $(".load_ajax1_myjobs").hide();
                 if (collection.length === 0) {
 
                     var template = _.template($("#no-result").html());

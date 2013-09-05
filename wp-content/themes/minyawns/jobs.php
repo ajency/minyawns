@@ -215,7 +215,7 @@ global $minyawn_job;
     </div><br>
     <div class="row-fluid minyawansgrid">
     <% for(i=0;i<users_applied.length;i++){ %>
-    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><img src="<%= user_profile_image[i] %>"/><b><%= users_applied[i]%></b></a>
+    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><% if(user_profile_image[i] == false){%><%= user_avatar[i]%><%}else{%><img src="<%= user_profile_image[i] %>"/><%}%><b><%= users_applied[i]%></b></a>
 
     <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= post_id %>">
     <i class="icon-thumbs-up"></i> <%= user_rating_like[i] %>
@@ -521,6 +521,7 @@ global $minyawn_job;
                         <?php } ?>                   
 
                     </div>
+                    <span class='load_ajax1_myjobs' style="display:block"></span>
                     <div id="list-my-jobs">
 
 
