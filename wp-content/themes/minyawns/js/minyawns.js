@@ -1328,7 +1328,7 @@ jQuery(document).ready(function($) {
 
 
 
-    $('.vote-up,.vote-down').live('click', function(evt) {
+    $('.well-done,.terrible').live('click', function(evt) {
 
         if ($(this).attr('is_rated') != "0")
             return false;
@@ -1357,19 +1357,21 @@ jQuery(document).ready(function($) {
             if (response.action == "vote-up") {
                 $("#vote-up" + _user_id).prop('disabled', true);
                 $("#vote-down" + _user_id).prop('disabled', true)
-                $("#vote-up" + _user_id).contents().filter(function() {
-                    return this.nodeType != 1;
+                $("#total-like"+_user_id).contents().filter(function() {
+                    return this.nodeType !== 1;
                 }).remove();
-                $("#vote-up" + _user_id).append(response.rating);
+                //$("#vote-up" + _user_id).append(response.rating);
+                $("#total-like"+_user_id).append(response.rating);
                 //$("#vote-down").append("0");
             }
             if (response.action == "vote-down") {
                 $("#vote-down" + _user_id).prop('disabled', true);
                 $("#vote-up" + _user_id).prop('disabled', true)
-                $("#vote-down" + _user_id).contents().filter(function() {
-                    return this.nodeType != 1;
+                $("#total-dislike"+_user_id).contents().filter(function() {
+                    return this.nodeType !== 1;
                 }).remove();
-                $("#vote-down" + _user_id).append(response.rating);
+                //$("#vote-down" + _user_id).append(response.rating);
+                 $("#total-dislike"+_user_id).append(response.rating);
                 //$("#vote-up").append("0");
             }
 

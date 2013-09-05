@@ -43,7 +43,9 @@ $app->post('/addjob', function() use ($app) {
                     }
                 } elseif ($key == "job_start_date") {
                     $start = $value;
+                    $end = $value;
                     update_post_meta($post_id, $key, strtotime($value));
+                    update_post_meta($post_id,'job_end_date', strtotime($value));
                 } elseif ($key == "job_start_time") {
                     // print_r($start);print_r($value);
                     $date = date("j-m-Y", strtotime($start));
@@ -51,14 +53,17 @@ $app->post('/addjob', function() use ($app) {
                     update_post_meta($post_id, $key, strtotime($value));
                     update_post_meta($post_id, 'job_start_date_time', $start_date_time);
                 } elseif ($key == "job_end_date") {
-                    $end = $value;
+                    $end = $start;
                     update_post_meta($post_id, $key, strtotime($value));
                 } elseif ($key == "job_end_time") {
                     $date = date("j-m-Y", strtotime($end));
+                    
                     $end_date_time = strtotime($date . $value);
                     //print_r(date("j-m-Y",  strtotime($start)).$value);
                     update_post_meta($post_id, $key, strtotime($value));
+                   
                     update_post_meta($post_id, 'job_end_date_time', $end_date_time);
+                    
                 } elseif ($key !== 'job_details') {
                     update_post_meta($post_id, $key, $value);
                 }
@@ -419,8 +424,8 @@ $app->post('/user-vote', function() use ($app) {
                     "
 	UPDATE {$wpdb->prefix}userjobs 
 	SET rating = '" . trim($_POST['rating']) . "'
-	WHERE user_id = '" . $_POST['user_id'] . "' 
-		AND job_id = '" . $_POST['job_id'] . "'
+	WHERE user_id = '" . trim($_POST['user_id']) . "' 
+		AND job_id = '" . trim($_POST['job_id']) . "' AND status = 'hired'
 	"
             );
 
@@ -453,34 +458,34 @@ $app->post('/user-vote', function() use ($app) {
 
             if ($_POST['action'] == "vote-up")
             {   $like_count = $user_rating;
-            	$mail_subject =  "Minyawns - You have received a Thumbs Up. ";
-            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/> 
-            			Congratulations, <br/><br/>
-
-            			You have received Thumbs Up from <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
-            			Great Job! Keep it up.		<br/><br/>
-            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>
-            			
-            			";
+//            	$mail_subject =  "Minyawns - You have received a Thumbs Up. ";
+//            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/> 
+//            			Congratulations, <br/><br/>
+//
+//            			You have received Thumbs Up from <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
+//            			Great Job! Keep it up.		<br/><br/>
+//            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>
+//            			
+//            			";
             	
             				 
             }else{
                 $like_count = $user_dislike;
-                $mail_subject =  "Minyawns - You have received Thumbs Down. ";                 
-            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/>            			
-            			You have received Thumbs Down from  <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
-            			Put little more efforts to receive Thumbs Up.<br/><br/>
-            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>          			
-            			
-            			";
+//                $mail_subject =  "Minyawns - You have received Thumbs Down. ";                 
+//            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/>            			
+//            			You have received Thumbs Down from  <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
+//            			Put little more efforts to receive Thumbs Up.<br/><br/>
+//            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>          			
+//            			
+//            			";
             }
             
             
             
             //send mail to minyawn for vote-up & vote down
-            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-            wp_mail($min_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
+//            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+//            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+//            wp_mail($min_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
             	
             
             

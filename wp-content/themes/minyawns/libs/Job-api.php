@@ -91,6 +91,8 @@ class Minyawn_Job {
 
         $this->job_end_time = trim($job_meta['job_end_time'][0]);
         
+       $this->job_end_date_time=trim($job_meta['job_end_date_time'][0]);
+        
         //$this->user_skills = isset($job_meta['user_skills']) ? maybe_unserialize($job_meta['user_skills'][0]) : '';
 
         $this->wages = trim($job_meta['job_wages'][0]);
@@ -281,6 +283,20 @@ class Minyawn_Job {
         return date('d M Y', $this->job_end_date);
     }
 
+    public function get_job_end_date_time()
+    {
+        global $minyawn_job;
+        return $this->job_end_time;
+    }
+    
+    public function get_current_date_time()
+    {
+        
+        return current_time('timestamp');
+        
+    }
+    
+    
     public function get_job_end_time_ampm() {
         global $minyawn_job;
 
@@ -350,7 +366,7 @@ class Minyawn_Job {
         return implode(',', $this->job_tags);
     }
 
-    public function check_minyawn_job_status($jobID) {
+    function check_minyawn_job_status($jobID) {
          global $wpdb;
         $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND  {$wpdb->prefix}userjobs.user_id='" . get_user_id() . "'";
 
@@ -433,6 +449,8 @@ function is_job_owner($user_id, $job_id) {
 }
 
 function get_user_rating($user_id, $job_id) {
+    
+    
     
 }
 
