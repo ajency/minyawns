@@ -40,7 +40,7 @@ function wp_new_user_notification($user_id, $plaintext_pass = '') {
 	endforeach;
 	$message .= sprintf(__('Role: %s'), $reg_user_role) . "\r\n\r\n<br/>";
 	
-	if($reg_user_role=="employer")
+	if($reg_user_role=="Employer")
 	{
 		$message .= sprintf(__('Name: %s'), get_usermeta($user->ID,'first_name',true)) . "\r\n\r\n<br/>";
 		if(get_usermeta($user->ID,'company_name',true)!="") 
