@@ -102,7 +102,7 @@ global $minyawn_job;
         background-position: 10px 10px !important;
     }
     .minyans-select:hover img{
-        border: 5px solid #CCC !important;
+       
         cursor: auto!important;
     }
 
