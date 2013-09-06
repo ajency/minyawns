@@ -506,7 +506,7 @@ jQuery(document).ready(function($) {
             },
             reset: true,
             success: function(collection, response) {
-                $(".load_more").hide();
+                //$(".load_more").hide();
                 if (collection.length === 0) {
                     var template = _.template($("#no-result").html());
                     $("#accordion2").append(template);
@@ -541,7 +541,7 @@ jQuery(document).ready(function($) {
         fetch_my_jobs();
     });
     $("#load-more").click(function(e) {
-
+$(".load_ajax").show();
 // alert(window.fetchj.models.length);
         window.fetchj.fetch({
             remove: false,
@@ -550,7 +550,7 @@ jQuery(document).ready(function($) {
                 'offset': window.fetchj.models.length
 
             }, success: function(collection, response) {
-
+$(".load_ajax").hide();
                 var template = _.template($("#browse-jobs-table").html());
                 $("#accordion2").empty();
                 _.each(collection.models, function(model) {
