@@ -119,8 +119,15 @@ global $minyawn_job;
                         <a href="#edit-job-form" class="edit loaded edit-job-data"><i class="icon-edit"></i> Edit</a>
                     <?php endif; ?>
                 </p>
+              
             </div>
+            <?php global $minyawn_job;
+            if($minyawn_job->get_current_date_time() > $minyawn_job->get_job_end_date_time()){?>
       
+            <div class="alert alert-error" style="color:#e74c3c">
+This Job has Expired.
+</div>
+            <?php }?>
             <div class="singlejobedit" style="height: 680px; ">
                 <div id="single-jobs" class="span12" style=" margin-left: 0px; width: 100%; ">
                     <div  class="row-fluid  list-jobs single-jobs ">
