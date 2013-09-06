@@ -41,9 +41,16 @@ jQuery(document).ready(function($) {
         else
             alert("Please select portion..!");
     }
+    
+  //hide image select crop area on modal hide
+   $('#myprofilepic').bind('hide', function () {
+    	 $('img#uploaded-image').imgAreaSelect( {hide: true} );
+    });
+    
     $('img#uploaded-image').imgAreaSelect({
         aspectRatio: $("#aspect_ratio").val(),
         onSelectEnd: getSizes,
+        
     });
 
     $("#job_wages,#job_required_minyawns").keydown(function(event) {
@@ -69,6 +76,9 @@ jQuery(document).ready(function($) {
                 }
         );
     }
+    
+    
+    
 
     $('#change-avatar-span').click(function(e) {
 
@@ -79,19 +89,64 @@ jQuery(document).ready(function($) {
         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
         dataType: 'json',
         done: function(e, data) {
-//            $(".load_ajax-crop-upload").hide();
-//            //$('#change-avatar-span').find('img').attr('src', data.result.image);
-//            $('#change-avatar').removeAttr("disabled");
-//            $("#uploaded-image").attr('src', data.result.image);
-//            $("#image_name").val(data.result.image_name);
-//
-//            if (data.result.image_height > 500)
-//                $("#uploaded-image").css('height', 'auto');
-//
-//            if (data.result.image_width > 500)
-//                $("#uploaded-image").css('width', 'auto');
+        	/*console.log(data);
+             $(".load_ajax-crop-upload").hide();
+            //$('#change-avatar-span').find('img').attr('src', data.result.image);
+             alert(data.result.image);
+             $('#change-avatar').removeAttr("disabled");
+             $("#uploaded-image").attr('src', data.result.image);
+            $("#image_name").val(data.result.image_name);
 
-            window.location.reload();
+            if (data.result.image_height > 500)
+                $("#uploaded-image").css('height', 'auto');
+
+            if (data.result.image_width > 500)
+                $("#uploaded-image").css('width', 'auto');
+
+           // window.location.reload();*/
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	$(".load_ajax-crop-upload").hide();
+            //$('#change-avatar-span').find('img').attr('src', data.result.image);
+            $('#change-avatar').removeAttr("disabled");
+            $("#uploaded-image").attr('src', data.result.image);
+            $("#image_name").val(data.result.image_name);
+
+             
+            ratio_y = data.result.image_height/540  
+            ratio_x = data.result.image_width/510  
+            if(ratio_y>ratio_x)
+            	a_ratio = Math.round(ratio_x*10)/10;
+            else
+            	a_ratio = Math.round(ratio_x*10)/10;
+            
+             if(a_ratio <1)
+            	a_ratio = 1;
+           
+            img_width =  Math.round( (data.result.image_width /a_ratio)  *10)/10;
+            img_height = Math.round( (data.result.image_height /a_ratio)   *10)/10;
+            $("#uploaded-image").css('width', img_width);	
+            $("#uploaded-image").css('height', img_height);
+            	 
+ 
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
 
         },
         start: function(e, data) {
@@ -103,11 +158,11 @@ jQuery(document).ready(function($) {
     });
 
     $("#done-cropping").live('click', function() {
-        $(".load_ajax-crop-upload").show();
+        $(".load_ajax-crop-upload").show();       
         $.ajax({
             type: "POST",
             url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
-            data: {w: $("#image_width").val(), h: $("#image_height").val(), 'x1': $("#image_x_axis").val(), 'y1': $("#image_y_axis").val(), image_name: $("#image_name").val()}
+            data: {w: $("#image_width").val(), h: $("#image_height").val(), 'x1': $("#image_x_axis").val(), 'y1': $("#image_y_axis").val(), image_name: $("#image_name").val(), asp_ratio : $("#aspect_ratio").val() }
         }).done(function(img_link) {
             $('#myprofilepic').modal('hide')
 //            $('#change-avatar-span').find('img').attr('src', img_link);

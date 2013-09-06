@@ -33,7 +33,9 @@ $app->post('/user', function() use ($app) {
 $app->post('/change-avatar', function() use($app) {
 
             global $user_ID;
-
+           /* delete_user_meta($user_ID, 'facebook_avatar_thumb');
+            delete_user_meta($user_ID, 'facebook_avatar_full');
+			*/
             $targetFolder = '/uploads/user-avatars/' . $user_ID; // Relative to the root
 
 
@@ -64,7 +66,9 @@ $app->post('/change-avatar', function() use($app) {
                 foreach ($_FILES as $file => $array) {
                     $attach_id = upload_attachment($file, $user_ID);
                     $attachment_id = $attach_id;
-                   // $attachment_url = wp_get_attachment_link($attach_id,'medium');
+                   // $attachment_url = wp_get_attachment_link($attach_id);
+                    $attachment_data = wp_get_attachment_image_src($attach_id,400,400);
+                    $attachment_url =  $attachment_data[0];
                 }
             }
 
@@ -85,11 +89,83 @@ $app->post('/resize-user-avatar', function() use($app) {
 
             $for_user_meta = "user-avatars/" . $user_ID . "/" . $new_name;
 
-
-            $t_width = 100; // Maximum thumbnail width
-            $t_height =100; // Maximum thumbnail height
-
+			
+			 
             extract($_POST);
+            
+            
+            
+            
+            
+            
+			if(asp_ratio=="1:1")
+			{
+            	$t_width = 100; // Maximum thumbnail width
+            	$t_height =100; // Maximum thumbnail height
+			}
+			else 
+			{
+				$t_width = 170; // Maximum thumbnail width
+            	$t_height = 85; // Maximum thumbnail height
+			}
+            
+            
+            
+            
+            
+            
+            list($orig__width, $orig__height, $orig__type,$orig__attr) = getimagesize($targetFolder . $image_name);
+            
+            $orig_x_ratio = $orig__width/540;
+            $orig_y_ratio = $orig__height/510;
+            
+            
+            if($orig_x_ratio<$orig_y_ratio)
+            	$fin_asp_ratio = ceil($orig_x_ratio);
+            else
+            	$fin_asp_ratio = ceil($orig_y_ratio);
+             
+            //$fin_asp_ratio = min(array($orig_x_ratio,$orig_y_ratio));
+            
+            if($fin_asp_ratio<0)
+            	$fin_asp_ratio = 1;
+            
+            $new_width = ceil($orig__width /$fin_asp_ratio);
+            $new_height =ceil($orig__height/$fin_asp_ratio);
+            
+            $image_p = imagecreatetruecolor($new_width, $new_height);
+            $image = imagecreatefromjpeg($targetFolder . $image_name);
+            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $orig__width, $orig__height);
+            
+            
+            
+             
+            $ratio = ($t_width / $w);
+            $nw = ceil($w * $ratio);
+            $nh = ceil($h * $ratio);
+            $nimg = imagecreatetruecolor($nw, $nh);
+            
+            
+            if (stripos($image_name, "png") !== false)
+            	$im_src = imagecreatefrompng($targetFolder . $image_name);
+            else
+            	$im_src = imagecreatefromjpeg($targetFolder . $image_name);
+            
+            
+            imagecopyresampled($nimg, $im_src, 0, 0, $x1*$fin_asp_ratio, $y1*$fin_asp_ratio,$nw, $nh, $w*$fin_asp_ratio, $h*$fin_asp_ratio);
+            //  imagejpeg($nimg, $targetFolder . "_".$new_name."#".$new_height."--".$new_width."++".$fin_asp_ratio, 90);
+            //imagejpeg($nimg, $targetFolder.$new_name, 100);
+            imagepng($nimg, $targetFolder.$new_name);
+          	 // imagejpeg($nimg, $targetFolder.$new_name."_".$fin_asp_ratio."__".$w."___".$h."____".$nw."_____".$nh, 90);
+            //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
+            
+            
+            
+            
+            
+            
+            
+            /*
             $ratio = ($t_width / $w);
             $nw = ceil($w * $ratio);
             $nh = ceil($h * $ratio);
@@ -104,6 +180,11 @@ $app->post('/resize-user-avatar', function() use($app) {
             imagecopyresampled($nimg, $im_src, 0, 0, $x1, $y1, $nw, $nh, $w, $h);
             imagejpeg($nimg, $targetFolder . $new_name, 90);
             //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
+             * 
+             * */
+            
+            
+            
             $post_data = array(
                 'post_author' => get_user_id(),
                 'post_content' => '',

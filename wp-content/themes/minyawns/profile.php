@@ -99,15 +99,15 @@ get_header();  ?>
     <h4 id="myModalLabel">Change Avatar</h4>
   </div>
   <div class="modal-body">
-    <div style="margin:0 auto; width:600px">
+    <div style="margin:0 auto; width:500px">
 
-<div id="thumbs" style="padding:5px; width:600px"></div>
-<div style="width:600px" id="image_upload_body">
+<div id="thumbs" style="padding:5px; width:500px"></div>
+<div style="width:500px" id="image_upload_body">
 
 <form id="cropimage" method="post" enctype="multipart/form-data">
  <a type="button" class="btn btn-primary" id="done-cropping" style="display:none">Done? </a>
 	Upload your image <input type="file" name="files" id="photoimg" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
-<!--        <br>
+         <br>
         Please drag to select/crop your picture.
 	<p class="help-block meta">Upload an image for your profile.</p></br>
 	
@@ -118,7 +118,7 @@ get_header();  ?>
         <input type="hidden"  id="image_width">
         <input type="hidden"  id="image_x_axis">
        <input type="hidden"  id="image_y_axis">
-       <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '2:1' : '1:1')?>" id="aspect_ratio">-->
+       <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '2:1' : '1:1')?>" id="aspect_ratio"> 
        
 </form>
 
