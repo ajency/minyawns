@@ -150,7 +150,7 @@ function get_mn_user_avatar_profile($role) {
     global $current_user_new;
     if ($current_user_new->data->avatar !== false) {
         //return wp_get_attachment_thumb_url($current_user_new->data->avatar);
-        return 'http://localhost/minyawns/wp-content/uploads/user_avatars/' . get_user_id() . '/' . $role . get_user_id() . '.jpg';
+        return site_url().'/wp-content/uploads/user-avatars/' . get_user_id() . '/' . get_user_role() . get_user_id() . '.jpg';
     }
 
     if (is_user_fb_registered())

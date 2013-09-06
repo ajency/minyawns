@@ -75,7 +75,7 @@
 									if(get_mn_user_avatar() !== false)
 										echo get_mn_user_avatar() ;
 									else
-										echo get_avatar(get_user_id(), 168 )?> <b class="caret"></b>
+										echo get_avatar( get_user_profile_email(), 168 ) ?> <b class="caret"></b>
 							
                                                         </a>
 						</div>
@@ -197,7 +197,7 @@
 												class="user-submit btn btn-large btn-block btn-inverse span2"
 												tabindex="1002" />
 											<?php $reset = $_GET['reset']; if($reset == true) { 
-												echo '<p>A message will be sent to your email address.</p>';
+												echo '<p>A wmessage will be sent to your email address.</p>';
 } ?>
 											<input type="hidden" name="redirect_to"
 												value="<?php echo $_SERVER['REQUEST_URI']; ?>;?reset=true" />
