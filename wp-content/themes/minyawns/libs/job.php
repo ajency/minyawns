@@ -241,7 +241,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $has_more_results++;
                 $data[] = array(
                     'post_name' => $pagepost->post_title,
-                    'post_date' => $pagepost->post_date,
+                    'post_date' => date('d M Y',  strtotime($pagepost->post_date)),
                     'post_title' => $pagepost->post_title,
                     'post_id' => $pagepost->ID,
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),

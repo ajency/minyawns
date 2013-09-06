@@ -50,13 +50,13 @@ global $minyawn_job;
 
     <div class="job-progress header-sub">
 
-    <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
+    <%  if(can_apply_job == 0 && todays_date_time < job_end_date_time_check) %>
     <span class="label-available">Available</span>
 
     <%  else if(can_apply_job == 2) %>
     <span class="label-available">Requirement complete</span>
 
-    <% else if (todays_date_time > job_end_time_check){%>
+    <% else if (todays_date_time > job_end_date_time_check){%>
     <span class="label-unavailable">This job is complete</span>
 
     <% }else if (can_apply_job == 3){%>
