@@ -1,3 +1,4 @@
+
 <?php
 if(is_user_logged_in())
 	wp_redirect(site_url()."/profile/");
@@ -26,7 +27,9 @@ get_header();
                 </div>
 
             </div>
+			<div class="bg-overflow">
             <img class="bg-background" src="<?php echo get_template_directory_uri() ?>/images/banner1.jpg"/>
+			</div>
         </div>
         <!-- End  Banner Layout -->
 

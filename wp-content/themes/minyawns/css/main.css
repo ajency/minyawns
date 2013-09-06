@@ -2326,3 +2326,21 @@ body .jobs_table .data-title .profile-job {
   border: 2px solid #8ed030;
   margin-left: 20px;
 }
+@media only screen and (min-width: 1420px) {
+  .bg-overflow {
+    overflow: hidden;
+    height: 499px;
+  }
+  .bg-overflow img {
+    position: relative !important;
+    width: 100% ;
+  }
+}
+.job-view {
+  font-size: 16px;
+  font-family: Arial;
+}
+.job-view a {
+  font-size: 20px;
+  border-bottom: 1px dotted;
+}
