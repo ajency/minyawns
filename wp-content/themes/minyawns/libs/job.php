@@ -133,8 +133,8 @@ $app->get('/fetchjobs/', function() use ($app) {
 
 
                     $tables = "$wpdb->posts, $wpdb->postmeta";
-                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id 
+                            ";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
@@ -153,8 +153,8 @@ $app->get('/fetchjobs/', function() use ($app) {
           
             $data = array();
             $pageposts = $wpdb->get_results($querystr, OBJECT);
-//var_dump($pageposts);exit();
-            $total = count(get_total_jobs());
+
+            $total = get_total_jobs();
 
             $no_of_pages = ceil($total / 5);
 
@@ -280,7 +280,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'is_job_owner' => $is_job_owner,
                     'applied_user_id' => $user_id_applied,
-                    'total'=>count($total),
+                    'total'=>$total,
                     'no_of_pages'=>$no_of_pages
                     
                 );

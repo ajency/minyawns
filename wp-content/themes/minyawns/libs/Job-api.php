@@ -418,7 +418,7 @@ function get_total_jobs() {
                             
                          ";
 
-    return $wpdb->get_results($querystr, OBJECT);
+    return count($wpdb->get_results($querystr));
 }
 
 function is_job_owner($user_id, $job_id) {
