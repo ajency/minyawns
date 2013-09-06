@@ -499,7 +499,7 @@ body .jobs_table .data-title .profile-job {
 .footer_menu {
   list-style: none;
   margin: auto;
-  width: 284px;
+  width: 394px;
 }
 .footer_menu li {
   display: inline-block;
@@ -1351,7 +1351,7 @@ body .jobs_table .data-title .profile-job {
   margin: auto;
 }
 #innermainimage .banner-content .banner-desc {
-  font-size: 35px;
+  font-size: 26px;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 100;
   text-align: center;
@@ -1768,6 +1768,9 @@ body .jobs_table .data-title .profile-job {
     line-height: 13px;
     padding: 7px 8px 6px 13px !important;
     height: 19px !important;
+  }
+  .jobs_table .header-title .header-sub .logo {
+    margin-top: 0px;
   }
   .jobs_table .header-title {
     height: 32px;
@@ -2310,8 +2313,7 @@ body .jobs_table .data-title .profile-job {
 .employer-image {
   overflow: hidden;
   width: 170px;
-  /*height: 88px;*/
-  height:85px;
+  height: 88px;
   border: 2px solid #8ed030;
 }
 .employer-image img {
@@ -2323,8 +2325,7 @@ body .jobs_table .data-title .profile-job {
 .employer-image2 {
   overflow: hidden;
   width: 150px !important;
-  /*height: 88px;*/
-  height: 75px;  
+  height: 88px;
   border: 2px solid #8ed030;
   margin-left: 20px;
 }
