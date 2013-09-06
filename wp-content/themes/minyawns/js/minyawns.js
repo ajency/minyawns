@@ -49,7 +49,7 @@ jQuery(document).ready(function($) {
     
     $('img#uploaded-image').imgAreaSelect({
         aspectRatio: $("#aspect_ratio").val(),
-        onSelectEnd: getSizes,
+        onSelectEnd: getSizes,         
         
     });
 
@@ -140,11 +140,7 @@ jQuery(document).ready(function($) {
             $("#uploaded-image").css('width', img_width);	
             $("#uploaded-image").css('height', img_height);
             	 
- 
-        	
-        	
-        	
-        	
+           
         	
         	
         	
