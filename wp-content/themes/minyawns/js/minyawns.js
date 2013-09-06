@@ -319,7 +319,7 @@ jQuery(document).ready(function($) {
             return SITEURL + '/wp-content/themes/minyawns/libs/job.php/addjob';
         },
         validate: function(attr) {
-            $("#ajax-load").hide();
+            
 
             var errors = [];
 
@@ -373,7 +373,8 @@ jQuery(document).ready(function($) {
 
         e.preventDefault();
         _this = $(this);
-        $("#ajax-load").show();
+        $(".modal_ajax_large").show();
+        
         //remove previuous errors
         $('#job-form').find('span.form-error').remove();
         //attach it to global window so we can use it later to update the main profile view
@@ -396,7 +397,7 @@ jQuery(document).ready(function($) {
                     wait: true,
                     success: function(model, resp) {
                         $("#job-success").show();
-                        $("#ajax-load").hide();
+                       $(".modal_ajax_large").hide();
                         //get model data
                         // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
