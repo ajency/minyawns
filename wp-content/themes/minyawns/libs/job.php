@@ -43,7 +43,9 @@ $app->post('/addjob', function() use ($app) {
                     }
                 } elseif ($key == "job_start_date") {
                     $start = $value;
+                    $end = $value;
                     update_post_meta($post_id, $key, strtotime($value));
+                    update_post_meta($post_id,'job_end_date', strtotime($value));
                 } elseif ($key == "job_start_time") {
                     // print_r($start);print_r($value);
                     $date = date("j-m-Y", strtotime($start));
@@ -51,14 +53,17 @@ $app->post('/addjob', function() use ($app) {
                     update_post_meta($post_id, $key, strtotime($value));
                     update_post_meta($post_id, 'job_start_date_time', $start_date_time);
                 } elseif ($key == "job_end_date") {
-                    $end = $value;
+                    $end = $start;
                     update_post_meta($post_id, $key, strtotime($value));
                 } elseif ($key == "job_end_time") {
                     $date = date("j-m-Y", strtotime($end));
+                    
                     $end_date_time = strtotime($date . $value);
                     //print_r(date("j-m-Y",  strtotime($start)).$value);
                     update_post_meta($post_id, $key, strtotime($value));
+                   
                     update_post_meta($post_id, 'job_end_date_time', $end_date_time);
+                    
                 } elseif ($key !== 'job_details') {
                     update_post_meta($post_id, $key, $value);
                 }
@@ -123,7 +128,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            ORDER BY $wpdb->postmeta.meta_value DESC";
+                            ORDER BY $wpdb->postmeta.meta_value ASC";
                 } else {
 
 
@@ -132,7 +137,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            ORDER BY $wpdb->postmeta.meta_value DESC";
+                            ORDER BY $wpdb->postmeta.meta_value ASC";
                 }
             }
 
@@ -148,12 +153,13 @@ $app->get('/fetchjobs/', function() use ($app) {
           
             $data = array();
             $pageposts = $wpdb->get_results($querystr, OBJECT);
-
+//var_dump($pageposts);exit();
             $total = count(get_total_jobs());
 
             $no_of_pages = ceil($total / 5);
 
             $has_more_results = 0;
+            
             foreach ($pageposts as $pagepost) {
 
                 $is_job_owner = is_job_owner(get_user_id(), $pagepost->ID);
@@ -175,13 +181,15 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $user_id_applied = array();
                 $user_rating_like = array();
                 $user_rating_dislike = array();
-                $user_avatar=array();
+                $default_applied_user_avatar=array();
+               
                 foreach ($min_job->minyawns as $min) {
+                    
                     $user = array_push($user_data, $min['profile_name']);
                     $user_profileimage = array_push($user_image, get_user_company_logo($min['user_id']));
                     $applied_user_id = array_push($user_id_applied, $min['user_id']);
 
-                    $default_user_avatar=array_push($user_avatar,  get_avatar($min['user_id']));  
+                    //$default_user_avatar=array_push($default_applied_user_avatar,  get_avatar($min['user_id']));  
 
                     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
@@ -222,10 +230,18 @@ $app->get('/fetchjobs/', function() use ($app) {
                 } else {
                     $show_load = 0;
                 }
+                if(get_user_company_logo($pagepost->post_author) == false)
+                    { 
+                     $logo=get_avatar( $pagepost->post_author, 168 );
+                     
+                    }else {
+                       $logo= get_user_company_logo($pagepost->post_author);
+                        
+                    }
                 $has_more_results++;
                 $data[] = array(
                     'post_name' => $pagepost->post_title,
-                    'post_date' => $pagepost->post_date,
+                    'post_date' => date('d M Y',  strtotime($pagepost->post_date)),
                     'post_title' => $pagepost->post_title,
                     'post_id' => $pagepost->ID,
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
@@ -246,7 +262,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('display_name', $pagepost->post_author),
                     'job_author_id' => get_the_author_meta('ID', $pagepost->post_author),
-                    'job_author_logo' => get_user_company_logo($pagepost->post_author),
+                    'job_author_logo' => $logo,
                     'can_apply_job' => $applied,
                     'user_job_status' => is_null($min_job->is_hired) ? $min_job->is_hired : 'can_apply',
                     'job_start_date_time' => $post_meta['job_start_date'][0],
@@ -264,7 +280,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'is_job_owner' => $is_job_owner,
                     'applied_user_id' => $user_id_applied,
-                    'user_avatar'=>$user_avatar
+                    
                 );
             }
 
@@ -419,8 +435,8 @@ $app->post('/user-vote', function() use ($app) {
                     "
 	UPDATE {$wpdb->prefix}userjobs 
 	SET rating = '" . trim($_POST['rating']) . "'
-	WHERE user_id = '" . $_POST['user_id'] . "' 
-		AND job_id = '" . $_POST['job_id'] . "'
+	WHERE user_id = '" . trim($_POST['user_id']) . "' 
+		AND job_id = '" . trim($_POST['job_id']) . "' AND status = 'hired'
 	"
             );
 
@@ -453,34 +469,34 @@ $app->post('/user-vote', function() use ($app) {
 
             if ($_POST['action'] == "vote-up")
             {   $like_count = $user_rating;
-            	$mail_subject =  "Minyawns - You have received a Thumbs Up. ";
-            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/> 
-            			Congratulations, <br/><br/>
-
-            			You have received Thumbs Up from <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
-            			Great Job! Keep it up.		<br/><br/>
-            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>
-            			
-            			";
+//            	$mail_subject =  "Minyawns - You have received a Thumbs Up. ";
+//            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/> 
+//            			Congratulations, <br/><br/>
+//
+//            			You have received Thumbs Up from <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
+//            			Great Job! Keep it up.		<br/><br/>
+//            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>
+//            			
+//            			";
             	
             				 
             }else{
                 $like_count = $user_dislike;
-                $mail_subject =  "Minyawns - You have received Thumbs Down. ";                 
-            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/>            			
-            			You have received Thumbs Down from  <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
-            			Put little more efforts to receive Thumbs Up.<br/><br/>
-            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>          			
-            			
-            			";
+//                $mail_subject =  "Minyawns - You have received Thumbs Down. ";                 
+//            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/>            			
+//            			You have received Thumbs Down from  <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
+//            			Put little more efforts to receive Thumbs Up.<br/><br/>
+//            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>          			
+//            			
+//            			";
             }
             
             
             
             //send mail to minyawn for vote-up & vote down
-            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-            wp_mail($min_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
+//            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+//            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+//            wp_mail($min_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
             	
             
             

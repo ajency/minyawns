@@ -126,8 +126,8 @@ global $minyawn_job;
                     <div  class="row-fluid  list-jobs single-jobs ">
 
                         <div class="span12 jobs-details">
-                            <div class="span2 img-logo"><?php if (get_user_company_logo($minyawn_job->post_author)) { ?> <img src="<?php echo get_user_company_logo($minyawn_job->post_author) ?>"/> <?php } else {
-                echo get_avatar($minyawn_job->ID, 20);
+                            <div class="span2 img-logo"><?php if (get_user_company_logo($minyawn_job->post_author)) { ?> <?php echo get_user_company_logo($minyawn_job->post_author) ?> <?php } else {
+                echo get_avatar($minyawn_job->post_author, 20);
             } ?> </div>
                             <div class="span3 minyawns-select">
                                 <span><?php echo $minyawn_job->get_job_applied_minyawns(); ?></span>
@@ -164,8 +164,10 @@ global $minyawn_job;
                             <div class="row-fluid header-title">
                                 <div class="span12">
                                     <input type="hidden" value="<?php echo is_singular() ?>" id="is_singluar">
+                                   
                                     <h3><a href="#" target="_blank" ><?php echo get_the_title() ?></a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
-<?php
+
+                                        <?php
 if (get_user_role() == "minyawn") {
    
     if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3) {

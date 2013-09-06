@@ -16,7 +16,7 @@ global $minyawn_job;
     <div class="accordion-heading">
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
     <div class="span12 data-title available">
-    <div class="job-logo header-sub"> <div class="logo "><img src="<%= job_author_logo %>"/></div></div>
+    <div class="job-logo header-sub"> <div class="logo "><%= job_author_logo %></div></div>
     <div class="job-date header-sub">
     <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
     <div>
@@ -50,13 +50,13 @@ global $minyawn_job;
 
     <div class="job-progress header-sub">
 
-    <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
+    <%  if(can_apply_job == 0 && todays_date_time < job_end_date_time_check) %>
     <span class="label-available">Available</span>
 
     <%  else if(can_apply_job == 2) %>
     <span class="label-available">Requirement complete</span>
 
-    <% else if (todays_date_time > job_end_time_check){%>
+    <% else if (todays_date_time > job_end_date_time_check){%>
     <span class="label-unavailable">This job is complete</span>
 
     <% }else if (can_apply_job == 3){%>
@@ -165,7 +165,7 @@ global $minyawn_job;
 <script type="text/templates" id="my-jobs">
     <div id="job-list<%= post_id %>" class="row-fluid list-jobs my-jobs-1"  style="background: #C7C9C5;">
     <div class="span12 jobs-details">
-    <div class="span2 img-logo"><a href="<?php echo site_url() ?>/profile/<%= job_author_id%>" target="_blank"> <img src="<%= job_author_logo %>"/></a></div>
+    <div class="span2 img-logo"><a href="<?php echo site_url() ?>/profile/<%= job_author_id%>" target="_blank"> <%= job_author_logo %></a></div>
     <div class="span3 minyawns-select"><span><%= minyawns_have_applied %></span>
     <div>Minyawns Have Applied</div> 
     </div>
@@ -212,12 +212,12 @@ global $minyawn_job;
     <div class="span9 details"> 
 
     <div class="row-fluid">
-    <div class="span4 "> <div class="employer-image2"><img src="<%= job_author_logo %>"/></div></div>
+    <div class="span4 "> <div class="employer-image2"><%= job_author_logo %></div></div>
     <div class="span8"><%= job_details %></div>
     </div><br>
     <div class="row-fluid minyawansgrid">
     <% for(i=0;i<users_applied.length;i++){ %>
-    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><% if(user_profile_image[i] == false){%><%= user_avatar[i]%><%}else{%><img src="<%= user_profile_image[i] %>"/><%}%><b><%= users_applied[i]%></b></a>
+    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><%= user_profile_image[i] %><b><%= users_applied[i]%></b></a>
 
     <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= post_id %>">
     <i class="icon-thumbs-up"></i> <%= user_rating_like[i] %>

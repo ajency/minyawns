@@ -139,9 +139,7 @@ function get_mn_user_avatar() {
     global $current_user_new;
     if ($current_user_new->data->avatar !== false) {
          return wp_get_attachment_image($current_user_new->data->avatar,get_user_role());
-        
-    
-        
+            
     } else {
         return false;
     }
@@ -197,7 +195,7 @@ function user_profile_last_name() {
 function get_user_profile_last_name() {
     global $current_user_new;
 
-    return ($current_user_new->data->last_name) > 0 ? $current_user_new->data->last_name : '';
+    return strlen($current_user_new->data->last_name) > 0 ? $current_user_new->data->last_name : '';
 }
 
 //User profile body
@@ -315,13 +313,15 @@ function get_user_dislike_count() {
 
 function get_user_company_logo($user_id) {
 
+    global $current_user_new;
     $user_meta = get_user_meta($user_id);
+    //print_r($user_meta);exit();
     $post_attachment_id = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
     if ($post_attachment_id)
-        return wp_get_attachment_thumb_url($post_attachment_id);
+        return   wp_get_attachment_image($post_attachment_id,get_user_role());
     else
-        return false;
+        return get_avatar($user_id);
 }
 
 /**

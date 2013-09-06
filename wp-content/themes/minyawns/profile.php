@@ -19,7 +19,7 @@ get_header();  ?>
     <div class="accordion-heading">
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
     <div class="span12 data-title available">
-    <div class="job-logo header-sub"> <div class="logo"><img src="<%= job_author_logo %>"/></div></div>
+    <div class="job-logo header-sub"> <div class="logo"><%= job_author_logo %></div></div>
     <div class="job-date header-sub">
     <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
     <div>
@@ -150,7 +150,7 @@ get_header();  ?>
 							<?php 	if(get_mn_user_avatar() !== false)
 										echo  get_mn_user_avatar();
 									else
-										echo get_avatar( get_user_profile_email(), 168 )
+										echo get_avatar( get_user_id(), 168 )
 							?>
 							<span >Change Avatar</span>
 						</a>
@@ -254,7 +254,10 @@ get_header();  ?>
 				</div>
 
 				<hr>
-				<div class="clear"></div><br>
+				<div class="clear"></div>
+
+                                                        <h4 class="job-view">To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
+
                                 <div class="jobs_table">
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
                
@@ -262,7 +265,7 @@ get_header();  ?>
                 <div class="row-fluid ">
                     <div class="span12 header-title">
                         <div class="job-logo header-sub"> Logo</div>
-                        <div class="job-date header-sub"> Session Date</div>
+                        <div class="job-date header-sub"> Job Date</div>
                         <div class="job-time header-sub">Duration</div>
                         <div class="job-wage header-sub">Wages</div>
 
@@ -296,7 +299,7 @@ get_header();  ?>
 					    <div class="control-group">
 					    	<label class="control-label" for="inputlast">Last Name</label>
 					    	<div class="controls">
-					      		<input type="text" id="last_name"  name="last_name" placeholder="" value="<?php user_profile_last_name() ?>" class="input">
+					      		<input type="text" id="last_name"  name="last_name" placeholder="" value="<?php echo user_profile_last_name() ?>" class="input">
 					   		</div>
 					  	</div>
 					   	<div class="control-group">

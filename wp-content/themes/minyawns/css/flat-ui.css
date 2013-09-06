@@ -6017,6 +6017,7 @@ border-bottom: 1px dotted #CCC;
 .popover-content p {
   font-size: 14px;
   line-height: 1.231;
+  color: #000;
 }
 .dialog {
   background-color: #edeff1;

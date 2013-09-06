@@ -30,7 +30,7 @@
 	<![endif]-->
 	
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
+	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.png">
 	
 	<!-- wordpress head functions -->
 	<?php wp_head(); ?>
@@ -49,6 +49,7 @@ ga('send', 'pageview');
             var siteurl='<?php echo site_url(); ?>';
             var logouturl='<?php echo wp_logout_url();?>';
             var email='<?php  echo get_user_profile_email() ?>';
+            var role='<?php echo get_user_role(); ?>'
             
             </script>
             
@@ -74,7 +75,7 @@ ga('send', 'pageview');
 									if(get_mn_user_avatar() !== false)
 										echo get_mn_user_avatar() ;
 									else
-										echo get_avatar( get_user_profile_email(), 168 )?> <b class="caret"></b>
+										echo get_avatar(get_user_id(), 168 )?> <b class="caret"></b>
 							
                                                         </a>
 						</div>

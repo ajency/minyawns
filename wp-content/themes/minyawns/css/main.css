@@ -68,7 +68,7 @@ body .jobs_table .data-title .profile-job {
   display: inherit;
 }
 .my-jobs-1 .img-logo img {
-  width: 20%!important;
+  width: 80%!important;
 }
 .alert-box {
   padding: 10px 55px 10px 30px !important;
@@ -1748,6 +1748,14 @@ body .jobs_table .data-title .profile-job {
     height: auto;
     width: 100%;
   }
+  .list-jobs .expand .header-title h3 {
+    font-size: 12px !important;
+    padding: 5px!important;
+    line-height: 24px;
+  }
+  .employer-image2 {
+    margin: auto !important;
+  }
   .jobs_table .collapse.in {
     margin-top: 0px;
   }
@@ -2319,4 +2327,22 @@ body .jobs_table .data-title .profile-job {
   height: 75px;  
   border: 2px solid #8ed030;
   margin-left: 20px;
+}
+@media only screen and (min-width: 1420px) {
+  .bg-overflow {
+    overflow: hidden;
+    height: 499px;
+  }
+  .bg-overflow img {
+    position: relative !important;
+    width: 100% ;
+  }
+}
+.job-view {
+  font-size: 16px;
+  font-family: Arial;
+}
+.job-view a {
+  font-size: 20px;
+  border-bottom: 1px dotted;
 }

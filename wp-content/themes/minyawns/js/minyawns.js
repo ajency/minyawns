@@ -72,7 +72,9 @@ jQuery(document).ready(function($) {
                 {
                     placement: 'bottom',
                     html: true,
-                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><h4></h4><p class="muted">' + email + '</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
+
+                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><br><p class="muted" style=" color: #73C31B; ">' + email + '</p><h4></h4><span style="float:left; margin-right:10px;">Role:</span><p class="muted "> '+role+'</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
+
                 }
         );
     }
@@ -372,7 +374,7 @@ jQuery(document).ready(function($) {
             return SITEURL + '/wp-content/themes/minyawns/libs/job.php/addjob';
         },
         validate: function(attr) {
-            $("#ajax-load").hide();
+            
 
             var errors = [];
 
@@ -426,7 +428,8 @@ jQuery(document).ready(function($) {
 
         e.preventDefault();
         _this = $(this);
-        $("#ajax-load").show();
+        $(".modal_ajax_large").show();
+        
         //remove previuous errors
         $('#job-form').find('span.form-error').remove();
         //attach it to global window so we can use it later to update the main profile view
@@ -449,7 +452,7 @@ jQuery(document).ready(function($) {
                     wait: true,
                     success: function(model, resp) {
                         $("#job-success").show();
-                        $("#ajax-load").hide();
+                       $(".modal_ajax_large").hide();
                         //get model data
                         // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
@@ -985,6 +988,7 @@ jQuery(document).ready(function($) {
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
         $(".load_ajax1").show();
+        $(".load_ajax3").show();
         $.post(ajaxurl,
                 {
                     action: 'minyawn_job_' + _action,
@@ -1383,7 +1387,7 @@ jQuery(document).ready(function($) {
 
 
 
-    $('.vote-up,.vote-down').live('click', function(evt) {
+    $('.well-done,.terrible').live('click', function(evt) {
 
         if ($(this).attr('is_rated') != "0")
             return false;
@@ -1412,19 +1416,21 @@ jQuery(document).ready(function($) {
             if (response.action == "vote-up") {
                 $("#vote-up" + _user_id).prop('disabled', true);
                 $("#vote-down" + _user_id).prop('disabled', true)
-                $("#vote-up" + _user_id).contents().filter(function() {
-                    return this.nodeType != 1;
+                $("#total-like"+_user_id).contents().filter(function() {
+                    return this.nodeType !== 1;
                 }).remove();
-                $("#vote-up" + _user_id).append(response.rating);
+                //$("#vote-up" + _user_id).append(response.rating);
+                $("#total-like"+_user_id).append(response.rating);
                 //$("#vote-down").append("0");
             }
             if (response.action == "vote-down") {
                 $("#vote-down" + _user_id).prop('disabled', true);
                 $("#vote-up" + _user_id).prop('disabled', true)
-                $("#vote-down" + _user_id).contents().filter(function() {
-                    return this.nodeType != 1;
+                $("#total-dislike"+_user_id).contents().filter(function() {
+                    return this.nodeType !== 1;
                 }).remove();
-                $("#vote-down" + _user_id).append(response.rating);
+                //$("#vote-down" + _user_id).append(response.rating);
+                 $("#total-dislike"+_user_id).append(response.rating);
                 //$("#vote-up").append("0");
             }
 
