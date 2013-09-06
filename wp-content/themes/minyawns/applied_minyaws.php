@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
 
-                                    <?php } elseif ($minyawn['user_job_status'] == "hired" || $minyawn_job->get_current_date_time() > $minyawn_job->get_job_end_date_time()) {
+                                    <?php } elseif ($minyawn['user_job_status'] == "hired" && $minyawn_job->get_current_date_time() > $minyawn_job->get_job_end_date_time()) {
                                         ?>
                                         <div class="dwn-btn">
                                             <div class="roundedTwo">
@@ -97,7 +97,7 @@
                                             </div>
                                         </div>
                                         <?php
-                                    }elseif($minyawn['user_job_status'] != "hired"  && $minyawn_job->get_current_date_time() > $minyawn_job->get_job_end_date_time()) {
+                                    }elseif($minyawn['user_job_status'] == "applied"  && $minyawn_job->get_current_date_time() > $minyawn_job->get_job_end_date_time()) {
                                         ?>
                                <!-- job expired  -->
                                         

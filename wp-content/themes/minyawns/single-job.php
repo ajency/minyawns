@@ -175,7 +175,7 @@ This Job has Expired.
                                     <h3><a href="#" target="_blank" ><?php echo get_the_title() ?></a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
 
                                         <?php
-if (get_user_role() == "minyawn") {
+if (get_user_role() == "minyawn" && $minyawn_job->get_current_date_time() < $minyawn_job->get_job_end_date_time()) {
    
     if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3) {
         ?>

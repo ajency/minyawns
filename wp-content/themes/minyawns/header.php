@@ -34,14 +34,14 @@
 	
 	<!-- wordpress head functions -->
 	<?php wp_head(); ?>
-	<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-43096826-1', 'minyawns.com');
-ga('send', 'pageview');
+  ga('create', 'UA-43815369-1', 'minyawns.com');
+  ga('send', 'pageview');
 
 </script>
 	</head>
@@ -49,7 +49,7 @@ ga('send', 'pageview');
             var siteurl='<?php echo site_url(); ?>';
             var logouturl='<?php echo wp_logout_url();?>';
             var email='<?php  echo get_user_profile_email() ?>';
-            var role='<?php echo get_user_role(); ?>'
+            var role='<?php if (get_user_role() == "minyawn"){ echo 'Minion';} else echo 'Employer' ; ?>'
             
             </script>
             
@@ -75,7 +75,7 @@ ga('send', 'pageview');
 									if(get_mn_user_avatar() !== false)
 										echo get_mn_user_avatar() ;
 									else
-										echo get_avatar(get_user_id(), 168 )?> <b class="caret"></b>
+										echo get_avatar( get_user_profile_email(), 168 ) ?> <b class="caret"></b>
 							
                                                         </a>
 						</div>
@@ -197,7 +197,7 @@ ga('send', 'pageview');
 												class="user-submit btn btn-large btn-block btn-inverse span2"
 												tabindex="1002" />
 											<?php $reset = $_GET['reset']; if($reset == true) { 
-												echo '<p>A message will be sent to your email address.</p>';
+												echo '<p>A wmessage will be sent to your email address.</p>';
 } ?>
 											<input type="hidden" name="redirect_to"
 												value="<?php echo $_SERVER['REQUEST_URI']; ?>;?reset=true" />
