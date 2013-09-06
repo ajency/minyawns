@@ -30,7 +30,7 @@
 	<![endif]-->
 	
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
+	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.png">
 	
 	<!-- wordpress head functions -->
 	<?php wp_head(); ?>
