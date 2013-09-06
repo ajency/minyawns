@@ -1351,7 +1351,7 @@ body .jobs_table .data-title .profile-job {
   margin: auto;
 }
 #innermainimage .banner-content .banner-desc {
-  font-size: 35px;
+  font-size: 26px;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 100;
   text-align: center;
@@ -2310,8 +2310,7 @@ body .jobs_table .data-title .profile-job {
 .employer-image {
   overflow: hidden;
   width: 170px;
-  /*height: 88px;*/
-  height:85px;
+  height: 88px;
   border: 2px solid #8ed030;
 }
 .employer-image img {
@@ -2323,8 +2322,7 @@ body .jobs_table .data-title .profile-job {
 .employer-image2 {
   overflow: hidden;
   width: 150px !important;
-  /*height: 88px;*/
-  height: 75px;  
+  height: 88px;
   border: 2px solid #8ed030;
   margin-left: 20px;
 }
