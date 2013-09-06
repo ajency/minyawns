@@ -73,9 +73,9 @@ get_header();  ?>
         <%  if(is_job_owner == 1 && can_apply_job == 0 && minyawns_have_applied == 0 ) %>
         <span class="label-available">No Applications yet</span>
         <%  else if(can_apply_job == 3)%>
-        <span class="label-available">Minyawns Hired</span>
+        <span class="label-available">Minions Hired</span>
         <% else if(can_apply_job == 2 || minyawns_have_applied == 1)%>
-                <span class="label-available">Minyawns Have Applied</span>
+                <span class="label-available">Minions Have Applied</span>
     <?php } ?>
     </div>
 

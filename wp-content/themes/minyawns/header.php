@@ -49,7 +49,7 @@
             var siteurl='<?php echo site_url(); ?>';
             var logouturl='<?php echo wp_logout_url();?>';
             var email='<?php  echo get_user_profile_email() ?>';
-            var role='<?php echo get_user_role(); ?>'
+            var role='<?php if (get_user_role() == "minyawn"){ echo 'Minion';} else echo 'Employer' ; ?>'
             
             </script>
             

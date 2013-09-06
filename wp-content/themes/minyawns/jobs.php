@@ -127,12 +127,12 @@ global $minyawn_job;
 
         <% if(is_job_owner == 1){%>
         <%  if(can_apply_job == 2 || todays_date_time > job_end_time_check) %>
-        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minions</a>
 
         <% else if (todays_date_time < job_end_time_check && can_apply_job == 0){%>
-        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minyawns</a>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minions</a>
         <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
-        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minions</a>
         <% }
         }else{ 
         %> 
@@ -168,7 +168,7 @@ global $minyawn_job;
     <div class="span12 jobs-details">
     <div class="span2 img-logo"><a href="<?php echo site_url() ?>/profile/<%= job_author_id%>" target="_blank"> <%= job_author_logo %></a></div>
     <div class="span3 minyawns-select"><span><%= minyawns_have_applied %></span>
-    <div>Minyawns Have Applied</div> 
+    <div>Minions Have Applied</div> 
     </div>
     <% if(todays_date_time > job_end_time_check){%>
     <div class="span3 jobs-date"> 
@@ -251,9 +251,9 @@ global $minyawn_job;
         <div class="div-box-block">
         <span class='load_ajax1' style="display:none"></span>
         <% if (todays_date_time < job_end_time_check && is_job_owner == 1){%>
-        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>" style="width:70%;">Select Your Minyawns</a>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>" style="width:70%;">Select Your Minions</a>
         <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
-        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minyawns</a>
+        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minions</a>
         <% } %>
         </div>
         </div>
@@ -409,7 +409,7 @@ global $minyawn_job;
         <div class="tab-pane active" id="tab2">
             <div class="breadcrumb-text">
                 <p>
-                    <a href="#">My Job</a>
+                    <a href="#">My Jobs</a>
                     Job List
                 </p>
             </div>
