@@ -59,7 +59,7 @@ global $minyawn_job;
     <% else if (todays_date_time > job_end_date_time_check){%>
     <span class="label-unavailable">This job is complete</span>
 
-    <% }else if (can_apply_job == 4){%>
+    <% }else if (can_apply_job == 3){%>
     <span class="label-hired">You are hired for this job.</span>
     <% }else if (can_apply_job == 1) {%>
     <span class="label-available">You have applied for this job.</span>
@@ -107,10 +107,9 @@ global $minyawn_job;
     <div class="div-box-block">
     <span class='load_ajax1' style="display:none"></span>
     <?php if (get_user_role() === 'minyawn'): ?> 
-<% if(todays_date_time > job_end_date_time_check){%>
-<a href="#" class="required">This job is complete!</a>
-<%} %>
-        <% else if(can_apply_job == 3) %>
+       <% if(todays_date_time > job_end_date_time_check)%>
+       <a href="#" class="required">This job is complete!</a>
+       <% else if(can_apply_job == 3) %>
         <a href="#" class="required">You are hired!</a>
         <% else if(can_apply_job == 1)%>
         <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
