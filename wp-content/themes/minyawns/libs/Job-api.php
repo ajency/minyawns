@@ -286,7 +286,7 @@ class Minyawn_Job {
     public function get_job_end_date_time()
     {
         global $minyawn_job;
-        return $this->job_end_time;
+        return $this->job_end_date_time;
     }
     
     public function get_current_date_time()

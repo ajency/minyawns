@@ -280,6 +280,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'is_job_owner' => $is_job_owner,
                     'applied_user_id' => $user_id_applied,
+                    'total'=>count($total),
+                    'no_of_pages'=>$no_of_pages
                     
                 );
             }
