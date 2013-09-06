@@ -108,9 +108,10 @@ get_header();  ?>
  <a type="button" class="btn btn-primary" id="done-cropping" style="display:none">Done? </a>
 	Upload your image <input type="file" name="files" id="photoimg" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
          <br>
-        Please drag to select/crop your picture.
+         <span id="div_cropmsg"> 
+       <?php /* Please drag to select/crop your picture.*/ ?>
 	<p class="help-block meta">Upload an image for your profile.</p></br>
-	
+	</span>
 	</br>
 	<input type="hidden" name="image_name" id="image_name" value="" />
 	<img id="uploaded-image" ></img>

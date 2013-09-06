@@ -141,7 +141,7 @@ jQuery(document).ready(function($) {
             $("#uploaded-image").css('height', img_height);
             	 
            
-        	
+        	$("#div_cropmsg").html("Please drag to select/crop your picture.<br/>");
         	
         	
         	
@@ -167,6 +167,8 @@ jQuery(document).ready(function($) {
 //            $('#logged-in').find('img').attr('src', img_link);
             location.reload();
             $(".load_ajax-crop-upload").hide();
+            $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
+            
         });
     });
 
