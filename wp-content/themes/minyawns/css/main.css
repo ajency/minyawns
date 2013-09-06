@@ -499,7 +499,7 @@ body .jobs_table .data-title .profile-job {
 .footer_menu {
   list-style: none;
   margin: auto;
-  width: 284px;
+  width: 394px;
 }
 .footer_menu li {
   display: inline-block;
@@ -1768,6 +1768,9 @@ body .jobs_table .data-title .profile-job {
     line-height: 13px;
     padding: 7px 8px 6px 13px !important;
     height: 19px !important;
+  }
+  .jobs_table .header-title .header-sub .logo {
+    margin-top: 0px;
   }
   .jobs_table .header-title {
     height: 32px;

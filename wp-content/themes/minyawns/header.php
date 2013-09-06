@@ -80,9 +80,9 @@ ga('send', 'pageview');
                                                         </a>
 						</div>
 					</div>
-					<!--<div class="span1">
-						<a href="#" class="help_icon"><i class="icon-question-sign"></i> </a>
-					</div>-->
+					<div class="span1">
+						<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon"><i class="icon-question-sign"></i> </a>
+					</div>
 					<?php } else {
 						?>
 
