@@ -145,6 +145,39 @@ jQuery(document).ready(function($) {
         	
         	
         	
+        	//get the image position
+        	
+        	loaded_img_x = Math.round($("#uploaded-image").offset().top *10)/10;
+        	loaded_img_y = Math.round($("#uploaded-image").offset().left *10) /10;
+        	
+        	alert(loaded_img_x+" - "+loaded_img_y);
+        	pd_aspect_ratio = $("#aspect_ratio").val().split(":");
+        	
+        	default_x1 = (img_width/2)- (pd_aspect_ratio[0]*50);
+        	default_y1 = (img_height/2)- (pd_aspect_ratio[1]*50);
+        	default_x2 = (img_width/2)+ (pd_aspect_ratio[0]*50);
+        	default_y2 = (img_height/2)+ (pd_aspect_ratio[1]*50);
+        	
+        	alert(default_x1+" -- "+default_x2);
+        	alert(default_y1+" -- "+default_y2);
+        	default_thumb_width = default_x2 - default_x1;
+        	default_thumb_height = default_y2 - default_y1;
+        	
+        	 $("#done-cropping").show();
+             $("#image_height").val(default_thumb_height);
+             $("#image_width").val(default_thumb_width)
+             $("#image_x_axis").val(default_x1);
+             $("#image_y_axis").val(default_y1);
+             
+             
+        	$('img#uploaded-image').imgAreaSelect({
+        		x1:default_x1,
+        		y1:default_y1,
+        		x2:default_x2,
+        		y2:default_y2
+        	
+        		
+        	});
 
         },
         start: function(e, data) {
