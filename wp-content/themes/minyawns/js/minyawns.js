@@ -196,7 +196,9 @@ jQuery(document).ready(function($) {
     });
 
     $("#done-cropping").live('click', function() {
-        $(".load_ajax-crop-upload").show();       
+        $(".load_ajax-crop-upload").show();
+        $("#div_cropmsg").html("");
+        
         $.ajax({
             type: "POST",
             url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
