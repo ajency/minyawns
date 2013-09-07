@@ -240,7 +240,7 @@ global $minyawn_job;
         <span class='load_ajax1' style="display:none"></span>
         <% if(can_apply_job == 3){%>
         <a href="#" class="required">You are hired!</a>
-        <% }else{%>
+        <% }else if( todays_date_time < job_end_time_check){%>
         <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
         <% } %>
         </div>

@@ -6,7 +6,7 @@
 		<li><a href="<?php echo site_url(); ?>/terms-of-service/">Terms</a></li>
 		<li><a href="<?php echo site_url(); ?>/privacy/">Privacy</a></li>
 		<li><a href="<?php echo site_url(); ?>/helpfaqs/">Help</a></li>
-		<li><a href="<?php echo site_url(); ?>/career/">career</a></li>
+		<li><a href="<?php echo site_url(); ?>/careers/">Careers</a></li>
 		<li><a href="<?php echo site_url(); ?>/contact/">Contact</a></li>
 	</ul>
 	<?php /* commented  on 4sep2013 

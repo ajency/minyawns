@@ -68,7 +68,7 @@
 
 					if (is_user_logged_in() == TRUE) {
                             ?>
-					<div class="span3 notify">
+					<div class="span3 notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
 						<div id="logged-in">
                                                    
 							<a id="user-popdown" href="javascript:void(0);"> <?php 
