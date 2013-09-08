@@ -152,18 +152,27 @@ jQuery(document).ready(function($) {
         	//get the image position
         	if($("#uploaded-image").attr('src')!="")
         	{
-		        	loaded_img_x = Math.round($("#uploaded-image").offset().top *10)/10;
-		        	loaded_img_y = Math.round($("#uploaded-image").offset().left *10) /10;
+		        	loaded_img_x = Math.round($("#uploaded-image").position().top *10)/10;
+		        	loaded_img_y = Math.round($("#uploaded-image").position().left *10) /10;
 		        	
 		        	//alert(loaded_img_x+" - "+loaded_img_y);
 		        	pd_aspect_ratio = $("#aspect_ratio").val().split(":");
 		        	
-		        	default_x1 = (img_width/2)- (pd_aspect_ratio[0]*50);
-		        	default_y1 = (img_height/2)- (pd_aspect_ratio[1]*50);
-		        	default_x2 = (img_width/2)+ (pd_aspect_ratio[0]*50);
-		        	default_y2 = (img_height/2)+ (pd_aspect_ratio[1]*50);		        	
-		    /*    	alert(default_x1+" -- "+default_x2);
-		        	alert(default_y1+" -- "+default_y2);*/ 
+		        	default_x1 =    (img_width/2)- (pd_aspect_ratio[0]*50);
+		        	default_y1 =   (img_height/2)- (pd_aspect_ratio[1]*50);
+		        	default_x2 =    (img_width/2)+ (pd_aspect_ratio[0]*50);
+		        	default_y2 =   (img_height/2)+ (pd_aspect_ratio[1]*50); 
+		        	
+		        	/* alert(loaded_img_x);
+		        	alert(loaded_img_y);
+		        	 */
+		        	/*default_x1 = loaded_img_x+300 ;
+		        	default_y1 = loaded_img_y+300 ;
+		        	default_x2 = loaded_img_x+400;
+		        	default_y2 = loaded_img_y +400; 
+		        	*/
+		        	/*alert(default_x1+" -- "+default_x2);
+		        	alert(default_y1+" -- "+default_y2);*/  
 		        	default_thumb_width = default_x2 - default_x1;
 		        	default_thumb_height = default_y2 - default_y1;		        	
 		        	 $("#done-cropping").show();
@@ -197,7 +206,7 @@ jQuery(document).ready(function($) {
 
     $("#done-cropping").live('click', function() {
         $(".load_ajax-crop-upload").show();
-        $("#div_cropmsg").html("");
+        $("#div_cropmsg").html("<br/>");
         
         $.ajax({
             type: "POST",
