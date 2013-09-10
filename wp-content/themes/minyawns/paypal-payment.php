@@ -37,8 +37,8 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	
 	
 	// Redirect to paypal IPN
-	//echo "location:https://www.sandbox.paypal.com/cgi-bin/webscr".$querystring;
-	header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
+	header("location:https://www.paypal.com/cgi-bin/webscr".$querystring);
+	//header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
 	exit();
 
 }
@@ -118,17 +118,17 @@ else
 			
 			
 			
-			$url = 'https://www.sandbox.paypal.com/webscr';
+			//$url = 'https://www.sandbox.paypal.com/webscr';
 			//$url = $paypal_adr;
 			//$url = "https://www.paypal.com/cgi-bin/webscr";
-			//$url = 'https://www.paypal.com/webscr';
+			$url = 'https://www.paypal.com/webscr';
 			$curl_result=$curl_err='';
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL,$url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/x-www-form-urlencoded", "Content-Length: " . strlen($req),'Host: www.sandbox.paypal.com'));
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/x-www-form-urlencoded", "Content-Length: " . strlen($req),'Host: www.paypal.com'));
 			curl_setopt($ch, CURLOPT_HEADER , 0);
 			curl_setopt($ch, CURLOPT_VERBOSE, 1);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
