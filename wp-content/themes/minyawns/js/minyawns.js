@@ -52,10 +52,9 @@ jQuery(document).ready(function($) {
         onSelectEnd: getSizes         
         
     });
-
     $("#job_wages,#job_required_minyawns").keydown(function(event) {
         // Allow only backspace and delete
-        if (event.keyCode == 46 || event.keyCode == 8) {
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keycode == 110) {
             // let it happen, don't do anything
         }
         else {
