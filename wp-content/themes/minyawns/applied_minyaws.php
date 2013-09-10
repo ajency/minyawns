@@ -103,6 +103,8 @@
                                <!-- job expired  -->
                                         
                                     <?php }else {
+                                        
+                                        if(job_selection_status($minyawn['user_to_job']) != 1){
                                         ?>
                                         <div class="dwn-btn">
                                             <div class="roundedTwo">
@@ -111,6 +113,7 @@
                                             </div>
                                         </div>
                                         <?php
+                                        }
                                     }
                                 }
                                 //}
@@ -133,7 +136,13 @@
 </form>
 
 
-<?php if (is_job_owner(get_user_id(), $minyawn['user_to_job']) == 1 && $minyawn['user_job_status'] != "hired" && $minyawn_job->get_current_date_time() < $minyawn_job->get_job_end_date_time()) { ?>
+<?php 
+
+if(job_selection_status($minyawn['user_to_job']) == 1)
+{
+    
+    
+}else if (is_job_owner(get_user_id(), $minyawn['user_to_job']) == 1 &&$minyawn_job->get_current_date_time() < $minyawn_job->get_job_end_date_time()) { ?>
     <span class='load_ajaxconfirm' style="display:none"></span>
     <a href="#confirminyawn" id="confirm-hire" data-toggle="modal" class="btn btn-medium btn-block green-btn btn-success" <?php if (count($minyawn_job->minyawns) == 0) { ?>style="display:none" <?php } ?> >Confirm & Hire</a>
 

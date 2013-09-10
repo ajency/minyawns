@@ -368,7 +368,7 @@ class Minyawn_Job {
 
     function check_minyawn_job_status($jobID) {
          global $wpdb;
-        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND  {$wpdb->prefix}userjobs.user_id='" . get_user_id() . "'";
+        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}'";
 
         $querystr = "
                             SELECT $wpdb->posts.*,{$wpdb->prefix}userjobs.*
@@ -402,6 +402,34 @@ class Minyawn_Job {
 
 }
 
+
+function job_selection_status($job_id)
+{
+    $status=0;
+    global $wpdb;
+        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$job_id}'";
+
+        $querystr = "
+                            SELECT $wpdb->posts.*,{$wpdb->prefix}userjobs.*
+                            FROM $wpdb->posts,{$wpdb->prefix}userjobs
+                            $my_jobs_filter
+                            AND $wpdb->posts.post_status = 'publish' 
+                            AND $wpdb->posts.post_type = 'job'
+                            ORDER BY $wpdb->posts.ID DESC
+                               ";
+       
+        $user_applied_to = $wpdb->get_results($querystr, OBJECT);
+       
+        foreach($user_applied_to as $user_job)
+        {
+            if($user_job->status == 'hired')
+                $status=1;    
+            
+        }
+        
+        return $status;
+    
+}
 function get_total_jobs() {
     global $wpdb;
     $tables = "$wpdb->posts, $wpdb->postmeta";
