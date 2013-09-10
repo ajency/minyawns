@@ -201,22 +201,22 @@ get_header();  ?>
 							<?php
 							else :
 							?>		
-							<div class="span2">
+							<div class="span3">
 					            Location :
 					        </div>
-					        <div class="span10 location">
+					        <div class="span9 location">
 					            <?php user_location(); ?>
 					        </div>
-					        <div class="span2">
+					        <div class="span3">
 					           Body :
 					        </div>
-					        <div class="span10 profilebody">
+					        <div class="span9 profilebody">
 					        	 <?php user_profile_body(); ?>
 					        </div>
-					        <div class="span2">
+					        <div class="span3">
 					            Company Website :
 					        </div>
-					        <div class="span10 company_website">
+					        <div class="span9 company_website">
 					           - <a href="<?php user_company_website(); ?>" target="_blank"><?php user_company_website(); ?></a>
 					        </div>
 					        <?php

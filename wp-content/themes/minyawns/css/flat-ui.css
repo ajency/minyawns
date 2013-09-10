@@ -6446,3 +6446,11 @@ border-bottom: 1px dotted #CCC;
 #datepicker-02 {
 width: 223px;
 }
+.employer-icon img{
+	height:16px !important;
+	margin-top:9px;
+	
+}
+.min_profile .profile-list .span3 {
+margin-left: 0px !important;
+}
