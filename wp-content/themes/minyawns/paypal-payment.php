@@ -9,10 +9,10 @@ global $minyawn_job;
 global $wpdb;
 
 
-$return_url = 'http://www.minyawns.ajency.in/success-payment/';
-$cancel_url = 'http://www.minyawns.ajency.in/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
-$notify_url = 'http://www.minyawns.ajency.in/paypal-payments/';
-$paypal_email = 'parag0246@yahoo.co.in';
+$return_url = 'http://www.minyawns.com/success-payment/';
+$cancel_url = 'http://www.minyawns.com/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
+$notify_url = 'http://www.minyawns.com/paypal-payments/';
+$paypal_email = 'ceo@minyawns.com';
 
 
 // Check if paypal request or response
