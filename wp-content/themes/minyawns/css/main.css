@@ -883,6 +883,9 @@ body .jobs_table .data-title .profile-job {
   cursor: pointer;
   background: #EEE9E9;
 }
+.single-jobs .inner-data {
+  padding: 14px 0;
+}
 .single-jobs .jobdesc .jobsimg img {
   margin: auto;
   display: block;
