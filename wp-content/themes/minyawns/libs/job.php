@@ -27,8 +27,19 @@ $app->post('/addjob', function() use ($app) {
             );
 
             $post_id = wp_insert_post($post);
-
-
+//
+//foreach ($json_a as $key => $value) {
+//    
+//    if($key == "job_start_date")
+//    {
+//        $start=$value;
+//    }
+//    if ($key == "job_start_time") {
+//        var_dump(strtotime($start.$value));
+//    }
+//    exit();
+//
+//}
 
             foreach ($json_a as $key => $value) {
 
@@ -48,17 +59,18 @@ $app->post('/addjob', function() use ($app) {
                     update_post_meta($post_id,'job_end_date', strtotime($value));
                 } elseif ($key == "job_start_time") {
                     // print_r($start);print_r($value);
+                    $start_time=explode(" ",$value);
                     $date = date("j-m-Y", strtotime($start));
-                    $start_date_time = strtotime($date . $value); //print_r($value);
+                    $start_date_time = strtotime($date . $start_time[0]); //print_r($value);
                     update_post_meta($post_id, $key, strtotime($value));
                     update_post_meta($post_id, 'job_start_date_time', $start_date_time);
                 } elseif ($key == "job_end_date") {
                     $end = $start;
-                    update_post_meta($post_id, $key, strtotime($value));
+                    update_post_meta($post_id, $key, strtotime($end));
                 } elseif ($key == "job_end_time") {
                     $date = date("j-m-Y", strtotime($end));
-                    
-                    $end_date_time = strtotime($date . $value);
+                    $job_end_time=explode(" ",$value);
+                    $end_date_time = strtotime($date . $job_end_time[0]);
                     //print_r(date("j-m-Y",  strtotime($start)).$value);
                     update_post_meta($post_id, $key, strtotime($value));
                    
@@ -70,8 +82,8 @@ $app->post('/addjob', function() use ($app) {
             }
 
 
-            $app->response()->header("Content-Type", "application/json");
-            echo json_encode(array('success' => 1));
+          //  $app->response()->header("Content-Type", "application/json");
+           /// echo json_encode(array('success' => 1));
         });
 
 
@@ -222,7 +234,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                   if(is_null($applied))
                       $applied=0;
                   
-                  
+                 // if(job_selection_status($pagepost->ID) == 1)
+                 //     $applied=4; //job is locked since minyawn is hired
                   
                   
                 if ($total <= $_GET['offset'] + 5) {

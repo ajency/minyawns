@@ -50,19 +50,21 @@ global $minyawn_job;
 
     <div class="job-progress header-sub">
 
-    <%  if(can_apply_job == 0 && todays_date_time < job_end_date_time_check) %>
+    <%  
+    
+    if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
     <span class="label-available">Available</span>
 
     <%  else if(can_apply_job == 2) %>
     <span class="label-available">Requirement complete</span>
 
-    <% else if (todays_date_time > job_end_date_time_check){%>
+    <% else if (todays_date_time > job_end_time_check){%>
     <span class="label-unavailable">This job is complete</span>
 
     <% }else if (can_apply_job == 3){%>
     <span class="label-hired">You are hired for this job.</span>
     <% }else if (can_apply_job == 1) {%>
-    <span class="label-available">You have applied for this job.</span>
+    <span class="label-available">Minions applied for this job.</span>
 
     <% }
     %> 
@@ -126,7 +128,7 @@ global $minyawn_job;
         ?>
 
         <% if(is_job_owner == 1){%>
-        <%  if(can_apply_job == 2 || todays_date_time > job_end_time_check) %>
+        <%  if(can_apply_job == 2 || todays_date_time > job_end_time_check || can_apply_job == 1) %>
         <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>">Select Your Minions</a>
 
         <% else if (todays_date_time < job_end_time_check && can_apply_job == 0){%>

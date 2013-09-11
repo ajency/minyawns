@@ -53,16 +53,12 @@ jQuery(document).ready(function($) {
         
     });
     $("#job_wages,#job_required_minyawns").keydown(function(event) {
-        // Allow only backspace and delete
-        if (event.keyCode == 46 || event.keyCode == 8 || event.keycode == 110) {
-            // let it happen, don't do anything
-        }
-        else {
-            // Ensure that it is a number and stop the keypress
-            if (event.keyCode < 48 || event.keyCode > 57) {
-                event.preventDefault();
-            }
-        }
+        
+        var charCode = (event.which) ? event.which : event.keyCode;
+          if (charCode !== 46 && charCode > 31&& (charCode < 48 || charCode > 57 && charCode != 190))
+             return false;
+
+          return true;
     });
 
     if (jQuery('#user-popdown').length > 0)
@@ -1527,3 +1523,4 @@ jQuery('.collapse').live('show', function() {
 jQuery('.collapse').live('hide', function() {
     $(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
+
