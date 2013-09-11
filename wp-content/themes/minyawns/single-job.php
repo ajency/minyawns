@@ -102,7 +102,7 @@ global $minyawn_job;
         background-position: 10px 10px !important;
     }
     .minyans-select:hover img{
-       
+
         cursor: auto!important;
     }
 
@@ -113,29 +113,32 @@ global $minyawn_job;
         <div class="tab-pane active" id="tab2">
             <div class="breadcrumb-text">
                 <p>
-                    <a href="<?php echo site_url()?>/jobs/">My Jobs</a>
+                    <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
                     <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
-                    <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(),$minyawn_job->ID) == "1"): ?> 
+                    <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), $minyawn_job->ID) == "1"): ?> 
                         <a href="#edit-job-form" class="edit loaded edit-job-data"><i class="icon-edit"></i> Edit</a>
                     <?php endif; ?>
                 </p>
-              
+
             </div>
             <?php global $minyawn_job;
-            if($minyawn_job->get_current_date_time() > $minyawn_job->get_job_end_date_time()){?>
-      
-            <div class="alert alert-error" style="color:#e74c3c">
-This Job has Expired.
-</div>
-            <?php }?>
+            if ($minyawn_job->get_current_date_time() > $minyawn_job->get_job_end_date_time()) {
+                ?>
+
+                <div class="alert alert-error" style="color:#e74c3c">
+                    This Job has Expired.
+                </div>
+<?php } ?>
             <div class="singlejobedit" style="height: 680px; ">
                 <div id="single-jobs" class="span12" style=" margin-left: 0px; width: 100%; ">
                     <div  class="row-fluid  list-jobs single-jobs ">
 
                         <div class="span12 jobs-details">
-                            <div class="span2 img-logo"><?php if (get_user_company_logo($minyawn_job->post_author)) { ?> <?php echo get_user_company_logo($minyawn_job->post_author) ?> <?php } else {
-                echo get_avatar($minyawn_job->post_author, 20);
-            } ?> </div>
+                            <div class="span2 img-logo"><?php if (get_user_company_logo($minyawn_job->post_author)) { ?> <?php echo get_user_company_logo($minyawn_job->post_author) ?> <?php
+                                } else {
+                                    echo get_avatar($minyawn_job->post_author, 20);
+                                }
+                                ?> </div>
                             <div class="span3 minyawns-select">
                                 <span><?php echo $minyawn_job->get_job_applied_minyawns(); ?></span>
                                 <div><b>Minyawns Have Applied</b></div>
@@ -171,14 +174,14 @@ This Job has Expired.
                             <div class="row-fluid header-title">
                                 <div class="span12">
                                     <input type="hidden" value="<?php echo is_singular() ?>" id="is_singluar">
-                                   
+
                                     <h3><a href="#" target="_blank" ><?php echo get_the_title() ?></a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
 
-                                        <?php
-if (get_user_role() == "minyawn" && $minyawn_job->get_current_date_time() < $minyawn_job->get_job_end_date_time()) {
-   
-    if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3) {
-        ?>
+                                            <?php
+                                            if (get_user_role() == "minyawn" && $minyawn_job->get_current_date_time() < $minyawn_job->get_job_end_date_time()) {
+
+                                                if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3) {
+                                                    ?>
 
                                                     <a href="#" class="btn btn-medium btn-block btn-success red-btn header-btn" >You are hired</a>
 
@@ -188,7 +191,7 @@ if (get_user_role() == "minyawn" && $minyawn_job->get_current_date_time() < $min
                                                     <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn header-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
                                                 <?php elseif ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2) : ?>
                                                     <a href="#" class="btn btn-medium btn-block btn-success red-btn header-btn" >Requirement Complete</a>
-                                                <?php
+                                                    <?php
                                                 endif;
                                             }
 
@@ -200,21 +203,36 @@ if (get_user_role() == "minyawn" && $minyawn_job->get_current_date_time() < $min
                                 </div>
                             </div>
                             <div class="row-fluid jobdesc">
-                              <!--<div class="span3 jobsimg"> <?php if (get_user_company_logo($pagepost->post_author)) { ?> <img src="<?php echo get_user_company_logo($pagepost->post_author) ?>"/> <?php } else {
+                              <!--<div class="span3 jobsimg"> <?php if (get_user_company_logo($pagepost->post_author)) { ?> <img src="<?php echo get_user_company_logo($pagepost->post_author) ?>"/> <?php
+} else {
     echo get_avatar($minyawn_job->ID, 20);
-} ?> 
+}
+?> 
                                            <br>
                                            
                                            </div>-->
-                                <div class="span12 job-details"><?php echo $minyawn_job->get_job_details() ?></div>
+<!--                                <div class="span12 job-details"><?php echo $minyawn_job->get_job_details() ?></div>-->
 
                             </div>
-                            <div class="span9"><?php $tags=explode(",",$minyawn_job->get_job_tags()); for($i=0;$i<sizeof($tags);$i++){ ?><span class="label"><?php echo $tags[$i]; ?></span><?php }?></div>
+
+                            <div class="span9 inner-data">
+                               <div class="row-fluid minywans_list">
+                                    <div class="span3 "><b>Location :</b></div><div class="span9 joblocation"><?php echo $minyawn_job->get_job_location(); ?></div>
+                                </div>
+                               <div class="row-fluid minywans_list">
+                                    <div class="span3 "><b>Tags :</b></div><div class="span9 tags"><?php $tags = explode(",", $minyawn_job->get_job_tags());
+for ($i = 0; $i < sizeof($tags); $i++) { ?><span class="label"><?php echo $tags[$i]; ?></span><?php } ?></div>
+                                </div>
+                                   <div class="row-fluid minywans_list">
+                                    <div class="span3 job-details"><b>Details :</b></div><div class="span9"> <?php echo $minyawn_job->get_job_details() ?></div>
+                                </div>
+                            </div>
+                            
                             <hr>
-                            <?php
-                            //show all applied minyanws data
-                            include_once 'applied_minyaws.php';
-                            ?>
+<?php
+//show all applied minyanws data
+include_once 'applied_minyaws.php';
+?>
                         </div>
                     </div>
                 </div>
