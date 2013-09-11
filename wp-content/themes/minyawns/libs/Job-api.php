@@ -366,9 +366,9 @@ class Minyawn_Job {
         return implode(',', $this->job_tags);
     }
 
-    function check_minyawn_job_status($jobID) {
+    function check_minyawn_job_status($jobID,$user_id) {
          global $wpdb;
-        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}'";
+        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND {$wpdb->prefix}userjobs.user_id=".get_user_id()."";
 
         $querystr = "
                             SELECT $wpdb->posts.*,{$wpdb->prefix}userjobs.*
