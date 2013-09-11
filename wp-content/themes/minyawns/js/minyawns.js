@@ -888,6 +888,7 @@ $(".load_ajax").hide();
     $('.edit-job-data').live('click', function(e) {
 
         e.preventDefault();
+        
         var span1 = $('#single-jobs');
         var span2 = $('#edit-job-form');
         var w = $(span1).width();
@@ -895,9 +896,11 @@ $(".load_ajax").hide();
         {
             $(span1).animate({left: 0}, 500);
             $(span2).show().animate({left: w}, 500);
+           
+            if($(".alert-error").length >0) $(".alert-error").show();
         }
         else
-        {
+        {   $(".alert-error").hide();
             $('#edit-job-form').find('div.alert').remove();
             $(span1).animate({left: -2 * w}, 500);
             $(span2).css({'left': w, 'top': '60px'});
@@ -968,6 +971,14 @@ $(".load_ajax").hide();
                         {
                             $(".jobdesc").find('div').html(data.job_details);
                         }
+                        if(data.job_location != undefined)
+                            {
+                                $(".joblocation").html(data.job_location);
+                            }
+                            
+                          
+                        //joblocation
+                       // tags
 
 //                //minyawns role
 //                $('#profile-view').find('.college').text(data.college);
