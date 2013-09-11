@@ -271,7 +271,7 @@ jQuery(document).ready(function($) {
                 if (ele == 'id')
                     return;
 
-                if (ele == 'user_skills')
+                if (ele == 'user_skills2')
                     return;
 
                 if (attr[ele] == '')
