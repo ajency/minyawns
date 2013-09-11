@@ -455,8 +455,8 @@ jQuery(document).ready(function($) {
                 //errors.push({field: 'job_required_minyawns', msg: 'Please enter required field'});
                 if (!attr.job_location)
                     errors.push({field: 'job_location', msg: 'Please enter location'});
-            if (!attr.job_tags)
-                errors.push({field: 'job_tags', msg: 'Please enter tags'});
+//            if (!attr.job_tags)
+//                errors.push({field: 'job_tags', msg: 'Please enter tags'});
             if (attr.job_required_minyawns == 0)
                 errors.push({field: 'job_required_minyawns', msg: 'Please select more than one'});
             if (!attr.job_details)
@@ -472,7 +472,7 @@ jQuery(document).ready(function($) {
 
         e.preventDefault();
         _this = $(this);
-        $(".modal_ajax_large").show();
+        
         
         //remove previuous errors
         $('#job-form').find('span.form-error').remove();
@@ -484,19 +484,24 @@ jQuery(document).ready(function($) {
 
                 $('#' + ele.field).closest('div.controls').append('<span class="form-error">' + ele.msg + '</span>');
             })
+            $(".modal_ajax_large").hide();
         });
+        
         var data = $("#job-form").serializeArray();
         $(this).attr('disabled', 'disabled');
         var job_data = {};
         _.each(data, function(ele, index) {
             job_data[ele.name] = ele.value;
         });
+        $(".modal_ajax_large").show();
         window.job.save(job_data,
                 {
                     wait: true,
+                   
                     success: function(model, resp) {
-                        $("#job-success").show();
-                       $(".modal_ajax_large").hide();
+                        
+                        
+                       
                         //get model data
                         // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
@@ -507,6 +512,8 @@ jQuery(document).ready(function($) {
 
                         $('#job_tags_tagsinput').find('span').remove()
                         $('html, body').animate({scrollTop: '0px'}, 300);
+                        $("#job-success").show();
+                       // $(".modal_ajax_large").hide();
                         fetch_my_jobs();
                     },
                     errors: function() {

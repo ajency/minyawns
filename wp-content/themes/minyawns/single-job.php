@@ -209,6 +209,7 @@ if (get_user_role() == "minyawn" && $minyawn_job->get_current_date_time() < $min
                                 <div class="span12 job-details"><?php echo $minyawn_job->get_job_details() ?></div>
 
                             </div>
+                            <div class="span9"><?php $tags=explode(",",$minyawn_job->get_job_tags()); for($i=0;$i<sizeof($tags);$i++){ ?><span class="label"><?php echo $tags[$i]; ?></span><?php }?></div>
                             <hr>
                             <?php
                             //show all applied minyanws data
