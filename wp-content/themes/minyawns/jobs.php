@@ -489,7 +489,7 @@ global $minyawn_job;
 
 
                                 <div class="control-group small">
-                                    <label class="control-label" for="inputtask">Price Per Minyawn</label>
+                                    <label class="control-label" for="inputtask">Total Price Per Minyawn</label>
 
                                     <div class="controls small">
                                         <div class="input-prepend">
