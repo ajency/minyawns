@@ -35,6 +35,9 @@ body .jobs_table .data-title .profile-job {
 .bootstrap-timepicker-widget {
   z-index: 9999 !important;
 }
+.bootstrap-timepicker-widget table td input {
+  text-indent: 0;
+}
 .label-available {
   color: #8ed030;
   line-height: 22px !important;
@@ -965,6 +968,7 @@ body .jobs_table .data-title .profile-job {
 .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .label-small {
   margin-bottom: 5px;
   padding: 5px;
+  white-space: normal;
 }
 .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail hr {
   margin: 13px 0;
@@ -2313,8 +2317,7 @@ body .jobs_table .data-title .profile-job {
 .employer-image {
   overflow: hidden;
   width: 170px;
-  /*height: 88px;*/
-  height: 84px;
+  height: 88px;
   border: 2px solid #8ed030;
 }
 .employer-image img {
@@ -2326,8 +2329,7 @@ body .jobs_table .data-title .profile-job {
 .employer-image2 {
   overflow: hidden;
   width: 150px !important;
-  /*height: 88px;*/
-  height: 76px;
+  height: 88px;
   border: 2px solid #8ed030;
   margin-left: 20px;
 }
