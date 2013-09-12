@@ -301,7 +301,7 @@ body .jobs_table .data-title .profile-job {
   border-right: 1px solid #ccc;
 }
 .jobs_table .header-title .job-wage {
-  width: 12%;
+  width: 8%;
   float: left;
   border-right: 1px solid #ccc;
 }
@@ -311,7 +311,7 @@ body .jobs_table .data-title .profile-job {
   border-right: 1px solid #ccc;
 }
 .jobs_table .header-title .job-action {
-  width: 6%;
+  width: 10%;
   float: left;
 }
 .jobs_table .header-title .header-sub {
@@ -397,7 +397,7 @@ body .jobs_table .data-title .profile-job {
   line-height: 34px;
 }
 .jobs_table .data-title .job-wage {
-  width: 12%;
+  width: 8%;
   float: left;
   height: 53px;
   border-right: 1px solid #ccc;
@@ -423,12 +423,21 @@ body .jobs_table .data-title .profile-job {
   margin-top: 10px;
 }
 .jobs_table .data-title .job-action {
-  width: 6%;
+  width: 10%;
   float: left;
   height: 53px;
 }
 .jobs_table .data-title .job-action .arrow-down {
   margin: 10px  auto;
+}
+.jobs_table .data-title .job-action ins {
+  font-size: 26px;
+  text-align: center;
+  color: #707070;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 30px;
+  display: block;
 }
 .jobs_table .data-title .header-sub {
   padding-top: 1%;
