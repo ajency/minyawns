@@ -111,9 +111,12 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('jquery'), null);
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
+             wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery','minyawns-js'), null);
             // wp_dequeue_script('jquery');
             if (is_page('jobs')) {
+               
                 wp_enqueue_script('jquery-cal', get_template_directory_uri() . '/src/jquery.js', array(), null);
+                
                 wp_enqueue_script('wdCalendar_lang_US', get_template_directory_uri() . '/src/wdCalendar_lang_US.js', array('jquery-cal'), null);
                 wp_enqueue_script('jquery.calendar', get_template_directory_uri() . '/src/jquery.calendar.js', array('jquery-cal'), null);
 
