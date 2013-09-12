@@ -41,24 +41,24 @@ jQuery(document).ready(function($) {
         else
             alert("Please select portion..!");
     }
-    
-  //hide image select crop area on modal hide
-   $('#myprofilepic').bind('hide', function () {
-    	 $('img#uploaded-image').imgAreaSelect( {hide: true} );
+
+    //hide image select crop area on modal hide
+    $('#myprofilepic').bind('hide', function() {
+        $('img#uploaded-image').imgAreaSelect({hide: true});
     });
-    
+
     $('img#uploaded-image').imgAreaSelect({
         aspectRatio: $("#aspect_ratio").val(),
-        onSelectEnd: getSizes         
-        
+        onSelectEnd: getSizes
+
     });
     $("#job_wages,#job_required_minyawns").keydown(function(event) {
-        
-        var charCode = (event.which) ? event.which : event.keyCode;
-          if (charCode !== 46 && charCode > 31&& (charCode < 48 || charCode > 57 && charCode != 190))
-             return false;
 
-          return true;
+        var charCode = (event.which) ? event.which : event.keyCode;
+        if (charCode !== 46 && charCode > 31 && (charCode < 48 || charCode > 57 && charCode != 190))
+            return false;
+
+        return true;
     });
 
     if (jQuery('#user-popdown').length > 0)
@@ -67,15 +67,13 @@ jQuery(document).ready(function($) {
                 {
                     placement: 'bottom',
                     html: true,
-
-                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><br><p class="muted" style=" color: #73C31B; ">' + email + '</p><h4></h4><span style="float:left; margin-right:10px;">Role:</span><p class="muted "> '+role+'</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
-
+                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><br><p class="muted" style=" color: #73C31B; ">' + email + '</p><h4></h4><span style="float:left; margin-right:10px;">Role:</span><p class="muted "> ' + role + '</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
                 }
         );
     }
-    
-    
-    
+
+
+
 
     $('#change-avatar-span').click(function(e) {
 
@@ -86,109 +84,109 @@ jQuery(document).ready(function($) {
         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
         dataType: 'json',
         done: function(e, data) {
-        	/*console.log(data);
+            /*console.log(data);
              $(".load_ajax-crop-upload").hide();
-            //$('#change-avatar-span').find('img').attr('src', data.result.image);
+             //$('#change-avatar-span').find('img').attr('src', data.result.image);
              alert(data.result.image);
              $('#change-avatar').removeAttr("disabled");
              $("#uploaded-image").attr('src', data.result.image);
-            $("#image_name").val(data.result.image_name);
+             $("#image_name").val(data.result.image_name);
+             
+             if (data.result.image_height > 500)
+             $("#uploaded-image").css('height', 'auto');
+             
+             if (data.result.image_width > 500)
+             $("#uploaded-image").css('width', 'auto');
+             
+             // window.location.reload();*/
 
-            if (data.result.image_height > 500)
-                $("#uploaded-image").css('height', 'auto');
 
-            if (data.result.image_width > 500)
-                $("#uploaded-image").css('width', 'auto');
 
-           // window.location.reload();*/
-        	
-        	
-        	
 
-        	
-        	
-        	
-        	
-        	
-        	
-        	
-        	
-        	$(".load_ajax-crop-upload").hide();
+
+
+
+
+
+
+
+
+            $(".load_ajax-crop-upload").hide();
             //$('#change-avatar-span').find('img').attr('src', data.result.image);
             $('#change-avatar').removeAttr("disabled");
-           
 
-            
-            
-            ratio_y = data.result.image_height/540  
-            ratio_x = data.result.image_width/510  
-            if(ratio_y>ratio_x)
-            	a_ratio = Math.round(ratio_x*10)/10;
+
+
+
+            ratio_y = data.result.image_height / 540
+            ratio_x = data.result.image_width / 510
+            if (ratio_y > ratio_x)
+                a_ratio = Math.round(ratio_x * 10) / 10;
             else
-            	a_ratio = Math.round(ratio_x*10)/10;
-            
-             if(a_ratio <1)
-            	a_ratio = 1;
-           
-            img_width =  Math.round( (data.result.image_width /a_ratio)  *10)/10;
-            img_height = Math.round( (data.result.image_height /a_ratio)   *10)/10;
-            
+                a_ratio = Math.round(ratio_x * 10) / 10;
+
+            if (a_ratio < 1)
+                a_ratio = 1;
+
+            img_width = Math.round((data.result.image_width / a_ratio) * 10) / 10;
+            img_height = Math.round((data.result.image_height / a_ratio) * 10) / 10;
+
             $("#uploaded-image").attr('src', data.result.image);
             $("#image_name").val(data.result.image_name);
-            $("#uploaded-image").css('width', img_width);	
+            $("#uploaded-image").css('width', img_width);
             $("#uploaded-image").css('height', img_height);
-            
-            
-       	    $("#uploaded-image").load(function(){ 
-           
-           // $('img#uploaded-image').imgAreaSelect( {update: true} );           
-        	$("#div_cropmsg").html("Please drag to select/crop your picture.<br/>");
-        	
-        	//get the image position
-        	if($("#uploaded-image").attr('src')!="")
-        	{
-		        	loaded_img_x = Math.round($("#uploaded-image").position().top *10)/10;
-		        	loaded_img_y = Math.round($("#uploaded-image").position().left *10) /10;
-		        	
-		        	//alert(loaded_img_x+" - "+loaded_img_y);
-		        	pd_aspect_ratio = $("#aspect_ratio").val().split(":");
-		        	
-		        	default_x1 =    (img_width/2)- (pd_aspect_ratio[0]*50);
-		        	default_y1 =   (img_height/2)- (pd_aspect_ratio[1]*50);
-		        	default_x2 =    (img_width/2)+ (pd_aspect_ratio[0]*50);
-		        	default_y2 =   (img_height/2)+ (pd_aspect_ratio[1]*50); 
-		        	
-		        	/* alert(loaded_img_x);
-		        	alert(loaded_img_y);
-		        	 */
-		        	/*default_x1 = loaded_img_x+300 ;
-		        	default_y1 = loaded_img_y+300 ;
-		        	default_x2 = loaded_img_x+400;
-		        	default_y2 = loaded_img_y +400; 
-		        	*/
-		        	/*alert(default_x1+" -- "+default_x2);
-		        	alert(default_y1+" -- "+default_y2);*/  
-		        	default_thumb_width = default_x2 - default_x1;
-		        	default_thumb_height = default_y2 - default_y1;		        	
-		        	 $("#done-cropping").show();
-		             $("#image_height").val(default_thumb_height);
-		             $("#image_width").val(default_thumb_width)
-		             $("#image_x_axis").val(default_x1);
-		             $("#image_y_axis").val(default_y1);
-		             
-		        	$('img#uploaded-image').imgAreaSelect({
-		        		x1:default_x1,
-		        		y1:default_y1,
-		        		x2:default_x2,
-		        		y2:default_y2,
-		        		update:true
-		        	
-		        		
-		        	});
-		               
-        	}
-        	
-       	 })
+
+
+            $("#uploaded-image").load(function() {
+
+                // $('img#uploaded-image').imgAreaSelect( {update: true} );           
+                $("#div_cropmsg").html("Please drag to select/crop your picture.<br/>");
+
+                //get the image position
+                if ($("#uploaded-image").attr('src') != "")
+                {
+                    loaded_img_x = Math.round($("#uploaded-image").position().top * 10) / 10;
+                    loaded_img_y = Math.round($("#uploaded-image").position().left * 10) / 10;
+
+                    //alert(loaded_img_x+" - "+loaded_img_y);
+                    pd_aspect_ratio = $("#aspect_ratio").val().split(":");
+
+                    default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * 50);
+                    default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * 50);
+                    default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * 50);
+                    default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * 50);
+
+                    /* alert(loaded_img_x);
+                     alert(loaded_img_y);
+                     */
+                    /*default_x1 = loaded_img_x+300 ;
+                     default_y1 = loaded_img_y+300 ;
+                     default_x2 = loaded_img_x+400;
+                     default_y2 = loaded_img_y +400; 
+                     */
+                    /*alert(default_x1+" -- "+default_x2);
+                     alert(default_y1+" -- "+default_y2);*/
+                    default_thumb_width = default_x2 - default_x1;
+                    default_thumb_height = default_y2 - default_y1;
+                    $("#done-cropping").show();
+                    $("#image_height").val(default_thumb_height);
+                    $("#image_width").val(default_thumb_width)
+                    $("#image_x_axis").val(default_x1);
+                    $("#image_y_axis").val(default_y1);
+
+                    $('img#uploaded-image').imgAreaSelect({
+                        x1: default_x1,
+                        y1: default_y1,
+                        x2: default_x2,
+                        y2: default_y2,
+                        update: true
+
+
+                    });
+
+                }
+
+            })
 
         },
         start: function(e, data) {
@@ -202,11 +200,11 @@ jQuery(document).ready(function($) {
     $("#done-cropping").live('click', function() {
         $(".load_ajax-crop-upload").show();
         $("#div_cropmsg").html("<br/>");
-        
+
         $.ajax({
             type: "POST",
             url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
-            data: {w: $("#image_width").val(), h: $("#image_height").val(), 'x1': $("#image_x_axis").val(), 'y1': $("#image_y_axis").val(), image_name: $("#image_name").val(), asp_ratio : $("#aspect_ratio").val() }
+            data: {w: $("#image_width").val(), h: $("#image_height").val(), 'x1': $("#image_x_axis").val(), 'y1': $("#image_y_axis").val(), image_name: $("#image_name").val(), asp_ratio: $("#aspect_ratio").val()}
         }).done(function(img_link) {
             $('#myprofilepic').modal('hide')
 //            $('#change-avatar-span').find('img').attr('src', img_link);
@@ -214,7 +212,7 @@ jQuery(document).ready(function($) {
             location.reload();
             $(".load_ajax-crop-upload").hide();
             $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
-            
+
         });
     });
 
@@ -413,67 +411,13 @@ jQuery(document).ready(function($) {
 
         $('#job_tags_tagsinput').find('span').remove();
     });
-    var Job = Backbone.Model.extend({
-        url: function() {
-            return SITEURL + '/wp-content/themes/minyawns/libs/job.php/addjob';
-        },
-        validate: function(attr) {
-            
-
-            var errors = [];
-
-
-            if (attr.job_start_date !== '' && attr.job_end_Date !== '') {
-                if (Date.parse(attr.job_start_date) > Date.parse(attr.job_end_date))
-                {
-                    errors.push({field: 'job_end_date', msg: 'End date cannot be less than start date.'});
-                }
-            }
-            if (attr.job_start_date == '')
-            {
-                errors.push({field: 'job_start_date', msg: 'Please fill the start date field.'});
-            }
-
-            if (attr.job_end_date == '')
-            {
-                errors.push({field: 'job_end_date', msg: 'Please fill the  end date field.'});
-            }
-
-            if (attr.job_end_time == '') {
-
-                errors.push({field: 'job_end_time', msg: 'Please fill the  end time.'});
-            }
-
-            if (attr.job_start_time == '') {
-                errors.push({field: 'job_start_time', msg: 'Please fill the  start time.'});
-            }
-
-            if (!attr.job_wages) {
-                errors.push({field: 'job_wages', msg: 'Please fill wages field.'});
-            }
-            if (!attr.job_required_minyawns)
-                //errors.push({field: 'job_required_minyawns', msg: 'Please enter required field'});
-                if (!attr.job_location)
-                    errors.push({field: 'job_location', msg: 'Please enter location'});
-//            if (!attr.job_tags)
-//                errors.push({field: 'job_tags', msg: 'Please enter tags'});
-            if (attr.job_required_minyawns == 0)
-                errors.push({field: 'job_required_minyawns', msg: 'Please select more than one'});
-            if (!attr.job_details)
-                errors.push({field: 'job_details', msg: 'Please enter job details'});
-            if (!attr.job_task)
-                errors.push({field: 'job_task', msg: 'Please enter ' + 'tasks'});
-            if (errors.length > 0)
-                return errors;
-        }
-
-    });
+   
     $('#add-job').click(function(e) {
 
         e.preventDefault();
         _this = $(this);
-        
-        
+
+
         //remove previuous errors
         $('#job-form').find('span.form-error').remove();
         //attach it to global window so we can use it later to update the main profile view
@@ -486,7 +430,7 @@ jQuery(document).ready(function($) {
             })
             $(".modal_ajax_large").hide();
         });
-        
+
         var data = $("#job-form").serializeArray();
         $(this).attr('disabled', 'disabled');
         var job_data = {};
@@ -497,11 +441,10 @@ jQuery(document).ready(function($) {
         window.job.save(job_data,
                 {
                     wait: true,
-                   
                     success: function(model, resp) {
-                        
-                        
-                       
+
+
+
                         //get model data
                         // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
@@ -513,7 +456,7 @@ jQuery(document).ready(function($) {
                         $('#job_tags_tagsinput').find('span').remove()
                         $('html, body').animate({scrollTop: '0px'}, 300);
                         $("#job-success").show();
-                       // $(".modal_ajax_large").hide();
+                        // $(".modal_ajax_large").hide();
                         fetch_my_jobs();
                     },
                     errors: function() {
@@ -535,68 +478,15 @@ jQuery(document).ready(function($) {
         $(".browse-jobs-table").show();
         $("#hide-calendar").hide();
         $("#show-calendar").show();
-        load_browse_jobs();
+        load_browse_jobs(); //function in jobs.js
     });
-    function load_browse_jobs() {
-
-        $(".load_ajax").css('display', 'block');
-        $("#calendar-jobs").hide();/*bread crumbs*/
-        $("#calendar").hide();
-        $("#accordion2").empty();
-        $(".load_more").show();
-        $(".load-ajax-browse").hide();
-        var Fetchjobs = Backbone.Collection.extend({
-            model: Job,
-            url: function() {
-
-                return SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
-            }
-        });
-        window.fetchj = new Fetchjobs;
-
-        window.fetchj.fetch({
-            data: {
-                'offset': 0
-
-            },
-            reset: true,
-            success: function(collection, response) {
-                //$(".load_more").hide();
-                if (collection.length === 0) {
-                    var template = _.template($("#no-result").html());
-                    $("#accordion2").append(template);
-                    $("#load-more").hide();
-
-                } else {
-                    var template = _.template($("#browse-jobs-table").html());
-                    _.each(collection.models, function(model) {
-
-                        if (model.toJSON().load_more === 1)
-                            $("#load-more").hide();
-
-
-                        var html = template(model.toJSON());
-                        $("#accordion2").append(html);
-                    });
-                    $(".load_ajax").hide();
-                }
-
-
-
-            },
-            error: function(err) {
-//console.log(err);
-            }
-
-        });
-
-    }
+    
     $("#my_jobs").click(function(e) {
 
         fetch_my_jobs();
     });
     $("#load-more").click(function(e) {
-$(".load_ajax").show();
+        $(".load_ajax").show();
 // alert(window.fetchj.models.length);
         window.fetchj.fetch({
             remove: false,
@@ -605,7 +495,7 @@ $(".load_ajax").show();
                 'offset': window.fetchj.models.length
 
             }, success: function(collection, response) {
-$(".load_ajax").hide();
+                $(".load_ajax").hide();
                 var template = _.template($("#browse-jobs-table").html());
                 $("#accordion2").empty();
                 _.each(collection.models, function(model) {
@@ -615,6 +505,7 @@ $(".load_ajax").hide();
                     console.log(collection.models.length);
                     var html = template(model.toJSON());
                     $("#accordion2").append(html);
+
                 });
             },
             error: function(err) {
@@ -888,7 +779,7 @@ $(".load_ajax").hide();
     $('.edit-job-data').live('click', function(e) {
 
         e.preventDefault();
-        
+
         var span1 = $('#single-jobs');
         var span2 = $('#edit-job-form');
         var w = $(span1).width();
@@ -896,11 +787,13 @@ $(".load_ajax").hide();
         {
             $(span1).animate({left: 0}, 500);
             $(span2).show().animate({left: w}, 500);
-           
-            if($(".alert-error").length >0) $(".alert-error").show();
+
+            if ($(".alert-error").length > 0)
+                $(".alert-error").show();
         }
         else
-        {   $(".alert-error").hide();
+        {
+            $(".alert-error").hide();
             $('#edit-job-form').find('div.alert').remove();
             $(span1).animate({left: -2 * w}, 500);
             $(span2).css({'left': w, 'top': '60px'});
@@ -971,14 +864,14 @@ $(".load_ajax").hide();
                         {
                             $(".jobdesc").find('div').html(data.job_details);
                         }
-                        if(data.job_location != undefined)
-                            {
-                                $(".joblocation").html(data.job_location);
-                            }
-                            
-                          
+                        if (data.job_location != undefined)
+                        {
+                            $(".joblocation").html(data.job_location);
+                        }
+
+
                         //joblocation
-                       // tags
+                        // tags
 
 //                //minyawns role
 //                $('#profile-view').find('.college').text(data.college);
@@ -1089,74 +982,7 @@ $(".load_ajax").hide();
     });
 
 
-    function fetch_my_jobs()
-    {
-        $("#accordion2").empty();
-        $("#list-my-jobs").empty();
-
-        var Fetchjobs = Backbone.Collection.extend({
-            model: Job,
-            url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
-        });
-        window.fetchj = new Fetchjobs;
-        window.fetchj.fetch({
-            data: {
-                'my_jobs': 1,
-                'offset': 0
-
-            },
-            success: function(collection, response) {
-                $(".load_ajax1_myjobs").hide();
-               
-                if (collection.length === 0) {
-
-                    var template = _.template($("#no-result").html());
-
-                    if ($("#browse-jobs-table").length > 0 && $("#list-my-jobs").length == 0){
-                        
-                        $("#browse-jobs-table").append(template);
-                    }else{
-                        $("#list-my-jobs").html(template);
-                    }
-                    //$("#list-my-jobs").hide();
-                    $("#load-more").hide();
-
-                } else {
-                    if (window.location.href.indexOf("jobs") > -1) {
-
-
-                        var template = _.template($("#my-jobs").html());
-                        _.each(collection.models, function(model) {
-
-                            var html = template(model.toJSON());
-                            $("#list-my-jobs").append(html);
-                        });
-                    }
-                    else
-                    {
-                        $("#accordion22").empty();
-                        var template = _.template($("#browse-jobs-table-profile").html());
-                        _.each(collection.models, function(model) {
-
-                            if (model.toJSON().load_more === 1)
-                                $("#load-more").hide();
-
-
-                            var html = template(model.toJSON());
-                            $("#accordion22").append(html);
-                        });
-                        $(".load_ajax").hide();
-
-                    }
-
-                }
-            },
-            error: function(err) {
-                //console.log(err);
-            }
-
-        });
-    }
+  
 
 
     function onload_calendar()
@@ -1478,21 +1304,21 @@ $(".load_ajax").hide();
             if (response.action == "vote-up") {
                 $("#vote-up" + _user_id).prop('disabled', true);
                 $("#vote-down" + _user_id).prop('disabled', true)
-                $("#total-like"+_user_id).contents().filter(function() {
+                $("#total-like" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
                 //$("#vote-up" + _user_id).append(response.rating);
-                $("#total-like"+_user_id).append(response.rating);
+                $("#total-like" + _user_id).append(response.rating);
                 //$("#vote-down").append("0");
             }
             if (response.action == "vote-down") {
                 $("#vote-down" + _user_id).prop('disabled', true);
                 $("#vote-up" + _user_id).prop('disabled', true)
-                $("#total-dislike"+_user_id).contents().filter(function() {
+                $("#total-dislike" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
                 //$("#vote-down" + _user_id).append(response.rating);
-                 $("#total-dislike"+_user_id).append(response.rating);
+                $("#total-dislike" + _user_id).append(response.rating);
                 //$("#vote-up").append("0");
             }
 
@@ -1512,7 +1338,7 @@ $(".load_ajax").hide();
 
     /* function on page load*/
 
-    fetch_my_jobs();
+    fetch_my_jobs();//moved to jobs.js
 
 
 
