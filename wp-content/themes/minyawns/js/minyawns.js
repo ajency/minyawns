@@ -1369,3 +1369,4 @@ jQuery('.collapse').live('hide', function() {
     jQuery(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
 
+ 
