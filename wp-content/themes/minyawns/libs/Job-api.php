@@ -77,8 +77,8 @@ class Minyawn_Job {
 
         $this->posted_date = $job->post_date;
 
-        $this->post_author=$job->post_author;
-        
+        $this->post_author = $job->post_author;
+
         $job_meta = get_post_meta($this->ID);
 
         $this->task = trim($job_meta['job_task'][0]);
@@ -90,9 +90,9 @@ class Minyawn_Job {
         $this->job_start_time = trim($job_meta['job_start_time'][0]);
 
         $this->job_end_time = trim($job_meta['job_end_time'][0]);
-        
-       $this->job_end_date_time=trim($job_meta['job_end_date_time'][0]);
-        
+
+        $this->job_end_date_time = trim($job_meta['job_end_date_time'][0]);
+
         //$this->user_skills = isset($job_meta['user_skills']) ? maybe_unserialize($job_meta['user_skills'][0]) : '';
 
         $this->wages = trim($job_meta['job_wages'][0]);
@@ -113,7 +113,7 @@ class Minyawn_Job {
                               WHERE {$wpdb->prefix}userjobs.job_id = %d
                               GROUP BY {$wpdb->prefix}userjobs.user_id", $this->ID);
 
-        
+
         $minyawns = $wpdb->get_results($sql);
 
         $this->applied_by = count($minyawns);
@@ -130,10 +130,10 @@ class Minyawn_Job {
                     'user_to_job' => $minyawn->job_id,
                     'user_job_status' => $minyawn->status,
                 );
-                  $user_meta=get_user_meta($minyawn->ID);
-                $get_user_meta=$user_meta['user_skills'][0];
-                    $user['user_skills']=$get_user_meta;
-                
+                $user_meta = get_user_meta($minyawn->ID);
+                $get_user_meta = $user_meta['user_skills'][0];
+                $user['user_skills'] = $get_user_meta;
+
 
 
 
@@ -143,7 +143,7 @@ class Minyawn_Job {
                 $fb_uid = false;
                 foreach ($usermeta as $meta) {
 
-                    
+
                     $meta = explode('|', $meta);
 
                     if (in_array($meta[0], $this->include_user_meta))
@@ -154,11 +154,8 @@ class Minyawn_Job {
 
                     if ($meta[0] == 'facebook_uid')
                         $fb_uid = $meta[1];
-                    
-                    
-                        
                 }
-                
+
                 //set image
                 if (!isset($user['image']) && $fb_uid !== false)
                     $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
@@ -172,28 +169,26 @@ class Minyawn_Job {
                 $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
                               WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id =%d
-                              GROUP BY {$wpdb->prefix}userjobs.user_id", $minyawn->ID,$minyawn->job_id);
+                              GROUP BY {$wpdb->prefix}userjobs.user_id", $minyawn->ID, $minyawn->job_id);
 
                 $minyawns_rating = $wpdb->get_results($sql);
 
                 foreach ($minyawns_rating as $rating) {
                     $user['like'] = $rating->positive;
                     $user['dislike'] = $rating->negative;
-                    
-                    if($user['like'] != "0" || $user['dislike'] != "0")
-                        $user['is_job_rated']=1;
-                    
+
+                    if ($user['like'] != "0" || $user['dislike'] != "0")
+                        $user['is_job_rated'] = 1;
                     else
-                        $user['is_job_rated']=0;
+                        $user['is_job_rated'] = 0;
                 }
-                
-                $user['is_job_owner']=  is_job_owner($minyawn->ID, $minyawn->job_id);
+
+                $user['is_job_owner'] = is_job_owner($minyawn->ID, $minyawn->job_id);
 
                 $this->minyawns[$minyawn->ID] = $user;
             }
-           
         }
-       
+
         // global $post;
 
         $tables = "$wpdb->posts,{$wpdb->prefix}userjobs";
@@ -283,20 +278,16 @@ class Minyawn_Job {
         return date('d M Y', $this->job_end_date);
     }
 
-    public function get_job_end_date_time()
-    {
+    public function get_job_end_date_time() {
         global $minyawn_job;
         return $this->job_end_date_time;
     }
-    
-    public function get_current_date_time()
-    {
-        
+
+    public function get_current_date_time() {
+
         return current_time('timestamp');
-        
     }
-    
-    
+
     public function get_job_end_time_ampm() {
         global $minyawn_job;
 
@@ -366,34 +357,33 @@ class Minyawn_Job {
         return implode(',', $this->job_tags);
     }
 
-    function check_minyawn_job_status($jobID,$user_id) {
-         global $wpdb;
-        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND {$wpdb->prefix}userjobs.user_id=".get_user_id()."";
+    function check_minyawn_job_status($jobID, $user_id) {
+        global $wpdb;
+        $applied = 0;
+        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND {$wpdb->prefix}userjobs.status='hired'";
 
         $querystr = "
-                            SELECT $wpdb->posts.*,{$wpdb->prefix}userjobs.*
+                            SELECT {$wpdb->prefix}userjobs.status
                             FROM $wpdb->posts,{$wpdb->prefix}userjobs
                             $my_jobs_filter
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
                                ";
-       
+
         $user_applied_to = $wpdb->get_results($querystr, OBJECT);
+//print_r($user_applied_to);
+        if (count($user_applied_to) > 0)
+            $applied = 2;
+        else
+            $applied = 1;
 
-        if (count($user_applied_to) > 0) {
-            foreach ($user_applied_to as $applied) {
-                if ($applied->status == "hired")
-                    $applied = 3;
 
-                if ($applied->status == "applied")
-                    $applied = 1;
-            }
-        }
+
 
         $min_job = new Minyawn_Job($jobID);
-         if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns)) 
-                        $applied = 2;
+        if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns))
+            $applied = 3;
 
 
 
@@ -402,14 +392,12 @@ class Minyawn_Job {
 
 }
 
-
-function job_selection_status($job_id)
-{
-    $status=0;
+function job_selection_status($job_id) {
+    $status = 0;
     global $wpdb;
-        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$job_id}'";
+    $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$job_id}'";
 
-        $querystr = "
+    $querystr = "
                             SELECT $wpdb->posts.*,{$wpdb->prefix}userjobs.*
                             FROM $wpdb->posts,{$wpdb->prefix}userjobs
                             $my_jobs_filter
@@ -417,19 +405,17 @@ function job_selection_status($job_id)
                             AND $wpdb->posts.post_type = 'job'
                             ORDER BY $wpdb->posts.ID DESC
                                ";
-       
-        $user_applied_to = $wpdb->get_results($querystr, OBJECT);
-       
-        foreach($user_applied_to as $user_job)
-        {
-            if($user_job->status == 'hired')
-                $status=1;    
-            
-        }
-        
-        return $status;
-    
+
+    $user_applied_to = $wpdb->get_results($querystr, OBJECT);
+
+    foreach ($user_applied_to as $user_job) {
+        if ($user_job->status == 'hired')
+            $status = 1;
+    }
+
+    return $status;
 }
+
 function get_total_jobs() {
     global $wpdb;
     $tables = "$wpdb->posts, $wpdb->postmeta";
@@ -468,17 +454,15 @@ function is_job_owner($user_id, $job_id) {
         $is_author = $wpdb->get_results($querystr, OBJECT);
 
         if (count($is_author) > 0)
-            return 1;
+            return $user_id;
         else
             return 0;
     }
     else
-        return false;
+        return 0;
 }
 
 function get_user_rating($user_id, $job_id) {
-    
-    
     
 }
 

@@ -219,7 +219,7 @@ jQuery(document).ready(function($) {
 
 
     //reset height for first span
-    $('#main-content .profile-wrapper').height($('#profile-edit').height() + 100);
+    $(' .profile-wrapper').height($('#profile-edit').height() + 100);
     $(function() {
         $('.switch')['bootstrapSwitch']();
     });
@@ -411,7 +411,7 @@ jQuery(document).ready(function($) {
 
         $('#job_tags_tagsinput').find('span').remove();
     });
-   
+
     $('#add-job').click(function(e) {
 
         e.preventDefault();
@@ -480,7 +480,7 @@ jQuery(document).ready(function($) {
         $("#show-calendar").show();
         load_browse_jobs(); //function in jobs.js
     });
-    
+
     $("#my_jobs").click(function(e) {
 
         fetch_my_jobs();
@@ -496,14 +496,15 @@ jQuery(document).ready(function($) {
 
             }, success: function(collection, response) {
                 $(".load_ajax").hide();
-                var template = _.template($("#browse-jobs-table").html());
+                var template = _.template($("#jobs-table").html());
                 $("#accordion2").empty();
                 _.each(collection.models, function(model) {
-
+                    var job_stat = job_status_li(model);
+                    var job_collapse_button_var = job_collapse_button(model);
                     if (model.toJSON().load_more === 1)
                         $("#load-more").hide();
-                    console.log(collection.models.length);
-                    var html = template(model.toJSON());
+                    //console.log(collection.models.length);
+                    var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
                     $("#accordion2").append(html);
 
                 });
@@ -982,7 +983,7 @@ jQuery(document).ready(function($) {
     });
 
 
-  
+
 
 
     function onload_calendar()
@@ -1338,7 +1339,7 @@ jQuery(document).ready(function($) {
 
     /* function on page load*/
 
-    fetch_my_jobs();//moved to jobs.js
+      fetch_my_jobs();//moved to jobs.js
 
 
 
@@ -1361,10 +1362,10 @@ function ucfirst(str) {
 }
 
 jQuery('.collapse').live('show', function() {
-    $(this).parent().find('a').addClass('open'); //add active state to button on open
+    jQuery(this).parent().find('a').addClass('open'); //add active state to button on open
 });
 
 jQuery('.collapse').live('hide', function() {
-    $(this).parent().find('a').removeClass('open'); //remove active state to button on close
+    jQuery(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
 

@@ -3,7 +3,9 @@
 /**
   Template Name: Profile Page
  */
-get_header();  ?>
+get_header();  
+require 'templates/_jobs.php';
+?>
 
 <script type="text/templates" id="no-result">
     <div class="alert alert-info myjobs no-job ">
@@ -129,7 +131,7 @@ get_header();  ?>
   
 </div>
 <div class="container">
-	<div id="main-content" class="main-content bg-white">
+	<div id="main-content" class="main-content bg-white" >
 		<div class="breadcrumb-text">
                     
                     <p id="bread-crumbs-id">
@@ -276,7 +278,7 @@ get_header();  ?>
                     </div>
                 </div>
 
-                <div class="row-fluid " id="accordion22" >
+                <div class="row-fluid " id="accordion24" >
 
                 </div>
 

@@ -140,31 +140,7 @@ require 'templates/_jobs.php';
             <div class="clear"></div><br>
             <span class='load-ajax-browse' style="display:block"></span> 
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
-                <!--   <div class="row-fluid header_cell">
-                                    <div class="span7">
-                                             <i class="icon-calendar"></i><h3 class="page-title"> Month</h3>  header label 
-                                             JUN 2013
-                                         </div>
- 
-                     <div class="span12">
-                      <select name="small" class="select-block select-role">
-                             <option value="0" selected="true">Upcoming</option>
-                                                         <option value="1">Today</option>
-                                                         <option value="2">Tommorow</option>
-                                                         <option value="3">This Week</option>
-                                                         <option value="4">This Month</option>
-                         </select>
- 
-                     </div>
-                                     <div class="span3">
-                                             <div class="control-group small ctrl-grp">
-                                                 <div class="input-append">
-                                                     <input class="span2" id="appendedInputButton-04" type="text" placeholder="Search">
-                                                     <button class="btn btn-small" type="button"><span class="fui-search"></span></button>
-                                                 </div>
-                                             </div>
-                                         </div>
-                 </div>-->
+               
                 <!-- Row Div header -->
                 <div class="row-fluid ">
                     <div class="span12 header-title">
@@ -381,7 +357,23 @@ require 'templates/_jobs.php';
                     </div>
                     <span class='load_ajax1_myjobs' style="display:block"></span>
                     <div id="list-my-jobs">
+<div class="row-fluid ">
+                    <div class="span12 header-title">
+                        <div class="job-logo header-sub"> Logo</div>
+                        <div class="job-date header-sub"> Job Date</div>
+                        <div class="job-time header-sub">Duration</div>
+                       <div class="job-wage header-sub">Applicants</div> 
+                        <div class="job-progress header-sub">Progress</div>
+                        <div class="job-action header-sub">Wages</div>
+                        
+                    </div>
+                </div>
 
+                <div class="row-fluid " id="accordion24" >
+
+                </div>
+
+                <button class="btn load_more" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
 
                     </div>
                 </div>
