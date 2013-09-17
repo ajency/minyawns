@@ -905,6 +905,15 @@ body .jobs_table .data-title .profile-job {
   width: auto;
   margin-left: 3px;
 }
+.list-jobs .expand .minyawansgrid .minyawns-job span {
+  float: right;
+}
+.list-jobs .expand .minyawansgrid .minyawns-job .label-well {
+  background: #8ed030;
+}
+.list-jobs .expand .minyawansgrid .minyawns-job .label-terrible {
+  background: #F1091C;
+}
 .single-jobs .inner-data {
   padding: 14px 0;
 }

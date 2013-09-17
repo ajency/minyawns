@@ -97,7 +97,9 @@
 						</div>
 						<div class="minyawns-job">
 						<b>Job Hired</b>
-						<label>Well Done</label>
+						<span class="label label-success label-well">Well Done</span>
+						<!--<span class="label label-success label-terrible">Terrible</span>-->
+						
 						</div>
 
                     </div>
