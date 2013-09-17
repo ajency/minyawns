@@ -44,7 +44,7 @@ get_header();
 				 <a  href="#video1"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png"/></a>
 				  <a  href="#video1"  data-toggle="modal"  style="color: #34495E;"> <h3>Minyawns For Students</h3></a>
 				</div>
-				<div id="video1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					  <div class="modal-body">
 						<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gbbkC7yIduS/" frameborder="0" allowfullscreen></iframe></p>
 					  </div>
@@ -55,7 +55,7 @@ get_header();
 				<div class="span5">
 					 <a  href="#video2"  data-toggle="modal"> <img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png"/></a>
 				 <a  href="#video2"  data-toggle="modal" style="color: #34495E;"> <h3>Minyawns For Businesses</h3></a>
-				 <div id="video2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				 <div id="video2" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					  <div class="modal-body">
 						<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gdPRX5igKP7/" frameborder="0" allowfullscreen></iframe></p>
 					  </div>

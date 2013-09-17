@@ -1409,6 +1409,9 @@ body .jobs_table .data-title .profile-job {
 }
 .home .video-home .row-fluid {
   padding: 30px 0px;
+  background: rgba(185, 184, 184, 0.36);
+  margin-top: 10px;
+  padding-bottom: 19px;
 }
 .home .video-home .row-fluid img {
   margin: auto;
@@ -1533,6 +1536,10 @@ body .jobs_table .data-title .profile-job {
   body .load_ajaxconfirm {
     background-position: -1px;
     margin-bottom: -52px;
+  }
+  body .video-pop iframe {
+    width: 100%;
+    height: auto;
   }
   body .video-home {
     height: 540px !important;
