@@ -389,7 +389,7 @@ class MN_User_Jobs {
 
                 $user = array(
                     'user_login' => $minyawn->user_login,
-                    'profile_name' => $minyawn->display_name,
+                    'profile_name' => $minyawn->first_name.$minyawn->last_name,
                     'user_email' => $minyawn->user_email,
                     'user_id' => $minyawn->ID,
                     'user_to_job' => $minyawn->job_id,
@@ -632,4 +632,63 @@ function wp_set_current_user_profile($id, $name = '') {
 function check_direct_access() {
 
     return end((explode('/', rtrim($_SERVER['REQUEST_URI'], '/'))));
+}
+
+function user_data($user_id)
+{
+    $current_user_new='';
+    $user_meta = get_user_meta($user_id);
+
+    $current_user_new['user_id'] = $user_id;
+    
+  
+    //set profile first name
+    $current_user_new['first_name'] = trim($user_meta['first_name'][0]);
+ 
+    //set profile last name
+    $current_user_new['last_name'] = trim($user_meta['last_name'][0]);
+
+    //set college
+    $current_user_new['college'] = isset($user_meta['college']) ? trim($user_meta['college'][0]) : '';
+
+    //set major
+    $current_user_new['major'] = isset($user_meta['major']) ? trim($user_meta['major'][0]) : '';
+
+    //set skills
+
+    $current_user_new['user_skills'] = isset($user_meta['user_skills']) ? maybe_unserialize($user_meta['user_skills'][0]) : '';
+
+    $current_user_new['user_email']=isset($user_meta['user_email']) ? maybe_serialize($user_meta['user_email']) : '';
+
+    //set socials
+    $current_user_new['socials'] = isset($user_meta['socials']) ? maybe_unserialize($user_meta['socials'][0]) : array();
+
+    //set profile profile_body
+    $current_user_new['profilebody'] = isset($user_meta['profilebody']) ? trim($user_meta['profilebody'][0]) : '';
+
+    //set profile profile linked in
+    $current_user_new['linkedin'] = isset($user_meta['linkedin']) ? trim($user_meta['linkedin'][0]) : '';
+
+    //set profile profile linked in
+    $current_user_new['company_website'] = isset($user_meta['company_website']) ? trim($user_meta['company_website'][0]) : '';
+
+    $current_user_new['company_name'] = isset($user_meta['company_name']) ? trim($user_meta['company_name'][0]) : '';
+
+    //set profile profile linked in
+    $current_user_new['location'] = isset($user_meta['location']) ? trim($user_meta['location'][0]) : '';
+
+    //set profile facebook_uid
+    $current_user_new['facebook_uid'] = isset($user_meta['facebook_uid']) ? trim($user_meta['facebook_uid'][0]) : 0;
+
+    //set profile facebook_avatar_full image
+    $current_user_new['facebook_avatar_full'] = isset($user_meta['facebook_avatar_full']) ? trim($user_meta['facebook_avatar_full'][0]) : '';
+
+    //set profile facebook_avatar_thumb image
+    $current_user_new['facebook_avatar_thumb'] = isset($user_meta['facebook_avatar_thumb']) ? trim($user_meta['facebook_avatar_thumb'][0]) : '';
+
+    //check if user has avatar uploaded
+    $current_user_new['avatar'] = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
+    
+    return $current_user_new;
+    
 }
