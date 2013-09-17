@@ -35,6 +35,7 @@ function load_browse_jobs(id) {
 
                     if (model.toJSON().post_id === id) {
                         jQuery("#hidden_minion_id").val(model.toJSON().applied_user_id);
+                        jQuery("#job_id").val(id);
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
                         jQuery(".singlejobedit").append(html);
                         load_job_minions();
@@ -388,7 +389,8 @@ function load_job_minions()
     window.fetchj = new Fetchuserprofiles;
     window.fetchj.fetch({
         data: {
-            minion_id:jQuery("#hidden_minion_id").val()
+            minion_id:jQuery("#hidden_minion_id").val(),
+            job_id:jQuery("#job_id").val()
         },
         success: function(collection, response) {
         }

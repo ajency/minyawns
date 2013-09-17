@@ -237,6 +237,7 @@ load_browse_jobs('<?php the_ID() ?>');
 </div>
 
 <input type="hidden" id="hidden_minion_id"></input>
+<input type="hidden" id="job_id" val="<?php echo the_ID() ?>"></input>
 <div id="confirminyawn" class="modal hide fade in papypalform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>

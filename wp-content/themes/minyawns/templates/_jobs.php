@@ -84,9 +84,9 @@
                     <div class="row-fluid minyawansgrid">
                         <% for(i=0;i<result.users_applied.length;i++){ %>
                         <a href="<?php echo site_url() ?>/profile/<%= result.applied_user_id[i]%>" target="_blank"><div class="span4">
-						<div class="minyawns-details">
-						<span class="image-div"><%= result.user_profile_image[i] %></span><b><%= result.users_applied[i]%></b>
-						</a>
+                                                <div class="minyawns-details">
+                                                <span class="image-div"><%= result.user_profile_image[i] %></span><b><%= result.users_applied[i]%></b>
+                                                </a>
 
                         <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= result.post_id %>">
                         <i class="icon-thumbs-up"></i> <%= result.user_rating_like[i] %>
@@ -94,13 +94,13 @@
                         <a id="vote-down" href="#fakelink"  class="icon-thumbs" employer-vote="-1" job-id="<%= result.post_id %>">
                         <i class="icon-thumbs-down"></i> <%= result.user_rating_dislike[i] %>
                         </a>
-						</div>
-						<div class="minyawns-job">
-						<b>Job Hired</b>
-						<span class="label label-success label-well">Well Done</span>
-						<!--<span class="label label-success label-terrible">Terrible</span>-->
+                                                </div>
+                                                <div class="minyawns-job">
+                                                <b>Job Hired</b>
+                                                <span class="label label-success label-well">Well Done</span>
+                                                <!--<span class="label label-success label-terrible">Terrible</span>-->
 						
-						</div>
+                                                </div>
 
                     </div>
                     <% }  %>
@@ -118,4 +118,11 @@
                 </div>
         </div>
   </div>
+</script>
+
+
+
+<script type="text/templates" id="minion-cards">
+        
+        
 </script>
