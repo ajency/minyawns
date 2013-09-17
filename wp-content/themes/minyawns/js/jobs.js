@@ -201,7 +201,11 @@ var job_status1;
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
                     else if (model.toJSON().todays_date_time > model.toJSON().job_end_time_check) /*expired*/
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
-                           }
+                else
+                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available.</span>";
+                
+                }
+                           
             }
             else
             {
@@ -286,16 +290,14 @@ function job_collapse_button(model)
 //                    alert(model.toJSON().applied_user_id[i]);
                     //alert(model.toJSON().job_status);
                     if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().job_status !== 3 && model.toJSON().job_status === 1)
-                        status_button = "<a href = '#' id = 'unapply-job' class ='btn btn-medium btn-block btn-danger red-btn' data-action ='unapply' data-job-id= '<%= result.post_id %>' > Unapply </a>";
+                        status_button = "<a href = '#' id = 'unapply-job' class ='btn btn-medium btn-block btn-danger red-btn' data-action ='unapply' data-job-id= "+model.toJSON().post_id+"  > Unapply </a>";
 
-                    else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'hired')
+                    else if (model.toJSON().applied_user_id[i] === logged_in_user_id  && model.toJSON().user_to_job_status.indexOf('hired') >= 'hired')
                         status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You are Hired.</span>";
-
-                    else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'applied')
-                        status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions Selected.</span>";
-                    else if (model.toJSON().applied_user_id.indexOf(logged_in_user_id) === -1 && model.toJSON().job_status === 3)
-                        status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications Closed.</span>";
-
+                  else if (model.toJSON().applied_user_id[i] !== logged_in_user_id  && model.toJSON().user_to_job_status.indexOf('hired') >= 0)
+                        status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete.</span>";
+                    else if (model.toJSON().applied_user_id[i] !== logged_in_user_id  && model.toJSON().user_to_job_status.indexOf('applied') >= 0)
+                            status_button = '<a href="#" id="apply-job-browse" class="btn btn-medium btn-block green-btn btn-success" data-action="apply" data-job-id="' + model.toJSON().post_id + '">Apply</a>';
                     else if (model.toJSON().applied_user_id.indexOf(logged_in_user_id) === -1 && model.toJSON().job_status === 2 && model.toJSON().user_to_job_status[i] !== 'hired')
                         status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete.</span>";
 
@@ -305,6 +307,7 @@ function job_collapse_button(model)
                     else if (model.toJSON().todays_date_time > model.toJSON().job_end_time_check)
                         status_button = '<span style="display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;">Job Expired.</span>';
 
+    
 
                 }
             } else
