@@ -170,7 +170,7 @@ var Job = Backbone.Model.extend({
 });
 function job_status_li(model)
 {
-
+var job_status1;
     if (role === 'Minion') {
         // alert(model.toJSON().user_to_job_status.length);
 
@@ -201,9 +201,7 @@ function job_status_li(model)
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
                     else if (model.toJSON().todays_date_time > model.toJSON().job_end_time_check) /*expired*/
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
-                     else
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available.</span>";
-                }
+                           }
             }
             else
             {
