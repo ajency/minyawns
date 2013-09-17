@@ -951,17 +951,18 @@ background: #F8F8F8!important;
 					}
 					.minyawansgrid{
 						
-						.span6{
+						.span4{
 							margin-left: 8px;
-							border-bottom: 1px dotted#CCC;
+							border: 1px dotted #ccc;
 							margin-bottom: 5px;
 							height: 60px;
 							img{
 								width: 11%;
 								padding: 5px;
+								display: inline-block;
 							}
 							b{
-								width: 157px;
+								width: 120px;
 								display: inline-block;
 								color:#333;
 							}
@@ -977,7 +978,29 @@ background: #F8F8F8!important;
 								background: #EEE9E9;
 							}
 						}
-					}
+						.minyawns-job{
+							border-top: 1px dotted #CCC;
+							padding: 5px 0px;
+							b{
+									color: #1CAC16;
+									font-weight: normal;
+									font-size: 12px;
+									text-transform: uppercase;
+									width: auto;
+									margin-left: 3px;
+							}
+							span{
+									float:right;
+							}
+							.label-well{
+								background:@green;
+							}
+							.label-terrible{
+								background:#F1091C;
+							}
+						}
+					
+				}
 		}
 }
 
@@ -1573,8 +1596,27 @@ background: #F8F8F8!important;
 
 .home{
 	background:url(../images/back2.jpg)repeat-x;
-	background-position: 67px 53px;
+	background-position: 67px 283px;
 	
+	.video-home{
+		height: 260px;
+		margin-top: -1px;
+		.row-fluid {
+		padding:30px 0px;
+		background: rgba(185, 184, 184, 0.36);
+		margin-top: 10px;
+		padding-bottom: 19px;
+			img{
+				margin:auto;
+				display:block;
+			}
+			h3{
+				font-size: 18px;
+				text-align: center;
+				margin-top: 10px;
+			}
+		}
+	}
 	.heading-title{
 
 		display: block;
@@ -1700,6 +1742,31 @@ background: #F8F8F8!important;
 				background-position: -1px;
 				margin-bottom: -52px;
 }
+	.video-pop{
+		iframe{
+			width:100%;
+			height:auto;
+		}
+	
+	}
+	.video-home{
+		height: 540px !important;
+		margin-top: 29px!important;
+		.row-fluid {
+		padding:30px 0px;
+			img{
+				margin:auto;
+				display:block;
+			}
+			h3{
+				font-size: 18px;
+				text-align: center;
+				margin-top: 10px;
+			}
+		}
+	}
+	
+
 			.cropimage{
 	.modal-body{
 			
@@ -1834,7 +1901,7 @@ background: #F8F8F8!important;
 			
 		}
 	.home{
-background-position: 60px 480px;
+background-position: 60px 1050px;
 	#btn__login {
 			float: none;
 			display: block;
