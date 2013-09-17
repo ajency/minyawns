@@ -366,6 +366,7 @@ div.profile-wrapper{
 	position: relative;
 	overflow: hidden;
 	width: 100%;
+	height: auto !important;
 }
 
 div.profile-wrapper #profile-view,#single-jobs{
