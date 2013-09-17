@@ -1369,4 +1369,9 @@ jQuery('.collapse').live('hide', function() {
     jQuery(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
 
- 
+  jQuery(".edit-user-profile").click(function(){
+    jQuery(".profile-wrapper").addClass("intro");
+  });
+ jQuery('a #edit-user-profile').click(function(){
+   jQuery(this).addClass('active');
+});

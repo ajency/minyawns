@@ -160,7 +160,7 @@ require 'templates/_jobs.php';
 						<input id="change-avatar" type="file" name="files" style="visibility:hidden">
 					</div>
 					<div class="span8">
-                                            <h4 class="name"> <?php if(get_user_role() === "employer"){ echo user_profile_company_name(); } else { user_profile_first_name()." ".user_profile_last_name();}   if(!is_numeric(check_direct_access())) {?>  <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php }?></h4> 
+                                            <h4 class="name"> <?php if(get_user_role() === "employer"){ echo user_profile_company_name(); } else { user_profile_first_name()." ".user_profile_last_name();}   if(!is_numeric(check_direct_access())) {?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php }?></h4> 
 						<div class="row-fluid profile-list">
 							<?php
 
@@ -287,7 +287,7 @@ require 'templates/_jobs.php';
                         </div>
 				<div class="clear"></div>
 			</div>
-			<div class="span12" id="profile-edit">
+			<div class="span12" id="profile-edit" style="height:502px;">
 				<div class="row-fluid">	
 					<form class="form-horizontal frm-edit" id="profile-edit-form">
 					  	

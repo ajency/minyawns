@@ -866,6 +866,12 @@ body .jobs_table .data-title .profile-job {
 .list-jobs .expand .span4 .like_btn .icon-thumbs {
   color: #F55568;
 }
+.list-jobs .expand .minyawansgrid .label-well {
+  background: #DCFADF;
+}
+.list-jobs .expand .minyawansgrid .label-terrible {
+  background: #FADCDD;
+}
 .list-jobs .expand .minyawansgrid .span4 {
   margin-left: 8px;
   border: 1px dotted #ccc;
@@ -907,12 +913,8 @@ body .jobs_table .data-title .profile-job {
 }
 .list-jobs .expand .minyawansgrid .minyawns-job span {
   float: right;
-}
-.list-jobs .expand .minyawansgrid .minyawns-job .label-well {
-  background: #8ed030;
-}
-.list-jobs .expand .minyawansgrid .minyawns-job .label-terrible {
-  background: #F1091C;
+  margin-right: 5px;
+  font-weight: bold;
 }
 .single-jobs .inner-data {
   padding: 14px 0;
@@ -1636,6 +1638,12 @@ body .jobs_table .data-title .profile-job {
   .bootstrap-timepicker-widget table td input {
     width: 43px !important;
   }
+  .list-jobs .minyawansgrid .span4 {
+    margin-bottom: 10px!important;
+    height: 70px!important;
+    margin-left: 0px !important;
+    width: 95%;
+  }
   .list-jobs .div-box {
     position: relative !important;
     top: 0!important;
@@ -2016,17 +2024,17 @@ body .jobs_table .data-title .profile-job {
   .list-jobs .jobs-details .job-duration .row-fluid span {
     font-size: 20px;
   }
-  .list-jobs .minyawansgrid .span6 {
+  .list-jobs .minyawansgrid .span4 {
     margin-left: 8px;
     border-bottom: 1px dotted#CCC;
     margin-bottom: 5px;
     width: 46% !important;
   }
-  .list-jobs .minyawansgrid .span6 img {
+  .list-jobs .minyawansgrid .span4 img {
     width: 11%;
     padding: 5px;
   }
-  .list-jobs .minyawansgrid .span6 b {
+  .list-jobs .minyawansgrid .span4 b {
     width: auto !important;
     display: inline-block;
   }
@@ -2249,31 +2257,31 @@ body .jobs_table .data-title .profile-job {
   .list-jobs .expand .span4 .like_btn .icon-thumbs {
     color: #F55568;
   }
-  .list-jobs .expand .minyawansgrid .span6 {
+  .list-jobs .expand .minyawansgrid .span4 {
     margin-left: 8px;
     border-bottom: 1px dotted#CCC;
     margin-bottom: 5px;
     width: 47%;
   }
-  .list-jobs .expand .minyawansgrid .span6 img {
+  .list-jobs .expand .minyawansgrid .span4 img {
     width: 11%;
     padding: 5px;
   }
-  .list-jobs .expand .minyawansgrid .span6 b {
+  .list-jobs .expand .minyawansgrid .span4 b {
     width: 70%;
     display: inline-block;
   }
-  .list-jobs .expand .minyawansgrid .span6 a {
+  .list-jobs .expand .minyawansgrid .span4 a {
     font-size: 10px;
   }
-  .list-jobs .expand .minyawansgrid .span6 .icon-thumbs-up {
+  .list-jobs .expand .minyawansgrid .span4 .icon-thumbs-up {
     margin-left: 20px;
   }
-  .list-jobs .expand .minyawansgrid .span6 .icon-thumbs {
+  .list-jobs .expand .minyawansgrid .span4 .icon-thumbs {
     margin-left: 10px;
     color: #F65151;
   }
-  .list-jobs .expand .minyawansgrid .span6:hover {
+  .list-jobs .expand .minyawansgrid .span4:hover {
     cursor: pointer;
     background: #EEE9E9;
   }

@@ -119,7 +119,7 @@ load_browse_jobs('<?php the_ID() ?>');
 
 <div class="container">
     <div class="tab-content">
-        <div class="tab-pane active" id="tab2">
+        <div class="tab-pane jobs_table active single-job-1" id="tab2">
             <div class="breadcrumb-text">
                 <p>
                     <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
