@@ -156,12 +156,9 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                     $status = array_push($user_job_status, $min['user_job_status']);
 
-                    $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
-                              FROM {$wpdb->prefix}userjobs
-                              WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id
-                              GROUP BY {$wpdb->prefix}userjobs.user_id", $min['user_id'], $pagepost->ID);
 
-                    $minyawns_rating = $wpdb->get_results($sql);
+
+                    $minyawns_rating = get_user_rating_data($min['user_id'], $pagepost->ID);
 
                     foreach ($minyawns_rating as $rating) {
                         $user_rating = array_push($user_rating_like, $rating->positive);
@@ -458,23 +455,34 @@ $app->post('/user-vote', function() use ($app) {
 $app->get('/jobminions/', function() use ($app) {
             global $post, $wpdb;
             global $minyawn_job;
-            $data = array();
+
             $minion_ids = explode(',', $_GET['minion_id']);
+
             for ($i = 0; $i <= sizeof($minion_ids); $i++) {
-                $user_data = user_data($minion_ids[$i]);
-                foreach ($user_data as $user_details) {
+                $all_meta_for_user = get_user_meta($minion_ids[$i]);
+                $all_meta_for_user = array_map(function( $a ) {
+                            return $a[0];
+                        }, get_user_meta($minion_ids[$i]));
 
-                    $data[] = array(
-                        'name' => $user_details['first_name'] . $user_details['last_name'],
-                        'college' => $user_details['college'],
-                        'major' => $user_details['major'],
-                        'user_skills' => $user_details['user_skills'],
-                        'linkedin' => $user_details['linkedin'],
-                        'user_email' => $user_details['user_email']
-                    );
+
+                $minyawns_rating = get_user_rating_data($minion_ids[$i], $_GET['job_id']);
+                foreach ($minyawns_rating as $rating) {
+                    $user_rating = $rating->positive;
+                    $user_dislike = $rating->negative;
+                  
                 }
+                $data[] = array(
+                    'name' => $all_meta_for_user['first_name'] . $all_meta_for_user['last_name'],
+                    'college' => $all_meta_for_user['college'],
+                    'major' => $all_meta_for_user['major'],
+                    'user_skills' => isset($all_meta_for_user['user_skills']) ? $all_meta_for_user['user_skills'] : '',
+                    'linkedin' => isset($all_meta_for_user['linkedin']) ? $all_meta_for_user['linked_in'] : '',
+                    'user_email' => isset($all_meta_for_user['user_email']) ? $all_meta_for_user['user_email'] : '',
+                    'rating_positive' => $user_rating,
+                    'rating_negative'=>$user_dislike
+                );
             }
-
+            
 
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
@@ -484,5 +492,7 @@ $app->get('/jobminions/', function() use ($app) {
 
 
 
-
 $app->run();
+
+
+
