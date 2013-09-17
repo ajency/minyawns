@@ -868,7 +868,7 @@ body .jobs_table .data-title .profile-job {
 }
 .list-jobs .expand .minyawansgrid .span4 {
   margin-left: 8px;
-  border-bottom: 1px dotted#CCC;
+  border: 1px dotted #ccc;
   margin-bottom: 5px;
   height: 60px;
 }
@@ -892,6 +892,18 @@ body .jobs_table .data-title .profile-job {
 .list-jobs .expand .minyawansgrid .span4:hover {
   cursor: pointer;
   background: #EEE9E9;
+}
+.list-jobs .expand .minyawansgrid .minyawns-job {
+  border-top: 1px dotted #CCC;
+  padding: 5px 0px;
+}
+.list-jobs .expand .minyawansgrid .minyawns-job b {
+  color: #1CAC16;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  width: auto;
+  margin-left: 3px;
 }
 .single-jobs .inner-data {
   padding: 14px 0;
@@ -1522,6 +1534,22 @@ body .jobs_table .data-title .profile-job {
     background-position: -1px;
     margin-bottom: -52px;
   }
+  body .video-home {
+    height: 540px !important;
+    margin-top: 29px!important;
+  }
+  body .video-home .row-fluid {
+    padding: 30px 0px;
+  }
+  body .video-home .row-fluid img {
+    margin: auto;
+    display: block;
+  }
+  body .video-home .row-fluid h3 {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+  }
   body .cropimage .modal-body input {
     display: block;
     margin-top: 10px;
@@ -1628,7 +1656,7 @@ body .jobs_table .data-title .profile-job {
     margin-top: -15px;
   }
   .home {
-    background-position: 60px 480px;
+    background-position: 60px 1050px;
   }
   .home #btn__login {
     float: none;
