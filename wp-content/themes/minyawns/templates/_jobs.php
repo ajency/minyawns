@@ -83,7 +83,7 @@
                          </div>
                     <div class="row-fluid minyawansgrid">
                         <% for(i=0;i<result.users_applied.length;i++){ %>
-                        <a href="<?php echo site_url() ?>/profile/<%= result.applied_user_id[i]%>" target="_blank"><div class="span4">
+                        <a href="<?php echo site_url() ?>/profile/<%= result.applied_user_id[i]%>" target="_blank"><div class="span4 label-well">
 						<div class="minyawns-details">
 						<span class="image-div"><%= result.user_profile_image[i] %></span><b><%= result.users_applied[i]%></b>
 						</a>
@@ -97,8 +97,8 @@
 						</div>
 						<div class="minyawns-job">
 						<b>Job Hired</b>
-						<span class="label label-success label-well">Well Done</span>
-						<!--<span class="label label-success label-terrible">Terrible</span>-->
+						<span >Well Done</span>
+						<!--<span >Terrible</span>-->
 						
 						</div>
 

@@ -866,6 +866,12 @@ body .jobs_table .data-title .profile-job {
 .list-jobs .expand .span4 .like_btn .icon-thumbs {
   color: #F55568;
 }
+.list-jobs .expand .minyawansgrid .label-well {
+  background: #DCFADF;
+}
+.list-jobs .expand .minyawansgrid .label-terrible {
+  background: #FADCDD;
+}
 .list-jobs .expand .minyawansgrid .span4 {
   margin-left: 8px;
   border: 1px dotted #ccc;
@@ -907,12 +913,8 @@ body .jobs_table .data-title .profile-job {
 }
 .list-jobs .expand .minyawansgrid .minyawns-job span {
   float: right;
-}
-.list-jobs .expand .minyawansgrid .minyawns-job .label-well {
-  background: #8ed030;
-}
-.list-jobs .expand .minyawansgrid .minyawns-job .label-terrible {
-  background: #F1091C;
+  margin-right: 5px;
+  font-weight: bold;
 }
 .single-jobs .inner-data {
   padding: 14px 0;
