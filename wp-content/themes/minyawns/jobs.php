@@ -237,7 +237,7 @@ require 'templates/_jobs.php';
             </div>
         </div>
         <!-- /tabs -->
-        <div class="tab-pane active" id="tab2">
+        <div class="tab-pane jobs_table  active" id="tab2">
             <div class="breadcrumb-text">
                 <p>
                     <a href="#">My Jobs</a>

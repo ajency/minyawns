@@ -239,8 +239,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'job_owner_id' => $owner_id,
                     'applied_user_id' => $user_id_applied,
-                        //'total'=>$total,
-                        //'no_of_pages'=>$no_of_pages
+                    
                 );
             }
 

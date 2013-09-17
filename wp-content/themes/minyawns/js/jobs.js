@@ -62,9 +62,9 @@ function load_browse_jobs() {
 
 function fetch_my_jobs()
 {
-// jQuery("#accordion2").empty();
+ jQuery("#accordion2").empty();
 //  jQuery("#list-my-jobs").empty();
-
+ //jQuery(".browse-jobs-table").empty();
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
         url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
@@ -201,6 +201,8 @@ function job_status_li(model)
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
                     else if (model.toJSON().todays_date_time > model.toJSON().job_end_time_check) /*expired*/
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
+                     else
+                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available.</span>";
                 }
             }
             else
