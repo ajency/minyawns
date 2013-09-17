@@ -2,7 +2,16 @@
 get_header();
 
 global $minyawn_job;
+require 'templates/_jobs.php';
 ?>
+<script>
+jQuery(document).ready(function($) {
+
+load_browse_jobs('<?php the_ID() ?>');
+
+
+});
+</script>
 <style type="text/css">
     /* ROUNDED TWO */
     .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn {
@@ -130,112 +139,7 @@ global $minyawn_job;
                 </div>
 <?php } ?>
             <div class="singlejobedit" style="height: 680px; ">
-                <div id="single-jobs" class="span12" style=" margin-left: 0px; width: 100%; ">
-                    <div  class="row-fluid  list-jobs single-jobs ">
-
-                        <div class="span12 jobs-details">
-                            <div class="span2 img-logo"><?php if (get_user_company_logo($minyawn_job->post_author)) { ?> <?php echo get_user_company_logo($minyawn_job->post_author) ?> <?php
-                                } else {
-                                    echo get_avatar($minyawn_job->post_author, 20);
-                                }
-                                ?> </div>
-                            <div class="span3 minyawns-select">
-                                <span><?php echo $minyawn_job->get_job_applied_minyawns(); ?></span>
-                                <div><b>Minyawns Have Applied</b></div>
-                            </div>
-                            <div class="span3 jobs-date">
-                                <div class="posteddate"> Posted Date : <span><?php echo $minyawn_job->get_job_posted_date(); ?></span></div>
-                                <div class="jobsdate"> Job Date : <span><?php echo $minyawn_job->get_job_date(); ?></span></div>
-                            </div>
-                            <div class="span3 job-duration duration_mob">
-                                <div class="row-fluid">
-                                    <div class="span5 mob-botm">
-                                        <span data-count="0" class="total-exchange-count"><?php echo $minyawn_job->get_job_start_time(); ?></span>
-                                        <div>
-<?php echo $minyawn_job->get_job_start_time_ampm() ?>
-                                        </div>
-                                    </div>
-                                    <div class="span2">
-                                        <b class="time-bold">to</b>
-                                    </div>
-                                    <div class="span5">
-                                        <span data-count="0" class="total-exchange-count"><?php echo $minyawn_job->get_job_end_time(); ?></span>
-                                        <div>
-<?php echo $minyawn_job->get_job_end_time_ampm() ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="span1 wages">
-                                $<?php echo $minyawn_job->get_job_wages(); ?>
-                            </div>
-                        </div>
-                        <div class="span12 expand">
-                            <div class="row-fluid header-title">
-                                <div class="span12">
-                                    <input type="hidden" value="<?php echo is_singular() ?>" id="is_singluar">
-
-                                    <h3><a href="#" target="_blank" ><?php echo get_the_title() ?></a> <span class="view-link"><span class='load_ajax3' style="display:none"></span>
-
-                                            <?php
-                                            if (get_user_role() == "minyawn" && $minyawn_job->get_current_date_time() < $minyawn_job->get_job_end_date_time()) {
-
-                                                if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 3) {
-                                                    ?>
-
-                                                    <a href="#" class="btn btn-medium btn-block btn-success red-btn header-btn" >You are hired</a>
-
-                                                <?php } else if ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 0) : ?>
-                                                    <a href="#" id="apply-job-browse" class="btn btn-medium btn-block btn-primary header-btn"  data-action="apply" data-job-id="<?php echo $minyawn_job->ID; ?> ">Apply</a>
-                                                <?php elseif ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 1) : ?>
-                                                    <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn header-btn" data-action="unapply" data-job-id="<?php echo $minyawn_job->ID; ?>">Unapply</a>
-                                                <?php elseif ($minyawn_job->check_minyawn_job_status($minyawn_job->ID) == 2) : ?>
-                                                    <a href="#" class="btn btn-medium btn-block btn-success red-btn header-btn" >Requirement Complete</a>
-                                                    <?php
-                                                endif;
-                                            }
-
-                                            if (!is_user_logged_in()) {
-                                                ?>
-                                                <a href="<?php echo site_url(); ?>" target="_blank" id="login-to-apply-job" class="btn btn-medium btn-block btn-primary header-btn"  data-action="apply" >Apply</a>
-<?php }
-?></span> </h3>
-                                </div>
-                            </div>
-                            <div class="row-fluid jobdesc">
-                              <!--<div class="span3 jobsimg"> <?php if (get_user_company_logo($pagepost->post_author)) { ?> <img src="<?php echo get_user_company_logo($pagepost->post_author) ?>"/> <?php
-} else {
-    echo get_avatar($minyawn_job->ID, 20);
-}
-?> 
-                                           <br>
-                                           
-                                           </div>-->
-<!--                                <div class="span12 job-details"><?php echo $minyawn_job->get_job_details() ?></div>-->
-
-                            </div>
-
-                            <div class="span9 inner-data">
-                               <div class="row-fluid minywans_list">
-                                    <div class="span3 "><b>Location :</b></div><div class="span9 joblocation"><?php echo $minyawn_job->get_job_location(); ?></div>
-                                </div>
-                               <div class="row-fluid minywans_list">
-                                    <div class="span3 "><b>Tags :</b></div><div class="span9 tags"><?php $tags = explode(",", $minyawn_job->get_job_tags());
-for ($i = 0; $i < sizeof($tags); $i++) { ?><span class="label"><?php echo $tags[$i]; ?></span><?php } ?></div>
-                                </div>
-                                   <div class="row-fluid minywans_list">
-                                    <div class="span3 job-details"><b>Details :</b></div><div class="span9"> <?php echo $minyawn_job->get_job_details() ?></div>
-                                </div>
-                            </div>
-                            
-                            <hr>
-<?php
-//show all applied minyanws data
-include_once 'applied_minyaws.php';
-?>
-                        </div>
-                    </div>
-                </div>
+               <!-- single jobs -->
                 <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%; " >
 
                     <form id="job-form" class="form-horizontal">
@@ -332,7 +236,7 @@ include_once 'applied_minyaws.php';
     </div>
 </div>
 
-
+<input type="hidden" id="hidden_minion_id"></input>
 <div id="confirminyawn" class="modal hide fade in papypalform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>

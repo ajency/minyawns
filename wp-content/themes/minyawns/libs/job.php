@@ -27,19 +27,7 @@ $app->post('/addjob', function() use ($app) {
             );
 
             $post_id = wp_insert_post($post);
-//
-//foreach ($json_a as $key => $value) {
-//    
-//    if($key == "job_start_date")
-//    {
-//        $start=$value;
-//    }
-//    if ($key == "job_start_time") {
-//        var_dump(strtotime($start.$value));
-//    }
-//    exit();
-//
-//}
+
 
             foreach ($json_a as $key => $value) {
 
@@ -96,12 +84,22 @@ $app->get('/fetchjobs/', function() use ($app) {
             $current_user_id = get_current_user_id();
 
 
-            $tables = "$wpdb->posts, $wpdb->postmeta";
-            $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
-            $limit = "LIMIT " . $_GET['offset'] . ",5";
-            $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
+            if (isset($_GET['my_jobs'])) {
+                $tables = "$wpdb->posts,{$wpdb->prefix}userjobs,$wpdb->postmeta";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='" . get_current_user_id() . "'";
+                $limit = "LIMIT 10";
+                $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
+            } else {
+
+
+                $tables = "$wpdb->posts, $wpdb->postmeta";
+                $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+                $limit = "LIMIT " . $_GET['offset'] . ",5";
+                $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            ORDER BY $wpdb->postmeta.meta_value ASC";
+            }
 
             $querystr = "
                             SELECT $wpdb->posts.* 
@@ -128,7 +126,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $owner_id = is_job_owner(get_user_id(), $pagepost->ID); /* returns the job owner id if set else 0 */
 
                 $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
-                
+
                 $post_meta = get_post_meta($pagepost->ID);
 
                 $min_job = new Minyawn_Job($pagepost->ID);
@@ -137,8 +135,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $user_data = array();
 
                 $user_image = array();
-                
-                $user_job_status=array();
+
+                $user_job_status = array();
 
                 $user_id_applied = array();
 
@@ -155,8 +153,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $user_profileimage = array_push($user_image, get_user_company_logo($min['user_id']));
 
                     $applied_user_id = array_push($user_id_applied, $min['user_id']);
-                    
-                    $status=array_push($user_job_status,$min['user_job_status']);
+
+                    $status = array_push($user_job_status, $min['user_job_status']);
 
                     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
@@ -175,18 +173,18 @@ $app->get('/fetchjobs/', function() use ($app) {
                         else
                             $user['is_job_rated'] = 0;
                     }
-              }
-                
-               
-                 $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
+                }
 
 
-                    $total=10;
-                    
-                    if ($total <= $_GET['offset'] + 5)
-                        $show_load = 1;
-                    else
-                        $show_load = 0;
+                $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
+
+
+                $total = 10;
+
+                if ($total <= $_GET['offset'] + 5)
+                    $show_load = 1;
+                else
+                    $show_load = 0;
 
                 if (get_user_company_logo($pagepost->post_author) == false)
                     $logo = get_avatar($pagepost->post_author, 168);
@@ -223,7 +221,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_author_id' => get_the_author_meta('ID', $pagepost->post_author),
                     'job_author_logo' => $logo,
                     'job_status' => $job_status,
-                    'user_to_job_status'=>$user_job_status,
+                    'user_to_job_status' => $user_job_status,
                     //'user_job_status' => is_null($min_job->is_hired) ? $min_job->is_hired : 'can_apply',
                     'job_start_date_time' => $post_meta['job_start_date'][0],
                     'job_end_time_check' => $post_meta['job_start_date_time'][0],
@@ -239,13 +237,12 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'job_owner_id' => $owner_id,
                     'applied_user_id' => $user_id_applied,
-                    
                 );
             }
 
-            
-             $app->response()->header("Content-Type", "application/json");
-             echo json_encode($data);
+
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode($data);
         });
 
 $app->post('/fetchjobscalendar/', function() use ($app) {
@@ -457,6 +454,32 @@ $app->post('/user-vote', function() use ($app) {
 
             echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id']));
         });
+
+$app->get('/jobminions/', function() use ($app) {
+            global $post, $wpdb;
+            global $minyawn_job;
+            $data = array();
+            $minion_ids = explode(',', $_GET['minion_id']);
+            for ($i = 0; $i <= sizeof($minion_ids); $i++) {
+                $user_data = user_data($minion_ids[$i]);
+                foreach ($user_data as $user_details) {
+
+                    $data[] = array(
+                        'name' => $user_details['first_name'] . $user_details['last_name'],
+                        'college' => $user_details['college'],
+                        'major' => $user_details['major'],
+                        'user_skills' => $user_details['user_skills'],
+                        'linkedin' => $user_details['linkedin'],
+                        'user_email' => $user_details['user_email']
+                    );
+                }
+            }
+
+
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode($data);
+        });
+
 
 
 
