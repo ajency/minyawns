@@ -31,7 +31,46 @@ get_header();
 			</div>
         </div>
         <!-- End  Banner Layout -->
-
+			
+			<div class="video-home ">
+			<div class="container">
+				<div class="row-fluid ">
+				<div class="span1">
+				 
+				</div>
+				<div class="span5">
+				 <a  href="#video1"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png"/></a>
+				  <a  href="#video1"  data-toggle="modal"  style="color: #34495E;"> <h3>Minyawns For Students</h3></a>
+				</div>
+				<div id="video1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-body">
+						<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gbbkC7yIduS/" frameborder="0" allowfullscreen></iframe></p>
+					  </div>
+					  <div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+					</div>
+				</div>
+				<div class="span5">
+					 <a  href="#video2"  data-toggle="modal"> <img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png"/></a>
+				 <a  href="#video2"  data-toggle="modal" style="color: #34495E;"> <h3>Minyawns For Businesses</h3></a>
+				 <div id="video2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-body">
+						<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gdPRX5igKP7/" frameborder="0" allowfullscreen></iframe></p>
+					  </div>
+					  <div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+					</div>
+				</div>
+				</div>
+				<div class="span1">
+				 
+				</div>
+				</div>
+			</div>
+			</div>
+		
+		
+		
         <div id="init-land" class="container">
             <div class="row-fluid">
                 <div class="span12"><h3 class="heading-title">How does it work ? </h3></div>

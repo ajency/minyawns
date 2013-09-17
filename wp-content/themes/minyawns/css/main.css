@@ -866,29 +866,30 @@ body .jobs_table .data-title .profile-job {
 .list-jobs .expand .span4 .like_btn .icon-thumbs {
   color: #F55568;
 }
-.list-jobs .expand .minyawansgrid .span6 {
+.list-jobs .expand .minyawansgrid .span4 {
   margin-left: 8px;
   border-bottom: 1px dotted#CCC;
   margin-bottom: 5px;
   height: 60px;
 }
-.list-jobs .expand .minyawansgrid .span6 img {
+.list-jobs .expand .minyawansgrid .span4 img {
   width: 11%;
   padding: 5px;
+  display: inline-block;
 }
-.list-jobs .expand .minyawansgrid .span6 b {
-  width: 157px;
+.list-jobs .expand .minyawansgrid .span4 b {
+  width: 120px;
   display: inline-block;
   color: #333;
 }
-.list-jobs .expand .minyawansgrid .span6 .icon-thumbs-up {
+.list-jobs .expand .minyawansgrid .span4 .icon-thumbs-up {
   margin-left: 20px;
 }
-.list-jobs .expand .minyawansgrid .span6 .icon-thumbs {
+.list-jobs .expand .minyawansgrid .span4 .icon-thumbs {
   margin-left: 10px;
   color: #F65151;
 }
-.list-jobs .expand .minyawansgrid .span6:hover {
+.list-jobs .expand .minyawansgrid .span4:hover {
   cursor: pointer;
   background: #EEE9E9;
 }
@@ -1388,7 +1389,23 @@ body .jobs_table .data-title .profile-job {
 }
 .home {
   background: url(../images/back2.jpg) repeat-x;
-  background-position: 67px 53px;
+  background-position: 67px 283px;
+}
+.home .video-home {
+  height: 260px;
+  margin-top: -1px;
+}
+.home .video-home .row-fluid {
+  padding: 30px 0px;
+}
+.home .video-home .row-fluid img {
+  margin: auto;
+  display: block;
+}
+.home .video-home .row-fluid h3 {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
 }
 .home .heading-title {
   display: block;

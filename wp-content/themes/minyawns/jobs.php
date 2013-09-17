@@ -72,7 +72,7 @@ require 'templates/_jobs.php';
     </div><br>
     <div class="row-fluid minyawansgrid">
     <% for(i=0;i<users_applied.length;i++){ %>
-    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span6"><%= user_profile_image[i] %><b><%= users_applied[i]%></b></a>
+    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span4"><%= user_profile_image[i] %><b><%= users_applied[i]%></b></a>
 
     <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= post_id %>">
     <i class="icon-thumbs-up"></i> <%= user_rating_like[i] %>

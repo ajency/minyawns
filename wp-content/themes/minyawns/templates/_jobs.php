@@ -83,7 +83,7 @@
                          </div>
                     <div class="row-fluid minyawansgrid">
                         <% for(i=0;i<result.users_applied.length;i++){ %>
-                        <a href="<?php echo site_url() ?>/profile/<%= result.applied_user_id[i]%>" target="_blank"><div class="span6"><%= result.user_profile_image[i] %><b><%= result.users_applied[i]%></b></a>
+                        <a href="<?php echo site_url() ?>/profile/<%= result.applied_user_id[i]%>" target="_blank"><div class="span4"><span class="image-div"><%= result.user_profile_image[i] %></span><b><%= result.users_applied[i]%></b></a>
 
                         <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= result.post_id %>">
                         <i class="icon-thumbs-up"></i> <%= result.user_rating_like[i] %>
