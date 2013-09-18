@@ -163,9 +163,12 @@ $app->get('/fetchjobs/', function() use ($app) {
                     
                     /* getting rating for a single job   */
                $user_to_job_rating=get_user_job_rating_data($min['user_id'], $pagepost->ID);
-//               var_dump($user)
+              
+                    $rating=($user_to_job_rating->positive)> 0 ? 'Well Done' :'Rating';
+                    if($rating == 'Rating')
+                    $rating=($user_to_job_rating->negative) < 0 ? 'Terrible' :'Rating';
                     
-                    
+                    $status=($user_to_job_rating->status) == 'applied' ? 'Applied':'Hirred';
                 }
 
 
@@ -229,7 +232,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'user_rating_dislike' => $user_rating_dislike,
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'job_owner_id' => $owner_id,
-                    'applied_user_id' => $user_id_applied
+                    'applied_user_id' => $user_id_applied,
+                    'user_to_job_rating'=>$rating,
+                    'individual_user_to_job_status'=>$status
                 );
             }
 

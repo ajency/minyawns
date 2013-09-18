@@ -99,9 +99,9 @@
 
     </div>
     <div class="minyawns-job">
-    <b>Job Hired</b>
-    <span >Well Done</span>
-    <!--<span >Terrible</span>-->
+    <b><%= result.individual_user_to_job_status %></b>
+    <span ><%= result.user_to_job_rating %></span>
+    
 
 
     </div>

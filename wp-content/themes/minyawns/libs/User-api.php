@@ -651,7 +651,7 @@ function get_user_rating_data($user_id,$job_id)
 function get_user_job_rating_data($user_id,$job_id)
 {
      global $wpdb;
-    $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
+    $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id,{$wpdb->prefix}userjobs.status, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
                               WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id = %d
                               GROUP BY {$wpdb->prefix}userjobs.user_id", $user_id, $job_id);
