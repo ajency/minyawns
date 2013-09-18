@@ -187,7 +187,9 @@
     <div class="thumbnail">
 
     <div class="caption">
+	<div class="minyawns-img">
     <img src="<?php echo get_template_directory_uri() ?>/images/profile.png">
+	</div>
     <div class="rating">
     <a href="#fakelink">
     <i class="icon-thumbs-up"></i> 0
@@ -199,12 +201,9 @@
     </div>
     <h4> Apply Job</h4>
     <div class="collage">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
-
-
-    <hr>
+	<hr>
     <div class="dwn-btn">
-    <a href="#fakelink" class="btn btn-medium btn-block btn-primary ">Apply</a>
-    <a href="#fakelink" class="btn btn-medium btn-block btn-danger red-btn">Unapply</a>
+ 
     </div>
     </div>
     </div>
