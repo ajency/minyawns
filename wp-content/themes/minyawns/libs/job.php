@@ -83,23 +83,13 @@ $app->get('/fetchjobs/', function() use ($app) {
 
             $current_user_id = get_current_user_id();
 
-
-            if (isset($_GET['my_jobs'])) {
-                $tables = "$wpdb->posts,{$wpdb->prefix}userjobs,$wpdb->postmeta";
-                $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.user_id='" . get_current_user_id() . "'";
-                $limit = "LIMIT 10";
-                $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            ORDER BY $wpdb->postmeta.meta_value ASC";
-            } else {
-
-
-                $tables = "$wpdb->posts, $wpdb->postmeta";
-                $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
+            $tables = "$wpdb->posts, $wpdb->postmeta";
+            $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
-                $limit = "LIMIT " . $_GET['offset'] . ",5";
-                $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
+            $limit = "LIMIT " . $_GET['offset'] . ",5";
+            $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
-            }
+
 
             $querystr = "
                             SELECT $wpdb->posts.* 

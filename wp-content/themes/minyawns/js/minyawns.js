@@ -1354,7 +1354,7 @@ jQuery(document).ready(function($) {
 
     /* function on page load*/
 
-    //  fetch_my_jobs();//moved to jobs.js
+     fetch_my_jobs(logged_in_user_id);//moved to jobs.js
 
 
 
