@@ -38,6 +38,7 @@ function load_browse_jobs(id) {
                         jQuery("#job_id").val(id);
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
                         jQuery(".singlejobedit").append(html);
+                        jQuery(".details").find(".minyawansgrid").hide();
                         load_job_minions(model);
 
 
