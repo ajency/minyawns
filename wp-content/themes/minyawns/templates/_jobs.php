@@ -121,45 +121,51 @@
     </div>
     </div>
     </div>
+    
+<form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">   
+
+    <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $returnUrl; ?>" / >
+           <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
+           <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url() . '/paypal-payments/'; ?>" / >
+           <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
     <div class="row-fluid minyawns-grid">
     <ul class="thumbnails">
     </ul>
+    </form>
     </div>
     </div>
 </script>
 
-<script type="text/template" id="minion-cards">    
+<script type="text/template" id="minion-cards">  
+    
     <li class="span3">
     <div class="thumbnail">
     <div class="caption">
     <div class="minyawns-img">
-    <img src="<%=user_image%>" />
+    <img src="<%= result.user_image%>" />
     </div>
     <div class="rating">
     <a href="#fakelink">
-    <i class="icon-thumbs-up"></i> <%= rating_positive %>
+    <i class="icon-thumbs-up"></i> <%= result.rating_positive %>
     </a>
     <a href="#fakelink"  class="icon-thumbs">
-    <i class="icon-thumbs-down"></i> <%= rating_negative %>
+    <i class="icon-thumbs-down"></i> <%= result.rating_negative %>
     </a>
     </div>
-    <h4> <%= name %></h4>
-    <div class="collage"> <%= college%> </div>
+    <h4> <%= result.name %></h4>
+    <div class="collage"> <%= result.college%> </div>
     <div class="social-link">
-    <%= user_email %> 
+    <%= result.user_email %> 
     </div>
     <%
-    var split_skills=user_skills.split(',');
+    var split_skills=result.user_skills.split(',');
     for(var index=0;index<=split_skills.length;index++){
     %>
     <span class="label label-small"><%= split_skills[index] %></span>
     <% } %>
     <hr>
     <div class="dwn-btn">
-    <div class="roundedTwo">
-    <input type="checkbox" id="rounded1<%= user_id %>" name="check" />
-    <label for="rounded1<%= user_id %>"> </label>Select Your Minions
-    </div>
+    <%= select_button %>
     </div>
     </div>
     </div>
@@ -169,11 +175,12 @@
 <script type="text/template" id="confirm-hire">
 
     <span class="load_ajaxconfirm" style="display:none"></span>
-    <a href="#confirminyawn" id="confirm-hire" data-toggle="modal" class="btn btn-medium btn-block green-btn btn-success">Confirm & Hire</a>
+    <a href="#confirminyawn" id="confirm-hire" data-toggle="modal" class="btn btn-medium btn-block green-btn btn-success" >Confirm & Hire</a>
 
 </script>
 
 <script type="text/template" id="blank-card">
+    
     <div class="row-fluid minyawns-grid">
     <ul class="thumbnails apply-job">
     <li class="span3">

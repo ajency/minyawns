@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
 
 load_browse_jobs('<?php the_ID() ?>');
 
-
+jQuery(".single-jobs").addClass('in');
 });
 </script>
 <style type="text/css">

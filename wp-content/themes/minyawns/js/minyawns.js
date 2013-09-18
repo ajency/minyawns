@@ -1202,8 +1202,22 @@ jQuery(document).ready(function($) {
 
     });
 
+    $('input:checkbox').click(function() {
+        if ($(this).is(':checked')) {
+            $('input:checkbox').not(this).prop('checked', false);
+        }
+        alert("here");
+        $(this).attr("checked", "checked");
+    });
     $(".roundedTwo").live('click', function(e) {
-        $("#roundedTwo10").attr("checked", "checked");
+
+        if ($("#" + $(this).attr('id')).find(':checkbox').is(':checked')) {
+            $("#" + $(this).attr('id')).find(':checkbox').not(this).prop('checked', false);
+        } else {
+
+            $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
+        }
+
 
     });
 
@@ -1247,6 +1261,7 @@ jQuery(document).ready(function($) {
             no_of_minyawns = no_of_minyawns + 1;
 
         });
+        $("#hdn_jobwages").val($("#job_wages").val());
         $("#no_of_minyawns").html(no_of_minyawns);
         $("#wages_per_minyawns").html($("#job_wages").val());
         var total = no_of_minyawns * $("#job_wages").val();
@@ -1369,9 +1384,12 @@ jQuery('.collapse').live('hide', function() {
     jQuery(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
 
-  jQuery(".edit-user-profile").click(function(){
+jQuery(".edit-user-profile").click(function() {
     jQuery(".profile-wrapper").addClass("intro");
-  });
- jQuery('a #edit-user-profile').click(function(){
-   jQuery(this).addClass('active');
 });
+jQuery('a #edit-user-profile').click(function() {
+    jQuery(this).addClass('active');
+});
+
+
+
