@@ -176,7 +176,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
 
 
-                $total = 10;
+                $total = get_total_jobs();
 
                 if ($total <= $_GET['offset'] + 5)
                     $show_load = 1;
@@ -233,7 +233,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'user_rating_dislike' => $user_rating_dislike,
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'job_owner_id' => $owner_id,
-                    'applied_user_id' => $user_id_applied,
+                    'applied_user_id' => $user_id_applied
                 );
             }
 
@@ -457,32 +457,54 @@ $app->get('/jobminions/', function() use ($app) {
             global $minyawn_job;
 
             $minion_ids = explode(',', $_GET['minion_id']);
+            if (strlen(($_GET['minion_id'])) > 0) {
+                for ($i = 0; $i < sizeof($minion_ids); $i++) {
+                    $all_meta_for_user = get_user_meta($minion_ids[$i]);
+                    $all_meta_for_user = array_map(function( $a ) {
+                                return $a[0];
+                            }, get_user_meta($minion_ids[$i]));
 
-            for ($i = 0; $i <= sizeof($minion_ids); $i++) {
-                $all_meta_for_user = get_user_meta($minion_ids[$i]);
-                $all_meta_for_user = array_map(function( $a ) {
-                            return $a[0];
-                        }, get_user_meta($minion_ids[$i]));
+
+                    $minyawns_rating = get_user_rating_data($minion_ids[$i], $_GET['job_id']);
+                    foreach ($minyawns_rating as $rating) {
+                        $user_rating = $rating->positive;
+                        $user_dislike = $rating->negative;
+                    }
 
 
-                $minyawns_rating = get_user_rating_data($minion_ids[$i], $_GET['job_id']);
-                foreach ($minyawns_rating as $rating) {
-                    $user_rating = $rating->positive;
-                    $user_dislike = $rating->negative;
-                  
+                    $user['image'] = wp_get_attachment_thumb_url($all_meta_for_user['avatar_attachment']);
+                    if (!isset($user['image']))
+                        $user['image'] = get_avatar($all_meta_for_user['user_email']);
+
+//                    if ($key == 'facebook_uid')
+//                        $fb_uid = $value;
+//               
+//
+//                //set image
+//                if ($fb_uid !== false)
+//                    $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
+//                elseif (!isset($user['image']))
+//                    $user['image'] =get_avatar($all_meta_for_user['user_email'], 168);;
+
+
+
+                    $data[] = array(
+                        'user_id' => $minion_ids[$i],
+                        'name' => $all_meta_for_user['first_name'] . $all_meta_for_user['last_name'],
+                        'college' => isset($all_meta_for_user['college']) ? $all_meta_for_user['college'] : '',
+                        'major' => isset($all_meta_for_user['major']) ? $all_meta_for_user['major'] : '',
+                        'user_skills' => isset($all_meta_for_user['user_skills']) ? $all_meta_for_user['user_skills'] : '',
+                        'linkedin' => isset($all_meta_for_user['linkedin']) ? $all_meta_for_user['linked_in'] : '',
+                        'user_email' => isset($all_meta_for_user['nickname']) ? $all_meta_for_user['nickname'] : '', /* nick name temp fix */
+                        'rating_positive' => $user_rating,
+                        'rating_negative' => $user_dislike,
+                        'user_image' => $user['image']
+                    );
                 }
-                $data[] = array(
-                    'name' => $all_meta_for_user['first_name'] . $all_meta_for_user['last_name'],
-                    'college' => $all_meta_for_user['college'],
-                    'major' => $all_meta_for_user['major'],
-                    'user_skills' => isset($all_meta_for_user['user_skills']) ? $all_meta_for_user['user_skills'] : '',
-                    'linkedin' => isset($all_meta_for_user['linkedin']) ? $all_meta_for_user['linked_in'] : '',
-                    'user_email' => isset($all_meta_for_user['user_email']) ? $all_meta_for_user['user_email'] : '',
-                    'rating_positive' => $user_rating,
-                    'rating_negative'=>$user_dislike
-                );
             }
-            
+            else
+                $data = array();
+
 
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
