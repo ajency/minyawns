@@ -56,8 +56,8 @@
     </a>
     </div>
 
-    <div id="collapse<%= result.post_id %>" class="accordion-body collapse single-jobs">
-    <div class="accordion-inner list-jobs">
+    <div id="collapse<%= result.post_id %>" class="accordion-body  single-jobs collapse in" >
+    <div class="accordion-inner list-jobs ">
     <div class="row-fluid header-title">
     <div class="span12">
     <h3><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %> <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>

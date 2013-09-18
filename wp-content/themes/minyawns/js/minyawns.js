@@ -1389,6 +1389,8 @@ jQuery(".edit-user-profile").click(function() {
 jQuery('a #edit-user-profile').click(function() {
     jQuery(this).addClass('active');
 });
+ jQuery( window ).load(function() {
+        jQuery(".collapse").collapse({"toggle" : "show"});
+    });
 
-
-
+  
