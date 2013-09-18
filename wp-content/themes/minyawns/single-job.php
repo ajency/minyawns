@@ -6,10 +6,11 @@ require 'templates/_jobs.php';
 ?>
 <script>
 jQuery(document).ready(function($) {
-
+jQuery("#single-job-page").show();
 load_browse_jobs('<?php the_ID() ?>');
+jQuery("#single-job-page").hide();
+jQuery("#collapse600").addClass("in");
 
-jQuery(".single-jobs").addClass('in');
 });
 </script>
 <style type="text/css">
@@ -117,6 +118,7 @@ jQuery(".single-jobs").addClass('in');
 
 </style>
 
+
 <div class="container">
     <div class="tab-content">
         <div class="tab-pane jobs_table active single-job-1" id="tab2">
@@ -138,6 +140,7 @@ jQuery(".single-jobs").addClass('in');
                     This Job has Expired.
                 </div>
 <?php } ?>
+            <span  id='single-job-page'style="display:none"></span>
             <div class="singlejobedit" style="height: 680px; ">
                <!-- single jobs -->
                 <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%; " >
