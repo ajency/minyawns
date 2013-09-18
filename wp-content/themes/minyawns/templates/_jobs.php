@@ -56,7 +56,7 @@
     </a>
     </div>
 
-    <div id="collapse<%= result.post_id %>" class="accordion-body  single-jobs collapse in" >
+    <div id="collapse<%= result.post_id %>" class="accordion-body  single-jobs collapse " >
     <div class="accordion-inner list-jobs ">
     <div class="row-fluid header-title">
     <div class="span12">
