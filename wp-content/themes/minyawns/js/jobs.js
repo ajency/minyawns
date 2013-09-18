@@ -94,7 +94,8 @@ function fetch_my_jobs(id)
                 jQuery("#accordion24").empty();
                 var template = _.template(jQuery("#jobs-table").html());
                 _.each(collection.models, function(model) {
-                    if (model.toJSON().job_owner_id === id)/* to show my jobs*/
+                   // alert(model.toJSON().applied_user_id.indexOf(id));
+                    if (model.toJSON().job_owner_id === id || model.toJSON().applied_user_id.indexOf(id) >= 0)/* to show my jobs*/
                     {
                         var job_stat = job_status_li(model);
                         var job_collapse_button_var = job_collapse_button(model);
@@ -108,7 +109,8 @@ function fetch_my_jobs(id)
                     {
                            jQuery(".load_more").hide();
                        // var template = _.template(jQuery("#no-result").html());
-                         jQuery("#accordion24").html(jQuery("#no-result").html());
+                      
+                      //  jQuery("#accordion24").html(jQuery("#no-result").html());
                      
                     }
                 });
