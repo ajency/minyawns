@@ -160,6 +160,12 @@ $app->get('/fetchjobs/', function() use ($app) {
                         else
                             $user['is_job_rated'] = 0;
                     }
+                    
+                    /* getting rating for a single job   */
+               $user_to_job_rating=get_user_job_rating_data($min['user_id'], $pagepost->ID);
+//               var_dump($user)
+                    
+                    
                 }
 
 
