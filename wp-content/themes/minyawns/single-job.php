@@ -140,8 +140,11 @@ jQuery("#collapse600").addClass("in");
                     This Job has Expired.
                 </div>
 <?php } ?>
+
+            <div class="singlejobedit" style="min-height: 680px; ">
+
             <span  id='single-job-page'style="display:none"></span>
-            <div class="singlejobedit" style="height: 680px; ">
+
                <!-- single jobs -->
                 <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%; " >
 
