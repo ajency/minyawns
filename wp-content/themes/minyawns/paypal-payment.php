@@ -8,19 +8,19 @@
 global $minyawn_job;
 global $wpdb;
 
-if(strpos(site_url(),'com')!= "false"){    
-$return_url = 'http://www.minyawns.com/success-payment/';
-$cancel_url = 'http://www.minyawns.com/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
-$notify_url = 'http://www.minyawns.com/paypal-payments/';
-$paypal_email = 'ceo@minyawns.com';
-
-}else
-{
+//if(strpos(site_url(),'com')!= "false"){    
+//$return_url = 'http://www.minyawns.com/success-payment/';
+//$cancel_url = 'http://www.minyawns.com/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
+//$notify_url = 'http://www.minyawns.com/paypal-payments/';
+//$paypal_email = 'ceo@minyawns.com';
+//
+//}else
+//{
     $paypal_email = 'ceo@minyawns.com';
     $return_url = 'http://minyawns.ajency.in/success-payment/';
 $cancel_url = 'http://minyawns.ajency.in/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
 $notify_url = 'http://minyawns.ajency.in/paypal-payments/';
-}
+//}
 
 
 
@@ -48,9 +48,9 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	
 	
 	// Redirect to paypal IPN
-	if(strpos(site_url(),'com')!= "false")
-        header("location:https://www.paypal.com/cgi-bin/webscr".$querystring);
-	else
+//	if(strpos(site_url(),'com')!= "false")
+//        header("location:https://www.paypal.com/cgi-bin/webscr".$querystring);
+//	else
         header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
 	exit();
 
@@ -134,9 +134,9 @@ else
 			
 			//$url = $paypal_adr;
 			//$url = "https://www.paypal.com/cgi-bin/webscr";
-			if(strpos(site_url(),'com')!= "false") 
-                        $url = 'https://www.paypal.com/webscr';
-			else
+//			if(strpos(site_url(),'com')!= "false") 
+//                        $url = 'https://www.paypal.com/webscr';
+//			else
                         $url = 'https://www.sandbox.paypal.com/webscr';
                         
                         $curl_result=$curl_err='';
