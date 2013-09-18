@@ -73,6 +73,18 @@
 
 
 }
+#single-job-page {
+
+    background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
+     float: left;
+    height: 21px;
+    margin: 52px auto auto 520px;
+    position: inherit;
+    width: 25px;
+    z-index: 99999;
+
+
+}
 .load_ajax_single_page{
     
    background: url("../images/2.gif") no-repeat scroll 0 0 transparent;

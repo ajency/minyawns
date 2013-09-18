@@ -33,7 +33,7 @@ function load_browse_jobs(id) {
                     var job_stat = job_status_li(model);
                     var job_collapse_button_var = job_collapse_button(model);
 
-                    if (model.toJSON().post_id === id) {
+                    if (model.toJSON().post_id === id) { /*for single job page*/
                         jQuery("#hidden_minion_id").val(model.toJSON().applied_user_id);
                         jQuery("#job_id").val(id);
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
