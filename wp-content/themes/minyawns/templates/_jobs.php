@@ -142,7 +142,7 @@
     <div class="thumbnail">
     <div class="caption">
     <div class="minyawns-img">
-    <img src="<%= result.user_image%>" />
+   <%= result.user_image%>
     </div>
     <div class="rating">
     <a href="#fakelink">

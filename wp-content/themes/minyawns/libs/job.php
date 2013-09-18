@@ -462,9 +462,13 @@ $app->get('/jobminions/', function() use ($app) {
                     }
 
 
-                    $user['image'] = wp_get_attachment_thumb_url($all_meta_for_user['avatar_attachment']);
-                    if (!isset($user['image']))
+                    $user['image'] = "<img alt='' src='".wp_get_attachment_thumb_url($all_meta_for_user['avatar_attachment'])."' height='96' width='96'>";
+                    if (!wp_get_attachment_thumb_url($all_meta_for_user['avatar_attachment']))
                         $user['image'] = get_avatar($all_meta_for_user['user_email']);
+
+//                elseif (!isset($user['image']))
+//                    $user['image'] =get_avatar($all_meta_for_user['user_email'], 168);
+
 
 //                    if ($key == 'facebook_uid')
 //                        $fb_uid = $value;
@@ -473,10 +477,6 @@ $app->get('/jobminions/', function() use ($app) {
 //                //set image
 //                if ($fb_uid !== false)
 //                    $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
-//                elseif (!isset($user['image']))
-//                    $user['image'] =get_avatar($all_meta_for_user['user_email'], 168);;
-
-
 
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
