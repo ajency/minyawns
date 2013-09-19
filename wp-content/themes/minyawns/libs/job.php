@@ -419,32 +419,32 @@ $app->post('/user-vote', function() use ($app) {
 
             if ($_POST['action'] == "vote-up") {
                 $like_count = $user_rating;
-//            	$mail_subject =  "Minyawns - You have received a Thumbs Up. ";
-//            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/> 
-//            			Congratulations, <br/><br/>
-//
-//            			You have received Thumbs Up from <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
-//            			Great Job! Keep it up.		<br/><br/>
-//            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>
-//            			
-//            			";
+            	$mail_subject =  "Minyawns - You have received a Thumbs Up. ";
+            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/> 
+            			Congratulations, <br/><br/>
+
+            			You have received Thumbs Up from <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
+            			Great Job! Keep it up.		<br/><br/>
+            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>
+            			
+            			";
             } else {
                 $like_count = $user_dislike;
-//                $mail_subject =  "Minyawns - You have received Thumbs Down. ";                 
-//            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/>            			
-//            			You have received Thumbs Down from  <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
-//            			Put little more efforts to receive Thumbs Up.<br/><br/>
-//            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>          			
-//            			
-//            			";
+                $mail_subject =  "Minyawns - You have received Thumbs Down. ";                 
+            	$mail_message ="Hi <a href='".site_url()."/profile/".$_POST['user_id']."'>".$min_name."</a>,<br/><br/>            			
+            			You have received Thumbs Down from  <a href='".site_url()."/profile/".$_POST['emp_id']."'>".$emp_name."</a><br/>
+            			Put little more efforts to receive Thumbs Up.<br/><br/>
+            			To visit Minyawns site, <a href='".site_url()."/'>Click here</a>. <br/><br/<br/>          			
+            			
+            			";
             }
 
 
 
             //send mail to minyawn for vote-up & vote down
-//            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-//            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-//            wp_mail($min_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
+            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+            wp_mail($min_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
 
 
 
