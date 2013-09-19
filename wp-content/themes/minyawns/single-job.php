@@ -10,7 +10,7 @@ jQuery("#single-job-page").show();
 load_browse_jobs('<?php the_ID() ?>');
 jQuery("#single-job-page").hide();
 jQuery("#collapse600").addClass("in");
-
+ 
 });
 </script>
 <style type="text/css">
