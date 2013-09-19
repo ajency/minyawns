@@ -136,9 +136,9 @@ jQuery("#collapse600").addClass("in");
             if ($minyawn_job->get_current_date_time() > $minyawn_job->get_job_end_date_time()) {
                 ?>
 
-                <div class="alert alert-error" style="color:#e74c3c">
+<!--                <div class="alert alert-error" style="color:#e74c3c">
                     This Job has Expired.
-                </div>
+                </div>-->
 <?php } ?>
 
             <div class="singlejobedit" style="min-height: 680px; ">
