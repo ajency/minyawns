@@ -203,14 +203,14 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $logo = get_user_company_logo($pagepost->post_author);
 
 
-              if(get_user_role() == 'employer' && $owner_id === 0){
-                  $wages_seen=(13 * $post_meta['job_wages'][0])/100;
-                 $wages=$post_meta['job_wages'][0]-$wages_seen;
-               
+              if(get_user_role() == 'employer' || $owner_id !== 0){
+                  
+                   $wages_seen=(13 * $post_meta['job_wages'][0])/100;
+                 $wages=$post_meta['job_wages'][0];
                
               }  else {
-                      $wages_seen=(13 * $post_meta['job_wages'][0])/100;
-                 $wages=$post_meta['job_wages'][0];
+                  $wages_seen=(13 * $post_meta['job_wages'][0])/100;
+                 $wages=$post_meta['job_wages'][0]-$wages_seen;
               }
                 
                 /*
