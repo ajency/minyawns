@@ -483,7 +483,7 @@ jQuery(document).ready(function($) {
 
     $("#my_jobs").click(function(e) {
 
-        fetch_my_jobs();
+        fetch_my_jobs(logged_in_user_id);
     });
     $("#load-more").click(function(e) {
         $(".load_ajax").show();
@@ -1389,8 +1389,8 @@ jQuery(".edit-user-profile").click(function() {
 jQuery('a #edit-user-profile').click(function() {
     jQuery(this).addClass('active');
 });
- jQuery( window ).load(function() {
-        jQuery(".collapse").collapse({"toggle" : "show"});
-    });
+// jQuery( window ).load(function() {
+//        jQuery(".collapse").collapse({"toggle" : "show"});
+//    });
 
   

@@ -94,7 +94,8 @@ function fetch_my_jobs(id)
                 jQuery("#accordion24").empty();
                 var template = _.template(jQuery("#jobs-table").html());
                 _.each(collection.models, function(model) {
-                   // alert(model.toJSON().applied_user_id.indexOf(id));
+                    //alert(id);
+                   // alert(model.toJSON().applied_user_id);
                     if (model.toJSON().job_owner_id === id || model.toJSON().applied_user_id.indexOf(id) >= 0)/* to show my jobs*/
                     {
                         var job_stat = job_status_li(model);
