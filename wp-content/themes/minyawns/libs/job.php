@@ -204,12 +204,13 @@ $app->get('/fetchjobs/', function() use ($app) {
 
 
               if(get_user_role() == 'employer' && $owner_id === 0){
-                   $wages_seen=(13 * $post_meta['job_wages'][0])/100;
-                 $wages=$post_meta['job_wages'][0];
-               
-              }  else {
                   $wages_seen=(13 * $post_meta['job_wages'][0])/100;
                  $wages=$post_meta['job_wages'][0]-$wages_seen;
+               
+               
+              }  else {
+                      $wages_seen=(13 * $post_meta['job_wages'][0])/100;
+                 $wages=$post_meta['job_wages'][0];
               }
                 
                 /*
