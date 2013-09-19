@@ -365,11 +365,10 @@ function job_collapse_button(model)
                     status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
             } else
             {
-                if (model.toJSON().user_to_job_status.indexOf('hired') === -1) /* applied and but not hired */
+                if (model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().job_status !== 3) /* applied and but not hired */
                     status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Please log-in as minion to apply</span>";
                 else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* applied and but not hired */
                     status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete</span>";
-
                 else if (model.toJSON().job_status === 3) /* job locked */
                     status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
                 else if (model.toJSON().job_status === 2) /* hired */
