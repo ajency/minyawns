@@ -491,7 +491,7 @@ $app->get('/jobminions/', function() use ($app) {
 
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
-                        'name' => $all_meta_for_user['first_name'] . $all_meta_for_user['last_name'],
+                        'name' => $all_meta_for_user['first_name'] .' '. $all_meta_for_user['last_name'],
                         'college' => isset($all_meta_for_user['college']) ? $all_meta_for_user['college'] : '',
                         'major' => isset($all_meta_for_user['major']) ? $all_meta_for_user['major'] : '',
                         'user_skills' => isset($all_meta_for_user['user_skills']) ? $all_meta_for_user['user_skills'] : '',
