@@ -245,7 +245,7 @@ function job_status_li(model)
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
                 else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* not locked but hired  */
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions Selected.</span>";
-                else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check && model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* hired and expired  */
+                else if (model.toJSON().todays_date_time > model.toJSON().job_end_time_check && model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* hired and expired  */
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Rate Your MInions.</span>";
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_time_check) /* job Exipred */
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
