@@ -154,6 +154,12 @@ class Minyawn_Job {
 
                     if ($meta[0] == 'facebook_uid')
                         $fb_uid = $meta[1];
+                    
+                    if($meta[0] == 'first_name')
+                        $user[$meta[0]]=$meta[1];
+                    
+                    if($meta[0] == 'last_name')
+                        $user[$meta[0]]=$meta[1];
                 }
 
                 //set image

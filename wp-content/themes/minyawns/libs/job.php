@@ -138,7 +138,7 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                 foreach ($min_job->minyawns as $min) {
 
-                    $user = array_push($user_data, $min['profile_name']);
+                    $user = array_push($user_data, $min['first_name'].' '.$min['last_name']);
 
                     $user_profileimage = array_push($user_image, get_user_company_logo($min['user_id']));
 
