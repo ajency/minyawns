@@ -15,7 +15,7 @@ get_header(); ?>
 <span>Thank you, You have successfully hired minyawns for your job. 
  </span>
 		<hr>
-<a href="#" class="btn green-btn" style="display: block;"> Continue</a>		
+<a href="<?php echo site_url() ?>/jobs" class="btn green-btn" style="display: block;"> Continue</a>		
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
