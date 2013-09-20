@@ -54,7 +54,7 @@ function load_browse_jobs(id, _action) {
                                 jQuery("#load-more").hide();
 
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
-                            $("#job-accordion-" + id).replaceWith(html);
+                            jQuery("#job-accordion-" + id).replaceWith(html);
 //                            jQuery("#job-accordion-" + id).flip({
 //                                direction: 'bt',
 //                                content: html
@@ -66,7 +66,7 @@ function load_browse_jobs(id, _action) {
                                 jQuery("#load-more").hide();
 
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
-                            $("#accordion24").prepend(html);
+                           jQuery("#accordion24").prepend(html);
 
                         } else {
                             jQuery("#accordion2").empty();
