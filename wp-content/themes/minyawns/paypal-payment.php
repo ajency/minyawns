@@ -212,6 +212,7 @@ else
 					
 					//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
 					$cnt_sel_minyawns  = 1;
+					$wages_minyawns = get_post_meta($data['item_number'] , 'job_wages', true) - ( (get_post_meta($data['item_number'] , 'job_wages', true) *13)/100 );
 					foreach($minyawn_data as $key=>$value)
 					{
 						//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
@@ -225,15 +226,16 @@ else
 						update_post_meta($data['item_number'],'job_status','completed');
 						//send mail to hired minyawns						
 						$job_data = get_post($data['item_number']);						
-						$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
+						//$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
+						$minyawns_subject = "Minyawns - You have been hired! ";
                			$minyawns_message = "Hi,<br/><br/>
                 		Congratulations, You have been hired for the job '" . get_the_title($data['item_number'] ) . "'<br/><br/>
-                		<h3>Job:" . get_the_title($data['item_number'] ) . "</h3>                
+                		<h3>Job: " . get_the_title($data['item_number'] ) . "</h3>                
                 		<br/><b>Start date: </b>" . date('d M Y', get_post_meta($data['item_number'] , 'job_start_date', true)) . "
                 		<br/><b>Start Time: </b>" . date('g:i a', get_post_meta($data['item_number'] , 'job_start_time', true)) . "                		 
 					    <br/><b>End Time: </b>" . date('g:i a', get_post_meta($data['item_number'] , 'job_end_time', true)) . "	
                 		<br/><b>Location: </b>" . get_post_meta($data['item_number'] , 'job_location', true) . "
-						<br/><b>Wages: </b> $" . get_post_meta($data['item_number'] , 'job_wages', true) . "
+						<br/><b>Wages: </b> $" . $wages_minyawns . "
                 		<br/><b>Details: </b>" . $job_data->post_content . "
                 
                 		<br/><br/>
