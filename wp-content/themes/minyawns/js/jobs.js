@@ -83,7 +83,7 @@ function load_browse_jobs(id, _action) {
                         }
 
                     } else {
-                       alert("action_else");
+                      
                         if (model.toJSON().load_more === 1)
                             jQuery("#load-more").hide();
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
