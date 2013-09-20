@@ -51,7 +51,7 @@
             var email='<?php  echo get_user_profile_email() ?>';
             var role='<?php if (get_user_role() == "minyawn"){ echo 'Minion';} else echo 'Employer' ; ?>';
             var logged_in_user_id='<?php echo get_user_id(); ?>'
-            
+            var is_logged_in='<?php echo is_user_logged_in();?>';
             </script>
             
 <body <?php body_class('logged-out'); ?>>

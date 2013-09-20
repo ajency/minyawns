@@ -195,11 +195,11 @@ $app->get('/fetchjobs/', function() use ($app) {
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
 
-                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating';
+                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
                     if ($rating == 'Rating')
-                        $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 'Rating';
+                        $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 'Rating:Awaited';
 
-                    $status = ($user_to_job_rating->status) == 'applied' ? 'Applied' : 'Hirred';
+                    $status = ($user_to_job_rating->status) == 'applied' ? 'Applied' : 'Hired';
                 }
 
 
