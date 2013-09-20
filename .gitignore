@@ -8,3 +8,5 @@ wp-content/themes/minyawns/cssb/images/icons/.svn
 wp-content/uploads
 /nbproject/private/
 nbproject
+.settings/
+.project
