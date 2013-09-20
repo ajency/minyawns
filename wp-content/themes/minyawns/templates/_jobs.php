@@ -99,8 +99,8 @@
 
     </div>
     <div class="minyawns-job">
-    <b><%= result.individual_user_to_job_status %></b>
-    <span ><%= result.user_to_job_rating %></span>
+    <b><%= result.user_to_job_status[i] %></b>
+    <span ><%= result.user_to_job_rating[i] %></span>
     
 
 

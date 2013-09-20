@@ -167,6 +167,8 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                 $default_applied_user_avatar = array();
 
+                $single_job_rating=array();
+                
                 foreach ($min_job->minyawns as $min) {
 
                     $user = array_push($user_data, $min['first_name'] . ' ' . $min['last_name']);
@@ -176,7 +178,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $applied_user_id = array_push($user_id_applied, $min['user_id']);
 
                     $status = array_push($user_job_status, $min['user_job_status']);
-
+                     
+                    $rating=array_push($single_job_rating,$min['user_job_rating']);
 
 
                     $minyawns_rating = get_user_rating_data($min['user_id'], $pagepost->ID);
@@ -195,11 +198,11 @@ $app->get('/fetchjobs/', function() use ($app) {
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
 
-                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
-                    if ($rating == 'Rating')
-                        $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 'Rating:Awaited';
+//                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
+//                    if ($rating == 'Rating:Awaited')
+//                        $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 'Rating:Awaited';
 
-                    $status = ($user_to_job_rating->status) == 'applied' ? 'Applied' : 'Hired';
+                   if($user_to_job_rating->status == 'applied' ) $status='Applied'; else $status='Hired';
                 }
 
 
@@ -277,7 +280,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'job_owner_id' => $owner_id,
                     'applied_user_id' => $user_id_applied,
-                    'user_to_job_rating' => $rating,
+                    'user_to_job_rating' => $single_job_rating,
                     'individual_user_to_job_status' => $status
                 );
             }
@@ -541,7 +544,8 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_email' => isset($all_meta_for_user['nickname']) ? $all_meta_for_user['nickname'] : '', /* nick name temp fix */
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
-                        'user_image' => $user['image']
+                        'user_image' => $user['image'],
+                        'is_hired'=>$minion_status
                     );
                 }
             }
