@@ -444,7 +444,7 @@ jQuery(document).ready(function($) {
                     success: function(model, resp) {
 
 
-
+//console.log(resp.post_id);return;
                         //get model data
                         // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
@@ -457,7 +457,8 @@ jQuery(document).ready(function($) {
                         $('html, body').animate({scrollTop: '0px'}, 300);
                         $("#job-success").show();
                         // $(".modal_ajax_large").hide();
-                        fetch_my_jobs();
+                        var id;
+                       load_browse_jobs(resp.post_id+'','single_json_my_jobs'); 
                     },
                     errors: function() {
                         $(_this).removeAttr('disabled');
@@ -498,6 +499,7 @@ jQuery(document).ready(function($) {
                 $(".load_ajax").hide();
                 var template = _.template($("#jobs-table").html());
                 $("#accordion2").empty();
+                
                 _.each(collection.models, function(model) {
                     var job_stat = job_status_li(model);
                     var job_collapse_button_var = job_collapse_button(model);
@@ -951,34 +953,35 @@ jQuery(document).ready(function($) {
                     job_id: parseInt(_job_id)
                 },
         function(response) {
+//            $(".load_ajax1").hide();
+//            if (response.success == 1)
+//            {
+//
+//                $("#job-list" + _job_id).hide('slow', function() {
+//                    $("#job-list" + _job_id).remove();
+//                });
+//                if (response.new_action == 'apply')
+//                {
+//                    $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
+//                    $(_this).attr('data-action', 'apply');
+//                }
+//                if (response.new_action == 'unapply')
+//                {
+//                    $(_this).addClass('green-btn btn-success').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
+//                    $(_this).attr('data-action', 'unapply');
+//                }
+//
+//            } else if (response.success == 2)
+//            {
+//                $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
+//                $(_this).attr('data-action', 'req_complete');
+//            }
+//
+//
+//            if ($("#is_singluar").length > 0)
+//                window.location.reload();
+            load_browse_jobs(_job_id,'single_json');
             $(".load_ajax1").hide();
-            if (response.success == 1)
-            {
-
-                $("#job-list" + _job_id).hide('slow', function() {
-                    $("#job-list" + _job_id).remove();
-                });
-                if (response.new_action == 'apply')
-                {
-                    $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
-                    $(_this).attr('data-action', 'apply');
-                }
-                if (response.new_action == 'unapply')
-                {
-                    $(_this).addClass('green-btn btn-success').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
-                    $(_this).attr('data-action', 'unapply');
-                }
-
-            } else if (response.success == 2)
-            {
-                $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
-                $(_this).attr('data-action', 'req_complete');
-            }
-
-
-            if ($("#is_singluar").length > 0)
-                window.location.reload();
-
         }, 'json');
     });
 
@@ -1353,7 +1356,7 @@ jQuery(document).ready(function($) {
 
     /* function on page load*/
 
-     fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+    fetch_my_jobs(logged_in_user_id);//moved to jobs.js
 
 
 
@@ -1393,4 +1396,4 @@ jQuery('a #edit-user-profile').click(function() {
 //        jQuery(".collapse").collapse({"toggle" : "show"});
 //    });
 
-  
+

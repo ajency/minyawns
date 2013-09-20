@@ -2,7 +2,7 @@
 
     <div style="clear:both;">	
     </div>
-    <div class="accordion-group">
+    <div class="accordion-group" id="job-accordion-<%= result.post_id %>">
     <div id="last-job-id" last-job="<%= result.post_id %>" value="<%= result.post_id %>">
     </div>
     <div class="accordion-heading">

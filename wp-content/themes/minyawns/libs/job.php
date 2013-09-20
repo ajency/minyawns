@@ -69,8 +69,8 @@ $app->post('/addjob', function() use ($app) {
             }
 
 
-            //  $app->response()->header("Content-Type", "application/json");
-            /// echo json_encode(array('success' => 1));
+              $app->response()->header("Content-Type", "application/json");
+             echo json_encode(array('post_id' => $post_id));
         });
 
 
@@ -81,29 +81,46 @@ $app->get('/fetchjobs/', function() use ($app) {
             $prefix = $wpdb->prefix;
 
 
+
+
+
+            $data = array();
             $current_user_id = get_current_user_id();
 
             if (isset($_GET['my_jobs'])) {
 
-                if (get_user_role() == 'miyawn') {
-                    $tables = "$wpdb->posts, $wpdb->postmeta,{$wpdb->prefix}userjobs";
-                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . get_current_user_id() . "'";
-                    $limit = "LIMIT " . $_GET['offset'] . ",5";
-                    $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                if (get_user_role() == 'minyawn') {
+                    $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID ";
+                    $limit = "";
+                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
                 } else {
-                    $tables = "$wpdb->posts";
-                    $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . get_current_user_id() . "'";
-                    $limit = "LIMIT " . $_GET['offset'] . ",5";
-                    $order_by = "";
+                    $tables = "$wpdb->posts,$wpdb->postmeta";
+                    $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . get_current_user_id() . "' AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+                    $limit = "";
+                    $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            ORDER BY $wpdb->postmeta.meta_value ASC";
                 }
             } else {
-                $tables = "$wpdb->posts, $wpdb->postmeta";
-                $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
-                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
-                $limit = "LIMIT " . $_GET['offset'] . ",5";
-                $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                if (isset($_GET['single_job'])) {
+                    $tables = "$wpdb->posts, $wpdb->postmeta";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' AND $wpdb->posts.ID ='" . $_GET['single_job'] . "' ";
+                    $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
+                    $limit = "";
+                } else {
+                    $tables = "$wpdb->posts, $wpdb->postmeta";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+                    $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                            ORDER BY $wpdb->postmeta.meta_value ASC";
+                    $limit = "LIMIT " . $_GET['offset'] . ",5";
+                }
+
+
+
+               
             }
 
             $querystr = "
@@ -116,7 +133,6 @@ $app->get('/fetchjobs/', function() use ($app) {
                             $limit
                          ";
 
-            $data = array();
 
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
@@ -196,6 +212,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $show_load = 1;
                 else
                     $show_load = 0;
+                
+                
+                 if (isset($_GET['single_job']) || isset($_GET['my_jobs'])) /* pagination issue */
+                     $show_load=1;
 
                 if (get_user_company_logo($pagepost->post_author) == false)
                     $logo = get_avatar($pagepost->post_author, 168);
@@ -203,16 +223,15 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $logo = get_user_company_logo($pagepost->post_author);
 
 
-              if(get_user_role() == 'employer' || $owner_id !== 0){
-                  
-                   $wages_seen=(13 * $post_meta['job_wages'][0])/100;
-                 $wages=$post_meta['job_wages'][0];
-               
-              }  else {
-                  $wages_seen=(13 * $post_meta['job_wages'][0])/100;
-                 $wages=$post_meta['job_wages'][0]-$wages_seen;
-              }
-                
+                if (get_user_role() == 'employer' || $owner_id !== 0) {
+
+                    $wages_seen = (13 * $post_meta['job_wages'][0]) / 100;
+                    $wages = $post_meta['job_wages'][0];
+                } else {
+                    $wages_seen = (13 * $post_meta['job_wages'][0]) / 100;
+                    $wages = $post_meta['job_wages'][0] - $wages_seen;
+                }
+
                 /*
                  *  1 ->running
                  *  2->locked ,if one applicant also hired then locked

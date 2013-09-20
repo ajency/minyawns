@@ -93,6 +93,7 @@
                                         ?>
                                         <div class="dwn-btn">
                                             <div class="roundedTwo">
+                                                
                                                 <input type="checkbox" id="roundedTwo<?php echo $minyawn['user_id'] ?>" value="<?php echo $minyawn['user_id'] ?>"  data-user-id="<?php echo $minyawn['user_id'] ?>" data-job-id="<?php echo $minyawn['user_to_job'] ?>"    name="confirm-miny[]"  id="<?php echo $minyawn['user_login'] ?>" <?php if ($minyawn['user_job_status'] == "hired") { ?> checked disabled class="minyans-select" <?php } ?> >
                                                 <label for="roundedTwo<?php echo $minyawn['user_id'] ?>"> </label>Minyawn Selected
                                             </div>
