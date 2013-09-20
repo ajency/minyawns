@@ -138,8 +138,7 @@ function get_mn_user_avatar() {
 
     global $current_user_new;
     if ($current_user_new->data->avatar !== false) {
-         return wp_get_attachment_image($current_user_new->data->avatar,get_user_role());
-            
+        return wp_get_attachment_image($current_user_new->data->avatar, get_user_role());
     } else {
         return false;
     }
@@ -150,7 +149,7 @@ function get_mn_user_avatar_profile($role) {
     global $current_user_new;
     if ($current_user_new->data->avatar !== false) {
         //return wp_get_attachment_thumb_url($current_user_new->data->avatar);
-        return site_url().'/wp-content/uploads/user-avatars/' . get_user_id() . '/' . get_user_role() . get_user_id() . '.jpg';
+        return site_url() . '/wp-content/uploads/user-avatars/' . get_user_id() . '/' . get_user_role() . get_user_id() . '.jpg';
     }
 
     if (is_user_fb_registered())
@@ -319,7 +318,7 @@ function get_user_company_logo($user_id) {
     $post_attachment_id = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
     if ($post_attachment_id)
-        return   wp_get_attachment_image($post_attachment_id,get_user_role());
+        return wp_get_attachment_image($post_attachment_id, get_user_role());
     else
         return get_avatar($user_id);
 }
@@ -389,15 +388,17 @@ class MN_User_Jobs {
 
                 $user = array(
                     'user_login' => $minyawn->user_login,
-                    'profile_name' => $minyawn->first_name.$minyawn->last_name,
+                    'profile_name' => $minyawn->first_name . $minyawn->last_name,
                     'user_email' => $minyawn->user_email,
                     'user_id' => $minyawn->ID,
                     'user_to_job' => $minyawn->job_id,
                     'user_job_status' => $minyawn->status
                 );
+                $rating = ($minyawn->rating) > 0 ? 'Well Done' : 'Rating:Awaited';
+                if ($rating == 'Rating:Awaited')
+                    $rating = ($minyawn->rating) < 0 ? 'Terrible' : 'Rating:Awaited';
 
-               
-
+                $user['user_job_rating'] = $rating;
 
                 //convert the meta string to php array
                 $usermeta = explode(',', $minyawn->usermeta);
@@ -473,50 +474,47 @@ class MN_User_Jobs {
 
 }
 
-/*Funtion to send mail to employer when minyawn applies for a job
+/* Funtion to send mail to employer when minyawn applies for a job
  * Date : 3sep2013
  */
-function send_mail_employer_apply_job($job_id,$action)
-{
-	global $user_ID, $wpdb;
-	global $current_user;
-	get_currentuserinfo();
-	$job_data = get_post($job_id);
-	$employer_id =  $job_data->post_author;
-	$employer_data = get_userdata($employer_id);
-	 
-	//Send mail to Emplyer
-	$mail_subject ="Minyawns - ".$current_user->display_name." have ".$action." for ".get_the_title($job_id);	
-	
-	$mail_message = "Hi,<br/><br/>".
-			$current_user->display_name." have ".$action." for the job '".get_the_title($job_id)."'
+
+function send_mail_employer_apply_job($job_id, $action) {
+    global $user_ID, $wpdb;
+    global $current_user;
+    get_currentuserinfo();
+    $job_data = get_post($job_id);
+    $employer_id = $job_data->post_author;
+    $employer_data = get_userdata($employer_id);
+
+    //Send mail to Emplyer
+    $mail_subject = "Minyawns - " . $current_user->display_name . " have " . $action . " for " . get_the_title($job_id);
+
+    $mail_message = "Hi,<br/><br/>" .
+            $current_user->display_name . " have " . $action . " for the job '" . get_the_title($job_id) . "'
 	
                 		<br/><br/><h3>Minyawn Details</h3>
-                		<br/><b>Username : ".$current_user->user_login."</b>
-                		<br/><b>First name : ". $current_user->user_firstname."</b>
-                		<br/><b>Last Name : ".$current_user->user_lastname."</b>
-                		<br/><b>Email : ".$current_user->user_email."</b>
+                		<br/><b>Username : " . $current_user->user_login . "</b>
+                		<br/><b>First name : " . $current_user->user_firstname . "</b>
+                		<br/><b>Last Name : " . $current_user->user_lastname . "</b>
+                		<br/><b>Email : " . $current_user->user_email . "</b>
 	
                 		<br/><br/><h3>Job Details</h3>
-                		<br/><br/><b>Job : ".get_the_title($_POST['job_id'])."</h6>
-                		<br/><b>Start date : </b>". date('d M Y',   get_post_meta($_POST['job_id'],'job_start_date',true))."
-                		<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_start_time',true))."
-                		<br/><b>End Date : </b>". date('d M Y',  get_post_meta($_POST['job_id'],'job_end_date',true))."
-					    <br/><b>end Time : </b>". date('g:i a',  get_post_meta($_POST['job_id'],'job_end_time',true))."
-                		<br/><b>Location : </b>". get_post_meta($_POST['job_id'],'job_location',true)."
-						<br/><b>Wages : </b>".get_post_meta($_POST['job_id'],'job_wages',true)."
-                		<br/><b>details : </b>".$job_data->post_content."
+                		<br/><br/><b>Job : " . get_the_title($_POST['job_id']) . "</h6>
+                		<br/><b>Start date : </b>" . date('d M Y', get_post_meta($_POST['job_id'], 'job_start_date', true)) . "
+                		<br/><b>Start Time : </b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_start_time', true)) . "
+                		<br/><b>End Date : </b>" . date('d M Y', get_post_meta($_POST['job_id'], 'job_end_date', true)) . "
+					    <br/><b>end Time : </b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_end_time', true)) . "
+                		<br/><b>Location : </b>" . get_post_meta($_POST['job_id'], 'job_location', true) . "
+						<br/><b>Wages : </b>" . get_post_meta($_POST['job_id'], 'job_wages', true) . "
+                		<br/><b>details : </b>" . $job_data->post_content . "
 	
                 		<br/><br/>
 	
                 		";
-	
-	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-	wp_mail($employer_data->user_email,  $mail_subject, email_header() . $mail_message . email_signature(), $headers); 
-	
-	
-	
+
+    add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+    $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+    wp_mail($employer_data->user_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
 }
 
 function minyawn_job_apply() {
@@ -524,12 +522,12 @@ function minyawn_job_apply() {
     if ('POST' !== $_SERVER['REQUEST_METHOD'])
         return;
 
-  
-    
+
+
     global $user_ID, $wpdb;
-  
-    
-    
+
+
+
     //get job ID
     $job_id = $_POST['job_id'];
 
@@ -546,10 +544,6 @@ function minyawn_job_apply() {
 
         $new_action = "apply";
         $status = 1;
-        
-        
-        
-        
     } else {
         $min_job = new Minyawn_Job($job_id);
 
@@ -572,18 +566,12 @@ function minyawn_job_apply() {
             /* plus one because it is checking before insert */
             if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns) + 1)
                 $status = 2;
-            
-            
-           
-            
         }
-         
-        
     }
-    
+
     // send mail to employer who created job
-    send_mail_employer_apply_job($job_id,'applied');
-    
+    send_mail_employer_apply_job($job_id, 'applied');
+
     echo json_encode(array('success' => $status, 'new_action' => $new_action));
 
     die;
@@ -605,8 +593,8 @@ function minyawn_job_unapply() {
         'job_id' => $job_id
     ));
     // send mail to employer who created job
-    send_mail_employer_apply_job($job_id,'unapplied');
-    
+    send_mail_employer_apply_job($job_id, 'unapplied');
+
     echo json_encode(array('success' => 1, 'new_action' => 'apply'));
 
     die;
@@ -634,31 +622,26 @@ function check_direct_access() {
     return end((explode('/', rtrim($_SERVER['REQUEST_URI'], '/'))));
 }
 
-
-function get_user_rating_data($user_id,$job_id)
-{
+function get_user_rating_data($user_id, $job_id) {
     global $wpdb;
     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
                               WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id
                               GROUP BY {$wpdb->prefix}userjobs.user_id", $user_id, $job_id);
 
-                    $minyawns_rating = $wpdb->get_results($sql);
-    
+    $minyawns_rating = $wpdb->get_results($sql);
+
     return $minyawns_rating;
 }
 
-function get_user_job_rating_data($user_id,$job_id)
-{
-     global $wpdb;
+function get_user_job_rating_data($user_id, $job_id) {
+    global $wpdb;
     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id,{$wpdb->prefix}userjobs.status, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
                               FROM {$wpdb->prefix}userjobs
                               WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id = %d
                               GROUP BY {$wpdb->prefix}userjobs.user_id", $user_id, $job_id);
 
-                    $minyawns_rating = $wpdb->get_row($sql);
-    
+    $minyawns_rating = $wpdb->get_row($sql);
+
     return $minyawns_rating;
-    
-    
 }

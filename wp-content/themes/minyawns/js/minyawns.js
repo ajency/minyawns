@@ -456,7 +456,7 @@ jQuery(document).ready(function($) {
                         $('#job_tags_tagsinput').find('span').remove()
                         $('html, body').animate({scrollTop: '0px'}, 300);
                         $("#job-success").show();
-                        // $(".modal_ajax_large").hide();
+                         $(".modal_ajax_large").hide();
                         var id;
                        load_browse_jobs(resp.post_id+'','single_json_my_jobs'); 
                     },
