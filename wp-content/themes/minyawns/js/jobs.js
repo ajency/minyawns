@@ -1,11 +1,12 @@
-function load_browse_jobs(id) {
+function load_browse_jobs(id, _action) {
 
     jQuery(".load_ajax").css('display', 'block');
     jQuery("#calendar-jobs").hide(); /*bread crumbs*/
     jQuery("#calendar").hide();
-    jQuery("#accordion2").empty();
+
     jQuery(".load_more").show();
     jQuery(".load-ajax-browse").hide();
+
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
         url: function() {
@@ -13,16 +14,27 @@ function load_browse_jobs(id) {
             return SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
         }
     });
-    window.fetchj = new Fetchjobs;
-    window.fetchj.fetch({
-        data: {
-            'offset': 0
 
-        },
+
+
+    window.fetchj = new Fetchjobs;
+    // if(!isNaN(id))
+    window.fetchj.set({single_job: '1'});
+    var _data = {
+        'offset': 0
+    };
+
+    if (!isNaN(id))
+        _data.single_job = id;
+
+
+    window.fetchj.fetch({
+        data: _data,
         reset: true,
         success: function(collection, response) {
-
+            console.log(_action);
             if (collection.length === 0) {
+                jQuery("#accordion2").empty();
                 var template = _.template(jQuery("#no-result").html());
                 jQuery("#accordion2").append(template);
                 jQuery("#load-more").hide();
@@ -34,19 +46,44 @@ function load_browse_jobs(id) {
                     var job_collapse_button_var = job_collapse_button(model);
 
                     if (model.toJSON().post_id === id) { /*for single job page*/
-                        jQuery("#hidden_minion_id").val(model.toJSON().applied_user_id);
-                        jQuery("#job_id").val(id);
-                        var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
-                        jQuery(".singlejobedit").append(html);
-                        jQuery(".details").find(".minyawansgrid").hide();
-                         jQuery("#select-minyawn").removeAttr('href');
-                        jQuery("#select-minyawn").live("click",function(){
-                            jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, 1000);
-                        });
-                        load_job_minions(model);
+                        
+                        if (_action === 'single_json')
+                        {
+                            
+                            if (model.toJSON().load_more === 1)
+                                jQuery("#load-more").hide();
 
+                            var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
+                            $("#job-accordion-" + id).replaceWith(html);
+//                            jQuery("#job-accordion-" + id).flip({
+//                                direction: 'bt',
+//                                content: html
+//                            })
+                        } else if (_action === 'single_json_my_jobs')
+                        {
+
+                            if (model.toJSON().load_more === 1)
+                                jQuery("#load-more").hide();
+
+                            var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
+                            $("#accordion24").prepend(html);
+
+                        } else {
+                            jQuery("#accordion2").empty();
+                            jQuery("#hidden_minion_id").val(model.toJSON().applied_user_id);
+                            jQuery("#job_id").val(id);
+                            var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
+                            jQuery(".singlejobedit").append(html);
+                            jQuery(".details").find(".minyawansgrid").hide();
+                            jQuery("#select-minyawn").removeAttr('href');
+                            jQuery("#select-minyawn").live("click", function() {
+                                jQuery("html, body").animate({scrollTop: jQuery(document).height()}, 1000);
+                            });
+                            load_job_minions(model);
+                        }
 
                     } else {
+                       alert("action_else");
                         if (model.toJSON().load_more === 1)
                             jQuery("#load-more").hide();
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
@@ -95,24 +132,25 @@ function fetch_my_jobs(id)
                 var template = _.template(jQuery("#jobs-table").html());
                 _.each(collection.models, function(model) {
                     //alert(id);
-                   // alert(model.toJSON().applied_user_id);
+                    // alert(model.toJSON().applied_user_id);
                     if (model.toJSON().job_owner_id === id || model.toJSON().applied_user_id.indexOf(id) >= 0)/* to show my jobs*/
                     {
+                        console.log(model.toJSON().applied_user_id);
                         var job_stat = job_status_li(model);
                         var job_collapse_button_var = job_collapse_button(model);
 
                         if (model.toJSON().load_more === 1)
-                            jQuery("#load-more").hide();
+                            jQuery("#load-more",".load_more").hide();
 
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
                         jQuery("#accordion24").append(html);
                     } else
                     {
-                           jQuery(".load_more").hide();
-                       // var template = _.template(jQuery("#no-result").html());
-                      
-                      //  jQuery("#accordion24").html(jQuery("#no-result").html());
-                     
+                        jQuery(".load_more").hide();
+                        // var template = _.template(jQuery("#no-result").html());
+
+                        //  jQuery("#accordion24").html(jQuery("#no-result").html());
+
                     }
                 });
                 jQuery(".load_ajax").hide();
@@ -256,9 +294,9 @@ function job_status_li(model)
 
                 if (model.toJSON().users_applied.length === 0 && model.toJSON().todays_date_time < model.toJSON().job_end_time_check)
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available</span>";
-                 else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* applied and but not hired */
+                else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* applied and but not hired */
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Please login as Minion to apply</span>";
-              
+
                 else if (model.toJSON().job_status === 3) /* applied and but not hired */
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications Closed</span>";
                 else if (model.toJSON().user_to_job_status.indexOf('applied') >= 0) /* hired */
@@ -388,11 +426,11 @@ function job_collapse_button(model)
     {
         if ((model.toJSON().users_applied.length === 0 || model.toJSON().users_applied.length >= 0) && model.toJSON().todays_date_time < model.toJSON().job_end_time_check && model.toJSON().job_status !== 3)
             status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available</span>";
-          else if (model.toJSON().job_status === 3) /* job locked */
+        else if (model.toJSON().job_status === 3) /* job locked */
             status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
         else if (model.toJSON().job_status === 2 && model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* hired */
             status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete.</span>";
-        
+
         else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* job Exipred */
             status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
 

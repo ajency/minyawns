@@ -7,7 +7,7 @@ require 'templates/_jobs.php';
 <script>
 jQuery(document).ready(function($) {
 jQuery("#single-job-page").show();
-load_browse_jobs('<?php the_ID() ?>');
+load_browse_jobs('<?php the_ID() ?>','single_job');
 jQuery("#single-job-page").hide();
 jQuery("#collapse600").addClass("in");
  
