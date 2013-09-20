@@ -138,7 +138,7 @@
 
 <script type="text/template" id="minion-cards">  
     
-    <li class="span3">
+    <a href="<?php echo site_url() ?>/profile/<%= result.user_id %>" target="_blank"/> <li class="span3" id="<%= result.user_id %>" >
     <div class="thumbnail">
     <div class="caption">
     <div class="minyawns-img">
@@ -171,6 +171,7 @@
     </div>
     </div>
     </li>
+   </a>
 </script>
 
 <script type="text/template" id="confirm-hire">

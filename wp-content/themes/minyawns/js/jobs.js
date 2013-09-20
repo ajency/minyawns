@@ -123,7 +123,7 @@ function fetch_my_jobs(id)
 
         },
         success: function(collection, response) {
-            jQuery(".load_ajax1_myjobs").hide();
+            //jQuery(".load_ajax1_myjobs").hide();
             if (collection.length === 0) {
                 var template = _.template(jQuery("#no-result").html());
                 jQuery("#load-more").hide();
@@ -503,16 +503,22 @@ function is_minion_selected(jobmodel, model)
         for (var i = 0; i < jobmodel.toJSON().applied_user_id.length; i++)
         {
 
-            if (jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'applied' && jobmodel.toJSON().job_owner_id === logged_in_user_id)
+            if (jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'applied' && jobmodel.toJSON().job_owner_id === logged_in_user_id && jobmodel.toJSON().user_to_job_status.indexOf('hired') === -1 )
                 selectButton = '<div class="roundedTwo" id="select-button-' + model.toJSON().user_id + '"><input type="checkbox" id="select-' + model.toJSON().user_id + '" name="confirm-miny[]" value="' + model.toJSON().user_id + '"  data-user-id="' + model.toJSON().user_id + '" data-job-id="' + jobmodel.toJSON().post_id + '"><label for="rounded1' + model.toJSON().user_id + '" > </label>Select Your Minions</div>';
-            else if (jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'hired' && jobmodel.toJSON().job_owner_id === logged_in_user_id)
-                selectButton = '<div class="roundedTwo" id="select-button' + model.toJSON().user_id + '"><label for="rounded1' + model.toJSON().user_id + '"></label>Minion Selected</div>';
-            else if (jobmodel.toJSON().todays_date_time > jobmodel.toJSON().job_end_date_time_check && jobmodel.toJSON().user_to_job_status[i] === 'hired' && jobmodel.toJSON().job_owner_id === logged_in_user_id) {
+            else if (jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'hired' )
+         {
+           // alert(#selected-minions-+model.toJSON().user_id);
+           var id=model.toJSON().user_id;
+                jQuery("#"+id+"").addClass('minyans-select');
+            
+        }else if (jobmodel.toJSON().todays_date_time > jobmodel.toJSON().job_end_date_time_check && jobmodel.toJSON().user_to_job_status[i] === 'hired' && jobmodel.toJSON().job_owner_id === logged_in_user_id) {
                 selectButton = "<div class='dwn-btn'><div class='row-fluid'><div class='span6'><a id='vote-upuserid' class='btn btn-small btn-block  btn-success well-done' href='#like' is_rated='0' employer-vote='1'   job-id='jobid' user_id='" + model.toJSON().user_id + "' action='vote-up' emp_id='" + jobmodel.toJSON().job_owner_id + "'>1 Well Done</a>"
                 selectButton += "</div><div class='span6'><a id='vote-up'" + model.toJSON().user_id + "' class='btn btn-small btn-block  btn-success well-done' href='#like' is_rated='0' employer-vote='1'   job-id='jobid' user_id='" + model.toJSON().user_id + "' action='vote-up' emp_id='" + jobmodel.toJSON().job_owner_id + "'>";
                 selectButton += "1 Terrible Job</a></div></div></div>";
+            }else{
+            
             }
-        }
+            }
 
 
 

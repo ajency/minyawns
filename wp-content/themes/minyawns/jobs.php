@@ -355,7 +355,7 @@ require 'templates/_jobs.php';
                         <?php } ?>                   
 
                     </div>
-                    <span class='load_ajax1_myjobs' style="display:block"></span>
+                    <span class='load_ajax1_myjobs' style="display:none"></span>
                     <div id="list-my-jobs">
 <div class="row-fluid ">
                     <div class="span12 header-title">
