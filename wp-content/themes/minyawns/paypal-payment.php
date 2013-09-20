@@ -16,7 +16,11 @@ global $wpdb;
 //
 //}else
 //{
-    $paypal_email = 'parag0246@yahoo.co.in';
+   // $paypal_email = 'parag0246@yahoo.co.in';
+$paypal_email = 'ceo-facilitator@minyawns.com '; 
+ 
+    //$paypal_email = 'ceo@minyawns.com';
+ 
     $return_url = 'http://minyawns.ajency.in/success-payment/';
 $cancel_url = 'http://minyawns.ajency.in/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
 $notify_url = 'http://minyawns.ajency.in/paypal-payments/';
