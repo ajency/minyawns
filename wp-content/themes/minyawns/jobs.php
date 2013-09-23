@@ -274,7 +274,7 @@ require 'templates/_jobs.php';
 
                 </div>
 
-                <button class="btn load_more" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
+                <button class="btn load_more" id="load-more-my-jobs"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
 
                     </div>
                 </div>

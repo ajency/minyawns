@@ -489,18 +489,18 @@ jQuery(document).ready(function($) {
 
 
 
-    $("#load-more").click(function(e) {
+    $("#load-more,#load-more-my-jobs").click(function(e) {
         $(".load_ajax").show();
-// alert(window.fetchj.models.length);
 
         var _data = {
             'offset': window.fetchj.models.length
 
         };
 
-        if ($("#tab_identifier").val() === '1')
+        if ($("#tab_identifier").val() === '1'){
             _data.my_jobs = '1';
-
+        $("#accordion24").empty();
+        }
         window.fetchj.fetch({
             remove: false,
             add: true,
@@ -515,10 +515,14 @@ jQuery(document).ready(function($) {
                     var job_collapse_button_var = job_collapse_button(model);
                     var minyawns_grid = job_minyawns_grid(model)
                     if (model.toJSON().load_more === 1)
-                        $("#load-more").hide();
+                        $("#load-more,#load-more-my-jobs").hide();
                     //console.log(collection.models.length);
                     var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
-                    $("#accordion2").append(html);
+
+                    if ($("#tab_identifier").val() === '1')
+                        $("#accordion24").append(html);
+                    else
+                        $("#accordion2").append(html);
 
                 });
             },

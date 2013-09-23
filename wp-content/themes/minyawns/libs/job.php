@@ -111,11 +111,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
-                }
-
-
-
-               
+                }              
             }
 
             $querystr = "
@@ -279,7 +275,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_owner_id' => $owner_id,
                     'applied_user_id' => $user_id_applied,
                     'user_to_job_rating' => $rating,
-                    'individual_user_to_job_status' => $status
+                    'individual_user_to_job_status' => $status,
+                    'total'=>$total
                 );
             }
 
