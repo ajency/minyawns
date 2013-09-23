@@ -798,7 +798,7 @@ jQuery(document).ready(function($) {
 
         e.preventDefault();
 
-        var span1 = $('#single-jobs');
+        var span1 = $('.singlejobedit');
         var span2 = $('#edit-job-form');
         var w = $(span1).width();
         if ($(this).hasClass('view'))
@@ -1500,3 +1500,9 @@ jQuery('#frm_signup').keydown(function(e){
          jQuery('button').click();
     }
 });
+
+function load_profile(id)
+{
+    var url=siteurl+"/profile/"+id;
+    window.open(url, '_blank');
+}

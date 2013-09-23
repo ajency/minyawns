@@ -120,7 +120,7 @@ require 'templates/_jobs.php';
 
 
 <div class="container">
-    <div class="tab-content">
+    <div class="tab-content" style="min-height:928px;">
 
         <div class="tab-pane jobs_table active single-job-1" id="tab2">
             <div class="breadcrumb-text">
@@ -134,7 +134,9 @@ require 'templates/_jobs.php';
 
             </div>
             <span class='load_ajaxsingle_job' style="display:block"></span>
-            <div class="singlejobedit" style="min-height: 680px; " id="single-job-accordion">
+            <div class="singlejobedit" style=" margin-left: 0; position: absolute;
+    top: 50px;
+    z-index: 10;" id="single-job-accordion">
 
                 <span  id='single-job-page'style="display:none"></span>
 
