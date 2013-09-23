@@ -1017,7 +1017,7 @@ jQuery(document).ready(function($) {
         var dvH = $dv.height() + 2;
         op.height = _MH - dvH;
         op.eventItems = [];
-        var p = $("#gridcontainer").bcalendar(op).BcalGetOp();
+        var p = jQuery("#gridcontainer").bcalendar(op).BcalGetOp();
         if (p && p.datestrshow) {
             $("#txtdatetimeshow").text(p.datestrshow);
         }
@@ -1262,11 +1262,12 @@ var _job_id;
         var user_id = "";
         var sList = "";
         var no_of_minyawns = 0;
+        var _user_id = $(this).attr('data-user-id');
         $('input[name=confirm-miny\\[\\]]:checked').each(function() {
-            //user_id = $(this).attr('data-user-id');
-            //_job_id = $(this).attr('data-job-id');
+            user_id = $(this).attr('data-user-id');
+            _job_id = $(this).attr('data-job-id');
             // var status=$(this).prop("checked","checked");
-            //sList += "" + $(this).attr('data-user-id') + "," + (this.checked ? "hired" : "applied") + "-";
+            sList += "" + $(this).attr('data-user-id') + "," + (this.checked ? "hired" : "applied") + "-";
             //alert(sList);
             //alert(_job_id);
             group_ids += user_id + ',';
@@ -1286,6 +1287,25 @@ var _job_id;
         $("#wages_per_minyawns").html($("#job_wages").val());
         var total = no_of_minyawns * $("#job_wages").val();
         $("#total_wages").html(total);
+        $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
+            {
+                user_id: group_ids,
+                job_id: _job_id,
+                status: sList,
+                returnUrl: $("#returnUrl").val(),
+                cancelUrl: $("#cancelUrl").val(),
+                notify_url: $("#notify_url").val(),
+                currencyCode: $("#currencyCode").val(),
+                jobwages: total
+            },
+            function(response) {
+                $(".load_ajaxconfirm").hide();
+                console.log(response);
+                $("#paypal_pay").html(response.content);
+
+
+                $(".load_ajax4").hide();
+            }, 'json');
         $("#confirminyawn").modal('show');   
         $("#paypal-loader").hide();
         }
