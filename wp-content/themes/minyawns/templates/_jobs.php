@@ -123,11 +123,11 @@
     <%= result.user_image%>
     </div>
     <div class="rating">
-    <a href="#fakelink">
-    <i class="icon-thumbs-up"></i> <%= result.rating_positive %>
+    <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
+    <i class="icon-thumbs-up" ></i> <%= result.rating_positive %>
     </a>
-    <a href="#fakelink"  class="icon-thumbs">
-    <i class="icon-thumbs-down"></i> <%= result.rating_negative %>
+    <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
+    <i class="icon-thumbs-down" "></i> <%= result.rating_negative %>
     </a>
     </div>
     <h4> <%= result.name %></h4>

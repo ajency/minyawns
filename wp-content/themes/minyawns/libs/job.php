@@ -515,6 +515,7 @@ $app->get('/jobminions/', function() use ($app) {
                     foreach ($minyawns_rating as $rating) {
                         $user_rating = $rating->positive;
                         $user_dislike = $rating->negative;
+                        
                     }
 
 
@@ -531,6 +532,14 @@ $app->get('/jobminions/', function() use ($app) {
 //                //set image
 //                if ($fb_uid !== false)
 //                    $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
+                    
+                     $user_to_job_rating = get_user_job_rating_data($minion_ids[$i],$_GET['job_id']);
+
+                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 0;
+                    
+                    
+                    if ($rating == 'Rating:Awaited')
+                        $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 0;
 
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
@@ -543,7 +552,7 @@ $app->get('/jobminions/', function() use ($app) {
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
                         'user_image' => $user['image'],
-                        'is_hired'=>$minion_status
+                        'user_to_job_rating'=>$rating
                     );
                 }
             }

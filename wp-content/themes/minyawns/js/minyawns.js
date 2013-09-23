@@ -486,22 +486,22 @@ jQuery(document).ready(function($) {
 
         fetch_my_jobs(logged_in_user_id);
     });
-    
-    
-    
+
+
+
     $("#load-more").click(function(e) {
         $(".load_ajax").show();
 // alert(window.fetchj.models.length);
 
- var _data= {
-                'offset': window.fetchj.models.length
+        var _data = {
+            'offset': window.fetchj.models.length
 
-            };
-            
-            if($("#tab_identifier").val() === '1')
-            _data.my_jobs='1';
-        
-                window.fetchj.fetch({
+        };
+
+        if ($("#tab_identifier").val() === '1')
+            _data.my_jobs = '1';
+
+        window.fetchj.fetch({
             remove: false,
             add: true,
             data: _data,
@@ -1266,8 +1266,8 @@ jQuery(document).ready(function($) {
 
     $('#confirm-hire-button').live('click', function(evt) {
 
-evt.preventDefault();
-var _job_id;
+        evt.preventDefault();
+        var _job_id;
         var group_ids = "";
         var user_id = "";
         var sList = "";
@@ -1286,28 +1286,28 @@ var _job_id;
             no_of_minyawns = no_of_minyawns + 1;
 
         });
-        if(no_of_minyawns === 0)
-            {
-                $("#requiredminyawnerror").modal('show')
-            }else
-                {
-                    
-        $("#hdn_jobwages").val($("#job_wages").val());
-        $("#no_of_minyawns").html(no_of_minyawns);
-        $("#wages_per_minyawns").html($("#job_wages").val());
-        var total = no_of_minyawns * $("#job_wages").val();
-        $("#total_wages").html(total);
-        $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
-            {
-                user_id: group_ids,
-                job_id: _job_id,
-                status: sList,
-                returnUrl: $("#returnUrl").val(),
-                cancelUrl: $("#cancelUrl").val(),
-                notify_url: $("#notify_url").val(),
-                currencyCode: $("#currencyCode").val(),
-                jobwages: total
-            },
+        if (no_of_minyawns === 0)
+        {
+            $("#requiredminyawnerror").modal('show')
+        } else
+        {
+
+            $("#hdn_jobwages").val($("#job_wages").val());
+            $("#no_of_minyawns").html(no_of_minyawns);
+            $("#wages_per_minyawns").html($("#job_wages").val());
+            var total = no_of_minyawns * $("#job_wages").val();
+            $("#total_wages").html(total);
+            $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
+                    {
+                        user_id: group_ids,
+                        job_id: _job_id,
+                        status: sList,
+                        returnUrl: $("#returnUrl").val(),
+                        cancelUrl: $("#cancelUrl").val(),
+                        notify_url: $("#notify_url").val(),
+                        currencyCode: $("#currencyCode").val(),
+                        jobwages: total
+                    },
             function(response) {
                 $(".load_ajaxconfirm").hide();
                 console.log(response);
@@ -1316,12 +1316,12 @@ var _job_id;
 
                 $(".load_ajax4").hide();
             }, 'json');
-        $("#confirminyawn").modal('show');   
-        $("#paypal-loader").hide();
+            $("#confirminyawn").modal('show');
+            $("#paypal-loader").hide();
         }
 //$("#confirminyawn").modal('show');
 //$("#confirminyawn").modal('hide');
-     //   $("#confirm-hire-button").attr('href', '#confirminyawn');
+        //   $("#confirm-hire-button").attr('href', '#confirminyawn');
         //$("#confirm-hire-button").trigger('click');
 
 
@@ -1415,25 +1415,25 @@ var _job_id;
                 },
         function(response) {
             $(".rating").find('a').prop('disabled', false);
-            if (response.action == "vote-up") {
-                $("#vote-up" + _user_id).prop('disabled', true);
-                $("#vote-down" + _user_id).prop('disabled', true)
-                $("#total-like" + _user_id).contents().filter(function() {
+            if (response.action === "vote-up") {
+                $("#thumbs_up_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
-                //$("#vote-up" + _user_id).append(response.rating);
-                $("#total-like" + _user_id).append(response.rating);
-                //$("#vote-down").append("0");
+
+                $("#thumbs_up_" + _user_id).append(response.rating);
+                $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
+
             }
-            if (response.action == "vote-down") {
-                $("#vote-down" + _user_id).prop('disabled', true);
-                $("#vote-up" + _user_id).prop('disabled', true)
+            if (response.action === "vote-down") {
+
                 $("#total-dislike" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
-                //$("#vote-down" + _user_id).append(response.rating);
-                $("#total-dislike" + _user_id).append(response.rating);
-                //$("#vote-up").append("0");
+
+
+                $("#thumbs_down_" + _user_id).append(response.rating);
+                $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='1'>Terrible</a>");
+
             }
 
         }, 'json');
