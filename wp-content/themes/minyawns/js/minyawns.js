@@ -499,11 +499,11 @@ jQuery(document).ready(function($) {
 
         if ($("#tab_identifier").val() === '1'){
             _data.my_jobs = '1';
-        $("#accordion24").empty();
+       // $("#accordion24").empty();
         }
         window.fetchj.fetch({
-            remove: false,
-            add: true,
+            remove: true,
+            //add: true,
             data: _data,
             success: function(collection, response) {
                 $(".load_ajax").hide();

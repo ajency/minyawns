@@ -297,7 +297,7 @@ function user_like_count() {
 
 function get_user_like_count() {
     global $current_user_new;
-    return isset($current_user_new->data->like_count) ? $current_user_new->data->like_count : 0;
+    return isset($current_user_new->data->like_count) > 0 ? $current_user_new->data->like_count : 0;
 }
 
 //User dislike count
@@ -307,7 +307,7 @@ function user_dislike_count() {
 
 function get_user_dislike_count() {
     global $current_user_new;
-    return isset($current_user_new->data->dis_like_count) ? $current_user_new->data->dis_like_count : 0;
+    return isset($current_user_new->data->dis_like_count) > 0? $current_user_new->data->dis_like_count : 0;
 }
 
 function get_user_company_logo($user_id) {
