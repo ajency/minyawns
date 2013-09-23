@@ -383,7 +383,7 @@ function job_collapse_button(model)
                     else if (model.toJSON().applied_user_id.indexOf(logged_in_user_id) === -1 && model.toJSON().job_status === 2 && model.toJSON().user_to_job_status[i] !== 'hired')
                         status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete.</span>";
 
-                    else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check && (model.toJSON().user_rating_like.length > 0 || model.toJSON().user_rating_dislike.length > 0))
+                    else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check && (model.toJSON().user_rating_like[i] > 0 || model.toJSON().user_rating_dislike[i] < 0))
                         status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You have been rated" + model.toJSON().user_rating_like[i] + model.toJSON().user_rating_dislike[i] + "</span>";
 
                     else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check)
