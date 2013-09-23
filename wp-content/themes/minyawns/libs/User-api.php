@@ -97,13 +97,14 @@ function setup_user_profile_data() {
 
     $minyawns_rating = $wpdb->get_row($sql);
 
-    foreach ($minyawns_rating as $rating) {
-        $current_user_new->data->like_count = $rating->positive;
-        $current_user_new->data->dislike_count = $rating->negative;
+  
+        $current_user_new->data->like_count = $minyawns_rating->positive;
+        $current_user_new->data->dislike_count = $minyawns_rating->negative;
 
 //                    if($user['like'] != "0" || $user['dislike'] != "0")
 //                        $user['is_job_rated']=1;
-    }
+  
+   
 }
 
 add_action('wp_loaded', 'setup_user_profile_data');
@@ -292,22 +293,27 @@ function get_user_skills() {
 
 //User like count
 function user_like_count() {
+     global $current_user_new;
     echo get_user_like_count();
 }
 
 function get_user_like_count() {
     global $current_user_new;
-    return isset($current_user_new->data->like_count) > 0 ? $current_user_new->data->like_count : 0;
+    
+    return  ($current_user_new->data->like_count) > 0 ? $current_user_new->data->like_count : 0;
 }
 
 //User dislike count
 function user_dislike_count() {
+     global $current_user_new;
     echo get_user_dislike_count();
 }
 
 function get_user_dislike_count() {
+    
     global $current_user_new;
-    return isset($current_user_new->data->dis_like_count) > 0? $current_user_new->data->dis_like_count : 0;
+   
+    return ($current_user_new->data->dislike_count) > 0? $current_user_new->data->dis_like_count : 0;
 }
 
 function get_user_company_logo($user_id) {
