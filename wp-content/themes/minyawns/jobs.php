@@ -123,6 +123,7 @@ require 'templates/_jobs.php';
     <ul class="nav nav-tabs nav-append-content jobs_menu">
         <li ><a href="#tab1" id="browse">Browse Jobs</a></li>
         <li class="active" id="my_jobs"><a href="#tab2">My Jobs</a></li>
+         
     </ul>  
 
     <div class="tab-content">

@@ -386,6 +386,9 @@ class MN_User_Jobs {
             foreach ($minyawns as $minyawn) {
 
 
+                //if($minyawn->status == 'hired') $job_status='hired'
+                
+                
                 $user = array(
                     'user_login' => $minyawn->user_login,
                     'profile_name' => $minyawn->first_name . $minyawn->last_name,

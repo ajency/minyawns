@@ -2,7 +2,7 @@
 
     <div style="clear:both;">	
     </div>
-    <div class="accordion-group" id="job-accordion-<%= result.post_id %>">
+    <div class="accordion-group view" id="job-accordion-<%= result.post_id %>">
     <div id="last-job-id" last-job="<%= result.post_id %>" value="<%= result.post_id %>">
     </div>
     <div class="accordion-heading">
@@ -82,32 +82,7 @@
     </div>
     </div>
     <div class="row-fluid minyawansgrid">
-    <% for(i=0;i<result.users_applied.length;i++){ %>
-
-    <a href="<?php echo site_url() ?>/profile/<%= result.applied_user_id[i]%>" target="_blank"><div class="span4">
-    <div class="minyawns-details">
-    <span class="image-div"><%= result.user_profile_image[i] %></span><b><%= result.users_applied[i]%></b>
-    </a>
-
-
-    <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= result.post_id %>">
-    <i class="icon-thumbs-up"></i> <%= result.user_rating_like[i] %>
-    </a> 
-    <a id="vote-down" href="#fakelink"  class="icon-thumbs" employer-vote="-1" job-id="<%= result.post_id %>">
-    <i class="icon-thumbs-down"></i> <%= result.user_rating_dislike[i] %>
-    </a>
-
-    </div>
-    <div class="minyawns-job">
-    <b><%= result.user_to_job_status[i] %></b>
-    <span ><%= result.user_to_job_rating[i] %></span>
-    
-
-
-    </div>
-
-    </div>
-    <% }  %>
+    <%= minyawns_grid %>
     <img class="arrow-left" src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png">
     </div>
     </div>
@@ -121,15 +96,16 @@
     </div>
     </div>
     </div>
-    
-<form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">   
+
+    <form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">   
 
     <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $returnUrl; ?>" / >
-           <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
-           <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url() . '/paypal-payments/'; ?>" / >
-           <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
+    <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
+    <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url() . '/paypal-payments/'; ?>" / >
+    <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
     <div class="row-fluid minyawns-grid">
     <ul class="thumbnails">
+    <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
     </form>
     </div>
@@ -137,12 +113,12 @@
 </script>
 
 <script type="text/template" id="minion-cards">  
-    
+
     <a href="<?php echo site_url() ?>/profile/<%= result.user_id %>" target="_blank"/> <li class="span3" id="<%= result.user_id %>" >
     <div class="thumbnail">
     <div class="caption">
     <div class="minyawns-img">
-   <%= result.user_image%>
+    <%= result.user_image%>
     </div>
     <div class="rating">
     <a href="#fakelink">
@@ -154,7 +130,7 @@
     </div>
     <h4> <%= result.name %></h4>
     <div class="collage"> <%= result.college%> </div>
-<div class="collage"> <%= result.major%> </div>
+    <div class="collage"> <%= result.major%> </div>
     <div class="social-link">
     <%= result.user_email %> 
     </div>
@@ -171,27 +147,27 @@
     </div>
     </div>
     </li>
-   </a>
+    </a>
 </script>
 
 <script type="text/template" id="confirm-hire">
-
+    <input type="hidden" id="hidden_selected_min"/>
     <span class="load_ajaxconfirm" style="display:none"></span>
-    <a href="#confirminyawn" id="confirm-hire" data-toggle="modal" class="btn btn-medium btn-block green-btn btn-success" >Confirm & Hire</a>
+    <a  id="confirm-hire-button" data-toggle="modal" class="btn btn-medium btn-block green-btn btn-success">Confirm & Hire</a>
 
 </script>
 
 <script type="text/template" id="blank-card">
-    
+
     <div class="row-fluid minyawns-grid">
     <ul class="thumbnails apply-job">
     <li class="span3">
     <div class="thumbnail">
 
     <div class="caption">
-	<div class="minyawns-img">
+    <div class="minyawns-img">
     <img src="<?php echo get_template_directory_uri() ?>/images/profile.png">
-	</div>
+    </div>
     <div class="rating">
     <a href="#fakelink">
     <i class="icon-thumbs-up"></i> 0
@@ -203,9 +179,9 @@
     </div>
     <h4> Apply Job</h4>
     <div class="collage">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
-	<hr>
+    <hr>
     <div class="dwn-btn">
- 
+
     </div>
     </div>
     </div>

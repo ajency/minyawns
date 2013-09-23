@@ -198,9 +198,12 @@ $app->get('/fetchjobs/', function() use ($app) {
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
 
-//                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
-//                    if ($rating == 'Rating:Awaited')
-//                        $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 'Rating:Awaited';
+                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
+                    
+                    
+                    if ($rating == 'Rating:Awaited')
+                        $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 'Rating:Awaited';
+                    
 
                    if($user_to_job_rating->status == 'applied' ) $status='Applied'; else $status='Hired';
                 }
@@ -226,13 +229,13 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $logo = get_user_company_logo($pagepost->post_author);
 
 
-                if (get_user_role() == 'employer' || $owner_id !== 0) {
+                if (get_user_role() !== 'employer' || $owner_id === 0) {
 
                     $wages_seen = (13 * $post_meta['job_wages'][0]) / 100;
-                    $wages = $post_meta['job_wages'][0];
-                } else {
-                    $wages_seen = (13 * $post_meta['job_wages'][0]) / 100;
                     $wages = $post_meta['job_wages'][0] - $wages_seen;
+                } else {
+              //      $wages_seen = (13 * $post_meta['job_wages'][0]) / 100;
+                    $wages = $post_meta['job_wages'][0];
                 }
 
                 /*
@@ -247,7 +250,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
                     'job_end_date' => date('d M Y', strtotime($post_meta['job_end_date'][0])),
                     'job_day' => date('l', $post_meta['job_start_date'][0]),
-                    'job_wages' => round($wages),
+                    'job_wages' => $wages,
                     //'job_progress' => 'available',
                     'job_start_day' => date('d', $post_meta['job_start_date'][0]),
                     'job_start_month' => date('F', $post_meta['job_start_date'][0]),
@@ -280,7 +283,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'job_owner_id' => $owner_id,
                     'applied_user_id' => $user_id_applied,
-                    'user_to_job_rating' => $single_job_rating,
+                    'user_to_job_rating' => $rating,
                     'individual_user_to_job_status' => $status
                 );
             }
