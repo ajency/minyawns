@@ -1495,4 +1495,8 @@ jQuery('a #edit-user-profile').click(function() {
 //        jQuery(".collapse").collapse({"toggle" : "show"});
 //    });
 
-
+jQuery('#frm_signup').keydown(function(e){
+    if (e.keyCode === 13) { // If Enter key pressed
+         jQuery('button').click();
+    }
+});

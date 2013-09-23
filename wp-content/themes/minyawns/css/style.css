@@ -367,6 +367,7 @@ div.profile-wrapper{
 	overflow: hidden;
 	width: 100%;
 	height: auto !important;
+	min-height: 530px;
 }
 .single-job-1 .data-title {
 width: 1124px;

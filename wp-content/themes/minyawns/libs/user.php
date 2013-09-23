@@ -155,10 +155,16 @@ $app->post('/resize-user-avatar', function() use($app) {
             imagecopyresampled($nimg, $im_src, 0, 0, $x1*$fin_asp_ratio, $y1*$fin_asp_ratio,$nw, $nh, $w*$fin_asp_ratio, $h*$fin_asp_ratio);
             //  imagejpeg($nimg, $targetFolder . "_".$new_name."#".$new_height."--".$new_width."++".$fin_asp_ratio, 90);
             //imagejpeg($nimg, $targetFolder.$new_name, 100);
+            if($new_name!="")
+            {
+            	if(file_exists($targetFolder.$new_name))//added on 23sep2013 
+            		unlink($targetFolder.$new_name);
+            }//end if($new_name!="")
+            clearstatcache();
             imagepng($nimg, $targetFolder.$new_name);
           	 // imagejpeg($nimg, $targetFolder.$new_name."_".$fin_asp_ratio."__".$w."___".$h."____".$nw."_____".$nh, 90);
             //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
-            
+            clearstatcache();
             
             
             
@@ -202,7 +208,7 @@ $app->post('/resize-user-avatar', function() use($app) {
             $atach_post_id = wp_insert_post($post_data);
             $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
             update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
-
+           
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(get_user_company_logo($user_ID));
         });
