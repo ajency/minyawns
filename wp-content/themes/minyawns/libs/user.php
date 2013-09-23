@@ -202,7 +202,7 @@ $app->post('/resize-user-avatar', function() use($app) {
             $atach_post_id = wp_insert_post($post_data);
             $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
             update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
-
+            clearstatcache();
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(get_user_company_logo($user_ID));
         });
