@@ -5,13 +5,13 @@ global $minyawn_job;
 require 'templates/_jobs.php';
 ?>
 <script>
-jQuery(document).ready(function($) {
-jQuery("#single-job-page").show();
-load_browse_jobs('<?php the_ID() ?>','single_job');
-jQuery("#single-job-page").hide();
-jQuery("#collapse600").addClass("in");
- 
-});
+    jQuery(document).ready(function($) {
+        jQuery("#single-job-page").show();
+        load_browse_jobs('<?php the_ID() ?>', 'single_job');
+        jQuery("#single-job-page").hide();
+
+
+    });
 </script>
 <style type="text/css">
     /* ROUNDED TWO */
@@ -121,122 +121,116 @@ jQuery("#collapse600").addClass("in");
 
 <div class="container">
     <div class="tab-content">
+
         <div class="tab-pane jobs_table active single-job-1" id="tab2">
             <div class="breadcrumb-text">
                 <p>
                     <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
                     <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
-                    <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), $minyawn_job->ID) == "1"): ?> 
+                    <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0): ?> 
                         <a href="#edit-job-form" class="edit loaded edit-job-data"><i class="icon-edit"></i> Edit</a>
                     <?php endif; ?>
                 </p>
 
             </div>
-            <?php global $minyawn_job;
-            if ($minyawn_job->get_current_date_time() > $minyawn_job->get_job_end_date_time()) {
-                ?>
+            <span class='load_ajaxsingle_job' style="display:block"></span>
+            <div class="singlejobedit" style="min-height: 680px; " id="single-job-accordion">
 
-<!--                <div class="alert alert-error" style="color:#e74c3c">
-                    This Job has Expired.
-                </div>-->
-<?php } ?>
+                <span  id='single-job-page'style="display:none"></span>
 
-            <div class="singlejobedit" style="min-height: 680px; ">
+                <!-- single jobs -->
 
-            <span  id='single-job-page'style="display:none"></span>
+            </div>
+            <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%; " >
 
-               <!-- single jobs -->
-                <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%; " >
+                <form id="job-form" class="form-horizontal">
 
-                    <form id="job-form" class="form-horizontal">
+                    <input type="hidden" value="<?php echo $minyawn_job->get_job_id(); ?>" name="id"></input>
+                    <div class="control-group small">
 
-                        <input type="hidden" value="<?php echo $minyawn_job->get_job_id(); ?>" name="id"></input>
-                        <div class="control-group small">
-
-                            <label class="control-label" for="inputtask">Tasks</label>
-                            <div class="controls ">
-                               <!-- <input type="text" id="job_task" name="job_task" value="<?php echo get_the_title() ?>" placeholder="" class="span3">-->
-                                <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="" style="height:70px;"><?php echo get_the_title() ?></textarea>
-                            </div>
+                        <label class="control-label" for="inputtask">Tasks</label>
+                        <div class="controls ">
+                           <!-- <input type="text" id="job_task" name="job_task" value="<?php echo get_the_title() ?>" placeholder="" class="span3">-->
+                            <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="" style="height:70px;"><?php echo get_the_title() ?></textarea>
                         </div>
-                        <div class="control-group small float-left ">
-                            <label class="control-label" for="inputtask">Start</label>
-                            <div class="controls">
-                                <div class="input-prepend input-datepicker">
-                                    <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                    <input type="text" class="span1" name="job_start_date" value="<?php echo $minyawn_job->get_job_date(); ?>" id="job_start_date">
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="input-append bootstrap-timepicker">
-                            <input id="job_start_time" type="text" value="<?php echo $minyawn_job->get_start_time_eform() ?>" class="timepicker-default input-small" name="job_start_time" >
-                            <span class="add-on">
-                                <i class="icon-time"></i>
-                            </span>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="control-group small float-left">
-                            <label class="control-label" for="inputtask">End</label>
-                            <div class="controls">
-                                <div class="input-prepend input-datepicker">
-                                    <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                    <input type="text"  name="job_end_date" class="span1" readonly value="<?php echo $minyawn_job->get_job_end_date(); ?>" id="job_end_date">
-                                </div>
+                    </div>
+                    <div class="control-group small float-left ">
+                        <label class="control-label" for="inputtask">Start</label>
+                        <div class="controls">
+                            <div class="input-prepend input-datepicker">
+                                <button type="button" class="btn"><span class="fui-calendar"></span></button>
+                                <input type="text" class="span1" name="job_start_date" value="<?php echo $minyawn_job->get_job_date(); ?>" id="job_start_date">
                             </div>
 
                         </div>
-                        <div class="input-append bootstrap-timepicker">
-                            <input id="job_end_time" type="text" class="timepicker-default input-small" value="<?php echo $minyawn_job->get_start_time_eform() ?>" name="job_end_time">
-                            <span class="add-on">
-                                <i class="icon-time"></i>
-                            </span>
+                    </div>
+                    <div class="input-append bootstrap-timepicker">
+                        <input id="job_start_time" type="text" value="<?php echo $minyawn_job->get_start_time_eform() ?>" class="timepicker-default input-small" name="job_start_time" >
+                        <span class="add-on">
+                            <i class="icon-time"></i>
+                        </span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="control-group small float-left">
+                        <label class="control-label" for="inputtask">End</label>
+                        <div class="controls">
+                            <div class="input-prepend input-datepicker">
+                                <button type="button" class="btn"><span class="fui-calendar"></span></button>
+                                <input type="text"  name="job_end_date" class="span1" readonly value="<?php echo $minyawn_job->get_job_end_date(); ?>" id="job_end_date">
+                            </div>
                         </div>
-                        <div class="clear"></div>
-                        <div class="control-group small">
-                            <label class="control-label" for="inputtask">Required</label>
-                            <div class="controls ">
-                                <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="<?php echo $minyawn_job->get_job_required_minyawns(); ?>" class="spinner">
+
+                    </div>
+                    <div class="input-append bootstrap-timepicker">
+                        <input id="job_end_time" type="text" class="timepicker-default input-small" value="<?php echo $minyawn_job->get_start_time_eform() ?>" name="job_end_time">
+                        <span class="add-on">
+                            <i class="icon-time"></i>
+                        </span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="control-group small">
+                        <label class="control-label" for="inputtask">Required</label>
+                        <div class="controls ">
+                            <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="<?php echo $minyawn_job->get_job_required_minyawns(); ?>" class="spinner">
+                        </div>
+                    </div>
+
+
+                    <div class="control-group small">
+                        <label class="control-label" for="inputtask">Wages</label>
+
+                        <div class="controls small">
+                            <div class="input-prepend">
+                                <span class="add-on"><i class="icon-dollar"></i></span>
+                                <input class="span2" id="job_wages" type="text" name="job_wages" value="<?php echo $minyawn_job->get_job_wages(); ?>">
                             </div>
                         </div>
 
 
-                        <div class="control-group small">
-                            <label class="control-label" for="inputtask">Wages</label>
-
-                            <div class="controls small">
-                                <div class="input-prepend">
-                                    <span class="add-on"><i class="icon-dollar"></i></span>
-                                    <input class="span2" id="job_wages" type="text" name="job_wages" value="<?php echo $minyawn_job->get_job_wages(); ?>">
-                                </div>
-                            </div>
-
-
+                    </div>
+                    <div class="control-group small">
+                        <label class="control-label" for="inputtask">Location</label>
+                        <div class="controls ">
+                            <input type="text" name="job_location" id="job_location" value="<?php echo $minyawn_job->get_job_location(); ?>" placeholder="" class="span9">
                         </div>
-                        <div class="control-group small">
-                            <label class="control-label" for="inputtask">Location</label>
-                            <div class="controls ">
-                                <input type="text" name="job_location" id="job_location" value="<?php echo $minyawn_job->get_job_location(); ?>" placeholder="" class="span9">
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="control-group small">
-                            <label class="control-label" for="inputtask">Tags</label>
-                            <div class="controls ">
-                                <input  name="job_tags" id="job_tags" value="<?php echo $minyawn_job->get_job_tags(); ?>" placeholder="" class="tm-input tagsinput">
-                            </div>
+                    <div class="control-group small">
+                        <label class="control-label" for="inputtask">Tags</label>
+                        <div class="controls ">
+                            <input  name="job_tags" id="job_tags" value="<?php echo $minyawn_job->get_job_tags(); ?>" placeholder="" class="tm-input tagsinput">
                         </div>
-                        <div class="control-group small">
-                            <label class="control-label" for="inputtask">Details</label>
-                            <div class="controls ">
-                                <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder="" style="height:70px;"><?php echo $minyawn_job->get_job_details() ?></textarea>
-                            </div>
+                    </div>
+                    <div class="control-group small">
+                        <label class="control-label" for="inputtask">Details</label>
+                        <div class="controls ">
+                            <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder="" style="height:70px;"><?php echo $minyawn_job->get_job_details() ?></textarea>
                         </div>
-                        <hr>
-                        <a id="update-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
-                        <div class="clear"></div>
-                    </form>
-                </div>
+                    </div>
+                    <hr>
+                    <a id="update-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
+                    <div class="clear"></div>
+                </form>
             </div>
         </div>
     </div>
@@ -268,9 +262,16 @@ jQuery("#collapse600").addClass("in");
     </div>
     <div class="modal-footer">
         <div>To Confirm & pay</div></br>
-        <span id='paypal_pay'><img src="<?php echo site_url() . "/wp-content/themes/minyawns/images/2.gif" ?>" width="20" height="20" /><input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"></span>
+        <span id='paypal_pay'><img id="paypal-loader" src="<?php echo site_url() . "/wp-content/themes/minyawns/images/2.gif" ?>" width="20" height="20" /><input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"></span>
 
     </div>
 </div>	
+
+<div id="requiredminyawnerror" class="modal hide fade in papypalform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-body">
+Please Select at-least one Minion
+    </div>
+</div>
 <?php
 get_footer();

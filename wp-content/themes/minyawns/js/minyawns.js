@@ -456,9 +456,9 @@ jQuery(document).ready(function($) {
                         $('#job_tags_tagsinput').find('span').remove()
                         $('html, body').animate({scrollTop: '0px'}, 300);
                         $("#job-success").show();
-                         $(".modal_ajax_large").hide();
+                        $(".modal_ajax_large").hide();
                         var id;
-                       load_browse_jobs(resp.post_id+'','single_json_my_jobs'); 
+                        load_browse_jobs(resp.post_id + '', 'single_json_my_jobs');
                     },
                     errors: function() {
                         $(_this).removeAttr('disabled');
@@ -499,14 +499,15 @@ jQuery(document).ready(function($) {
                 $(".load_ajax").hide();
                 var template = _.template($("#jobs-table").html());
                 $("#accordion2").empty();
-                
+
                 _.each(collection.models, function(model) {
                     var job_stat = job_status_li(model);
                     var job_collapse_button_var = job_collapse_button(model);
+                    var minyawns_grid = job_minyawns_grid(model)
                     if (model.toJSON().load_more === 1)
                         $("#load-more").hide();
                     //console.log(collection.models.length);
-                    var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var});
+                    var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                     $("#accordion2").append(html);
 
                 });
@@ -980,7 +981,7 @@ jQuery(document).ready(function($) {
 //
 //            if ($("#is_singluar").length > 0)
 //                window.location.reload();
-            load_browse_jobs(_job_id,'single_json');
+            load_browse_jobs(_job_id, 'single_json');
             $(".load_ajax1").hide();
         }, 'json');
     });
@@ -1016,7 +1017,7 @@ jQuery(document).ready(function($) {
         var dvH = $dv.height() + 2;
         op.height = _MH - dvH;
         op.eventItems = [];
-        var p = jQuery("#gridcontainer").bcalendar(op).BcalGetOp();
+        var p = $("#gridcontainer").bcalendar(op).BcalGetOp();
         if (p && p.datestrshow) {
             $("#txtdatetimeshow").text(p.datestrshow);
         }
@@ -1212,13 +1213,28 @@ jQuery(document).ready(function($) {
         alert("here");
         $(this).attr("checked", "checked");
     });
+
+
+
     $(".roundedTwo").live('click', function(e) {
+
+        var no_of_minyawns = 0;
+//      $('#paypal_form input[name=confirm-miny\\[\\]]:checked').each(function() {
+//          
+//            no_of_minyawns = no_of_minyawns + 1;
+//alert(no_of_minyawns);
+//        });
+
+
 
         if ($("#" + $(this).attr('id')).find(':checkbox').is(':checked')) {
             $("#" + $(this).attr('id')).find(':checkbox').not(this).prop('checked', false);
+
         } else {
+            //$("#hidden_selected_min").append(1);
 
             $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
+            //no_of_minyawns = no_of_minyawns + 1;
         }
 
 
@@ -1238,24 +1254,19 @@ jQuery(document).ready(function($) {
         });
     });
 
-    $('#confirm-hire').live('click', function(evt) {
+    $('#confirm-hire-button').live('click', function(evt) {
 
-        $("#confirm-hire").attr('disabled', 'disabled');
-        $(".load_ajaxconfirm").show();
-        evt.preventDefault();
-        var _this = $(this);
-        var _user_id = $(this).attr('data-user-id');
-
-        var _job_id;
+evt.preventDefault();
+var _job_id;
         var group_ids = "";
         var user_id = "";
         var sList = "";
         var no_of_minyawns = 0;
         $('input[name=confirm-miny\\[\\]]:checked').each(function() {
-            user_id = $(this).attr('data-user-id');
-            _job_id = $(this).attr('data-job-id');
+            //user_id = $(this).attr('data-user-id');
+            //_job_id = $(this).attr('data-job-id');
             // var status=$(this).prop("checked","checked");
-            sList += "" + $(this).attr('data-user-id') + "," + (this.checked ? "hired" : "applied") + "-";
+            //sList += "" + $(this).attr('data-user-id') + "," + (this.checked ? "hired" : "applied") + "-";
             //alert(sList);
             //alert(_job_id);
             group_ids += user_id + ',';
@@ -1264,32 +1275,86 @@ jQuery(document).ready(function($) {
             no_of_minyawns = no_of_minyawns + 1;
 
         });
+        if(no_of_minyawns === 0)
+            {
+                $("#requiredminyawnerror").modal('show')
+            }else
+                {
+                    
         $("#hdn_jobwages").val($("#job_wages").val());
         $("#no_of_minyawns").html(no_of_minyawns);
         $("#wages_per_minyawns").html($("#job_wages").val());
         var total = no_of_minyawns * $("#job_wages").val();
         $("#total_wages").html(total);
-        //return;
-
-        $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
-                {
-                    user_id: group_ids,
-                    job_id: _job_id,
-                    status: sList,
-                    returnUrl: $("#returnUrl").val(),
-                    cancelUrl: $("#cancelUrl").val(),
-                    notify_url: $("#notify_url").val(),
-                    currencyCode: $("#currencyCode").val(),
-                    jobwages: total
-                },
-        function(response) {
-            $(".load_ajaxconfirm").hide();
-            console.log(response);
-            $("#paypal_pay").html(response.content);
+        $("#confirminyawn").modal('show');   
+        $("#paypal-loader").hide();
+        }
+//$("#confirminyawn").modal('show');
+//$("#confirminyawn").modal('hide');
+     //   $("#confirm-hire-button").attr('href', '#confirminyawn');
+        //$("#confirm-hire-button").trigger('click');
 
 
-            $(".load_ajax4").hide();
-        }, 'json');
+
+
+//        $("#confirm-hire").attr('disabled', 'disabled');
+//        $(".load_ajaxconfirm").show();
+//        evt.preventDefault();
+//        var _this = $(this);
+//        var _user_id = $(this).attr('data-user-id');
+////        alert($('#paypal_form input:checked').length);
+////if($('#paypal_form input:checked').length === 0)
+////    return false;
+//
+//        var _job_id;
+//        var group_ids = "";
+//        var user_id = "";
+//        var sList = "";
+//        var no_of_minyawns = 0;
+//        $('input[name=confirm-miny\\[\\]]:checked').each(function() {
+//            user_id = $(this).attr('data-user-id');
+//            _job_id = $(this).attr('data-job-id');
+//            // var status=$(this).prop("checked","checked");
+//            sList += "" + $(this).attr('data-user-id') + "," + (this.checked ? "hired" : "applied") + "-";
+//            //alert(sList);
+//            //alert(_job_id);
+//            group_ids += user_id + ',';
+//
+//            $("#hire-thumb" + user_id).addClass('minyans-select');
+//            no_of_minyawns = no_of_minyawns + 1;
+//
+//        });
+//
+//
+//
+//
+//
+//        $("#hdn_jobwages").val($("#job_wages").val());
+//        $("#no_of_minyawns").html(no_of_minyawns);
+//        $("#wages_per_minyawns").html($("#job_wages").val());
+//        var total = no_of_minyawns * $("#job_wages").val();
+//        $("#total_wages").html(total);
+//        //return;
+//
+//        $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
+//                {
+//                    user_id: group_ids,
+//                    job_id: _job_id,
+//                    status: sList,
+//                    returnUrl: $("#returnUrl").val(),
+//                    cancelUrl: $("#cancelUrl").val(),
+//                    notify_url: $("#notify_url").val(),
+//                    currencyCode: $("#currencyCode").val(),
+//                    jobwages: total
+//                },
+//        function(response) {
+//            $(".load_ajaxconfirm").hide();
+//            console.log(response);
+//            $("#paypal_pay").html(response.content);
+//
+//
+//            $(".load_ajax4").hide();
+//        }, 'json');
     });
 
 
