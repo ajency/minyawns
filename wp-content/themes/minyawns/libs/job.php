@@ -189,11 +189,15 @@ $app->get('/fetchjobs/', function() use ($app) {
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
 
-                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
-                    
+                    if($user_to_job_rating->positive > 0)
+                        $rating='Well Done';
+                    else
+                        $rating='Rating:Awaited';
                //print_r($rating);exit();
-                    if ($rating === 'Rating:Awaited')
-                         $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 'Rating:Awaited';
+                   if($user_to_job_rating->positive > 0)
+                        $rating='Well Done';
+                    else
+                        $rating='Rating:Awaited';
                     
 
                    if($user_to_job_rating->status == 'applied' ) $status='Applied'; else $status='Hired';
@@ -532,10 +536,16 @@ $app->get('/jobminions/', function() use ($app) {
                      $user_to_job_rating = get_user_job_rating_data($minion_ids[$i],$_GET['job_id']);
 
                     $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 0;
+                    if($user_to_job_rating->positive > 0)
+                        $rating='Well Done';
+                    else
+                        $rating=0;
                     
-                    
-                    if ($rating == 'Rating:Awaited')
-                        $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 0;
+                    if ($user_to_job_rating->negative < 0)
+                        $rating='Terrible';
+                    else
+                        $rating=0;
+
 
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
@@ -543,12 +553,13 @@ $app->get('/jobminions/', function() use ($app) {
                         'college' => isset($all_meta_for_user['college']) ? $all_meta_for_user['college'] : '',
                         'major' => isset($all_meta_for_user['major']) ? $all_meta_for_user['major'] : '',
                         'user_skills' => isset($all_meta_for_user['user_skills']) ? $all_meta_for_user['user_skills'] : '',
-                        'linkedin' => isset($all_meta_for_user['linkedin']) ? $all_meta_for_user['linked_in'] : '',
+                        'linkedin' => isset($all_meta_for_user['linkedin']) ? $all_meta_for_user['linkedin'] : '',
                         'user_email' => isset($all_meta_for_user['nickname']) ? $all_meta_for_user['nickname'] : '', /* nick name temp fix */
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
                         'user_image' => $user['image'],
-                        'user_to_job_rating'=>$rating
+                        'user_to_job_rating_like'=>$user_to_job_rating->positive,
+                        'user_to_job_rating_dislike'=>$user_to_job_rating->negative
                     );
                 }
             }

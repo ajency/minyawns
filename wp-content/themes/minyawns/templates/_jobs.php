@@ -136,6 +136,9 @@
     <div class="social-link">
     <%= result.user_email %> 
     </div>
+     <div class="social-link">
+    <%= result.linkedin %> 
+    </div>
     <%
     var split_skills=result.user_skills.split(',');
     for(var index=0;index<=split_skills.length;index++){

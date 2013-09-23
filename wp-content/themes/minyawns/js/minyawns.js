@@ -1430,7 +1430,7 @@ jQuery(document).ready(function($) {
             }
             if (response.action === "vote-down") {
 
-                $("#total-dislike" + _user_id).contents().filter(function() {
+                $("#thumbs_down_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
 
