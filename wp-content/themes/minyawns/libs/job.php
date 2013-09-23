@@ -191,14 +191,13 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                     $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
                     
-                    
-                    if ($rating == 'Rating:Awaited')
-                        $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 'Rating:Awaited';
+               //print_r($rating);exit();
+                    if ($rating === 'Rating:Awaited')
+                         $rating = ($user_to_job_rating->negative) < 0 ? 'Terrible' : 'Rating:Awaited';
                     
 
                    if($user_to_job_rating->status == 'applied' ) $status='Applied'; else $status='Hired';
                 }
-
 
                 $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
 

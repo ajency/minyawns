@@ -508,7 +508,7 @@ jQuery(document).ready(function($) {
             success: function(collection, response) {
                 $(".load_ajax").hide();
                 var template = _.template($("#jobs-table").html());
-                $("#accordion2").empty();
+               // $("#accordion2").empty();
 
                 _.each(collection.models, function(model) {
                     var job_stat = job_status_li(model);
