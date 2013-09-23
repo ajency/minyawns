@@ -368,6 +368,8 @@ function job_collapse_button(model)
 //alert(logged_in_user_id);
                 for (var i = 0; i < model.toJSON().applied_user_id.length; i++)
                 {
+                    console.log(model.toJSON().user_rating_dislike[i]);
+                    console.log(model.toJSON().user_rating_like[i]);
 //                    alert(model.toJSON().applied_user_id[i]);
                     //alert(model.toJSON().user_to_job_status.indexOf('hired'));
                     // if (model.toJSON().applied_user_id[i] === logged_in_user_id  && model.toJSON().user_to_job_status.indexOf('hired') >=  0)
