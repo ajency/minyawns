@@ -1,4 +1,5 @@
 function load_browse_jobs(id, _action) {
+    //jQuery("#browse-jobs-table").append("<button id='load-more' class='btn load_more'> <div><span style='display: none;' class='load_ajax'></span> <b>Load more</b></div></button>");
     jQuery("#tab_identifier").val('0');
     jQuery(".load_ajax").css('display', 'block');
     jQuery("#calendar-jobs").hide(); /*bread crumbs*/
@@ -124,7 +125,7 @@ function load_browse_jobs(id, _action) {
 
 function fetch_my_jobs(id)
 {
-//    jQuery("#browse-jobs-table").find("button").remove();
+    //jQuery("#browse-jobs-table").find("button").remove();
     jQuery("#tab_identifier").val('1');
     jQuery("#accordion2").empty();
 //  jQuery("#list-my-jobs").empty();
