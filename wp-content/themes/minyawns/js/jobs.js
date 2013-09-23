@@ -1,5 +1,5 @@
 function load_browse_jobs(id, _action) {
-    
+    jQuery("#tab_identifier").val('0');
     jQuery(".load_ajax").css('display', 'block');
     jQuery("#calendar-jobs").hide(); /*bread crumbs*/
     jQuery("#calendar").hide();
@@ -124,7 +124,8 @@ function load_browse_jobs(id, _action) {
 
 function fetch_my_jobs(id)
 {
-    
+//    jQuery("#browse-jobs-table").find("button").remove();
+    jQuery("#tab_identifier").val('1');
     jQuery("#accordion2").empty();
 //  jQuery("#list-my-jobs").empty();
     //jQuery(".browse-jobs-table").empty();
@@ -371,7 +372,7 @@ function job_collapse_button(model)
                     //alert(model.toJSON().user_to_job_status.indexOf('hired'));
                     // if (model.toJSON().applied_user_id[i] === logged_in_user_id  && model.toJSON().user_to_job_status.indexOf('hired') >=  0)
                     //   status_button = "";
-                    if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status.indexOf('hired') === -1)
+                    if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
                         status_button = "<a href = '#' id = 'unapply-job' class ='btn btn-medium btn-block btn-danger red-btn' data-action ='unapply' data-job-id= " + model.toJSON().post_id + "  > Unapply </a>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'hired')
                         status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You are Hired.</span>";

@@ -17,107 +17,7 @@ require 'templates/_jobs.php';
     There doesn't seem to be anything here.
     </div>
 </script>
-<script type="text/templates" id="my-jobs">
-    <div id="job-list<%= post_id %>" class="row-fluid list-jobs my-jobs-1"  style="background: #C7C9C5;">
-    <div class="span12 jobs-details">
-    <div class="span2 img-logo"><a href="<?php echo site_url() ?>/profile/<%= job_author_id%>" target="_blank"> <%= job_author_logo %></a></div>
-    <div class="span3 minyawns-select"><span><%= minyawns_have_applied %></span>
-    <div>Minions Have Applied</div> 
-    </div>
-    <% if(todays_date_time > job_end_time_check){%>
-    <div class="span3 jobs-date"> 
-    <div class="job-complete"> Job Completed</div>
-    </div>
-    <%}else{ %>
-    <div class="span3 jobs-date"> 
-    <div class="posteddate"> Posted Date : <span><%= post_date %></span></div>
-    <div class="jobsdate"> Job Date : <span><%= job_start_date %></span></div>
-    </div>
-    <% }%>
-    <div class="span3 job-duration duration_mob">
-    <div class="row-fluid">
-    <div class="span5 mob-botm">
-    <span data-count="0" class="total-exchange-count"><%= job_start_time %></span>
-    <div>
-    <%=job_start_meridiem %>
-    </div>
-    </div>
-    <div class="span2">
-    <b class="time-bold">to</b>
-    </div>
-    <div class="span5">
-    <span data-count="0" class="total-exchange-count"><%=job_end_time %></span>
-    <div>
-    <%= job_end_meridiem %>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="span1 wages">
-    $<%= job_wages %> 
-    </div>
-    </div>
-    <div class="span12 expand">
-    <div class="row-fluid header-title">
-    <div class="span12">
-    <h3><a href=<?php echo site_url() ?>/job/<%= post_slug %> target="_blank" > <%= post_title %> <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
-    </div>
-    </div>
-    <br>
-    <div class="span9 details"> 
 
-    <div class="row-fluid">
-    <div class="span4 "> <div class="employer-image2"><%= job_author_logo %></div></div>
-    <div class="span8"><%= job_details %></div>
-    </div><br>
-    <div class="row-fluid minyawansgrid">
-    <% for(i=0;i<users_applied.length;i++){ %>
-    <a href="<?php echo site_url() ?>/profile/<%= applied_user_id[i]%>" target="_blank"><div class="span4"><%= user_profile_image[i] %><b><%= users_applied[i]%></b></a>
-
-    <a id="vote-up" href="#fakelink" employer-vote="1" job-id="<%= post_id %>">
-    <i class="icon-thumbs-up"></i> <%= user_rating_like[i] %>
-    </a> 
-    <a id="vote-down" href="#fakelink"  class="icon-thumbs" employer-vote="-1" job-id="<%= post_id %>">
-    <i class="icon-thumbs-down"></i> <%= user_rating_dislike[i] %>
-    </a>
-
-    </div>
-    <% }  %>
-    </div>
-    <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png" class="arrow-left"/>
-    </div>
-
-
-    <?php if (get_user_role() == "minyawn") { ?>
-        <div class="span3">
-        <div class="div-box-block">
-        <span class='load_ajax1' style="display:none"></span>
-        <% if(can_apply_job == 3){%>
-        <a href="#" class="required">You are hired!</a>
-        <% }else if( todays_date_time < job_end_time_check){%>
-        <a href="#" id="unapply-job" class="btn btn-medium btn-block btn-danger red-btn" data-action="unapply" data-job-id="<%= post_id %>">Unapply</a>
-        <% } %>
-        </div>
-        </div>
-    <?php } else { ?>
-
-        <div class="span3">
-        <div class="div-box-block">
-        <span class='load_ajax1' style="display:none"></span>
-        <% if (todays_date_time < job_end_time_check && is_job_owner == 1){%>
-        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="<%= post_id %>" style="width:70%;">Select Your Minions</a>
-        <% }else if(can_apply_job ==3 || todays_date_time > job_end_time_check ){ %>
-        <a href="<?php echo site_url() ?>/job/<%= post_slug %>" target="_blank" id="select-minyawn" class="btn btn-large btn-block btn-inverse  btn-rate" data-action="apply" data-job-id="<%= post_id %>">Rate Your Minions</a>
-        <% } %>
-        </div>
-        </div>
-        </div>
-    <?php } ?>
-
-    </div>
-    </div>
-
-</script>
 <div class="container">
 
     <ul class="nav nav-tabs nav-append-content jobs_menu">
@@ -125,7 +25,7 @@ require 'templates/_jobs.php';
         <li class="active" id="my_jobs"><a href="#tab2">My Jobs</a></li>
          
     </ul>  
-
+<input type="hidden" id="tab_identifier" />
     <div class="tab-content">
         <div class="tab-pane jobs_table " id="tab1">
             <div class="breadcrumb-text">

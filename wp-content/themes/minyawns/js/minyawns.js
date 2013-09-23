@@ -486,16 +486,26 @@ jQuery(document).ready(function($) {
 
         fetch_my_jobs(logged_in_user_id);
     });
+    
+    
+    
     $("#load-more").click(function(e) {
         $(".load_ajax").show();
 // alert(window.fetchj.models.length);
-        window.fetchj.fetch({
-            remove: false,
-            add: true,
-            data: {
+
+ var _data= {
                 'offset': window.fetchj.models.length
 
-            }, success: function(collection, response) {
+            };
+            
+            if($("#tab_identifier").val() === '1')
+            _data.my_jobs='1';
+        
+                window.fetchj.fetch({
+            remove: false,
+            add: true,
+            data: _data,
+            success: function(collection, response) {
                 $(".load_ajax").hide();
                 var template = _.template($("#jobs-table").html());
                 $("#accordion2").empty();

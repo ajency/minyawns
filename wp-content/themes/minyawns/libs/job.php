@@ -79,11 +79,6 @@ $app->get('/fetchjobs/', function() use ($app) {
 
             global $post, $wpdb;
             $prefix = $wpdb->prefix;
-
-
-
-
-
             $data = array();
             $current_user_id = get_current_user_id();
 
@@ -92,13 +87,13 @@ $app->get('/fetchjobs/', function() use ($app) {
                 if (get_user_role() == 'minyawn') {
                     $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID ";
-                    $limit = "";
+                    $limit = "LIMIT " . $_GET['offset'] . ",5";
                      $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
                 } else {
                     $tables = "$wpdb->posts,$wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . get_current_user_id() . "' AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
-                    $limit = "";
+                    $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
                 }
