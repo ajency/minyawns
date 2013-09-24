@@ -196,7 +196,7 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                     $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
 
-                    $rating = ($user_to_job_rating->negative) > 0 ? 'Terrible' : 'Rating:Awaited';
+                    $rating = ($user_to_job_rating->negative) > 0 ? 'Terrible' : $rating;
 
 
 
