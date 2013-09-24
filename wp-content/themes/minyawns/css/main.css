@@ -301,7 +301,7 @@ body .jobs_table .data-title .profile-job {
   border-right: 1px solid #ccc;
 }
 .jobs_table .header-title .job-wage {
-  width: 12%;
+  width: 8%;
   float: left;
   border-right: 1px solid #ccc;
 }
@@ -311,7 +311,7 @@ body .jobs_table .data-title .profile-job {
   border-right: 1px solid #ccc;
 }
 .jobs_table .header-title .job-action {
-  width: 6%;
+  width: 10%;
   float: left;
 }
 .jobs_table .header-title .header-sub {
@@ -397,7 +397,7 @@ body .jobs_table .data-title .profile-job {
   line-height: 34px;
 }
 .jobs_table .data-title .job-wage {
-  width: 12%;
+  width: 8%;
   float: left;
   height: 53px;
   border-right: 1px solid #ccc;
@@ -423,12 +423,21 @@ body .jobs_table .data-title .profile-job {
   margin-top: 10px;
 }
 .jobs_table .data-title .job-action {
-  width: 6%;
+  width: 10%;
   float: left;
   height: 53px;
 }
 .jobs_table .data-title .job-action .arrow-down {
   margin: 10px  auto;
+}
+.jobs_table .data-title .job-action ins {
+  font-size: 26px;
+  text-align: center;
+  color: #707070;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 30px;
+  display: block;
 }
 .jobs_table .data-title .header-sub {
   padding-top: 1%;
@@ -857,31 +866,44 @@ body .jobs_table .data-title .profile-job {
 .list-jobs .expand .span4 .like_btn .icon-thumbs {
   color: #F55568;
 }
-.list-jobs .expand .minyawansgrid .span6 {
+.list-jobs .expand .minyawansgrid .span4 {
   margin-left: 8px;
-  border-bottom: 1px dotted#CCC;
+  border: 1px dotted #ccc;
   margin-bottom: 5px;
   height: 60px;
 }
-.list-jobs .expand .minyawansgrid .span6 img {
+.list-jobs .expand .minyawansgrid .span4 img {
   width: 11%;
   padding: 5px;
+  display: inline-block;
 }
-.list-jobs .expand .minyawansgrid .span6 b {
-  width: 157px;
+.list-jobs .expand .minyawansgrid .span4 b {
+  width: 120px;
   display: inline-block;
   color: #333;
 }
-.list-jobs .expand .minyawansgrid .span6 .icon-thumbs-up {
+.list-jobs .expand .minyawansgrid .span4 .icon-thumbs-up {
   margin-left: 20px;
 }
-.list-jobs .expand .minyawansgrid .span6 .icon-thumbs {
+.list-jobs .expand .minyawansgrid .span4 .icon-thumbs {
   margin-left: 10px;
   color: #F65151;
 }
-.list-jobs .expand .minyawansgrid .span6:hover {
+.list-jobs .expand .minyawansgrid .span4:hover {
   cursor: pointer;
   background: #EEE9E9;
+}
+.list-jobs .expand .minyawansgrid .minyawns-job {
+  border-top: 1px dotted #CCC;
+  padding: 5px 0px;
+}
+.list-jobs .expand .minyawansgrid .minyawns-job b {
+  color: #1CAC16;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  width: auto;
+  margin-left: 3px;
 }
 .single-jobs .inner-data {
   padding: 14px 0;
@@ -1379,7 +1401,26 @@ body .jobs_table .data-title .profile-job {
 }
 .home {
   background: url(../images/back2.jpg) repeat-x;
-  background-position: 67px 53px;
+  background-position: 67px 283px;
+}
+.home .video-home {
+  height: 260px;
+  margin-top: -1px;
+}
+.home .video-home .row-fluid {
+  padding: 30px 0px;
+  background: rgba(185, 184, 184, 0.36);
+  margin-top: 10px;
+  padding-bottom: 19px;
+}
+.home .video-home .row-fluid img {
+  margin: auto;
+  display: block;
+}
+.home .video-home .row-fluid h3 {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
 }
 .home .heading-title {
   display: block;
@@ -1496,6 +1537,26 @@ body .jobs_table .data-title .profile-job {
     background-position: -1px;
     margin-bottom: -52px;
   }
+  body .video-pop iframe {
+    width: 100%;
+    height: auto;
+  }
+  body .video-home {
+    height: 540px !important;
+    margin-top: 29px!important;
+  }
+  body .video-home .row-fluid {
+    padding: 30px 0px;
+  }
+  body .video-home .row-fluid img {
+    margin: auto;
+    display: block;
+  }
+  body .video-home .row-fluid h3 {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+  }
   body .cropimage .modal-body input {
     display: block;
     margin-top: 10px;
@@ -1602,7 +1663,7 @@ body .jobs_table .data-title .profile-job {
     margin-top: -15px;
   }
   .home {
-    background-position: 60px 480px;
+    background-position: 60px 1050px;
   }
   .home #btn__login {
     float: none;

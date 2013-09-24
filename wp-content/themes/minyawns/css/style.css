@@ -453,5 +453,28 @@ font-size: 18px;
 			}
 		}
 		
-		
+		body .list-jobs .expand .minyawansgrid .span6 {
+margin-left: 8px;
+border-bottom: 1px dotted#CCC;
+margin-bottom: 5px;
+}
+body .list-jobs .expand .minyawansgrid .span6 img {
+width: 11%;
+padding: 5px;
+}
+body .list-jobs .expand .minyawansgrid .span6 b {
+width: 157px;
+display: inline-block;
+}
+body .list-jobs .expand .minyawansgrid .span6 .icon-thumbs-up {
+margin-left: 20px;
+}
+body .list-jobs .expand .minyawansgrid .span6 .icon-thumbs {
+margin-left: 10px;
+color: #F65151;
+}
+body .list-jobs .expand .minyawansgrid .span6:hover {
+cursor: pointer;
+background: #EEE9E9;
+}
 		

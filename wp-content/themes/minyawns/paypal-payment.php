@@ -8,7 +8,7 @@
 global $minyawn_job;
 global $wpdb;
 
-if(site_url()== "www.minyawns.com"){    
+if(strpos(site_url(),'com')!= "false") {    
 $return_url = 'http://www.minyawns.com/success-payment/';
 $cancel_url = 'http://www.minyawns.com/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
 $notify_url = 'http://www.minyawns.com/paypal-payments/';
@@ -48,7 +48,7 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	
 	
 	// Redirect to paypal IPN
-	if(site_url() == "www.minyawns.com")
+	if(strpos(site_url(),'com')!= "false") 
         header("location:https://www.paypal.com/cgi-bin/webscr".$querystring);
 	else
         header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
@@ -134,7 +134,7 @@ else
 			
 			//$url = $paypal_adr;
 			//$url = "https://www.paypal.com/cgi-bin/webscr";
-			if(site_url() == "www.minyawns.com")
+			if(strpos(site_url(),'com')!= "false") 
                         $url = 'https://www.paypal.com/webscr';
 			else
                         $url = 'https://www.sandbox.paypal.com/webscr';

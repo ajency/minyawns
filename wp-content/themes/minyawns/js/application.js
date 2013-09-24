@@ -193,7 +193,7 @@ String.prototype.repeat = function(num) {
         $('#job_start_time').timepicker({
             minuteStep: 1,
             template: 'modal',
-            showSeconds: true,
+            showSeconds: false,
             showMeridian: true,
             //defaultTime:''
         });
@@ -201,7 +201,7 @@ String.prototype.repeat = function(num) {
         $('#job_end_time').timepicker({
             minuteStep: 1,
             template: 'modal',
-            showSeconds: true,
+            showSeconds: false,
             showMeridian: true,
             //defaultTime:'current'
         });
