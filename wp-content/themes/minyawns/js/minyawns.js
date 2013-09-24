@@ -543,9 +543,13 @@ jQuery(document).ready(function($) {
             _data.my_jobs = '1';
             // $("#accordion24").empty();
         }
+        
+        var status=true;
+        
+        
         window.fetchj.fetch({
             remove: true,
-            //add: true,
+            add: status,
             data: _data,
             success: function(collection, response) {
                 $(".load_ajax").hide();
