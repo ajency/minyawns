@@ -1,6 +1,6 @@
 <script type="text/template" id="jobs-table">
 
-    <div style="clear:both;">	
+    <div style="clear:both;">
     </div>
     <div class="accordion-group view" id="job-accordion-<%= result.post_id %>">
     <div id="last-job-id" last-job="<%= result.post_id %>" value="<%= result.post_id %>">
@@ -66,19 +66,19 @@
     <div class="row-fluid job-data expand">
     <div class="span9 inner-data details">
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="<?php echo site_url() ?>/profile/<%= result.job_author_id%>" target="_blank" class="request_link"><%= result.job_author %></a> 
+    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="<?php echo site_url() ?>/profile/<%= result.job_author_id%>" target="_blank" class="request_link"><%= result.job_author %></a>
     </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Location :</b></div><div class="span9"><%= result.job_location %> 
+    <div class="span3 "><b>Location :</b></div><div class="span9"><%= result.job_location %>
     </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Details :</b></div><div class="span9"><%= result.job_details.substring(0, 140) %> 
+    <div class="span3 "><b>Details :</b></div><div class="span9"><%= result.job_details.substring(0, 140) %>
     </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%> 
+    <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%>
     </div>
     </div>
     <div class="row-fluid minyawansgrid">
@@ -97,7 +97,7 @@
     </div>
     </div>
 
-    <form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">   
+    <form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">
 
     <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $returnUrl; ?>" / >
     <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
@@ -112,11 +112,11 @@
     </div>
 </script>
 
-<script type="text/template" id="minion-cards">  
+<script type="text/template" id="minion-cards">
 
-    
+
     <li class="span3" id="<%= result.user_id %>" >
-   
+
     <div class="thumbnail">
     <div class="caption"  >
     <div class="minyawns-img" onclick="load_profile(<%= result.user_id %>)">
@@ -134,10 +134,10 @@
     <div class="collage"> <%= result.college%> </div>
     <div class="collage"> <%= result.major%> </div>
     <div class="social-link">
-    <%= result.user_email %> 
+    <%= result.user_email %>
     </div>
      <div class="social-link">
-    <%= result.linkedin %> 
+    <%= result.linkedin %>
     </div>
     <%
     var split_skills=result.user_skills.split(',');
@@ -151,9 +151,9 @@
     </div>
     </div>
     </div>
-    
+
     </li>
-  
+
 </script>
 
 <script type="text/template" id="confirm-hire">
@@ -195,4 +195,11 @@
     </ul>
     </div>
 
+</script>
+
+<script type="text/templates" id="no-result">
+    <div class="alert alert-info myjobs no-job ">
+    <b style="text-align: center">No Jobs Available ! </b>&nbsp;
+    There doesn't seem to be anything here.
+    </div>
 </script>

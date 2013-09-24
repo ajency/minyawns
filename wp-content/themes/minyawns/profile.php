@@ -8,103 +8,16 @@ require 'templates/_jobs.php';
 ?>
 <script>
     jQuery(document).ready(function($) {
-     
-        if (is_logged_in.length === 0 ) {
+
+        if (is_logged_in.length === 0) {
             jQuery("#change-avatar-span").attr("href", "#")
             jQuery("#change-avatar-span").find("span").remove();
         }
-        
+
         jQuery("#tab_identifier").val('1');
     });
 </script>
-<script type="text/templates" id="no-result">
-    <div class="alert alert-info myjobs no-job ">
-    <b style="text-align: center">No Jobs Available ! </b>&nbsp;
-    There doesn't seem to be anything here.
-    </div>
-</script>
-<script type="text/template" id="browse-jobs-table-profile">
 
-    <div style="clear:both;">	</div>
-    <div class="accordion-group">
-    <div id="last-job-id" last-job="<%= post_id %>" value="<%= post_id %>"></div>
-    <div class="accordion-heading">
-    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= post_id %>">
-    <div class="span12 data-title available">
-    <div class="job-logo header-sub"> <div class="logo"><%= job_author_logo %></div></div>
-    <div class="job-date header-sub">
-    <span class="service-total-demand" data-count="0"><%= job_start_day %></span>
-    <div>
-    <%= job_start_month %><b class="service-client-demand" data-count="0"><%= job_start_year %></b>
-    </div>
-    <div class="demand"><%= job_day %></div>
-    </div>
-    <div class="job-time header-sub duration_mob">
-    <div class="row-fluid">
-    <div class="span5 mob-botm">
-    <span data-count="0" class="total-exchange-count"><%= job_start_time %></span>
-    <div>
-    <%= job_start_meridiem %>
-    </div>
-    </div>
-    <div class="span2">
-    <b class="time-bold">to</b>
-    </div>
-    <div class="span5">
-    <span data-count="0" class="total-exchange-count"><%= job_end_time %></span>
-    <div>
-    <%= job_end_meridiem %>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <div class="job-wage header-sub">
-    <ins><span class="amount">$ <%= job_wages %></span></ins>
-    </div>
-
-    <div class="job-progress profile-job header-sub">
-
-    <?php if (get_user_role() == 'minyawn') { ?>
-        <%  if(can_apply_job == 0 && todays_date_time < job_end_time_check) %>
-        <span class="label-available">Available</span>
-
-
-        <% else if (todays_date_time > job_end_time_check){%>
-        <span class="label-unavailable">This job is complete</span>
-
-        <% }else if (can_apply_job == 3){%>
-        <span class="label-hired">You are hired for this job.</span>
-        <% }else if (can_apply_job == 2 || can_apply_job == 1) {%>
-        <span class="label-available">You have applied for this job.</span>
-
-        <% }
-        %> 
-    <?php } else { ?>
-
-        <%  if(is_job_owner == 1 && can_apply_job == 0 && minyawns_have_applied == 0 ) %>
-        <span class="label-available">No Applications yet</span>
-        <%  else if(can_apply_job == 3)%>
-        <span class="label-available">Minions Hired</span>
-        <% else if(can_apply_job == 2 || minyawns_have_applied == 1)%>
-        <span class="label-available">Minions Have Applied</span>
-    <?php } ?>
-    </div>
-
-
-    </div>
-
-
-    </div>
-
-
-
-    </div>
-
-    <!-- Row Div -->
-
-
-</script>
 <div id="myprofilepic" class="modal hide fade cropimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -174,7 +87,7 @@ require 'templates/_jobs.php';
                                 echo get_avatar(get_user_id(), 168)
                                 ?>
 
-<?php if (is_user_logged_in())  ?>
+                            <?php if (is_user_logged_in())  ?>
                             <span >Change Avatar</span>
                         </a>
                         <input id="change-avatar" type="file" name="files" style="visibility:hidden">
@@ -188,20 +101,20 @@ require 'templates/_jobs.php';
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?></h4> 
                         <div class="row-fluid profile-list">
-<?php if (get_user_role() === 'minyawn'): ?>
+                            <?php if (get_user_role() === 'minyawn'): ?>
 
 
                                 <div class="span2">
                                     College :
                                 </div>
                                 <div class="span10 college">
-    <?php user_college(); ?>
+                                    <?php user_college(); ?>
                                 </div>
                                 <div class="span2">
                                     Major :
                                 </div>
                                 <div class="span10 major">
-    <?php user_college_major(); ?>
+                                    <?php user_college_major(); ?>
                                 </div>
                                 <div class="span2">
                                     Social Page :
@@ -223,20 +136,20 @@ require 'templates/_jobs.php';
                                     }
                                     ?>
                                 </div>
-    <?php
-else :
-    ?>		
+                                <?php
+                            else :
+                                ?>		
                                 <div class="span3">
                                     Location :
                                 </div>
                                 <div class="span9 location">
-    <?php user_location(); ?>
+                                    <?php user_location(); ?>
                                 </div>
                                 <div class="span3">
                                     Body :
                                 </div>
                                 <div class="span9 profilebody">
-    <?php user_profile_body(); ?>
+                                    <?php user_profile_body(); ?>
                                 </div>
                                 <div class="span3">
                                     Company Website :
@@ -244,13 +157,13 @@ else :
                                 <div class="span9 company_website">
                                     - <a href="<?php user_company_website(); ?>" target="_blank"><?php user_company_website(); ?></a>
                                 </div>
-<?php
-endif;
-?>
+                            <?php
+                            endif;
+                            ?>
                         </div>
 
                     </div>
-<?php if (get_user_role() === 'minyawn'): ?>
+                    <?php if (get_user_role() === 'minyawn'): ?>
                         <div class="span2">
                             <br>
                             <div class="like_btn"><br><br>
@@ -276,7 +189,7 @@ endif;
                                 </a> 
                             </div>
                         </div>	
-<?php endif; ?>			
+                    <?php endif; ?>			
                 </div>
 
                 <hr>
@@ -315,7 +228,7 @@ endif;
                     <form class="form-horizontal frm-edit" id="profile-edit-form">
 
 
-<?php if (get_user_role() === 'minyawn'): ?>
+                        <?php if (get_user_role() === 'minyawn'): ?>
                             <div class="control-group">
                                 <label class="control-label" for="inputFirst">First Name</label>
                                 <div class="controls">
@@ -359,7 +272,7 @@ endif;
                                     <input type="text" id="linkedin"  name="linkedin" placeholder="www.linkedin.in/username" value="<?php user_profile_linkedin(); ?>" class="input">
                                 </div>
                             </div>
-<?php else : ?>
+                        <?php else : ?>
                             <div class="control-group">
                                 <label class="control-label" for="inputFirst">Company Name</label>
                                 <div class="controls">
@@ -385,7 +298,7 @@ endif;
                                     <textarea rows="5" type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" style=" width: 90% !important; " ><?php user_profile_body(); ?></textarea>
                                 </div>
                             </div>
-<?php endif; ?>
+                        <?php endif; ?>
                         <hr>
                         <a href="#" class="btn btn-large btn-block btn-inverse span2 float-right" id="update-profile-info">Update Info</a>
                         <input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
@@ -394,9 +307,9 @@ endif;
                 </div>
             </div>
             <div class="clear"></div>
-<?php
+            <?php
 //} 
-?>
+            ?>
         </div>
     </div>
 </div>

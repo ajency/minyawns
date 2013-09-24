@@ -497,9 +497,9 @@ jQuery(document).ready(function($) {
 
         };
 
-        if ($("#tab_identifier").val() === '1'){
+        if ($("#tab_identifier").val() === '1') {
             _data.my_jobs = '1';
-       // $("#accordion24").empty();
+            // $("#accordion24").empty();
         }
         window.fetchj.fetch({
             remove: true,
@@ -508,7 +508,7 @@ jQuery(document).ready(function($) {
             success: function(collection, response) {
                 $(".load_ajax").hide();
                 var template = _.template($("#jobs-table").html());
-               // $("#accordion2").empty();
+                // $("#accordion2").empty();
 
                 _.each(collection.models, function(model) {
                     var job_stat = job_status_li(model);
@@ -849,101 +849,77 @@ jQuery(document).ready(function($) {
 // alert(data.job_task);
 //remove success
                         _.pluck(data, 'success');
-                        if (data.job_task === undefined)
-                        {
-                            data.job_task = '';
-                        }
-                        if (data.job_task !== undefined) {
-                            $('#single-jobs').find('a').html(data.job_task);
-                        }
-
-                        if (data.job_start_date !== undefined)
-                        {
-                            $('.jobsdate').find('span').html(data.job_start_date);
-                        }
-
-                        if (data.job_wages !== undefined)
-                        {
-                            $(".wages").html("$" + data.job_wages);
-
-                        }
-                        /* to be done
-                         var jsDate = new Date(data.job_start_time);
-                         
-                         if (data.job_start_time !== undefined)
-                         {
-                         
-                         }
-                         if (data.job_end_time !== undefined)
-                         {
-                         
-                         } */
-                        if (data.job_details !== undefined)
-                        {
-                            $(".jobdesc").find('div').html(data.job_details);
-                        }
-                        if (data.job_location != undefined)
-                        {
-                            $(".joblocation").html(data.job_location);
-                        }
-
-
-                        //joblocation
-                        // tags
-
-//                //minyawns role
-//                $('#profile-view').find('.college').text(data.college);
-//                $('#profile-view').find('.major').text(data.major);
-//                var skills = '';
-//                var skill_name = '';
+                        window.location.reload();
+                     //   load_browse_jobs(model.toJSON().post_id, 'single_job');
+//                        if (data.job_task === undefined)
+//                        {
+//                            data.job_task = '';
+//                        }
+//                        if (data.job_task !== undefined) {
+//                            $('#single-jobs').find('a').html(data.job_task);
+//                        }
 //
-////                _.each(data.user_skills2, function(ele, index) {
-////                    skills += "<span class='label label-small'>" + ele + "</span>";
-////                });
-//                if (data.first_name != undefined)
-//                    skill_name = data.user_skills2.split(',');
+//                        if (data.job_start_date !== undefined)
+//                        {
+//                            $('.job-date').find('span').html(data.job_start_date);
+//                        }
 //
-//                for (i = 0; i < skill_name.length; i++)
-//                {
-//                    skills += "<span class='label label-small'>" + skill_name[i] + "</span>";
-//                }
+//                        if (data.job_wages !== undefined)
+//                        {
+//                            $(".wages").html("$" + data.amount);
 //
-//                $('#profile-view').find('.user_skills').html(skills);
-//                //employer role
-//                $('#profile-view').find('.location').text(data.location);
-//                $('#profile-view').find('.profilebody').text(data.profilebody);
-//                $('#profile-view').find('.company_website').html(' <a href="' + data.company_website + '">' + data.company_website + '</a>');
-
-
-                        $("#success_msg").show();
-                        $("#ajax-load").hide();
-                        //get model data
-                        // $(_this).removeAttr('disabled');
-                        e.preventDefault();
-                        var span1 = $('#single-jobs');
-                        var span2 = $('#edit-job-form');
-                        var w = $(span1).width();
-                        if (!$(this).hasClass('loaded'))
-                        {
-                            if ($(this).hasClass('view'))
-                            {
-
-                                $(span1).animate({left: 0}, 500);
-                                $(span2).show().animate({left: w}, 500);
-                                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
-                            }
-                            else
-                            {
-
-                                $(this).removeClass('loaded');
-                                $('#edit-job-form').find('div.alert').remove();
-                                $(span1).show().animate({left: 0}, 500);
-                                $(span2).css({'left': w, 'top': 0});
-                                $(span2).hide().animate({left: 0}, 500);
-                                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
-                            }
-                        }
-//$("#add-job-form").find('input:text').val('');
+//                        }
+//                       
+//                       
+//                         var jsDate = new Date(data.job_start_time);
+//                         var jsendDate=new Date(data.job_end_time);
+//                         alert(data.job_start_time);alert(data.job_end_time);
+//                         if (data.job_start_time !== undefined)
+//                         {
+//                         
+//                         }
+//                         if (data.job_end_time !== undefined)
+//                         {
+//                         
+//                         } 
+//                        if (data.job_details !== undefined)
+//                        {
+//                            $(".jobdesc").find('div').html(data.job_details);
+//                        }
+//                        if (data.job_location != undefined)
+//                        {
+//                            $(".joblocation").html(data.job_location);
+//                        }
+//
+//                        $("#success_msg").show();
+//                        $("#ajax-load").hide();
+//                        //get model data
+//                        // $(_this).removeAttr('disabled');
+//                        e.preventDefault();
+//                        var span1 = $('.singlejobedit');
+//                        var span2 = $('#edit-job-form');
+//                        var w = $(span1).width();
+//                        if (!$(this).hasClass('loaded'))
+//                        {
+//                            if ($(this).hasClass('view'))
+//                            {
+//
+//                                $(span1).animate({left: 0}, 500);
+//                                $(span2).show().animate({left: w}, 500);
+//                                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+//                            }
+//                            else
+//                            {
+//
+//                                $(this).removeClass('loaded');
+//                                $('#edit-job-form').find('div.alert').remove();
+//                                $(span1).show().animate({left: 0}, 500);
+//                                $(span2).css({'left': w, 'top': 0});
+//                                $(span2).hide().animate({left: 0}, 500);
+//                                //$('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+//                            }
+//                        }
+////$("#add-job-form").find('input:text').val('');
 
                     },
                     errors: function() {
@@ -968,34 +944,8 @@ jQuery(document).ready(function($) {
                     job_id: parseInt(_job_id)
                 },
         function(response) {
-//            $(".load_ajax1").hide();
-//            if (response.success == 1)
-//            {
-//
-//                $("#job-list" + _job_id).hide('slow', function() {
-//                    $("#job-list" + _job_id).remove();
-//                });
-//                if (response.new_action == 'apply')
-//                {
-//                    $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
-//                    $(_this).attr('data-action', 'apply');
-//                }
-//                if (response.new_action == 'unapply')
-//                {
-//                    $(_this).addClass('green-btn btn-success').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
-//                    $(_this).attr('data-action', 'unapply');
-//                }
-//
-//            } else if (response.success == 2)
-//            {
-//                $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
-//                $(_this).attr('data-action', 'req_complete');
-//            }
-//
-//
-//            if ($("#is_singluar").length > 0)
-//                window.location.reload();
-            load_browse_jobs(_job_id, 'single_json');
+
+            load_browse_jobs(_job_id, 'single_json');/*appends a single row to the table*/
             $(".load_ajax1").hide();
         }, 'json');
     });
@@ -1004,205 +954,7 @@ jQuery(document).ready(function($) {
 
 
 
-    function onload_calendar()
-    {
 
-        var view = "month";
-        var DATA_FEED_URL = SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobscalendar';
-        var op = {
-            view: view,
-            theme: 3,
-            showday: new Date(),
-            EditCmdhandler: Edit,
-            DeleteCmdhandler: Delete,
-            ViewCmdhandler: View,
-            onWeekOrMonthToDay: wtd,
-            onBeforeRequestData: cal_beforerequest,
-            onAfterRequestData: cal_afterrequest,
-            onRequestDataError: cal_onerror,
-            autoload: true,
-            url: DATA_FEED_URL + "?calendar=true&offset=0",
-            //quickAddUrl: DATA_FEED_URL + "?method=add",
-            // quickUpdateUrl: DATA_FEED_URL + "?method=update",
-            //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
-        };
-        var $dv = $("#calhead");
-        var _MH = document.documentElement.clientHeight;
-        var dvH = $dv.height() + 2;
-        op.height = _MH - dvH;
-        op.eventItems = [];
-        var p = jQuery("#gridcontainer").bcalendar(op).BcalGetOp();
-        if (p && p.datestrshow) {
-            $("#txtdatetimeshow").text(p.datestrshow);
-        }
-
-        jQuery("#caltoolbar").noSelect();
-        $("#hdtxtshow").datepicker({picker: "#txtdatetimeshow", showtarget: $("#txtdatetimeshow"),
-            onReturn: function(r) {
-                var p = $("#gridcontainer").gotoDate(r).BcalGetOp();
-                if (p && p.datestrshow) {
-                    $("#txtdatetimeshow").text(p.datestrshow);
-                }
-
-            }
-        });
-        function cal_beforerequest(type)
-        {
-            var t = "Loading data...";
-            switch (type)
-            {
-                case 1:
-                    t = "Loading data...";
-                    break;
-                case 2:
-                case 3:
-                case 4:
-                    t = "The request is being processed ...";
-                    break;
-            }
-            $("#errorpannel").hide();
-            $("#loadingpannel").html(t).show();
-            $("#loader_ajax_calendar").hide();
-        }
-        function cal_afterrequest(type)
-        {
-            switch (type)
-            {
-                case 1:
-                    $("#loadingpannel").hide();
-                    break;
-                case 2:
-                case 3:
-                case 4:
-                    $("#loadingpannel").html("Success!");
-                    window.setTimeout(function() {
-                        $("#loadingpannel").hide();
-                    }, 2000);
-                    break;
-            }
-
-        }
-        function cal_onerror(type, data)
-        {
-            $("#errorpannel").show();
-        }
-        function Edit(data)
-        {
-            var eurl = "edit.php?id={0}&start={2}&end={3}&isallday={4}&title={1}";
-            if (data)
-            {
-                var url = StrFormat(eurl, data);
-                OpenModelWindow(url, {width: 600, height: 400, caption: "Manage  The Calendar", onclose: function() {
-                        $("#gridcontainer").reload();
-                    }});
-            }
-        }
-        function View(data)
-        {
-            var str = "";
-            $.each(data, function(i, item) {
-                str += "[" + i + "]: " + item + "\n";
-            });
-            alert(str);
-        }
-        function Delete(data, callback)
-        {
-
-            $.alerts.okButton = "Ok";
-            $.alerts.cancelButton = "Cancel";
-            hiConfirm("Are You Sure to Delete this Event", 'Confirm', function(r) {
-                r && callback(0);
-            });
-        }
-        function wtd(p)
-        {
-            if (p && p.datestrshow) {
-                $("#txtdatetimeshow").text(p.datestrshow);
-            }
-            $("#caltoolbar div.fcurrent").each(function() {
-                $(this).removeClass("fcurrent");
-            })
-            $("#showdaybtn").addClass("fcurrent");
-        }
-//to show day view
-        $("#showdaybtn").click(function(e) {
-//document.location.href="#day";
-            $("#caltoolbar div.fcurrent").each(function() {
-                $(this).removeClass("fcurrent");
-            })
-            $(this).addClass("fcurrent");
-            var p = jQuery("#gridcontainer").swtichView("day").BcalGetOp();
-            if (p && p.datestrshow) {
-                $("#txtdatetimeshow").text(p.datestrshow);
-            }
-        });
-        //to show week view
-        $("#showweekbtn").click(function(e) {
-//document.location.href="#week";
-            $("#caltoolbar div.fcurrent").each(function() {
-                $(this).removeClass("fcurrent");
-            })
-            $(this).addClass("fcurrent");
-            var p = jQuery("#gridcontainer").swtichView("week").BcalGetOp();
-            if (p && p.datestrshow) {
-                $("#txtdatetimeshow").text(p.datestrshow);
-            }
-
-        });
-        //to show month view
-        $("#showmonthbtn").click(function(e) {
-//document.location.href="#month";
-            $("#caltoolbar div.fcurrent").each(function() {
-                $(this).removeClass("fcurrent");
-            })
-            $(this).addClass("fcurrent");
-            var p = jQuery("#gridcontainer").swtichView("month").BcalGetOp();
-            if (p && p.datestrshow) {
-                $("#txtdatetimeshow").text(p.datestrshow);
-            }
-        });
-        $("#showreflashbtn").click(function(e) {
-            jQuery("#gridcontainer").reload();
-        });
-        //Add a new event
-        $("#faddbtn").click(function(e) {
-            var url = "edit.html";
-            OpenModelWindow(url, {width: 500, height: 400, caption: "Create New Calendar"});
-        });
-        //go to today
-        $("#showtodaybtn").click(function(e) {
-            var p = jQuery("#gridcontainer").gotoDate().BcalGetOp();
-            if (p && p.datestrshow) {
-                $("#txtdatetimeshow").text(p.datestrshow);
-            }
-
-
-        });
-        //previous date range
-        $("#sfprevbtn").click(function(e) {
-
-            var p = jQuery("#gridcontainer").previousRange().BcalGetOp();
-            if (p && p.datestrshow) {
-                $("#txtdatetimeshow").text(p.datestrshow);
-            }
-
-        });
-        //next date range
-        $("#sfnextbtn").click(function(e) {
-            var p = jQuery("#gridcontainer").nextRange().BcalGetOp();
-            if (p && p.datestrshow) {
-                $("#txtdatetimeshow").text(p.datestrshow);
-            }
-        });
-
-
-        $('.collapse').live('show', function() {
-            $(this).parent().find('a').addClass('open'); //add active state to button on open
-        });
-        $('.collapse').live('hide', function() {
-            $(this).parent().find('a').removeClass('open'); //remove active state to button on close
-        });
-    }
 
     $("#show-calendar").live('click', function(e) {
         onload_calendar(); /*load the calendar*/
@@ -1323,72 +1075,7 @@ jQuery(document).ready(function($) {
             $("#confirminyawn").modal('show');
             $("#paypal-loader").hide();
         }
-//$("#confirminyawn").modal('show');
-//$("#confirminyawn").modal('hide');
-        //   $("#confirm-hire-button").attr('href', '#confirminyawn');
-        //$("#confirm-hire-button").trigger('click');
 
-
-
-
-//        $("#confirm-hire").attr('disabled', 'disabled');
-//        $(".load_ajaxconfirm").show();
-//        evt.preventDefault();
-//        var _this = $(this);
-//        var _user_id = $(this).attr('data-user-id');
-////        alert($('#paypal_form input:checked').length);
-////if($('#paypal_form input:checked').length === 0)
-////    return false;
-//
-//        var _job_id;
-//        var group_ids = "";
-//        var user_id = "";
-//        var sList = "";
-//        var no_of_minyawns = 0;
-//        $('input[name=confirm-miny\\[\\]]:checked').each(function() {
-//            user_id = $(this).attr('data-user-id');
-//            _job_id = $(this).attr('data-job-id');
-//            // var status=$(this).prop("checked","checked");
-//            sList += "" + $(this).attr('data-user-id') + "," + (this.checked ? "hired" : "applied") + "-";
-//            //alert(sList);
-//            //alert(_job_id);
-//            group_ids += user_id + ',';
-//
-//            $("#hire-thumb" + user_id).addClass('minyans-select');
-//            no_of_minyawns = no_of_minyawns + 1;
-//
-//        });
-//
-//
-//
-//
-//
-//        $("#hdn_jobwages").val($("#job_wages").val());
-//        $("#no_of_minyawns").html(no_of_minyawns);
-//        $("#wages_per_minyawns").html($("#job_wages").val());
-//        var total = no_of_minyawns * $("#job_wages").val();
-//        $("#total_wages").html(total);
-//        //return;
-//
-//        $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
-//                {
-//                    user_id: group_ids,
-//                    job_id: _job_id,
-//                    status: sList,
-//                    returnUrl: $("#returnUrl").val(),
-//                    cancelUrl: $("#cancelUrl").val(),
-//                    notify_url: $("#notify_url").val(),
-//                    currencyCode: $("#currencyCode").val(),
-//                    jobwages: total
-//                },
-//        function(response) {
-//            $(".load_ajaxconfirm").hide();
-//            console.log(response);
-//            $("#paypal_pay").html(response.content);
-//
-//
-//            $(".load_ajax4").hide();
-//        }, 'json');
     });
 
 
@@ -1495,15 +1182,15 @@ jQuery('a #edit-user-profile').click(function() {
 //        jQuery(".collapse").collapse({"toggle" : "show"});
 //    });
 
-jQuery('#frm_signup').keydown(function(e){
+jQuery('#frm_signup').keydown(function(e) {
     if (e.keyCode === 13) { // If Enter key pressed
-         jQuery('button').click();
+        jQuery('button').click();
     }
 });
 
 function load_profile(id)
 {
-   
-    var url=siteurl+"/profile/"+id;
+
+    var url = siteurl + "/profile/" + id;
     window.open(url, '_blank');
 }

@@ -11,12 +11,7 @@ require 'templates/_jobs.php';
 <!-- Row Div -->
 
 
-<script type="text/templates" id="no-result">
-    <div class="alert alert-info myjobs no-job ">
-    <b style="text-align: center">No Jobs Available ! </b>&nbsp;
-    There doesn't seem to be anything here.
-    </div>
-</script>
+
 
 <div class="container">
 

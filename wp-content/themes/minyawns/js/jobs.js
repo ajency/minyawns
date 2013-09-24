@@ -77,14 +77,15 @@ function load_browse_jobs(id, _action) {
                             //    jQuery(".jobs_menu").append("<li class='active' id='my_jobsm'><a href='#tab2'>'" + model.toJSON().load_more + "'</a></li>");
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                             jQuery("#accordion24").prepend(html);
-
+ 
 
 
 
                         } else {
-                            jQuery("#accordion2").empty();
+                            jQuery(".singlejobedit").empty();
                             jQuery("#hidden_minion_id").val(model.toJSON().applied_user_id);
                             jQuery("#job_id").val(id);
+                             
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                             jQuery(".singlejobedit").animate({
                                 left: parseInt(jQuery(".singlejobedit").css('left'), 100) === 0 ?

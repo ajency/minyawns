@@ -56,26 +56,26 @@ $app->post('/addjob', function() use ($app) {
                     $end = $start;
                     update_post_meta($post_id, $key, strtotime($end));
                 } elseif ($key == "job_end_time") {
-                 //  print_r(strtotime(date("j-m-Y",  strtotime($start)).$value));
-                 //   $currentDate =  date("j-m-Y H:i:s A", strtotime($end . $value));
-                  //  print_r(strtotime($end . $value));print_r("current_time->");print_r(current_time('timestamp'));
-                   // print_r($currentDate);exit();
-                    
+                    //  print_r(strtotime(date("j-m-Y",  strtotime($start)).$value));
+                    //   $currentDate =  date("j-m-Y H:i:s A", strtotime($end . $value));
+                    //  print_r(strtotime($end . $value));print_r("current_time->");print_r(current_time('timestamp'));
+                    // print_r($currentDate);exit();
+
                     $date = date("j-m-Y", strtotime($end));
-                   // $job_end_time = explode(" ", $value);
-                   // $end_date_time = strtotime($date . $job_end_time[0]);
+                    // $job_end_time = explode(" ", $value);
+                    // $end_date_time = strtotime($date . $job_end_time[0]);
                     //print_r(date("j-m-Y",  strtotime($start)).$value);
                     update_post_meta($post_id, $key, strtotime($value));
 
-                    update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y",  strtotime($start)).$value));
+                    update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y", strtotime($start)) . $value));
                 } elseif ($key !== 'job_details') {
                     update_post_meta($post_id, $key, $value);
                 }
             }
 
 
-              $app->response()->header("Content-Type", "application/json");
-             echo json_encode(array('post_id' => $post_id));
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode(array('post_id' => $post_id));
         });
 
 
@@ -93,7 +93,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID ";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
-                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                    $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
                 } else {
                     $tables = "$wpdb->posts,$wpdb->postmeta";
@@ -116,7 +116,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
-                }              
+                }
             }
 
             $querystr = "
@@ -163,8 +163,8 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                 $default_applied_user_avatar = array();
 
-                $single_job_rating=array();
-                
+                $single_job_rating = array();
+
                 foreach ($min_job->minyawns as $min) {
 
                     $user = array_push($user_data, $min['first_name'] . ' ' . $min['last_name']);
@@ -174,8 +174,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $applied_user_id = array_push($user_id_applied, $min['user_id']);
 
                     $status = array_push($user_job_status, $min['user_job_status']);
-                     
-                    $rating=array_push($single_job_rating,$min['user_job_rating']);
+
+                    $rating = array_push($single_job_rating, $min['user_job_rating']);
 
 
                     $minyawns_rating = get_user_rating_data($min['user_id'], $pagepost->ID);
@@ -194,13 +194,16 @@ $app->get('/fetchjobs/', function() use ($app) {
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
 
-                    $rating=($user_to_job_rating->positive) > 0 ? 'Well Done':'Rating:Awaited';
-                       
-                   $rating=($user_to_job_rating->negative) > 0 ? 'Terrible':'Rating:Awaited';
-                       
-                    
+                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
 
-                   if($user_to_job_rating->status == 'applied' ) $status='Applied'; else $status='Hired';
+                    $rating = ($user_to_job_rating->negative) > 0 ? 'Terrible' : 'Rating:Awaited';
+
+
+
+                    if ($user_to_job_rating->status == 'applied')
+                        $status = 'Applied';
+                    else
+                        $status = 'Hired';
                 }
 
                 $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
@@ -212,10 +215,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $show_load = 1;
                 else
                     $show_load = 0;
-                
-                
-                 if (isset($_GET['single_job']) || isset($_GET['my_jobs'])) /* pagination issue */
-                     $show_load=1;
+
+
+                if (isset($_GET['single_job']) || isset($_GET['my_jobs'])) /* pagination issue */
+                    $show_load = 1;
 
                 if (get_user_company_logo($pagepost->post_author) == false)
                     $logo = get_avatar($pagepost->post_author, 168);
@@ -228,7 +231,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $wages_seen = (13 * $post_meta['job_wages'][0]) / 100;
                     $wages = $post_meta['job_wages'][0] - $wages_seen;
                 } else {
-              //      $wages_seen = (13 * $post_meta['job_wages'][0]) / 100;
+                    //      $wages_seen = (13 * $post_meta['job_wages'][0]) / 100;
                     $wages = $post_meta['job_wages'][0];
                 }
 
@@ -264,7 +267,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'user_to_job_status' => $user_job_status,
                     //'user_job_status' => is_null($min_job->is_hired) ? $min_job->is_hired : 'can_apply',
                     //'job_start_date_time' => $post_meta['job_start_date'][0],
-                    'job_end_time_check' => $post_meta['job_start_date_time'][0],
+                    //'job_end_time_check' => $post_meta['job_start_date_time'][0],
                     'job_end_date_time_check' => $post_meta['job_end_date_time'][0],
                     'job_start_date_time_check' => $post_meta['job_start_date_time'][0],
                     'todays_date_time' => current_time('timestamp'),
@@ -279,7 +282,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'applied_user_id' => $user_id_applied,
                     'user_to_job_rating' => $rating,
                     'individual_user_to_job_status' => $status,
-                    'total'=>$total
+                    'total' => $total
                 );
             }
 
@@ -515,7 +518,6 @@ $app->get('/jobminions/', function() use ($app) {
                     foreach ($minyawns_rating as $rating) {
                         $user_rating = $rating->positive;
                         $user_dislike = $rating->negative;
-                        
                     }
 
 
@@ -532,19 +534,19 @@ $app->get('/jobminions/', function() use ($app) {
 //                //set image
 //                if ($fb_uid !== false)
 //                    $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
-                    
-                     $user_to_job_rating = get_user_job_rating_data($minion_ids[$i],$_GET['job_id']);
+
+                    $user_to_job_rating = get_user_job_rating_data($minion_ids[$i], $_GET['job_id']);
 
                     $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 0;
-                    if($user_to_job_rating->positive > 0)
-                        $rating='Well Done';
+                    if ($user_to_job_rating->positive > 0)
+                        $rating = 'Well Done';
                     else
-                        $rating=0;
-                    
+                        $rating = 0;
+
                     if ($user_to_job_rating->negative < 0)
-                        $rating='Terrible';
+                        $rating = 'Terrible';
                     else
-                        $rating=0;
+                        $rating = 0;
 
 
                     $data[] = array(
@@ -558,8 +560,8 @@ $app->get('/jobminions/', function() use ($app) {
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
                         'user_image' => $user['image'],
-                        'user_to_job_rating_like'=>$user_to_job_rating->positive,
-                        'user_to_job_rating_dislike'=>$user_to_job_rating->negative
+                        'user_to_job_rating_like' => $user_to_job_rating->positive,
+                        'user_to_job_rating_dislike' => $user_to_job_rating->negative
                     );
                 }
             }

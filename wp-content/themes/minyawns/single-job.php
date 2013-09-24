@@ -184,7 +184,7 @@ require 'templates/_jobs.php';
 
                     </div>
                     <div class="input-append bootstrap-timepicker">
-                        <input id="job_end_time" type="text" class="timepicker-default input-small" value="<?php echo $minyawn_job->get_start_time_eform() ?>" name="job_end_time">
+                        <input id="job_end_time" type="text" class="timepicker-default input-small" value="<?php echo $minyawn_job->get_end_time_eform() ?>" name="job_end_time">
                         <span class="add-on">
                             <i class="icon-time"></i>
                         </span>
