@@ -152,7 +152,7 @@ function fetch_my_jobs(id)
             if (collection.length === 0) {
                 var template = _.template(jQuery("#no-result").html());
 
-                jQuery("#load-more-my-jobs").hide();
+                jQuery("#load-more-my-jobs,#load_more_profile").hide();
                 jQuery("#accordion24").html(jQuery("#no-result").html());
             } else {
                 // jQuery("#load-more-my-jobs").hide();
