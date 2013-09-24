@@ -596,13 +596,13 @@ function job_minyawns_grid(job)
         {
 
             if (job.toJSON().user_to_job_status[i] === 'hired') {
-
-                miny_grid += "<a href=" + siteurl + "/profile/" + job.toJSON().applied_user_id[i] + " target='_blank'><div class='span4'>";
-                miny_grid += "<div class='minyawns-details'><span class='image-div'>" + job.toJSON().user_profile_image[i] + "</span><b>" + job.toJSON().users_applied[i] + "</b></a>";
-                miny_grid += "<a id='vote-up' href='#fakelink' employer-vote='1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-up'></i>" + job.toJSON().user_rating_like[i] + "</a>";
-                miny_grid += "<a id='vote-down' href='#fakelink'  class='icon-thumbs' employer-vote='-1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-down'></i>" + job.toJSON().user_rating_dislike[i] + "</a>";
-                miny_grid += "</div><div class='minyawns-job'><b>" + job.toJSON().user_to_job_status[i] + "</b><span >" + job.toJSON().user_to_job_rating[i] + "</span></div></div>";
-
+for(var rate=0;rate<job.toJSON().user_to_job_rating;rate ++){
+                miny_grid += "<a href=" + siteurl + "/profile/" + job.toJSON().applied_user_id[rate] + " target='_blank'><div class='span4'>";
+                miny_grid += "<div class='minyawns-details'><span class='image-div'>" + job.toJSON().user_profile_image[rate] + "</span><b>" + job.toJSON().users_applied[rate] + "</b></a>";
+                miny_grid += "<a id='vote-up' href='#fakelink' employer-vote='1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-up'></i>" + job.toJSON().user_rating_like[rate] + "</a>";
+                miny_grid += "<a id='vote-down' href='#fakelink'  class='icon-thumbs' employer-vote='-1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-down'></i>" + job.toJSON().user_rating_dislike[rate] + "</a>";
+                miny_grid += "</div><div class='minyawns-job'><b>" + job.toJSON().user_to_job_status[rate] + "</b><span >" + job.toJSON().user_to_job_rating[rate] + "</span></div></div>";
+}
             } else
             {
 
