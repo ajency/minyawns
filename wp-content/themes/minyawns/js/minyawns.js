@@ -1031,7 +1031,7 @@ jQuery(document).ready(function($) {
         var dvH = $dv.height() + 2;
         op.height = _MH - dvH;
         op.eventItems = [];
-        var p = $("#gridcontainer").bcalendar(op).BcalGetOp();
+        var p = jQuery("#gridcontainer").bcalendar(op).BcalGetOp();
         if (p && p.datestrshow) {
             $("#txtdatetimeshow").text(p.datestrshow);
         }
@@ -1503,6 +1503,7 @@ jQuery('#frm_signup').keydown(function(e){
 
 function load_profile(id)
 {
+    alert("loadprofile");
     var url=siteurl+"/profile/"+id;
     window.open(url, '_blank');
 }
