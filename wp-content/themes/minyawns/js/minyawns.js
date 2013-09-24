@@ -153,11 +153,52 @@ jQuery(document).ready(function($) {
                     //alert(loaded_img_x+" - "+loaded_img_y);
                     pd_aspect_ratio = $("#aspect_ratio").val().split(":");
 
-                    default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * 50);
-                    default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * 50);
-                    default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * 50);
-                    default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * 50);
+                    var defaultcrop_adjust ;
+                    defaultcrop_adjust = 50;
+                   
+                   /* default crop fix for small dimension images */
+                    if (pd_aspect_ratio[0]==2)   
+                    {
+                    	defaultcrop_adjust_x = 50;
+                    	defaultcrop_adjust_y = 50;
+                    	if((img_width<200))
+                    		defaultcrop_adjust_x = img_width/4; 
+                    	if((img_height<100))
+                    		defaultcrop_adjust_y = img_height/4;
+                    	if(defaultcrop_adjust_x < defaultcrop_adjust_y)
+                    		defaultcrop_adjust = defaultcrop_adjust_x;
+                    	else
+                    		defaultcrop_adjust = defaultcrop_adjust_y;
+                    }
+                    
+                    
+                    if (pd_aspect_ratio[0]==1)   
+                    {
+                    	defaultcrop_adjust_x = 50;
+                    	defaultcrop_adjust_y = 50;
+                    	if((img_width<100))
+                    		defaultcrop_adjust_x = img_width/2; 
+                    	if((img_height<100))
+                    		defaultcrop_adjust_y = img_height/2;
+                    	if(defaultcrop_adjust_x < defaultcrop_adjust_y)
+                    		defaultcrop_adjust = defaultcrop_adjust_x;
+                    	else
+                    		defaultcrop_adjust = defaultcrop_adjust_y;
+                    }
+                    /* End default crop fix for small dimension images */
+                    
+                     
+                    
+                    
+                    default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * defaultcrop_adjust);
+                    default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * defaultcrop_adjust);
+                    default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * defaultcrop_adjust);
+                    default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * defaultcrop_adjust);
 
+                   /* alert(img_width / 2);
+                    alert(pd_aspect_ratio[0]);
+                    alert(pd_aspect_ratio[1]);*/
+                    
                     /* alert(loaded_img_x);
                      alert(loaded_img_y);
                      */
