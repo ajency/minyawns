@@ -1503,7 +1503,7 @@ jQuery('#frm_signup').keydown(function(e){
 
 function load_profile(id)
 {
-    alert("loadprofile");
+   
     var url=siteurl+"/profile/"+id;
     window.open(url, '_blank');
 }

@@ -115,11 +115,11 @@
 <script type="text/template" id="minion-cards">  
 
     
-    <li class="span3" id="<%= result.user_id %>" onclick="load_profile(<%= result.user_id %>)" >
+    <li class="span3" id="<%= result.user_id %>" >
    
     <div class="thumbnail">
-    <div class="caption">
-    <div class="minyawns-img">
+    <div class="caption"  >
+    <div class="minyawns-img" onclick="load_profile(<%= result.user_id %>)">
     <%= result.user_image%>
     </div>
     <div class="rating">
