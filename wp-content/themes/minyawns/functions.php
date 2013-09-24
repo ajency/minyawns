@@ -29,9 +29,9 @@ show_admin_bar(false);
 
 
 //add image for profile
-add_image_size('minyawn',168, 300, false);
+add_image_size('minyawn', 168, 300, false);
 
-add_image_size('employer',168,0, FALSE);
+add_image_size('employer', 168, 0, FALSE);
 
 /**
  * Child theme Path
@@ -111,13 +111,18 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('jquery'), null);
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
+            wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery', 'minyawns-js'), null);
             // wp_dequeue_script('jquery');
-            if (is_page('jobs')) {
+            if (is_page('jobs') || is_page('jobs-2')) {
+
                 wp_enqueue_script('jquery-cal', get_template_directory_uri() . '/src/jquery.js', array(), null);
+
                 wp_enqueue_script('wdCalendar_lang_US', get_template_directory_uri() . '/src/wdCalendar_lang_US.js', array('jquery-cal'), null);
                 wp_enqueue_script('jquery.calendar', get_template_directory_uri() . '/src/jquery.calendar.js', array('jquery-cal'), null);
-
-                wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery-cal'), null);
+               
+              //  wp_enqueue_script('calendar', get_template_directory_uri() . '/js/calendar.js', array('jquery-cal'), null);
+                 wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery-cal'), null);
+                
             }
 
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
@@ -180,17 +185,15 @@ function popup_usersignup() {
     $userdata_['user_email'] = $_REQUEST['pdemail_'];
     $userdata_['user_pass'] = $_REQUEST['pdpass_'];
     $userdata_['first_name'] = $_REQUEST['pdfname_'];
-    
+
     $userdata_['role'] = $_REQUEST['pdrole_'];
     $userdata_['user_status'] = 2;
     $userdata_['user_activation_key'] = $user_activation_key;
-    if($_REQUEST['pdrole_']=="minyawn")
-    {
-    	$userdata_['last_name'] = $_REQUEST['pdlname_'];
-    	
+    if ($_REQUEST['pdrole_'] == "minyawn") {
+        $userdata_['last_name'] = $_REQUEST['pdlname_'];
     }
-    
-    
+
+
 
 
     $user_ = get_user_by('email', $userdata_['user_email']);
@@ -208,11 +211,11 @@ function popup_usersignup() {
             $response = array("success" => true, 'msg' => $msg);
             wp_send_json($response);
         } else {
-        	
-        	if($_REQUEST['pdrole_']=="employer")
-        		add_user_meta($user_id, 'company_name', $_REQUEST['pdlname_']);
-        	
-        	
+
+            if ($_REQUEST['pdrole_'] == "employer")
+                add_user_meta($user_id, 'company_name', $_REQUEST['pdlname_']);
+
+
             /* $msg = "Error occured while creating a new user. Please try again.";			
               $response = array('success' => true,'user'=>$user_->user_login.$pd_pass );
               wp_send_json($response);
@@ -234,11 +237,9 @@ function popup_usersignup() {
             $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
             wp_mail($userdata_['user_email'], $subject, email_header() . $message . email_signature(), $headers);
 
-            wp_new_user_notification( $user_id,  $userdata_['user_pass'] );
+            wp_new_user_notification($user_id, $userdata_['user_pass']);
             $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
             wp_send_json($response);
-            
-            
         }
     }
 }

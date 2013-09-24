@@ -8,19 +8,25 @@
 global $minyawn_job;
 global $wpdb;
 
-if(strpos(site_url(),'com')!= "false") {    
-$return_url = 'http://www.minyawns.com/success-payment/';
-$cancel_url = 'http://www.minyawns.com/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
-$notify_url = 'http://www.minyawns.com/paypal-payments/';
-$paypal_email = 'ceo@minyawns.com';
 
-}else
-{
-    $paypal_email = 'ceo@minyawns.com';
-    $return_url = 'http://minyawns.ajency.in/success-payment/';
-$cancel_url = 'http://minyawns.ajency.in/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
-$notify_url = 'http://minyawns.ajency.in/paypal-payments/';
-}
+//if(strpos(site_url(),'com')!= "false"){    
+//$return_url = 'http://www.minyawns.com/success-payment/';
+//$cancel_url = 'http://www.minyawns.com/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
+//$notify_url = 'http://www.minyawns.com/paypal-payments/';
+//$paypal_email = 'ceo@minyawns.com';
+//
+//}else
+//{
+   // $paypal_email = 'parag0246@yahoo.co.in';
+$paypal_email = 'ceo-facilitator@minyawns.com '; 
+ 
+    //$paypal_email = 'ceo@minyawns.com';
+ 
+ 
+    $return_url = 'http://minyawns.com/success-payment/';
+$cancel_url = 'http://minyawns.com/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
+$notify_url = 'http://minyawns.com/paypal-payments/';
+//}
 
 
 
@@ -48,10 +54,12 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	
 	
 	// Redirect to paypal IPN
-	if(strpos(site_url(),'com')!= "false") 
-        header("location:https://www.paypal.com/cgi-bin/webscr".$querystring);
-	else
-        header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
+ 
+//	if(strpos(site_url(),'com')!= "false")
+//        header("location:https://www.paypal.com/cgi-bin/webscr".$querystring);
+//	else
+ 
+        header('location:https://www.paypal.com/cgi-bin/webscr'.$querystring);
 	exit();
 
 }
@@ -134,10 +142,12 @@ else
 			
 			//$url = $paypal_adr;
 			//$url = "https://www.paypal.com/cgi-bin/webscr";
-			if(strpos(site_url(),'com')!= "false") 
+
+//			if(strpos(site_url(),'com')!= "false") 
+//                        $url = 'https://www.paypal.com/webscr';
+//			else
+ 
                         $url = 'https://www.paypal.com/webscr';
-			else
-                        $url = 'https://www.sandbox.paypal.com/webscr';
                         
                         $curl_result=$curl_err='';
 			$ch = curl_init();
@@ -208,6 +218,7 @@ else
 					
 					//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
 					$cnt_sel_minyawns  = 1;
+					$wages_minyawns = get_post_meta($data['item_number'] , 'job_wages', true) - ( (get_post_meta($data['item_number'] , 'job_wages', true) *13)/100 );
 					foreach($minyawn_data as $key=>$value)
 					{
 						//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
@@ -218,18 +229,19 @@ else
 						
 						//update selected minyawns status to hired
 						$wpdb->get_results("UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'");
-						
+						update_post_meta($data['item_number'],'job_status','completed');
 						//send mail to hired minyawns						
 						$job_data = get_post($data['item_number']);						
-						$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
+						//$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
+						$minyawns_subject = "Minyawns - You have been hired! ";
                			$minyawns_message = "Hi,<br/><br/>
                 		Congratulations, You have been hired for the job '" . get_the_title($data['item_number'] ) . "'<br/><br/>
-                		<h3>Job:" . get_the_title($data['item_number'] ) . "</h3>                
+                		<h3>Job: " . get_the_title($data['item_number'] ) . "</h3>                
                 		<br/><b>Start date: </b>" . date('d M Y', get_post_meta($data['item_number'] , 'job_start_date', true)) . "
                 		<br/><b>Start Time: </b>" . date('g:i a', get_post_meta($data['item_number'] , 'job_start_time', true)) . "                		 
 					    <br/><b>End Time: </b>" . date('g:i a', get_post_meta($data['item_number'] , 'job_end_time', true)) . "	
                 		<br/><b>Location: </b>" . get_post_meta($data['item_number'] , 'job_location', true) . "
-						<br/><b>Wages: </b> $" . get_post_meta($data['item_number'] , 'job_wages', true) . "
+						<br/><b>Wages: </b> $" . $wages_minyawns . "
                 		<br/><b>Details: </b>" . $job_data->post_content . "
                 
                 		<br/><br/>
@@ -321,7 +333,7 @@ else
 				update_paypal_payment($data,$curl_result);
 			 
 				
-				
+				update_post_meta($data['item_number'],'job_status','failed');
 				
 				
 				$receiver_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";

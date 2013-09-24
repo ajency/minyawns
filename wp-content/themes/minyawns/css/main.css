@@ -866,22 +866,38 @@ body .jobs_table .data-title .profile-job {
 .list-jobs .expand .span4 .like_btn .icon-thumbs {
   color: #F55568;
 }
+
+.list-jobs .expand .minyawansgrid .label-well {
+  background: #DCFADF;
+}
+.list-jobs .expand .minyawansgrid .label-terrible {
+  background: #FADCDD;
+}
 .list-jobs .expand .minyawansgrid .span4 {
   margin-left: 8px;
   border: 1px dotted #ccc;
   margin-bottom: 5px;
-  height: 60px;
+  height: 70px;
 }
-.list-jobs .expand .minyawansgrid .span4 img {
+.list-jobs .expand .minyawansgrid .span4 .minyawns-details {
+  height: 34px;
+}
+
+.list-jobs .expand .minyawansgrid .span4 .minyawns-details img {
+
   width: 11%;
   padding: 5px;
   display: inline-block;
 }
-.list-jobs .expand .minyawansgrid .span4 b {
+
+
+.list-jobs .expand .minyawansgrid .span4 .minyawns-details b {
+
   width: 120px;
   display: inline-block;
   color: #333;
 }
+/*
 .list-jobs .expand .minyawansgrid .span4 .icon-thumbs-up {
   margin-left: 20px;
 }
@@ -889,7 +905,16 @@ body .jobs_table .data-title .profile-job {
   margin-left: 10px;
   color: #F65151;
 }
-.list-jobs .expand .minyawansgrid .span4:hover {
+.list-jobs .expand .minyawansgrid .span4:hover {*/
+
+.list-jobs .expand .minyawansgrid .span4 .minyawns-details .icon-thumbs-up {
+  margin-left: 20px;
+}
+.list-jobs .expand .minyawansgrid .span4 .minyawns-details .icon-thumbs {
+  margin-left: 10px;
+  color: #F65151;
+}
+.list-jobs .expand .minyawansgrid .span4 .minyawns-details:hover {
   cursor: pointer;
   background: #EEE9E9;
 }
@@ -905,6 +930,13 @@ body .jobs_table .data-title .profile-job {
   width: auto;
   margin-left: 3px;
 }
+<<<<<<< HEAD
+=======
+.list-jobs .expand .minyawansgrid .minyawns-job span {
+  float: right;
+  margin-right: 5px;
+}
+>>>>>>> 2d7aa82f78bf2ec09f71344701d5fe373a82b1a1
 .single-jobs .inner-data {
   padding: 14px 0;
 }
@@ -1627,6 +1659,12 @@ body .jobs_table .data-title .profile-job {
   .bootstrap-timepicker-widget table td input {
     width: 43px !important;
   }
+  .list-jobs .minyawansgrid .span4 {
+    margin-bottom: 10px!important;
+    height: 70px!important;
+    margin-left: 0px !important;
+    width: 95%;
+  }
   .list-jobs .div-box {
     position: relative !important;
     top: 0!important;
@@ -2007,17 +2045,17 @@ body .jobs_table .data-title .profile-job {
   .list-jobs .jobs-details .job-duration .row-fluid span {
     font-size: 20px;
   }
-  .list-jobs .minyawansgrid .span6 {
+  .list-jobs .minyawansgrid .span4 {
     margin-left: 8px;
     border-bottom: 1px dotted#CCC;
     margin-bottom: 5px;
     width: 46% !important;
   }
-  .list-jobs .minyawansgrid .span6 img {
+  .list-jobs .minyawansgrid .span4 img {
     width: 11%;
     padding: 5px;
   }
-  .list-jobs .minyawansgrid .span6 b {
+  .list-jobs .minyawansgrid .span4 b {
     width: auto !important;
     display: inline-block;
   }
@@ -2240,31 +2278,31 @@ body .jobs_table .data-title .profile-job {
   .list-jobs .expand .span4 .like_btn .icon-thumbs {
     color: #F55568;
   }
-  .list-jobs .expand .minyawansgrid .span6 {
+  .list-jobs .expand .minyawansgrid .span4 {
     margin-left: 8px;
     border-bottom: 1px dotted#CCC;
     margin-bottom: 5px;
     width: 47%;
   }
-  .list-jobs .expand .minyawansgrid .span6 img {
+  .list-jobs .expand .minyawansgrid .span4 img {
     width: 11%;
     padding: 5px;
   }
-  .list-jobs .expand .minyawansgrid .span6 b {
+  .list-jobs .expand .minyawansgrid .span4 b {
     width: 70%;
     display: inline-block;
   }
-  .list-jobs .expand .minyawansgrid .span6 a {
+  .list-jobs .expand .minyawansgrid .span4 a {
     font-size: 10px;
   }
-  .list-jobs .expand .minyawansgrid .span6 .icon-thumbs-up {
+  .list-jobs .expand .minyawansgrid .span4 .icon-thumbs-up {
     margin-left: 20px;
   }
-  .list-jobs .expand .minyawansgrid .span6 .icon-thumbs {
+  .list-jobs .expand .minyawansgrid .span4 .icon-thumbs {
     margin-left: 10px;
     color: #F65151;
   }
-  .list-jobs .expand .minyawansgrid .span6:hover {
+  .list-jobs .expand .minyawansgrid .span4:hover {
     cursor: pointer;
     background: #EEE9E9;
   }
@@ -2399,14 +2437,11 @@ body .jobs_table .data-title .profile-job {
 .employer-image {
   overflow: hidden;
   width: 170px;
-  height: 88px;
+  height: 80px;
   border: 2px solid #8ed030;
 }
 .employer-image img {
   border: 0px !important;
-}
-.employer-image .change-avtar span {
-  top: -35px;
 }
 .employer-image2 {
   overflow: hidden;

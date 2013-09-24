@@ -79,19 +79,27 @@ $app->post('/change-avatar', function() use($app) {
 $app->post('/resize-user-avatar', function() use($app) {
 
             global $user_ID;
+            
+            extract($_POST);
+            //var_dump($_POST);
 
             $targetFolder = "../../../uploads/user-avatars/" . $user_ID . "/"; // Relative to the root
 
-            if (get_user_role() == 'employer')
+           /* if (get_user_role() == 'employer')
                 $new_name = "employer" . $user_ID . ".jpg";
             else
-                $new_name = "minyawn" . $user_ID . ".jpg";
+                $new_name = "minyawn" . $user_ID . ".jpg";*/
+            if (get_user_role() == 'employer')
+            	$new_name = "employer". $user_ID."_". $image_name  ;
+            else
+            	$new_name = "minyawn". $user_ID."_".$image_name  ;
+            
 
             $for_user_meta = "user-avatars/" . $user_ID . "/" . $new_name;
 
 			
 			 
-            extract($_POST);
+           
             
             
             
@@ -116,22 +124,27 @@ $app->post('/resize-user-avatar', function() use($app) {
             
             list($orig__width, $orig__height, $orig__type,$orig__attr) = getimagesize($targetFolder . $image_name);
             
-            $orig_x_ratio = $orig__width/540;
-            $orig_y_ratio = $orig__height/510;
+            $orig_x_ratio = $orig__width/500;
+            $orig_y_ratio = $orig__height/420;
             
             
-            if($orig_x_ratio<$orig_y_ratio)
-            	$fin_asp_ratio = ceil($orig_x_ratio);
+            if($orig_x_ratio>$orig_y_ratio)
+            	$fin_asp_ratio = round($orig_x_ratio,3);
             else
-            	$fin_asp_ratio = ceil($orig_y_ratio);
+            	$fin_asp_ratio = round($orig_y_ratio,3);
              
             //$fin_asp_ratio = min(array($orig_x_ratio,$orig_y_ratio));
-            
-            if($fin_asp_ratio<0)
+           // echo "final asp ratio ".$fin_asp_ratio;
+            if($fin_asp_ratio<1)
             	$fin_asp_ratio = 1;
             
-            $new_width = ceil($orig__width /$fin_asp_ratio);
-            $new_height =ceil($orig__height/$fin_asp_ratio);
+            
+            
+           //echo "original width=".$orig__width.", height=". $orig__height.", ratio=".$fin_asp_ratio;
+            
+            
+            $new_width = round(($orig__width /$fin_asp_ratio),3);
+            $new_height = round(($orig__height/$fin_asp_ratio),3);
             
             $image_p = imagecreatetruecolor($new_width, $new_height);
             $image = imagecreatefromjpeg($targetFolder . $image_name);
@@ -141,8 +154,8 @@ $app->post('/resize-user-avatar', function() use($app) {
             
              
             $ratio = ($t_width / $w);
-            $nw = ceil($w * $ratio);
-            $nh = ceil($h * $ratio);
+            $nw = round($w * $ratio,3);
+            $nh = round($h * $ratio,3);
             $nimg = imagecreatetruecolor($nw, $nh);
             
             
@@ -155,10 +168,15 @@ $app->post('/resize-user-avatar', function() use($app) {
             imagecopyresampled($nimg, $im_src, 0, 0, $x1*$fin_asp_ratio, $y1*$fin_asp_ratio,$nw, $nh, $w*$fin_asp_ratio, $h*$fin_asp_ratio);
             //  imagejpeg($nimg, $targetFolder . "_".$new_name."#".$new_height."--".$new_width."++".$fin_asp_ratio, 90);
             //imagejpeg($nimg, $targetFolder.$new_name, 100);
+            if($new_name!="")
+            {
+            	if(file_exists($targetFolder.$new_name))//added on 23sep2013 
+            		unlink($targetFolder.$new_name);
+            }//end if($new_name!="")
             imagepng($nimg, $targetFolder.$new_name);
           	 // imagejpeg($nimg, $targetFolder.$new_name."_".$fin_asp_ratio."__".$w."___".$h."____".$nw."_____".$nh, 90);
             //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
-            
+           
             
             
             
@@ -202,7 +220,7 @@ $app->post('/resize-user-avatar', function() use($app) {
             $atach_post_id = wp_insert_post($post_data);
             $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
             update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
-
+           
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(get_user_company_logo($user_ID));
         });

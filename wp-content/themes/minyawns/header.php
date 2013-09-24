@@ -49,8 +49,9 @@
             var siteurl='<?php echo site_url(); ?>';
             var logouturl='<?php echo wp_logout_url();?>';
             var email='<?php  echo get_user_profile_email() ?>';
-            var role='<?php if (get_user_role() == "minyawn"){ echo 'Minion';} else echo 'Employer' ; ?>'
-            
+            var role='<?php if (get_user_role() == "minyawn"){ echo 'Minion';} else echo 'Employer' ; ?>';
+            var logged_in_user_id='<?php echo get_user_id(); ?>'
+            var is_logged_in='<?php echo is_user_logged_in();?>';
             </script>
             
 <body <?php body_class('logged-out'); ?>>
@@ -75,7 +76,7 @@
 									if(get_mn_user_avatar() !== false)
 										echo get_mn_user_avatar() ;
 									else
-										echo get_avatar( get_user_profile_email(), 168 ) ?> <b class="caret"></b>
+										echo get_avatar( get_user_id(), 168 ) ?> <b class="caret"></b>
 							
                                                         </a>
 						</div>

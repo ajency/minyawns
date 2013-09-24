@@ -326,7 +326,7 @@ body .jobs_table .data-title  .profile-job{
 			border-right:1px solid #ccc;
 		}
 		.job-wage{
-			width: 12%;
+			width: 8%;
 			float: left;
 			border-right:1px solid #ccc;
 		}
@@ -336,7 +336,7 @@ body .jobs_table .data-title  .profile-job{
 			border-right:1px solid #ccc;
 		}
 		.job-action{
-			width:6%;
+			width: 10%;
 			float: left;
 			
 		}
@@ -427,7 +427,7 @@ body .jobs_table .data-title  .profile-job{
 				}
 		}
 		.job-wage{
-			width: 12%;
+			width: 8%;
 			float: left;
 			height: 53px;
 			border-right:1px solid #ccc;
@@ -453,13 +453,21 @@ body .jobs_table .data-title  .profile-job{
 			}
 		}
 		.job-action{
-			width:6%;
+			width: 10%;
 			float: left;
 			height: 53px;
 			.arrow-down{
 				margin:10px  auto;
 			}
-			
+			ins {
+				font-size: 26px;
+				text-align: center;
+				color: #707070;
+				font-weight: bold;
+				text-decoration: none;
+				line-height: 30px;
+				display: block;
+			}
 		}
 		.header-sub{
 			padding-top: 1%;
@@ -942,18 +950,26 @@ background: #F8F8F8!important;
 						}
 					}
 					.minyawansgrid{
-						
-						.span6{
+						.label-well{
+								background: #DCFADF; 
+							}
+							.label-terrible{
+								background: #FADCDD;
+							}
+						.span4{
 							margin-left: 8px;
-							border-bottom: 1px dotted#CCC;
+							border: 1px dotted #ccc;
 							margin-bottom: 5px;
-							height: 60px;
+							height: 70px;
+							.minyawns-details{
+							height: 34px;
 							img{
 								width: 11%;
 								padding: 5px;
+								display: inline-block;
 							}
 							b{
-								width: 157px;
+								width: 120px;
 								display: inline-block;
 								color:#333;
 							}
@@ -969,7 +985,27 @@ background: #F8F8F8!important;
 								background: #EEE9E9;
 							}
 						}
-					}
+						}
+						.minyawns-job{
+							border-top: 1px dotted #CCC;
+							padding: 5px 0px;
+							b{
+									color: #1CAC16;
+									font-weight: normal;
+									font-size: 12px;
+									text-transform: uppercase;
+									width: auto;
+									margin-left: 3px;
+							}
+							span{
+									float: right;
+									margin-right: 5px;
+									
+							}
+							
+						}
+					
+				}
 		}
 }
 
@@ -1565,8 +1601,27 @@ background: #F8F8F8!important;
 
 .home{
 	background:url(../images/back2.jpg)repeat-x;
-	background-position: 67px 53px;
+	background-position: 67px 283px;
 	
+	.video-home{
+		height: 260px;
+		margin-top: -1px;
+		.row-fluid {
+		padding:30px 0px;
+		background: rgba(185, 184, 184, 0.36);
+		margin-top: 10px;
+		padding-bottom: 19px;
+			img{
+				margin:auto;
+				display:block;
+			}
+			h3{
+				font-size: 18px;
+				text-align: center;
+				margin-top: 10px;
+			}
+		}
+	}
 	.heading-title{
 
 		display: block;
@@ -1692,6 +1747,31 @@ background: #F8F8F8!important;
 				background-position: -1px;
 				margin-bottom: -52px;
 }
+	.video-pop{
+		iframe{
+			width:100%;
+			height:auto;
+		}
+	
+	}
+	.video-home{
+		height: 540px !important;
+		margin-top: 29px!important;
+		.row-fluid {
+		padding:30px 0px;
+			img{
+				margin:auto;
+				display:block;
+			}
+			h3{
+				font-size: 18px;
+				text-align: center;
+				margin-top: 10px;
+			}
+		}
+	}
+	
+
 			.cropimage{
 	.modal-body{
 			
@@ -1783,6 +1863,15 @@ background: #F8F8F8!important;
 		}
 	}
 	.list-jobs {
+	.minyawansgrid {
+	
+	.span4 {
+			margin-bottom: 10px!important;
+			height: 70px!important;
+			margin-left:0px !important;
+			width: 95%;
+		}
+	}
 	.div-box {
 				position: relative !important;
 				top: 0!important;
@@ -1826,7 +1915,7 @@ background: #F8F8F8!important;
 			
 		}
 	.home{
-background-position: 60px 480px;
+background-position: 60px 1050px;
 	#btn__login {
 			float: none;
 			display: block;
@@ -2228,7 +2317,7 @@ background-position: 60px 480px;
 	
 	.minyawansgrid{
 						
-						.span6{
+						.span4{
 							margin-left: 8px;
 							border-bottom: 1px dotted#CCC;
 							margin-bottom: 5px;
@@ -2489,7 +2578,7 @@ background-position: 60px 480px;
 					}
 					.minyawansgrid{
 						
-						.span6{
+						.span4{
 							margin-left: 8px;
 							border-bottom: 1px dotted#CCC;
 							margin-bottom: 5px;
@@ -2715,14 +2804,14 @@ background-position: 60px 480px;
 		.employer-image{
 			overflow: hidden;
 			width: 170px;
-			height: 88px;
+			height: 80px;
 			border: 2px solid @green;
 			img{
 				border:0px !important;
 			}
 			.change-avtar{
 				span{
-				top: -35px;
+				
 				}
 			
 			}

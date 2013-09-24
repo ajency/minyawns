@@ -143,7 +143,7 @@ Businesses and Individual Professionals can post tasks and immediately receive a
 		            <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Company Name" class="span3">
 		          </div>
 				  <div class="clear"></div>
-				  <a href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup" >Sign Up</a>
+				  <button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup"  type="button">Sign Up</button>
 			</form>
 			
 			
