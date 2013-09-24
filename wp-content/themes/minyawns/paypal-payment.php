@@ -8,6 +8,7 @@
 global $minyawn_job;
 global $wpdb;
 
+
 //if(strpos(site_url(),'com')!= "false"){    
 //$return_url = 'http://www.minyawns.com/success-payment/';
 //$cancel_url = 'http://www.minyawns.com/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
@@ -17,13 +18,14 @@ global $wpdb;
 //}else
 //{
    // $paypal_email = 'parag0246@yahoo.co.in';
-$paypal_email = 'ceo-facilitator@minyawns.com '; 
+//$paypal_email = 'ceo-facilitator@minyawns.com '; 
  
-    //$paypal_email = 'ceo@minyawns.com';
+$paypal_email = PAYPAL_BUSINESSEMAIL;
  
-    $return_url = 'http://minyawns.ajency.in/success-payment/';
-$cancel_url = 'http://minyawns.ajency.in/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
-$notify_url = 'http://minyawns.ajency.in/paypal-payments/';
+ 
+$return_url = PAYPAL_PAYMENTSITE.'/success-payment/';
+$cancel_url = PAYPAL_PAYMENTSITE.'/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
+$notify_url = PAYPAL_PAYMENTSITE.'/paypal-payments/';
 //}
 
 
@@ -52,10 +54,12 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	
 	
 	// Redirect to paypal IPN
+ 
 //	if(strpos(site_url(),'com')!= "false")
 //        header("location:https://www.paypal.com/cgi-bin/webscr".$querystring);
 //	else
-        header('location:https://www.sandbox.paypal.com/cgi-bin/webscr'.$querystring);
+ 
+        header('location:'.PAYPAL_SEC_PAYMENTSITE.'/cgi-bin/webscr'.$querystring);
 	exit();
 
 }
@@ -138,10 +142,12 @@ else
 			
 			//$url = $paypal_adr;
 			//$url = "https://www.paypal.com/cgi-bin/webscr";
+
 //			if(strpos(site_url(),'com')!= "false") 
 //                        $url = 'https://www.paypal.com/webscr';
 //			else
-                        $url = 'https://www.sandbox.paypal.com/webscr';
+ 
+                        $url = PAYPAL_SEC_PAYMENTSITE.'/webscr';
                         
                         $curl_result=$curl_err='';
 			$ch = curl_init();
