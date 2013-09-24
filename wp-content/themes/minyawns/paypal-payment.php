@@ -52,14 +52,14 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	$querystring .= "notify_url=".urlencode($notify_url)."& ";
 	$querystring .= "currency_code=USD";
 	
-	echo PAYPAL_SEC_PAYMENTSITE.'/cgi-bin/webscr'.$querystring;
+	//echo PAYPAL_SEC_PAYMENTSITE.'/cgi-bin/webscr'.$querystring;
 	// Redirect to paypal IPN
  
 //	if(strpos(site_url(),'com')!= "false")
 //        header("location:https://www.paypal.com/cgi-bin/webscr".$querystring);
 //	else
  
-       ////////////////////////// header('location:'.PAYPAL_SEC_PAYMENTSITE.'/cgi-bin/webscr'.$querystring);
+       header('location:'.PAYPAL_SEC_PAYMENTSITE.'/cgi-bin/webscr'.$querystring);
 	exit();
 
 }
