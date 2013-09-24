@@ -124,14 +124,14 @@ $app->post('/resize-user-avatar', function() use($app) {
             
             list($orig__width, $orig__height, $orig__type,$orig__attr) = getimagesize($targetFolder . $image_name);
             
-            $orig_x_ratio = $orig__width/540;
-            $orig_y_ratio = $orig__height/510;
+            $orig_x_ratio = $orig__width/500;
+            $orig_y_ratio = $orig__height/420;
             
             
             if($orig_x_ratio>$orig_y_ratio)
-            	$fin_asp_ratio = round($orig_x_ratio,1);
+            	$fin_asp_ratio = round($orig_x_ratio,3);
             else
-            	$fin_asp_ratio = round($orig_y_ratio,1);
+            	$fin_asp_ratio = round($orig_y_ratio,3);
              
             //$fin_asp_ratio = min(array($orig_x_ratio,$orig_y_ratio));
            // echo "final asp ratio ".$fin_asp_ratio;
@@ -143,8 +143,8 @@ $app->post('/resize-user-avatar', function() use($app) {
            //echo "original width=".$orig__width.", height=". $orig__height.", ratio=".$fin_asp_ratio;
             
             
-            $new_width = round(($orig__width /$fin_asp_ratio),1);
-            $new_height = round(($orig__height/$fin_asp_ratio),1);
+            $new_width = round(($orig__width /$fin_asp_ratio),3);
+            $new_height = round(($orig__height/$fin_asp_ratio),3);
             
             $image_p = imagecreatetruecolor($new_width, $new_height);
             $image = imagecreatefromjpeg($targetFolder . $image_name);
@@ -154,8 +154,8 @@ $app->post('/resize-user-avatar', function() use($app) {
             
              
             $ratio = ($t_width / $w);
-            $nw = round($w * $ratio,1);
-            $nh = round($h * $ratio,1);
+            $nw = round($w * $ratio,3);
+            $nh = round($h * $ratio,3);
             $nimg = imagecreatetruecolor($nw, $nh);
             
             

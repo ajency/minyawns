@@ -118,20 +118,20 @@ jQuery(document).ready(function($) {
 
 
 
-            ratio_y = data.result.image_height / 510
-            ratio_x = data.result.image_width / 540
+            ratio_y = data.result.image_height / 420
+            ratio_x = data.result.image_width / 500
             if (ratio_y < ratio_x)
-                a_ratio = Math.round(ratio_x * 10) / 10;
+                a_ratio = Math.round(ratio_x * 1000) / 1000;
             else
-                a_ratio = Math.round(ratio_y * 10) / 10;
+                a_ratio = Math.round(ratio_y * 1000) / 1000;
 
             if (a_ratio < 1)
                 a_ratio = 1;
 
             
            // alert("original :- width"+data.result.image_width+", height "+data.result.image_height+", ratio:"+a_ratio);
-            img_width = Math.round((data.result.image_width / a_ratio) * 10) / 10;
-            img_height = Math.round((data.result.image_height / a_ratio) * 10) / 10;
+            img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
+            img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
 
             $("#uploaded-image").attr('src', data.result.image);
             $("#image_name").val(data.result.image_name);
@@ -147,8 +147,8 @@ jQuery(document).ready(function($) {
                 //get the image position
                 if ($("#uploaded-image").attr('src') != "")
                 {
-                    loaded_img_x = Math.round($("#uploaded-image").position().top * 10) / 10;
-                    loaded_img_y = Math.round($("#uploaded-image").position().left * 10) / 10;
+                    loaded_img_x = Math.round($("#uploaded-image").position().top * 1000) / 1000;
+                    loaded_img_y = Math.round($("#uploaded-image").position().left * 1000) / 1000;
 
                     //alert(loaded_img_x+" - "+loaded_img_y);
                     pd_aspect_ratio = $("#aspect_ratio").val().split(":");
@@ -169,10 +169,10 @@ jQuery(document).ready(function($) {
                     /*alert(default_x1+" -- "+default_x2);
                      alert(default_y1+" -- "+default_y2);*/
                     
-                    default_x1 =  Math.round(default_x1 * 10) / 10;
-                    default_y1 = Math.round(default_y1 * 10) / 10;
-                    default_x2 = Math.round(default_x2 * 10) / 10;
-                    default_y2 = Math.round(default_y2 * 10) / 10;
+                    default_x1 =  Math.round(default_x1 * 1000) / 1000;
+                    default_y1 = Math.round(default_y1 * 1000) / 1000;
+                    default_x2 = Math.round(default_x2 * 1000) / 1000;
+                    default_y2 = Math.round(default_y2 * 1000) / 1000;
                     
                     
                     default_thumb_width = default_x2 - default_x1;
