@@ -164,7 +164,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $default_applied_user_avatar = array();
 
                 $single_job_rating = array();
-
+                $user_rating_job = array();
                 foreach ($min_job->minyawns as $min) {
 
                     $user = array_push($user_data, $min['first_name'] . ' ' . $min['last_name']);
@@ -194,11 +194,12 @@ $app->get('/fetchjobs/', function() use ($app) {
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
 
-                    $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited';
-
-                    $rating = ($user_to_job_rating->negative) > 0 ? 'Terrible' : 'Rating:Awaited';
-
-
+                    if ($user_to_job_rating->positive > 0)
+                        array_push($user_rating_job, ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited');
+                    elseif ($user_to_job_rating->negative > 0)
+                        array_push($user_rating_job, ($user_to_job_rating->negative) > 0 ? 'Terrible' : 'Rating:Awaited');
+                    else
+                        array_push($user_rating_job, 'Rating:Awaited');
 
                     if ($user_to_job_rating->status == 'applied')
                         $status = 'Applied';
@@ -280,7 +281,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'default_user_avatar' => get_avatar($pagepost->ID),
                     'job_owner_id' => $owner_id,
                     'applied_user_id' => $user_id_applied,
-                    'user_to_job_rating' => $rating,
+                    'user_to_job_rating' => $user_rating_job,
                     'individual_user_to_job_status' => $status,
                     'total' => $total
                 );

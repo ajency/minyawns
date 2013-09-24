@@ -313,7 +313,7 @@ function get_user_dislike_count() {
     
     global $current_user_new;
    
-    return ($current_user_new->data->dislike_count) > 0? $current_user_new->data->dis_like_count : 0;
+    return ($current_user_new->data->dislike_count) > 0 ? $current_user_new->data->dislike_count : 0;
 }
 
 function get_user_company_logo($user_id) {
