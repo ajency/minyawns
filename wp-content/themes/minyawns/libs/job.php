@@ -27,7 +27,7 @@ $app->post('/addjob', function() use ($app) {
             );
 
             $post_id = wp_insert_post($post);
-
+//$post_id=934;
 
             foreach ($json_a as $key => $value) {
 
@@ -56,13 +56,18 @@ $app->post('/addjob', function() use ($app) {
                     $end = $start;
                     update_post_meta($post_id, $key, strtotime($end));
                 } elseif ($key == "job_end_time") {
+                 //  print_r(strtotime(date("j-m-Y",  strtotime($start)).$value));
+                 //   $currentDate =  date("j-m-Y H:i:s A", strtotime($end . $value));
+                  //  print_r(strtotime($end . $value));print_r("current_time->");print_r(current_time('timestamp'));
+                   // print_r($currentDate);exit();
+                    
                     $date = date("j-m-Y", strtotime($end));
-                    $job_end_time = explode(" ", $value);
-                    $end_date_time = strtotime($date . $job_end_time[0]);
+                   // $job_end_time = explode(" ", $value);
+                   // $end_date_time = strtotime($date . $job_end_time[0]);
                     //print_r(date("j-m-Y",  strtotime($start)).$value);
                     update_post_meta($post_id, $key, strtotime($value));
 
-                    update_post_meta($post_id, 'job_end_date_time', $end_date_time);
+                    update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y",  strtotime($start)).$value));
                 } elseif ($key !== 'job_details') {
                     update_post_meta($post_id, $key, $value);
                 }
