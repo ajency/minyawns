@@ -106,7 +106,8 @@ function load_browse_jobs(id, _action) {
                     } else {
 
                         if (model.toJSON().load_more === 1)
-                            jQuery("#load-more").hide();
+                            jQuery(".load_more").hide();
+                        
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                         jQuery("#accordion2").append(html);
 
@@ -172,7 +173,7 @@ function fetch_my_jobs(id)
                         // console.log(minyawns_grid);
                         // console.log(model.toJSON().post_id);
                         if (model.toJSON().load_more === 1)
-                            jQuery("#load-more-my-jobs").hide();
+                            jQuery("#load-more-my-jobs,.load_more_profile").hide();
 
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                         jQuery("#accordion24").append(html);
