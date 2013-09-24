@@ -1,6 +1,6 @@
     function onload_calendar()
     {
-
+ 
         var view = "month";
         var DATA_FEED_URL = SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobscalendar';
         var op = {
