@@ -79,19 +79,27 @@ $app->post('/change-avatar', function() use($app) {
 $app->post('/resize-user-avatar', function() use($app) {
 
             global $user_ID;
+            
+            extract($_POST);
+            //var_dump($_POST);
 
             $targetFolder = "../../../uploads/user-avatars/" . $user_ID . "/"; // Relative to the root
 
-            if (get_user_role() == 'employer')
+           /* if (get_user_role() == 'employer')
                 $new_name = "employer" . $user_ID . ".jpg";
             else
-                $new_name = "minyawn" . $user_ID . ".jpg";
+                $new_name = "minyawn" . $user_ID . ".jpg";*/
+            if (get_user_role() == 'employer')
+            	$new_name = "employer". $user_ID."_". $image_name  ;
+            else
+            	$new_name = "minyawn". $user_ID."_".$image_name  ;
+            
 
             $for_user_meta = "user-avatars/" . $user_ID . "/" . $new_name;
 
 			
 			 
-            extract($_POST);
+           
             
             
             
@@ -120,18 +128,23 @@ $app->post('/resize-user-avatar', function() use($app) {
             $orig_y_ratio = $orig__height/510;
             
             
-            if($orig_x_ratio<$orig_y_ratio)
-            	$fin_asp_ratio = ceil($orig_x_ratio);
+            if($orig_x_ratio>$orig_y_ratio)
+            	$fin_asp_ratio = round($orig_x_ratio,1);
             else
-            	$fin_asp_ratio = ceil($orig_y_ratio);
+            	$fin_asp_ratio = round($orig_y_ratio,1);
              
             //$fin_asp_ratio = min(array($orig_x_ratio,$orig_y_ratio));
-            
-            if($fin_asp_ratio<0)
+           // echo "final asp ratio ".$fin_asp_ratio;
+            if($fin_asp_ratio<1)
             	$fin_asp_ratio = 1;
             
-            $new_width = ceil($orig__width /$fin_asp_ratio);
-            $new_height =ceil($orig__height/$fin_asp_ratio);
+            
+            
+           //echo "original width=".$orig__width.", height=". $orig__height.", ratio=".$fin_asp_ratio;
+            
+            
+            $new_width = round(($orig__width /$fin_asp_ratio),1);
+            $new_height = round(($orig__height/$fin_asp_ratio),1);
             
             $image_p = imagecreatetruecolor($new_width, $new_height);
             $image = imagecreatefromjpeg($targetFolder . $image_name);
@@ -141,8 +154,8 @@ $app->post('/resize-user-avatar', function() use($app) {
             
              
             $ratio = ($t_width / $w);
-            $nw = ceil($w * $ratio);
-            $nh = ceil($h * $ratio);
+            $nw = round($w * $ratio,1);
+            $nh = round($h * $ratio,1);
             $nimg = imagecreatetruecolor($nw, $nh);
             
             
@@ -160,11 +173,10 @@ $app->post('/resize-user-avatar', function() use($app) {
             	if(file_exists($targetFolder.$new_name))//added on 23sep2013 
             		unlink($targetFolder.$new_name);
             }//end if($new_name!="")
-            clearstatcache();
             imagepng($nimg, $targetFolder.$new_name);
           	 // imagejpeg($nimg, $targetFolder.$new_name."_".$fin_asp_ratio."__".$w."___".$h."____".$nw."_____".$nh, 90);
             //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
-            clearstatcache();
+           
             
             
             

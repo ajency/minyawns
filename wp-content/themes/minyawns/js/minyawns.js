@@ -118,16 +118,18 @@ jQuery(document).ready(function($) {
 
 
 
-            ratio_y = data.result.image_height / 540
-            ratio_x = data.result.image_width / 510
-            if (ratio_y > ratio_x)
+            ratio_y = data.result.image_height / 510
+            ratio_x = data.result.image_width / 540
+            if (ratio_y < ratio_x)
                 a_ratio = Math.round(ratio_x * 10) / 10;
             else
-                a_ratio = Math.round(ratio_x * 10) / 10;
+                a_ratio = Math.round(ratio_y * 10) / 10;
 
             if (a_ratio < 1)
                 a_ratio = 1;
 
+            
+           // alert("original :- width"+data.result.image_width+", height "+data.result.image_height+", ratio:"+a_ratio);
             img_width = Math.round((data.result.image_width / a_ratio) * 10) / 10;
             img_height = Math.round((data.result.image_height / a_ratio) * 10) / 10;
 
@@ -166,6 +168,13 @@ jQuery(document).ready(function($) {
                      */
                     /*alert(default_x1+" -- "+default_x2);
                      alert(default_y1+" -- "+default_y2);*/
+                    
+                    default_x1 =  Math.round(default_x1 * 10) / 10;
+                    default_y1 = Math.round(default_y1 * 10) / 10;
+                    default_x2 = Math.round(default_x2 * 10) / 10;
+                    default_y2 = Math.round(default_y2 * 10) / 10;
+                    
+                    
                     default_thumb_width = default_x2 - default_x1;
                     default_thumb_height = default_y2 - default_y1;
                     $("#done-cropping").show();
@@ -201,6 +210,10 @@ jQuery(document).ready(function($) {
         $(".load_ajax-crop-upload").show();
         $("#div_cropmsg").html("<br/>");
 
+        
+        console.log("w: "+$("#image_width").val()+" h:"+ $("#image_height").val() +  'x1:'+ $("#image_x_axis").val()+ 'y1:'+ $("#image_y_axis").val()+ "image_name:"+ $("#image_name").val()+" asp_ratio:"+ $("#aspect_ratio").val()) ;
+        
+        
         $.ajax({
             type: "POST",
             url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
