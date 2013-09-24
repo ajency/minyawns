@@ -1751,25 +1751,25 @@
                                   var html = "";
                                  
                         
-                        if($("#"+data[0]).val() === "1")
-                       html="<button href='#' style=' width: 40%; margin-top: 13px; '  id='unapply-job' class='btn btn-medium btn-block btn-danger red-btn' data-action='unapply' data-job-id='"+data[0]+"'>Unapply</button>"; 
-                        
-                       else if($("#"+data[0]).val() === "3") 
-                        html="<a href='#' class='required'>You are hired!</a>";    
-                        
-                        else if($("#"+data[0]).val() === "2")
-                            html="<a href='#' class='required'>Requirement Complete</a>";
-                        
-                        else
-                            html = "<div id='apply'><button href='#'  style=' width: 40%; margin-top: 13px; ' id='apply-job' class='btn btn-medium btn-block btn-primary  btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</button></div>";
+//                        if($("#"+data[0]).val() === "1")
+//                       html="<button href='#' style=' width: 40%; margin-top: 13px; '  id='unapply-job' class='btn btn-medium btn-block btn-danger red-btn' data-action='unapply' data-job-id='"+data[0]+"'>Unapply</button>"; 
+//                        
+//                       else if($("#"+data[0]).val() === "3") 
+//                        html="<a href='#' class='required'>You are hired!</a>";    
+//                        
+//                        else if($("#"+data[0]).val() === "2")
+//                            html="<a href='#' class='required'>Requirement Complete</a>";
+//                        
+//                        else
+//                            html = "<div id='apply'><button href='#'  style=' width: 40%; margin-top: 13px; ' id='apply-job' class='btn btn-medium btn-block btn-primary  btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</button></div>";
+//                            
+//                        
+//                        
+//                        if( $("#"+data[0]).length == 0)
+//                        html = "<div id='apply'><a type='button' href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"' onClick='apply_job(event)'>Apply</a></div>";
+//                            
                             
-                        
-                        
-                        if( $("#"+data[0]).length == 0)
-                        html = "<div id='apply'><a type='button' href='#' id='apply-job' class='btn btn-medium btn-block green-btn btn-success' data-action='apply' data-job-id='"+data[0]+"' onClick='apply_job(event)'>Apply</a></div>";
-                            
-                            
-                            
+                            html='';
                         $("#bbit-cs-buddle-apply").html(html);
                                 
 //                            }

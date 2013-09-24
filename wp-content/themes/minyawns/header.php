@@ -47,7 +47,7 @@
 	</head>
         <script>
             var siteurl='<?php echo site_url(); ?>';
-            var logouturl='<?php echo wp_logout_url( home_url());?>';
+            var logouturl='<?php echo wp_logout_url('');?>';
             var email='<?php  echo get_user_profile_email() ?>';
             var role='<?php if (get_user_role() == "minyawn"){ echo 'Minion';} else echo 'Employer' ; ?>';
             var logged_in_user_id='<?php echo get_user_id(); ?>'
