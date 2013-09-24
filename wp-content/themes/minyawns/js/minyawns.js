@@ -116,8 +116,8 @@ jQuery(document).ready(function($) {
             if (a_ratio < 1)
                 a_ratio = 1;
 
-            
-           // alert("original :- width"+data.result.image_width+", height "+data.result.image_height+", ratio:"+a_ratio);
+
+            // alert("original :- width"+data.result.image_width+", height "+data.result.image_height+", ratio:"+a_ratio);
             img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
             img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
 
@@ -141,52 +141,52 @@ jQuery(document).ready(function($) {
                     //alert(loaded_img_x+" - "+loaded_img_y);
                     pd_aspect_ratio = $("#aspect_ratio").val().split(":");
 
-                    var defaultcrop_adjust ;
+                    var defaultcrop_adjust;
                     defaultcrop_adjust = 50;
-                   
-                   /* default crop fix for small dimension images */
-                    if (pd_aspect_ratio[0]==2)   
+
+                    /* default crop fix for small dimension images */
+                    if (pd_aspect_ratio[0] == 2)
                     {
-                    	defaultcrop_adjust_x = 50;
-                    	defaultcrop_adjust_y = 50;
-                    	if((img_width<200))
-                    		defaultcrop_adjust_x = img_width/4; 
-                    	if((img_height<100))
-                    		defaultcrop_adjust_y = img_height/4;
-                    	if(defaultcrop_adjust_x < defaultcrop_adjust_y)
-                    		defaultcrop_adjust = defaultcrop_adjust_x;
-                    	else
-                    		defaultcrop_adjust = defaultcrop_adjust_y;
+                        defaultcrop_adjust_x = 50;
+                        defaultcrop_adjust_y = 50;
+                        if ((img_width < 200))
+                            defaultcrop_adjust_x = img_width / 4;
+                        if ((img_height < 100))
+                            defaultcrop_adjust_y = img_height / 4;
+                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+                            defaultcrop_adjust = defaultcrop_adjust_x;
+                        else
+                            defaultcrop_adjust = defaultcrop_adjust_y;
                     }
-                    
-                    
-                    if (pd_aspect_ratio[0]==1)   
+
+
+                    if (pd_aspect_ratio[0] == 1)
                     {
-                    	defaultcrop_adjust_x = 50;
-                    	defaultcrop_adjust_y = 50;
-                    	if((img_width<100))
-                    		defaultcrop_adjust_x = img_width/2; 
-                    	if((img_height<100))
-                    		defaultcrop_adjust_y = img_height/2;
-                    	if(defaultcrop_adjust_x < defaultcrop_adjust_y)
-                    		defaultcrop_adjust = defaultcrop_adjust_x;
-                    	else
-                    		defaultcrop_adjust = defaultcrop_adjust_y;
+                        defaultcrop_adjust_x = 50;
+                        defaultcrop_adjust_y = 50;
+                        if ((img_width < 100))
+                            defaultcrop_adjust_x = img_width / 2;
+                        if ((img_height < 100))
+                            defaultcrop_adjust_y = img_height / 2;
+                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+                            defaultcrop_adjust = defaultcrop_adjust_x;
+                        else
+                            defaultcrop_adjust = defaultcrop_adjust_y;
                     }
                     /* End default crop fix for small dimension images */
-                    
-                     
-                    
-                    
+
+
+
+
                     default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * defaultcrop_adjust);
                     default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * defaultcrop_adjust);
                     default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * defaultcrop_adjust);
                     default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * defaultcrop_adjust);
 
-                   /* alert(img_width / 2);
-                    alert(pd_aspect_ratio[0]);
-                    alert(pd_aspect_ratio[1]);*/
-                    
+                    /* alert(img_width / 2);
+                     alert(pd_aspect_ratio[0]);
+                     alert(pd_aspect_ratio[1]);*/
+
                     /* alert(loaded_img_x);
                      alert(loaded_img_y);
                      */
@@ -197,13 +197,13 @@ jQuery(document).ready(function($) {
                      */
                     /*alert(default_x1+" -- "+default_x2);
                      alert(default_y1+" -- "+default_y2);*/
-                    
-                    default_x1 =  Math.round(default_x1 * 1000) / 1000;
+
+                    default_x1 = Math.round(default_x1 * 1000) / 1000;
                     default_y1 = Math.round(default_y1 * 1000) / 1000;
                     default_x2 = Math.round(default_x2 * 1000) / 1000;
                     default_y2 = Math.round(default_y2 * 1000) / 1000;
-                    
-                    
+
+
                     default_thumb_width = default_x2 - default_x1;
                     default_thumb_height = default_y2 - default_y1;
                     $("#done-cropping").show();
@@ -239,10 +239,10 @@ jQuery(document).ready(function($) {
         $(".load_ajax-crop-upload").show();
         $("#div_cropmsg").html("<br/>");
 
-        
-        console.log("w: "+$("#image_width").val()+" h:"+ $("#image_height").val() +  'x1:'+ $("#image_x_axis").val()+ 'y1:'+ $("#image_y_axis").val()+ "image_name:"+ $("#image_name").val()+" asp_ratio:"+ $("#aspect_ratio").val()) ;
-        
-        
+
+        console.log("w: " + $("#image_width").val() + " h:" + $("#image_height").val() + 'x1:' + $("#image_x_axis").val() + 'y1:' + $("#image_y_axis").val() + "image_name:" + $("#image_name").val() + " asp_ratio:" + $("#aspect_ratio").val());
+
+
         $.ajax({
             type: "POST",
             url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
@@ -533,22 +533,25 @@ jQuery(document).ready(function($) {
 
     $("#load-more,#load-more-my-jobs").click(function(e) {
         $(".load_ajax").show();
-
+        console.log(window.fetchj.models.length);
         var _data = {
             'offset': window.fetchj.models.length
 
         };
-
+        var status = true;
+        var remove = false;
         if ($("#tab_identifier").val() === '1') {
             _data.my_jobs = '1';
+            var status = false;
+            var remove = true;
             // $("#accordion24").empty();
         }
-        
-        var status=true;
-        
-        
+
+
+
+
         window.fetchj.fetch({
-            remove: true,
+            remove: remove,
             add: status,
             data: _data,
             success: function(collection, response) {
@@ -896,7 +899,7 @@ jQuery(document).ready(function($) {
 //remove success
                         _.pluck(data, 'success');
                         window.location.reload();
-                     //   load_browse_jobs(model.toJSON().post_id, 'single_job');
+                        //   load_browse_jobs(model.toJSON().post_id, 'single_job');
 //                        if (data.job_task === undefined)
 //                        {
 //                            data.job_task = '';
@@ -996,7 +999,7 @@ jQuery(document).ready(function($) {
         }, 'json');
     });
 
-function onload_calendar()
+    function onload_calendar()
     {
 
         var view = "month";
@@ -1295,8 +1298,8 @@ function onload_calendar()
             $("#hdn_jobwages").val($("#job_wages").val());
             $("#no_of_minyawns").html(no_of_minyawns);
             $("#wages_per_minyawns").html($("#job_wages").val());
-            var total = no_of_minyawns * $("#job_wages").val();
-            $("#total_wages").html(total);
+             var total = no_of_minyawns * $("#job_wages").val();
+            $("#total_wages").html(total.toFixed(2));
             $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
                     {
                         user_id: group_ids,
