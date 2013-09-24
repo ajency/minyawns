@@ -18,9 +18,9 @@ global $wpdb;
 //}else
 //{
    // $paypal_email = 'parag0246@yahoo.co.in';
-$paypal_email = 'ceo-facilitator@minyawns.com '; 
+//$paypal_email = 'ceo-facilitator@minyawns.com '; 
  
-    //$paypal_email = 'ceo@minyawns.com';
+$paypal_email = 'ceo@minyawns.com';
  
  
     $return_url = 'http://minyawns.com/success-payment/';
