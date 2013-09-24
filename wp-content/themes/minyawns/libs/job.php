@@ -194,15 +194,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
 
-                    if($user_to_job_rating->positive > 0)
-                        $rating='Well Done';
-                    else
-                        $rating='Rating:Awaited';
-               //print_r($rating);exit();
-                   if($user_to_job_rating->positive > 0)
-                        $rating='Well Done';
-                    else
-                        $rating='Rating:Awaited';
+                    $rating=($user_to_job_rating->positive) > 0 ? 'Well Done':'Rating:Awaited';
+                       
+                   $rating=($user_to_job_rating->negative) > 0 ? 'Terrible':'Rating:Awaited';
+                       
                     
 
                    if($user_to_job_rating->status == 'applied' ) $status='Applied'; else $status='Hired';
