@@ -13,6 +13,8 @@ require 'templates/_jobs.php';
             jQuery("#change-avatar-span").attr("href", "#")
             jQuery("#change-avatar-span").find("span").remove();
         }
+        
+        jQuery("#tab_identifier").val('1');
     });
 </script>
 <script type="text/templates" id="no-result">
@@ -110,6 +112,7 @@ require 'templates/_jobs.php';
         <h4 id="myModalLabel">Change Avatar</h4>
 
     </div>
+    <input type="hidden" id="tab_identifier" />
     <div class="modal-body">
         <div style="margin:0 auto; width:500px">
 
@@ -302,7 +305,7 @@ endif;
 
                         </div>
 
-                        <button class="btn load_more" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
+                        <button class="btn load_more load_more_profile" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
                     </div>
                 </div>
                 <div class="clear"></div>

@@ -114,12 +114,12 @@
 
 <script type="text/template" id="minion-cards">  
 
-     <a href="<?php echo site_url() ?>/profile/<%= result.user_id %>" target="_blank"/> 
+    
     <li class="span3" id="<%= result.user_id %>" >
    
     <div class="thumbnail">
-    <div class="caption">
-    <div class="minyawns-img">
+    <div class="caption"  >
+    <div class="minyawns-img" onclick="load_profile(<%= result.user_id %>)">
     <%= result.user_image%>
     </div>
     <div class="rating">
@@ -136,6 +136,9 @@
     <div class="social-link">
     <%= result.user_email %> 
     </div>
+     <div class="social-link">
+    <%= result.linkedin %> 
+    </div>
     <%
     var split_skills=result.user_skills.split(',');
     for(var index=0;index<=split_skills.length;index++){
@@ -148,9 +151,9 @@
     </div>
     </div>
     </div>
-     
+    
     </li>
-   </a>
+  
 </script>
 
 <script type="text/template" id="confirm-hire">

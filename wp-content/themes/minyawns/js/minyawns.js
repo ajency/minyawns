@@ -521,7 +521,7 @@ jQuery(document).ready(function($) {
             success: function(collection, response) {
                 $(".load_ajax").hide();
                 var template = _.template($("#jobs-table").html());
-                $("#accordion2").empty();
+               // $("#accordion2").empty();
 
                 _.each(collection.models, function(model) {
                     var job_stat = job_status_li(model);
@@ -811,7 +811,7 @@ jQuery(document).ready(function($) {
 
         e.preventDefault();
 
-        var span1 = $('#single-jobs');
+        var span1 = $('.singlejobedit');
         var span2 = $('#edit-job-form');
         var w = $(span1).width();
         if ($(this).hasClass('view'))
@@ -1443,7 +1443,7 @@ jQuery(document).ready(function($) {
             }
             if (response.action === "vote-down") {
 
-                $("#total-dislike" + _user_id).contents().filter(function() {
+                $("#thumbs_down_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
 
@@ -1508,4 +1508,15 @@ jQuery('a #edit-user-profile').click(function() {
 //        jQuery(".collapse").collapse({"toggle" : "show"});
 //    });
 
+jQuery('#frm_signup').keydown(function(e){
+    if (e.keyCode === 13) { // If Enter key pressed
+         jQuery('button').click();
+    }
+});
 
+function load_profile(id)
+{
+   
+    var url=siteurl+"/profile/"+id;
+    window.open(url, '_blank');
+}
