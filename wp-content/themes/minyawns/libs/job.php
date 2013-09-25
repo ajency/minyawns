@@ -133,7 +133,7 @@ $app->get('/fetchjobs/', function() use ($app) {
 
 
             $pageposts = $wpdb->get_results($querystr, OBJECT);
-
+ 
             $total = get_total_jobs();
 
             $no_of_pages = ceil($total / 5);
@@ -220,7 +220,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $show_load = 0;
 
 
-                if (isset($_GET['single_job']) || isset($_GET['my_jobs'])) /* pagination issue */
+                if (isset($_GET['single_job'])) /* pagination issue */
                     $show_load = 1;
 
                 if (get_user_company_logo($pagepost->post_author) == false)
