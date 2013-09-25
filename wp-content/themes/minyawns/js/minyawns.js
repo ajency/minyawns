@@ -533,26 +533,49 @@ jQuery(document).ready(function($) {
 
     $("#load-more,#load-more-my-jobs").click(function(e) {
         $(".load_ajax").show();
+        // $("#accordion2").empty();
         console.log(window.fetchj.models.length);
         var _data = {
-            'offset': window.fetchj.models.length
+            offset: window.fetchj.models.length
 
         };
-        var status = true;
-        var remove = false;
+        var status;
+        var remove;
+        remove = true;
+        status = true;
+
         if ($("#tab_identifier").val() === '1') {
             _data.my_jobs = '1';
-            var status = false;
-            var remove = true;
+            remove = false;
+            status = true;
             // $("#accordion24").empty();
         }
 
+window.fetchj.bind('add',function(model){
+     var job_stat = job_status_li(model);
+                    var job_collapse_button_var = job_collapse_button(model);
+                    var minyawns_grid = job_minyawns_grid(model)
+                    if (model.toJSON().load_more === 1)
+                        $("#load-more,#load-more-my-jobs").hide();
+                    
+                    var template = _.template($("#jobs-table").html());
+                    //console.log(collection.models.length);
+                    var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
+                    if ($("#tab_identifier").val() === '1') {
+                        $("#accordion24").append(html);
+                    }
+                    else {
+                       
+                        $("#accordion2").append(html);
+                    }
+    
+});
 
 
         window.fetchj.fetch({
-            remove: remove,
-            add: status,
+            remove: false,
+            add: true,
             data: _data,
             success: function(collection, response) {
                 $(".load_ajax").hide();
@@ -560,18 +583,21 @@ jQuery(document).ready(function($) {
                 // $("#accordion2").empty();
 
                 _.each(collection.models, function(model) {
-                    var job_stat = job_status_li(model);
-                    var job_collapse_button_var = job_collapse_button(model);
-                    var minyawns_grid = job_minyawns_grid(model)
-                    if (model.toJSON().load_more === 1)
-                        $("#load-more,#load-more-my-jobs").hide();
-                    //console.log(collection.models.length);
-                    var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
-
-                    if ($("#tab_identifier").val() === '1')
-                        $("#accordion24").append(html);
-                    else
-                        $("#accordion2").append(html);
+//                    var job_stat = job_status_li(model);
+//                    var job_collapse_button_var = job_collapse_button(model);
+//                    var minyawns_grid = job_minyawns_grid(model)
+//                    if (model.toJSON().load_more === 1)
+//                        $("#load-more,#load-more-my-jobs").hide();
+//                    //console.log(collection.models.length);
+//                    var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
+//
+//                    if ($("#tab_identifier").val() === '1') {
+//                        $("#accordion24").append(html);
+//                    }
+//                    else {
+//                       
+//                        $("#accordion2").append(html);
+//                    }
 
                 });
             },
@@ -1298,7 +1324,7 @@ jQuery(document).ready(function($) {
             $("#hdn_jobwages").val($("#job_wages").val());
             $("#no_of_minyawns").html(no_of_minyawns);
             $("#wages_per_minyawns").html($("#job_wages").val());
-             var total = no_of_minyawns * $("#job_wages").val();
+            var total = no_of_minyawns * $("#job_wages").val();
             $("#total_wages").html(total.toFixed(2));
             $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/confirm',
                     {

@@ -47,11 +47,11 @@ $app->post('/addjob', function() use ($app) {
                     update_post_meta($post_id, 'job_end_date', strtotime($value));
                 } elseif ($key == "job_start_time") {
                     // print_r($start);print_r($value);
-                    $start_time = explode(" ", $value);
-                    $date = date("j-m-Y", strtotime($start));
-                    $start_date_time = strtotime($date . $start_time[0]); //print_r($value);
+                    //$start_time = explode(" ", $value);
+                    //$date = date("j-m-Y", strtotime($start));
+                    //$start_date_time = strtotime($date . $start_time[0]); //print_r($value);
                     update_post_meta($post_id, $key, strtotime($value));
-                    update_post_meta($post_id, 'job_start_date_time', $start_date_time);
+                    update_post_meta($post_id, 'job_start_date_time',strtotime(date("j-m-Y", strtotime($start)) . $value));
                 } elseif ($key == "job_end_date") {
                     $end = $start;
                     update_post_meta($post_id, $key, strtotime($end));
@@ -96,8 +96,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
                 } else {
+                    //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
                     $tables = "$wpdb->posts,$wpdb->postmeta";
-                    $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . get_current_user_id() . "' AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+                    $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . get_current_user_id() . "' AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' ";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
@@ -110,10 +111,11 @@ $app->get('/fetchjobs/', function() use ($app) {
                             ORDER BY $wpdb->postmeta.meta_value ASC";
                     $limit = "";
                 } else {
+                    //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
                     $tables = "$wpdb->posts, $wpdb->postmeta";
-                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
-                    $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
+                    $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                 }
