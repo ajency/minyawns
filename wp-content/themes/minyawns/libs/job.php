@@ -149,7 +149,7 @@ $app->get('/fetchjobs/', function() use ($app) {
 
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
-            $total = count($pageposts);
+            $total = get_total_jobs();
 
             $no_of_pages = ceil($total / 5);
 
@@ -227,7 +227,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
 
 
-                $total = get_total_jobs();
+               // $total = get_total_jobs();
 
                 if ($total <= $_GET['offset'] + 5)
                     $show_load = 1;

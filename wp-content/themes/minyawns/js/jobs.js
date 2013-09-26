@@ -147,6 +147,7 @@ function fetch_my_jobs(id)
     jQuery("#accordion2").empty();
 //  jQuery("#list-my-jobs").empty();
     //jQuery(".browse-jobs-table").empty();
+    jQuery("#load-more-my-jobs").show();
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
         url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
@@ -184,14 +185,14 @@ function fetch_my_jobs(id)
                         var minyawns_grid = job_minyawns_grid(model);
                         // console.log(minyawns_grid);
                         
-                        if (model.toJSON().load_more === 1)
-                            jQuery("#load-more-my-jobs,.load_more_profile").hide();
+                        //if (model.toJSON().load_more === 1)
+                          // jQuery("#load-more-my-jobs,.load_more_profile").hide();
 
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                         jQuery("#accordion24").append(html);
                     } else
                     {
-                        jQuery(".load_more").hide();
+                       // jQuery(".load_more").hide();
                         // var template = _.template(jQuery("#no-result").html());
 
                         //jQuery("#accordion24").html(jQuery("#no-result").html());
