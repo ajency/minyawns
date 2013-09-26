@@ -142,7 +142,7 @@ require 'templates/_jobs.php';
 
             </div>
             <span class='load_ajaxsingle_job' style="display:block"></span>
-            <div class="singlejobedit" style=" margin-left: 0; position: absolute;
+            <div class="singlejobedit" style=" margin-left: 0; position: relative;
                  top: 50px;
                  z-index: 10;" id="single-job-accordion">
 

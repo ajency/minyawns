@@ -74,7 +74,8 @@
     </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Details :</b></div><div class="span9"><%= result.job_details.substring(0, 140) %>
+    <div class="span3 "><b>Details :</b></div><div class="span9" style=" margin-bottom: 13px;
+    word-wrap: break-word;"><%= result.job_details %>>
     </div>
     </div>
     <div class="row-fluid minywans_list">
