@@ -446,8 +446,7 @@ function get_total_jobs() {
     } else {
         $tables = "$wpdb->posts, $wpdb->postmeta";
         $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
-                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'AND $wpdb->posts.ID = $wpdb->term_relationships.object_id
-                            AND $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id AND $wpdb->term_taxonomy.term_id IN (460)";
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
     }
 
     $querystr = "

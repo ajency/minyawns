@@ -534,62 +534,42 @@ jQuery(document).ready(function($) {
     $("#load-more,#load-more-my-jobs").click(function(e) {
         $(".load_ajax").show();
         // $("#accordion2").empty();
-        console.log(window.fetchj.models.length);
+        // console.log(window.fetchj.models.length);
         var _data = {
             offset: window.fetchj.models.length
 
         };
-        var status;
-        var remove;
-        remove = true;
-        status = true;
+
 
         if ($("#tab_identifier").val() === '1') {
             _data.my_jobs = '1';
-            remove = false;
-            status = true;
+
             // $("#accordion24").empty();
         }
-
-window.fetchj.bind('add',function(model){
-     var job_stat = job_status_li(model);
-                    var job_collapse_button_var = job_collapse_button(model);
-                    var minyawns_grid = job_minyawns_grid(model)
-                    if (model.toJSON().load_more === 1)
-                        $("#load-more,#load-more-my-jobs").hide();
-                    
-                    var template = _.template($("#jobs-table").html());
-                    //console.log(collection.models.length);
-                    var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
-
-                    if ($("#tab_identifier").val() === '1') {
-                        $("#accordion24").append(html);
-                    }
-                    else {
-                       
-                        $("#accordion2").append(html);
-                    }
-    
-});
-
-
-        window.fetchj.fetch({
-            remove: false,
-            add: true,
-            data: _data,
-            success: function(collection, response) {
-                $(".load_ajax").hide();
-                var template = _.template($("#jobs-table").html());
-                // $("#accordion2").empty();
-
-                _.each(collection.models, function(model) {
-//                    var job_stat = job_status_li(model);
-//                    var job_collapse_button_var = job_collapse_button(model);
-//                    var minyawns_grid = job_minyawns_grid(model)
-//                    if (model.toJSON().load_more === 1)
+//if ($("#tab_identifier").val() === '0') {
+//window.fetchj.bind('add',function(collection){
+//     var existing = this.where({
+//    post_title: collection.get('post_title'),
+//   
+//  });
+//  //console.log(existing);
+//  if (existing.length > 1) 
+//      {
+//          this.remove(collection)
+//         // alert(existing['post_title']);
+//      }
+////  alert(existing.length);
+//     var job_stat = job_status_li(collection);
+//                    var job_collapse_button_var = job_collapse_button(collection);
+//                    var minyawns_grid = job_minyawns_grid(collection)
+//                    if (collection.toJSON().load_more === 1){
 //                        $("#load-more,#load-more-my-jobs").hide();
+//                    }                                 
+//  
+//                    
+//                    var template = _.template($("#jobs-table").html());
 //                    //console.log(collection.models.length);
-//                    var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
+//                    var html = template({result: collection.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 //
 //                    if ($("#tab_identifier").val() === '1') {
 //                        $("#accordion24").append(html);
@@ -598,6 +578,34 @@ window.fetchj.bind('add',function(model){
 //                       
 //                        $("#accordion2").append(html);
 //                    }
+//});
+//}
+
+        window.fetchj.fetch({
+            remove: false,
+            add: true,
+            data: _data,
+            success: function(collection, response) {
+                $(".load_ajax").hide();
+                var template = _.template($("#jobs-table").html());
+                $("#accordion2").empty();
+                $("#accordion24").empty();
+                _.each(collection.models, function(model) {
+                    var job_stat = job_status_li(model);
+                    var job_collapse_button_var = job_collapse_button(model);
+                    var minyawns_grid = job_minyawns_grid(model)
+                    if (model.toJSON().load_more === 1)
+                        $("#load-more,#load-more-my-jobs").hide();
+                    //console.log(collection.models.length);
+                    var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
+
+                    if ($("#tab_identifier").val() === '1') {
+                        $("#accordion24").append(html);
+                    }
+                    else {
+
+                        $("#accordion2").append(html);
+                    }
 
                 });
             },

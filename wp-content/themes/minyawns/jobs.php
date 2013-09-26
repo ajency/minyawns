@@ -21,7 +21,7 @@ $args = array(
 	'pad_counts'               => false 
 
 );
-$all_categories = get_categories($args);
+$all_categories = get_categories(array('hide_empty' => 0 ) );
 ?>
 
 <!-- Row Div -->

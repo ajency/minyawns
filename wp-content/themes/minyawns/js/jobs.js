@@ -150,6 +150,7 @@ function fetch_my_jobs(id)
     jQuery("#load-more-my-jobs").show();
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
+        unique: true,
         url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
     });
     window.fetchj = new Fetchjobs;

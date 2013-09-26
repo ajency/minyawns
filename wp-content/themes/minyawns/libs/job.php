@@ -146,7 +146,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             $limit
                          ";
 
-
+//print_r($querystr);exit();
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
             $total = get_total_jobs();
