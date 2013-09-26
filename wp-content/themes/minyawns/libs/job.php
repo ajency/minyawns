@@ -14,6 +14,14 @@ $app->post('/addjob', function() use ($app) {
             $json_a = json_decode($requestBody, true);
 
             $postid = ($json_a['id']) > 0 ? $json_a['id'] : '';
+            // var_dump($json_a);
+//            foreach ($json_a as $key => $value) {
+//                if (strstr($key, 'category')) {
+//                    var_dump($value);
+//                }
+//            }
+//
+//            exit();
 
             $post = array(
                 'ID' => $postid,
@@ -46,32 +54,27 @@ $app->post('/addjob', function() use ($app) {
                     update_post_meta($post_id, $key, strtotime($value));
                     update_post_meta($post_id, 'job_end_date', strtotime($value));
                 } elseif ($key == "job_start_time") {
-                    // print_r($start);print_r($value);
-                    //$start_time = explode(" ", $value);
-                    //$date = date("j-m-Y", strtotime($start));
-                    //$start_date_time = strtotime($date . $start_time[0]); //print_r($value);
+
                     update_post_meta($post_id, $key, strtotime($value));
-                    update_post_meta($post_id, 'job_start_date_time',strtotime(date("j-m-Y", strtotime($start)) . $value));
+                    update_post_meta($post_id, 'job_start_date_time', strtotime(date("j-m-Y", strtotime($start)) . $value));
                 } elseif ($key == "job_end_date") {
                     $end = $start;
                     update_post_meta($post_id, $key, strtotime($end));
                 } elseif ($key == "job_end_time") {
-                    //  print_r(strtotime(date("j-m-Y",  strtotime($start)).$value));
-                    //   $currentDate =  date("j-m-Y H:i:s A", strtotime($end . $value));
-                    //  print_r(strtotime($end . $value));print_r("current_time->");print_r(current_time('timestamp'));
-                    // print_r($currentDate);exit();
+
 
                     $date = date("j-m-Y", strtotime($end));
-                    // $job_end_time = explode(" ", $value);
-                    // $end_date_time = strtotime($date . $job_end_time[0]);
-                    //print_r(date("j-m-Y",  strtotime($start)).$value);
+
                     update_post_meta($post_id, $key, strtotime($value));
 
                     update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y", strtotime($start)) . $value));
+                } elseif (strstr($key, 'category')) {
+                    $categories[] = $value;
                 } elseif ($key !== 'job_details') {
                     update_post_meta($post_id, $key, $value);
                 }
             }
+            wp_set_post_categories($post_id, $categories);
 
 
             $app->response()->header("Content-Type", "application/json");
@@ -86,6 +89,18 @@ $app->get('/fetchjobs/', function() use ($app) {
             $prefix = $wpdb->prefix;
             $data = array();
             $current_user_id = get_current_user_id();
+            $category_filter = "";
+            $filtertables="";
+            /* Category filter */
+//            if (isset($_GET['filter'])) {
+//                $category_filter = "AND $wpdb->posts.ID = $wpdb->term_relationships.object_id
+//                            AND $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id AND $wpdb->term_taxonomy.term_id IN (".$_GET['filter'].")";
+//            
+//                $filtertables="$wpdb->term_relationships,$wpdb->term_taxonomy";
+//            }
+
+
+
 
             if (isset($_GET['my_jobs'])) {
 
@@ -123,7 +138,7 @@ $app->get('/fetchjobs/', function() use ($app) {
 
             $querystr = "
                             SELECT $wpdb->posts.* 
-                            FROM $tables
+                            FROM $tables"."$filtertables
                             $my_jobs_filter
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
@@ -133,8 +148,8 @@ $app->get('/fetchjobs/', function() use ($app) {
 
 
             $pageposts = $wpdb->get_results($querystr, OBJECT);
- 
-            $total = get_total_jobs();
+
+            $total = count($pageposts);
 
             $no_of_pages = ceil($total / 5);
 
@@ -237,7 +252,21 @@ $app->get('/fetchjobs/', function() use ($app) {
                     //      $wages_seen = (13 * $post_meta['job_wages'][0]) / 100;
                     $wages = $post_meta['job_wages'][0];
                 }
-
+                $categories = array();
+                $category_ids = array();
+                $post_categories = get_the_category($pagepost->ID);
+                foreach ($post_categories as $job_categories) {
+                    array_push($categories, $job_categories->name);
+                    array_push($category_ids, $job_categories->cat_ID);
+                }
+                
+                if(isset($_GET['single_job']))                   
+                   $post_content=$pagepost->post_content;
+                else
+                    $post_content = substr($pagepost->post_content,0,100);
+                
+              
+                
                 /*
                  *  1 ->running
                  *  2->locked ,if one applicant also hired then locked
@@ -260,7 +289,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_start_time' => date('g:i', $post_meta['job_start_time'][0]),
                     'job_end_time' => date('g:i', $post_meta['job_end_time'][0]),
                     'job_location' => $post_meta['job_location'][0],
-                    'job_details' => $pagepost->post_content,
+                    'job_details' => $post_content,
                     'tags' => $tags,
                     //'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('first_name', $pagepost->post_author) . ' ' . get_the_author_meta('last_name', $pagepost->post_author),
@@ -285,7 +314,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'applied_user_id' => $user_id_applied,
                     'user_to_job_rating' => $user_rating_job,
                     'individual_user_to_job_status' => $status,
-                    'total' => $total
+                    'total' => $total,
+                    'job_categories' => $categories,
+                    'job_category_ids' => $category_ids
                 );
             }
 

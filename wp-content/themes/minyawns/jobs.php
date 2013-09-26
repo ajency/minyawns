@@ -6,21 +6,33 @@
 get_header();
 global $minyawn_job;
 require 'templates/_jobs.php';
+$all_categories = get_categories();
 ?>
 
 <!-- Row Div -->
 
-
+<style>
+    .category_label{
+        margin-right: 5px !important; 
+        margin-top: -2px !important;
+    }
+    .category_name{
+        display: inline-block !important;
+        margin-right: 5px !important;
+        padding-top: 8px !important;
+    }
+    
+    </style>
 
 
 <div class="container">
-
+<input type="hidden" name="categoryids[]" id="category_id"/>
     <ul class="nav nav-tabs nav-append-content jobs_menu">
         <li ><a href="#tab1" id="browse">Browse Jobs</a></li>
         <li class="active" id="my_jobs"><a href="#tab2">My Jobs</a></li>
-         
+
     </ul>  
-<input type="hidden" id="tab_identifier" />
+    <input type="hidden" id="tab_identifier" />
     <div class="tab-content">
         <div class="tab-pane jobs_table " id="tab1">
             <div class="breadcrumb-text">
@@ -36,17 +48,17 @@ require 'templates/_jobs.php';
             <div class="clear"></div><br>
             <span class='load-ajax-browse' style="display:block"></span> 
             <div id="browse-jobs-table" class="table-border browse-jobs-table">
-               
+
                 <!-- Row Div header -->
                 <div class="row-fluid ">
                     <div class="span12 header-title">
                         <div class="job-logo header-sub"> Logo</div>
                         <div class="job-date header-sub"> Job Date</div>
                         <div class="job-time header-sub">Duration</div>
-                       <div class="job-wage header-sub">Applicants</div> 
+                        <div class="job-wage header-sub">Applicants</div> 
                         <div class="job-progress header-sub">Progress</div>
                         <div class="job-action header-sub">Wages</div>
-                        
+
                     </div>
                 </div>
 
@@ -171,6 +183,7 @@ require 'templates/_jobs.php';
                                         <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="" style="height:70px;"></textarea>
                                     </div>
                                 </div>
+
                                 <div class="control-group small float-left ">
                                     <label class="control-label" for="inputtask">Start</label>
                                     <div class="controls">
@@ -231,11 +244,23 @@ require 'templates/_jobs.php';
                                         <input type="text" name="job_location" id="job_location" value="" placeholder="" class="span8">
                                     </div>
                                 </div>
-
+                               
                                 <div class="control-group small">
                                     <label class="control-label" for="inputtask">Tags</label>
                                     <div class="controls ">
                                         <input  name="job_tags" id="job_tags" value="" placeholder="Tags here" class="tm-input tagsinput">
+                                    </div>
+                                </div>
+                                 <div class="control-group small">
+                                    <label class="control-label" for="inputtask">Job Category</label>
+                                    <div class="controls ">
+                                        <?php
+                                        foreach ($all_categories as $category) {
+                                            ?>
+                                            <input class="category_label" type="checkbox" value="<?php echo $category->cat_ID ?>" name="category-<?php echo $category->cat_ID ?>" id="category"/><span class="category_name"><?php echo $category->name ?></span>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                                 <div class="control-group small">
@@ -248,28 +273,28 @@ require 'templates/_jobs.php';
                                 <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
                                 <div class="clear"></div>
                             </form>
-                        <?php } ?>                   
+<?php } ?>                   
 
                     </div>
                     <span class='load_ajax1_myjobs' style="display:none"></span>
                     <div id="list-my-jobs">
-<div class="row-fluid ">
-                    <div class="span12 header-title">
-                        <div class="job-logo header-sub"> Logo</div>
-                        <div class="job-date header-sub"> Job Date</div>
-                        <div class="job-time header-sub">Duration</div>
-                       <div class="job-wage header-sub">Applicants</div> 
-                        <div class="job-progress header-sub">Progress</div>
-                        <div class="job-action header-sub">Wages</div>
-                        
-                    </div>
-                </div>
+                        <div class="row-fluid ">
+                            <div class="span12 header-title">
+                                <div class="job-logo header-sub"> Logo</div>
+                                <div class="job-date header-sub"> Job Date</div>
+                                <div class="job-time header-sub">Duration</div>
+                                <div class="job-wage header-sub">Applicants</div> 
+                                <div class="job-progress header-sub">Progress</div>
+                                <div class="job-action header-sub">Wages</div>
 
-                <div class="row-fluid " id="accordion24" >
+                            </div>
+                        </div>
 
-                </div>
+                        <div class="row-fluid " id="accordion24" >
 
-                <button class="btn load_more" id="load-more-my-jobs"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
+                        </div>
+
+                        <button class="btn load_more" id="load-more-my-jobs"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
 
                     </div>
                 </div>

@@ -81,6 +81,10 @@
     <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%>
     </div>
     </div>
+<div class="row-fluid minywans_list">
+    <div class="span3 "><b>Job Category :</b></div><div class="span9"> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="label" ><%= result.job_categories[i] %></span><%}%>
+    </div>
+    </div>
     <div class="row-fluid minyawansgrid">
     <%= minyawns_grid %>
     <img class="arrow-left" src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png">

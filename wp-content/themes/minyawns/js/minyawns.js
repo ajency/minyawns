@@ -1245,13 +1245,13 @@ window.fetchj.bind('add',function(model){
 
     });
 
-    $('input:checkbox').click(function() {
-        if ($(this).is(':checked')) {
-            $('input:checkbox').not(this).prop('checked', false);
-        }
-        alert("here");
-        $(this).attr("checked", "checked");
-    });
+//    $('input:checkbox').click(function() {
+//        if ($(this).is(':checked')) {
+//            $('input:checkbox').not(this).prop('checked', false);
+//        }
+//       
+//        $(this).attr("checked", "checked");
+//    });
 
 
 

@@ -612,6 +612,7 @@ function create_post_type() {
         ),
         'public' => true,
         'has_archive' => true,
+        'taxonomies' => array('category')
             )
     );
 }
@@ -835,10 +836,22 @@ function update_paypal_payment($data, $curl_result) {
       } */
 }
 
-//end function update_paypal_payment($data,$curl_result)
+add_action('admin_menu', 'job_rating');
+function job_rating() {
+	add_menu_page('Job Not Rated', 'Job Ratings', 'read', 'my-unique-identifier', 'load_job_rating_page');
+}
 
+function load_job_rating_page()
+{
+    if ( !current_user_can( 'administrator' ) ) {
+wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+}
 
+include_once 'admin-job-rating.php';
 
+    
+    
+}
 /* TODO
  * function cron_paypal_payment_complete()
 {
