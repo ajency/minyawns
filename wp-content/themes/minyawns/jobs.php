@@ -6,7 +6,22 @@
 get_header();
 global $minyawn_job;
 require 'templates/_jobs.php';
-$all_categories = get_categories();
+$args = array(
+	'type'                     => 'job',
+	'child_of'                 => 0,
+	'parent'                   => '',
+	'orderby'                  => 'name',
+	'order'                    => 'ASC',
+	'hide_empty'               => 1,
+	'hierarchical'             => 1,
+	'exclude'                  => '',
+	'include'                  => '',
+	'number'                   => '',
+	'taxonomy'                 => 'category',
+	'pad_counts'               => false 
+
+);
+$all_categories = get_categories($args);
 ?>
 
 <!-- Row Div -->
