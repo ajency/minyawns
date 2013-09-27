@@ -23,17 +23,17 @@ function load_browse_jobs(id, _action,category_ids) {
       var filter =1;
   else
       var filter =0;
-
-  if(filter === 1)
-      {
-          var catids=$("#category_id").val();
-      }
+  
+ 
+//  if(filter === 1)
+//    var catids=$("#category_id").val();
+//     
     window.fetchj = new Fetchjobs;
     // if(!isNaN(id))
     window.fetchj.set({single_job: '1'});
     var _data = {
         'offset': 0,
-        'filter':catids
+        'filter':category_ids
     };
 
     if (!isNaN(id) && filter === 0 )
@@ -333,7 +333,7 @@ function job_status_li(model)
                 else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* not locked but hired  */
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions Selected.</span>";
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check && model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* hired and expired  */
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Rate Your MInions.</span>";
+                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Rate Your Minions.</span>";
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* job Exipred */
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
                 //return job_status1;
