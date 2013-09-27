@@ -90,14 +90,14 @@ $app->get('/fetchjobs/', function() use ($app) {
             $data = array();
             $current_user_id = get_current_user_id();
             $category_filter = "";
-            $filtertables="";
+            $filtertables = "";
             /* Category filter */
-//            if (isset($_GET['filter'])) {
-//                $category_filter = "AND $wpdb->posts.ID = $wpdb->term_relationships.object_id
-//                            AND $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id AND $wpdb->term_taxonomy.term_id IN (".$_GET['filter'].")";
-//            
-//                $filtertables="$wpdb->term_relationships,$wpdb->term_taxonomy";
-//            }
+
+            if (isset($_GET['filter'])) {
+                $category_filter = "AND $wpdb->posts.ID = $wpdb->term_relationships.object_id
+                            AND $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id AND $wpdb->term_taxonomy.term_id IN (" . $_GET['filter'] . ")";
+                $filtertables = ","."$wpdb->term_relationships,$wpdb->term_taxonomy";
+            }
 
 
 
@@ -137,16 +137,17 @@ $app->get('/fetchjobs/', function() use ($app) {
             }
 
             $querystr = "
-                            SELECT $wpdb->posts.* 
+                            SELECT DISTINCT $wpdb->posts.* 
                             FROM $tables"."$filtertables
                             $my_jobs_filter
+                            $category_filter
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             $order_by
                             $limit
                          ";
 
-//print_r($querystr);exit();
+
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
             $total = get_total_jobs();
@@ -227,7 +228,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
 
 
-               // $total = get_total_jobs();
+                // $total = get_total_jobs();
 
                 if ($total <= $_GET['offset'] + 5)
                     $show_load = 1;
@@ -258,15 +259,16 @@ $app->get('/fetchjobs/', function() use ($app) {
                 foreach ($post_categories as $job_categories) {
                     array_push($categories, $job_categories->name);
                     array_push($category_ids, $job_categories->cat_ID);
+                    array_push($category_slug,$job_categories->slug);
                 }
-                
-                if(isset($_GET['single_job']))                   
-                   $post_content=$pagepost->post_content;
+
+                if (isset($_GET['single_job']))
+                    $post_content = $pagepost->post_content;
                 else
-                    $post_content = substr($pagepost->post_content,0,100);
-                
-              
-                
+                    $post_content = substr($pagepost->post_content, 0, 100);
+
+
+
                 /*
                  *  1 ->running
                  *  2->locked ,if one applicant also hired then locked
@@ -316,7 +318,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'individual_user_to_job_status' => $status,
                     'total' => $total,
                     'job_categories' => $categories,
-                    'job_category_ids' => $category_ids
+                    'job_category_ids' => $category_ids,
+                    'job_category_slug'=>$category_slug
                 );
             }
 

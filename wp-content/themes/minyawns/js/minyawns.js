@@ -540,7 +540,11 @@ jQuery(document).ready(function($) {
 
         };
 
-
+ var first = getUrlVars()["cat_id"];
+ 
+  if(typeof(first) !== 'undefined')
+        _data.filter=first;
+ 
         if ($("#tab_identifier").val() === '1') {
             _data.my_jobs = '1';
 
@@ -1418,16 +1422,34 @@ jQuery(document).ready(function($) {
     });
 
 
+var first = getUrlVars()["cat_id"];
 
-
-
+    if(typeof(first) !== 'undefined')
+        {
+           
+            load_browse_jobs('','',first);
+        }else{
     /* function on page load*/
 
     fetch_my_jobs(logged_in_user_id);//moved to jobs.js
 
-
+      }
 
 });
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
 
 function validateURL(textval) {
     return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(textval);
