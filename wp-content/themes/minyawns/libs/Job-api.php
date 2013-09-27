@@ -457,7 +457,7 @@ function get_total_jobs() {
 
     $querystr = "
                             SELECT $wpdb->posts.* 
-                            FROM $tables
+                            FROM $tables"."$filtertables
                             $my_jobs_filter
                             $category_filter
                             AND $wpdb->posts.post_status = 'publish' 
