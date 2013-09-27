@@ -100,11 +100,11 @@ class Minyawn_Job {
         $this->location = trim($job_meta['job_location'][0]);
 
         $this->required_minyawns = trim($job_meta['job_required_minyawns'][0]);
-        
-        $this->categories=get_the_category($this->ID);
-        
-        $this->all_categories=get_categories();
-        
+
+        $this->categories = get_the_category($this->ID);
+
+        $this->all_categories = get_categories();
+
 
         $job_tags = wp_get_post_terms($this->ID, 'job_tags', array("fields" => "names"));
 
@@ -430,18 +430,24 @@ function job_selection_status($job_id) {
 function get_total_jobs() {
     global $wpdb;
 
+    $category_filter = "";
+    $filtertables = "";
+
+    if (isset($_GET['filter'])) {
+        $category_filter = "AND $wpdb->posts.ID = $wpdb->term_relationships.object_id
+                            AND $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id AND $wpdb->term_taxonomy.term_id IN (" . $_GET['filter'] . ")";
+        $filtertables = "," . "$wpdb->term_relationships,$wpdb->term_taxonomy";
+    }
 
     if (isset($_GET['my_jobs'])) {
 
         if (get_user_role() == 'minyawn') {
             $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
-                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID AND $wpdb->postmeta.meta_key = 'job_end_date_time' ";
-                    
-                 } else {
+            $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID AND $wpdb->postmeta.meta_key = 'job_end_date_time' ";
+        } else {
             //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
             $tables = "$wpdb->posts,$wpdb->postmeta";
             $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . get_current_user_id() . "' AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' ";
-           
         }
     } else {
         $tables = "$wpdb->posts, $wpdb->postmeta";
@@ -453,6 +459,7 @@ function get_total_jobs() {
                             SELECT $wpdb->posts.* 
                             FROM $tables
                             $my_jobs_filter
+                            $category_filter
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             
