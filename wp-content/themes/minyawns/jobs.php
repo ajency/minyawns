@@ -58,7 +58,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                     <a href="#" id="calendar-jobs" style="display:none">Calendar Jobs</a>                
                 </p>
             </div>
-            <?php if(isset($_GET['cat_id'])){?> <span class="label" style="cursor: pointer; cursor: hand;" onclick="remove_cat()"><?php echo $_GET['cat_name'] ?></span> <?php }?>
+            <?php if(isset($_GET['cat_id'])){?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo $_GET['cat_name'] ?>  <button style=" margin-left: 10px;margin-top: -19px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php }?>
             <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
 
