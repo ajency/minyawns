@@ -42,7 +42,7 @@ AND {$wpdb->prefix}userjobs.rating =0 AND $wpdb->posts.post_type='job' AND $wpdb
 GROUP BY {$wpdb->prefix}userjobs.job_id");
 
 
-print_r($sql);exit();
+
         $results = $wpdb->get_results($sql);
         if (count($results) > 0) {
             foreach ($results as $result) {
