@@ -435,8 +435,8 @@ function get_total_jobs() {
 
         if (get_user_role() == 'minyawn') {
             $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
-            $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID ";
-           
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID AND $wpdb->postmeta.meta_key = 'job_end_date_time' ";
+                    
                  } else {
             //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
             $tables = "$wpdb->posts,$wpdb->postmeta";

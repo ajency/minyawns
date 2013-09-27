@@ -38,7 +38,7 @@ global $wpdb;
 $sql = $wpdb->prepare("SELECT $wpdb->posts.post_title,$wpdb->posts.post_name,$wpdb->posts.ID
 FROM {$wpdb->prefix}userjobs, $wpdb->posts
 WHERE {$wpdb->prefix}userjobs.job_id = $wpdb->posts.ID
-AND {$wpdb->prefix}userjobs.rating =0
+AND {$wpdb->prefix}userjobs.rating =0 AND $wpdb->posts.post_type='job' AND $wpdb->posts.post_status = 'publish'
 GROUP BY my_userjobs.job_id");
 
 
