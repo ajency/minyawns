@@ -36,8 +36,9 @@
         global $wpdb;
 
         $sql = $wpdb->prepare("SELECT $wpdb->posts.post_title,$wpdb->posts.post_name,$wpdb->posts.ID
-FROM {$wpdb->prefix}userjobs, $wpdb->posts
-WHERE {$wpdb->prefix}userjobs.job_id = $wpdb->posts.ID
+FROM {$wpdb->prefix}userjobs, $wpdb->posts,$wpdb->postmeta
+WHERE {$wpdb->prefix}userjobs.job_id = $wpdb->posts.ID AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
+                            AND $wpdb->postmeta.meta_value < '" . current_time('timestamp') . "'
 AND {$wpdb->prefix}userjobs.rating =0 AND $wpdb->posts.post_type='job' AND $wpdb->posts.post_status = 'publish'
 GROUP BY {$wpdb->prefix}userjobs.job_id");
 
