@@ -19,11 +19,13 @@ function load_browse_jobs(id, _action,category_ids) {
 
  
  // var category_ids=(category_ids)> 0 ? 1:0;
+ var first = getUrlVars()["cat_id"];
+ 
   if(category_ids.length > 0)
       var filter =1;
   else
       var filter =0;
-  
+        
  
 //  if(filter === 1)
 //    var catids=$("#category_id").val();
@@ -33,11 +35,17 @@ function load_browse_jobs(id, _action,category_ids) {
     window.fetchj.set({single_job: '1'});
     var _data = {
         'offset': 0,
-        'filter':category_ids
+       
     };
 
     if (!isNaN(id) && filter === 0 )
         _data.single_job = id;
+
+    if(typeof(first) !== 'undefined')
+        _data.filter=category_ids;
+        
+    
+
 
 
     window.fetchj.fetch({
@@ -142,6 +150,10 @@ function load_browse_jobs(id, _action,category_ids) {
 
 function fetch_my_jobs(id)
 {
+    if(window.location.href.indexOf("cat_id") > 0) 
+       window.location = window.location.href.split('?')[0];
+
+   // window.location.href = window.location.href.split('?')[0];
     //jQuery("#browse-jobs-table").find("button").remove();
     jQuery("#tab_identifier").val('1');
     jQuery("#accordion2").empty();
@@ -650,11 +662,21 @@ function job_minyawns_grid(job)
 
 }
 
-function filter_categories(id)
+function filter_categories(id,cat_name)
 {
     
-    var cat_id=(jQuery("#category_id").val())>0 ? jQuery("#category_id").val()+','+id : id;
-    jQuery("input[name='categoryids[]']").val(cat_id);
+//    var cat_id=(jQuery("#category_id").val())>0 ? jQuery("#category_id").val()+','+id : id;
+//    jQuery("input[name='categoryids[]']").val(cat_id);
+//    
+   // load_browse_jobs('','',cat_id)
+ window.location = siteurl+'/jobs/?cat_id='+id+'&cat_name='+cat_name;
+
+
+}
+
+
+function remove_cat()
+{
+    window.location = siteurl+'/jobs/';
     
-    load_browse_jobs('','',cat_id)
 }

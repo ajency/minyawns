@@ -41,15 +41,16 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
 
 
 <div class="container">
+  
 <input type="hidden" name="categoryids[]" id="category_id"/>
     <ul class="nav nav-tabs nav-append-content jobs_menu">
-        <li ><a href="#tab1" id="browse">Browse Jobs</a></li>
-        <li class="active" id="my_jobs"><a href="#tab2">My Jobs</a></li>
+        <li <?php if(isset($_GET['cat_id'])){ ?>class="active" <?php } ?> ><a  href="#tab1" id="browse">Browse Jobs</a></li>
+        <li <?php if(!isset($_GET['cat_id'])){ ?>class="active" <?php } ?> id="my_jobs"><a href="#tab2">My Jobs</a></li>
 
     </ul>  
     <input type="hidden" id="tab_identifier" />
     <div class="tab-content">
-        <div class="tab-pane jobs_table " id="tab1">
+        <div class="tab-pane jobs_table <?php if(isset($_GET['cat_id'])){ ?> active <?php } ?>" id="tab1">
             <div class="breadcrumb-text">
                 <p>
                     <a href="#">My Job</a>
@@ -57,6 +58,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                     <a href="#" id="calendar-jobs" style="display:none">Calendar Jobs</a>                
                 </p>
             </div>
+            <?php if(isset($_GET['cat_id'])){?> <span class="label" onclick="remove_cat()">test category</span> <?php }?>
             <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
 
@@ -160,7 +162,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
             </div>
         </div>
         <!-- /tabs -->
-        <div class="tab-pane jobs_table  active" id="tab2">
+        <div class="tab-pane jobs_table  <?php if(!isset($_GET['cat_id'])){ ?> active <?php } ?>" id="tab2">
             <div class="breadcrumb-text">
                 <p>
                     <a href="#">My Jobs</a>
