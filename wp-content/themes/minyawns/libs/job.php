@@ -137,10 +137,10 @@ $app->get('/fetchjobs/', function() use ($app) {
             }
 
             $querystr = "
-                            SELECT $wpdb->posts.* 
+                            SELECT DISTINCT $wpdb->posts.* 
                             FROM $tables"."$filtertables
                             $my_jobs_filter
-                           $category_filter
+                            $category_filter
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             $order_by

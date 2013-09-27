@@ -540,7 +540,11 @@ jQuery(document).ready(function($) {
 
         };
 
-
+ var first = getUrlVars()["cat_id"];
+ 
+  if(typeof(first) !== 'undefined')
+        _data.filter=first;
+ 
         if ($("#tab_identifier").val() === '1') {
             _data.my_jobs = '1';
 

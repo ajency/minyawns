@@ -21,8 +21,10 @@ function load_browse_jobs(id, _action,category_ids) {
  // var category_ids=(category_ids)> 0 ? 1:0;
  var first = getUrlVars()["cat_id"];
  
+ 
+ 
   if(category_ids.length > 0)
-      var filter =1;
+      var filter =category_ids;
   else
       var filter =0;
         
@@ -41,7 +43,7 @@ function load_browse_jobs(id, _action,category_ids) {
     if (!isNaN(id) && filter === 0 )
         _data.single_job = id;
 
-    if(typeof(first) !== 'undefined')
+    if(typeof(first) !== 'undefined' || category_ids !== 0 )
         _data.filter=category_ids;
         
     
@@ -665,8 +667,8 @@ function job_minyawns_grid(job)
 function filter_categories(id,cat_name)
 {
     
-//    var cat_id=(jQuery("#category_id").val())>0 ? jQuery("#category_id").val()+','+id : id;
-//    jQuery("input[name='categoryids[]']").val(cat_id);
+    var cat_id=(jQuery("#category_id").val())>0 ? jQuery("#category_id").val()+','+id : id;
+    jQuery("input[name='categoryids[]']").val(cat_id);
 //    
    // load_browse_jobs('','',cat_id)
  window.location = siteurl+'/jobs/?cat_id='+id+'&cat_name='+cat_name;

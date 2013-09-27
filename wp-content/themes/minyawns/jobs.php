@@ -42,7 +42,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
 
 <div class="container">
   
-<input type="hidden" name="categoryids[]" id="category_id"/>
+<input type="hidden" name="categoryids[]" id="category_id" value="<?php if(isset($_GET['cat_id'])){ $_GET['cat_id']; } ?>"/>
     <ul class="nav nav-tabs nav-append-content jobs_menu">
         <li <?php if(isset($_GET['cat_id'])){ ?>class="active" <?php } ?> ><a  href="#tab1" id="browse">Browse Jobs</a></li>
         <li <?php if(!isset($_GET['cat_id'])){ ?>class="active" <?php } ?> id="my_jobs"><a href="#tab2">My Jobs</a></li>
@@ -58,7 +58,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                     <a href="#" id="calendar-jobs" style="display:none">Calendar Jobs</a>                
                 </p>
             </div>
-            <?php if(isset($_GET['cat_id'])){?> <span class="label" onclick="remove_cat()">test category</span> <?php }?>
+            <?php if(isset($_GET['cat_id'])){?> <span class="label" style="cursor: pointer; cursor: hand;" onclick="remove_cat()"><?php echo $_GET['cat_name'] ?></span> <?php }?>
             <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
 
