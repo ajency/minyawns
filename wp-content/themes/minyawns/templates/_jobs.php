@@ -74,11 +74,16 @@
     </div>
     </div>
     <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Details :</b></div><div class="span9"><%= result.job_details.substring(0, 140) %>
+    <div class="span3 "><b>Details :</b></div><div class="span9" style=" margin-bottom: 13px;
+    word-wrap: break-word;"><%= result.job_details %>
     </div>
     </div>
     <div class="row-fluid minywans_list">
     <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%>
+    </div>
+    </div>
+<div class="row-fluid minywans_list">
+    <div class="span3 "><b>Job Category :</b></div><div class="span9"> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="label" ><%= result.job_categories[i] %></span><%}%>
     </div>
     </div>
     <div class="row-fluid minyawansgrid">

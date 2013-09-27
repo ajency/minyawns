@@ -115,7 +115,15 @@ require 'templates/_jobs.php';
 
         cursor: auto!important;
     }
-
+    .category_label{
+        margin-right: 5px !important; 
+        margin-top: -2px !important;
+    }
+    .category_name{
+        display: inline-block !important;
+        margin-right: 5px !important;
+        padding-top: 8px !important;
+    }
 </style>
 
 
@@ -134,9 +142,9 @@ require 'templates/_jobs.php';
 
             </div>
             <span class='load_ajaxsingle_job' style="display:block"></span>
-            <div class="singlejobedit" style=" margin-left: 0; position: absolute;
-    top: 50px;
-    z-index: 10;" id="single-job-accordion">
+            <div class="singlejobedit" style=" margin-left: 0; position: relative;
+                 top: 50px;
+                 z-index: 10;" id="single-job-accordion">
 
                 <span  id='single-job-page'style="display:none"></span>
 
@@ -217,10 +225,28 @@ require 'templates/_jobs.php';
                         </div>
                     </div>
 
+
                     <div class="control-group small">
                         <label class="control-label" for="inputtask">Tags</label>
                         <div class="controls ">
                             <input  name="job_tags" id="job_tags" value="<?php echo $minyawn_job->get_job_tags(); ?>" placeholder="" class="tm-input tagsinput">
+                        </div>
+                    </div>
+                    <div class="control-group small">
+                        <label class="control-label" for="inputtask">Job Category</label>
+                        <div class="controls ">
+                            <?php
+                            foreach ($minyawn_job->categories as $job_categories) {
+
+                                $job_cats[] = $job_categories->name;
+                            }
+
+                            foreach ($minyawn_job->all_categories as $category) {
+                                ?>
+                                <input class="category_label" type="checkbox" value="<?php echo $category->cat_ID ?>" name="category-<?php echo $category->cat_ID ?>" id="category" <?php if (in_array($category->name, $job_cats)) { ?> checked <?php } ?>/> <span class="category_name"><?php echo $category->name ?> </span>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="control-group small">
@@ -272,7 +298,7 @@ require 'templates/_jobs.php';
 <div id="requiredminyawnerror" class="modal hide fade in papypalform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
     <div class="modal-body">
-Please Select at-least one Minion
+        Please Select at-least one Minion
     </div>
 </div>
 <?php
