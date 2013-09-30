@@ -62,16 +62,17 @@ function wp_new_user_notification($user_id, $plaintext_pass = '') {
 	wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), $blogname), email_header() . $message . email_signature(), $headers);
 	
 	
-	
-	/*if ( empty($plaintext_pass) )
-		return;
+	if (!empty($plaintext_pass) ){
+		
 
 	$message  = sprintf(__('testUsername: %s'), $user->user_login) . "\r\n";
 	$message .= sprintf(__('Password: %s'), $plaintext_pass) . "\r\n";
 	$message .= wp_login_url() . "\r\n";
 
-	wp_mail($user->user_email, sprintf(__('[%s] Your username and password'), $blogname), $message);*/
-
+	wp_mail($user->user_email, sprintf(__('[%s] Your username and password'), $blogname), email_header() . $message . email_signature(), $headers);        
+       
+        }
 }
 endif;
 ?>
+
