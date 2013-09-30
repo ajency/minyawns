@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Twenty Twelve 1.1\n"
+"Project-Id-Version: Twenty Twelve 1.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/twentytwelve\n"
-"POT-Creation-Date: 2013-04-26 13:58:46+00:00\n"
+"POT-Creation-Date: 2013-08-01 18:14:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,28 +82,16 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
-<<<<<<< HEAD
-=======
-#: content-aside.php:13 content-aside.php:20 content-image.php:17
-#: content-link.php:18 content-quote.php:17 content-status.php:15
-#: content.php:23
-msgid "Permalink to %s"
-msgstr ""
-
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 #: content-aside.php:15 content-image.php:13 content-link.php:14
 #: content-quote.php:13 content-status.php:21 content.php:39
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-<<<<<<< HEAD
 #: content-aside.php:20 content-link.php:18 content-quote.php:17
 #: content-status.php:15
 msgid "Permalink to %s"
 msgstr ""
 
-=======
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 #: content-aside.php:23 content-image.php:23 content-link.php:21
 #: content-quote.php:20 content-status.php:27 content.php:28
 msgid "Leave a reply"
@@ -120,13 +108,8 @@ msgid "% Replies"
 msgstr ""
 
 #: content-aside.php:26 content-image.php:26 content-link.php:24
-<<<<<<< HEAD
 #: content-page.php:24 content-quote.php:23 content-status.php:30
 #: content.php:46 functions.php:341 image.php:37
-=======
-#: content-page.php:21 content-quote.php:23 content-status.php:30
-#: content.php:46 functions.php:309 image.php:37
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid "Edit"
 msgstr ""
 
@@ -144,11 +127,7 @@ msgid ""
 "related post."
 msgstr ""
 
-<<<<<<< HEAD
 #: content-page.php:21 content.php:40 image.php:92
-=======
-#: content-page.php:18 content.php:40 image.php:92
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid "Pages:"
 msgstr ""
 
@@ -160,11 +139,7 @@ msgstr ""
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-<<<<<<< HEAD
 #. #-#-#-#-#  twentytwelve.pot (Twenty Twelve 1.2)  #-#-#-#-#
-=======
-#. #-#-#-#-#  twentytwelve.pot (Twenty Twelve 1.1)  #-#-#-#-#
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 #. Author URI of the plugin/theme
 #: footer.php:17
 msgid "http://wordpress.org/"
@@ -183,35 +158,22 @@ msgid "Primary Menu"
 msgstr ""
 
 #. translators: If there are characters in your language that are not supported
-<<<<<<< HEAD
 #. 	 by Open Sans, translate this to 'off'. Do not translate into your own
 #. language.
 #: functions.php:100
-=======
-#. 	   by Open Sans, translate this to 'off'. Do not translate into your own
-#. language.
-#: functions.php:120
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgctxt "Open Sans font: on or off"
 msgid "on"
 msgstr ""
 
 #. translators: To add an additional Open Sans character subset specific to
 #. your language, translate
-<<<<<<< HEAD
 #. 		 this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your
 #. own language.
 #: functions.php:105
-=======
-#. 		   this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your
-#. own language.
-#: functions.php:125
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgctxt "Open Sans font: add new subset (greek, cyrillic, vietnamese)"
 msgid "no-subset"
 msgstr ""
 
-<<<<<<< HEAD
 #: functions.php:213
 msgid "Page %s"
 msgstr ""
@@ -221,41 +183,21 @@ msgid "Main Sidebar"
 msgstr ""
 
 #: functions.php:240
-=======
-#: functions.php:181
-msgid "Page %s"
-msgstr ""
-
-#: functions.php:206
-msgid "Main Sidebar"
-msgstr ""
-
-#: functions.php:208
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid ""
 "Appears on posts and pages except the optional Front Page template, which "
 "has its own widgets"
 msgstr ""
 
-<<<<<<< HEAD
 #: functions.php:248
 msgid "First Front Page Widget Area"
 msgstr ""
 
 #: functions.php:250 functions.php:260
-=======
-#: functions.php:216
-msgid "First Front Page Widget Area"
-msgstr ""
-
-#: functions.php:218 functions.php:228
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid ""
 "Appears when using the optional Front Page template with a page set as "
 "Static Front Page"
 msgstr ""
 
-<<<<<<< HEAD
 #: functions.php:258
 msgid "Second Front Page Widget Area"
 msgstr ""
@@ -281,38 +223,10 @@ msgid "(Edit)"
 msgstr ""
 
 #: functions.php:324
-=======
-#: functions.php:226
-msgid "Second Front Page Widget Area"
-msgstr ""
-
-#: functions.php:250 single.php:20
-msgid "Post navigation"
-msgstr ""
-
-#: functions.php:251
-msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
-msgstr ""
-
-#: functions.php:252
-msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
-
-#: functions.php:277
-msgid "Pingback:"
-msgstr ""
-
-#: functions.php:277
-msgid "(Edit)"
-msgstr ""
-
-#: functions.php:292
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid "Post author"
 msgstr ""
 
 #. translators: 1: date, 2: time
-<<<<<<< HEAD
 #: functions.php:330
 msgid "%1$s at %2$s"
 msgstr ""
@@ -322,64 +236,33 @@ msgid "Your comment is awaiting moderation."
 msgstr ""
 
 #: functions.php:345
-=======
-#: functions.php:298
-msgid "%1$s at %2$s"
-msgstr ""
-
-#: functions.php:304
-msgid "Your comment is awaiting moderation."
-msgstr ""
-
-#: functions.php:313
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid "Reply"
 msgstr ""
 
 #. Translators: used between list items, there is a space after the comma.
-<<<<<<< HEAD
 #: functions.php:364 functions.php:367
 msgid ", "
 msgstr ""
 
 #: functions.php:378
-=======
-#: functions.php:332 functions.php:335
-msgid ", "
-msgstr ""
-
-#: functions.php:346
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid "View all posts by %s"
 msgstr ""
 
 #. Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's
 #. name.
-<<<<<<< HEAD
 #: functions.php:384
-=======
-#: functions.php:352
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid ""
 "This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
 "\"> by %4$s</span>."
 msgstr ""
 
-<<<<<<< HEAD
 #: functions.php:386
-=======
-#: functions.php:354
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid ""
 "This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
 "span>."
 msgstr ""
 
-<<<<<<< HEAD
 #: functions.php:388
-=======
-#: functions.php:356
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
 msgstr ""
 
@@ -445,11 +328,7 @@ msgid "Twenty Twelve"
 msgstr ""
 
 #. Theme URI of the plugin/theme
-<<<<<<< HEAD
 msgid "http://wordpress.org/themes/twentytwelve"
-=======
-msgid "http://wordpress.org/extend/themes/twentytwelve"
->>>>>>> cf6214b1eb1849e2900d02cd1002dd285bb4ba60
 msgstr ""
 
 #. Description of the plugin/theme
