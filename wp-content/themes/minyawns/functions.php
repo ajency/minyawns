@@ -134,11 +134,11 @@ add_action('wp_enqueue_scripts', 'minyawns_scripts_styles', 100);
 
 //function to log in user
 function popup_userlogin() {
-    $pd_email = $_POST['pdemail'];
-    $pd_pass = $_POST['pdpass'];
+    $pd_email = trim($_POST['pdemail']);
+    $pd_pass = trim($_POST['pdpass']);
 
-    $user_ = get_user_by('email', $pd_email);
-    $user = wp_authenticate($user_->user_login, $pd_pass);
+  //  $user_ = get_user_by('email', $pd_email);
+    $user = wp_authenticate($pd_email, $pd_pass);
 
     if (is_wp_error($user)) {
         $msg = "<div class='alert alert-error alert-box' style='padding: 10px 45px 10px 5px;font-size:12px'>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Invalid email/password or verify your account with the verification link send to your email id. </div>";
