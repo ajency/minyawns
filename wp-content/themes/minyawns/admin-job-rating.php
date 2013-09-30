@@ -38,12 +38,12 @@
         $sql = $wpdb->prepare("SELECT $wpdb->posts.post_title,$wpdb->posts.post_name,$wpdb->posts.ID
 FROM {$wpdb->prefix}userjobs, $wpdb->posts,$wpdb->postmeta
 WHERE {$wpdb->prefix}userjobs.job_id = $wpdb->posts.ID AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
-                            AND $wpdb->postmeta.meta_value < '" . current_time('timestamp') . "'
+                            AND $wpdb->postmeta.meta_value < '" . current_time('timestamp') . "' AND {$wpdb->prefix}userjobs.status ='hired'
 AND {$wpdb->prefix}userjobs.rating =0 AND $wpdb->posts.post_type='job' AND $wpdb->posts.post_status = 'publish'
 GROUP BY {$wpdb->prefix}userjobs.job_id");
 
 
-
+       
         $results = $wpdb->get_results($sql);
         if (count($results) > 0) {
             foreach ($results as $result) {
@@ -53,6 +53,6 @@ GROUP BY {$wpdb->prefix}userjobs.job_id");
                 }
             } else {
                 ?>There are no jobs with ratings pending.
-            <?php }
-            ?>   </div>
+        <?php }
+        ?>   </div>
 </div>
