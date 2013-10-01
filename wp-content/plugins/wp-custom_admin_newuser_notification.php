@@ -65,7 +65,7 @@ function wp_new_user_notification($user_id, $plaintext_pass = '') {
 	if (current_user_can('add_users')  && is_user_logged_in()) {
 		
 
-	$message  = sprintf(__('testUsername: %s'), $user->user_login) . "\r\n";
+	$message  = sprintf(__('Username: %s'), $user->user_login) . "\r\n<br>";
 	$message .= sprintf(__('Password: %s'), $plaintext_pass) . "\r\n";
 	$message .= wp_login_url() . "\r\n";
 
