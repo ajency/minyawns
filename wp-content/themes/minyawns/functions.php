@@ -23,7 +23,7 @@
 require_once 'libs/User-api.php';
 
 require_once 'libs/Job-api.php';
-require_once 'custom_comment.php';
+
 
 //remove admin bar from front end
 show_admin_bar(false);
