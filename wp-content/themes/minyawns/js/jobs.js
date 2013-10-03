@@ -1,4 +1,4 @@
-function load_browse_jobs(id, _action,category_ids) {
+function load_browse_jobs(id, _action, category_ids) {
     //jQuery("#browse-jobs-table").append("<button id='load-more' class='btn load_more'> <div><span style='display: none;' class='load_ajax'></span> <b>Load more</b></div></button>");
     jQuery("#tab_identifier").val('0');
     jQuery(".load_ajax").css('display', 'block');
@@ -15,20 +15,22 @@ function load_browse_jobs(id, _action,category_ids) {
             return SITEURL + '/wp-content/themes/minyawns/libs/job.php/fetchjobs'
         }
     });
- if(category_ids === undefined){ var category_ids=0;}
+    if (category_ids === undefined) {
+        var category_ids = 0;
+    }
 
- 
- // var category_ids=(category_ids)> 0 ? 1:0;
- var first = getUrlVars()["cat_id"];
- 
- 
- 
-  if(category_ids.length > 0)
-      var filter =category_ids;
-  else
-      var filter =0;
-        
- 
+
+    // var category_ids=(category_ids)> 0 ? 1:0;
+    var first = getUrlVars()["cat_id"];
+
+
+
+    if (category_ids.length > 0)
+        var filter = category_ids;
+    else
+        var filter = 0;
+
+
 //  if(filter === 1)
 //    var catids=$("#category_id").val();
 //     
@@ -37,16 +39,15 @@ function load_browse_jobs(id, _action,category_ids) {
     window.fetchj.set({single_job: '1'});
     var _data = {
         'offset': 0,
-       
     };
 
-    if (!isNaN(id) && filter === 0 )
+    if (!isNaN(id) && filter === 0)
         _data.single_job = id;
 
-    if(typeof(first) !== 'undefined' || category_ids !== 0 )
-        _data.filter=category_ids;
-        
-    
+    if (typeof(first) !== 'undefined' || category_ids !== 0)
+        _data.filter = category_ids;
+
+
 
 
 
@@ -98,7 +99,7 @@ function load_browse_jobs(id, _action,category_ids) {
                             //    jQuery(".jobs_menu").append("<li class='active' id='my_jobsm'><a href='#tab2'>'" + model.toJSON().load_more + "'</a></li>");
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                             jQuery("#accordion24").prepend(html);
- 
+
 
 
 
@@ -106,7 +107,7 @@ function load_browse_jobs(id, _action,category_ids) {
                             jQuery(".singlejobedit").empty();
                             jQuery("#hidden_minion_id").val(model.toJSON().applied_user_id);
                             jQuery("#job_id").val(id);
-                             
+
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                             jQuery(".singlejobedit").animate({
                                 left: parseInt(jQuery(".singlejobedit").css('left'), 100) === 0 ?
@@ -129,7 +130,7 @@ function load_browse_jobs(id, _action,category_ids) {
 
                         if (model.toJSON().load_more === 1)
                             jQuery(".load_more").hide();
-                        
+
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                         jQuery("#accordion2").append(html);
 
@@ -152,10 +153,10 @@ function load_browse_jobs(id, _action,category_ids) {
 
 function fetch_my_jobs(id)
 {
-    if(window.location.href.indexOf("cat_id") > 0) 
-       window.location = window.location.href.split('?')[0];
+    if (window.location.href.indexOf("cat_id") > 0)
+        window.location = window.location.href.split('?')[0];
 
-   // window.location.href = window.location.href.split('?')[0];
+    // window.location.href = window.location.href.split('?')[0];
     //jQuery("#browse-jobs-table").find("button").remove();
     jQuery("#tab_identifier").val('1');
     jQuery("#accordion2").empty();
@@ -192,22 +193,22 @@ function fetch_my_jobs(id)
                     // alert(model.toJSON().applied_user_id);
                     if (model.toJSON().job_owner_id === id || model.toJSON().applied_user_id.indexOf(id) >= 0)/* to show my jobs*/
                     {
-                       // alert(model.toJSON().load_more);
+                        // alert(model.toJSON().load_more);
                         //  console.log(model.toJSON().applied_user_id);
                         var job_stat = job_status_li(model);
                         var job_collapse_button_var = job_collapse_button(model);
                         //console.log(model); 
                         var minyawns_grid = job_minyawns_grid(model);
                         // console.log(minyawns_grid);
-                        
+
                         if (model.toJSON().load_more === 1)
-                           jQuery("#load-more-my-jobs,.load_more_profile").hide();
+                            jQuery("#load-more-my-jobs,.load_more_profile").hide();
 
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                         jQuery("#accordion24").append(html);
                     } else
                     {
-                       // jQuery(".load_more").hide();
+                        // jQuery(".load_more").hide();
                         // var template = _.template(jQuery("#no-result").html());
 
                         //jQuery("#accordion24").html(jQuery("#no-result").html());
@@ -291,8 +292,8 @@ function job_status_li(model)
 
                 for (var i = 0; i < model.toJSON().user_to_job_status.length; i++)
                 {
-                   
-                  //  console.log(model.toJSON().user_to_job_status);
+
+                    //  console.log(model.toJSON().user_to_job_status);
                     if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'hired' && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* if logged in minion in hired*/
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You have been selected for this job.</span>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'applied')/*logged in user has applied for the job*/
@@ -301,11 +302,11 @@ function job_status_li(model)
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You have applied for this job.</span>";
 //                    else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /*expired*/
 //                        job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
-                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'hired' && model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* if logged in minion in hired*/
+                    else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'hired' && model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* if logged in minion in hired*/
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Ratings .</span>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().user_to_job_status[i] === 'applied') /* if logged in minion in hired*/
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions Selected.</span>";
-                    else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check ) /*expired*/
+                    else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /*expired*/
                         job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
 
 
@@ -362,7 +363,7 @@ function job_status_li(model)
 
                 else if (model.toJSON().job_status === 3 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* applied and but not hired */
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications Closed</span>";
-                else if (model.toJSON().user_to_job_status.indexOf('hired') === -1  && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* hired */
+                else if (model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* hired */
                     job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available.</span>";
 
                 else if (model.toJSON().job_status === 2 && model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* hired */
@@ -458,7 +459,7 @@ function job_collapse_button(model)
 
                 if (model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /*applied but not hired*/
                     status_button = '<a href="' + siteurl + '/jobs/' + model.toJSON().post_slug + '" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="' + model.toJSON().post_id + '">Select Your Minions</a>';
-                else if (model.toJSON().job_status === 3 && model.toJSON().user_to_job_status.indexOf('hired') === -1 &&  model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* max applications job locked  */
+                else if (model.toJSON().job_status === 3 && model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* max applications job locked  */
                     status_button = '<a href="' + siteurl + '/jobs/' + model.toJSON().post_slug + '" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="' + model.toJSON().post_id + '">Select Your Minions</a>';
                 else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* not locked but hired  */
                     status_button = '<span style="display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;">Minions Hired.</span>';
@@ -524,8 +525,8 @@ function load_job_minions(jobmodel)
                 _.each(collection.models, function(model) {
 
                     if (is_job_owner(jobmodel.toJSON().job_owner_id) || is_admin === '1')
-                    var select_button = is_minion_selected(jobmodel, model);
-                   
+                        var select_button = is_minion_selected(jobmodel, model);
+
                     var html = template({result: model.toJSON(), select_button: select_button});
                     jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
                 });
@@ -550,6 +551,12 @@ function load_job_minions(jobmodel)
 var Userprofile = Backbone.Model.extend({
     url: function() {
         return SITEURL + '/wp-content/themes/minyawns/libs/job.php/jobminions';
+    }
+});
+
+var Usercomments = Backbone.Model.extend({
+    url: function() {
+        return SITEURL + '/wp-content/themes/minyawns/libs/job.php/getcomments';
     }
 });
 //    $('input:checkbox').click(function() {
@@ -599,9 +606,9 @@ function is_minion_selected(jobmodel, model)
                 //alert(model.toJSON().rating_positive);
                 var id = model.toJSON().user_id;
                 jQuery("#" + id + "").addClass('minyans-select');
-                selectButton += "<div class='dwn-btn'><div class='row-fluid' id='rating_container" + model.toJSON().user_id + "'><div class='span6'><a id='vote-upuserid' class='btn btn-small btn-block  btn-success well-done' href='#like' is_rated='0' employer-vote='1'   job-id='" + jobmodel.toJSON().post_id + "' user_id='" + model.toJSON().user_id + "' action='vote-up' emp_id='" + jobmodel.toJSON().job_owner_id + "'>1 Well Done</a>"
-                selectButton += "</div><div class='span6'><a id='vote-up'" + model.toJSON().user_id + "' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='-1'   job-id='" + jobmodel.toJSON().post_id + "' user_id='" + model.toJSON().user_id + "' action='vote-down' emp_id='" + jobmodel.toJSON().job_owner_id + "'>";
-                selectButton += "1 Terrible Job</a></div></div></div>";
+                selectButton += "<div class='dwn-btn'><div class='row-fluid' id='rating_container" + model.toJSON().user_id + "'><div class='span6'><a id='vote-up' class='btn btn-small btn-block  btn-success well-done' href='#like' is_rated='0' vote='1'   job-id='" + jobmodel.toJSON().post_id + "' user_id='" + model.toJSON().user_id + "' action='vote-up' emp_id='" + jobmodel.toJSON().job_owner_id + "'>1 Well Done</a>"
+                selectButton += "</div><div class='span6'><a id='vote-down'" + model.toJSON().user_id + "' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' vote='-1'   job-id='" + jobmodel.toJSON().post_id + "' user_id='" + model.toJSON().user_id + "' action='vote-down' emp_id='" + jobmodel.toJSON().job_owner_id + "'>";
+                selectButton += "1 Terrible Job</a></div><div id='review-negative" + model.toJSON().user_id + "'><input type='text' id='review-text" + model.toJSON().user_id + "'><input type='button' value='submit' class='btn-small rate-negative rate-button' id='review" + model.toJSON().user_id + "' user-id='" + model.toJSON().user_id + "' job-id='" + jobmodel.toJSON().post_id + "' emp_id='" + jobmodel.toJSON().job_owner_id + "' action='' vote='' ></input></div></div>";
 
 
             } else if (jobmodel.toJSON().todays_date_time > jobmodel.toJSON().job_end_date_time_check && jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'hired' && (model.toJSON().user_to_job_rating_like > '0' || model.toJSON().user_to_job_rating_dislike > '0'))
@@ -609,7 +616,7 @@ function is_minion_selected(jobmodel, model)
                 selectButton = "<a id='vote-upuserid' class='" + class_name + "' href='#like' is_rated='0' employer-vote='1'  action='vote-up' >" + rate_message + "</a>"
 
             }
-           
+
         }
 
 
@@ -638,6 +645,7 @@ function job_minyawns_grid(job)
                 miny_grid += "<div class='minyawns-details'><span class='image-div'>" + job.toJSON().user_profile_image[i] + "</span><b>" + job.toJSON().users_applied[i] + "</b></a>";
                 miny_grid += "<a id='vote-up' href='#fakelink' employer-vote='1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-up'></i>" + job.toJSON().user_rating_like[i] + "</a>";
                 miny_grid += "<a id='vote-down' href='#fakelink'  class='icon-thumbs' employer-vote='-1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-down'></i>" + job.toJSON().user_rating_dislike[i] + "</a>";
+                miny_grid += "<a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id=" + job.toJSON().applied_user_id[i] + "  onclick='load_comments(" + job.toJSON().applied_user_id[i] + ")' data-html='true'></a>";
                 miny_grid += "</div><div class='minyawns-job'><b>" + job.toJSON().user_to_job_status[i] + "</b><span >" + job.toJSON().user_to_job_rating[i] + "</span></div></div>";
 
             } else
@@ -664,14 +672,14 @@ function job_minyawns_grid(job)
 
 }
 
-function filter_categories(id,cat_name)
+function filter_categories(id, cat_name)
 {
-    
-    var cat_id=(jQuery("#category_id").val())>0 ? jQuery("#category_id").val()+','+id : id;
+
+    var cat_id = (jQuery("#category_id").val()) > 0 ? jQuery("#category_id").val() + ',' + id : id;
     jQuery("input[name='categoryids[]']").val(cat_id);
 //    
-   // load_browse_jobs('','',cat_id)
- window.location = siteurl+'/jobs/?cat_id='+id+'&cat_name='+cat_name.replace(' ','-');
+    // load_browse_jobs('','',cat_id)
+    window.location = siteurl + '/jobs/?cat_id=' + id + '&cat_name=' + cat_name.replace(' ', '-');
 
 
 }
@@ -679,6 +687,44 @@ function filter_categories(id,cat_name)
 
 function remove_cat()
 {
-    window.location = siteurl+'/jobs/';
+    window.location = siteurl + '/jobs/';
+
+}
+
+
+
+
+function load_comments(user_id)
+{
     
+  //$(".commentsclick").popover({placement:'right',content:'asdasd'});  
+    var Fetchusercomments = Backbone.Collection.extend({
+        model: Usercomments,
+        url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/getcomments'
+    });
+
+    window.fetchc = new Fetchusercomments;
+    window.fetchc.fetch({
+        data: {
+            minion_id: user_id,
+            //job_id: jQuery("#job_id").val()
+        },
+        success: function(collection, response) {
+
+            console.log(collection.models);
+//            if (collection.length > 0) {
+//                var template = _.template(jQuery("#minion-cards").html());
+//                _.each(collection.models, function(model) {
+//
+//
+//                    var html = template({result: model.toJSON(), select_button: select_button});
+// jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
+//                });
+////
+//
+//            } 
+
+        }
+
+    });
 }

@@ -96,7 +96,7 @@ $app->get('/fetchjobs/', function() use ($app) {
             if (isset($_GET['filter'])) {
                 $category_filter = "AND $wpdb->posts.ID = $wpdb->term_relationships.object_id
                             AND $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id AND $wpdb->term_taxonomy.term_id IN (" . $_GET['filter'] . ")";
-                $filtertables = ","."$wpdb->term_relationships,$wpdb->term_taxonomy";
+                $filtertables = "," . "$wpdb->term_relationships,$wpdb->term_taxonomy";
             }
 
 
@@ -138,7 +138,7 @@ $app->get('/fetchjobs/', function() use ($app) {
 
             $querystr = "
                             SELECT DISTINCT $wpdb->posts.* 
-                            FROM $tables"."$filtertables
+                            FROM $tables" . "$filtertables
                             $my_jobs_filter
                             $category_filter
                             AND $wpdb->posts.post_status = 'publish' 
@@ -259,7 +259,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 foreach ($post_categories as $job_categories) {
                     array_push($categories, $job_categories->name);
                     array_push($category_ids, $job_categories->cat_ID);
-                    array_push($category_slug,$job_categories->slug);
+                    array_push($category_slug, $job_categories->slug);
                 }
 
                 if (isset($_GET['single_job']))
@@ -319,7 +319,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'total' => $total,
                     'job_categories' => $categories,
                     'job_category_ids' => $category_ids,
-                    'job_category_slug'=>$category_slug
+                    'job_category_slug' => $category_slug
                 );
             }
 
@@ -467,7 +467,13 @@ $app->post('/confirm', function() use ($app) {
 
 
 $app->post('/user-vote', function() use ($app) {
+            $time = current_time('timestamp');
             global $wpdb;
+//            print_r($_POST);
+//            exit();
+
+
+
             $wpdb->get_results(
                     "
 	UPDATE {$wpdb->prefix}userjobs 
@@ -476,6 +482,31 @@ $app->post('/user-vote', function() use ($app) {
 		AND job_id = '" . trim($_POST['job_id']) . "' AND status = 'hired'
 	"
             );
+        
+        $id_sql=$wpdb->prepare("SELECT id from {$wpdb->prefix}userjobs  WHERE user_id = '" . trim($_POST['user_id']) . "' 
+		AND job_id = '" . trim($_POST['job_id']) . "' AND status = 'hired' ");
+        
+        $last_id=$wpdb->get_row($id_sql);
+       
+            if (strlen($_POST['review']) > 0) {
+                $data = array(
+                    'comment_post_ID' => $last_id,
+                    'comment_content' => trim($_POST['review']),
+                    'comment_type' => 'review',
+                    'comment_parent' => 0,
+                    'user_id' => trim($_POST['emp_id']),
+                    'comment_author_IP' => '127.0.0.1',
+                    'comment_agent' => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.10) Gecko/2009042316 Firefox/3.0.10 (.NET CLR 3.5.30729)',
+                    'comment_date' => $time,
+                    'comment_approved' => 1,
+                );
+            }
+            wp_insert_comment($data);
+
+
+
+
+
 
             /* to calculate total ratings */
             $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
@@ -610,7 +641,42 @@ $app->get('/jobminions/', function() use ($app) {
             echo json_encode($data);
         });
 
+$app->get('/getcomments/', function() use ($app) {
+            global $post, $wpdb;
+            global $minyawn_job;
 
+
+            $object_id = get_object_id($_GET['minion_id'], '');
+
+            foreach ($object_id as $objid) {
+
+                if ($objid->rating < 0) {
+                    $defaults = array(
+                        'post_id' => $objid->id,
+                    );
+                    $negative[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                } else if ($objid->rating > 0) {
+                    $defaults = array(
+                        'post_id' => $objid->id,
+                    );
+                    $positive[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                }
+
+                $data = array(
+                    //'comment_content' => $comment['0']->comment_content,
+                    'negative' => $negative,
+                    'positive' => $positive
+                );
+            }
+
+            foreach ($all_comments as $comment) {
+                $data = array(
+                    'comment_content' => $comment['0']->comment_content
+                );
+            }
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode($data);
+        });
 
 
 

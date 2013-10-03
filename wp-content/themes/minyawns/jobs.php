@@ -6,6 +6,7 @@
 get_header();
 global $minyawn_job;
 require 'templates/_jobs.php';
+
 $args = array(
 	'type'                     => 'job',
 	'child_of'                 => 0,
@@ -22,6 +23,17 @@ $args = array(
 
 );
 $all_categories = get_categories(array('hide_empty' => 0 ) );
+
+
+//$object_id=get_object_id(10,691);
+//
+//foreach($object_id as $objid){ 
+//$defaults = array(
+//     'post_id' => $objid->id,
+//     );
+//$all_comments[]=get_comments($defaults);
+//}
+
 ?>
 
 <!-- Row Div -->
@@ -39,7 +51,10 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
     
     </style>
 
-
+<!--<div id="popover-content">
+  <a id="link" href="#">click</a>
+</div>
+<button id="trigger" data-placement="bottom" title="title">Reveal popover</button>-->
 <div class="container">
   
 <input type="hidden" name="categoryids[]" id="category_id" value="<?php if(isset($_GET['cat_id'])){ $_GET['cat_id']; } ?>"/>
@@ -58,7 +73,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                     <a href="#" id="calendar-jobs" style="display:none">Calendar Jobs</a>                
                 </p>
             </div>
-            <?php if(isset($_GET['cat_id'])){?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo $_GET['cat_name'] ?>  <button style=" margin-left: 10px;margin-top: -19px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php }?>
+            <?php if(isset($_GET['cat_id'])){?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-',' ',$_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -19px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php }?>
             <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
 

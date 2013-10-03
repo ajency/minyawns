@@ -82,7 +82,7 @@
     <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%>
     </div>
     </div>
-<div class="row-fluid minywans_list">
+    <div class="row-fluid minywans_list">
     <div class="span3 "><b>Job Category :</b></div><div class="span9"> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="label" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%>
     </div>
     </div>
@@ -115,6 +115,7 @@
     </form>
     </div>
     </div>
+
 </script>
 
 <script type="text/template" id="minion-cards">
@@ -141,7 +142,7 @@
     <div class="social-link">
     <%= result.user_email %>
     </div>
-     <div class="social-link">
+    <div class="social-link">
     <%= result.linkedin %>
     </div>
     <%
@@ -207,4 +208,17 @@
     <b style="text-align: center">No Jobs Available ! </b>&nbsp;
     There doesn't seem to be anything here.
     </div>
+</script>
+
+<script type="text/templates" id="comment-popover">
+    <div class="tabbable tabs-below">
+    <ul class="nav nav-tabs"><li class="active"><a href="#A" data-toggle="tab">Well done</a></li><li class="teriblecomments"><a href="#B" data-toggle="tab">Terrible job</a></li>
+    </ul><div class="tab-content"><div class="tab-pane active" id="A"><ul><li><div class="jobname">
+    <a href="#"> The complete set of 361 icons</a></div><div class="submited">submitted on 30th september 2013</div>
+    <div class="yourcomment"> Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class="jobname"><a href="#"> The complete set of 361 icons</a></div><div class="submited">submitted on 30th september 2013</div>
+    <div class="yourcomment">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div><div class="tab-pane tariblecontent" id="B"><ul><li><div class="jobname"><a href="#"> The complete set of 361 icons</a></div>
+    <div class="submited">submitted on 30th september 2013</div><div class="yourcomment">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class="jobname"><a href="#"> The complete set of 361 icons</a></div>
+    <div class="submited">submitted on 30th september 2013</div><div class="yourcomment">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div></div></div>" data-html="true"></a>  
+		
+    
 </script>

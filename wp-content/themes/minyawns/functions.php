@@ -23,6 +23,7 @@
 require_once 'libs/User-api.php';
 
 require_once 'libs/Job-api.php';
+require_once 'custom_comment.php';
 
 //remove admin bar from front end
 show_admin_bar(false);
@@ -94,7 +95,7 @@ function minyawns_scripts_styles() {
 
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery', 'jquery-ui'), null);
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
-
+            
 
 
 //            wp_enqueue_script('bootstrap-lightbox', get_template_directory_uri() . '/js/bootstrap-lightbox.min.js', array('jquery'), null);
@@ -102,6 +103,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() . '/js/bootstrap-timepicker.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
+            
             wp_enqueue_script('flatui-checkbox', get_template_directory_uri() . '/js/flatui-checkbox.js', array('jquery'), null);
             wp_enqueue_script('flatui-radio', get_template_directory_uri() . '/js/flatui-radio.js', array('jquery'), null);
             wp_enqueue_script('jquery.tagsinput', get_template_directory_uri() . '/js/jquery.tagsinput.js', array('jquery'), null);
@@ -112,6 +114,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
             wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery', 'minyawns-js'), null);
+             
             // wp_dequeue_script('jquery');
             if (is_page('jobs') || is_page('jobs-2')) {
 
@@ -238,6 +241,7 @@ function popup_usersignup() {
             wp_mail($userdata_['user_email'], $subject, email_header() . $message . email_signature(), $headers);
 
             wp_new_user_notification($user_id, $userdata_['user_pass']);
+           
             $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
             wp_send_json($response);
         }
@@ -852,6 +856,26 @@ include_once 'admin-job-rating.php';
     
     
 }
+
+function get_object_id($user_id,$job_id='')
+{
+    global $wpdb;
+    
+    $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating
+                              FROM {$wpdb->prefix}userjobs
+                              WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id 
+                              ", $user_id,$job_id);
+
+            $object_id = $wpdb->get_results($sql);
+
+    return $object_id;
+    
+}
+
+
+
+
+
 /* TODO
  * function cron_paypal_payment_complete()
 {
