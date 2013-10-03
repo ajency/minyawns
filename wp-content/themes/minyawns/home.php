@@ -166,5 +166,34 @@ Businesses and Individual Professionals can post tasks and immediately receive a
   </div>
   
 </div>
+<h3 class="cust big-heading-title">Our Customers</h3>
+<span class="taglincustomers">Simply and effectively bridging the gap between businesses and minions.</span>
+<div class="customers">
+
+<script>
+$(document).ready(function(){
+  $('.slider1').bxSlider({
+    slideWidth: 200,
+    minSlides: 1,
+    maxSlides: 3,
+    slideMargin: 10,
+	auto: true,
+  autoControls: true
+  });
+});
+
+</script>
+<div class="slider1">
+  <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture1.png"></div>
+  <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture2.png"></div>
+  <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture3.png"></div>
+  <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture4.png"></div>
+  <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture5.png"></div>
+  <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture6.png"></div>
+  <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture7.png"></div>
+  <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture8.png"></div>
+  <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture9.png"></div>
+</div>
+</div>
  <?php
 get_footer();
