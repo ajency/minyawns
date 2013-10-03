@@ -350,6 +350,8 @@ display: inline-block;
 {
 	width: 450px !important;
 min-width: 450px;
+max-height: 500px;
+overflow-y: auto;
 }
 
 .minyawansgrid .popover .tab-content
@@ -466,4 +468,23 @@ height: 26px;
 display: inline-block;
 width: 31px;
 margin-bottom: -10px;
+}
+
+@media (max-width:480px)
+{
+.list-jobs .expand .minyawansgrid .span6 {
+margin-left: 0px;
+position: relative;
+}
+	.minyawansgrid .popover
+	{
+		top: 39px !important;
+left: 0px!important;
+display: block!important;
+position: absolute!important;
+width: 92% !important;
+min-width: 92%;
+max-height: 300px;
+overflow-y: auto;
+	}
 }
