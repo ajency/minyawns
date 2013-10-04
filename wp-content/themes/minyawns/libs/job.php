@@ -490,7 +490,7 @@ $app->post('/user-vote', function() use ($app) {
        
             if (strlen($_POST['review']) > 0) {
                 $data = array(
-                    'comment_post_ID' => $last_id,
+                    'comment_post_ID' => $last_id->id,
                     'comment_content' => trim($_POST['review']),
                     'comment_type' => 'review',
                     'comment_parent' => 0,
@@ -603,6 +603,15 @@ $app->get('/jobminions/', function() use ($app) {
 //                if ($fb_uid !== false)
 //                    $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
 
+                     $object_id = get_object_id($_GET['minion_id'], $_GET['job_id']);
+                    foreach($object_id as $object_post_id){
+                     $defaults = array(
+                        'post_id' => $object_post_id->id,
+                    );
+                    }
+                    $comment = get_comments($defaults)[0]->comment_content;
+                   
+                    
                     $user_to_job_rating = get_user_job_rating_data($minion_ids[$i], $_GET['job_id']);
 
                     $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 0;
@@ -629,7 +638,8 @@ $app->get('/jobminions/', function() use ($app) {
                         'rating_negative' => $user_dislike,
                         'user_image' => $user['image'],
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
-                        'user_to_job_rating_dislike' => $user_to_job_rating->negative
+                        'user_to_job_rating_dislike' => $user_to_job_rating->negative,
+                        'comment'=>$comment
                     );
                 }
             }

@@ -5,7 +5,7 @@
 
 jQuery(document).ready(function($) {
 
- 
+
 
 
 //    $('#trigger').popover({
@@ -32,12 +32,12 @@ jQuery(document).ready(function($) {
 //        });
 //        e.preventDefault();
 //    });
-    
+
 
     $('#link').click(function() {
         alert('beep');
     });
-    
+
 
     /********************************** PROFILE JS CODE *************************************/
 //$('html').click(function(e) {
@@ -1401,14 +1401,19 @@ jQuery(document).ready(function($) {
 
     $('.well-done,.terrible').live('click', function(evt) {
 
-   
-   if(evt.target.id === 'vote-up'){
-       $("#review"+$(this).attr('user_id')).attr("action",evt.target.id);
-       $("#review"+$(this).attr('user_id')).attr("vote","1");
-   }else{
-        $("#review"+$(this).attr('user_id')).attr("action",evt.target.id);
-        $("#review"+$(this).attr('user_id')).attr("vote","-1");
-   }
+
+        if (evt.target.id === 'vote-up') {
+            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("vote", "1");
+        } else {
+            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("vote", "-1");
+        }
+
+        $("#review-box" + $(this).attr('user_id')).show();
+        $("#thumbnail-" + $(this).attr('user_id')).css("height", '545px');
+
+
 //
 ////$("#review"+$(this).attr('user_id')).attr("action",)
 ////$('.rate-positive,.rate-negative').live('click', function(evt) {
@@ -1419,29 +1424,29 @@ jQuery(document).ready(function($) {
 //        $(".rating").find('a').prop('disabled', true);
 //        // $(".load_ajaxconfirm").show();
 //        //evt.preventDefault();
-      
+
     });
-  
-    $(".rate-button").live('click',function(){
-        
-        var action=$(".rate-button").attr("action");
-       
-       
-         if(action.length === 0)
-             return false;
-        
-        
+
+    $(".rate-button").live('click', function() {
+
+        var action = $(".rate-button").attr("action");
+
+
+        if (action.length === 0)
+            return false;
+
+
         var _this = $(this);
         var _rating = $(this).attr('vote');
         var _job_id = $(this).attr('job-id');
         var _user_id = $(this).attr('user-id');
         var _action = $(this).attr('action');
         var _emp_id = $(this).attr('emp_id');
-        var _desc = $("#review-text"+_user_id).val();
-       
-        
-        
-        
+        var _desc = $("#review-text" + _user_id).val();
+
+
+
+
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
                 {
                     rating: _rating,
@@ -1462,7 +1467,7 @@ jQuery(document).ready(function($) {
 
                 $("#thumbs_up_" + _user_id).append(response.rating);
                 $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
-
+                $("#rating_container" + _user_id).append(_desc);
             }
             if (response.action === "vote-down") {
 
@@ -1473,13 +1478,14 @@ jQuery(document).ready(function($) {
 
                 $("#thumbs_down_" + _user_id).append(response.rating);
                 $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='1'>Terrible</a>");
-
+                $("#rating_container" + _user_id).append(_desc);
             }
+            $("#thumbnail-" + _user_id).css("height", '480px');
 
-        }, 'json');  
-        
+        }, 'json');
+
     });
-    
+
     $("#edit-selection").live('click', function(evt) {
         $("#edit-selection").hide();
         $("#confirm-hire").show();

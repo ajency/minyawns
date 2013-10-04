@@ -608,7 +608,7 @@ function is_minion_selected(jobmodel, model)
                 jQuery("#" + id + "").addClass('minyans-select');
                 selectButton += "<div class='dwn-btn'><div class='row-fluid' id='rating_container" + model.toJSON().user_id + "'><div class='span6'><a id='vote-up' class='btn btn-small btn-block  btn-success well-done' href='#like' is_rated='0' vote='1'   job-id='" + jobmodel.toJSON().post_id + "' user_id='" + model.toJSON().user_id + "' action='vote-up' emp_id='" + jobmodel.toJSON().job_owner_id + "'>1 Well Done</a>"
                 selectButton += "</div><div class='span6'><a id='vote-down'" + model.toJSON().user_id + "' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' vote='-1'   job-id='" + jobmodel.toJSON().post_id + "' user_id='" + model.toJSON().user_id + "' action='vote-down' emp_id='" + jobmodel.toJSON().job_owner_id + "'>";
-                selectButton += "1 Terrible Job</a></div><div id='review-negative" + model.toJSON().user_id + "'><input type='text' id='review-text" + model.toJSON().user_id + "'><input type='button' value='submit' class='btn-small rate-negative rate-button' id='review" + model.toJSON().user_id + "' user-id='" + model.toJSON().user_id + "' job-id='" + jobmodel.toJSON().post_id + "' emp_id='" + jobmodel.toJSON().job_owner_id + "' action='' vote='' ></input></div></div>";
+                selectButton += "1 Terrible Job</a></div><div id='review-box"+model.toJSON().user_id+"' style='display:none'><textarea type='text' id='review-text" + model.toJSON().user_id + "' maxlength='160'/><input type='button' value='submit' class='btn-small rate-negative rate-button' id='review" + model.toJSON().user_id + "' user-id='" + model.toJSON().user_id + "' job-id='" + jobmodel.toJSON().post_id + "' emp_id='" + jobmodel.toJSON().job_owner_id + "' action='' vote='' ></input></div></div>";
 
 
             } else if (jobmodel.toJSON().todays_date_time > jobmodel.toJSON().job_end_date_time_check && jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'hired' && (model.toJSON().user_to_job_rating_like > '0' || model.toJSON().user_to_job_rating_dislike > '0'))
@@ -645,7 +645,6 @@ function job_minyawns_grid(job)
                 miny_grid += "<div class='minyawns-details'><span class='image-div'>" + job.toJSON().user_profile_image[i] + "</span><b>" + job.toJSON().users_applied[i] + "</b></a>";
                 miny_grid += "<a id='vote-up' href='#fakelink' employer-vote='1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-up'></i>" + job.toJSON().user_rating_like[i] + "</a>";
                 miny_grid += "<a id='vote-down' href='#fakelink'  class='icon-thumbs' employer-vote='-1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-down'></i>" + job.toJSON().user_rating_dislike[i] + "</a>";
-                miny_grid += "<a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id=" + job.toJSON().applied_user_id[i] + "  onclick='load_comments(" + job.toJSON().applied_user_id[i] + ")' data-html='true'></a>";
                 miny_grid += "</div><div class='minyawns-job'><b>" + job.toJSON().user_to_job_status[i] + "</b><span >" + job.toJSON().user_to_job_rating[i] + "</span></div></div>";
 
             } else
@@ -696,7 +695,14 @@ function remove_cat()
 
 function load_comments(user_id)
 {
-    
+    $("#example_right").unbind('click').popover({
+        content: "asdasda",
+        title: 'Dynamic response!',
+        html: true,
+        delay: {show: 500, hide: 100}
+      }).popover('show');
+   
+
   //$(".commentsclick").popover({placement:'right',content:'asdasd'});  
     var Fetchusercomments = Backbone.Collection.extend({
         model: Usercomments,
