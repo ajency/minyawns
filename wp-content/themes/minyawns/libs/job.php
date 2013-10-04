@@ -654,7 +654,10 @@ $app->get('/jobminions/', function() use ($app) {
 $app->get('/getcomments/', function() use ($app) {
             global $post, $wpdb;
             global $minyawn_job;
-
+$negative=array();
+$negative_title=array();
+$positive=array();
+$positive_title=array();
 
             $object_id = get_object_id($_GET['minion_id'], '');
 
@@ -665,17 +668,21 @@ $app->get('/getcomments/', function() use ($app) {
                         'post_id' => $objid->id,
                     );
                     $negative[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                    $negative_jobs[]=isset($objid->post_title) > 0 ? $objid->post_title : '';
                 } else if ($objid->rating > 0) {
                     $defaults = array(
                         'post_id' => $objid->id,
                     );
                     $positive[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                     $positive_jobs[]=isset($objid->post_title) > 0 ? $objid->post_title : '';
                 }
 
                 $data = array(
                     //'comment_content' => $comment['0']->comment_content,
-                    'negative' => $negative,
-                    'positive' => $positive
+                    'negative' => isset($negative) >0 ? $negative :0,
+                    'negative_title'=>isset($negative_jobs) > 0 ? $negative_jobs :0,
+                    'positive_title'=>isset($positive_jobs) > 0 ? $positive_jobs:0,
+                    'positive' => isset($positive) >0 ? $positive :0,
                 );
             }
 

@@ -154,6 +154,7 @@
     <hr>
     <div class="dwn-btn">
     <%= select_button %>
+                <%= result.comment %>
     </div>
     </div>
     </div>
@@ -189,8 +190,8 @@
     <i class="icon-thumbs-down"></i> 0
     </a>
     </div>
-    <h4> Apply Job</h4>
-    <div class="collage">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
+    <h4></h4>
+    <div class="collage">"Give it a shot. Be the first to apply.</div>
     <hr>
     <div class="dwn-btn">
 
@@ -211,7 +212,31 @@
 </script>
 
 <script type="text/templates" id="comment-popover">
-   <div class='tabbable tabs-below'><ul class='nav nav-tabs'><li class='active'><a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul><div class='tab-content'><div class='tab-pane active' id='A'><ul><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div><div class='tab-pane tariblecontent' id='B'><ul><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div></div></div> 
-			
-    
-</script> 
+   <div class='tabbable tabs-below'><ul class='nav nav-tabs'><li class='active'>
+   <a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul>
+   <div class='tab-content'>
+   <div class='tab-pane active' id='A'>
+    <ul>
+    <%
+     if(result.positive.length >0) {
+    for(var i=0;i<result.positive.length;i++){ %>
+    <li><div class='jobname'>
+   <a href='#'> <%= result.positive_title[i] %></a>
+   </div>
+   <div class='yourcomment'><%= result.positive[i] %></div>
+   <% } }%></li>
+            </ul>
+            </div>
+            <div class='tab-pane tariblecontent' id='B'>
+            <ul>
+            <% if(result.negative.length >0)
+             {  for(var i=0;i<result.negative.length;i++){ %>
+               <li><div class='jobname'><a href='#'><%= result.negative_title[i] %></a></div>
+            <div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'> <%= result.negative[i] %> </div></li>
+            <% }
+                }
+                 %></ul>
+            </div></div></div>
+
+
+</script>
