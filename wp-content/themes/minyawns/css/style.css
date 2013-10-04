@@ -528,7 +528,7 @@ border-width: 0 10px 10px;
 width: 142px !important;
 display: inline-block;
 }
-.minyawansgrid .popover
+#profile-view .popover
 {
 width: 450px !important;
 min-width: 450px;
@@ -536,7 +536,7 @@ max-height: 500px;
 overflow-y: auto;
 }
 
-.minyawansgrid .popover .tab-content
+#profile-view .popover .tab-content
 {
 min-height:186px;
 padding:12px;
@@ -545,79 +545,79 @@ border: 0;
 
 }
 
-.minyawansgrid .popover .tab-content input
+#profile-view .popover .tab-content input
 {
 width: 98%;
 height: 19px;
 }
 
-.minyawansgrid .popover .tab-content ul
+#profile-view .popover .tab-content ul
 {
 margin: 0;
 list-style: none;
 }
-.minyawansgrid .popover .tab-content ul li
+#profile-view .popover .tab-content ul li
 {
 border-bottom: 2px dotted #E0E1D8;
 margin-bottom: 4px;
 }
-.minyawansgrid .popover.right .arrow
+#profile-view .popover.right .arrow
 {
 border-right-color: #F7F6F6;
 }
-.minyawansgrid .popover .tab-content ul li .yourcomment
+#profile-view .popover .tab-content ul li .yourcomment
 {
 font-size: 13px;
 color: #676965;
 font-style:italic;
 }
-.minyawansgrid .popover .tab-content ul li .submited
+#profile-view .popover .tab-content ul li .submited
 {
 font-size: 11px;
 color:#ABA8A8;
 font-style:italic;
 }
 
-.minyawansgrid .popover .tab-content ul li .jobname a
+#profile-view .popover .tab-content ul li .jobname a
 {
 font-size:15px;
 }
 
-.minyawansgrid .popover .tab-content .tariblecontent ul li .jobname a
+#profile-view .popover .tab-content .tariblecontent ul li .jobname a
 {
 color:#E74C3C;
 }
 
-.minyawansgrid .popover .tab-content ul li .jobname a
+#profile-view .popover .tab-content ul li .jobname a
 {
 color:#79B91E;
 }
 
-.minyawansgrid .popover-content
+#profile-view .popover-content
 {
 background:#F7F6F6;
 }
 
-.minyawansgrid .popover-content .tabs-below > .nav-tabs {
+#profile-view .popover-content .tabs-below > .nav-tabs {
 border-top: 0px solid #ddd;
 margin:0;
 }
-.minyawansgrid .popover-content .tabs-below > .nav-tabs li a:hover {
+#profile-view .popover-content .tabs-below > .nav-tabs li a:hover {
 border-top: 0px solid #ddd;
 border-bottom:2px solid #8CCE36;
 color: #ffffff;
 background: #8CCE36;
 }
 
-.minyawansgrid .popover-content .tabs-below > .nav-tabs li a
+#profile-view .popover-content .tabs-below > .nav-tabs li a
 {
 color:#8CCE36;
 }
-.minyawansgrid .popover-content .tabs-below > .nav-tabs li.teriblecomments a
+#profile-view .popover-content .tabs-below > .nav-tabs li.teriblecomments a
 {
 color:#e74c3c;
 }
-.minyawansgrid .popover-content .tabs-below > .nav-tabs li.teriblecomments a:hover {
+#profile-view .popover-content .tabs-below > .nav-tabs li.teriblecomments a:hover {
 border-top: 0px solid #ddd;
 border-bottom:2px solid #e74c3c;
 color: #ffffff;
@@ -625,7 +625,7 @@ background: #e74c3c;
 }
 
 
-.minyawansgrid .popover-content .tabs-below > .nav-tabs > .active > a, .tabs-below > .nav-tabs > .active > a:hover, .tabs-below > .nav-tabs > .active > a:focus {
+#profile-view .popover-content .tabs-below > .nav-tabs > .active > a, .tabs-below > .nav-tabs > .active > a:hover, .tabs-below > .nav-tabs > .active > a:focus {
 border-color: transparent #ddd #ddd #ddd;
 border-width: 0px;
 background: none;
@@ -634,7 +634,7 @@ background: #8CCE36;
 color: #ffffff;
 }
 
-.minyawansgrid .popover-content .tabs-below > .nav-tabs > .teriblecomments.active > a, .tabs-below > .nav-tabs > .teriblecomments.active > a:hover, .tabs-below > .nav-tabs > .teriblecomments.active > a:focus {
+#profile-view .popover-content .tabs-below > .nav-tabs > .teriblecomments.active > a, .tabs-below > .nav-tabs > .teriblecomments.active > a:hover, .tabs-below > .nav-tabs > .teriblecomments.active > a:focus {
 border-color: transparent #ddd #ddd #ddd;
 border-width: 0px;
 background: none;
@@ -652,13 +652,19 @@ width: 31px;
 margin-bottom: -10px;
 }
 
+h4.job-view
+{
+	width: 90%;
+display: inline-block;
+}
+
 @media (max-width:480px)
 {
-.list-jobs .expand .minyawansgrid .span6 {
+.list-jobs .expand #profile-view .span6 {
 margin-left: 0px;
 position: relative;
 }
-.minyawansgrid .popover
+#profile-view .popover
 {
 top: 39px !important;
 left: 0px!important;
