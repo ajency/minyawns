@@ -519,11 +519,11 @@ function load_job_minions(jobmodel)
             job_id: jQuery("#job_id").val()
         },
         success: function(collection, response) {
-
+var global_model;
             if (collection.length > 0) {
                 var template = _.template(jQuery("#minion-cards").html());
                 _.each(collection.models, function(model) {
-
+global_model=model;
                     if (is_job_owner(jobmodel.toJSON().job_owner_id) || is_admin === '1')
                         var select_button = is_minion_selected(jobmodel, model);
 
@@ -537,7 +537,7 @@ function load_job_minions(jobmodel)
                     jQuery(".list-jobs").append(template);
                 }
 
-            } else
+            } else if(global_model.toJSON().todays_date_time < global_model.toJSON().job_end_date_time_check)
             {
                 jQuery(".thumbnails").append(jQuery("#blank-card").html());
 
