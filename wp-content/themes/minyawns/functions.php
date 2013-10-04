@@ -862,16 +862,20 @@ function get_object_id($user_id,$job_id='')
 {
     global $wpdb;
     
-    if(strlen($job_id)>0)
-        $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id = %d"; 
-    else
-        $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id"; 
+    if(strlen($job_id)>0){
+        $select="{$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating";
+        $from="FROM {$wpdb->prefix}userjobs";
+        $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = ".$user_id." AND {$wpdb->prefix}userjobs.job_id = ".$job_id.""; 
+    } else{
+        $select="{$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating,{$wpdb->prefix}posts.post_title";
+        $from= "FROM {$wpdb->prefix}userjobs,{$wpdb->prefix}posts";
+        $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = ".$user_id.""; 
+        $user_job_where .=" AND {$wpdb->prefix}posts.ID = {$wpdb->prefix}userjobs.job_id";
+        
+        }
     
-    
-    $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating
-                              FROM {$wpdb->prefix}userjobs
-                              ".$user_job_where."
-                              ", $user_id,$job_id);
+    $sql = $wpdb->prepare("SELECT ".$select." ".$from."                           
+                              ".$user_job_where."");
 
                               
             $object_id = $wpdb->get_results($sql);

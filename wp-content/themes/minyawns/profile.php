@@ -42,8 +42,8 @@ require 'templates/_jobs.php';
                             html = template({result: model.toJSON()});
                             //jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
                         });
-//
-                        $("#example_right").popover({placement: 'right',trigger:'click', content: $("#comment-popover").html()});
+ 
+                        $("#example_right").popover({placement: 'right',trigger:'click', content: html}).popover('show');;
                     }
                    
 

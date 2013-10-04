@@ -95,7 +95,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                 </div>
 
                 <div class="row-fluid " id="accordion2" >
-
+	
                 </div>
 
                 <button class="btn load_more" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
@@ -337,9 +337,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
         </div>
 
     </div>
-</div>
-</div>
-
+   
 <?php
 get_footer();
 ?>
