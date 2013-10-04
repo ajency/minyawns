@@ -487,35 +487,60 @@ background: #EEE9E9;
 margin-top: 12px !important;
 }
 
-.expand .popover-content
+#paypal_form .popover-content
 {
 background:#E0E1D8;
 padding: 10px 8px;
 border-radius: 6px;
 }
 
-.expand .popover-content textarea {
+#paypal_form .popover-content textarea {
 height: auto;
 width: 90% !important;
 margin-bottom:0
 }
 
-.expand .popover-content .maxchar
+#paypal_form .popover-content .maxchar
 {
 color: #AEACAC;
 font-size: 11px;
 text-align: right;
 }
 
-.expand .head
+#paypal_form .head
 {
 color:#606060;
 font-size:11px;
 }
+#paypal_form .popover.bottom {
+margin-top: 30px !important;
+left: -34px !important;
 
-.expand .popover.bottom .arrow
+}
+#paypal_form .popover.bottom .arrow
 {
 border-bottom-color:#E0E1D8;
+}
+
+.jobs_table .accordion-inner {
+padding: 9px 15px 109px;
+border-top: 1px solid #e5e5e5;
+}
+.jobs_table .rate-negative
+{
+width: 41% !important;
+padding: 4px;
+float: left;
+margin-bottom: 5px;
+}
+
+.jobs_table .maxchar
+{
+color: #AEACAC;
+font-size: 11px;
+text-align: right;
+margin-top: -10px;
+margin-right: -20px;
 }
 .popover.bottom .arrow {
 top: -10px;
@@ -570,6 +595,7 @@ border-right-color: #F7F6F6;
 font-size: 13px;
 color: #676965;
 font-style:italic;
+padding-bottom: 5px;
 }
 #profile-view .popover .tab-content ul li .submited
 {
@@ -673,6 +699,12 @@ text-align: center;
 
 .popover.left .arrow {
 display:none;
+}
+
+.load_ajax_profile_comments
+{
+	float: right !important;
+margin-top: 3px !important;
 }
 
 @media (max-width:480px)
