@@ -18,7 +18,7 @@ require 'templates/_jobs.php';
 
         $("#example_right").live('click', function() {
 
-
+$(".load_ajax_profile_comments").show();
             var Fetchusercomments = Backbone.Collection.extend({
                 model: Usercomments,
                 url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/getcomments'
@@ -42,7 +42,7 @@ require 'templates/_jobs.php';
                             html = template({result: model.toJSON()});
                             //jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
                         });
- 
+ $(".load_ajax_profile_comments").hide();
                         $("#example_right").popover({placement: 'right',trigger:'click', content: html}).popover('show');;
                     }
                    
@@ -238,7 +238,7 @@ require 'templates/_jobs.php';
                     <?php endif; ?>			
                 </div>
                 <!--                //load_comments(" + job.toJSON().applied_user_id[i] + ")-->
-                <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a>
+                <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a><span class='load_ajax_profile_comments' style="display:none"></span>
 
                 <hr>
                 <div class="clear"></div>

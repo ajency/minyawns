@@ -654,7 +654,10 @@ $app->get('/jobminions/', function() use ($app) {
 $app->get('/getcomments/', function() use ($app) {
             global $post, $wpdb;
             global $minyawn_job;
-
+$negative=array();
+$negative_title=array();
+$positive=array();
+$positive_title=array();
 
             $object_id = get_object_id($_GET['minion_id'], '');
 
@@ -676,10 +679,10 @@ $app->get('/getcomments/', function() use ($app) {
 
                 $data = array(
                     //'comment_content' => $comment['0']->comment_content,
-                    'negative' => $negative,
-                    'negative_title'=>$negative_jobs,
-                    'positive_title'=>$positive_jobs,
-                    'positive' => $positive,
+                    'negative' => isset($negative) >0 ? $negative :0,
+                    'negative_title'=>isset($negative_jobs) > 0 ? $negative_jobs :0,
+                    'positive_title'=>isset($positive_jobs) > 0 ? $positive_jobs:0,
+                    'positive' => isset($positive) >0 ? $positive :0,
                 );
             }
 
