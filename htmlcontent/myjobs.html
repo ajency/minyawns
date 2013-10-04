@@ -758,9 +758,11 @@
 								<a href="#fakelink"  class="icon-thumbs">
 								<i class="icon-thumbs-down"></i> 200
 								</a> 
+								<a href="javascript:void(0)" id="example_right" class="commentsclick" rel="popover"  
+data-content="<div class='tabbable tabs-below'><ul class='nav nav-tabs'><li class='active'><a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul><div class='tab-content'><div class='tab-pane active' id='A'><ul><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div><div class='tab-pane tariblecontent' id='B'><ul><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div></div></div>" data-html="true"></a>  
 								</div>
 								<div class="span6"> <img src="images/iconsult2.png"/><b> Riya mactheel</b>
-									<a href="#fakelink" >
+				 					<a href="#fakelink" >
 								<i class="icon-thumbs-up"></i> 50
 								</a> 
 								<a href="#fakelink"  class="icon-thumbs">
@@ -1077,7 +1079,15 @@
 			);
 		});
     </script>
-
+<script>  
+$(function ()  
+{ 
+$("#example").popover();  
+  $("#example_right").popover({placement:'right'});  
+  $("#example_top").popover({placement:'bottom'});  
+  $("#example_bottom").popover({placement:'bottom'});  
+});  
+</script>
 	
   </body>
 </html>

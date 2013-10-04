@@ -862,11 +862,18 @@ function get_object_id($user_id,$job_id='')
 {
     global $wpdb;
     
+    if(strlen($job_id)>0)
+        $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id = %d"; 
+    else
+        $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id"; 
+    
+    
     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating
                               FROM {$wpdb->prefix}userjobs
-                              WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id 
+                              ".$user_job_where."
                               ", $user_id,$job_id);
 
+                              
             $object_id = $wpdb->get_results($sql);
 
     return $object_id;

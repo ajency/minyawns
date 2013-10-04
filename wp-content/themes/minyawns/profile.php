@@ -15,7 +15,53 @@ require 'templates/_jobs.php';
         }
 
         jQuery("#tab_identifier").val('1');
+
+        $("#example_right").live('click', function() {
+
+
+            var Fetchusercomments = Backbone.Collection.extend({
+                model: Usercomments,
+                url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/getcomments'
+            });
+
+            window.fetchc = new Fetchusercomments;
+            window.fetchc.fetch({
+                data: {
+                    minion_id: $("#example_right").attr("user-id")
+                            //job_id: jQuery("#job_id").val()
+                },
+                success: function(collection, response) {
+
+                    console.log(collection.models);
+                    var html;
+                    if (collection.length > 0) {
+                        var template = _.template(jQuery("#comment-popover").html());
+                        _.each(collection.models, function(model) {
+
+
+                            html = template({result: model.toJSON()});
+                            //jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
+                        });
+//
+                        $("#example_right").popover({placement: 'right',trigger:'click', content: $("#comment-popover").html()});
+                    }
+                   
+
+                }
+
+
+
+
+
+
+
+
+            });
+
+        });
+
     });
+
 </script>
 
 <div id="myprofilepic" class="modal hide fade cropimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -191,6 +237,8 @@ require 'templates/_jobs.php';
                         </div>	
                     <?php endif; ?>			
                 </div>
+                <!--                //load_comments(" + job.toJSON().applied_user_id[i] + ")-->
+                <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a>
 
                 <hr>
                 <div class="clear"></div>

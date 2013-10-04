@@ -123,7 +123,7 @@
 
     <li class="span3" id="<%= result.user_id %>" >
 
-    <div class="thumbnail">
+    <div class="thumbnail" id="thumbnail-<%= result.user_id %>">
     <div class="caption"  >
     <div class="minyawns-img" onclick="load_profile(<%= result.user_id %>)">
     <%= result.user_image%>
@@ -211,14 +211,7 @@
 </script>
 
 <script type="text/templates" id="comment-popover">
-    <div class="tabbable tabs-below">
-    <ul class="nav nav-tabs"><li class="active"><a href="#A" data-toggle="tab">Well done</a></li><li class="teriblecomments"><a href="#B" data-toggle="tab">Terrible job</a></li>
-    </ul><div class="tab-content"><div class="tab-pane active" id="A"><ul><li><div class="jobname">
-    <a href="#"> The complete set of 361 icons</a></div><div class="submited">submitted on 30th september 2013</div>
-    <div class="yourcomment"> Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class="jobname"><a href="#"> The complete set of 361 icons</a></div><div class="submited">submitted on 30th september 2013</div>
-    <div class="yourcomment">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div><div class="tab-pane tariblecontent" id="B"><ul><li><div class="jobname"><a href="#"> The complete set of 361 icons</a></div>
-    <div class="submited">submitted on 30th september 2013</div><div class="yourcomment">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class="jobname"><a href="#"> The complete set of 361 icons</a></div>
-    <div class="submited">submitted on 30th september 2013</div><div class="yourcomment">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div></div></div>" data-html="true"></a>  
-		
+   <div class='tabbable tabs-below'><ul class='nav nav-tabs'><li class='active'><a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul><div class='tab-content'><div class='tab-pane active' id='A'><ul><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div><div class='tab-pane tariblecontent' id='B'><ul><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li><li><div class='jobname'><a href='#'> The complete set of 361 icons</a></div><div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</div></li></ul></div></div></div> 
+			
     
-</script>
+</script> 
