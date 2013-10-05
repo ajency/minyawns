@@ -487,35 +487,60 @@ background: #EEE9E9;
 margin-top: 12px !important;
 }
 
-.expand .popover-content
+#paypal_form .popover-content
 {
 background:#E0E1D8;
 padding: 10px 8px;
 border-radius: 6px;
 }
 
-.expand .popover-content textarea {
+#paypal_form .popover-content textarea {
 height: auto;
 width: 90% !important;
 margin-bottom:0
 }
 
-.expand .popover-content .maxchar
+#paypal_form .popover-content .maxchar
 {
 color: #AEACAC;
 font-size: 11px;
 text-align: right;
 }
 
-.expand .head
+#paypal_form .head
 {
 color:#606060;
 font-size:11px;
 }
+#paypal_form .popover.bottom {
+margin-top: 30px !important;
+left: -34px !important;
 
-.expand .popover.bottom .arrow
+}
+#paypal_form .popover.bottom .arrow
 {
 border-bottom-color:#E0E1D8;
+}
+
+.jobs_table .accordion-inner {
+padding: 9px 15px 109px;
+border-top: 1px solid #e5e5e5;
+}
+.jobs_table .rate-negative
+{
+width: 41% !important;
+padding: 4px;
+float: left;
+margin-bottom: 5px;
+}
+
+.jobs_table .maxchar
+{
+color: #AEACAC;
+font-size: 11px;
+text-align: right;
+margin-top: -10px;
+margin-right: -20px;
 }
 .popover.bottom .arrow {
 top: -10px;
@@ -570,6 +595,7 @@ border-right-color: #F7F6F6;
 font-size: 13px;
 color: #676965;
 font-style:italic;
+padding-bottom: 5px;
 }
 #profile-view .popover .tab-content ul li .submited
 {
@@ -607,6 +633,7 @@ border-top: 0px solid #ddd;
 border-bottom:2px solid #8CCE36;
 color: #ffffff;
 background: #8CCE36;
+border-radius: 4px;
 }
 
 #profile-view .popover-content .tabs-below > .nav-tabs li a
@@ -622,6 +649,7 @@ border-top: 0px solid #ddd;
 border-bottom:2px solid #e74c3c;
 color: #ffffff;
 background: #e74c3c;
+border-radius: 4px;
 }
 
 
@@ -632,6 +660,7 @@ background: none;
 border-bottom:2px solid #8CCE36;
 background: #8CCE36;
 color: #ffffff;
+border-radius: 4px;
 }
 
 #profile-view .popover-content .tabs-below > .nav-tabs > .teriblecomments.active > a, .tabs-below > .nav-tabs > .teriblecomments.active > a:hover, .tabs-below > .nav-tabs > .teriblecomments.active > a:focus {
@@ -641,12 +670,13 @@ background: none;
 border-bottom:2px solid #e74c3c;
 color: #ffffff;
 background: #e74c3c;
+border-radius: 4px;
 }
 
 .commentsclick
 {
 background: url(../images/comments.png) no-repeat;
-height: 26px;
+height: 32px;
 display: inline-block;
 width: 31px;
 margin-bottom: -10px;
@@ -654,8 +684,27 @@ margin-bottom: -10px;
 
 h4.job-view
 {
-	width: 90%;
+	width: 80%;
 display: inline-block;
+}
+.userrev
+{
+	font-size: 15px;
+color: #34495e;
+margin-top: 11px;
+display: block;
+width: 142px;
+text-align: center;
+}
+
+.popover.left .arrow {
+display:none;
+}
+
+.load_ajax_profile_comments
+{
+	float: right !important;
+margin-top: 3px !important;
 }
 
 @media (max-width:480px)
@@ -666,8 +715,8 @@ position: relative;
 }
 #profile-view .popover
 {
-top: 39px !important;
-left: 0px!important;
+top:550px !important;
+left: 25px!important;
 display: block!important;
 position: absolute!important;
 width: 92% !important;

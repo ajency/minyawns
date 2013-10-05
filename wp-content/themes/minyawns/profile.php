@@ -42,9 +42,11 @@ require 'templates/_jobs.php';
                             html = template({result: model.toJSON()});
                             //jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
                         });
-                        $(".load_ajax_profile_comments").hide();
-                        $("#example_right").popover({placement: 'right', trigger: 'click', content: html}).popover('show');
-                        ;
+
+ $(".load_ajax_profile_comments").hide();
+                        $("#example_right").popover({placement: 'left',trigger:'click', content: html}).popover('show');;
+
+
                     }
                }
              });
@@ -213,6 +215,8 @@ require 'templates/_jobs.php';
                                     <b class="dislike"><?php user_dislike_count(); ?></b>
                                 </a> 
                             </div>
+                             <!--                //load_comments(" + job.toJSON().applied_user_id[i] + ")-->
+               <span class="userrev">User reviews <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a><span class='load_ajax_profile_comments' style="display:none; float:right"></span></span> 
                             <!-- Mobile View Like Button -->
 
                             <div class="mobile_like_btn">
@@ -228,14 +232,13 @@ require 'templates/_jobs.php';
                         </div>	
 <?php endif; ?>			
                 </div>
-                <!--                //load_comments(" + job.toJSON().applied_user_id[i] + ")-->
-                <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a><span class='load_ajax_profile_comments' style="display:none"></span>
+
 
                 <hr>
                 <div class="clear"></div>
 
                 <h4 class="job-view">To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
-
+ 
                 <div class="jobs_table">
                     <div id="browse-jobs-table" class="table-border browse-jobs-table">
 

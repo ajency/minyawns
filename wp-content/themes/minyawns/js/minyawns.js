@@ -1468,7 +1468,7 @@ jQuery(document).ready(function($) {
                 $("#thumbs_up_" + _user_id).append(response.rating);
                 $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
                // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
-                $("#rating_container" + _user_id).append(_desc);
+                $("#rating_container" + _user_id).append("<div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'>"+_desc+"</div></div>");
             }
             if (response.action === "vote-down") {
 
