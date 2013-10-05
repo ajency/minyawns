@@ -482,12 +482,12 @@ $app->post('/user-vote', function() use ($app) {
 		AND job_id = '" . trim($_POST['job_id']) . "' AND status = 'hired'
 	"
             );
-        
-        $id_sql=$wpdb->prepare("SELECT id from {$wpdb->prefix}userjobs  WHERE user_id = '" . trim($_POST['user_id']) . "' 
+
+            $id_sql = $wpdb->prepare("SELECT id from {$wpdb->prefix}userjobs  WHERE user_id = '" . trim($_POST['user_id']) . "' 
 		AND job_id = '" . trim($_POST['job_id']) . "' AND status = 'hired' ");
-        
-        $last_id=$wpdb->get_row($id_sql);
-       
+
+            $last_id = $wpdb->get_row($id_sql);
+
             if (strlen($_POST['review']) > 0) {
                 $data = array(
                     'comment_post_ID' => $last_id->id,
@@ -603,15 +603,15 @@ $app->get('/jobminions/', function() use ($app) {
 //                if ($fb_uid !== false)
 //                    $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
 
-                     $object_id = get_object_id($_GET['minion_id'], $_GET['job_id']);
-                    foreach($object_id as $object_post_id){
-                     $defaults = array(
-                        'post_id' => $object_post_id->id,
-                    );
+                    $object_id = get_object_id($_GET['minion_id'], $_GET['job_id']);
+                    foreach ($object_id as $object_post_id) {
+                        $defaults = array(
+                            'post_id' => $object_post_id->id,
+                        );
                     }
                     $comment = get_comments($defaults)[0]->comment_content;
-                   
-                    
+
+
                     $user_to_job_rating = get_user_job_rating_data($minion_ids[$i], $_GET['job_id']);
 
                     $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 0;
@@ -639,7 +639,7 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_image' => $user['image'],
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
-                        'comment'=>$comment
+                        'comment' => $comment
                     );
                 }
             }
@@ -654,10 +654,10 @@ $app->get('/jobminions/', function() use ($app) {
 $app->get('/getcomments/', function() use ($app) {
             global $post, $wpdb;
             global $minyawn_job;
-$negative=array();
-$negative_title=array();
-$positive=array();
-$positive_title=array();
+            $negative = array();
+            $negative_title = array();
+            $positive = array();
+            $positive_title = array();
 
             $object_id = get_object_id($_GET['minion_id'], '');
 
@@ -667,22 +667,27 @@ $positive_title=array();
                     $defaults = array(
                         'post_id' => $objid->id,
                     );
-                    $negative[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
-                    $negative_jobs[]=isset($objid->post_title) > 0 ? $objid->post_title : '';
+                   
+                        $negative[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                        $negative_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
+                   
                 } else if ($objid->rating > 0) {
                     $defaults = array(
                         'post_id' => $objid->id,
                     );
-                    $positive[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
-                     $positive_jobs[]=isset($objid->post_title) > 0 ? $objid->post_title : '';
+                    $comments = get_comments($defaults);
+                    
+                        $positive[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                        $positive_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
+                    
                 }
 
                 $data = array(
                     //'comment_content' => $comment['0']->comment_content,
-                    'negative' => isset($negative) >0 ? $negative :0,
-                    'negative_title'=>isset($negative_jobs) > 0 ? $negative_jobs :0,
-                    'positive_title'=>isset($positive_jobs) > 0 ? $positive_jobs:0,
-                    'positive' => isset($positive) >0 ? $positive :0,
+                    'negative' => isset($negative) > 0 ? $negative : 0,
+                    'negative_title' => isset($negative_jobs) > 0 ? $negative_jobs : 0,
+                    'positive_title' => isset($positive_jobs) > 0 ? $positive_jobs : 0,
+                    'positive' => isset($positive) > 0 ? $positive : 0,
                 );
             }
 
@@ -698,6 +703,4 @@ $positive_title=array();
 
 
 $app->run();
-
-
 

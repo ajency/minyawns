@@ -870,14 +870,14 @@ function get_object_id($user_id,$job_id='')
         $select="{$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating,{$wpdb->prefix}posts.post_title";
         $from= "FROM {$wpdb->prefix}userjobs,{$wpdb->prefix}posts";
         $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = ".$user_id.""; 
-        $user_job_where .=" AND {$wpdb->prefix}posts.ID = {$wpdb->prefix}userjobs.job_id";
+        $user_job_where .=" AND {$wpdb->prefix}posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.rating !=0";
         
         }
     
     $sql = $wpdb->prepare("SELECT ".$select." ".$from."                           
                               ".$user_job_where."");
 
-                              
+                 
             $object_id = $wpdb->get_results($sql);
 
     return $object_id;

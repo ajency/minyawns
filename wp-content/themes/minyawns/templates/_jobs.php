@@ -232,7 +232,7 @@
             <% if(result.negative.length >0)
              {  for(var i=0;i<result.negative.length;i++){ %>
                <li><div class='jobname'><a href='#'><%= result.negative_title[i] %></a></div>
-            <div class='submited'>submitted on 30th september 2013</div><div class='yourcomment'> <%= result.negative[i] %> </div></li>
+            <div class='yourcomment'> <%= result.negative[i] %> </div></li>
             <% }
                 }
                  %></ul>

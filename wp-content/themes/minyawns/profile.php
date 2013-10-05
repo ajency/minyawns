@@ -18,7 +18,7 @@ require 'templates/_jobs.php';
 
         $("#example_right").live('click', function() {
 
-$(".load_ajax_profile_comments").show();
+            $(".load_ajax_profile_comments").show();
             var Fetchusercomments = Backbone.Collection.extend({
                 model: Usercomments,
                 url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/getcomments'
@@ -42,21 +42,12 @@ $(".load_ajax_profile_comments").show();
                             html = template({result: model.toJSON()});
                             //jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
                         });
- $(".load_ajax_profile_comments").hide();
-                        $("#example_right").popover({placement: 'right',trigger:'click', content: html}).popover('show');;
+                        $(".load_ajax_profile_comments").hide();
+                        $("#example_right").popover({placement: 'right', trigger: 'click', content: html}).popover('show');
+                        ;
                     }
-                   
-
-                }
-
-
-
-
-
-
-
-
-            });
+               }
+             });
 
         });
 
@@ -67,7 +58,7 @@ $(".load_ajax_profile_comments").show();
 <div id="myprofilepic" class="modal hide fade cropimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <?php if (is_user_logged_in() == TRUE)  ?>
+<?php if (is_user_logged_in() == TRUE)  ?>
         <h4 id="myModalLabel">Change Avatar</h4>
 
     </div>
@@ -83,7 +74,7 @@ $(".load_ajax_profile_comments").show();
                     Upload your image <input type="file" name="files" id="photoimg" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
                     <br>
                     <span id="div_cropmsg"> 
-                        <?php /* Please drag to select/crop your picture. */ ?>
+<?php /* Please drag to select/crop your picture. */ ?>
                         <p class="help-block meta">Upload an image for your profile.</p></br>
                     </span>
                     </br>
@@ -133,7 +124,7 @@ $(".load_ajax_profile_comments").show();
                                 echo get_avatar(get_user_id(), 168)
                                 ?>
 
-                            <?php if (is_user_logged_in())  ?>
+<?php if (is_user_logged_in())  ?>
                             <span >Change Avatar</span>
                         </a>
                         <input id="change-avatar" type="file" name="files" style="visibility:hidden">
@@ -147,20 +138,20 @@ $(".load_ajax_profile_comments").show();
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?></h4> 
                         <div class="row-fluid profile-list">
-                            <?php if (get_user_role() === 'minyawn'): ?>
+<?php if (get_user_role() === 'minyawn'): ?>
 
 
                                 <div class="span2">
                                     College :
                                 </div>
                                 <div class="span10 college">
-                                    <?php user_college(); ?>
+    <?php user_college(); ?>
                                 </div>
                                 <div class="span2">
                                     Major :
                                 </div>
                                 <div class="span10 major">
-                                    <?php user_college_major(); ?>
+    <?php user_college_major(); ?>
                                 </div>
                                 <div class="span2">
                                     Social Page :
@@ -189,13 +180,13 @@ $(".load_ajax_profile_comments").show();
                                     Location :
                                 </div>
                                 <div class="span9 location">
-                                    <?php user_location(); ?>
+    <?php user_location(); ?>
                                 </div>
                                 <div class="span3">
                                     Body :
                                 </div>
                                 <div class="span9 profilebody">
-                                    <?php user_profile_body(); ?>
+    <?php user_profile_body(); ?>
                                 </div>
                                 <div class="span3">
                                     Company Website :
@@ -209,7 +200,7 @@ $(".load_ajax_profile_comments").show();
                         </div>
 
                     </div>
-                    <?php if (get_user_role() === 'minyawn'): ?>
+<?php if (get_user_role() === 'minyawn'): ?>
                         <div class="span2">
                             <br>
                             <div class="like_btn"><br><br>
@@ -235,7 +226,7 @@ $(".load_ajax_profile_comments").show();
                                 </a> 
                             </div>
                         </div>	
-                    <?php endif; ?>			
+<?php endif; ?>			
                 </div>
                 <!--                //load_comments(" + job.toJSON().applied_user_id[i] + ")-->
                 <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a><span class='load_ajax_profile_comments' style="display:none"></span>
@@ -276,7 +267,7 @@ $(".load_ajax_profile_comments").show();
                     <form class="form-horizontal frm-edit" id="profile-edit-form">
 
 
-                        <?php if (get_user_role() === 'minyawn'): ?>
+<?php if (get_user_role() === 'minyawn'): ?>
                             <div class="control-group">
                                 <label class="control-label" for="inputFirst">First Name</label>
                                 <div class="controls">
@@ -320,7 +311,7 @@ $(".load_ajax_profile_comments").show();
                                     <input type="text" id="linkedin"  name="linkedin" placeholder="www.linkedin.in/username" value="<?php user_profile_linkedin(); ?>" class="input">
                                 </div>
                             </div>
-                        <?php else : ?>
+<?php else : ?>
                             <div class="control-group">
                                 <label class="control-label" for="inputFirst">Company Name</label>
                                 <div class="controls">
@@ -346,7 +337,7 @@ $(".load_ajax_profile_comments").show();
                                     <textarea rows="5" type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" style=" width: 90% !important; " ><?php user_profile_body(); ?></textarea>
                                 </div>
                             </div>
-                        <?php endif; ?>
+<?php endif; ?>
                         <hr>
                         <a href="#" class="btn btn-large btn-block btn-inverse span2 float-right" id="update-profile-info">Update Info</a>
                         <input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
