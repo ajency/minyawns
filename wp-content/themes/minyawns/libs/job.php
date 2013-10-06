@@ -639,7 +639,7 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_image' => $user['image'],
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
-                        'comment' => $comment
+                        'comment' => isset($comment)> 0 ? $comment :0
                     );
                 }
             }

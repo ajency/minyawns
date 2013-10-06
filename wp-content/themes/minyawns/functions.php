@@ -24,6 +24,10 @@ require_once 'libs/User-api.php';
 
 require_once 'libs/Job-api.php';
 
+require_once 'cron_functions.php';
+
+//require_once 'templates/email_template.php';
+
 
 //remove admin bar from front end
 show_admin_bar(false);
@@ -267,6 +271,9 @@ function minyawns_initial_checks() {
 }
 
 add_action('init', 'minyawns_initial_checks');
+
+
+//add_action('init', 'user_incomplete_profile_reminder');
 
 //Allow only active users to login in 
 
@@ -868,9 +875,9 @@ function get_object_id($user_id,$job_id='')
         $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = ".$user_id." AND {$wpdb->prefix}userjobs.job_id = ".$job_id.""; 
     } else{
         $select="{$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating,{$wpdb->prefix}posts.post_title";
-        $from= "FROM {$wpdb->prefix}userjobs,{$wpdb->prefix}posts";
+        $from= "FROM {$wpdb->prefix}userjobs,{$wpdb->prefix}posts,{$wpdb->prefix}comments";
         $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = ".$user_id.""; 
-        $user_job_where .=" AND {$wpdb->prefix}posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.rating !=0";
+        $user_job_where .=" AND {$wpdb->prefix}posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.rating !=0 AND {$wpdb->prefix}userjobs.id={$wpdb->prefix}comments.comment_post_id";
         
         }
     
