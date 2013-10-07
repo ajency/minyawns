@@ -7,6 +7,34 @@ $app = new \Slim\Slim(array('debug' => true));
 require '../../../../wp-load.php';
 
 /** Update the profile data */
+
+$app->post('/change-picture',function() use ($app){
+    
+    global $user_ID;
+    extract($_POST);
+    
+    $post_data = array(
+                'post_author' => get_user_id(),
+                'post_content' => '',
+                'post_date' => date('Y-m-d H:i:s'),
+                'post_date_gmt' => date('Y-m-d H:i:s'),
+                'post_excerpt' => '',
+                'post_name' => 'saq7r1wmey5fxhwv/cb80d34ae34e4db6b89c9a1cf16e6625.png',
+                'post_parent' => 0,
+                'post_status' => 'inherit',
+                'post_title' => 'e805bb30df6346149124d20082c1ae60.png',
+                'post_type' => 'attachment',
+                'post_mime_type' => 'image/jpeg',
+                'guid' => $src,
+            );
+           
+            $atach_post_id = wp_insert_post($post_data);
+            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
+            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode(array('success' => 1));
+});
+
 $app->post('/user', function() use ($app) {
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http request
@@ -56,7 +84,7 @@ $app->post('/change-avatar', function() use($app) {
                     $image_width = $width;
                     $image_height = $height;
                 }
-
+               
                 $_FILES = array("upload_attachment" => $file);
 
 
@@ -68,162 +96,141 @@ $app->post('/change-avatar', function() use($app) {
                     $attachment_id = $attach_id;
                    // $attachment_url = wp_get_attachment_link($attach_id);
                     $attachment_data = wp_get_attachment_image_src($attach_id,400,400);
-                    $attachment_url =  $attachment_data[0];
+                    $attachment_url =  $attachment_data[0];                    
+                    $filename = basename(get_attached_file($attach_id));
                 }
             }
 
             $app->response()->header("Content-Type", "application/json");
-            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => $files['name'], 'image_height' => $image_height, 'image_width' => $image_width));
+            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => $filename, 'image_height' => $image_height, 'image_width' => $image_width));
         });
 
-$app->post('/resize-user-avatar', function() use($app) {
-
-            global $user_ID;
-            
-            extract($_POST);
-            //var_dump($_POST);
-
-            $targetFolder = "../../../uploads/user-avatars/" . $user_ID . "/"; // Relative to the root
-
-           /* if (get_user_role() == 'employer')
-                $new_name = "employer" . $user_ID . ".jpg";
-            else
-                $new_name = "minyawn" . $user_ID . ".jpg";*/
-            if (get_user_role() == 'employer')
-            	$new_name = "employer". $user_ID."_". $image_name  ;
-            else
-            	$new_name = "minyawn". $user_ID."_".$image_name  ;
-            
-
-            $for_user_meta = "user-avatars/" . $user_ID . "/" . $new_name;
-
-			
-			 
-           
-            
-            
-            
-            
-            
-            
-			if(asp_ratio=="1:1")
-			{
-            	$t_width = 100; // Maximum thumbnail width
-            	$t_height =100; // Maximum thumbnail height
-			}
-			else 
-			{
-				$t_width = 170; // Maximum thumbnail width
-            	$t_height = 85; // Maximum thumbnail height
-			}
-            
-            
-            
-            
-            
-            
-            list($orig__width, $orig__height, $orig__type,$orig__attr) = getimagesize($targetFolder . $image_name);
-            
-            $orig_x_ratio = $orig__width/500;
-            $orig_y_ratio = $orig__height/420;
-            
-            
-            if($orig_x_ratio>$orig_y_ratio)
-            	$fin_asp_ratio = round($orig_x_ratio,3);
-            else
-            	$fin_asp_ratio = round($orig_y_ratio,3);
-             
-            //$fin_asp_ratio = min(array($orig_x_ratio,$orig_y_ratio));
-           // echo "final asp ratio ".$fin_asp_ratio;
-            if($fin_asp_ratio<1)
-            	$fin_asp_ratio = 1;
-            
-            
-            
-           //echo "original width=".$orig__width.", height=". $orig__height.", ratio=".$fin_asp_ratio;
-            
-            
-            $new_width = round(($orig__width /$fin_asp_ratio),3);
-            $new_height = round(($orig__height/$fin_asp_ratio),3);
-            
-            $image_p = imagecreatetruecolor($new_width, $new_height);
-            $image = imagecreatefromjpeg($targetFolder . $image_name);
-            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $orig__width, $orig__height);
-            
-            
-            
-             
-            $ratio = ($t_width / $w);
-            $nw = round($w * $ratio,3);
-            $nh = round($h * $ratio,3);
-            $nimg = imagecreatetruecolor($nw, $nh);
-            
-            
-            if (stripos($image_name, "png") !== false)
-            	$im_src = imagecreatefrompng($targetFolder . $image_name);
-            else
-            	$im_src = imagecreatefromjpeg($targetFolder . $image_name);
-            
-            
-            imagecopyresampled($nimg, $im_src, 0, 0, $x1*$fin_asp_ratio, $y1*$fin_asp_ratio,$nw, $nh, $w*$fin_asp_ratio, $h*$fin_asp_ratio);
-            //  imagejpeg($nimg, $targetFolder . "_".$new_name."#".$new_height."--".$new_width."++".$fin_asp_ratio, 90);
-            //imagejpeg($nimg, $targetFolder.$new_name, 100);
-            if($new_name!="")
-            {
-            	if(file_exists($targetFolder.$new_name))//added on 23sep2013 
-            		unlink($targetFolder.$new_name);
-            }//end if($new_name!="")
-            imagepng($nimg, $targetFolder.$new_name);
-          	 // imagejpeg($nimg, $targetFolder.$new_name."_".$fin_asp_ratio."__".$w."___".$h."____".$nw."_____".$nh, 90);
-            //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
-           
-            
-            
-            
-            
-            
-            
-            /*
-            $ratio = ($t_width / $w);
-            $nw = ceil($w * $ratio);
-            $nh = ceil($h * $ratio);
-            $nimg = imagecreatetruecolor($nw, $nh);
-
-            if (stripos($image_name, "png") !== false)
-                $im_src = imagecreatefrompng($targetFolder . $image_name);
-            else
-                $im_src = imagecreatefromjpeg($targetFolder . $image_name);
-
-
-            imagecopyresampled($nimg, $im_src, 0, 0, $x1, $y1, $nw, $nh, $w, $h);
-            imagejpeg($nimg, $targetFolder . $new_name, 90);
-            //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
-             * 
-             * */
-            
-            
-            
-            $post_data = array(
-                'post_author' => get_user_id(),
-                'post_content' => '',
-                'post_date' => date('Y-m-d H:i:s'),
-                'post_date_gmt' => date('Y-m-d H:i:s'),
-                'post_excerpt' => '',
-                'post_name' => $new_name,
-                'post_parent' => 0,
-                'post_status' => 'inherit',
-                'post_title' => $new_name,
-                'post_type' => 'attachment',
-                'post_mime_type' => 'image/jpeg',
-                'guid' => site_url() . "/wp-content/uploads/user-avatars/" . $user_ID . "/" . $new_name,
-            );
-            $atach_post_id = wp_insert_post($post_data);
-            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
-            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
-           
-            $app->response()->header("Content-Type", "application/json");
-            echo json_encode(get_user_company_logo($user_ID));
-        });
+//$app->post('/resize-user-avatar', function() use($app) {
+//
+//            global $user_ID;
+//            
+//            extract($_POST);
+//            //var_dump($_POST);
+//
+//            $targetFolder = "../../../uploads/user-avatars/" . $user_ID . "/"; // Relative to the root
+//
+//           /* if (get_user_role() == 'employer')
+//                $new_name = "employer" . $user_ID . ".jpg";
+//            else
+//                $new_name = "minyawn" . $user_ID . ".jpg";*/
+//            if (get_user_role() == 'employer')
+//            	$new_name = "employer". $user_ID."_". $image_name  ;
+//            else
+//            	$new_name = "minyawn". $user_ID."_".$image_name  ;
+//            
+//
+//            $for_user_meta = "user-avatars/" . $user_ID . "/" . $new_name;
+//
+//			if(asp_ratio=="1:1")
+//			{
+//            	$t_width = 100; // Maximum thumbnail width
+//            	$t_height =100; // Maximum thumbnail height
+//			}
+//			else 
+//			{
+//				$t_width = 170; // Maximum thumbnail width
+//            	$t_height = 85; // Maximum thumbnail height
+//			}
+//      
+//            list($orig__width, $orig__height, $orig__type,$orig__attr) = getimagesize($targetFolder . $image_name);
+//            
+//            $orig_x_ratio = $orig__width/500;
+//            $orig_y_ratio = $orig__height/420;
+//            
+//            
+//            if($orig_x_ratio>$orig_y_ratio)
+//            	$fin_asp_ratio = round($orig_x_ratio,3);
+//            else
+//            	$fin_asp_ratio = round($orig_y_ratio,3);
+//             
+//            //$fin_asp_ratio = min(array($orig_x_ratio,$orig_y_ratio));
+//           // echo "final asp ratio ".$fin_asp_ratio;
+//            if($fin_asp_ratio<1)
+//            	$fin_asp_ratio = 1;
+//            
+//            
+//            
+//           //echo "original width=".$orig__width.", height=". $orig__height.", ratio=".$fin_asp_ratio;
+//            
+//            
+//            $new_width = round(($orig__width /$fin_asp_ratio),3);
+//            $new_height = round(($orig__height/$fin_asp_ratio),3);
+//            
+//            $image_p = imagecreatetruecolor($new_width, $new_height);
+//            $image = imagecreatefromjpeg($targetFolder . $image_name);
+//            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $orig__width, $orig__height);
+//            
+//            
+//            
+//             
+//            $ratio = ($t_width / $w);
+//            $nw = round($w * $ratio,3);
+//            $nh = round($h * $ratio,3);
+//            $nimg = imagecreatetruecolor($nw, $nh);
+//            
+//            
+//            if (stripos($image_name, "png") !== false)
+//            	$im_src = imagecreatefrompng($targetFolder . $image_name);
+//            else
+//            	$im_src = imagecreatefromjpeg($targetFolder . $image_name);           
+//            
+//                      
+//            imagecopyresampled($nimg, $im_src, 0, 0, $x1*$fin_asp_ratio, $y1*$fin_asp_ratio,$nw, $nh, $w*$fin_asp_ratio, $h*$fin_asp_ratio);
+//            //  imagejpeg($nimg, $targetFolder . "_".$new_name."#".$new_height."--".$new_width."++".$fin_asp_ratio, 90);
+//            //imagejpeg($nimg, $targetFolder.$new_name, 100);
+//            if($new_name!="")
+//            {
+//            	if(file_exists($targetFolder.$new_name))//added on 23sep2013 
+//            		unlink($targetFolder.$new_name);
+//            }//end if($new_name!="")
+//            imagepng($nimg, $targetFolder.$new_name);
+//          	 // imagejpeg($nimg, $targetFolder.$new_name."_".$fin_asp_ratio."__".$w."___".$h."____".$nw."_____".$nh, 90);
+//            //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
+//         
+//            /*
+//            $ratio = ($t_width / $w);
+//            $nw = ceil($w * $ratio);
+//            $nh = ceil($h * $ratio);
+//            $nimg = imagecreatetruecolor($nw, $nh);
+//
+//            if (stripos($image_name, "png") !== false)
+//                $im_src = imagecreatefrompng($targetFolder . $image_name);
+//            else
+//                $im_src = imagecreatefromjpeg($targetFolder . $image_name);
+//
+//
+//            imagecopyresampled($nimg, $im_src, 0, 0, $x1, $y1, $nw, $nh, $w, $h);
+//            imagejpeg($nimg, $targetFolder . $new_name, 90);
+//            //$attach_id = pn_get_attachment_id_from_url($targetFolder . $new_name);
+//             * 
+//             * */
+//         
+//            $post_data = array(
+//                'post_author' => get_user_id(),
+//                'post_content' => '',
+//                'post_date' => date('Y-m-d H:i:s'),
+//                'post_date_gmt' => date('Y-m-d H:i:s'),
+//                'post_excerpt' => '',
+//                'post_name' => $new_name,
+//                'post_parent' => 0,
+//                'post_status' => 'inherit',
+//                'post_title' => $new_name,
+//                'post_type' => 'attachment',
+//                'post_mime_type' => 'image/jpeg',
+//                'guid' => site_url() . "/wp-content/uploads/user-avatars/" . $user_ID . "/" . $new_name,
+//            );
+//            $atach_post_id = wp_insert_post($post_data);
+//            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
+//            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
+//           
+//            $app->response()->header("Content-Type", "application/json");
+//            echo json_encode(get_user_company_logo($user_ID));
+//        });
 
 $app->run();
 
