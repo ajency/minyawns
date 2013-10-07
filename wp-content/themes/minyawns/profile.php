@@ -38,9 +38,10 @@ require 'templates/_jobs.php';
      theme: 'dark', 
     // more tools: 'crop,orientation,brightness,sharpness,redeye,effects,stickers,focus,contrast,whiten,warmth,colorsplash,enhance,saturation,blemish,draw,text,frames',
      tools: 'crop,brightness,sharpness,effects',
-        appendTo: '',
+     initTool: 'crop',
+     appendTo: '',
      cropPresets:['<?php echo $ratio;?>'],
-    // cropPresetsStrict:true,
+     cropPresetsStrict:true,
      cropPresetDefault:'<?php echo $ratio;?>',
      onSaveButtonClicked: function(imageID){
          //  alert(imageID);

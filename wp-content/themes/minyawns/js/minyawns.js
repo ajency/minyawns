@@ -265,7 +265,7 @@ jQuery(document).ready(function($) {
 
         },
         start: function(e, data) {     
-          // return launchEditor('image1', document.getElementById('image1').src);
+         //  return launchEditor('image1', document.getElementById('image1').src);
             $(".load_ajax-crop-upload").show();
 
             $('#change-avatar').attr("disabled", "disabled");
