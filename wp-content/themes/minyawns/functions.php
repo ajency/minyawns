@@ -24,7 +24,7 @@ require_once 'libs/User-api.php';
 
 require_once 'libs/Job-api.php';
 
-require_once 'cron_functions.php';
+//require_once 'cron_functions.php';
 
 //require_once 'templates/email_template.php';
 
