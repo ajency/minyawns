@@ -781,13 +781,18 @@
 					<span class="label label-small">Brainstorming</span>
 					<span class="label label-small">Documentdrafting</span>
 					<hr>
-					 <div class="dwn-btn">
+					 <div class="dwn-btn" id="popone">
 					<div class="row-fluid">
-					<div class="span6">
-						<a href="#myModal" class="btn btn-small btn-block  btn-success well-done" data-toggle="modal">+1 Well Done</a>
-					</div>
-					<div class="span6">
-						<a href="#myModal5" class="btn btn-small btn-block  btn-danger terrible" data-toggle="modal">-1 Terrible Job</a>
+					<div class="span6 popovercont">
+					
+						
+						
+					
+<a href="javascript:void(0)" id="example_bottom" class="btn btn-small btn-block  btn-success well-done " rel="popover"  data-content="<div class='head'>You are rating positive</div><textarea></textarea><br/><div class='maxchar'>Max charector 160</div><input type='submit' class='btn btn-medium btn-block green-btn btn-success' style='width:30%;margin-left: 3px'>" data-html="true">+1 Well Done</a>  
+</div> 				
+					<div class="span6 popovercont">
+					<a href="javascript:void(0)" id="example_top" class="btn btn-small btn-block  btn-danger terrible" rel="popover"  data-content="<div class='head'>You are rating negitive</div><textarea></textarea><br/><div class='maxchar'>Max charector 160</div><input type='submit' class='btn btn-medium btn-block green-btn btn-success' style='width:30%;margin-left: 3px'>" data-html="true">
+						-1 Terrible Job</a>
 					</div>
 					</div>
 				</div>
@@ -1005,6 +1010,15 @@
 			);
 		});
     </script>
+	
+<script>  
+$(function ()  
+{ $("#example").popover();  
+  $("#example_left").popover({placement:'left'});  
+  $("#example_top").popover({placement:'bottom'});  
+  $("#example_bottom").popover({placement:'bottom'});  
+});  
+</script>
 
 	
   </body>

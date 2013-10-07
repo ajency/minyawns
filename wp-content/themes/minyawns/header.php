@@ -18,7 +18,9 @@
 	
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.bxslider.min.js" type="application/javascript"></script>
+   
 	<!-- media-queries.js (fallback) -->
 	<!--[if lt IE 9]>
 	    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			

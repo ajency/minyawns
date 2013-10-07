@@ -5,6 +5,40 @@
 
 jQuery(document).ready(function($) {
 
+
+
+
+//    $('#trigger').popover({
+//        html: true,
+//        content: function() {
+//            return 'asdasdads';
+//        }
+//    
+//}).click(function(e){
+//        var element = $(this);
+//        $.ajax({
+//            url: '/episoderatings/like/',
+//            type: 'POST',
+//            dataType: 'json',
+//            data: {
+//             
+//            },
+//            success: function(response){
+//                if(response=='You have liked this episode'){
+//                    $('span#episode_likes').text(parseInt($('span#episode_likes').text())+1);
+//                }
+//                $(element).attr('data-content',response).popover('show');
+//            }
+//        });
+//        e.preventDefault();
+//    });
+
+
+    $('#link').click(function() {
+        alert('beep');
+    });
+
+
     /********************************** PROFILE JS CODE *************************************/
 //$('html').click(function(e) {
 //    $('#user-popdown').popover('hide');
@@ -545,11 +579,11 @@ jQuery(document).ready(function($) {
 
         };
 
- var first = getUrlVars()["cat_id"];
- 
-  if(typeof(first) !== 'undefined')
-        _data.filter=first;
- 
+        var first = getUrlVars()["cat_id"];
+
+        if (typeof(first) !== 'undefined')
+            _data.filter = first;
+
         if ($("#tab_identifier").val() === '1') {
             _data.my_jobs = '1';
 
@@ -1372,18 +1406,51 @@ jQuery(document).ready(function($) {
 
     $('.well-done,.terrible').live('click', function(evt) {
 
-        if ($(this).attr('is_rated') != "0")
+
+        if (evt.target.id === 'vote-up') {
+            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("vote", "1");
+        } else {
+            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("vote", "-1");
+        }
+
+        $("#review-box" + $(this).attr('user_id')).show();
+        $("#thumbnail-" + $(this).attr('user_id')).css("height", '545px');
+
+
+//
+////$("#review"+$(this).attr('user_id')).attr("action",)
+////$('.rate-positive,.rate-negative').live('click', function(evt) {
+//
+////        if ($(this).attr('is_rated') != "0")
+////            return false;
+//
+//        $(".rating").find('a').prop('disabled', true);
+//        // $(".load_ajaxconfirm").show();
+//        //evt.preventDefault();
+
+    });
+
+    $(".rate-button").live('click', function() {
+
+        var action = $(".rate-button").attr("action");
+
+
+        if (action.length === 0)
             return false;
 
-        $(".rating").find('a').prop('disabled', true);
-        // $(".load_ajaxconfirm").show();
-        evt.preventDefault();
+
         var _this = $(this);
-        var _rating = $(this).attr('employer-vote');
+        var _rating = $(this).attr('vote');
         var _job_id = $(this).attr('job-id');
-        var _user_id = $(this).attr('user_id');
+        var _user_id = $(this).attr('user-id');
         var _action = $(this).attr('action');
         var _emp_id = $(this).attr('emp_id');
+        var _desc = $("#review-text" + _user_id).val();
+
+
+
 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
                 {
@@ -1391,7 +1458,9 @@ jQuery(document).ready(function($) {
                     job_id: _job_id,
                     user_id: _user_id,
                     action: _action,
-                    emp_id: _emp_id
+                    emp_id: _emp_id,
+                    review: _desc
+
 
                 },
         function(response) {
@@ -1403,7 +1472,8 @@ jQuery(document).ready(function($) {
 
                 $("#thumbs_up_" + _user_id).append(response.rating);
                 $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
-
+               // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
+                $("#rating_container" + _user_id).append("<div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'>"+_desc+"</div></div>");
             }
             if (response.action === "vote-down") {
 
@@ -1414,10 +1484,14 @@ jQuery(document).ready(function($) {
 
                 $("#thumbs_down_" + _user_id).append(response.rating);
                 $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='1'>Terrible</a>");
-
+               // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
+                $("#rating_container" + _user_id).append(_desc);
+          
             }
+            $("#thumbnail-" + _user_id).css("height", '480px');
 
         }, 'json');
+
     });
 
     $("#edit-selection").live('click', function(evt) {
@@ -1427,18 +1501,18 @@ jQuery(document).ready(function($) {
     });
 
 
-var first = getUrlVars()["cat_id"];
+    var first = getUrlVars()["cat_id"];
 
-    if(typeof(first) !== 'undefined')
-        {
-           
-            load_browse_jobs('','',first);
-        }else{
-    /* function on page load*/
+    if (typeof(first) !== 'undefined')
+    {
 
-    fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+        load_browse_jobs('', '', first);
+    } else {
+        /* function on page load*/
 
-      }
+        fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+
+    }
 
 });
 
@@ -1446,7 +1520,7 @@ function getUrlVars()
 {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
+    for (var i = 0; i < hashes.length; i++)
     {
         hash = hashes[i].split('=');
         vars.push(hash[0]);

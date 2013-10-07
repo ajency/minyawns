@@ -482,11 +482,248 @@ body .list-jobs .expand .minyawansgrid .span6:hover {
 cursor: pointer;
 background: #EEE9E9;
 }
+ .expand .popover.bottom
+{
+margin-top: 12px !important;
+}
 
-input[type="file"] {
-    width: 164px !important ;
-    line-height: 24px !important;
-    height: 24px !important;
-    font-size: 12px !important;
-    display: none;
-}		
+#paypal_form .popover-content
+{
+background:#E0E1D8;
+padding: 10px 8px;
+border-radius: 6px;
+}
+
+#paypal_form .popover-content textarea {
+height: auto;
+width: 90% !important;
+margin-bottom:0
+}
+
+#paypal_form .popover-content .maxchar
+{
+color: #AEACAC;
+font-size: 11px;
+text-align: right;
+}
+
+#paypal_form .head
+{
+color:#606060;
+font-size:11px;
+}
+#paypal_form .popover.bottom {
+margin-top: 30px !important;
+left: -34px !important;
+
+}
+#paypal_form .popover.bottom .arrow
+{
+border-bottom-color:#E0E1D8;
+}
+
+.jobs_table .accordion-inner {
+padding: 9px 15px 109px;
+border-top: 1px solid #e5e5e5;
+}
+.jobs_table .rate-negative
+{
+width: 41% !important;
+padding: 4px;
+float: left;
+margin-bottom: 5px;
+}
+
+.jobs_table .maxchar
+{
+color: #AEACAC;
+font-size: 11px;
+text-align: right;
+margin-top: -10px;
+margin-right: -20px;
+}
+.popover.bottom .arrow {
+top: -10px;
+left: 50%;
+margin-left: -10px;
+border-bottom-color: #FFF;
+border-width: 0 10px 10px;
+}
+.list-jobs .expand .minyawansgrid .span6 b {
+width: 142px !important;
+display: inline-block;
+}
+#profile-view .popover
+{
+width: 450px !important;
+min-width: 450px;
+max-height: 500px;
+overflow-y: auto;
+}
+
+#profile-view .popover .tab-content
+{
+min-height:186px;
+padding:12px;
+background: #F7F6F6;
+border: 0;
+
+}
+
+#profile-view .popover .tab-content input
+{
+width: 98%;
+height: 19px;
+}
+
+#profile-view .popover .tab-content ul
+{
+margin: 0;
+list-style: none;
+}
+#profile-view .popover .tab-content ul li
+{
+border-bottom: 2px dotted #E0E1D8;
+margin-bottom: 4px;
+}
+#profile-view .popover.right .arrow
+{
+border-right-color: #F7F6F6;
+}
+#profile-view .popover .tab-content ul li .yourcomment
+{
+font-size: 13px;
+color: #676965;
+font-style:italic;
+padding-bottom: 5px;
+}
+#profile-view .popover .tab-content ul li .submited
+{
+font-size: 11px;
+color:#ABA8A8;
+font-style:italic;
+}
+
+#profile-view .popover .tab-content ul li .jobname a
+{
+font-size:15px;
+}
+
+#profile-view .popover .tab-content .tariblecontent ul li .jobname a
+{
+color:#E74C3C;
+}
+
+#profile-view .popover .tab-content ul li .jobname a
+{
+color:#79B91E;
+}
+
+#profile-view .popover-content
+{
+background:#F7F6F6;
+}
+
+#profile-view .popover-content .tabs-below > .nav-tabs {
+border-top: 0px solid #ddd;
+margin:0;
+}
+#profile-view .popover-content .tabs-below > .nav-tabs li a:hover {
+border-top: 0px solid #ddd;
+border-bottom:2px solid #8CCE36;
+color: #ffffff;
+background: #8CCE36;
+border-radius: 4px;
+}
+
+#profile-view .popover-content .tabs-below > .nav-tabs li a
+{
+color:#8CCE36;
+}
+#profile-view .popover-content .tabs-below > .nav-tabs li.teriblecomments a
+{
+color:#e74c3c;
+}
+#profile-view .popover-content .tabs-below > .nav-tabs li.teriblecomments a:hover {
+border-top: 0px solid #ddd;
+border-bottom:2px solid #e74c3c;
+color: #ffffff;
+background: #e74c3c;
+border-radius: 4px;
+}
+
+
+#profile-view .popover-content .tabs-below > .nav-tabs > .active > a, .tabs-below > .nav-tabs > .active > a:hover, .tabs-below > .nav-tabs > .active > a:focus {
+border-color: transparent #ddd #ddd #ddd;
+border-width: 0px;
+background: none;
+border-bottom:2px solid #8CCE36;
+background: #8CCE36;
+color: #ffffff;
+border-radius: 4px;
+}
+
+#profile-view .popover-content .tabs-below > .nav-tabs > .teriblecomments.active > a, .tabs-below > .nav-tabs > .teriblecomments.active > a:hover, .tabs-below > .nav-tabs > .teriblecomments.active > a:focus {
+border-color: transparent #ddd #ddd #ddd;
+border-width: 0px;
+background: none;
+border-bottom:2px solid #e74c3c;
+color: #ffffff;
+background: #e74c3c;
+border-radius: 4px;
+}
+
+.commentsclick
+{
+background: url(../images/comments.png) no-repeat;
+height: 32px;
+display: inline-block;
+width: 31px;
+margin-bottom: -10px;
+}
+
+h4.job-view
+{
+	width: 80%;
+display: inline-block;
+}
+.userrev
+{
+	font-size: 15px;
+color: #34495e;
+margin-top: 11px;
+display: block;
+width: 142px;
+text-align: center;
+}
+
+.popover.left .arrow {
+display:none;
+}
+
+.load_ajax_profile_comments
+{
+	float: right !important;
+margin-top: 3px !important;
+}
+
+@media (max-width:480px)
+{
+.list-jobs .expand #profile-view .span6 {
+margin-left: 0px;
+position: relative;
+}
+#profile-view .popover
+{
+top:550px !important;
+left: 25px!important;
+display: block!important;
+position: absolute!important;
+width: 92% !important;
+min-width: 92%;
+max-height: 300px;
+overflow-y: auto;
+}
+}
+
+		
