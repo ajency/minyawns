@@ -609,7 +609,8 @@ $app->get('/jobminions/', function() use ($app) {
                             'post_id' => $object_post_id->id,
                         );
                     }
-                    $comment = get_comments($defaults)[0]->comment_content;
+                    $all_comment = get_comments($defaults);
+                    $comment=$all_comment[0]->comment_content;
 
 
                     $user_to_job_rating = get_user_job_rating_data($minion_ids[$i], $_GET['job_id']);
