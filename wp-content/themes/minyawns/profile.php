@@ -17,16 +17,19 @@ require 'templates/_jobs.php';
         }
 
         jQuery("#tab_identifier").val('1');
-        
-        if(role == "Minion"){
-           jQuery('#abc').val('1:1');
-        } else {
-           jQuery('#abc').val('2:1'); 
-        }
+
     });
          
    </script>  
+    
+<?php if(get_user_role() === 'minyawn'){ 
+ $ratio = '1:1'; 
+} else {
+  $ratio = '2:1' ; 
+}
+?>
  <input type="hidden" id="abc" value=""/> 
+
 <script type="text/javascript">
     
    var featherEditor = new Aviary.Feather({
@@ -36,9 +39,9 @@ require 'templates/_jobs.php';
     // more tools: 'crop,orientation,brightness,sharpness,redeye,effects,stickers,focus,contrast,whiten,warmth,colorsplash,enhance,saturation,blemish,draw,text,frames',
      tools: 'crop,brightness,sharpness,effects',
         appendTo: '',
-     cropPresets:[''+jQuery('#abc').val()+''],
-     cropPresetsStrict:true,
-     cropPresetDefault:''+jQuery('#abc').val()+'',
+     cropPresets:['<?php echo $ratio;?>'],
+    // cropPresetsStrict:true,
+     cropPresetDefault:'<?php echo $ratio;?>',
      onSaveButtonClicked: function(imageID){
          //  alert(imageID);
         
@@ -47,7 +50,6 @@ require 'templates/_jobs.php';
      onSave: function(imageID, newURL) {
          var img = document.getElementById(imageID);
          img.src = newURL;    
-         alert(img.src);
          jQuery.ajax({
          type: "POST",
          dataType: "json",
@@ -80,9 +82,6 @@ require 'templates/_jobs.php';
    
    
 </script>
-
-<?php //if (get_user_role() === 'minyawn'){ ?>
-<?php //} else { }?>
 
 <div id="myprofilepic" class="modal hide fade cropimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
