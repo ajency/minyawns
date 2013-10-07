@@ -167,7 +167,7 @@ require 'templates/_jobs.php';
                             <span onclick="document.getElementById('photoimg').click(); return false;">Change Avatar</span> 
                             
                         </a>
-                        <input type="file" name="files" id="photoimg"/>
+                        <input type="file" name="files" id="photoimg" style="display:none;"/>
 <!--                        <input id="change-avatar" type="file" name="files" style="visibility:hidden">-->
                     </div>
                     <div class="span8">
