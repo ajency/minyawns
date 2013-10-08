@@ -8,6 +8,7 @@ require 'templates/_jobs.php';
 ?>
  <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
  <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
+ <script src="http://tympanus.net/codrops/adpacks/demoad.js"></script>
 <script>
     jQuery(document).ready(function($) {
 
@@ -17,16 +18,19 @@ require 'templates/_jobs.php';
         }
 
         jQuery("#tab_identifier").val('1');
-        
-        if(role == "Minion"){
-           jQuery('#abc').val('1:1');
-        } else {
-           jQuery('#abc').val('2:1'); 
-        }
+
     });
          
    </script>  
+
+<?php if(get_user_role() === 'minyawn'){ 
+ $ratio = '1:1'; 
+} else {
+  $ratio = '2:1' ; 
+}
+?>
  <input type="hidden" id="abc" value=""/> 
+
 <script type="text/javascript">
     
    var featherEditor = new Aviary.Feather({
@@ -35,10 +39,11 @@ require 'templates/_jobs.php';
      theme: 'dark', 
     // more tools: 'crop,orientation,brightness,sharpness,redeye,effects,stickers,focus,contrast,whiten,warmth,colorsplash,enhance,saturation,blemish,draw,text,frames',
      tools: 'crop,brightness,sharpness,effects',
-        appendTo: '',
-     cropPresets:[''+jQuery('#abc').val()+''],
+     initTool: 'crop',
+     appendTo: '',
+     cropPresets:['<?php echo $ratio;?>'],
      cropPresetsStrict:true,
-     cropPresetDefault:''+jQuery('#abc').val()+'',
+     cropPresetDefault:'<?php echo $ratio;?>',
      onSaveButtonClicked: function(imageID){
          //  alert(imageID);
         
@@ -47,7 +52,6 @@ require 'templates/_jobs.php';
      onSave: function(imageID, newURL) {
          var img = document.getElementById(imageID);
          img.src = newURL;    
-         alert(img.src);
          jQuery.ajax({
          type: "POST",
          dataType: "json",
@@ -80,9 +84,6 @@ require 'templates/_jobs.php';
    
    
 </script>
-
-<?php //if (get_user_role() === 'minyawn'){ ?>
-<?php //} else { }?>
 
 <div id="myprofilepic" class="modal hide fade cropimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
@@ -118,7 +119,7 @@ require 'templates/_jobs.php';
                     <input type="hidden"  id="image_x_axis" style="display:none;">
                     <input type="hidden"  id="image_y_axis" style="display:none;">
                     <input type="hidden" value="<?//php echo (get_user_role() == 'employer' ? '2:1' : '1:1') ?>" id="aspect_ratio"> -->
-<!--                    <img id='image1' src='http://aviary.com/Content/images/feature_top_phone.png' style="max-height:360px; display:none;" on/>-->
+<!--                <img id='image1' src='http://aviary.com/Content/images/feature_top_phone.png' style="max-height:360px; display:none;" on/>-->
                    
                 </form>
 
@@ -127,7 +128,9 @@ require 'templates/_jobs.php';
     </div>
 </div>
 
+
 <div class="container">
+    
     <div id="main-content" class="main-content bg-white" >
         <div class="breadcrumb-text">
 
@@ -137,7 +140,7 @@ require 'templates/_jobs.php';
                 <a href="#" class="view loaded edit-user-profile">My Profile</a>
             </p>
         </div>
-        
+            
         <div class="row-fluid profile-wrapper">
             <?php
             //if(check_access()===true)
@@ -147,10 +150,10 @@ require 'templates/_jobs.php';
                 <div class="row-fluid min_profile">
 
                     <div class="span2 <?php
-                    if (get_user_role() == 'employer') {
-                        echo 'employer-image';
-                        
-                    }
+//                    if (get_user_role() == 'employer') {
+//                        echo 'employer-image';
+//                        
+//                    }
                     ?>">
                         
                     <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar">
@@ -167,9 +170,14 @@ require 'templates/_jobs.php';
                             <span onclick="document.getElementById('photoimg').click(); return false;">Change Avatar</span> 
                             
                         </a>
-                        <input type="file" name="files" id="photoimg"/>
+                        <input type="file" name="files" id="photoimg" style="display:none;"/>
+                                           
+                     <div class="bar" id="loader_sphere" style="display:none;">
+                              <i class="sphere"></i>
+                              </div>    
 <!--                        <input id="change-avatar" type="file" name="files" style="visibility:hidden">-->
                     </div>
+             
                     <div class="span8">
                         <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
@@ -241,7 +249,7 @@ require 'templates/_jobs.php';
                         </div>
 
                     </div>
-                                    
+                   
                     
                     <?php if (get_user_role() === 'minyawn'): ?>
                         <div class="span2">
@@ -271,7 +279,7 @@ require 'templates/_jobs.php';
                         </div>	
                     <?php endif; ?>			
                 </div>
-                <img id='image1' src='http://aviary.com/Content/images/feature_top_phone.png' style="max-height:360px; display:none;" on/>
+                <img id='image1' src='' style="max-height:360px; display:none;" on/>
                 
                 <hr>
                 <div class="clear"></div>
