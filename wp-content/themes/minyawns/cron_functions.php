@@ -15,6 +15,106 @@ function job_completion_reminder() {
               ");
 }
 
+
+/**
+ * Get all users who have signed up 3 days ago and still have not activated the account
+ */
+function users_notactivated_reminder()
+{
+	global $wpdb;
+	$qr_user_not_logged = $wpdb->prepare("SELECT * 
+											FROM {$wpdb->prefix}users 
+											WHERE user_status = 2 
+												and DATE(user_registered) = DATE_SUB(CURDATE( ), INTERVAL 3 DAY)  
+										");
+	//SELECT  * from  wp_users where DATE(user_registered)  = DATE_SUB( CURDATE( ), INTERVAL 3 DAY)
+	
+	$not_active_users = $wpdb->get_results($qr_user_not_logged);
+	
+	foreach($not_active_users as $not_active_user)
+	{
+		$emailid = $not_active_user->user_email;	
+		
+		$data['subject'] = "Hi ".$not_active_user->display_name; //temp
+		$data['message'] = "Hi ".$not_active_user->display_name; //temp
+		
+		//activation link
+		$data.="<br/><br/> <a href='".site_url()."/newuser-verification/?action=ver&key=".$not_active_user->user_activation_key."&email=" . $not_active_user->user_email . "'>" . site_url() . "/newuser-verification/?action=ver&key=".$not_active_user->user_activation_key."&email=".$not_active_user->user_email."</a>\r\n";
+		
+		/* generate email template in a variable */
+		$mail = email_template($emailid, $data, 'user_activate_reminder');
+		
+		$email_content = $mail['hhtml'] . $mail['message'] . $mail['fhtml'];
+		
+		$email_subject = $mail['subject'];
+		
+		/* call function to make db insert */
+		db_save_for_cron_job($emailid, $email_content, $email_subject, 'users_notactivated_reminder');
+	}
+	
+}
+
+
+/**
+ * Get users who signed up & activated account and
+ * havent applied for a job(role:minyawn) even after one week's time
+ * or havent created a job(role:employer) even after one week's time
+ */
+function users_no_activity_reminder()
+{
+	global $wpdb;
+	$qr_no_activity_users = $wpdb->prepare("SELECT a.*
+										FROM {$wpdb->prefix}users a   
+										NATURAL LEFT JOIN  {$wpdb->prefix}userjobs b
+										WHERE b.user_id is null AND a.user_status = 0 AND DATE(a.user_registered) = DATE_SUB(CURDATE( ), INTERVAL 1 Week )  
+										
+										UNION
+										
+										SELECT c.*
+										FROM {$wpdb->prefix}users c   
+										NATURAL LEFT JOIN  {$wpdb->prefix}posts d
+										WHERE (d.post_author is null or d.post_type!='job') AND c.user_status = 0 AND DATE(c.user_registered) = DATE_SUB(CURDATE( ), INTERVAL 1 Week )
+										
+										");
+	$no_activity_users = $wpdb->get_results($qr_no_activity_users);
+	foreach($no_activity_users as $no_activity_user)
+	{
+		
+		$emailid = $no_activity_user->user_email;		
+		 
+		$user = new WP_User( $no_activity_user->ID );		
+		if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
+			foreach ( $user->roles as $role )
+				$user_role = $role;		}
+		
+		
+		switch($user_role)
+		{
+			case "minyawn":
+							$data['subject'] = $no_activity_user->display_name. " Minion message: You havent applied for any job. ";
+							$data['message'] = $no_activity_user->display_name. " Minion message: You havent applied for any job. ";								
+							break;
+			case "employer":
+							$data['subject'] = $no_activity_user->display_name. " Minion message: You havent added any job. ";
+							$data['message'] = $no_activity_user->display_name. " Employer message: There are no jobs added yet  ";
+							break;
+		}
+		
+		/* generate email template in a variable */
+		$mail = email_template($emailid, $data, 'user_no_activity_reminder');
+		
+		$email_content = $mail['hhtml'] . $mail['message'] . $mail['fhtml'];
+		
+		$email_subject = $mail['subject'];
+		
+		/* call function to make db insert */
+		db_save_for_cron_job($emailid, $email_content, $email_subject, 'users_no_activity_reminder');
+	}
+	
+	
+}
+
+
 /*
  *  Gets all users profiles which are 
  *  incomplete @employer @minyawn using 'user_incomplete_profile_reminder' as mail type

@@ -18,6 +18,25 @@ function email_template($emailid, $data, $type) {
                 
             );
             break;
+            
+        case 'user_activate_reminder':
+            $template = array(
+                'hhtml' => email_template_header(),
+                'fhtml' => email_template_footer(),
+                'subject' => __("[" . get_bloginfo('name') . "] Gentle Reminder.Please activate your account".$data['subject']),
+                'message' => "Hi " . $data['message'] . "",
+                
+            );
+            break;    
+         case 'user_no_activity_reminder':
+            $template = array(
+                'hhtml' => email_template_header(),
+                'fhtml' => email_template_footer(),
+                'subject' => __("[" . get_bloginfo('name') . "] Gentle Reminder.No activity since user registration".$data['subject']),
+                'message' => "Hi " . $data['message'] . "",
+                
+            );
+            break;   
         default:
             $template = array(
                 'hhtml' => "",
