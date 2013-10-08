@@ -778,9 +778,15 @@ overflow-y: auto;
  
     /* Animation */
     animation: move 1.75s ease-in-out infinite alternate;
+    -webkit-animation: move 1.75s ease-in-out infinite alternate;
+    
 }
 
 @keyframes move {
+    to { margin-left: 90%; }
+}
+
+@-webkit-keyframes move {
     to { margin-left: 90%; }
 }
 		
