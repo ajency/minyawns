@@ -153,10 +153,10 @@ jQuery(document).ready(function($) {
 //            img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
 //            img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
 
-
+            $("#loader_sphere").hide();
             $("#image1").attr('src', data.result.image);
             return launchEditor('image1', document.getElementById('image1').src);
-            
+          
 //            
 //            $("#image_name").val(data.result.image_name);
 //            $("#uploaded-image").css('width', img_width);
@@ -264,9 +264,10 @@ jQuery(document).ready(function($) {
 //            })
 
         },
-        start: function(e, data) {     
+        start: function(e, data) {          
          //  return launchEditor('image1', document.getElementById('image1').src);
-            $(".load_ajax-crop-upload").show();
+            $("#loader_sphere").show();
+            //$(".load_ajax-crop-upload").show();
 
             $('#change-avatar').attr("disabled", "disabled");
             var progress = parseInt(data.loaded / data.total * 100, 10);
