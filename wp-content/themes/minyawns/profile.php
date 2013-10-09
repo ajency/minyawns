@@ -295,9 +295,9 @@ require 'templates/_jobs.php';
                                 <div class="job-logo header-sub"> Logo</div>
                                 <div class="job-date header-sub"> Job Date</div>
                                 <div class="job-time header-sub">Duration</div>
-                                <div class="job-wage header-sub">Wages</div>
-
-                                <div class="job-progress profile-job header-sub">Progress</div>
+                                <div class="job-wage header-sub">Applicants</div>
+					<div class="job-progress profile-job header-sub">Progress</div>
+					<div class="job-action header-sub">Wages</div>
 
 
                             </div>
