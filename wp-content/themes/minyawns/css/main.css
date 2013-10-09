@@ -1600,6 +1600,7 @@ body .jobs_table .data-title .profile-job {
   }
   #edit-job-form {
     width: 80% !important;
+    margin-left: 45px !important;
   }
   body {
     padding-right: 0px;
@@ -1711,7 +1712,7 @@ body .jobs_table .data-title .profile-job {
   }
   .list-jobs .minyawansgrid .span4 {
     margin-bottom: 10px!important;
-    height: 70px!important;
+    height: 100%!important;
     margin-left: 0px !important;
     width: 95%;
   }
@@ -1808,7 +1809,7 @@ body .jobs_table .data-title .profile-job {
   }
   .single-jobs .minyawns-grid .thumbnails {
     margin-left: 0px;
-    margin-top: 55px;
+    margin-top: 75px;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 {
     margin-right: 16px;
@@ -1824,7 +1825,7 @@ body .jobs_table .data-title .profile-job {
     float: left;
     margin-right: 11px;
     border: 2px solid #CCC;
-    margin-bottom: 28%;
+    margin-bottom: 3%;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .caption .minyawns-img img {
     width: 60px;
@@ -1865,6 +1866,7 @@ body .jobs_table .data-title .profile-job {
     text-align: left;
     font-size: 12px;
     margin-bottom: 10px;
+    color: #21A5CF;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .label-small {
     padding: 3px;
