@@ -1587,8 +1587,19 @@ body .jobs_table .data-title .profile-job {
 }
 @media (max-width: 767px) {
   {
+    /* Job Time*/
+  
     /* safari hack*/
   
+  }
+  .jobs_table .accordion-inner {
+    padding: 9px 15px 31px !important;
+  }
+  .single-job-1 .data-title {
+    width: auto !important;
+  }
+  #edit-job-form {
+    width: 80% !important;
   }
   body {
     padding-right: 0px;
@@ -1650,7 +1661,7 @@ body .jobs_table .data-title .profile-job {
   }
   body .div-box-block {
     position: relative !important;
-    margin: 10px auto!important;
+    margin: 20px auto!important;
     height: auto!important;
     width: 100%!important;
   }
@@ -1683,7 +1694,7 @@ body .jobs_table .data-title .profile-job {
     margin-bottom: 28px;
   }
   body .list-jobs .expand .minyawansgrid .minyawns-job {
-    padding: 1px 0;
+    padding: 11px 0;
   }
   body .list-jobs .expand .minyawansgrid .span4 .minyawns-details {
     height: auto;
@@ -1930,13 +1941,12 @@ body .jobs_table .data-title .profile-job {
     width: 22%;
   }
   .jobs_table .header-title .job-wage {
-    width: 12%;
-    border-right: 0px;
+    width: 15%;
   }
   .jobs_table .job-logo {
     display: none;
   }
-  .jobs_table .job-wage {
+  .jobs_table .job-progress {
     display: none;
   }
   .jobs_table .job-progress span {
@@ -1983,7 +1993,7 @@ body .jobs_table .data-title .profile-job {
     padding: 9px 9px 0 13px !important;
   }
   .jobs_table .data-title .job-time span {
-    font-size: 11px !important;
+    font-size: 13px !important;
     float: left!important;
     margin-right: 5px!important;
     margin-top: 2px!important;
@@ -1996,10 +2006,9 @@ body .jobs_table .data-title .profile-job {
     display: none;
   }
   .jobs_table .data-title .job-wage {
-    width: 12%;
+    width: 15%;
     float: left;
     height: 53px;
-    border-right: 0px;
   }
   .jobs_table .data-title .job-wage ins {
     font-size: 13px;
