@@ -224,7 +224,9 @@
    <a href='#'> <%= result.positive_title[i] %></a>
    </div>
    <div class='yourcomment'><%= result.positive[i] %></div>
-   <% } }%></li>
+   <% } }else {%>
+                     <div class='jobname'>Congrats! You don't have any terrible ratings!</a></div>       
+                     <% } %>  </li>
             </ul>
             </div>
             <div class='tab-pane tariblecontent' id='B'>
@@ -234,8 +236,10 @@
                <li><div class='jobname'><a href='#'><%= result.negative_title[i] %></a></div>
             <div class='yourcomment'> <%= result.negative[i] %> </div></li>
             <% }
-                }
-                 %></ul>
+                }else {%>
+                     <div class='jobname'>Congrats! You don't have any terrible ratings!</a></div>       
+                     <% } %>       
+                 </ul>
             </div></div></div>
 
 
