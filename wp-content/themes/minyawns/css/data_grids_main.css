@@ -1932,7 +1932,7 @@ b.demand-div {
     line-height:15px;
 }
 /* Landscape phones and down */
-@media (max-width:480px) {
+@media (max-width:767px) {
 
 
     /* Profile Table */

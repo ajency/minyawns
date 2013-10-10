@@ -25,12 +25,12 @@ a:hover {
   display: none!important;
 }
 body .jobs_table .header-title .profile-job {
-  border-right: 0px;
-  width: 24.1% ;
+  border-right: 1px solid #CCC;
+  width: 16.1% ;
 }
 body .jobs_table .data-title .profile-job {
-  border-right: 0px;
-  width: 24.1% ;
+  border-right: 1px;
+  width: 16.1% ;
 }
 .bootstrap-timepicker-widget {
   z-index: 9999 !important;
@@ -319,7 +319,7 @@ body .jobs_table .data-title .profile-job {
   font-size: 13px;
   font-weight: bold;
   line-height: 40px;
-  padding: 5px 8px 6px 13px !important;
+  padding: 5px 8px 6px 13px;
 }
 .jobs_table .data-title {
   background: url(../images/tablepsd_08.png);
@@ -442,7 +442,7 @@ body .jobs_table .data-title .profile-job {
 .jobs_table .data-title .header-sub {
   padding-top: 1%;
   line-height: 150% !important;
-  padding: 17px 8px 0px 13px !important;
+  padding: 17px 8px 0px 13px;
 }
 .jobs_table .data-title .header-sub .logo {
   height: 57px;
@@ -866,7 +866,6 @@ body .jobs_table .data-title .profile-job {
 .list-jobs .expand .span4 .like_btn .icon-thumbs {
   color: #F55568;
 }
-
 .list-jobs .expand .minyawansgrid .label-well {
   background: #DCFADF;
 }
@@ -882,31 +881,16 @@ body .jobs_table .data-title .profile-job {
 .list-jobs .expand .minyawansgrid .span4 .minyawns-details {
   height: 34px;
 }
-
 .list-jobs .expand .minyawansgrid .span4 .minyawns-details img {
-
   width: 11%;
   padding: 5px;
   display: inline-block;
 }
-
-
 .list-jobs .expand .minyawansgrid .span4 .minyawns-details b {
-
   width: 120px;
   display: inline-block;
   color: #333;
 }
-/*
-.list-jobs .expand .minyawansgrid .span4 .icon-thumbs-up {
-  margin-left: 20px;
-}
-.list-jobs .expand .minyawansgrid .span4 .icon-thumbs {
-  margin-left: 10px;
-  color: #F65151;
-}
-.list-jobs .expand .minyawansgrid .span4:hover {*/
-
 .list-jobs .expand .minyawansgrid .span4 .minyawns-details .icon-thumbs-up {
   margin-left: 20px;
 }
@@ -966,7 +950,7 @@ body .jobs_table .data-title .profile-job {
   margin-left: 0px !important;
 }
 .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail {
-  height: 480px;
+  min-height: 480px;
   position: relative;
 }
 .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .caption .minyawns-img {
@@ -1533,6 +1517,54 @@ body .jobs_table .data-title .profile-job {
   margin: auto ;
   background-position: -5px 1px;
 }
+.minyawns-satisfication {
+  background: #8ed030;
+  height: 80px;
+  margin-top: 44px;
+  border-bottom: 5px solid #59BE16;
+  border-top: 5px solid #59BE16;
+}
+.minyawns-satisfication .satisfication {
+  margin-top: -44px;
+}
+.minyawns-satisfication h4 {
+  font-size: 19px;
+  color: #FFF;
+  line-height: 25px;
+  padding: 8px;
+  font-weight: 300;
+}
+.thumbnails-satisfication {
+  margin-top: 60px;
+}
+.thumbnails-satisfication .thumbnail {
+  text-align: center;
+  height: 305px;
+}
+.thumbnails-satisfication .thumbnail h3 {
+  font-size: 21px;
+  padding: 10px;
+}
+@media (max-width: 767px) {
+  .minyawns-satisfication .span2 {
+    width: 22%;
+    float: left;
+  }
+  .minyawns-satisfication .span2 .satisfication {
+    margin-top: -7px;
+  }
+  .minyawns-satisfication .span10 {
+    width: 73%;
+    float: left;
+  }
+  .minyawns-satisfication .span10 h4 {
+    font-size: 11px;
+    color: #FFF;
+    line-height: 16px;
+    padding: 3px;
+    font-weight: 300;
+  }
+}
 .upper-link #btn__login {
   float: right;
   padding: 5px 15px;
@@ -1555,8 +1587,20 @@ body .jobs_table .data-title .profile-job {
 }
 @media (max-width: 767px) {
   {
+    /* Job Time*/
+  
     /* safari hack*/
   
+  }
+  .jobs_table .accordion-inner {
+    padding: 9px 15px 31px !important;
+  }
+  .single-job-1 .data-title {
+    width: auto !important;
+  }
+  #edit-job-form {
+    width: 80% !important;
+    margin-left: 45px !important;
   }
   body {
     padding-right: 0px;
@@ -1618,7 +1662,7 @@ body .jobs_table .data-title .profile-job {
   }
   body .div-box-block {
     position: relative !important;
-    margin: 10px auto!important;
+    margin: 20px auto!important;
     height: auto!important;
     width: 100%!important;
   }
@@ -1650,6 +1694,16 @@ body .jobs_table .data-title .profile-job {
     margin: 0px;
     margin-bottom: 28px;
   }
+  body .list-jobs .expand .minyawansgrid .minyawns-job {
+    padding: 11px 0;
+  }
+  body .list-jobs .expand .minyawansgrid .span4 .minyawns-details {
+    height: auto;
+  }
+  body .accordion-inner {
+    padding: 9px 15px 30px;
+    border-top: 1px solid #e5e5e5;
+  }
   .bootstrap-timepicker-widget {
     width: 200%;
   }
@@ -1658,9 +1712,21 @@ body .jobs_table .data-title .profile-job {
   }
   .list-jobs .minyawansgrid .span4 {
     margin-bottom: 10px!important;
-    height: 70px!important;
+    height: 100%!important;
     margin-left: 0px !important;
     width: 95%;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-details b {
+    width: 50%!important;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-details #vote-up {
+    font-size: 11px;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-details #vote-down {
+    font-size: 11px;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-job span {
+    font-size: 11px;
   }
   .list-jobs .div-box {
     position: relative !important;
@@ -1755,6 +1821,7 @@ body .jobs_table .data-title .profile-job {
   }
   .single-jobs .minyawns-grid .thumbnails {
     margin-left: 0px;
+    margin-top: 75px;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 {
     margin-right: 16px;
@@ -1762,6 +1829,7 @@ body .jobs_table .data-title .profile-job {
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail {
     height: auto;
+    min-height: 100%;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .caption .minyawns-img {
     width: 60px;
@@ -1769,6 +1837,7 @@ body .jobs_table .data-title .profile-job {
     float: left;
     margin-right: 11px;
     border: 2px solid #CCC;
+    margin-bottom: 3%;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .caption .minyawns-img img {
     width: 60px;
@@ -1809,6 +1878,7 @@ body .jobs_table .data-title .profile-job {
     text-align: left;
     font-size: 12px;
     margin-bottom: 10px;
+    color: #21A5CF;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .label-small {
     padding: 3px;
@@ -1856,6 +1926,10 @@ body .jobs_table .data-title .profile-job {
     padding: 5px!important;
     line-height: 24px;
   }
+  .label,
+  .badge {
+    margin-top: 4px;
+  }
   .employer-image2 {
     margin: auto !important;
   }
@@ -1869,36 +1943,36 @@ body .jobs_table .data-title .profile-job {
     text-align: center;
     font-size: 9px;
     line-height: 13px;
-    padding: 7px 8px 6px 13px !important;
+    padding: 7px 8px 6px 13px;
     height: 19px !important;
   }
   .jobs_table .header-title .header-sub .logo {
     margin-top: 0px;
   }
   .jobs_table .header-title {
-    height: 32px;
+    height: auto;
   }
   .jobs_table .header-title .job-logo {
     width: 14%;
   }
   .jobs_table .header-title .job-date {
-    width: 18%;
+    width: 16%;
   }
   .jobs_table .header-title .job-time {
     width: 22%;
   }
   .jobs_table .header-title .job-wage {
-    width: 12%;
-    border-right: 0px;
+    width: 16.5%;
   }
-  .jobs_table .job-progress {
+  .jobs_table .job-logo {
     display: none;
   }
   .jobs_table .job-progress {
     display: none;
   }
-  .jobs_table .job-action {
-    display: none;
+  .jobs_table .job-progress span {
+    line-height: 15px !important;
+    width: auto !important;
   }
   .jobs_table .available {
     border-right: 3px solid #58C918;
@@ -1917,7 +1991,8 @@ body .jobs_table .data-title .profile-job {
     width: 14%;
   }
   .jobs_table .data-title .job-date {
-    width: 18%;
+    width: 16%;
+    padding: 10px 8px 0 13px!important;
   }
   .jobs_table .data-title .job-date span {
     font-size: 17px;
@@ -1936,9 +2011,10 @@ body .jobs_table .data-title .profile-job {
   }
   .jobs_table .data-title .job-time {
     width: 22%;
+    padding: 9px 9px 0 13px !important;
   }
   .jobs_table .data-title .job-time span {
-    font-size: 11px !important;
+    font-size: 12px !important;
     float: left!important;
     margin-right: 5px!important;
     margin-top: 2px!important;
@@ -1951,10 +2027,9 @@ body .jobs_table .data-title .profile-job {
     display: none;
   }
   .jobs_table .data-title .job-wage {
-    width: 12%;
+    width: 17%;
     float: left;
     height: 53px;
-    border-right: 0px;
   }
   .jobs_table .data-title .job-wage ins {
     font-size: 13px;
@@ -1964,7 +2039,7 @@ body .jobs_table .data-title .profile-job {
     float: left;
     height: 53px;
     text-align: center;
-    padding-top: 10px;
+    padding: 10px 9px 0 13px !important;
     border-right: 1px solid #ccc;
   }
   .jobs_table .data-title .job-progress .label {
@@ -1978,10 +2053,20 @@ body .jobs_table .data-title .profile-job {
   .jobs_table .data-title .job-action .arrow-down {
     margin: 10px  auto;
   }
+  .jobs_table .data-title .job-action ins {
+    font-size: 20px;
+    text-align: center;
+    color: #707070;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 30px;
+    width: 50px;
+    display: block;
+  }
   .jobs_table .data-title .header-sub {
     padding-top: 1%;
     line-height: 150% !important;
-    padding: 10px 8px 0px 13px !important;
+    padding: 10px 8px 0px 13px;
   }
   .jobs_table .accordion-inner .job-data .inner-data {
     padding-left: 12px;
@@ -2455,6 +2540,22 @@ body .jobs_table .data-title .profile-job {
   .bg-overflow img {
     position: relative !important;
     width: 100% ;
+  }
+}
+@media (max-width: 400px) {
+  .jobs_table .data-title .job-date div {
+    color: #616161;
+    font-size: 9px;
+    line-height: 14px;
+  }
+  .jobs_table .data-title .job-action ins {
+    font-size: 12px;
+    text-align: left;
+    color: #707070;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    width: 31px;
   }
 }
 .job-view {

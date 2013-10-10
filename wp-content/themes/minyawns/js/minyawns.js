@@ -5,6 +5,40 @@
 
 jQuery(document).ready(function($) {
 
+
+
+
+//    $('#trigger').popover({
+//        html: true,
+//        content: function() {
+//            return 'asdasdads';
+//        }
+//    
+//}).click(function(e){
+//        var element = $(this);
+//        $.ajax({
+//            url: '/episoderatings/like/',
+//            type: 'POST',
+//            dataType: 'json',
+//            data: {
+//             
+//            },
+//            success: function(response){
+//                if(response=='You have liked this episode'){
+//                    $('span#episode_likes').text(parseInt($('span#episode_likes').text())+1);
+//                }
+//                $(element).attr('data-content',response).popover('show');
+//            }
+//        });
+//        e.preventDefault();
+//    });
+
+
+    $('#link').click(function() {
+        alert('beep');
+    });
+
+
     /********************************** PROFILE JS CODE *************************************/
 //$('html').click(function(e) {
 //    $('#user-popdown').popover('hide');
@@ -84,6 +118,7 @@ jQuery(document).ready(function($) {
         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
         dataType: 'json',
         done: function(e, data) {
+                                    
             /*console.log(data);
              $(".load_ajax-crop-upload").hide();
              //$('#change-avatar-span').find('img').attr('src', data.result.image);
@@ -99,136 +134,140 @@ jQuery(document).ready(function($) {
              $("#uploaded-image").css('width', 'auto');
              
              // window.location.reload();*/
-            $(".load_ajax-crop-upload").hide();
-            //$('#change-avatar-span').find('img').attr('src', data.result.image);
-            $('#change-avatar').removeAttr("disabled");
+//            $(".load_ajax-crop-upload").hide();
+//            //$('#change-avatar-span').find('img').attr('src', data.result.image);
+//            $('#change-avatar').removeAttr("disabled");
+//           
+//            ratio_y = data.result.image_height / 420
+//            ratio_x = data.result.image_width / 500
+//            if (ratio_y < ratio_x)
+//                a_ratio = Math.round(ratio_x * 1000) / 1000;
+//            else
+//                a_ratio = Math.round(ratio_y * 1000) / 1000;
+//
+//            if (a_ratio < 1)
+//                a_ratio = 1;
+//
+//
+//            // alert("original :- width"+data.result.image_width+", height "+data.result.image_height+", ratio:"+a_ratio);
+//            img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
+//            img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
+
+            $("#loader_sphere").hide();
+            $("#image1").attr('src', data.result.image);
+            return launchEditor('image1', document.getElementById('image1').src);
+          
+//            
+//            $("#image_name").val(data.result.image_name);
+//            $("#uploaded-image").css('width', img_width);
+//            $("#uploaded-image").css('height', img_height);
 
 
-
-
-            ratio_y = data.result.image_height / 420
-            ratio_x = data.result.image_width / 500
-            if (ratio_y < ratio_x)
-                a_ratio = Math.round(ratio_x * 1000) / 1000;
-            else
-                a_ratio = Math.round(ratio_y * 1000) / 1000;
-
-            if (a_ratio < 1)
-                a_ratio = 1;
-
-
-            // alert("original :- width"+data.result.image_width+", height "+data.result.image_height+", ratio:"+a_ratio);
-            img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
-            img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
-
-            $("#uploaded-image").attr('src', data.result.image);
-            $("#image_name").val(data.result.image_name);
-            $("#uploaded-image").css('width', img_width);
-            $("#uploaded-image").css('height', img_height);
-
-
-            $("#uploaded-image").load(function() {
-
-                // $('img#uploaded-image').imgAreaSelect( {update: true} );           
-                $("#div_cropmsg").html("Please drag to select/crop your picture.<br/>");
-
-                //get the image position
-                if ($("#uploaded-image").attr('src') != "")
-                {
-                    loaded_img_x = Math.round($("#uploaded-image").position().top * 1000) / 1000;
-                    loaded_img_y = Math.round($("#uploaded-image").position().left * 1000) / 1000;
-
-                    //alert(loaded_img_x+" - "+loaded_img_y);
-                    pd_aspect_ratio = $("#aspect_ratio").val().split(":");
-
-                    var defaultcrop_adjust;
-                    defaultcrop_adjust = 50;
-
-                    /* default crop fix for small dimension images */
-                    if (pd_aspect_ratio[0] == 2)
-                    {
-                        defaultcrop_adjust_x = 50;
-                        defaultcrop_adjust_y = 50;
-                        if ((img_width < 200))
-                            defaultcrop_adjust_x = img_width / 4;
-                        if ((img_height < 100))
-                            defaultcrop_adjust_y = img_height / 4;
-                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
-                            defaultcrop_adjust = defaultcrop_adjust_x;
-                        else
-                            defaultcrop_adjust = defaultcrop_adjust_y;
-                    }
-
-
-                    if (pd_aspect_ratio[0] == 1)
-                    {
-                        defaultcrop_adjust_x = 50;
-                        defaultcrop_adjust_y = 50;
-                        if ((img_width < 100))
-                            defaultcrop_adjust_x = img_width / 2;
-                        if ((img_height < 100))
-                            defaultcrop_adjust_y = img_height / 2;
-                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
-                            defaultcrop_adjust = defaultcrop_adjust_x;
-                        else
-                            defaultcrop_adjust = defaultcrop_adjust_y;
-                    }
-                    /* End default crop fix for small dimension images */
-
-
-
-
-                    default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * defaultcrop_adjust);
-                    default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * defaultcrop_adjust);
-                    default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * defaultcrop_adjust);
-                    default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * defaultcrop_adjust);
-
-                    /* alert(img_width / 2);
-                     alert(pd_aspect_ratio[0]);
-                     alert(pd_aspect_ratio[1]);*/
-
-                    /* alert(loaded_img_x);
-                     alert(loaded_img_y);
-                     */
-                    /*default_x1 = loaded_img_x+300 ;
-                     default_y1 = loaded_img_y+300 ;
-                     default_x2 = loaded_img_x+400;
-                     default_y2 = loaded_img_y +400; 
-                     */
-                    /*alert(default_x1+" -- "+default_x2);
-                     alert(default_y1+" -- "+default_y2);*/
-
-                    default_x1 = Math.round(default_x1 * 1000) / 1000;
-                    default_y1 = Math.round(default_y1 * 1000) / 1000;
-                    default_x2 = Math.round(default_x2 * 1000) / 1000;
-                    default_y2 = Math.round(default_y2 * 1000) / 1000;
-
-
-                    default_thumb_width = default_x2 - default_x1;
-                    default_thumb_height = default_y2 - default_y1;
-                    $("#done-cropping").show();
-                    $("#image_height").val(default_thumb_height);
-                    $("#image_width").val(default_thumb_width)
-                    $("#image_x_axis").val(default_x1);
-                    $("#image_y_axis").val(default_y1);
-
-                    $('img#uploaded-image').imgAreaSelect({
-                        x1: default_x1,
-                        y1: default_y1,
-                        x2: default_x2,
-                        y2: default_y2,
-                        update: true
-
-
-                    });
-
-                }
-
-            })
+//            $("#uploaded-image").load(function() {
+//
+//               
+//                // $('img#uploaded-image').imgAreaSelect( {update: true} );           
+//                $("#div_cropmsg").html("Please drag to select/crop your picture.<br/>");
+//
+//                //get the image position
+//                if ($("#uploaded-image").attr('src') != "")
+//                {
+//                    loaded_img_x = Math.round($("#uploaded-image").position().top * 1000) / 1000;
+//                    loaded_img_y = Math.round($("#uploaded-image").position().left * 1000) / 1000;
+//
+//                    //alert(loaded_img_x+" - "+loaded_img_y);
+//                    pd_aspect_ratio = $("#aspect_ratio").val().split(":");
+//
+//                    var defaultcrop_adjust;
+//                    defaultcrop_adjust = 50;
+//
+//                    /* default crop fix for small dimension images */
+//                    if (pd_aspect_ratio[0] == 2)
+//                    {
+//                        defaultcrop_adjust_x = 50;
+//                        defaultcrop_adjust_y = 50;
+//                        if ((img_width < 200))
+//                            defaultcrop_adjust_x = img_width / 4;
+//                        if ((img_height < 100))
+//                            defaultcrop_adjust_y = img_height / 4;
+//                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+//                            defaultcrop_adjust = defaultcrop_adjust_x;
+//                        else
+//                            defaultcrop_adjust = defaultcrop_adjust_y;
+//                    }
+//
+//
+//                    if (pd_aspect_ratio[0] == 1)
+//                    {
+//                        defaultcrop_adjust_x = 50;
+//                        defaultcrop_adjust_y = 50;
+//                        if ((img_width < 100))
+//                            defaultcrop_adjust_x = img_width / 2;
+//                        if ((img_height < 100))
+//                            defaultcrop_adjust_y = img_height / 2;
+//                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+//                            defaultcrop_adjust = defaultcrop_adjust_x;
+//                        else
+//                            defaultcrop_adjust = defaultcrop_adjust_y;
+//                    }
+//                    /* End default crop fix for small dimension images */
+//
+//
+//
+//
+//                    default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * defaultcrop_adjust);
+//                    default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * defaultcrop_adjust);
+//                    default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * defaultcrop_adjust);
+//                    default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * defaultcrop_adjust);
+//
+//                    /* alert(img_width / 2);
+//                     alert(pd_aspect_ratio[0]);
+//                     alert(pd_aspect_ratio[1]);*/
+//
+//                    /* alert(loaded_img_x);
+//                     alert(loaded_img_y);
+//                     */
+//                    /*default_x1 = loaded_img_x+300 ;
+//                     default_y1 = loaded_img_y+300 ;
+//                     default_x2 = loaded_img_x+400;
+//                     default_y2 = loaded_img_y +400; 
+//                     */
+//                    /*alert(default_x1+" -- "+default_x2);
+//                     alert(default_y1+" -- "+default_y2);*/
+//
+//                    default_x1 = Math.round(default_x1 * 1000) / 1000;
+//                    default_y1 = Math.round(default_y1 * 1000) / 1000;
+//                    default_x2 = Math.round(default_x2 * 1000) / 1000;
+//                    default_y2 = Math.round(default_y2 * 1000) / 1000;
+//
+//
+//                    default_thumb_width = default_x2 - default_x1;
+//                    default_thumb_height = default_y2 - default_y1;
+//                    $("#done-cropping").show();
+//                    $("#image_height").val(default_thumb_height);
+//                    $("#image_width").val(default_thumb_width)
+//                    $("#image_x_axis").val(default_x1);
+//                    $("#image_y_axis").val(default_y1);
+//
+//                    $('img#uploaded-image').imgAreaSelect({
+//                        x1: default_x1,
+//                        y1: default_y1,
+//                        x2: default_x2,
+//                        y2: default_y2,
+//                        update: true
+//
+//
+//                    });
+//
+//                }
+//
+//            })
 
         },
-        start: function(e, data) {
-            $(".load_ajax-crop-upload").show();
+        start: function(e, data) {          
+         //  return launchEditor('image1', document.getElementById('image1').src);
+            $("#loader_sphere").show();
+            //$(".load_ajax-crop-upload").show();
 
             $('#change-avatar').attr("disabled", "disabled");
             var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -238,7 +277,6 @@ jQuery(document).ready(function($) {
     $("#done-cropping").live('click', function() {
         $(".load_ajax-crop-upload").show();
         $("#div_cropmsg").html("<br/>");
-
 
         console.log("w: " + $("#image_width").val() + " h:" + $("#image_height").val() + 'x1:' + $("#image_x_axis").val() + 'y1:' + $("#image_y_axis").val() + "image_name:" + $("#image_name").val() + " asp_ratio:" + $("#aspect_ratio").val());
 
@@ -253,7 +291,7 @@ jQuery(document).ready(function($) {
 //            $('#logged-in').find('img').attr('src', img_link);
             location.reload();
             $(".load_ajax-crop-upload").hide();
-            $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
+           // $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
 
         });
     });
@@ -540,11 +578,11 @@ jQuery(document).ready(function($) {
 
         };
 
- var first = getUrlVars()["cat_id"];
- 
-  if(typeof(first) !== 'undefined')
-        _data.filter=first;
- 
+        var first = getUrlVars()["cat_id"];
+
+        if (typeof(first) !== 'undefined')
+            _data.filter = first;
+
         if ($("#tab_identifier").val() === '1') {
             _data.my_jobs = '1';
 
@@ -1367,18 +1405,51 @@ jQuery(document).ready(function($) {
 
     $('.well-done,.terrible').live('click', function(evt) {
 
-        if ($(this).attr('is_rated') != "0")
+
+        if (evt.target.id === 'vote-up') {
+            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("vote", "1");
+        } else {
+            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("vote", "-1");
+        }
+
+        $("#review-box" + $(this).attr('user_id')).show();
+        $("#thumbnail-" + $(this).attr('user_id')).css("height", '545px');
+
+
+//
+////$("#review"+$(this).attr('user_id')).attr("action",)
+////$('.rate-positive,.rate-negative').live('click', function(evt) {
+//
+////        if ($(this).attr('is_rated') != "0")
+////            return false;
+//
+//        $(".rating").find('a').prop('disabled', true);
+//        // $(".load_ajaxconfirm").show();
+//        //evt.preventDefault();
+
+    });
+
+    $(".rate-button").live('click', function() {
+
+        var action = $(".rate-button").attr("action");
+
+
+        if (action.length === 0)
             return false;
 
-        $(".rating").find('a').prop('disabled', true);
-        // $(".load_ajaxconfirm").show();
-        evt.preventDefault();
+
         var _this = $(this);
-        var _rating = $(this).attr('employer-vote');
+        var _rating = $(this).attr('vote');
         var _job_id = $(this).attr('job-id');
-        var _user_id = $(this).attr('user_id');
+        var _user_id = $(this).attr('user-id');
         var _action = $(this).attr('action');
         var _emp_id = $(this).attr('emp_id');
+        var _desc = $("#review-text" + _user_id).val();
+
+
+
 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
                 {
@@ -1386,7 +1457,9 @@ jQuery(document).ready(function($) {
                     job_id: _job_id,
                     user_id: _user_id,
                     action: _action,
-                    emp_id: _emp_id
+                    emp_id: _emp_id,
+                    review: _desc
+
 
                 },
         function(response) {
@@ -1398,7 +1471,8 @@ jQuery(document).ready(function($) {
 
                 $("#thumbs_up_" + _user_id).append(response.rating);
                 $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
-
+               // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
+                $("#rating_container" + _user_id).append("<div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'>"+_desc+"</div></div>");
             }
             if (response.action === "vote-down") {
 
@@ -1409,10 +1483,14 @@ jQuery(document).ready(function($) {
 
                 $("#thumbs_down_" + _user_id).append(response.rating);
                 $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='1'>Terrible</a>");
-
+               // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
+                $("#rating_container" + _user_id).append(_desc);
+          
             }
+            $("#thumbnail-" + _user_id).css("height", '480px');
 
         }, 'json');
+
     });
 
     $("#edit-selection").live('click', function(evt) {
@@ -1422,18 +1500,18 @@ jQuery(document).ready(function($) {
     });
 
 
-var first = getUrlVars()["cat_id"];
+    var first = getUrlVars()["cat_id"];
 
-    if(typeof(first) !== 'undefined')
-        {
-           
-            load_browse_jobs('','',first);
-        }else{
-    /* function on page load*/
+    if (typeof(first) !== 'undefined')
+    {
 
-    fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+        load_browse_jobs('', '', first);
+    } else {
+        /* function on page load*/
 
-      }
+        fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+
+    }
 
 });
 
@@ -1441,7 +1519,7 @@ function getUrlVars()
 {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
+    for (var i = 0; i < hashes.length; i++)
     {
         hash = hashes[i].split('=');
         vars.push(hash[0]);

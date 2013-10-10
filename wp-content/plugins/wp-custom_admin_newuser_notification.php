@@ -61,12 +61,12 @@ function wp_new_user_notification($user_id, $plaintext_pass = '') {
 	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
 	wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), $blogname), email_header() . $message . email_signature(), $headers);
 	
-	
-	if (!empty($plaintext_pass) ){
+
+	if (current_user_can('add_users')  && is_user_logged_in()) {
 		
 
-	$message  = sprintf(__('testUsername: %s'), $user->user_login) . "\r\n";
-	$message .= sprintf(__('Password: %s'), $plaintext_pass) . "\r\n";
+	$message  = sprintf(__('Username: %s'), $user->user_login) . "\r\n<br>";
+	$message .= sprintf(__('Password: %s'), $plaintext_pass) . "\r\n<br>";
 	$message .= wp_login_url() . "\r\n";
 
 	wp_mail($user->user_email, sprintf(__('[%s] Your username and password'), $blogname), email_header() . $message . email_signature(), $headers);        
