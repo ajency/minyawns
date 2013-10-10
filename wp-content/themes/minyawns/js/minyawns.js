@@ -1571,3 +1571,11 @@ function load_profile(id)
     var url = siteurl + "/profile/" + id;
     window.open(url, '_blank');
 }
+
+$('.collapse').live('show', function(){
+$(this).parent().find('.data-title').addClass('open'); //add active state to button on open
+});
+
+$('.collapse').live('hide', function(){
+$(this).parent().find('.data-title').removeClass('open'); //remove active state to button on close
+});

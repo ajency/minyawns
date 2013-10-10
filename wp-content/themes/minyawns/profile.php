@@ -132,8 +132,9 @@ require 'templates/_jobs.php';
                                 ?>
 
                             <?php if (is_user_logged_in())  ?>
-                            <span >Change Avatar</span>
+                           
                         </a>
+						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">Change Avatar</a>
                         <input id="change-avatar" type="file" name="files" style="visibility:hidden">
                     </div>
                     <div class="span8">

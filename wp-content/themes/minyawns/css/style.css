@@ -7,6 +7,10 @@
 .page_bg .bottom-menu {
 	padding: 13px 0;
 }	
+.user-action  a{
+		color: #E6FDB4!important;
+		margin-right:15px;
+	}
 ul { margin:0px; padding:0px; margin-left:20px; }
 #list1, #list2 { list-style-type:none; margin:0px; }
 #list1 li, #list2 li { float:left; padding:5px; width:28%; height:144px;}
@@ -47,6 +51,8 @@ float: right;
 	margin-top: -5px;
 	
 }
+
+
 .caret {
 	display: inline-block;
 	width: 0;
@@ -239,9 +245,22 @@ float: right;
 	font-size: 24px;
 	margin-top: 11px;
 	margin-top: 3px;
-	float: left;
 	color: #E3E6E5!important;
-	margin-right: 10px;
+
+}
+.help_icon:hover{
+	color: #79B91E!important;
+}
+.help_user:hover{
+	color: #79B91E!important;
+}
+.help_unlock:hover{
+	color: #79B91E!important;
+}
+.category-link{
+	color: #79B91E;
+	font-weight: bold;
+	font-size: 14px;
 }
 .help_user{
 	font-size: 24px;
@@ -835,4 +854,10 @@ overflow-y: auto;
 @-webkit-keyframes move {
     to { margin-left: 90%; }
 }
-		
+.accordion-group .accordion-heading .job-action {
+background: url(../images/down.png)no-repeat right !important;
+}
+.accordion-group .accordion-heading a.open .job-action{
+background: url(../images/up.png)no-repeat right  !important;
+font-weight: bold;
+}		
