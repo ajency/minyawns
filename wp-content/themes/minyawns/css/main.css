@@ -1087,6 +1087,9 @@ body .jobs_table .data-title .profile-job {
   .ins_table .expanded {
     display: none;
   }
+  .list-jobs form {
+    margin: 0 0 -50px;
+  }
   .list-jobs .jobs-details {
     height: 59px;
   }
