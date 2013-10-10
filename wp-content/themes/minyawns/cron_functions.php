@@ -130,7 +130,7 @@ function users_no_activity_reminder()
 											AND c.user_registered > DATE_SUB(%s, INTERVAL %d SECOND )
 											AND c.user_registered < DATE_SUB(%s, INTERVAL %d SECOND )
 											",$now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1), $now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1));
-	echo "<br/><br/> no user activity".$qr_no_activity_users;
+	// echo "<br/><br/> no user activity".$qr_no_activity_users;
 	$no_activity_users = $wpdb->get_results($qr_no_activity_users);
 	
 	foreach($no_activity_users as $no_activity_user)
