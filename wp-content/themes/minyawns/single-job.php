@@ -138,11 +138,11 @@ require 'templates/_jobs.php';
                     <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 ): ?> 
                         <a href="#edit-job-form" class="edit loaded edit-job-data"><i class="icon-edit"></i> Edit</a>
                     <?php endif; ?>
-                    <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 && job_selection_status(get_the_ID()) === 0): ?> 
-                        <a href="#delete"  id="delete_job" job-id="<?php echo get_the_ID() ?>" style="display:none"><i class="icon-delete"></i>Delete</a>
-                    <?php endif; ?>
+                   
                 </p>
-
+ <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 && job_selection_status(get_the_ID()) === 1): ?> 
+                        <a href="#delete"  id="delete_jobsdfs" class="delte-job"  job-id="<?php echo get_the_ID() ?>" ><i class="icon-trash"></i> Delete</a>
+                    <?php endif; ?>
             </div>
             <span class='load_ajaxsingle_job' style="display:block"></span>
             <div class="singlejobedit" style=" margin-left: 0; position: relative;

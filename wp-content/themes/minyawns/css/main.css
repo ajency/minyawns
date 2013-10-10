@@ -21,6 +21,12 @@ a:hover {
   font-size: 12px;
   line-height: 22px;
 }
+.delte-job {
+  float: right;
+  margin-top: -49px;
+  font-size: 15px;
+  color: #F30606;
+}
 .fb-mobile {
   display: none!important;
 }
