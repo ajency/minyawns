@@ -154,6 +154,7 @@
     <hr>
     <div class="dwn-btn">
     <%= select_button %>
+                <%= ratings_button %>
            <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
     </div>
     </div>
