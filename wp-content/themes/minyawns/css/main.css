@@ -553,6 +553,10 @@ body .jobs_table .data-title .profile-job {
 }
 .min_profile .change-avtar {
   position: relative;
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  padding: 2px;
 }
 .min_profile .change-avtar span {
   font-size: 13px;
@@ -574,7 +578,9 @@ body .jobs_table .data-title .profile-job {
   border: 2px solid;
 }
 .min_profile .edit {
-  font-size: 15px;
+  font-size: 17px;
+  color: #52CF16;
+  font-weight: bold;
 }
 .min_profile .profile-list .span2 {
   margin-left: 0px !important;
