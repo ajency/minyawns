@@ -73,10 +73,6 @@ function wp_new_user_notification($user_id, $plaintext_pass = '') {
        
         }
 }
-endif;
-<<<<<<< HEAD
-?>
 
-=======
-?>
->>>>>>> 7aeff700c28fb8a56a7e841e5d86c7e99c34c271
+endif;
+
