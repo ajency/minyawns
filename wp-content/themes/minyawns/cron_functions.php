@@ -2,18 +2,50 @@
 
 global $wpdb;
 
-/*
- * Function to check job completed 
- *  
+/**
+ * function to send mail to employer if a job  is completed 
+ * 
  */
+ 
 
-function job_completion_reminder() {
+function employer_jobcompletion_reminder() {
 
-    $job_completion_sql = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}user_jobs,{$wpdb->prefix}posts,{$wpdb->prefix}postmeta
-          WHERE {$wpdb->prefix}user_jobs.job_id={$wpdb->prefix}posts.ID AND {}
-         
-              ");
+    		global $wpdb;
+   			$job_completion_sql = $wpdb->prepare("SELECT distinct(a.ID) as post_id , a.post_title as post_title,
+	   													d.user_email, d.display_name, d.ID as employer_id  
+			    										FROM {$wpdb->prefix}posts a  
+			    										INNER JOIN {$wpdb->prefix}postmeta b on  a.ID = b.post_id 
+														INNER JOIN {$wpdb->prefix}userjobs c    on  a.ID = c.job_id  
+														INNER JOIN {$wpdb->prefix}users d  on d.ID = a.post_author 
+														WHERE c.status = 'hired'  AND b.meta_key ='job_end_date_time' 
+			    											 AND from_unixtime(b.meta_value) < NOW()
+    											");
+   			//echo "<br/>job completin".$job_completion_sql;
+    		$job_completions = $wpdb->get_results($job_completion_sql);
+    
+    		foreach($job_completions as $job_completion)
+    		{
+    			$emailid = $job_completion->user_email;
+    			
+    			$data['display_name'] = $job_completion->display_name;
+    			
+    			$data['job_id'] = $job_completion->post_id;
+    			
+    			$data['job_name'] = $job_completion->post_title;
+    			    			
+    			/* generate email template in a variable */
+   				$mail = email_template($emailid, $data, 'employer_jobcompletion_reminder');
+    
+    			$email_content = $mail['hhtml'] . $mail['message'] . $mail['fhtml'];
+    
+    			$email_subject = $mail['subject'];
+    
+				/* call function to make db insert */
+				db_save_for_cron_job($emailid, $email_content, $email_subject, 'employer_jobcompletion_reminder',$job_completion->post_id);
+    		}
+    
 }
+add_action('CRON_CONTROL_TIME_1', 'employer_jobcompletion_reminder',2,0);
 
 
 /**
@@ -21,25 +53,32 @@ function job_completion_reminder() {
  */
 function users_notactivated_reminder()
 {
-	global $wpdb;
+	global $wpdb;	
+	
 	$qr_user_not_logged = $wpdb->prepare("SELECT * 
 											FROM {$wpdb->prefix}users 
 											WHERE user_status = 2 
-												and DATE(user_registered) = DATE_SUB(CURDATE( ), INTERVAL 3 DAY)  
-										");
-	//SELECT  * from  wp_users where DATE(user_registered)  = DATE_SUB( CURDATE( ), INTERVAL 3 DAY)
+												AND user_registered > DATE_SUB(NOW( ), INTERVAL %d SECOND)  
+												AND user_registered < DATE_SUB(NOW( ), INTERVAL %d SECOND)	
+										  ",(3*WP_CRON_CONTROL_TIME_1),(2*WP_CRON_CONTROL_TIME_1));
+	//echo "<br/> not logged in ".$qr_user_not_logged;	
 	
 	$not_active_users = $wpdb->get_results($qr_user_not_logged);
 	
 	foreach($not_active_users as $not_active_user)
 	{
-		$emailid = $not_active_user->user_email;	
+		$emailid = $not_active_user->user_email;		
 		
-		$data['subject'] = "Hi ".$not_active_user->display_name; //temp
-		$data['message'] = "Hi ".$not_active_user->display_name; //temp
+		$data['display_name'] = $not_active_user->display_name;
 		
-		//activation link
-		$data.="<br/><br/> <a href='".site_url()."/newuser-verification/?action=ver&key=".$not_active_user->user_activation_key."&email=" . $not_active_user->user_email . "'>" . site_url() . "/newuser-verification/?action=ver&key=".$not_active_user->user_activation_key."&email=".$not_active_user->user_email."</a>\r\n";
+		$data['user_activation_key'] = $not_active_user->user_activation_key;
+		
+		$user = new WP_User( $not_active_user->ID );
+		if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
+			foreach ( $user->roles as $role )
+				$user_role = $role;		}
+		
+			$data['role'] = $user_role;
 		
 		/* generate email template in a variable */
 		$mail = email_template($emailid, $data, 'user_activate_reminder');
@@ -54,6 +93,8 @@ function users_notactivated_reminder()
 	
 }
 
+add_action('CRON_CONTROL_TIME_1', 'users_notactivated_reminder',10,0);
+
 
 /**
  * Get users who signed up & activated account and
@@ -64,19 +105,27 @@ function users_no_activity_reminder()
 {
 	global $wpdb;
 	$qr_no_activity_users = $wpdb->prepare("SELECT a.*
-										FROM {$wpdb->prefix}users a   
-										NATURAL LEFT JOIN  {$wpdb->prefix}userjobs b
-										WHERE b.user_id is null AND a.user_status = 0 AND DATE(a.user_registered) = DATE_SUB(CURDATE( ), INTERVAL 1 Week )  
+											FROM {$wpdb->prefix}users a   
+											NATURAL LEFT JOIN  {$wpdb->prefix}userjobs b
+											WHERE b.user_id is null 
+												AND a.user_status = 0 
+												AND a.user_registered > DATE_SUB(NOW( ), INTERVAL %d SECOND )
+												AND a.user_registered < DATE_SUB(NOW( ), INTERVAL %d SECOND )    
 										
-										UNION
+											UNION
 										
-										SELECT c.*
-										FROM {$wpdb->prefix}users c   
-										NATURAL LEFT JOIN  {$wpdb->prefix}posts d
-										WHERE (d.post_author is null or d.post_type!='job') AND c.user_status = 0 AND DATE(c.user_registered) = DATE_SUB(CURDATE( ), INTERVAL 1 Week )
-										
-										");
+											SELECT c.*
+											FROM {$wpdb->prefix}users c   
+											NATURAL LEFT JOIN  {$wpdb->prefix}posts d
+											WHERE (d.post_author is null or d.post_type!='job') 
+											 	AND c.user_status = 0 
+											 	AND c.user_registered > DATE_SUB(NOW( ), INTERVAL %d SECOND )
+											 	AND c.user_registered < DATE_SUB(NOW( ), INTERVAL %d SECOND )										
+											",(7*WP_CRON_CONTROL_TIME_1),(6*WP_CRON_CONTROL_TIME_1),(7*WP_CRON_CONTROL_TIME_1),(6*WP_CRON_CONTROL_TIME_1));
+	
+	//echo "<br/> no user activity".$qr_no_activity_users;
 	$no_activity_users = $wpdb->get_results($qr_no_activity_users);
+	
 	foreach($no_activity_users as $no_activity_user)
 	{
 		
@@ -86,20 +135,12 @@ function users_no_activity_reminder()
 		if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
 			foreach ( $user->roles as $role )
 				$user_role = $role;		}
+			
+		$data['role'] = $user_role;
 		
+		$data['display_name'] = $no_activity_user->display_name;
 		
-		switch($user_role)
-		{
-			case "minyawn":
-							$data['subject'] = $no_activity_user->display_name. " Minion message: You havent applied for any job. ";
-							$data['message'] = $no_activity_user->display_name. " Minion message: You havent applied for any job. ";								
-							break;
-			case "employer":
-							$data['subject'] = $no_activity_user->display_name. " Minion message: You havent added any job. ";
-							$data['message'] = $no_activity_user->display_name. " Employer message: There are no jobs added yet  ";
-							break;
-		}
-		
+				
 		/* generate email template in a variable */
 		$mail = email_template($emailid, $data, 'user_no_activity_reminder');
 		
@@ -113,7 +154,7 @@ function users_no_activity_reminder()
 	
 	
 }
-
+add_action('CRON_CONTROL_TIME_1', 'users_no_activity_reminder',12,0);
 
 /*
  *  Gets all users profiles which are 
@@ -125,36 +166,49 @@ function users_no_activity_reminder()
 function user_incomplete_profile_reminder() {
 
     global $wpdb;
+    
     $incomplete_profiles = $wpdb->get_results("(SELECT *
-                                FROM my_users u1
-                                INNER JOIN my_usermeta um1 ON u1.ID = um1.user_id
-                                LEFT OUTER JOIN my_usermeta um2 ON u1.ID = um2.user_id
+                                FROM {$wpdb->prefix}users u1
+                                INNER JOIN {$wpdb->prefix}usermeta um1 ON u1.ID = um1.user_id
+                                LEFT OUTER JOIN {$wpdb->prefix}usermeta um2 ON u1.ID = um2.user_id
                                 AND um2.meta_key = 'college'
                                 WHERE um1.meta_key = 'my_capabilities'
                                 AND um1.meta_value LIKE '%minyawn%'
                                 AND um2.meta_key IS NULL
-                                 AND u1.user_registered > DATE_SUB(NOW(), INTERVAL 24 HOUR)
+                                  AND u1.user_registered > DATE_SUB(NOW( ), INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
+											 	AND u1.user_registered < DATE_SUB(NOW( ), INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
                                 )
                                 UNION (
-
+    
                                 SELECT *
-                                FROM my_users u1
-                                INNER JOIN my_usermeta um1 ON u1.ID = um1.user_id
-                                LEFT OUTER JOIN my_usermeta um2 ON u1.ID = um2.user_id
+                                FROM {$wpdb->prefix}users u1
+                                INNER JOIN {$wpdb->prefix}usermeta um1 ON u1.ID = um1.user_id
+                                LEFT OUTER JOIN {$wpdb->prefix}usermeta um2 ON u1.ID = um2.user_id
                                 AND um2.meta_key = 'location'
                                 WHERE um1.meta_key = 'my_capabilities'
                                 AND um1.meta_value LIKE '%employer%'
                                 AND um2.meta_key IS NULL
-                                 AND u1.user_registered > DATE_SUB(NOW(), INTERVAL 24 HOUR)
+                                  AND u1.user_registered > DATE_SUB(NOW( ), INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
+											 	AND u1.user_registered < DATE_SUB(NOW( ), INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
                                 )");
-
+     
     /* generate usernames and emailds */
+    
+     
     foreach ($incomplete_profiles as $incomplete_profile) {
 
 
         $emailid = $incomplete_profile->user_email;
 
-        $data = $incomplete_profile->display_name; //temp
+        $data['display_name'] = $incomplete_profile->display_name; 
+        
+        $user = new WP_User( $incomplete_profile->ID );
+        if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
+        	foreach ( $user->roles as $role )
+        		$user_role = $role;		}
+        		
+        $data['role'] = $user_role;
+        	
 
         /* generate email template in a variable */
         $mail = email_template($emailid, $data, 'user_incomplete_profile_reminder');
@@ -167,7 +221,7 @@ function user_incomplete_profile_reminder() {
         db_save_for_cron_job($emailid, $email_content, $email_subject, 'user_incomplete_profile_reminder');
     }
 }
-        
+add_action('CRON_CONTROL_TIME_1', 'user_incomplete_profile_reminder',15,0);      
 
 /*
  *  Function to save mails based on @type
@@ -175,11 +229,12 @@ function user_incomplete_profile_reminder() {
  * 
  */
 
-function db_save_for_cron_job($email, $content, $subject, $type) {
+function db_save_for_cron_job($email, $content, $subject, $type,$jobid=0) {
     global $wpdb;
 
-    $existing_entry = "SELECT * from cron_jobs where email_recipient='" . $email . "' AND type='" . $type . "' AND flag='0'";
-
+    
+    $existing_entry = "SELECT * from cron_jobs where email_recipient='" . $email . "' AND type='" . $type . "' AND  job_id= ".$jobid;
+    //echo  "<br/>".$type.$existing_entry;
     $record_exists = $wpdb->get_row($existing_entry);
 
     if (count($record_exists) === 0) {
@@ -188,7 +243,8 @@ function db_save_for_cron_job($email, $content, $subject, $type) {
             'mail_content' => $content,
             'subject' => $subject,
             'type' => $type,
-            'flag' => 0
+            'flag' => 0,
+        	'job_id' =>$jobid
         );
 
         $wpdb->insert('cron_jobs', $data);
@@ -210,11 +266,24 @@ function daily_cron() {
     $daliy_crons_sql = $wpdb->get_results("SELECT * from cron_jobs WHERE flag='0'");
 
     foreach ($daliy_crons_sql as $daily_cron_sql) {
-
-        $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+    	
+    	
+    	$cron_mails_done_updateqry = $wpdb->get_results("UPDATE cron_jobs SET flag = 1 WHERE id = ".$daily_cron_sql->id);
+    	
+    	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+    	        
+    	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+    	        
+    	wp_mail($daily_cron_sql->email_recipient, $daily_cron_sql->subject, $daily_cron_sql->mail_content, $headers);
+    	
+       //$ar_emails_done[] =  $daily_cron_sql->id;
         
-        wp_mail($daily_cron_sql->email_recipient, $daily_cron_sql->subject, $daily_cron_sql->mail_content, $headers);
     }
+ 
+    // $emails_done = implode(",",$ar_emails_done);
+   //$cron_mails_done_updateqry = $wpdb->get_results("UPDATE cron_jobs SET flag = 1 WHERE id IN(".$emails_done.")");    
 }
+
+add_action('CRON_CONTROL_TIME_2_EMAIL', 'daily_cron',99,0);
 
 ?>
