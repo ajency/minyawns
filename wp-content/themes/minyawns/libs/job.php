@@ -669,7 +669,7 @@ $app->get('/getcomments/', function() use ($app) {
                         'post_id' => $objid->id,
                     );
 $comments=get_comments($defaults);
-                    $negative[] = isset($comments[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                    $negative[] = isset($comments[0]->comment_content) > 0 ? $comments[0]->comment_content : '';
                     $negative_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
                 } else if ($objid->rating > 0) {
                     $defaults = array(
@@ -677,7 +677,7 @@ $comments=get_comments($defaults);
                     );
                     $comments = get_comments($defaults);
 
-                    $positive[] = isset($comments[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                    $positive[] = isset($comments[0]->comment_content) > 0 ? $comments[0]->comment_content : '';
                     $positive_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
                 }
 
