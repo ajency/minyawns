@@ -18,15 +18,34 @@ ul { margin:0px; padding:0px; margin-left:20px; }
  }
 #logged-in {
 	position: relative;
-	float: right;
 	top: 0px;
-	text-align: right;
+	color: #FFF;
+	font-size: 12px;
+	width: 77%;
+	border-right: 1px solid #CCC;
+float: right;
 }
 #logged-in a img {
-	width: 26px;
-	height:26px;
+	width: 30px;
+	height:30px;
 	padding: 2px;
 	border: 1px solid #DFDFDF;
+	margin-right: 7px;
+	
+}
+#logged-in  b {
+	margin-top: -5px;
+	font-size:16px;
+	padding-bottom:2px;
+	
+}
+#logged-in  .profile-pic {
+	float:left;
+	
+}
+#logged-in span {
+	margin-top: -5px;
+	
 }
 .caret {
 	display: inline-block;
@@ -221,9 +240,25 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 	margin-top: 11px;
 	margin-top: 3px;
 	float: left;
-	color: #90E50F!important;
+	color: #E3E6E5!important;
+	margin-right: 10px;
 }
-
+.help_user{
+	font-size: 24px;
+	margin-top: 11px;
+	margin-top: 3px;
+	float: left;
+	color: #E3E6E5!important;
+	margin-right: 10px;
+}
+.help_unlock{
+	font-size: 24px;
+	margin-top: 11px;
+	margin-top: 3px;
+	float: left;
+	color: #E3E6E5!important;
+	margin-right: 10px;
+}
 .tab-content {
 	border-radius:0px!important;
 	background:#fff;
