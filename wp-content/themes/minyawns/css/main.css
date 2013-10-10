@@ -27,6 +27,10 @@ a:hover {
   font-size: 15px;
   color: #F30606;
 }
+.upper-link {
+  float: right;
+  margin-right: 10%;
+}
 .fb-mobile {
   display: none!important;
 }
