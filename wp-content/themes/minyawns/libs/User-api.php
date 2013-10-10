@@ -88,7 +88,6 @@ function setup_user_profile_data() {
     //check if user has avatar uploaded
     $current_user_new->data->avatar = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
-  
     // global $current_user_new;
     global $wpdb;
     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
@@ -140,8 +139,7 @@ function get_mn_user_avatar() {
 
     global $current_user_new;
     if ($current_user_new->data->avatar !== false) {
-  return '<img id="avimg" src="'.wp_get_attachment_url($current_user_new->data->avatar).'">';
-
+        return wp_get_attachment_image($current_user_new->data->avatar, get_user_role());
     } else {
         return false;
     }
