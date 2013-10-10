@@ -668,8 +668,8 @@ $app->get('/getcomments/', function() use ($app) {
                     $defaults = array(
                         'post_id' => $objid->id,
                     );
-$comments=get_comments($defaults);
-                    $negative[] = isset($comments[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                    $comments = get_comments($defaults);
+                    $negative[] = isset($comments[0]->comment_content) > 0 ? $comments[0]->comment_content : '';
                     $negative_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
                 } else if ($objid->rating > 0) {
                     $defaults = array(
@@ -677,7 +677,7 @@ $comments=get_comments($defaults);
                     );
                     $comments = get_comments($defaults);
 
-                    $positive[] = isset($comments[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                    $positive[] = isset($comments[0]->comment_content) > 0 ? $comments[0]->comment_content : '';
                     $positive_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
                 }
 
@@ -700,24 +700,23 @@ $comments=get_comments($defaults);
         });
 
 $app->post('/delete-job/', function() use($app) {
-            
+
             global $wpdb;
 
-           // exit();
-            wp_delete_post($_POST['job_id'],true);
+            // exit();
+            wp_delete_post($_POST['job_id'], true);
 
             delete_post_meta($_POST['job_id']);
 
-           
-            $wpdb->query(     $wpdb->prepare(
+
+            $wpdb->query($wpdb->prepare(
                             "
-                DELETE FROM {$wpdb->prefix}userjobs WHERE job_id = '".$_POST['job_id']."'"));
-       
-               
-                echo "deleted";
-                
-                });
-        
-       
+                DELETE FROM {$wpdb->prefix}userjobs WHERE job_id = '" . $_POST['job_id'] . "'"));
+
+
+            echo "deleted";
+        });
+
+
 $app->run();
 
