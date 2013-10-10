@@ -67,7 +67,7 @@
 							src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
 							alt="" /> </a>
 					</div>
-					<div class="span5"></div>
+					<div class="span4"></div>
 					<?php
 
 					if (is_user_logged_in() == TRUE) {
@@ -99,10 +99,10 @@
 						</div>
 						
 					</div>
-					<div class="span2">
-					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_user"><i class="icon-user"></i> </a>
-					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_unlock"><i class="icon-unlock"></i> </a>
-						<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon"><i class="icon-question-sign"></i> </a>
+					<div class="span3 user-action">
+					<a class="" href="#"><i class="icon-user"></i> View Profile</a>
+					<a class="" href="#"><i class="icon-unlock"></i> Logout</a>
+					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon"><i class="icon-question-sign"></i> </a>
 					</div>
 					<?php } else {
 						?>
