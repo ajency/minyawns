@@ -6,9 +6,6 @@
 get_header();
 require 'templates/_jobs.php';
 ?>
- <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
- <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
- <script src="http://tympanus.net/codrops/adpacks/demoad.js"></script>
 <script>
     jQuery(document).ready(function($) {
 
@@ -18,71 +15,46 @@ require 'templates/_jobs.php';
         }
 
         jQuery("#tab_identifier").val('1');
+        
+         $("#example_right").live('click', function() {
+
+            $(".load_ajax_profile_comments").show();
+            var Fetchusercomments = Backbone.Collection.extend({
+                model: Usercomments,
+                url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/getcomments'
+            });
+
+            window.fetchc = new Fetchusercomments;
+            window.fetchc.fetch({
+                data: {
+                    minion_id: $("#example_right").attr("user-id")
+                            //job_id: jQuery("#job_id").val()
+                },
+                success: function(collection, response) {
+
+                    console.log(collection.models);
+                    var html;
+                    if (collection.length > 0) {
+                        var template = _.template(jQuery("#comment-popover").html());
+                        _.each(collection.models, function(model) {
+
+
+                            html = template({result: model.toJSON()});
+                            //jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
+                        });
+
+                        $(".load_ajax_profile_comments").hide();
+                        $("#example_right").popover({placement: 'left', trigger: 'click', content: html}).popover('show');
+                        ;
+
+
+                    }
+                }
+            });
+
+        });
 
     });
-         
-   </script>  
-
-<?php if(get_user_role() === 'minyawn'){ 
- $ratio = '1:1'; 
-} else {
-  $ratio = '2:1' ; 
-}
-?>
- <input type="hidden" id="abc" value=""/> 
-
-<script type="text/javascript">
-    
-   var featherEditor = new Aviary.Feather({
-     apiKey: 'saq7r1wmey5fxhwv',
-     apiVersion: 3,
-     theme: 'dark', 
-    // more tools: 'crop,orientation,brightness,sharpness,redeye,effects,stickers,focus,contrast,whiten,warmth,colorsplash,enhance,saturation,blemish,draw,text,frames',
-     tools: 'crop,brightness,sharpness,effects',
-     initTool: 'crop',
-     appendTo: '',
-     cropPresets:['<?php echo $ratio;?>'],
-     cropPresetsStrict:true,
-     cropPresetDefault:'<?php echo $ratio;?>',
-     onSaveButtonClicked: function(imageID){
-         //  alert(imageID);
-        
-     },
-     
-     onSave: function(imageID, newURL) {
-         var img = document.getElementById(imageID);
-         img.src = newURL;    
-         jQuery.ajax({
-         type: "POST",
-         dataType: "json",
-         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-picture',
-         data: { src : img.src }         
-        }).done(function() {
-           // jQuery('#avimg').attr('src',img.src);
-             window.location.reload();
-            });
-            
-        return true;      
-     },          
-
-     onError: function(errorObj) {
-         alert(errorObj.message);
-     },          
-    
-    // postUrl: 'http://example.com/featherposturl'       
-     
-   });
-
-   function launchEditor(id, src) {
-
-     featherEditor.launch({
-       image: id,
-       url: src
-     });
-     return false;
-   }
-   
-   
 </script>
 
 <div id="myprofilepic" class="modal hide fade cropimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -101,36 +73,29 @@ require 'templates/_jobs.php';
 
                 <form id="cropimage" method="post" enctype="multipart/form-data">
                     <a type="button" class="btn btn-primary" id="done-cropping" style="display:none">Done? </a>
-
-                    
-<!--                    <span class='load_ajax-crop-upload' style="display:none"></span>-->
-                    <br>                   
-                    
-<!--                    <span id="div_cropmsg"> 
+                    Upload your image <input type="file" name="files" id="photoimg" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
+                    <br>
+                    <span id="div_cropmsg"> 
                         <?php /* Please drag to select/crop your picture. */ ?>
                         <p class="help-block meta">Upload an image for your profile.</p></br>
-                    </span>                    -->
+                    </span>
                     </br>
-                    
-<!--                   <input type="hidden" name="image_name" id="image_name" value="" /> 
-                    <img id="uploaded-image"></img> 
-                    <input type="hidden"  id="image_height" style="display:none;">
-                    <input type="hidden"  id="image_width" style="display:none;">
-                    <input type="hidden"  id="image_x_axis" style="display:none;">
-                    <input type="hidden"  id="image_y_axis" style="display:none;">
-                    <input type="hidden" value="<?//php echo (get_user_role() == 'employer' ? '2:1' : '1:1') ?>" id="aspect_ratio"> -->
-<!--                <img id='image1' src='http://aviary.com/Content/images/feature_top_phone.png' style="max-height:360px; display:none;" on/>-->
-                   
+                    <input type="hidden" name="image_name" id="image_name" value="" />
+                    <img id="uploaded-image" ></img>
+                    <input type="hidden"  id="image_height">
+                    <input type="hidden"  id="image_width">
+                    <input type="hidden"  id="image_x_axis">
+                    <input type="hidden"  id="image_y_axis">
+                    <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '2:1' : '1:1') ?>" id="aspect_ratio"> 
+
                 </form>
 
             </div>
         </div>
     </div>
+
 </div>
-
-
 <div class="container">
-    
     <div id="main-content" class="main-content bg-white" >
         <div class="breadcrumb-text">
 
@@ -140,7 +105,6 @@ require 'templates/_jobs.php';
                 <a href="#" class="view loaded edit-user-profile">My Profile</a>
             </p>
         </div>
-            
         <div class="row-fluid profile-wrapper">
             <?php
             //if(check_access()===true)
@@ -150,34 +114,23 @@ require 'templates/_jobs.php';
                 <div class="row-fluid min_profile">
 
                     <div class="span2 <?php
-//                    if (get_user_role() == 'employer') {
-//                        echo 'employer-image';
-//                        
-//                    }
+                    if (get_user_role() == 'employer') {
+                        echo 'employer-image';
+                    }
                     ?>">
-                        
-                    <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar">
+                        <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
                             <?php
-                            
-                            
                             if (get_mn_user_avatar() !== false)
-                                echo get_mn_user_avatar();                             
+                                echo get_mn_user_avatar();
                             else
                                 echo get_avatar(get_user_id(), 168)
                                 ?>
 
                             <?php if (is_user_logged_in())  ?>
-                            <span onclick="document.getElementById('photoimg').click(); return false;">Change Avatar</span> 
-                            
+                            <span >Change Avatar</span>
                         </a>
-                        <input type="file" name="files" id="photoimg" style="display:none;"/>
-                                           
-                     <div class="bar" id="loader_sphere" style="display:none;">
-                              <i class="sphere"></i>
-                              </div>    
-<!--                        <input id="change-avatar" type="file" name="files" style="visibility:hidden">-->
+                        <input id="change-avatar" type="file" name="files" style="visibility:hidden">
                     </div>
-             
                     <div class="span8">
                         <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
@@ -249,8 +202,6 @@ require 'templates/_jobs.php';
                         </div>
 
                     </div>
-                   
-                    
                     <?php if (get_user_role() === 'minyawn'): ?>
                         <div class="span2">
                             <br>
@@ -276,11 +227,15 @@ require 'templates/_jobs.php';
                                     <b class="dislike"><?php user_dislike_count(); ?></b>
                                 </a> 
                             </div>
+                            
+                             <?php if(count(get_object_id(get_user_id())) > 0){ ?>
+                            <span class="userrev">User reviews <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a><span class='load_ajax_profile_comments' style="display:none; float:right"></span></span> 
+                            <!-- Mobile View Like Button -->
+                            <?php }?>
                         </div>	
                     <?php endif; ?>			
                 </div>
-                <img id='image1' src='' style="max-height:360px; display:none;" on/>
-                
+
                 <hr>
                 <div class="clear"></div>
 
@@ -295,9 +250,9 @@ require 'templates/_jobs.php';
                                 <div class="job-logo header-sub"> Logo</div>
                                 <div class="job-date header-sub"> Job Date</div>
                                 <div class="job-time header-sub">Duration</div>
-                                <div class="job-wage header-sub">Applicants</div>
-					<div class="job-progress profile-job header-sub">Progress</div>
-					<div class="job-action header-sub">Wages</div>
+                                <div class="job-wage header-sub">Wages</div>
+
+                                <div class="job-progress profile-job header-sub">Progress</div>
 
 
                             </div>
@@ -312,8 +267,6 @@ require 'templates/_jobs.php';
                 </div>
                 <div class="clear"></div>
             </div>
-            
-              
             <div class="span12" id="profile-edit" style="height:502px;">
                 <div class="row-fluid">	
                     <form class="form-horizontal frm-edit" id="profile-edit-form">

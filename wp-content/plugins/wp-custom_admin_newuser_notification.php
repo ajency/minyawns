@@ -73,6 +73,4 @@ function wp_new_user_notification($user_id, $plaintext_pass = '') {
        
         }
 }
-
 endif;
-
