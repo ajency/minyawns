@@ -310,12 +310,14 @@ jQuery(document).ready(function($) {
         {
             if ($(this).hasClass('view'))
             {
+                
                 $(span1).animate({left: 0}, 500);
                 $(span2).show().animate({left: w}, 500);
                 $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
             }
             else
             {
+               
                 $(this).removeClass('loaded');
                 $('#profile-edit').find('div.alert').remove();
                 $(span1).animate({left: -1 * w}, 500);
@@ -924,6 +926,7 @@ jQuery(document).ready(function($) {
         var w = $(span1).width();
         if ($(this).hasClass('view'))
         {
+            $("#delete_jobs_link").hide();
             $(span1).animate({left: 0}, 500);
             $(span2).show().animate({left: w}, 500);
 
@@ -932,11 +935,19 @@ jQuery(document).ready(function($) {
         }
         else
         {
+           
+            $("#delete_jobs_link").show();
             $(".alert-error").hide();
             $('#edit-job-form').find('div.alert').remove();
             $(span1).animate({left: -2 * w}, 500);
             $(span2).css({'left': w, 'top': '60px'});
             $(span2).show().animate({left: 0}, 500);
+            if($(".edit").attr("is-job-paid") == 1)
+                {
+                    $("#edit-job-form").prepend("<div class='alert alert-error'>This job is paid and cannot be edited.</div>");
+                    $("#edit-job-form").find('input, textarea, button, select').attr('disabled','disabled');
+                    return;
+                }
         }
     });
     $('#update-job').click(function(e) {
