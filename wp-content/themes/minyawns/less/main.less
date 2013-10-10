@@ -32,12 +32,12 @@ a:hover{text-decoration:none !important;}
 	display:none!important;
 }
 body .jobs_table .header-title  .profile-job{
-	border-right:0px;  
-	width:24.1% ;
+	border-right: 1px solid #CCC;  
+	width:16.1% ;
 }
 body .jobs_table .data-title  .profile-job{
-	border-right:0px;
-	width:24.1% ;
+	border-right:1px;
+	width:16.1% ;
 }
 .bootstrap-timepicker-widget{
 	z-index:9999 !important;
@@ -1712,6 +1712,59 @@ background: #F8F8F8!important;
 	}
 	
 }
+.minyawns-satisfication{
+	background:@green;
+	height: 80px;
+	margin-top: 44px;
+	border-bottom: 5px solid #59BE16;
+	border-top: 5px solid #59BE16;
+	.satisfication{
+		margin-top:-44px;
+	}
+	h4{
+		font-size: 19px;
+		color: #FFF;
+		line-height: 25px;
+		padding: 8px;
+		font-weight: 300;
+	}
+
+}
+.thumbnails-satisfication{
+	margin-top:60px;
+	.thumbnail{
+		text-align:center;
+		height: 305px;
+		h3{
+		font-size: 21px;
+		padding: 10px;
+		}
+	}
+}
+@media (max-width: 767px) {
+.minyawns-satisfication{
+	.span2{
+		width: 22%;
+		float: left;
+		.satisfication{
+		margin-top:-7px;
+	}
+	}
+	.span10{
+		width: 73%;
+		float: left;
+			h4{
+		font-size: 11px;
+		color: #FFF;
+		line-height: 16px;
+		padding: 3px;
+		font-weight: 300;
+	}
+	}
+	}
+
+}
+
 .upper-link{
 	#btn__login{
 		float:right;
@@ -1740,7 +1793,20 @@ background: #F8F8F8!important;
 
 
 @media (max-width: 767px){
-
+.jobs_table {
+	.accordion-inner {
+		padding: 9px 15px 31px !important;
+	}
+}
+.single-job-1 {
+	.data-title {
+		width:auto !important;
+	}
+}
+#edit-job-form{
+	width:80% !important;
+	margin-left: 45px !important;
+}
 
 	body {
 		padding-right: 0px;
@@ -1821,7 +1887,7 @@ background: #F8F8F8!important;
 			}
 		.div-box-block {
 			position: relative !important;
-			margin: 10px auto!important;
+			margin: 20px auto!important;
 			height: auto!important;
 			width: 100%!important;
 		}
@@ -1858,7 +1924,7 @@ background: #F8F8F8!important;
 			.list-jobs {.expand {.minyawansgrid {
 			.minyawns-job
 			{
-				padding: 1px 0;
+				padding: 11px 0;
 			}
 			.span4 {.minyawns-details {
 			height:auto;
@@ -1883,9 +1949,25 @@ border-top: 1px solid #e5e5e5;
 	
 	.span4 {
 			margin-bottom: 10px!important;
-			height: 70px!important;
+			height: 100%!important;
 			margin-left:0px !important;
 			width: 95%;
+			.minyawns-details{
+				b {
+					width: 50%!important;
+				}
+				#vote-up{
+					font-size:11px;
+				}
+				#vote-down{
+					font-size:11px;
+				}
+			}
+			.minyawns-job{
+					span{
+						font-size:11px;
+					}
+				}
 		}
 	}
 	.div-box {
@@ -2001,11 +2083,13 @@ background-position: 60px 1050px;
 				
 				.thumbnails{
 					margin-left: 0px;
+					margin-top: 75px;
 					.span3{
 						margin-right: 16px;
 						margin-left:0px !important;
 						.thumbnail{
 							height:auto;
+							min-height: 100%;
 							.caption{
 							.minyawns-img{
 										width: 60px;
@@ -2013,6 +2097,7 @@ background-position: 60px 1050px;
 										float:left;
 										margin-right: 11px;
 										border: 2px solid #CCC;
+										margin-bottom: 3%;
 									img{
 										width: 60px;
 										height: 60px;
@@ -2058,6 +2143,7 @@ background-position: 60px 1050px;
 							text-align: left;
 							font-size: 12px;
 							margin-bottom: 10px;
+							color: #21A5CF;
 							}
 							.label-small{
 								padding: 3px;
@@ -2132,6 +2218,16 @@ background-position: 60px 1050px;
 	}
 
 }
+/* Job Time*/
+
+.label, .badge {
+margin-top:4px;
+}
+
+
+
+
+
 .employer-image2 {
 	margin:auto !important;
 }
@@ -2169,14 +2265,14 @@ background-position: 60px 1050px;
 			width: 14%;
 		}
 		.job-date{
-			width: 18%;
+			width: 16%;
 		}
 		.job-time{
 			width: 22%;
 		}
 		.job-wage{
-			width: 12%;
-			border-right:0px;
+			width: 16.5%;
+			
 		}
 		
 	}
@@ -2185,10 +2281,10 @@ background-position: 60px 1050px;
 		display:none;
 	}
 	.job-wage {
-		display:none;
+		
 	}
 	.job-progress
-	{
+	{display:none;
 		span
 		{
 			line-height: 15px !important;
@@ -2212,7 +2308,7 @@ background-position: 60px 1050px;
 			width: 14%;
 		}
 		.job-date{
-			width: 18%;
+			width: 16%;
 			padding: 10px 8px 0 13px!important;
 			span {
 					font-size: 17px;
@@ -2234,7 +2330,7 @@ background-position: 60px 1050px;
 			width: 22%;
 			padding: 9px 9px 0 13px !important;
 			span {
-					font-size: 11px !important;
+					font-size: 12px !important;
 					float: left!important;
 					margin-right: 5px!important;
 					margin-top: 2px!important;
@@ -2249,10 +2345,10 @@ background-position: 60px 1050px;
 				}
 		}
 		.job-wage{
-			width: 12%;
+			width: 17%;
 			float: left;
 			height: 53px;
-			border-right:0px;
+			
 			ins {
 				font-size: 13px;
 			}
