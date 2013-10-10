@@ -107,7 +107,7 @@
 					<?php } else {
 						?>
 
-					<div class="span2 upper-link">
+					<div class="span2 upper-link ">
 						<!-- <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	-->
 						<a href="#mylogin" data-toggle="modal" id="btn__login"><i class="icon-signin"></i> Login </a>
 

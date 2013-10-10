@@ -118,7 +118,8 @@ require 'templates/_jobs.php';
             <div class="span12" id="profile-view">
                 <div class="row-fluid min_profile">
 
-                    <div class="span2 <?php
+                    <div class="span2 ">
+					<div class="<?php
                     if (get_user_role() == 'employer') {
                         echo 'employer-image';
                     }
@@ -134,6 +135,7 @@ require 'templates/_jobs.php';
                             <?php if (is_user_logged_in())  ?>
                            
                         </a>
+						</div>
 						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">Change Avatar</a>
                         <input id="change-avatar" type="file" name="files" style="visibility:hidden">
                     </div>
