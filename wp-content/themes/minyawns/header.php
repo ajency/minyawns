@@ -67,24 +67,41 @@
 							src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
 							alt="" /> </a>
 					</div>
-					<div class="span6"></div>
+					<div class="span5"></div>
 					<?php
 
 					if (is_user_logged_in() == TRUE) {
                             ?>
 					<div class="span3 notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
+					
 						<div id="logged-in">
-                                                   
+						 <div class="profile-pic">
+						 <a id="user-popdown" > 
+									 <?php 
+									if(get_mn_user_avatar() !== false)
+										echo get_mn_user_avatar() ;
+									else
+										echo get_avatar( get_user_id(), 168 ) ?>
+									</a>
+									</div>
+									<div>
+									<b>minyawn@ajency.in</b><br>
+									Role : Minyawns
+									</div>
+									<!--                   
 							<a id="user-popdown" href="javascript:void(0);"> <?php 
 									if(get_mn_user_avatar() !== false)
 										echo get_mn_user_avatar() ;
 									else
 										echo get_avatar( get_user_id(), 168 ) ?> <b class="caret"></b>
 							
-                                                        </a>
+                             -->                           </a>
 						</div>
+						
 					</div>
-					<div class="span1">
+					<div class="span2">
+					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_user"><i class="icon-user"></i> </a>
+					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_unlock"><i class="icon-unlock"></i> </a>
 						<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon"><i class="icon-question-sign"></i> </a>
 					</div>
 					<?php } else {
