@@ -118,7 +118,6 @@ jQuery(document).ready(function($) {
         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
         dataType: 'json',
         done: function(e, data) {
-                                    
             /*console.log(data);
              $(".load_ajax-crop-upload").hide();
              //$('#change-avatar-span').find('img').attr('src', data.result.image);
@@ -134,140 +133,135 @@ jQuery(document).ready(function($) {
              $("#uploaded-image").css('width', 'auto');
              
              // window.location.reload();*/
-//            $(".load_ajax-crop-upload").hide();
-//            //$('#change-avatar-span').find('img').attr('src', data.result.image);
-//            $('#change-avatar').removeAttr("disabled");
-//           
-//            ratio_y = data.result.image_height / 420
-//            ratio_x = data.result.image_width / 500
-//            if (ratio_y < ratio_x)
-//                a_ratio = Math.round(ratio_x * 1000) / 1000;
-//            else
-//                a_ratio = Math.round(ratio_y * 1000) / 1000;
-//
-//            if (a_ratio < 1)
-//                a_ratio = 1;
-//
-//
-//            // alert("original :- width"+data.result.image_width+", height "+data.result.image_height+", ratio:"+a_ratio);
-//            img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
-//            img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
+            $(".load_ajax-crop-upload").hide();
+            //$('#change-avatar-span').find('img').attr('src', data.result.image);
+            $('#change-avatar').removeAttr("disabled");
 
 
-            $("#image1").attr('src', data.result.image);
-            return launchEditor('image1', document.getElementById('image1').src);
-            
-//            
-//            $("#image_name").val(data.result.image_name);
-//            $("#uploaded-image").css('width', img_width);
-//            $("#uploaded-image").css('height', img_height);
 
 
-//            $("#uploaded-image").load(function() {
-//
-//               
-//                // $('img#uploaded-image').imgAreaSelect( {update: true} );           
-//                $("#div_cropmsg").html("Please drag to select/crop your picture.<br/>");
-//
-//                //get the image position
-//                if ($("#uploaded-image").attr('src') != "")
-//                {
-//                    loaded_img_x = Math.round($("#uploaded-image").position().top * 1000) / 1000;
-//                    loaded_img_y = Math.round($("#uploaded-image").position().left * 1000) / 1000;
-//
-//                    //alert(loaded_img_x+" - "+loaded_img_y);
-//                    pd_aspect_ratio = $("#aspect_ratio").val().split(":");
-//
-//                    var defaultcrop_adjust;
-//                    defaultcrop_adjust = 50;
-//
-//                    /* default crop fix for small dimension images */
-//                    if (pd_aspect_ratio[0] == 2)
-//                    {
-//                        defaultcrop_adjust_x = 50;
-//                        defaultcrop_adjust_y = 50;
-//                        if ((img_width < 200))
-//                            defaultcrop_adjust_x = img_width / 4;
-//                        if ((img_height < 100))
-//                            defaultcrop_adjust_y = img_height / 4;
-//                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
-//                            defaultcrop_adjust = defaultcrop_adjust_x;
-//                        else
-//                            defaultcrop_adjust = defaultcrop_adjust_y;
-//                    }
-//
-//
-//                    if (pd_aspect_ratio[0] == 1)
-//                    {
-//                        defaultcrop_adjust_x = 50;
-//                        defaultcrop_adjust_y = 50;
-//                        if ((img_width < 100))
-//                            defaultcrop_adjust_x = img_width / 2;
-//                        if ((img_height < 100))
-//                            defaultcrop_adjust_y = img_height / 2;
-//                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
-//                            defaultcrop_adjust = defaultcrop_adjust_x;
-//                        else
-//                            defaultcrop_adjust = defaultcrop_adjust_y;
-//                    }
-//                    /* End default crop fix for small dimension images */
-//
-//
-//
-//
-//                    default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * defaultcrop_adjust);
-//                    default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * defaultcrop_adjust);
-//                    default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * defaultcrop_adjust);
-//                    default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * defaultcrop_adjust);
-//
-//                    /* alert(img_width / 2);
-//                     alert(pd_aspect_ratio[0]);
-//                     alert(pd_aspect_ratio[1]);*/
-//
-//                    /* alert(loaded_img_x);
-//                     alert(loaded_img_y);
-//                     */
-//                    /*default_x1 = loaded_img_x+300 ;
-//                     default_y1 = loaded_img_y+300 ;
-//                     default_x2 = loaded_img_x+400;
-//                     default_y2 = loaded_img_y +400; 
-//                     */
-//                    /*alert(default_x1+" -- "+default_x2);
-//                     alert(default_y1+" -- "+default_y2);*/
-//
-//                    default_x1 = Math.round(default_x1 * 1000) / 1000;
-//                    default_y1 = Math.round(default_y1 * 1000) / 1000;
-//                    default_x2 = Math.round(default_x2 * 1000) / 1000;
-//                    default_y2 = Math.round(default_y2 * 1000) / 1000;
-//
-//
-//                    default_thumb_width = default_x2 - default_x1;
-//                    default_thumb_height = default_y2 - default_y1;
-//                    $("#done-cropping").show();
-//                    $("#image_height").val(default_thumb_height);
-//                    $("#image_width").val(default_thumb_width)
-//                    $("#image_x_axis").val(default_x1);
-//                    $("#image_y_axis").val(default_y1);
-//
-//                    $('img#uploaded-image').imgAreaSelect({
-//                        x1: default_x1,
-//                        y1: default_y1,
-//                        x2: default_x2,
-//                        y2: default_y2,
-//                        update: true
-//
-//
-//                    });
-//
-//                }
-//
-//            })
+            ratio_y = data.result.image_height / 420
+            ratio_x = data.result.image_width / 500
+            if (ratio_y < ratio_x)
+                a_ratio = Math.round(ratio_x * 1000) / 1000;
+            else
+                a_ratio = Math.round(ratio_y * 1000) / 1000;
+
+            if (a_ratio < 1)
+                a_ratio = 1;
+
+
+            // alert("original :- width"+data.result.image_width+", height "+data.result.image_height+", ratio:"+a_ratio);
+            img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
+            img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
+
+            $("#uploaded-image").attr('src', data.result.image);
+            $("#image_name").val(data.result.image_name);
+            $("#uploaded-image").css('width', img_width);
+            $("#uploaded-image").css('height', img_height);
+
+
+            $("#uploaded-image").load(function() {
+
+                // $('img#uploaded-image').imgAreaSelect( {update: true} );           
+                $("#div_cropmsg").html("Please drag to select/crop your picture.<br/>");
+
+                //get the image position
+                if ($("#uploaded-image").attr('src') != "")
+                {
+                    loaded_img_x = Math.round($("#uploaded-image").position().top * 1000) / 1000;
+                    loaded_img_y = Math.round($("#uploaded-image").position().left * 1000) / 1000;
+
+                    //alert(loaded_img_x+" - "+loaded_img_y);
+                    pd_aspect_ratio = $("#aspect_ratio").val().split(":");
+
+                    var defaultcrop_adjust;
+                    defaultcrop_adjust = 50;
+
+                    /* default crop fix for small dimension images */
+                    if (pd_aspect_ratio[0] == 2)
+                    {
+                        defaultcrop_adjust_x = 50;
+                        defaultcrop_adjust_y = 50;
+                        if ((img_width < 200))
+                            defaultcrop_adjust_x = img_width / 4;
+                        if ((img_height < 100))
+                            defaultcrop_adjust_y = img_height / 4;
+                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+                            defaultcrop_adjust = defaultcrop_adjust_x;
+                        else
+                            defaultcrop_adjust = defaultcrop_adjust_y;
+                    }
+
+
+                    if (pd_aspect_ratio[0] == 1)
+                    {
+                        defaultcrop_adjust_x = 50;
+                        defaultcrop_adjust_y = 50;
+                        if ((img_width < 100))
+                            defaultcrop_adjust_x = img_width / 2;
+                        if ((img_height < 100))
+                            defaultcrop_adjust_y = img_height / 2;
+                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+                            defaultcrop_adjust = defaultcrop_adjust_x;
+                        else
+                            defaultcrop_adjust = defaultcrop_adjust_y;
+                    }
+                    /* End default crop fix for small dimension images */
+
+
+
+
+                    default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * defaultcrop_adjust);
+                    default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * defaultcrop_adjust);
+                    default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * defaultcrop_adjust);
+                    default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * defaultcrop_adjust);
+
+                    /* alert(img_width / 2);
+                     alert(pd_aspect_ratio[0]);
+                     alert(pd_aspect_ratio[1]);*/
+
+                    /* alert(loaded_img_x);
+                     alert(loaded_img_y);
+                     */
+                    /*default_x1 = loaded_img_x+300 ;
+                     default_y1 = loaded_img_y+300 ;
+                     default_x2 = loaded_img_x+400;
+                     default_y2 = loaded_img_y +400; 
+                     */
+                    /*alert(default_x1+" -- "+default_x2);
+                     alert(default_y1+" -- "+default_y2);*/
+
+                    default_x1 = Math.round(default_x1 * 1000) / 1000;
+                    default_y1 = Math.round(default_y1 * 1000) / 1000;
+                    default_x2 = Math.round(default_x2 * 1000) / 1000;
+                    default_y2 = Math.round(default_y2 * 1000) / 1000;
+
+
+                    default_thumb_width = default_x2 - default_x1;
+                    default_thumb_height = default_y2 - default_y1;
+                    $("#done-cropping").show();
+                    $("#image_height").val(default_thumb_height);
+                    $("#image_width").val(default_thumb_width)
+                    $("#image_x_axis").val(default_x1);
+                    $("#image_y_axis").val(default_y1);
+
+                    $('img#uploaded-image').imgAreaSelect({
+                        x1: default_x1,
+                        y1: default_y1,
+                        x2: default_x2,
+                        y2: default_y2,
+                        update: true
+
+
+                    });
+
+                }
+
+            })
 
         },
         start: function(e, data) {
-
-     
-           // return launchEditor('image1', document.getElementById('image1').src);
             $(".load_ajax-crop-upload").show();
 
             $('#change-avatar').attr("disabled", "disabled");
@@ -278,6 +272,7 @@ jQuery(document).ready(function($) {
     $("#done-cropping").live('click', function() {
         $(".load_ajax-crop-upload").show();
         $("#div_cropmsg").html("<br/>");
+
 
         console.log("w: " + $("#image_width").val() + " h:" + $("#image_height").val() + 'x1:' + $("#image_x_axis").val() + 'y1:' + $("#image_y_axis").val() + "image_name:" + $("#image_name").val() + " asp_ratio:" + $("#aspect_ratio").val());
 
@@ -292,7 +287,7 @@ jQuery(document).ready(function($) {
 //            $('#logged-in').find('img').attr('src', img_link);
             location.reload();
             $(".load_ajax-crop-upload").hide();
-           // $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
+            $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
 
         });
     });

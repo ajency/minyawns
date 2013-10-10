@@ -610,7 +610,7 @@ $app->get('/jobminions/', function() use ($app) {
                         );
                     }
                     $all_comment = get_comments($defaults);
-                    $comment=$all_comment[0]->comment_content;
+                    $comment = $all_comment[0]->comment_content;
 
 
                     $user_to_job_rating = get_user_job_rating_data($minion_ids[$i], $_GET['job_id']);
@@ -640,7 +640,7 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_image' => $user['image'],
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
-                        'comment' => isset($comment)> 0 ? $comment :0
+                        'comment' => isset($comment) > 0 ? $comment : 0
                     );
                 }
             }
@@ -668,19 +668,17 @@ $app->get('/getcomments/', function() use ($app) {
                     $defaults = array(
                         'post_id' => $objid->id,
                     );
-                   
-                        $negative[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
-                        $negative_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
-                   
+
+                    $negative[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                    $negative_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
                 } else if ($objid->rating > 0) {
                     $defaults = array(
                         'post_id' => $objid->id,
                     );
                     $comments = get_comments($defaults);
-                    
-                        $positive[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
-                        $positive_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
-                    
+
+                    $positive[] = isset(get_comments($defaults)[0]->comment_content) > 0 ? get_comments($defaults)[0]->comment_content : '';
+                    $positive_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
                 }
 
                 $data = array(
@@ -701,7 +699,25 @@ $app->get('/getcomments/', function() use ($app) {
             echo json_encode($data);
         });
 
+$app->post('/delete-job/', function() use($app) {
+            
+            global $wpdb;
 
+           // exit();
+            wp_delete_post($_POST['job_id'],true);
 
+            delete_post_meta($_POST['job_id']);
+
+           
+            $wpdb->query(     $wpdb->prepare(
+                            "
+                DELETE FROM {$wpdb->prefix}userjobs WHERE job_id = '".$_POST['job_id']."'"));
+       
+               
+                echo "deleted";
+                
+                });
+        
+       
 $app->run();
 
