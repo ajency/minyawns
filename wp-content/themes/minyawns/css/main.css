@@ -1716,6 +1716,18 @@ body .jobs_table .data-title .profile-job {
     margin-left: 0px !important;
     width: 95%;
   }
+  .list-jobs .minyawansgrid .span4 .minyawns-details b {
+    width: 50%!important;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-details #vote-up {
+    font-size: 11px;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-details #vote-down {
+    font-size: 11px;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-job span {
+    font-size: 11px;
+  }
   .list-jobs .div-box {
     position: relative !important;
     top: 0!important;
@@ -1914,6 +1926,10 @@ body .jobs_table .data-title .profile-job {
     padding: 5px!important;
     line-height: 24px;
   }
+  .label,
+  .badge {
+    margin-top: 4px;
+  }
   .employer-image2 {
     margin: auto !important;
   }
@@ -1940,13 +1956,13 @@ body .jobs_table .data-title .profile-job {
     width: 14%;
   }
   .jobs_table .header-title .job-date {
-    width: 18%;
+    width: 16%;
   }
   .jobs_table .header-title .job-time {
     width: 22%;
   }
   .jobs_table .header-title .job-wage {
-    width: 15%;
+    width: 16.5%;
   }
   .jobs_table .job-logo {
     display: none;
@@ -1975,7 +1991,7 @@ body .jobs_table .data-title .profile-job {
     width: 14%;
   }
   .jobs_table .data-title .job-date {
-    width: 18%;
+    width: 16%;
     padding: 10px 8px 0 13px!important;
   }
   .jobs_table .data-title .job-date span {
@@ -2011,7 +2027,7 @@ body .jobs_table .data-title .profile-job {
     display: none;
   }
   .jobs_table .data-title .job-wage {
-    width: 15%;
+    width: 17%;
     float: left;
     height: 53px;
   }
