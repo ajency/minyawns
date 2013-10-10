@@ -85,8 +85,8 @@
 									</a>
 									</div>
 									<div>
-									<b>minyawn@ajency.in</b><br>
-									Role : Minyawns
+									<b><?php echo get_user_email_id(); ?></b><br>
+									Role :<?php echo get_user_role_text(); ?>
 									</div>
 									<!--                   
 							<a id="user-popdown" href="javascript:void(0);"> <?php 
@@ -100,8 +100,8 @@
 						
 					</div>
 					<div class="span3 user-action">
-					<a class="" href="#"><i class="icon-user"></i> View Profile</a>
-					<a class="" href="#"><i class="icon-unlock"></i> Logout</a>
+					<a class="" href="<?php echo site_url() ?>/profile"><i class="icon-user"></i> View Profile</a>
+					<a class="" href="<?php  echo wp_logout_url(''); ?>"><i class="icon-unlock"></i> Logout</a>
 					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon"><i class="icon-question-sign"></i> </a>
 					</div>
 					<?php } else {
