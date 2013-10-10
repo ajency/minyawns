@@ -154,6 +154,7 @@
     <hr>
     <div class="dwn-btn">
     <%= select_button %>
+                <%= ratings_button %>
            <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
     </div>
     </div>
@@ -213,7 +214,7 @@
 
 <script type="text/templates" id="comment-popover">
    <div class='tabbable tabs-below'><ul class='nav nav-tabs'><li class='active'>
-   <a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul>
+   <a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul><a class="close"  href="#">&times;</a>
    <div class='tab-content'>
    <div class='tab-pane active' id='A'>
     <ul>
@@ -224,7 +225,9 @@
    <a href='#'> <%= result.positive_title[i] %></a>
    </div>
    <div class='yourcomment'><%= result.positive[i] %></div>
-   <% } }%></li>
+   <% } }else {%>
+                     <div class='jobname'>Congrats! You don't have any terrible ratings!</a></div>       
+                     <% } %>  </li>
             </ul>
             </div>
             <div class='tab-pane tariblecontent' id='B'>
@@ -234,8 +237,10 @@
                <li><div class='jobname'><a href='#'><%= result.negative_title[i] %></a></div>
             <div class='yourcomment'> <%= result.negative[i] %> </div></li>
             <% }
-                }
-                 %></ul>
+                }else {%>
+                     <div class='jobname'>Congrats! You don't have any terrible ratings!</a></div>       
+                     <% } %>       
+                 </ul>
             </div></div></div>
 
 

@@ -51,6 +51,11 @@ require 'templates/_jobs.php';
                     }
                 }
             });
+            
+            $(".close").live("click",function(){
+            
+            $("#example_right").popover('hide');
+            });
 
         });
 
