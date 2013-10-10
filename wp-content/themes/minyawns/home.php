@@ -113,6 +113,47 @@ Businesses and Individual Professionals can post tasks and immediately receive a
                 </div>
             </div>
             
+			<div class="minyawns-satisfication">
+					<div class="container">
+						<div class="row-fluid">
+							<div class="span2"><img src="<?php echo get_template_directory_uri();?>/images/satisfication.png" class="satisfication"/></div>
+							<div class="span10"><h4>We are so sure that our Minyawns will be the best decision you have ever made. If you are not satisfied for any reason at all we will fully refund every cent you spent, no questions asked.</h4></div>
+						</div>
+					</div>
+			
+			</div>
+			<div class="container">
+						<div class="row-fluid">
+							<ul class="thumbnails thumbnails-satisfication">
+							  <li class="span3">
+								<div class="thumbnail">
+								<img src="<?php echo get_template_directory_uri();?>/images/labour.png"/>
+								<br>
+								<p>Whether it's a simple yard work job, or need extra help moving. We got you covered!</p>
+								</div>
+							  </li>
+							   <li class="span3">
+							   <div class="thumbnail">
+							  <img src="<?php echo get_template_directory_uri();?>/images/techcomputer.png"/>
+								<br><p>We have elite programmers who can do anything from build your website, manage your twitter accounts, and even advanced SEO.</p>
+								</div>
+							  </li>
+							   <li class="span3">
+							   <div class="thumbnail">
+							   <img src="<?php echo get_template_directory_uri();?>/images/event.png"/>
+								<br><p>Planning a wedding, birthday party, or corporate event? Our clean shaven, presentable yet young and friendly minyawns make the perfect assistant no matter what the</p>
+								</div>
+							  </li>
+							   <li class="span3">
+							   <div class="thumbnail">
+							   <img src="<?php echo get_template_directory_uri();?>/images/officework.png"/>
+								<br><p>Home office or small business, our computer savvy and fast fingered University students can write reports, copy, file, and anything else you can imagine!</p>
+								</div>
+							  </li>
+							 
+							</ul>
+						</div>
+					</div>
 
 <div id="myModal" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
   <div class="modal-header">

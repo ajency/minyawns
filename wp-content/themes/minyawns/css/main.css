@@ -25,12 +25,12 @@ a:hover {
   display: none!important;
 }
 body .jobs_table .header-title .profile-job {
-  border-right: 0px;
-  width: 24.1% ;
+  border-right: 1px solid #CCC;
+  width: 16.1% ;
 }
 body .jobs_table .data-title .profile-job {
-  border-right: 0px;
-  width: 24.1% ;
+  border-right: 1px;
+  width: 16.1% ;
 }
 .bootstrap-timepicker-widget {
   z-index: 9999 !important;
@@ -1587,8 +1587,20 @@ body .jobs_table .data-title .profile-job {
 }
 @media (max-width: 767px) {
   {
+    /* Job Time*/
+  
     /* safari hack*/
   
+  }
+  .jobs_table .accordion-inner {
+    padding: 9px 15px 31px !important;
+  }
+  .single-job-1 .data-title {
+    width: auto !important;
+  }
+  #edit-job-form {
+    width: 80% !important;
+    margin-left: 45px !important;
   }
   body {
     padding-right: 0px;
@@ -1650,7 +1662,7 @@ body .jobs_table .data-title .profile-job {
   }
   body .div-box-block {
     position: relative !important;
-    margin: 10px auto!important;
+    margin: 20px auto!important;
     height: auto!important;
     width: 100%!important;
   }
@@ -1683,7 +1695,7 @@ body .jobs_table .data-title .profile-job {
     margin-bottom: 28px;
   }
   body .list-jobs .expand .minyawansgrid .minyawns-job {
-    padding: 1px 0;
+    padding: 11px 0;
   }
   body .list-jobs .expand .minyawansgrid .span4 .minyawns-details {
     height: auto;
@@ -1700,9 +1712,21 @@ body .jobs_table .data-title .profile-job {
   }
   .list-jobs .minyawansgrid .span4 {
     margin-bottom: 10px!important;
-    height: 70px!important;
+    height: 100%!important;
     margin-left: 0px !important;
     width: 95%;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-details b {
+    width: 50%!important;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-details #vote-up {
+    font-size: 11px;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-details #vote-down {
+    font-size: 11px;
+  }
+  .list-jobs .minyawansgrid .span4 .minyawns-job span {
+    font-size: 11px;
   }
   .list-jobs .div-box {
     position: relative !important;
@@ -1797,6 +1821,7 @@ body .jobs_table .data-title .profile-job {
   }
   .single-jobs .minyawns-grid .thumbnails {
     margin-left: 0px;
+    margin-top: 75px;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 {
     margin-right: 16px;
@@ -1804,6 +1829,7 @@ body .jobs_table .data-title .profile-job {
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail {
     height: auto;
+    min-height: 100%;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .caption .minyawns-img {
     width: 60px;
@@ -1811,6 +1837,7 @@ body .jobs_table .data-title .profile-job {
     float: left;
     margin-right: 11px;
     border: 2px solid #CCC;
+    margin-bottom: 3%;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .caption .minyawns-img img {
     width: 60px;
@@ -1851,6 +1878,7 @@ body .jobs_table .data-title .profile-job {
     text-align: left;
     font-size: 12px;
     margin-bottom: 10px;
+    color: #21A5CF;
   }
   .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .label-small {
     padding: 3px;
@@ -1898,6 +1926,10 @@ body .jobs_table .data-title .profile-job {
     padding: 5px!important;
     line-height: 24px;
   }
+  .label,
+  .badge {
+    margin-top: 4px;
+  }
   .employer-image2 {
     margin: auto !important;
   }
@@ -1924,19 +1956,18 @@ body .jobs_table .data-title .profile-job {
     width: 14%;
   }
   .jobs_table .header-title .job-date {
-    width: 18%;
+    width: 16%;
   }
   .jobs_table .header-title .job-time {
     width: 22%;
   }
   .jobs_table .header-title .job-wage {
-    width: 12%;
-    border-right: 0px;
+    width: 16.5%;
   }
   .jobs_table .job-logo {
     display: none;
   }
-  .jobs_table .job-wage {
+  .jobs_table .job-progress {
     display: none;
   }
   .jobs_table .job-progress span {
@@ -1960,7 +1991,7 @@ body .jobs_table .data-title .profile-job {
     width: 14%;
   }
   .jobs_table .data-title .job-date {
-    width: 18%;
+    width: 16%;
     padding: 10px 8px 0 13px!important;
   }
   .jobs_table .data-title .job-date span {
@@ -1983,7 +2014,7 @@ body .jobs_table .data-title .profile-job {
     padding: 9px 9px 0 13px !important;
   }
   .jobs_table .data-title .job-time span {
-    font-size: 11px !important;
+    font-size: 12px !important;
     float: left!important;
     margin-right: 5px!important;
     margin-top: 2px!important;
@@ -1996,10 +2027,9 @@ body .jobs_table .data-title .profile-job {
     display: none;
   }
   .jobs_table .data-title .job-wage {
-    width: 12%;
+    width: 17%;
     float: left;
     height: 53px;
-    border-right: 0px;
   }
   .jobs_table .data-title .job-wage ins {
     font-size: 13px;

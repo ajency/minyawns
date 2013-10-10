@@ -77,6 +77,41 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 .popover.bottom {
 	margin-top: 30px !important;
 }
+.expand .popover.bottom
+{
+	margin-top: 12px !important;
+}
+
+.expand .popover-content
+{
+	background:#E0E1D8;
+	padding: 10px 8px;
+	border-radius: 6px;
+}
+
+.expand .popover-content textarea {
+height: auto;
+width: 90% !important;
+margin-bottom:0
+}
+
+.expand .popover-content .maxchar
+{
+	color: #AEACAC;
+font-size: 11px;
+text-align: right;
+}
+
+.expand .head
+{
+	color:#606060;
+	font-size:11px;
+}
+
+.expand .popover.bottom  .arrow
+{
+	border-bottom-color:#E0E1D8;
+}
 .popover.bottom .arrow {
 	top: -10px;
 	left: 50%;
@@ -307,6 +342,7 @@ border-top: 1px solid #DAD7D7;
     right: 0px; 
 }
 
+<<<<<<< .merge_file_a05616
 .expand .popover.bottom
 {
 margin-top: 12px !important;
@@ -349,13 +385,19 @@ margin-left: -10px;
 border-bottom-color: #FFF;
 border-width: 0 10px 10px;
 }
+=======
+>>>>>>> .merge_file_a09188
 .list-jobs .expand .minyawansgrid .span6 b {
 width: 142px !important;
 display: inline-block;
 }
 .minyawansgrid .popover
 {
+<<<<<<< .merge_file_a05616
 width: 450px !important;
+=======
+	width: 450px !important;
+>>>>>>> .merge_file_a09188
 min-width: 450px;
 max-height: 500px;
 overflow-y: auto;
@@ -363,11 +405,19 @@ overflow-y: auto;
 
 .minyawansgrid .popover .tab-content
 {
+<<<<<<< .merge_file_a05616
 min-height:186px;
 padding:12px;
 background: #F7F6F6;
 border: 0;
 
+=======
+	min-height:186px;
+	padding:12px;
+	background: #F7F6F6;
+	border: 0;
+	
+>>>>>>> .merge_file_a09188
 }
 
 .minyawansgrid .popover .tab-content input
@@ -388,24 +438,83 @@ margin-bottom: 4px;
 }
 .minyawansgrid .popover.right .arrow
 {
+<<<<<<< .merge_file_a05616
 border-right-color: #F7F6F6;
 }
 .minyawansgrid .popover .tab-content ul li .yourcomment
 {
 font-size: 13px;
+=======
+	border-right-color: #F7F6F6;
+}
+.minyawansgrid .popover .tab-content ul li .yourcomment
+{
+	font-size: 13px;
+>>>>>>> .merge_file_a09188
 color: #676965;
 font-style:italic;
 }
 .minyawansgrid .popover .tab-content ul li .submited
 {
+<<<<<<< .merge_file_a05616
 font-size: 11px;
 color:#ABA8A8;
 font-style:italic;
+=======
+	font-size: 11px;
+	color:#ABA8A8;
+	font-style:italic;
+>>>>>>> .merge_file_a09188
 }
 
 .minyawansgrid .popover .tab-content ul li .jobname a
 {
+<<<<<<< .merge_file_a05616
 font-size:15px;
+=======
+	font-size:15px;
+}
+
+.minyawansgrid .popover .tab-content .tariblecontent ul li .jobname a
+{
+	color:#E74C3C;
+}
+
+.minyawansgrid .popover .tab-content ul li .jobname a
+{
+	color:#79B91E;
+}
+
+.minyawansgrid .popover-content
+{
+	background:#F7F6F6;
+}
+
+.minyawansgrid .popover-content .tabs-below > .nav-tabs {
+border-top: 0px solid #ddd;
+margin:0;
+}
+.minyawansgrid .popover-content .tabs-below > .nav-tabs li a:hover {
+border-top: 0px solid #ddd;
+border-bottom:2px solid #8CCE36;
+color: #ffffff;
+background: #8CCE36;
+}
+
+.minyawansgrid .popover-content .tabs-below > .nav-tabs li a
+{
+	color:#8CCE36;
+}
+.minyawansgrid .popover-content .tabs-below > .nav-tabs li.teriblecomments a
+{
+	color:#e74c3c;
+}
+.minyawansgrid .popover-content .tabs-below > .nav-tabs li.teriblecomments a:hover {
+border-top: 0px solid #ddd;
+border-bottom:2px solid #e74c3c;
+color: #ffffff;
+background: #e74c3c;
+>>>>>>> .merge_file_a09188
 }
 
 .minyawansgrid .popover .tab-content .tariblecontent ul li .jobname a
@@ -496,3 +605,48 @@ overflow-y: auto;
 }
 }
 
+.minyawansgrid .popover-content .tabs-below > .nav-tabs > .active > a, .tabs-below > .nav-tabs > .active > a:hover, .tabs-below > .nav-tabs > .active > a:focus {
+border-color: transparent #ddd #ddd #ddd;
+border-width: 0px;
+background: none;
+border-bottom:2px solid #8CCE36;
+background: #8CCE36;
+color: #ffffff;
+}
+
+.minyawansgrid .popover-content .tabs-below > .nav-tabs > .teriblecomments.active > a, .tabs-below > .nav-tabs > .teriblecomments.active > a:hover, .tabs-below > .nav-tabs > .teriblecomments.active > a:focus {
+border-color: transparent #ddd #ddd #ddd;
+border-width: 0px;
+background: none;
+border-bottom:2px solid #e74c3c;
+color: #ffffff;
+background: #e74c3c;
+} 
+
+.commentsclick
+{
+	background: url(../images/comments.png) no-repeat;
+height: 26px;
+display: inline-block;
+width: 31px;
+margin-bottom: -10px;
+}
+
+@media (max-width:480px)
+{
+.list-jobs .expand .minyawansgrid .span6 {
+margin-left: 0px;
+position: relative;
+}
+	.minyawansgrid .popover
+	{
+		top: 39px !important;
+left: 0px!important;
+display: block!important;
+position: absolute!important;
+width: 92% !important;
+min-width: 92%;
+max-height: 300px;
+overflow-y: auto;
+	}
+}

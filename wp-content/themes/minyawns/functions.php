@@ -24,9 +24,9 @@ require_once 'libs/User-api.php';
 
 require_once 'libs/Job-api.php';
 
-//require_once 'cron_functions.php';
+ require_once 'cron_functions.php';
 
-//require_once 'templates/email_template.php';
+ require_once 'templates/email_template.php';
 
 
 //remove admin bar from front end
@@ -274,7 +274,10 @@ add_action('init', 'minyawns_initial_checks');
 
 
 //add_action('init', 'user_incomplete_profile_reminder');
-
+//add_action('init', 'users_notactivated_reminder');
+//add_action('init', 'users_no_activity_reminder');
+//add_action('init', 'employer_jobcompletion_reminder');
+//add_action('init', 'daily_cron');
 //Allow only active users to login in 
 
 function authenticate_active_user($user, $password) {
@@ -905,3 +908,16 @@ function get_object_id($user_id,$job_id='')
 }
 add_action('payment_complete_cron_job', 'cron_paypal_payment_complete');
 */
+
+
+add_filter('cron_schedules', 'filter_schedules',2,0);
+function filter_schedules()
+{
+	$users_notactivated_reminder = array(
+											'WP_CRON_CONTROL_TIME_1'=>array( 'interval'=>WP_CRON_CONTROL_TIME_1,
+																				  'display'=>'WP_CRON_CONTROL_TIME_1'),
+											'WP_CRON_CONTROL_TIME_2'	=>array(  'interval'=>WP_CRON_CONTROL_TIME_2,
+																				  'display'=>'WP_CRON_CONTROL_TIME_2')
+										);
+  return($users_notactivated_reminder)	;
+}
