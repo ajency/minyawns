@@ -7,6 +7,10 @@
 .page_bg .bottom-menu {
 	padding: 13px 0;
 }	
+.user-action  a{
+		color: #E6FDB4!important;
+		margin-right:15px;
+	}
 ul { margin:0px; padding:0px; margin-left:20px; }
 #list1, #list2 { list-style-type:none; margin:0px; }
 #list1 li, #list2 li { float:left; padding:5px; width:28%; height:144px;}
@@ -47,6 +51,8 @@ float: right;
 	margin-top: -5px;
 	
 }
+
+
 .caret {
 	display: inline-block;
 	width: 0;
@@ -239,9 +245,8 @@ float: right;
 	font-size: 24px;
 	margin-top: 11px;
 	margin-top: 3px;
-	float: left;
 	color: #E3E6E5!important;
-	margin-right: 10px;
+
 }
 .help_icon:hover{
 	color: #79B91E!important;

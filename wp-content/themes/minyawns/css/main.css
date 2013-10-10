@@ -1064,6 +1064,12 @@ body .jobs_table .data-title .profile-job {
 }
 /* mobile resonsive */
 @media (max-width: 767px) {
+  .accordion-group .accordion-heading .job-action {
+    background: url(../images/down.png) no-repeat right 39px !important;
+  }
+  .accordion-group .accordion-heading a.open .job-action {
+    background: url(../images/up.png) no-repeat right 39px !important;
+  }
   .fb-mobile {
     display: block!important;
   }
@@ -1244,13 +1250,22 @@ body .jobs_table .data-title .profile-job {
     display: block;
   }
   .container .notify {
-    width: 22%;
+    width: 100%;
     margin: auto;
   }
   .container .notify #logged-in {
-    float: left;
+    float: none;
     margin-right: 5px;
     margin-bottom: 10px;
+    width: 53%;
+    border: 0px;
+    margin: auto;
+  }
+  .container .user-action {
+    padding-left: 21%;
+    padding-bottom: 13px;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.54);
   }
   .container .profile-list .span2 {
     font-weight: bold;
