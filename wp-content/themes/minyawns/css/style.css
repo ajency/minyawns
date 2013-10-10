@@ -559,6 +559,7 @@ width: 450px !important;
 min-width: 450px;
 max-height: 500px;
 overflow-y: auto;
+left: 610.453125px !important;
 }
 
 #profile-view .popover .tab-content
@@ -626,16 +627,21 @@ background:#F7F6F6;
 
 #profile-view .popover-content .tabs-below > .nav-tabs {
 border-top: 0px solid #ddd;
+border-bottom: 2px solid #ddd !important;
 margin:0;
+padding-left: 10px;
 }
 #profile-view .popover-content .tabs-below > .nav-tabs li a:hover {
 border-top: 0px solid #ddd;
-border-bottom:2px solid #8CCE36;
+border-bottom:2px solid #DDD;
 color: #ffffff;
 background: #8CCE36;
 border-radius: 4px;
 }
-
+#profile-view .popover-content .tabs-below > .nav-tabs > li {
+margin-top: 5px;
+margin-bottom: -2px !important;
+}
 #profile-view .popover-content .tabs-below > .nav-tabs li a
 {
 color:#8CCE36;
@@ -646,7 +652,7 @@ color:#e74c3c;
 }
 #profile-view .popover-content .tabs-below > .nav-tabs li.teriblecomments a:hover {
 border-top: 0px solid #ddd;
-border-bottom:2px solid #e74c3c;
+border-bottom:2px solid #DDD;
 color: #ffffff;
 background: #e74c3c;
 border-radius: 4px;
@@ -654,23 +660,23 @@ border-radius: 4px;
 
 
 #profile-view .popover-content .tabs-below > .nav-tabs > .active > a, .tabs-below > .nav-tabs > .active > a:hover, .tabs-below > .nav-tabs > .active > a:focus {
-border-color: transparent #ddd #ddd #ddd;
-border-width: 0px;
+border-top: 2px solid #DDD;
+color: #8CCE36;
 background: none;
-border-bottom:2px solid #8CCE36;
-background: #8CCE36;
-color: #ffffff;
 border-radius: 4px;
+border-bottom: 2px solid #F7F6F6;
+border-width: 2px;
 }
 
 #profile-view .popover-content .tabs-below > .nav-tabs > .teriblecomments.active > a, .tabs-below > .nav-tabs > .teriblecomments.active > a:hover, .tabs-below > .nav-tabs > .teriblecomments.active > a:focus {
 border-color: transparent #ddd #ddd #ddd;
-border-width: 0px;
-background: none;
-border-bottom:2px solid #e74c3c;
-color: #ffffff;
-background: #e74c3c;
+color: #E74C3C;
 border-radius: 4px;
+background: none;
+border-radius: 4px;
+border-bottom: 2px solid #F7F6F6;
+border-width: 2px;
+border-top: 2px solid #DDD;
 }
 
 .commentsclick

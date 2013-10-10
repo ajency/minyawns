@@ -668,7 +668,9 @@ $app->get('/getcomments/', function() use ($app) {
                     $defaults = array(
                         'post_id' => $objid->id,
                     );
+
                     $comments = get_comments($defaults);
+
                     $negative[] = isset($comments[0]->comment_content) > 0 ? $comments[0]->comment_content : '';
                     $negative_jobs[] = isset($objid->post_title) > 0 ? $objid->post_title : '';
                 } else if ($objid->rating > 0) {
