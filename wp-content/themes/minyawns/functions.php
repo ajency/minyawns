@@ -888,7 +888,7 @@ function get_object_id($user_id,$job_id='')
                               ".$user_job_where."");
 
                  
-            $object_id = $wpdb->get_results($sql);
+            $object_id = $wpdb->get_row($sql);
 
     return $object_id;
     

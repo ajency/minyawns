@@ -603,11 +603,14 @@ $app->get('/jobminions/', function() use ($app) {
 //                if ($fb_uid !== false)
 //                    $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
 
-                    $object_id = get_object_id($_GET['minion_id'], $_GET['job_id']);
+                    $object_id = get_object_id($minion_ids[$i], $_GET['job_id']);
+//                    print_r($object_id);exit();
                     foreach ($object_id as $object_post_id) {
-                        $defaults = array(
-                            'post_id' => $object_post_id->id,
+                    
+                    $defaults = array(
+                            'post_id' => $object_id->id,
                         );
+                       
                     }
                     $all_comment = get_comments($defaults);
                     $comment = $all_comment[0]->comment_content;
