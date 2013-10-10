@@ -139,7 +139,7 @@ echo "current_time( 'timestamp', 1 ) returns GMT: " . date( 'Y-m-d H:i:s', curre
 											AND c.user_registered > DATE_SUB(%s, INTERVAL %d SECOND )
 											AND c.user_registered < DATE_SUB(%s, INTERVAL %d SECOND )
 											",$now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1), $now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1));
-	 echo "<br/><br/><span style='font-size:2'> no user activity".$qr_no_activity_users."</span>";
+	// echo "<br/><br/><span style='font-size:2'> no user activity".$qr_no_activity_users."</span>";
 	$no_activity_users = $wpdb->get_results($qr_no_activity_users);
 	
 	foreach($no_activity_users as $no_activity_user)
