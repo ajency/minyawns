@@ -12,7 +12,8 @@ function employer_jobcompletion_reminder() {
 
     		global $wpdb;
     		//$now_time = date("Y-m-d H:i:s");
-    		$now_time = gmdate("Y-m-d H:i:s", current_time('timestamp'));  
+    		//$now_time = gmdate("Y-m-d H:i:s", current_time('timestamp'));
+    		$now_time = date( 'Y-m-d H:i:s', current_time( 'timestamp', 1 ));
    			
     	 	$job_completion_sql = $wpdb->prepare("SELECT distinct(a.ID) as post_id , a.post_title as post_title,
     				d.user_email, d.display_name, d.ID as employer_id
@@ -59,7 +60,9 @@ function users_notactivated_reminder()
 {
 	global $wpdb;	
 	//$now_time = date("Y-m-d H:i:s");
-	$now_time = gmdate("Y-m-d H:i:s", current_time('timestamp'));	
+	//$now_time = gmdate("Y-m-d H:i:s", current_time('timestamp'));	
+	$now_time = date( 'Y-m-d H:i:s', current_time( 'timestamp', 1 ));
+	
 	$qr_user_not_logged = $wpdb->prepare("SELECT *
 											FROM {$wpdb->prefix}users
 											WHERE user_status = 2
@@ -110,8 +113,8 @@ function users_no_activity_reminder()
 {
 	global $wpdb;
 	//$now_time = date("Y-m-d H:i:s");
-	$now_time = gmdate("Y-m-d H:i:s", current_time('timestamp'));
-	
+	//$now_time = gmdate("Y-m-d H:i:s", current_time('timestamp'));
+	$now_time = date( 'Y-m-d H:i:s', current_time( 'timestamp', 1 ));
 	
 	/*echo "current_time( 'mysql' ) returns local site time: " . current_time( 'mysql' ) . '<br />';
 echo "current_time( 'mysql', 1 ) returns GMT: " . current_time( 'mysql', 1 ) . '<br />';
@@ -180,8 +183,8 @@ function user_incomplete_profile_reminder() {
 
     global $wpdb;
     //$now_time = date("Y-m-d H:i:s");
-    $now_time = gmdate("Y-m-d H:i:s", current_time('timestamp'));
-    
+   // $now_time = gmdate("Y-m-d H:i:s", current_time('timestamp'));
+    $now_time = date( 'Y-m-d H:i:s', current_time( 'timestamp', 1 ));
     
     
     
