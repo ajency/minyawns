@@ -6,7 +6,8 @@ Template Name: Home Page
  */
 get_header(); 
 
-
+echo get_option('gmt_offset');
+echo get_option('timezone_string');
 ?>
 <div id="innermainimage">
             <div class="row-fluid banner-content">
