@@ -17,7 +17,7 @@ require 'templates/_jobs.php';
     /* ROUNDED TWO */
     .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn {
         position: absolute;
-        bottom: 0px;
+        bottom: 8%;
         width: 89%;
     }
 

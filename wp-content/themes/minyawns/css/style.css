@@ -638,6 +638,11 @@ color: #ffffff;
 background: #8CCE36;
 border-radius: 4px;
 }
+
+#profile-view .popover-content .close
+{position: relative;
+margin-top: -33px;
+}
 #profile-view .popover-content .tabs-below > .nav-tabs > li {
 margin-top: 5px;
 margin-bottom: -2px !important;
