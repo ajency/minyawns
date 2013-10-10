@@ -66,7 +66,7 @@ require 'templates/_jobs.php';
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <?php if (is_user_logged_in() == TRUE)  ?>
-        <h4 id="myModalLabel">Change Avatar</h4>
+        <h4 id="myModalLabel">Change Profile Pic</h4>
 
     </div>
     <input type="hidden" id="tab_identifier" />
@@ -136,7 +136,7 @@ require 'templates/_jobs.php';
                            
                         </a>
 						</div>
-						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">Change Avatar</a>
+						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">Change Profile Pic</a>
                         <input id="change-avatar" type="file" name="files" style="visibility:hidden">
                     </div>
                     <div class="span8">
