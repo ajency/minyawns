@@ -150,11 +150,15 @@ require 'templates/_jobs.php';
                                 user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
+
+								
+
 							<?php
                                                       
                                                          if(is_user_verified()=== 'Y'){ ?>	
                                                         <span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
-                                                         <?php }?>
+                                                         <?php }?><i class="icon-question-sign verfied-help"  id="example"></i> 
+
 								</h4> 
                         <div class="row-fluid profile-list">
                             <?php if (get_user_role() === 'minyawn'): ?>
@@ -220,7 +224,7 @@ require 'templates/_jobs.php';
 
                     </div>
                     <?php if (get_user_role() === 'minyawn'): ?>
-                        <div class="span2">
+                        <div class="span2" id="profile-view1">
                             <br>
                             <div class="like_btn"><br><br>
                                 <a href="#fakelink" style="float:left;" >
