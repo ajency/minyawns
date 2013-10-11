@@ -154,8 +154,8 @@ require 'templates/_jobs.php';
 								
 
 							<?php
-                                                        print_r(is_user_verified());exit();
-                                                         if(is_user_verified()!= 0){ ?>	
+                                                      
+                                                         if(is_user_verified()=== 'Y'){ ?>	
                                                         <span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
                                                          <?php }?><i class="icon-question-sign verfied-help"  id="example"></i> 
 
