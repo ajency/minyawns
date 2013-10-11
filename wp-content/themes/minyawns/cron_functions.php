@@ -244,6 +244,33 @@ function user_incomplete_profile_reminder() {
 									    		WHERE um1.meta_key = 'my_capabilities'
 									    		AND um1.meta_value LIKE '%minyawn%'
 									    		AND um2.meta_key IS NULL
+									    		AND u1.user_registered > DATE_SUB('".$now_time."', INTERVAL ".(3*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		AND u1.user_registered < DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    )
+									    UNION (
+									    
+									    SELECT *
+									    FROM {$wpdb->prefix}users u1
+									    INNER JOIN {$wpdb->prefix}usermeta um1 ON u1.ID = um1.user_id
+									    LEFT OUTER JOIN {$wpdb->prefix}usermeta um2 ON u1.ID = um2.user_id
+									    		AND um2.meta_key = 'location'
+									    		WHERE um1.meta_key = 'my_capabilities'
+									    		AND um1.meta_value LIKE '%employer%'
+									    		AND um2.meta_key IS NULL
+									    		AND u1.user_registered > DATE_SUB('".$now_time."', INTERVAL ".(3*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		AND u1.user_registered < DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		)");
+    
+    /* echo " <br/> <br/> incomplete profile ";
+     
+     echo "(SELECT *
+									    		FROM {$wpdb->prefix}users u1
+									    		INNER JOIN {$wpdb->prefix}usermeta um1 ON u1.ID = um1.user_id
+									    		LEFT OUTER JOIN {$wpdb->prefix}usermeta um2 ON u1.ID = um2.user_id
+									    		AND um2.meta_key = 'college'
+									    		WHERE um1.meta_key = 'my_capabilities'
+									    		AND um1.meta_value LIKE '%minyawn%'
+									    		AND um2.meta_key IS NULL
 									    		AND u1.user_registered > DATE_SUB('".$now_time."', INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
 									    		AND u1.user_registered < DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
 									    )
@@ -259,12 +286,8 @@ function user_incomplete_profile_reminder() {
 									    		AND um2.meta_key IS NULL
 									    		AND u1.user_registered > DATE_SUB('".$now_time."', INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
 									    		AND u1.user_registered < DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
-									    		)");
-    
-     echo " <br/> <br/> incomplete profile ";
-     
-     
-     
+									    		)";
+     */
     /* generate usernames and emailds */
     
      
