@@ -109,7 +109,7 @@ require 'templates/_jobs.php';
                 <a href="<?php echo site_url() ?>/jobs/" class="view loaded">My Jobs</a>
                 <a href="#" class="view loaded edit-user-profile">Profile</a>
                
-                <a href="#" class="view loaded edit-user-profile"><?php if(get_user_id()== get_current_user_id()) echo "MY"; else echo user_profile_first_name(); ?></a>
+                <a href="#" class="view loaded edit-user-profile"><?php if(get_user_id()== get_current_user_id()) echo "MY"; else if(strlen(user_profile_company_name())>0) echo user_profile_company_name(); else echo user_profile_first_name(); ?></a>
             </p>
         </div>
         <div class="row-fluid profile-wrapper">
