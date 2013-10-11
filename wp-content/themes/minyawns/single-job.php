@@ -152,7 +152,7 @@ require 'templates/_jobs.php';
 			  </div>
   <div class="modal-footer">
    <div class="action-btn">
-    <button class="btn btn-danger" id="delete_job">Yes </button>
+    <button class="btn btn-danger" id="delete_job" job-id="<?php echo get_the_ID() ?>">Yes </button>
 	 <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
 	 </div>
   </div>
