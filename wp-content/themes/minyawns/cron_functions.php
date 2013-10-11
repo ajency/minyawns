@@ -138,7 +138,7 @@ echo "current_time( 'mysql', 1 ) returns GMT: " . current_time( 'mysql', 1 ) . '
 echo "current_time( 'timestamp' ) returns local site time: " . date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) );
 echo "current_time( 'timestamp', 1 ) returns GMT: " . date( 'Y-m-d H:i:s', current_time( 'timestamp', 1 ) );*/
 	
-	$qr_no_activity_users = $wpdb->prepare("SELECT a.*
+	/*$qr_no_activity_users = $wpdb->prepare("SELECT a.*
 											FROM {$wpdb->prefix}users a
 											NATURAL LEFT JOIN  {$wpdb->prefix}userjobs b
 											WHERE b.user_id is null
@@ -156,7 +156,37 @@ echo "current_time( 'timestamp', 1 ) returns GMT: " . date( 'Y-m-d H:i:s', curre
 											AND c.user_registered > DATE_SUB(%s, INTERVAL %d SECOND )
 											AND c.user_registered < DATE_SUB(%s, INTERVAL %d SECOND )
 											",$now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1), $now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1));
-	// echo "<br/><br/><span style='font-size:2'> no user activity".$qr_no_activity_users."</span>";
+	*/
+	
+	
+	$qr_no_activity_users = $wpdb->prepare("(SELECT a.* FROM {$wpdb->prefix}users a LEFT JOIN  {$wpdb->prefix}userjobs b on a.id = b.user_id 
+												INNER JOIN {$wpdb->prefix}usermeta h on h.user_id = a.ID		
+												WHERE b.user_id is null
+												AND  h.meta_key = %s
+												AND h.meta_value LIKE %s
+												AND a.user_status = 0
+												AND a.user_registered > DATE_SUB(%s, INTERVAL %d SECOND )
+												AND a.user_registered < DATE_SUB(%s, INTERVAL %d SECOND )
+																			
+											)
+			
+											UNION
+																			
+											(SELECT c.* FROM {$wpdb->prefix}users c  LEFT JOIN {$wpdb->prefix}posts d on c.ID = d.post_author
+												INNER JOIN {$wpdb->prefix}usermeta j on j.user_id = c.ID
+												WHERE (d.post_author is null or d.post_type!='job')
+												AND  j.meta_key = %s
+												AND j.meta_value LIKE %s
+												AND c.user_status = 0
+												AND c.user_registered > DATE_SUB(%s, INTERVAL %d SECOND )
+												AND c.user_registered < DATE_SUB(%s, INTERVAL %d SECOND )
+											)
+											",'my_capabilities','%minyawn%',$now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1),'my_capabilities','%employer%', $now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1)
+										);
+	
+	
+	
+	//echo "<br/><br/><span style='font-size:12'> no user activity".$qr_no_activity_users."</span>";
 	$no_activity_users = $wpdb->get_results($qr_no_activity_users);
 	
 	foreach($no_activity_users as $no_activity_user)
@@ -231,9 +261,32 @@ function user_incomplete_profile_reminder() {
 									    		AND u1.user_registered < DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
 									    		)");
     
-     //echo " <br/> <br/> incomplete profile ";
+     echo " <br/> <br/> incomplete profile ";
      
-      
+     echo "<span class='fonct-size:8px' >(SELECT *
+									    		FROM {$wpdb->prefix}users u1
+									    		INNER JOIN {$wpdb->prefix}usermeta um1 ON u1.ID = um1.user_id
+									    		LEFT OUTER JOIN {$wpdb->prefix}usermeta um2 ON u1.ID = um2.user_id
+									    		AND um2.meta_key = 'college'
+									    		WHERE um1.meta_key = 'my_capabilities'
+									    		AND um1.meta_value LIKE '%minyawn%'
+									    		AND um2.meta_key IS NULL
+									    		AND u1.user_registered > DATE_SUB('".$now_time."', INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		AND u1.user_registered < DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    )
+									    UNION (
+									    
+									    SELECT *
+									    FROM {$wpdb->prefix}users u1
+									    INNER JOIN {$wpdb->prefix}usermeta um1 ON u1.ID = um1.user_id
+									    LEFT OUTER JOIN {$wpdb->prefix}usermeta um2 ON u1.ID = um2.user_id
+									    		AND um2.meta_key = 'location'
+									    		WHERE um1.meta_key = 'my_capabilities'
+									    		AND um1.meta_value LIKE '%employer%'
+									    		AND um2.meta_key IS NULL
+									    		AND u1.user_registered > DATE_SUB('".$now_time."', INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		AND u1.user_registered < DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		) </span>"; 
      
      
     /* generate usernames and emailds */
