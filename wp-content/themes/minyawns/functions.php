@@ -24,9 +24,9 @@ require_once 'libs/User-api.php';
 
 require_once 'libs/Job-api.php';
 
- require_once 'cron_functions.php';
+require_once 'cron_functions.php';
 
- require_once 'templates/email_template.php';
+require_once 'templates/email_template.php';
 
 
 //remove admin bar from front end
@@ -76,7 +76,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_style('imgareaselect-animated', get_template_directory_uri() . '/css/imgareaselect-animated.css', array(), null);
             wp_enqueue_style('imgareaselect-default', get_template_directory_uri() . '/css/imgareaselect-default.css', array(), null);
             wp_enqueue_style('imgareaselect-deprecated', get_template_directory_uri() . '/css/imgareaselect-deprecated.css', array(), null);
-			 wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
+            wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
 //            wp_enqueue_style('bootstrap-lightbox', get_template_directory_uri() . '/css/bootstrap-lightbox.min.css', array(), null);
 
             wp_enqueue_style('calendar', get_template_directory_uri() . '/css/calendar.css', array(), null);
@@ -100,7 +100,7 @@ function minyawns_scripts_styles() {
 
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery', 'jquery-ui'), null);
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
-            
+
 
 
 //            wp_enqueue_script('bootstrap-lightbox', get_template_directory_uri() . '/js/bootstrap-lightbox.min.js', array('jquery'), null);
@@ -108,7 +108,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() . '/js/bootstrap-timepicker.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
-            
+
             wp_enqueue_script('flatui-checkbox', get_template_directory_uri() . '/js/flatui-checkbox.js', array('jquery'), null);
             wp_enqueue_script('flatui-radio', get_template_directory_uri() . '/js/flatui-radio.js', array('jquery'), null);
             wp_enqueue_script('jquery.tagsinput', get_template_directory_uri() . '/js/jquery.tagsinput.js', array('jquery'), null);
@@ -119,7 +119,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
             wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery', 'minyawns-js'), null);
-             
+
             // wp_dequeue_script('jquery');
             if (is_page('jobs') || is_page('jobs-2')) {
 
@@ -127,10 +127,9 @@ function minyawns_scripts_styles() {
 
                 wp_enqueue_script('wdCalendar_lang_US', get_template_directory_uri() . '/src/wdCalendar_lang_US.js', array('jquery-cal'), null);
                 wp_enqueue_script('jquery.calendar', get_template_directory_uri() . '/src/jquery.calendar.js', array('jquery-cal'), null);
-               
-              //  wp_enqueue_script('calendar', get_template_directory_uri() . '/js/calendar.js', array('jquery-cal'), null);
-                 wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery-cal'), null);
-                
+
+                //  wp_enqueue_script('calendar', get_template_directory_uri() . '/js/calendar.js', array('jquery-cal'), null);
+                wp_enqueue_script('scroller', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery-cal'), null);
             }
 
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
@@ -145,7 +144,7 @@ function popup_userlogin() {
     $pd_email = trim($_POST['pdemail']);
     $pd_pass = trim($_POST['pdpass']);
 
-  //  $user_ = get_user_by('email', $pd_email);
+    //  $user_ = get_user_by('email', $pd_email);
     $user = wp_authenticate($pd_email, $pd_pass);
 
     if (is_wp_error($user)) {
@@ -246,7 +245,7 @@ function popup_usersignup() {
             wp_mail($userdata_['user_email'], $subject, email_header() . $message . email_signature(), $headers);
 
             wp_new_user_notification($user_id, $userdata_['user_pass']);
-           
+
             $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
             wp_send_json($response);
         }
@@ -271,6 +270,7 @@ function minyawns_initial_checks() {
 }
 
 add_action('init', 'minyawns_initial_checks');
+
 
 
 add_action('init', 'user_incomplete_profile_reminder');
@@ -852,62 +852,52 @@ function update_paypal_payment($data, $curl_result) {
 }
 
 add_action('admin_menu', 'job_rating');
+
 function job_rating() {
-	add_menu_page('Job Not Rated', 'Job Ratings', 'read', 'my-unique-identifier', 'load_job_rating_page');
+    add_menu_page('Job Not Rated', 'Job Ratings', 'read', 'my-unique-identifier', 'load_job_rating_page');
 }
 
-function load_job_rating_page()
-{
-    if ( !current_user_can( 'administrator' ) ) {
-wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+function load_job_rating_page() {
+    if (!current_user_can('administrator')) {
+        wp_die(__('You do not have sufficient permissions to access this page.'));
+    }
+
+    include_once 'admin-job-rating.php';
 }
 
-include_once 'admin-job-rating.php';
-
-    
-    
-}
-
-function get_object_id($user_id,$job_id='')
-{
+function get_object_id($user_id, $job_id = '') {
     global $wpdb;
-    
-    if(strlen($job_id)>0){
-        $select="{$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating";
-        $from="FROM {$wpdb->prefix}userjobs";
-        $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = ".$user_id." AND {$wpdb->prefix}userjobs.job_id = ".$job_id.""; 
-    } else{
-        $select="{$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating,{$wpdb->prefix}posts.post_title";
-        $from= "FROM {$wpdb->prefix}userjobs,{$wpdb->prefix}posts,{$wpdb->prefix}comments";
-        $user_job_where="WHERE {$wpdb->prefix}userjobs.user_id = ".$user_id.""; 
-        $user_job_where .=" AND {$wpdb->prefix}posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.rating !=0 AND {$wpdb->prefix}userjobs.id={$wpdb->prefix}comments.comment_post_id";
-        
-        }
-    
-    $sql = $wpdb->prepare("SELECT ".$select." ".$from."                           
-                              ".$user_job_where."");
 
-                 
-            $object_id = $wpdb->get_row($sql);
+    if (strlen($job_id) > 0) {
+        $select = "{$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating";
+        $from = "FROM {$wpdb->prefix}userjobs";
+        $user_job_where = "WHERE {$wpdb->prefix}userjobs.user_id = " . $user_id . " AND {$wpdb->prefix}userjobs.job_id = " . $job_id . "";
+    } else {
+        $select = "{$wpdb->prefix}userjobs.id,{$wpdb->prefix}userjobs.rating,{$wpdb->prefix}posts.post_title";
+        $from = "FROM {$wpdb->prefix}userjobs,{$wpdb->prefix}posts,{$wpdb->prefix}comments";
+        $user_job_where = "WHERE {$wpdb->prefix}userjobs.user_id = " . $user_id . "";
+        $user_job_where .=" AND {$wpdb->prefix}posts.ID = {$wpdb->prefix}userjobs.job_id AND {$wpdb->prefix}userjobs.rating !=0 AND {$wpdb->prefix}userjobs.id={$wpdb->prefix}comments.comment_post_id";
+    }
+
+    $sql = $wpdb->prepare("SELECT " . $select . " " . $from . "                           
+                              " . $user_job_where . "");
+
+
+    $object_id = $wpdb->get_row($sql);
 
     return $object_id;
-    
 }
-
-
-
-
 
 /* TODO
  * function cron_paypal_payment_complete()
-{
-	
-	add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-	$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-	wp_mail("paragredkar@gmail.com", "test cron job", email_header() . "test message" . email_signature(), $headers);
-}
-add_action('payment_complete_cron_job', 'cron_paypal_payment_complete');
-*/
+  {
+
+  add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+  $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+  wp_mail("paragredkar@gmail.com", "test cron job", email_header() . "test message" . email_signature(), $headers);
+  }
+  add_action('payment_complete_cron_job', 'cron_paypal_payment_complete');
+ */
 
 
 add_filter('cron_schedules', 'filter_schedules',2,0);
@@ -922,23 +912,45 @@ function filter_schedules()
   return($users_notactivated_reminder)	;
 }
 
-add_action( 'show_user_profile', 'verified_minyawns_option' );
-add_action( 'edit_user_profile', 'verified_minyawns_option' );
+add_action('show_user_profile', 'verified_minyawns_option');
+add_action('edit_user_profile', 'verified_minyawns_option');
+
+function verified_minyawns_option($user) {
+//    if(!current_user_can('edit_user'))
+//       return false; 
 
 
-
-function verified_minyawns_option()
-{
+    $is_checked = 'unchecked';
+    if (get_user_meta($user->ID, 'user_verified','Y')):
+        $is_checked = 'checked';
+    endif;
     ?>
 
-	<th scope="row"><label for="pass2">Verified User</label></th>
-	<td>
-	<input type="checkbox" name="verify_user" id="user_verified"/> Check this if the user is verified.
-	<br>
-	</td>
+    <th scope="row"><label for="pass2">Verified User</label></th>
+    <td>
+        <input type="checkbox" name="verify_user" id="verify_user" <?php echo $is_checked ?>  /> Check this if the user is verified.
+        <br>
+    </td>
 
-   
-    
+
+
     <?php
+
+}
+
+add_action('personal_options_update', 'verified_minyawns_save');
+add_action('edit_user_profile_update', 'verified_minyawns_save');
+
+function verified_minyawns_save($user_id) {
+//    if(!current_user_can('edit_user'))
+//       return false; 
+    if (isset($_POST['verify_user']))
+        $value = "Y";
+    else
+        $value = "N";
+
+
+
+    update_user_meta($user_id, 'user_verified', $value);
 }
 ?>

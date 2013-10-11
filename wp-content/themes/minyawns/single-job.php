@@ -135,30 +135,30 @@ require 'templates/_jobs.php';
                 <p>
                     <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
                     <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
-                    <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 ): ?> 
+                    <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0): ?> 
                         <a href="#edit-job-form" class="edit loaded edit-job-data"  is-job-paid="<?php echo job_selection_status(get_the_ID()) ?>"><i class="icon-edit"></i> Edit</a>
                     <?php endif; ?>
-                   
+
                 </p> 
- <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 && job_selection_status(get_the_ID()) === 0): ?> 
-                       <a href="#myModal"  data-toggle="modal"  id="delete_jobs_link" class="delte-job "  job-id="<?php echo get_the_ID() ?>" style="display:none"><i class="icon-trash"></i> Delete</a>
-                    <?php endif; ?>
-					
-<!--Delete Pop uP-->				
-<div id="myModal" class="modal hide fade delte-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-   <div class="modal-body">
-				Are you sure you want to delete this job?
-			  </div>
-  <div class="modal-footer">
-   <div class="action-btn">
-    <button class="btn btn-danger" id="delete_job" job-id="<?php echo get_the_ID() ?>">Yes </button>
-	 <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-	 </div>
-  </div>
-</div>
-  <!--Delete Pop uP-->	          
-  </div>
+                <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 && job_selection_status(get_the_ID()) === 0): ?> 
+                    <a href="#myModal"  data-toggle="modal"  id="delete_jobs_link" class="delte-job "  job-id="<?php echo get_the_ID() ?>" style="display:none"><i class="icon-trash"></i> Delete</a>
+                <?php endif; ?>
+
+                <!--Delete Pop uP-->				
+                <div id="myModal" class="modal hide fade delte-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="modal-body">
+                        Are you sure you want to delete this job?
+                    </div>
+                    <div class="modal-footer">
+                        <div class="action-btn">
+                            <button class="btn btn-danger" id="delete_job" job-id="<?php echo get_the_ID() ?>">Yes </button>
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+                        </div>
+                    </div>
+                </div>
+                <!--Delete Pop uP-->	          
+            </div>
             <span class='load_ajaxsingle_job' style="display:block"></span>
             <div class="singlejobedit" style=" margin-left: 0; position: relative;
                  top: 50px;
@@ -170,7 +170,7 @@ require 'templates/_jobs.php';
 
             </div>
             <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%; " >
-               
+
                 <form id="job-form" class="form-horizontal">
 
                     <input type="hidden" value="<?php echo $minyawn_job->get_job_id(); ?>" name="id"></input>
