@@ -136,14 +136,29 @@ require 'templates/_jobs.php';
                     <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
                     <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
                     <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 ): ?> 
-                        <a href="#edit-job-form" class="edit loaded edit-job-data"><i class="icon-edit"></i> Edit</a>
+                        <a href="#edit-job-form" class="edit loaded edit-job-data"  is-job-paid="<?php echo job_selection_status(get_the_ID()) ?>"><i class="icon-edit"></i> Edit</a>
                     <?php endif; ?>
                    
-                </p>
- <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 && job_selection_status(get_the_ID()) === 1): ?> 
-                        <a href="#delete"  id="delete_jobsdfs" class="delte-job"  job-id="<?php echo get_the_ID() ?>" ><i class="icon-trash"></i> Delete</a>
+                </p> 
+ <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 && job_selection_status(get_the_ID()) === 0): ?> 
+                       <a href="#myModal"  data-toggle="modal"  id="delete_jobs_link" class="delte-job "  job-id="<?php echo get_the_ID() ?>" style="display:none"><i class="icon-trash"></i> Delete</a>
                     <?php endif; ?>
-            </div>
+					
+<!--Delete Pop uP-->				
+<div id="myModal" class="modal hide fade delte-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+   <div class="modal-body">
+				Are you sure you want to delete this job?
+			  </div>
+  <div class="modal-footer">
+   <div class="action-btn">
+    <button class="btn btn-danger" id="delete_job" job-id="<?php echo get_the_ID() ?>">Yes </button>
+	 <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+	 </div>
+  </div>
+</div>
+  <!--Delete Pop uP-->	          
+  </div>
             <span class='load_ajaxsingle_job' style="display:block"></span>
             <div class="singlejobedit" style=" margin-left: 0; position: relative;
                  top: 50px;

@@ -921,3 +921,24 @@ function filter_schedules()
 										);
   return($users_notactivated_reminder)	;
 }
+
+add_action( 'show_user_profile', 'verified_minyawns_option' );
+add_action( 'edit_user_profile', 'verified_minyawns_option' );
+
+
+
+function verified_minyawns_option()
+{
+    ?>
+
+	<th scope="row"><label for="pass2">Verified User</label></th>
+	<td>
+	<input type="checkbox" name="verify_user" id="user_verified"/> Check this if the user is verified.
+	<br>
+	</td>
+
+   
+    
+    <?php
+}
+?>

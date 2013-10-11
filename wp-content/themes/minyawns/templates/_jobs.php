@@ -1,6 +1,5 @@
 <script type="text/template" id="jobs-table">
-
-    <div style="clear:both;">
+ <div style="clear:both;">
     </div>
     <div class="accordion-group view" id="job-accordion-<%= result.post_id %>">
     <div id="last-job-id" last-job="<%= result.post_id %>" value="<%= result.post_id %>">
@@ -124,7 +123,7 @@
     <li class="span3" id="<%= result.user_id %>" >
 
     <div class="thumbnail" id="thumbnail-<%= result.user_id %>">
-    <div class="caption"  >
+    <div class="caption"  ><img class="verfied-card " src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
     <div class="minyawns-img" onclick="load_profile(<%= result.user_id %>)">
     <%= result.user_image%>
     </div>
@@ -154,8 +153,8 @@
     <hr>
     <div class="dwn-btn">
     <%= select_button %>
-                <%= ratings_button %>
-           <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
+    <%= ratings_button %>
+    <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
     </div>
     </div>
     </div>
@@ -213,35 +212,35 @@
 </script>
 
 <script type="text/templates" id="comment-popover">
-   <div class='tabbable tabs-below'><ul class='nav nav-tabs'><li class='active'>
-   <a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul><a class="close"  href="#">&times;</a>
-   <div class='tab-content'>
-   <div class='tab-pane active' id='A'>
+    <div class='tabbable tabs-below'><ul class='nav nav-tabs'><li class='active'>
+    <a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul><a class="close"  href="#">&times;</a>
+    <div class='tab-content'>
+    <div class='tab-pane active' id='A'>
     <ul>
     <%
-     if(result.positive.length >0) {
+    if(result.positive.length >0) {
     for(var i=0;i<result.positive.length;i++){ %>
     <li><div class='jobname'>
-   <a href='#'> <%= result.positive_title[i] %></a>
-   </div>
-   <div class='yourcomment'><%= result.positive[i] %></div>
-   <% } }else {%>
-                     <div class='jobname'>Congrats! You don't have any terrible ratings!</a></div>       
-                     <% } %>  </li>
-            </ul>
-            </div>
-            <div class='tab-pane tariblecontent' id='B'>
-            <ul>
-            <% if(result.negative.length >0)
-             {  for(var i=0;i<result.negative.length;i++){ %>
-               <li><div class='jobname'><a href='#'><%= result.negative_title[i] %></a></div>
-            <div class='yourcomment'> <%= result.negative[i] %> </div></li>
-            <% }
-                }else {%>
-                     <div class='jobname'>Congrats! You don't have any terrible ratings!</a></div>       
-                     <% } %>       
-                 </ul>
-            </div></div></div>
+    <a href='#'> <%= result.positive_title[i] %></a>
+    </div>
+    <div class='yourcomment'><%= result.positive[i] %></div>
+    <% } }else {%>
+    <div class='jobname'>Congrats! You don't have any ratings!</a></div>       
+    <% } %>  </li>
+    </ul>
+    </div>
+    <div class='tab-pane tariblecontent' id='B'>
+    <ul>
+    <% if(result.negative.length >0)
+    {  for(var i=0;i<result.negative.length;i++){ %>
+    <li><div class='jobname'><a href='#'><%= result.negative_title[i] %></a></div>
+    <div class='yourcomment'> <%= result.negative[i] %> </div></li>
+    <% }
+    }else {%>
+    <div class='jobname'>Congrats! You don't have any terrible ratings!</a></div>       
+    <% } %>       
+    </ul>
+    </div></div></div>
 
 
 </script>
