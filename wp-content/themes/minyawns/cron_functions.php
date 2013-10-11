@@ -13,6 +13,13 @@ function employer_jobcompletion_reminder() {
     		global $wpdb;
     		//$now_time = date("Y-m-d H:i:s");
     		//$now_time = gmdate("Y-m-d H:i:s", current_time('timestamp'));
+    		
+    		echo "<span style='font-size:7px' >current_time( 'mysql' ) returns local site time: " . current_time( 'mysql' ) . '<br />';
+    		echo "current_time( 'mysql', 1 ) returns GMT: " . current_time( 'mysql', 1 ) . '<br />';
+    		echo "current_time( 'timestamp' ) returns local site time: " . date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) );
+    		echo "current_time( 'timestamp', 1 ) returns GMT: " . date( 'Y-m-d H:i:s', current_time( 'timestamp', 1 ) );
+    		echo "</span>";
+    		
     		$now_time = date( 'Y-m-d H:i:s', current_time( 'timestamp', 1 ));
    			
     	 	$job_completion_sql = $wpdb->prepare("SELECT distinct(a.ID) as post_id , a.post_title as post_title,
@@ -25,7 +32,7 @@ function employer_jobcompletion_reminder() {
     				AND from_unixtime(b.meta_value) < %s
     				",$now_time); 
    			
-   			//echo "<br/><br/>job completion".$job_completion_sql;
+   			 echo "<span style='font-size:7px' ><br/><br/>job completion".$job_completion_sql."</span>";
     		$job_completions = $wpdb->get_results($job_completion_sql);
     
     		foreach($job_completions as $job_completion)
