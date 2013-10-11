@@ -95,16 +95,16 @@ jQuery(document).ready(function($) {
         return true;
     });
 
-    if (jQuery('#user-popdown').length > 0)
-    {
-        $('#user-popdown').popover(
-                {
-                    placement: 'bottom',
-                    html: true,
-                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><br><p class="muted" style=" color: #73C31B; ">' + email + '</p><h4></h4><span style="float:left; margin-right:10px;">Role:</span><p class="muted "> ' + role + '</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
-                }
-        );
-    }
+//    if (jQuery('#user-popdown').length > 0)
+//    {
+//        $('#user-popdown').popover(
+//                {
+//                    placement: 'bottom',
+//                    html: true,
+//                    content: '<div id="profile-data"><a href="" class="change-avatar"><div class="avatar user-1-avatar" width="150" height="150" /></a><div class="profile-data-display"><br><p class="muted" style=" color: #73C31B; ">' + email + '</p><h4></h4><span style="float:left; margin-right:10px;">Role:</span><p class="muted "> ' + role + '</p></div><div class="profile-actions"><span><a href="' + siteurl + '/profile/" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="' + logouturl + '" id="logout-button" class="popup_link"><i class="icon-unlock"></i>Logout </a></span></div></div>',
+//                }
+//        );
+//    }
 
 
 
@@ -310,12 +310,14 @@ jQuery(document).ready(function($) {
         {
             if ($(this).hasClass('view'))
             {
+                
                 $(span1).animate({left: 0}, 500);
                 $(span2).show().animate({left: w}, 500);
                 $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
             }
             else
             {
+               
                 $(this).removeClass('loaded');
                 $('#profile-edit').find('div.alert').remove();
                 $(span1).animate({left: -1 * w}, 500);
@@ -924,6 +926,7 @@ jQuery(document).ready(function($) {
         var w = $(span1).width();
         if ($(this).hasClass('view'))
         {
+            $("#delete_jobs_link").hide();
             $(span1).animate({left: 0}, 500);
             $(span2).show().animate({left: w}, 500);
 
@@ -932,11 +935,19 @@ jQuery(document).ready(function($) {
         }
         else
         {
+           
+            $("#delete_jobs_link").show();
             $(".alert-error").hide();
             $('#edit-job-form').find('div.alert').remove();
             $(span1).animate({left: -2 * w}, 500);
             $(span2).css({'left': w, 'top': '60px'});
             $(span2).show().animate({left: 0}, 500);
+            if($(".edit").attr("is-job-paid") == 1)
+                {
+                    $("#edit-job-form").prepend("<div class='alert alert-error'>This job is paid and cannot be edited.</div>");
+                    $("#edit-job-form").find('input, textarea, button, select').attr('disabled','disabled');
+                    return;
+                }
         }
     });
     $('#update-job').click(function(e) {

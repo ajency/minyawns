@@ -654,3 +654,34 @@ function get_user_job_rating_data($user_id, $job_id) {
 
     return $minyawns_rating;
 }
+
+
+/*
+ * funciton to fetch user email
+ * @params nil
+ * @return email id
+ * 
+ */
+function get_user_email_id()
+{
+    global $current_user;
+      get_currentuserinfo();
+
+  
+      return  $current_user->user_email;
+  
+}
+
+
+/*
+ *  function to get user role
+ *  return after spell check
+ *  @params nil
+ *  @return minyawn,employer
+ */
+
+function get_user_role_text()
+{
+    if (get_user_role() == "minyawn"){ return 'Minion';} else  return 'Employer' ; 
+    
+}
