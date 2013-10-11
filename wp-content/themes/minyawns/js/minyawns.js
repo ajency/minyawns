@@ -1602,3 +1602,14 @@ window.location.href=siteurl+'/jobs';
             });  
     
 });
+
+jQuery(document).ready(function() {
+   	jQuery('#example').popover(
+				{
+					placement : 'bottom',
+					html : true,
+					trigger : 'hover',
+					content : '<div id="profile-data" class="verfied-content">We personally verify Minion profiles to help you be sure that they are who they claim to be and they are safe to do business with. Minions with out Verified status have yet to go through the personal verification process</div>',
+				}
+			);
+		});

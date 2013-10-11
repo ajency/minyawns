@@ -149,6 +149,7 @@ require 'templates/_jobs.php';
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
 								<span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
+								<i class="icon-question-sign verfied-help"  id="example"></i> 
 								
 								</h4> 
                         <div class="row-fluid profile-list">
@@ -215,7 +216,7 @@ require 'templates/_jobs.php';
 
                     </div>
                     <?php if (get_user_role() === 'minyawn'): ?>
-                        <div class="span2">
+                        <div class="span2" id="profile-view1">
                             <br>
                             <div class="like_btn"><br><br>
                                 <a href="#fakelink" style="float:left;" >

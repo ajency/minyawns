@@ -34,6 +34,11 @@ a:hover {
 .fb-mobile {
   display: none!important;
 }
+.verfied-content {
+  font-size: 12px!important;
+  line-height: 20px;
+  padding: 4px;
+}
 body .jobs_table .header-title .profile-job {
   border-right: 1px solid #CCC;
   width: 16.1% ;
@@ -890,22 +895,28 @@ body .jobs_table .data-title .profile-job {
 }
 .list-jobs .expand .minyawansgrid .span4 {
   margin-left: 8px;
-  border: 1px dotted #ccc;
   margin-bottom: 5px;
+  background: url(../images/main-bg.png);
   height: 70px;
 }
 .list-jobs .expand .minyawansgrid .span4 .minyawns-details {
   height: 34px;
+  margin-top: 3px;
 }
-.list-jobs .expand .minyawansgrid .span4 .minyawns-details img {
+.list-jobs .expand .minyawansgrid .span4 .minyawns-details .image-div {
+  float: left;
   width: 11%;
+  margin-right: 9px;
+}
+.list-jobs .expand .minyawansgrid .span4 .minyawns-details .image-div img {
   padding: 5px;
-  display: inline-block;
 }
 .list-jobs .expand .minyawansgrid .span4 .minyawns-details b {
   width: 120px;
-  display: inline-block;
   color: #333;
+}
+.list-jobs .expand .minyawansgrid .span4 .minyawns-details span {
+  font-size: 12px;
 }
 .list-jobs .expand .minyawansgrid .span4 .minyawns-details .icon-thumbs-up {
   margin-left: 20px;
@@ -914,13 +925,14 @@ body .jobs_table .data-title .profile-job {
   margin-left: 10px;
   color: #F65151;
 }
-.list-jobs .expand .minyawansgrid .span4 .minyawns-details:hover {
+.list-jobs .expand .minyawansgrid .span4:hover {
   cursor: pointer;
   background: #EEE9E9;
 }
 .list-jobs .expand .minyawansgrid .minyawns-job {
   border-top: 1px dotted #CCC;
   padding: 5px 0px;
+  margin-top: 6px;
 }
 .list-jobs .expand .minyawansgrid .minyawns-job b {
   color: #1CAC16;
