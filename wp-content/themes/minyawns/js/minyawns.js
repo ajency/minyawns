@@ -1590,3 +1590,15 @@ $(this).parent().find('.data-title').addClass('open'); //add active state to but
 $('.collapse').live('hide', function(){
 $(this).parent().find('.data-title').removeClass('open'); //remove active state to button on close
 });
+
+jQuery("#delete_job").live("click",function(){
+  $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/delete-job',
+                    {
+                        job_id: jQuery("#delete_job").attr("job-id"),
+                       
+                    },
+            function(response) {
+window.location.href=siteurl+'/jobs';
+            });  
+    
+});
