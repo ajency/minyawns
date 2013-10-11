@@ -42,7 +42,7 @@ function employer_jobcompletion_reminder() {
     	 			AND b.meta_value < %s
     	 			",current_time( 'timestamp'));
    			
-   			 echo "<span style='font-size:7px' ><br/><br/>job completion".$job_completion_sql."</span>";
+   			 //echo "<span style='font-size:7px' ><br/><br/>job completion".$job_completion_sql."</span>";
     		$job_completions = $wpdb->get_results($job_completion_sql);
     
     		foreach($job_completions as $job_completion)
