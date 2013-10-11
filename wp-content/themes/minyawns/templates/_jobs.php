@@ -123,7 +123,7 @@
     <li class="span3" id="<%= result.user_id %>" >
 
     <div class="thumbnail" id="thumbnail-<%= result.user_id %>">
-    <div class="caption"  >
+    <div class="caption"  ><img class="verfied-card " src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
     <div class="minyawns-img" onclick="load_profile(<%= result.user_id %>)">
     <%= result.user_image%>
     </div>
