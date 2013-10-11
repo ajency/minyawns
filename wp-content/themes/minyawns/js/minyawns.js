@@ -1442,9 +1442,9 @@ jQuery(document).ready(function($) {
 
         var action = $(".rate-button").attr("action");
 
-
-        if (action.length === 0)
-            return false;
+//
+//        if (action.length === 0)
+//            return false;
 
 
         var _this = $(this);

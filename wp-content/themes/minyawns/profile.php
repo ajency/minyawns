@@ -150,8 +150,11 @@ require 'templates/_jobs.php';
                                 user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
-								<span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
-								
+							<?php
+                                                        print_r(is_user_verified());exit();
+                                                         if(is_user_verified()!= 0){ ?>	
+                                                        <span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
+                                                         <?php }?>
 								</h4> 
                         <div class="row-fluid profile-list">
                             <?php if (get_user_role() === 'minyawn'): ?>
