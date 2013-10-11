@@ -122,8 +122,8 @@
 
     <li class="span3" id="<%= result.user_id %>" >
 
-    <div class="thumbnail" id="thumbnail-<%= result.user_id %>">
-    <div class="caption"  ><img class="verfied-card " src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
+    <div class="thumbnail" id="thumbnail-<%= result.user_id %>"><img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
+    <div class="caption"  >
     <div class="minyawns-img" onclick="load_profile(<%= result.user_id %>)">
     <%= result.user_image%>
     </div>
