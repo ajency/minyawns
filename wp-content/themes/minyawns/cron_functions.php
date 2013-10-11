@@ -22,7 +22,7 @@ function employer_jobcompletion_reminder() {
     		
     		$now_time = date( 'Y-m-d H:i:s', current_time( 'timestamp', 1 ));
    			
-    	 	$job_completion_sql = $wpdb->prepare("SELECT distinct(a.ID) as post_id , a.post_title as post_title,
+    	 /*	$job_completion_sql = $wpdb->prepare("SELECT distinct(a.ID) as post_id , a.post_title as post_title,
     				d.user_email, d.display_name, d.ID as employer_id
     				FROM {$wpdb->prefix}posts a
     				INNER JOIN {$wpdb->prefix}postmeta b on  a.ID = b.post_id
@@ -30,9 +30,19 @@ function employer_jobcompletion_reminder() {
     				INNER JOIN {$wpdb->prefix}users d  on d.ID = a.post_author
     				WHERE c.status = 'hired'  AND b.meta_key ='job_end_date_time'
     				AND from_unixtime(b.meta_value) < %s
-    				",$now_time); 
+    				",$now_time); */
+    	 	
+    	 	$job_completion_sql = $wpdb->prepare("SELECT distinct(a.ID) as post_id , a.post_title as post_title,
+    	 			d.user_email, d.display_name, d.ID as employer_id
+    	 			FROM {$wpdb->prefix}posts a
+    	 			INNER JOIN {$wpdb->prefix}postmeta b on  a.ID = b.post_id
+    	 			INNER JOIN {$wpdb->prefix}userjobs c    on  a.ID = c.job_id
+    	 			INNER JOIN {$wpdb->prefix}users d  on d.ID = a.post_author
+    	 			WHERE c.status = 'hired'  AND b.meta_key ='job_end_date_time'
+    	 			AND b.meta_value < %s
+    	 			",current_time( 'timestamp'));
    			
-   			// echo "<span style='font-size:7px' ><br/><br/>job completion".$job_completion_sql."</span>";
+   			 echo "<span style='font-size:7px' ><br/><br/>job completion".$job_completion_sql."</span>";
     		$job_completions = $wpdb->get_results($job_completion_sql);
     
     		foreach($job_completions as $job_completion)
