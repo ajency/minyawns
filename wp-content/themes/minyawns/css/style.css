@@ -16,11 +16,19 @@
 	right: 0;
 	top: -1px;
 }
+
 .Minyawnverified{
 	background-color: #52CF16;
 	color:#fff;
 	margin-left:10px;
+	
 }	
+.verfied-help{
+	font-size: 19px;
+	color: #20AEE5;
+	padding: 5px;
+	cursor:pointer;
+}
 	
 ul { margin:0px; padding:0px; margin-left:20px; }
 #list1, #list2 { list-style-type:none; margin:0px; }
@@ -36,7 +44,7 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 	top: 0px;
 	color: #FFF;
 	font-size: 12px;
-	width: 77%;
+	width: 92%;
 	border-right: 1px solid #CCC;
 float: right;
 }
@@ -112,7 +120,7 @@ float: right;
 	position:relative;
 }
 .popover.bottom {
-	margin-top: 30px !important;
+	margin-top: 10px !important;
 }
 .popover.bottom .arrow {
 	top: -10px;
@@ -611,14 +619,20 @@ margin-right: -20px;
 top: -10px;
 left: 50%;
 margin-left: -10px;
-border-bottom-color: #FFF;
+border-bottom-color: #F3F3F3;
 border-width: 0 10px 10px;
+}
+.popover.bottom .popover-content {
+
+background: #F3F3F3;
+
 }
 .list-jobs .expand .minyawansgrid .span6 b {
 width: 142px !important;
 display: inline-block;
 }
-#profile-view .popover
+
+#profile-view1 .popover
 {
 width: 450px !important;
 min-width: 450px;
@@ -627,7 +641,7 @@ overflow-y: auto;
 left: 610.453125px !important;
 }
 
-#profile-view .popover .tab-content
+#profile-view1 .popover .tab-content
 {
 min-height:186px;
 padding:12px;
@@ -636,67 +650,67 @@ border: 0;
 
 }
 
-#profile-view .popover .tab-content input
+#profile-view1 .popover .tab-content input
 {
 width: 98%;
 height: 19px;
 }
 
-#profile-view .popover .tab-content ul
+#profile-view1 .popover .tab-content ul
 {
 margin: 0;
 list-style: none;
 }
-#profile-view .popover .tab-content ul li
+#profile-view1 .popover .tab-content ul li
 {
 border-bottom: 2px dotted #E0E1D8;
 margin-bottom: 4px;
 }
-#profile-view .popover.right .arrow
+#profile-view1 .popover.right .arrow
 {
 border-right-color: #F7F6F6;
 }
-#profile-view .popover .tab-content ul li .yourcomment
+#profile-view1 .popover .tab-content ul li .yourcomment
 {
 font-size: 13px;
 color: #676965;
 font-style:italic;
 padding-bottom: 5px;
 }
-#profile-view .popover .tab-content ul li .submited
+#profile-view1 .popover .tab-content ul li .submited
 {
 font-size: 11px;
 color:#ABA8A8;
 font-style:italic;
 }
 
-#profile-view .popover .tab-content ul li .jobname a
+#profile-view1 .popover .tab-content ul li .jobname a
 {
 font-size:15px;
 }
 
-#profile-view .popover .tab-content .tariblecontent ul li .jobname a
+#profile-view1.popover .tab-content .tariblecontent ul li .jobname a
 {
 color:#E74C3C;
 }
 
-#profile-view .popover .tab-content ul li .jobname a
+#profile-view1 .popover .tab-content ul li .jobname a
 {
 color:#79B91E;
 }
 
-#profile-view .popover-content
+#profile-view1 .popover-content
 {
 background:#F7F6F6;
 }
 
-#profile-view .popover-content .tabs-below > .nav-tabs {
+#profile-view1 .popover-content .tabs-below > .nav-tabs {
 border-top: 0px solid #ddd;
 border-bottom: 2px solid #ddd !important;
 margin:0;
 padding-left: 10px;
 }
-#profile-view .popover-content .tabs-below > .nav-tabs li a:hover {
+#profile-view1 .popover-content .tabs-below > .nav-tabs li a:hover {
 border-top: 0px solid #ddd;
 border-bottom:2px solid #DDD;
 color: #ffffff;
@@ -704,23 +718,23 @@ background: #8CCE36;
 border-radius: 4px;
 }
 
-#profile-view .popover-content .close
+#profile-view1 .popover-content .close
 {position: relative;
 margin-top: -33px;
 }
-#profile-view .popover-content .tabs-below > .nav-tabs > li {
+#profile-view1 .popover-content .tabs-below > .nav-tabs > li {
 margin-top: 5px;
 margin-bottom: -2px !important;
 }
-#profile-view .popover-content .tabs-below > .nav-tabs li a
+#profile-view1 .popover-content .tabs-below > .nav-tabs li a
 {
 color:#8CCE36;
 }
-#profile-view .popover-content .tabs-below > .nav-tabs li.teriblecomments a
+#profile-view1 .popover-content .tabs-below > .nav-tabs li.teriblecomments a
 {
 color:#e74c3c;
 }
-#profile-view .popover-content .tabs-below > .nav-tabs li.teriblecomments a:hover {
+#profile-view1 .popover-content .tabs-below > .nav-tabs li.teriblecomments a:hover {
 border-top: 0px solid #ddd;
 border-bottom:2px solid #DDD;
 color: #ffffff;
@@ -729,7 +743,7 @@ border-radius: 4px;
 }
 
 
-#profile-view .popover-content .tabs-below > .nav-tabs > .active > a, .tabs-below > .nav-tabs > .active > a:hover, .tabs-below > .nav-tabs > .active > a:focus {
+#profile-view1 .popover-content .tabs-below > .nav-tabs > .active > a, .tabs-below > .nav-tabs > .active > a:hover, .tabs-below > .nav-tabs > .active > a:focus {
 border-top: 2px solid #DDD;
 color: #8CCE36;
 background: none;
@@ -738,7 +752,7 @@ border-bottom: 2px solid #F7F6F6;
 border-width: 2px;
 }
 
-#profile-view .popover-content .tabs-below > .nav-tabs > .teriblecomments.active > a, .tabs-below > .nav-tabs > .teriblecomments.active > a:hover, .tabs-below > .nav-tabs > .teriblecomments.active > a:focus {
+#profile-view1 .popover-content .tabs-below > .nav-tabs > .teriblecomments.active > a, .tabs-below > .nav-tabs > .teriblecomments.active > a:hover, .tabs-below > .nav-tabs > .teriblecomments.active > a:focus {
 border-color: transparent #ddd #ddd #ddd;
 color: #E74C3C;
 border-radius: 4px;

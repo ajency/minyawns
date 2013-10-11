@@ -271,7 +271,9 @@ function minyawns_initial_checks() {
 
 add_action('init', 'minyawns_initial_checks');
 
-//add_action('init', 'user_incomplete_profile_reminder');
+
+
+add_action('init', 'user_incomplete_profile_reminder');
 //add_action('init', 'users_notactivated_reminder');
 //add_action('init', 'users_no_activity_reminder');
 //add_action('init', 'employer_jobcompletion_reminder');
