@@ -107,7 +107,9 @@ require 'templates/_jobs.php';
             <p id="bread-crumbs-id">
 
                 <a href="<?php echo site_url() ?>/jobs/" class="view loaded">My Jobs</a>
-                <a href="#" class="view loaded edit-user-profile">My Profile</a>
+                <a href="#" class="view loaded edit-user-profile">Profile</a>
+               
+                <a href="#" class="view loaded edit-user-profile"><?php if(get_user_id()== get_current_user_id()) echo "MY"; else if(strlen(user_profile_company_name())>0) echo user_profile_company_name(); else echo user_profile_first_name(); ?></a>
             </p>
         </div>
         <div class="row-fluid profile-wrapper">
@@ -123,7 +125,7 @@ require 'templates/_jobs.php';
                     if (get_user_role() == 'employer') {
                         echo 'employer-image';
                     }
-                    ?>"><img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
+                    ?>">
                         <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
 						
                             <?php
@@ -147,7 +149,10 @@ require 'templates/_jobs.php';
                             } else {
                                 user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
-                                ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?></h4> 
+                                ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
+								<span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
+								
+								</h4> 
                         <div class="row-fluid profile-list">
                             <?php if (get_user_role() === 'minyawn'): ?>
 
