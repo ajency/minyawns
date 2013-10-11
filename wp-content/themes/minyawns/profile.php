@@ -151,8 +151,8 @@ require 'templates/_jobs.php';
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
 							<?php
-                                                        print_r(is_user_verified());exit();
-                                                         if(is_user_verified()!= 0){ ?>	
+                                                      
+                                                         if(is_user_verified()=== 'Y'){ ?>	
                                                         <span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
                                                          <?php }?>
 								</h4> 

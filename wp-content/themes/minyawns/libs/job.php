@@ -223,6 +223,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                         $status = 'Applied';
                     else
                         $status = 'Hired';
+                    
+                    
+                    
+                     
                 }
 
                 $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
@@ -319,7 +323,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'total' => $total,
                     'job_categories' => $categories,
                     'job_category_ids' => $category_ids,
-                    'job_category_slug' => $category_slug
+                    'job_category_slug' => $category_slug,
+                     
                 );
             }
 
@@ -643,7 +648,8 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_image' => $user['image'],
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
-                        'comment' => isset($comment) > 0 ? $comment : 0
+                        'comment' => isset($comment) > 0 ? $comment : 0,
+                        'is_verified'=>isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] :''
                     );
                 }
             }
