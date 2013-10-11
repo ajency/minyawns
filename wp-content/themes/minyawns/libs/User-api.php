@@ -88,6 +88,9 @@ function setup_user_profile_data() {
     //check if user has avatar uploaded
     $current_user_new->data->avatar = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
+    //check if user verified
+    $current_user_new->data->verified=isset($user_meta['user_verified']) ? trim($user_meta['user_verified']):0;
+  
     // global $current_user_new;
     global $wpdb;
     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
@@ -327,6 +330,12 @@ function get_user_company_logo($user_id) {
         return wp_get_attachment_image($post_attachment_id, get_user_role());
     else
         return get_avatar($user_id);
+}
+function is_user_verified()
+{
+    global $current_user_new;
+    return $current_user_new->data->verified;
+    
 }
 
 /**
