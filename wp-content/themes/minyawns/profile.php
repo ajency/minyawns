@@ -123,8 +123,9 @@ require 'templates/_jobs.php';
                     if (get_user_role() == 'employer') {
                         echo 'employer-image';
                     }
-                    ?>">
+                    ?>"><img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
                         <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
+						
                             <?php
                             if (get_mn_user_avatar() !== false)
                                 echo get_mn_user_avatar();
