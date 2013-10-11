@@ -11,6 +11,17 @@
 		color: #E6FDB4!important;
 		margin-right:15px;
 	}
+.verfied{
+	width: 42%;
+	border: 0;
+	background: #FFF;
+	border-radius: 100%;
+	position: relative;
+	margin-bottom: -52px;
+	z-index: 9999;
+	margin-left: -5px;
+}	
+	
 ul { margin:0px; padding:0px; margin-left:20px; }
 #list1, #list2 { list-style-type:none; margin:0px; }
 #list1 li, #list2 li { float:left; padding:5px; width:28%; height:144px;}
