@@ -89,7 +89,7 @@ function setup_user_profile_data() {
     $current_user_new->data->avatar = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
     //check if user verified
-    $current_user_new->data->verified=isset($user_meta['user_verified']) ? trim($user_meta['user_verified']):0;
+    $current_user_new->data->verified=isset($user_meta['user_verified'][0]) ? trim($user_meta['user_verified'][0]):0;
   
     // global $current_user_new;
     global $wpdb;

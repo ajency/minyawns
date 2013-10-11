@@ -182,6 +182,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $default_applied_user_avatar = array();
 
                 $single_job_rating = array();
+                
+                $minyawns_verified=array();
+                
                 $user_rating_job = array();
                 foreach ($min_job->minyawns as $min) {
 
@@ -198,6 +201,11 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                     $minyawns_rating = get_user_rating_data($min['user_id'], $pagepost->ID);
 
+                    $verified=get_user_meta($min['user_id'],'user_verified');
+                    
+                    array_push($minyawns_verified,$verified);
+                            
+                            
                     foreach ($minyawns_rating as $rating) {
                         $user_rating = array_push($user_rating_like, $rating->positive);
                         $user_dislike = array_push($user_rating_dislike, $rating->negative);
@@ -223,6 +231,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                         $status = 'Applied';
                     else
                         $status = 'Hired';
+                    
+                    
+                    
+                     
                 }
 
                 $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
@@ -319,7 +331,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'total' => $total,
                     'job_categories' => $categories,
                     'job_category_ids' => $category_ids,
-                    'job_category_slug' => $category_slug
+                    'job_category_slug' => $category_slug,
+                    'is_verfied'=>$minyawns_verified
                 );
             }
 
@@ -643,7 +656,8 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_image' => $user['image'],
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
-                        'comment' => isset($comment) > 0 ? $comment : 0
+                        'comment' => isset($comment) > 0 ? $comment : 0,
+                        'is_verified'=>isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] :''
                     );
                 }
             }
