@@ -11,6 +11,17 @@
 		color: #E6FDB4!important;
 		margin-right:15px;
 	}
+.verfied{
+	position: absolute;
+	right: 0;
+	top: -1px;
+}
+.Minyawnverified{
+	background-color: #52CF16;
+	color:#fff;
+	margin-left:10px;
+}	
+	
 ul { margin:0px; padding:0px; margin-left:20px; }
 #list1, #list2 { list-style-type:none; margin:0px; }
 #list1 li, #list2 li { float:left; padding:5px; width:28%; height:144px;}

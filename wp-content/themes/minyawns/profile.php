@@ -127,6 +127,7 @@ require 'templates/_jobs.php';
                     }
                     ?>">
                         <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
+						
                             <?php
                             if (get_mn_user_avatar() !== false)
                                 echo get_mn_user_avatar();
@@ -148,7 +149,10 @@ require 'templates/_jobs.php';
                             } else {
                                 user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
-                                ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?></h4> 
+                                ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
+								<span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
+								
+								</h4> 
                         <div class="row-fluid profile-list">
                             <?php if (get_user_role() === 'minyawn'): ?>
 
