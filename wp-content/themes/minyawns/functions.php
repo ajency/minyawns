@@ -865,7 +865,7 @@ function load_job_rating_page() {
     include_once 'admin-job-rating.php';
 }
 
-function get_object_id($user_id, $job_id = '') {
+function get_object_id($user_id, $job_id = '',$type) {
     global $wpdb;
 
     if (strlen($job_id) > 0) {
@@ -882,8 +882,10 @@ function get_object_id($user_id, $job_id = '') {
     $sql = $wpdb->prepare("SELECT " . $select . " " . $from . "                           
                               " . $user_job_where . "");
 
-
-    $object_id = $wpdb->get_row($sql);
+   if($type === 1)
+    $object_id = $wpdb->get_results($sql);
+   else
+       $object_id = $wpdb->get_row($sql);
 
     return $object_id;
 }

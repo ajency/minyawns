@@ -228,7 +228,7 @@
     </div>
     <div class='yourcomment'><%= result.positive[i] %></div>
     <% } }else {%>
-    <div class='jobname'>Congrats! You don't have any ratings!</a></div>       
+    <div class='jobname'>You don't have any ratings!</a></div>       
     <% } %>  </li>
     </ul>
     </div>
