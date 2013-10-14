@@ -695,3 +695,13 @@ function get_logged_in_email()
     return $current_user->user_email;
     
 }
+
+
+function is_facebook_user()
+{
+    global $current_user;
+   
+   return strlen($current_user->facebook_avatar_full) > 0 ? 'true' :'false';
+   
+    
+}
