@@ -665,21 +665,7 @@ function get_user_job_rating_data($user_id, $job_id) {
 }
 
 
-/*
- * funciton to fetch user email
- * @params nil
- * @return email id
- * 
- */
-function get_user_email_id()
-{
-    global $current_user;
-      get_currentuserinfo();
 
-  
-      return  $current_user->user_email;
-  
-}
 
 
 /*

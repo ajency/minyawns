@@ -85,7 +85,7 @@
 									</a>
 									</div>
 									<div>
-									<b><?php echo get_user_email_id(); ?></b><br>
+									<b><?php echo user_profile_email(); ?></b><br>
 									Role :<?php echo get_user_role_text(); ?>
 									</div>
 									<!--                   
@@ -102,7 +102,7 @@
 					<div class="span3 user-action">
 					<a class="" href="<?php echo site_url() ?>/profile"><i class="icon-user"></i> View Profile</a>
 					<a class="" href="<?php  echo wp_logout_url(''); ?>"><i class="icon-unlock"></i> Logout</a>
-					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon"><i class="icon-question-sign"></i> </a>
+					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> </a>
 					</div>
 					<?php } else {
 						?>
