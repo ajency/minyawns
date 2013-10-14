@@ -955,4 +955,12 @@ function verified_minyawns_save($user_id) {
 
     update_user_meta($user_id, 'user_verified', $value);
 }
+
+    function prevent_admin_access()
+    {
+    if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin' ) && !current_user_can( 'administrator' ) )
+    wp_redirect( home_url() );
+    }
+    add_action( 'init', 'prevent_admin_access', 0 );
+
 ?>

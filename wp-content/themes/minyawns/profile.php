@@ -131,6 +131,7 @@ require 'templates/_jobs.php';
 
                     <div class="span2 ">
 					<div class="<?php
+                                                                   
                     if (get_user_role() == 'employer') {
                         echo 'employer-image';
                     }
@@ -138,18 +139,22 @@ require 'templates/_jobs.php';
                         <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
 						
                             <?php
+                            
+                            
                             if (get_mn_user_avatar() !== false)
                                 echo get_mn_user_avatar();
                             else
-                                echo get_avatar(get_user_id(), 168)
+                                echo get_user_avatar();
                                 ?>
 
-                            <?php if (is_user_logged_in())  ?>
-                           
+                            <?php if (is_user_logged_in()) { ?>              
                         </a>
 						</div>
+                        <?php if(is_facebook_user() === 'false'){ ?>
 						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">Change Profile Pic</a>
-                        <input id="change-avatar" type="file" name="files" style="visibility:hidden">
+                        <?php }?>
+                                                  <input id="change-avatar" type="file" name="files" style="visibility:hidden">
+                            <?php }?>
                     </div>
                     <div class="span8">
                         <h4 class="name"> <?php

@@ -78,10 +78,11 @@
 						 <div class="profile-pic">
 						 <a id="user-popdown" > 
 									 <?php 
-									if(get_mn_user_avatar() !== false)
-										echo get_mn_user_avatar() ;
+                                                                        
+									if(get_user_avatar() !== false)
+										echo get_user_avatar() ;
 									else
-										echo get_avatar( get_user_id(), 168 ) ?>
+										echo get_avatar(get_user_id(), 168 ) ?>
 									</a>
 									</div>
 									<div>
