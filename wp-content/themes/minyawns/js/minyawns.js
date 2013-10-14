@@ -951,7 +951,7 @@ jQuery(document).ready(function($) {
                     return;
                 }
         }
-    });
+    }); 
     $('#update-job').click(function(e) {
 
         e.preventDefault();
