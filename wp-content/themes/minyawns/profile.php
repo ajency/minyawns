@@ -144,7 +144,7 @@ require 'templates/_jobs.php';
                             if (get_mn_user_avatar() !== false)
                                 echo get_mn_user_avatar();
                             else
-                                echo get_user_avatar();
+                                echo get_avatar(get_user_id(), 168)
                                 ?>
 
                             <?php if (is_user_logged_in()) { ?>              

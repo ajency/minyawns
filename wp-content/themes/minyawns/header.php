@@ -78,7 +78,6 @@
 						 <div class="profile-pic">
 						 <a id="user-popdown" > 
 									 <?php 
-                                                                        
 									if(get_user_avatar() !== false)
 										echo get_user_avatar() ;
 									else
