@@ -711,12 +711,12 @@ function is_facebook_user()
 function get_user_avatar()
 {
     global $current_user;
-    $user_header_meta=get_user_meta($current_user->data->ID);
-    
-  if ($current_user->avatar_attachment !== false) {
-        return wp_get_attachment_image($current_user->avatar_attachment);
+    $user_header_meta=get_user_meta($current_user->ID);
+ 
+  if (isset($user_header_meta['avatar_attachment'])) {
+        return wp_get_attachment_image($user_header_meta['avatar_attachment'][0]);
     } else {
-        return false;
+        return get_avatar($current_user->ID);
     }
     
     
