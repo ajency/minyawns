@@ -313,7 +313,8 @@ jQuery(document).ready(function($) {
                 
                 $(span1).animate({left: 0}, 500);
                 $(span2).show().animate({left: w}, 500);
-                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+              //  $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+                $('#bread-crumbs-id').html("<a href='"+siteurl+"/jobs' class='view loaded'>My Jobs</a><a href='#' class='view edit-user-profile'>Profile</a><a href='#' class='view loaded edit-user-profile'>My</a>");
             }
             else
             {
@@ -323,7 +324,8 @@ jQuery(document).ready(function($) {
                 $(span1).animate({left: -1 * w}, 500);
                 $(span2).css({'left': w, 'top': 0});
                 $(span2).show().animate({left: 0}, 500);
-                $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a> Edit');
+                        $('#bread-crumbs-id').html("<a href='"+siteurl+"/jobs' class='view loaded'>My Jobs</a><a href='#' class='view edit-user-profile'>Profile</a><a href='#' class='view loaded edit-user-profile'>Edit Profile</a>");
+       
             }
         }
     });
@@ -942,12 +944,12 @@ jQuery(document).ready(function($) {
             $(span1).animate({left: -2 * w}, 500);
             $(span2).css({'left': w, 'top': '60px'});
             $(span2).show().animate({left: 0}, 500);
-            if($(".edit").attr("is-job-paid") == 1)
-                {
-                    $("#edit-job-form").prepend("<div class='alert alert-error'>This job is paid and cannot be edited.</div>");
-                    $("#edit-job-form").find('input, textarea, button, select').attr('disabled','disabled');
-                    return;
-                }
+//            if($(".edit").attr("is-job-paid") == 1)
+//                {
+//                    $("#edit-job-form").prepend("<div class='alert alert-error'>This job is paid and cannot be edited.</div>");
+//                    $("#edit-job-form").find('input, textarea, button, select').attr('disabled','disabled');
+//                    return;
+//                }
         }
     });
     $('#update-job').click(function(e) {
@@ -1416,9 +1418,13 @@ jQuery(document).ready(function($) {
         if (evt.target.id === 'vote-up') {
             $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
             $("#review" + $(this).attr('user_id')).attr("vote", "1");
+             //$("#review-text" + $(this).attr('user_id')).removeClass();
+           // $("#review-text" + $(this).attr('user_id')).addClass("welldone-textarea");
         } else {
             $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
             $("#review" + $(this).attr('user_id')).attr("vote", "-1");
+           // $("#review-text" + $(this).attr('user_id')).removeClass();
+           // $("#review-text" + $(this).attr('user_id')).addClass("terrible-textarea");
         }
 
         $("#review-box" + $(this).attr('user_id')).show();

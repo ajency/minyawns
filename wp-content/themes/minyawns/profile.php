@@ -58,6 +58,15 @@ require 'templates/_jobs.php';
             });
 
         });
+        
+           	jQuery('#example').popover(
+				{
+					placement : 'bottom',
+					html : true,
+					trigger : 'hover',
+					content : '<div id="profile-data" class="verfied-content">We personally verify Minion profiles to help you be sure that they are who they claim to be and they are safe to do business with. Minions with out Verified status have yet to go through the personal verification process</div>',
+				}
+			);
 
     });
 </script>
@@ -109,7 +118,7 @@ require 'templates/_jobs.php';
                 <a href="<?php echo site_url() ?>/jobs/" class="view loaded">My Jobs</a>
                 <a href="#" class="view loaded edit-user-profile">Profile</a>
                
-                <a href="#" class="view loaded edit-user-profile"><?php if(get_user_id()== get_current_user_id()) echo "MY"; else if(strlen(user_profile_company_name())>0) echo user_profile_company_name(); else echo user_profile_first_name(); ?></a>
+                <a href="#" class="view loaded edit-user-profile"><?php if(get_user_id()== get_current_user_id()) echo "My"; else if(strlen(user_profile_company_name())>0) echo mb_convert_case(user_profile_company_name(), MB_CASE_TITLE, "UTF-8"); else echo mb_convert_case(user_profile_first_name(), MB_CASE_TITLE, "UTF-8"); ?></a>
             </p>
         </div>
         <div class="row-fluid profile-wrapper">
@@ -157,7 +166,8 @@ require 'templates/_jobs.php';
                                                       
                                                          if(is_user_verified()=== 'Y'){ ?>	
                                                         <span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
-                                                         <?php }?><i class="icon-question-sign verfied-help"  id="example"></i> 
+                                                        <i class="icon-question-sign verfied-help"  id="example"></i> 
+                                                         <?php }?>
 
 								</h4> 
                         <div class="row-fluid profile-list">
