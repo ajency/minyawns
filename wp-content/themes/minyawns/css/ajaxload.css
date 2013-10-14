@@ -37,6 +37,19 @@
 
 
 }
+.load_ajax_profile_comments {
+
+    background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 21px;
+    position: inherit;
+    width: 20px;
+    margin: auto;
+
+
+}
+
+
 .load-ajax-browse {
 
     background: url("../images/2.gif") no-repeat scroll 0 0 transparent;

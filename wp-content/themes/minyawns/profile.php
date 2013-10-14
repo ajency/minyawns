@@ -15,6 +15,59 @@ require 'templates/_jobs.php';
         }
 
         jQuery("#tab_identifier").val('1');
+        
+         $("#example_right").live('click', function() {
+
+            $(".load_ajax_profile_comments").show();
+            var Fetchusercomments = Backbone.Collection.extend({
+                model: Usercomments,
+                url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/getcomments'
+            });
+
+            window.fetchc = new Fetchusercomments;
+            window.fetchc.fetch({
+                data: {
+                    minion_id: $("#example_right").attr("user-id")
+                            //job_id: jQuery("#job_id").val()
+                },
+                success: function(collection, response) {
+
+                    console.log(collection.models);
+                    var html;
+                    if (collection.length > 0) {
+                        var template = _.template(jQuery("#comment-popover").html());
+                        _.each(collection.models, function(model) {
+
+
+                            html = template({result: model.toJSON()});
+                            //jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
+                        });
+
+                        $(".load_ajax_profile_comments").hide();
+                        $("#example_right").popover({placement: 'left', trigger: 'click', content: html}).popover('show');
+                        ;
+
+
+                    }
+                }
+            });
+            
+            $(".close").live("click",function(){
+            
+            $("#example_right").popover('hide');
+            });
+
+        });
+        
+           	jQuery('#example').popover(
+				{
+					placement : 'bottom',
+					html : true,
+					trigger : 'hover',
+					content : '<div id="profile-data" class="verfied-content">We personally verify Minion profiles to help you be sure that they are who they claim to be and they are safe to do business with. Minions with out Verified status have yet to go through the personal verification process</div>',
+				}
+			);
+
     });
 </script>
 
@@ -22,7 +75,7 @@ require 'templates/_jobs.php';
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <?php if (is_user_logged_in() == TRUE)  ?>
-        <h4 id="myModalLabel">Change Avatar</h4>
+        <h4 id="myModalLabel">Change Profile Pic</h4>
 
     </div>
     <input type="hidden" id="tab_identifier" />
@@ -63,7 +116,9 @@ require 'templates/_jobs.php';
             <p id="bread-crumbs-id">
 
                 <a href="<?php echo site_url() ?>/jobs/" class="view loaded">My Jobs</a>
-                <a href="#" class="view loaded edit-user-profile">My Profile</a>
+                <a href="#" class="view loaded edit-user-profile">Profile</a>
+               
+                <a href="#" class="view loaded edit-user-profile"><?php if(get_user_id()== get_current_user_id()) echo "My"; else if(strlen(user_profile_company_name())>0) echo mb_convert_case(user_profile_company_name(), MB_CASE_TITLE, "UTF-8"); else echo mb_convert_case(user_profile_first_name(), MB_CASE_TITLE, "UTF-8"); ?></a>
             </p>
         </div>
         <div class="row-fluid profile-wrapper">
@@ -74,23 +129,32 @@ require 'templates/_jobs.php';
             <div class="span12" id="profile-view">
                 <div class="row-fluid min_profile">
 
-                    <div class="span2 <?php
+                    <div class="span2 ">
+					<div class="<?php
+                                                                   
                     if (get_user_role() == 'employer') {
                         echo 'employer-image';
                     }
                     ?>">
                         <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
+						
                             <?php
+                            
+                            
                             if (get_mn_user_avatar() !== false)
                                 echo get_mn_user_avatar();
                             else
                                 echo get_avatar(get_user_id(), 168)
                                 ?>
 
-                            <?php if (is_user_logged_in())  ?>
-                            <span >Change Avatar</span>
+                            <?php if (is_user_logged_in()) { ?>              
                         </a>
-                        <input id="change-avatar" type="file" name="files" style="visibility:hidden">
+						</div>
+                        <?php if(is_facebook_user() === 'false'){ ?>
+						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">Change Profile Pic</a>
+                        <?php }?>
+                                                  <input id="change-avatar" type="file" name="files" style="visibility:hidden">
+                            <?php }?>
                     </div>
                     <div class="span8">
                         <h4 class="name"> <?php
@@ -99,7 +163,18 @@ require 'templates/_jobs.php';
                             } else {
                                 user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
-                                ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?></h4> 
+                                ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
+
+								
+
+							<?php
+                                                      
+                                                         if(is_user_verified()=== 'Y'){ ?>	
+                                                        <span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
+                                                        <i class="icon-question-sign verfied-help"  id="example"></i> 
+                                                         <?php }?>
+
+								</h4> 
                         <div class="row-fluid profile-list">
                             <?php if (get_user_role() === 'minyawn'): ?>
 
@@ -164,7 +239,7 @@ require 'templates/_jobs.php';
 
                     </div>
                     <?php if (get_user_role() === 'minyawn'): ?>
-                        <div class="span2">
+                        <div class="span2" id="profile-view1">
                             <br>
                             <div class="like_btn"><br><br>
                                 <a href="#fakelink" style="float:left;" >
@@ -188,6 +263,11 @@ require 'templates/_jobs.php';
                                     <b class="dislike"><?php user_dislike_count(); ?></b>
                                 </a> 
                             </div>
+                            
+                             <?php if(count(get_object_id(get_user_id())) > 0){ ?>
+                            <span class="userrev">User reviews <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a><span class='load_ajax_profile_comments' style="display:none; float:right"></span></span> 
+                            <!-- Mobile View Like Button -->
+                            <?php }?>
                         </div>	
                     <?php endif; ?>			
                 </div>

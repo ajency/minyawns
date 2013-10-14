@@ -1,6 +1,5 @@
 <script type="text/template" id="jobs-table">
-
-    <div style="clear:both;">
+ <div style="clear:both;">
     </div>
     <div class="accordion-group view" id="job-accordion-<%= result.post_id %>">
     <div id="last-job-id" last-job="<%= result.post_id %>" value="<%= result.post_id %>">
@@ -82,8 +81,8 @@
     <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%>
     </div>
     </div>
-<div class="row-fluid minywans_list">
-    <div class="span3 "><b>Job Category :</b></div><div class="span9"> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="label" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%>
+    <div class="row-fluid minywans_list">
+    <div class="span3 "><b>Job Category :</b></div><div class="span9"> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%>
     </div>
     </div>
     <div class="row-fluid minyawansgrid">
@@ -115,6 +114,7 @@
     </form>
     </div>
     </div>
+
 </script>
 
 <script type="text/template" id="minion-cards">
@@ -122,9 +122,12 @@
 
     <li class="span3" id="<%= result.user_id %>" >
 
-    <div class="thumbnail">
-    <div class="caption"  >
-    <div class="minyawns-img" onclick="load_profile(<%= result.user_id %>)">
+    <div class="thumbnail" id="thumbnail-<%= result.user_id %>">
+   <% if(result.is_verified === 'Y'){%>
+    <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
+   <% } %> 
+   <div class="caption" >
+    <div class="minyawns-img" >
     <%= result.user_image%>
     </div>
     <div class="rating">
@@ -141,7 +144,7 @@
     <div class="social-link">
     <%= result.user_email %>
     </div>
-     <div class="social-link">
+    <div class="social-link">
     <%= result.linkedin %>
     </div>
     <%
@@ -153,6 +156,8 @@
     <hr>
     <div class="dwn-btn">
     <%= select_button %>
+    <%= ratings_button %>
+    <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
     </div>
     </div>
     </div>
@@ -188,8 +193,8 @@
     <i class="icon-thumbs-down"></i> 0
     </a>
     </div>
-    <h4> Apply Job</h4>
-    <div class="collage">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
+    <h4></h4>
+    <div class="collage">"Give it a shot. Be the first to apply.</div>
     <hr>
     <div class="dwn-btn">
 
@@ -207,4 +212,38 @@
     <b style="text-align: center">No Jobs Available ! </b>&nbsp;
     There doesn't seem to be anything here.
     </div>
+</script>
+
+<script type="text/templates" id="comment-popover">
+    <div class='tabbable tabs-below'><ul class='nav nav-tabs'><li class='active'>
+    <a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul><a class="close"  href="#">&times;</a>
+    <div class='tab-content'>
+    <div class='tab-pane active' id='A'>
+    <ul>
+    <%
+    if(result.positive.length >0) {
+    for(var i=0;i<result.positive.length;i++){ %>
+    <li><div class='jobname'>
+    <a href='#'> <%= result.positive_title[i] %></a>
+    </div>
+    <div class='yourcomment'><%= result.positive[i] %></div>
+    <% } }else {%>
+    <div class='jobname'>You don't have any ratings!</a></div>       
+    <% } %>  </li>
+    </ul>
+    </div>
+    <div class='tab-pane tariblecontent' id='B'>
+    <ul>
+    <% if(result.negative.length >0)
+    {  for(var i=0;i<result.negative.length;i++){ %>
+    <li><div class='jobname'><a href='#'><%= result.negative_title[i] %></a></div>
+    <div class='yourcomment'> <%= result.negative[i] %> </div></li>
+    <% }
+    }else {%>
+    <div class='jobname'>Congrats! You don't have any terrible ratings!</a></div>       
+    <% } %>       
+    </ul>
+    </div></div></div>
+
+
 </script>

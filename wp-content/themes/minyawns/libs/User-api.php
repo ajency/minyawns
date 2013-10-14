@@ -88,6 +88,9 @@ function setup_user_profile_data() {
     //check if user has avatar uploaded
     $current_user_new->data->avatar = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
+    //check if user verified
+    $current_user_new->data->verified=isset($user_meta['user_verified'][0]) ? trim($user_meta['user_verified'][0]):0;
+  
     // global $current_user_new;
     global $wpdb;
     $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
@@ -138,6 +141,7 @@ function get_user_fb_avatar($type = 'thumb') {
 function get_mn_user_avatar() {
 
     global $current_user_new;
+   
     if ($current_user_new->data->avatar !== false) {
         return wp_get_attachment_image($current_user_new->data->avatar, get_user_role());
     } else {
@@ -327,6 +331,12 @@ function get_user_company_logo($user_id) {
         return wp_get_attachment_image($post_attachment_id, get_user_role());
     else
         return get_avatar($user_id);
+}
+function is_user_verified()
+{
+    global $current_user_new;
+    return $current_user_new->data->verified;
+    
 }
 
 /**
@@ -653,4 +663,61 @@ function get_user_job_rating_data($user_id, $job_id) {
     $minyawns_rating = $wpdb->get_row($sql);
 
     return $minyawns_rating;
+}
+
+
+
+
+
+/*
+ *  function to get user role
+ *  return after spell check
+ *  @params nil
+ *  @return minyawn,employer
+ */
+
+function get_user_role_text()
+{
+    if (get_user_role() == "minyawn"){ return 'Minion';} else  return 'Employer' ; 
+    
+}
+
+function get_logged_in_role()
+{
+    global $current_user;
+   $user_role=$current_user->roles[0];
+   if ($user_role == "minyawn"){ return 'Minion';} else  return 'Employer' ; 
+    
+}
+
+function get_logged_in_email()
+{
+    global $current_user;
+    return $current_user->user_email;
+    
+}
+
+
+function is_facebook_user()
+{
+    global $current_user;
+   
+   return strlen($current_user->facebook_avatar_full) > 0 ? 'true' :'false';
+   
+    
+}
+
+
+function get_user_avatar()
+{
+    global $current_user;
+    $user_header_meta=get_user_meta($current_user->ID);
+ 
+  if (isset($user_header_meta['avatar_attachment'])) {
+        return wp_get_attachment_image($user_header_meta['avatar_attachment'][0]);
+    } else {
+        return get_avatar($current_user->ID);
+    }
+    
+    
 }

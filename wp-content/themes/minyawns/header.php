@@ -20,6 +20,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.bxslider.min.js" type="application/javascript"></script>
+   
 	<!-- media-queries.js (fallback) -->
 	<!--[if lt IE 9]>
 	    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			
@@ -66,30 +67,47 @@
 							src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
 							alt="" /> </a>
 					</div>
-					<div class="span6"></div>
+					<div class="span4"></div>
 					<?php
 
 					if (is_user_logged_in() == TRUE) {
                             ?>
 					<div class="span3 notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
+					
 						<div id="logged-in">
-                                                   
+						 <div class="profile-pic">
+						 <a id="user-popdown" > 
+									 <?php 
+									if(get_user_avatar() !== false)
+										echo get_user_avatar() ;
+									else
+										echo get_avatar(get_user_id(), 168 ) ?>
+									</a>
+									</div>
+									<div>
+									<b><?php echo get_logged_in_email(); ?></b><br>
+									Role :<?php echo get_logged_in_role(); ?>
+									</div>
+									<!--                   
 							<a id="user-popdown" href="javascript:void(0);"> <?php 
 									if(get_mn_user_avatar() !== false)
 										echo get_mn_user_avatar() ;
 									else
 										echo get_avatar( get_user_id(), 168 ) ?> <b class="caret"></b>
 							
-                                                        </a>
+                             -->                           </a>
 						</div>
+						
 					</div>
-					<div class="span1">
-						<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon"><i class="icon-question-sign"></i> </a>
+					<div class="span3 user-action">
+					<a class="" href="<?php echo site_url() ?>/profile"><i class="icon-user"></i> View Profile</a>
+					<a class="" href="<?php  echo wp_logout_url(''); ?>"><i class="icon-unlock"></i> Logout</a>
+					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> </a>
 					</div>
 					<?php } else {
 						?>
 
-					<div class="span2 upper-link">
+					<div class="span2 upper-link ">
 						<!-- <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	-->
 						<a href="#mylogin" data-toggle="modal" id="btn__login"><i class="icon-signin"></i> Login </a>
 
