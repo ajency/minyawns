@@ -85,8 +85,8 @@
 									</a>
 									</div>
 									<div>
-									<b><?php echo user_profile_email(); ?></b><br>
-									Role :<?php echo get_user_role_text(); ?>
+									<b><?php echo get_logged_in_email(); ?></b><br>
+									Role :<?php echo get_logged_in_role(); ?>
 									</div>
 									<!--                   
 							<a id="user-popdown" href="javascript:void(0);"> <?php 

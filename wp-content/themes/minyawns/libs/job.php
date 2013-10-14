@@ -677,7 +677,7 @@ $app->get('/getcomments/', function() use ($app) {
             $positive = array();
             $positive_title = array();
 
-            $object_id = get_object_id($_GET['minion_id'], '');
+            $object_id = get_object_id($_GET['minion_id'], '',1);
 
             foreach ($object_id as $objid) {
 

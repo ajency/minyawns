@@ -680,3 +680,18 @@ function get_user_role_text()
     if (get_user_role() == "minyawn"){ return 'Minion';} else  return 'Employer' ; 
     
 }
+
+function get_logged_in_role()
+{
+    global $current_user;
+   $user_role=$current_user->roles[0];
+   if ($user_role == "minyawn"){ return 'Minion';} else  return 'Employer' ; 
+    
+}
+
+function get_logged_in_email()
+{
+    global $current_user;
+    return $current_user->user_email;
+    
+}
