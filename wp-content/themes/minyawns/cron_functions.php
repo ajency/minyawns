@@ -39,7 +39,7 @@ function employer_jobcompletion_reminder() {
     	 			INNER JOIN {$wpdb->prefix}userjobs c    on  a.ID = c.job_id
     	 			INNER JOIN {$wpdb->prefix}users d  on d.ID = a.post_author
     	 			WHERE c.status = 'hired'  AND b.meta_key ='job_end_date_time'
-    	 			AND b.meta_value < %s
+    	 			AND b.meta_value <= %s
     	 			",current_time( 'timestamp'));
    			
    			 //echo "<span style='font-size:7px' ><br/><br/>job completion".$job_completion_sql."</span>";
@@ -83,8 +83,8 @@ function users_notactivated_reminder()
 	$qr_user_not_logged = $wpdb->prepare("SELECT *
 											FROM {$wpdb->prefix}users
 											WHERE user_status = 2
-											AND user_registered > DATE_SUB(%s, INTERVAL %d SECOND)
-											AND user_registered < DATE_SUB(%s, INTERVAL %d SECOND)
+											AND user_registered >= DATE_SUB(%s, INTERVAL %d SECOND)
+											AND user_registered <= DATE_SUB(%s, INTERVAL %d SECOND)
 											",$now_time, (3*WP_CRON_CONTROL_TIME_1), $now_time, (2*WP_CRON_CONTROL_TIME_1));
 	// echo "<br/><br/> not logged in ".$qr_user_not_logged;	
 	
@@ -165,8 +165,8 @@ echo "current_time( 'timestamp', 1 ) returns GMT: " . date( 'Y-m-d H:i:s', curre
 												AND  h.meta_key = %s
 												AND h.meta_value LIKE %s
 												AND a.user_status = 0
-												AND a.user_registered > DATE_SUB(%s, INTERVAL %d SECOND )
-												AND a.user_registered < DATE_SUB(%s, INTERVAL %d SECOND )
+												AND a.user_registered >= DATE_SUB(%s, INTERVAL %d SECOND )
+												AND a.user_registered <= DATE_SUB(%s, INTERVAL %d SECOND )
 																			
 											)
 			
@@ -178,8 +178,8 @@ echo "current_time( 'timestamp', 1 ) returns GMT: " . date( 'Y-m-d H:i:s', curre
 												AND  j.meta_key = %s
 												AND j.meta_value LIKE %s
 												AND c.user_status = 0
-												AND c.user_registered > DATE_SUB(%s, INTERVAL %d SECOND )
-												AND c.user_registered < DATE_SUB(%s, INTERVAL %d SECOND )
+												AND c.user_registered >= DATE_SUB(%s, INTERVAL %d SECOND )
+												AND c.user_registered <= DATE_SUB(%s, INTERVAL %d SECOND )
 											)
 											",$wpdb->prefix.'capabilities','%minyawn%',$now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1),$wpdb->prefix.'capabilities','%employer%', $now_time, (7*WP_CRON_CONTROL_TIME_1), $now_time, (6*WP_CRON_CONTROL_TIME_1)
 										);
@@ -244,8 +244,8 @@ function user_incomplete_profile_reminder() {
 									    		WHERE um1.meta_key = '{$wpdb->prefix}capabilities'
 									    		AND um1.meta_value LIKE '%minyawn%'
 									    		AND um2.meta_key IS NULL
-									    		AND u1.user_registered > DATE_SUB('".$now_time."', INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
-									    		AND u1.user_registered < DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		AND u1.user_registered >= DATE_SUB('".$now_time."', INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		AND u1.user_registered <= DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
 									    )
 									    UNION (
 									    
@@ -257,8 +257,8 @@ function user_incomplete_profile_reminder() {
 									    		WHERE um1.meta_key = '{$wpdb->prefix}capabilities'
 									    		AND um1.meta_value LIKE '%employer%'
 									    		AND um2.meta_key IS NULL
-									    		AND u1.user_registered > DATE_SUB('".$now_time."', INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
-									    		AND u1.user_registered < DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		AND u1.user_registered >= DATE_SUB('".$now_time."', INTERVAL ".(2*WP_CRON_CONTROL_TIME_1)." SECOND )
+									    		AND u1.user_registered <= DATE_SUB('".$now_time."', INTERVAL ".(1*WP_CRON_CONTROL_TIME_1)." SECOND )
 									    		)");
     
       //echo " <br/> <br/> incomplete profile <span style='font-size:8px;'> ";
