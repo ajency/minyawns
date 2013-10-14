@@ -944,12 +944,12 @@ jQuery(document).ready(function($) {
             $(span1).animate({left: -2 * w}, 500);
             $(span2).css({'left': w, 'top': '60px'});
             $(span2).show().animate({left: 0}, 500);
-//            if($(".edit").attr("is-job-paid") == 1)
-//                {
-//                    $("#edit-job-form").prepend("<div class='alert alert-error'>This job is paid and cannot be edited.</div>");
-//                    $("#edit-job-form").find('input, textarea, button, select').attr('disabled','disabled');
-//                    return;
-//                }
+            if($(".edit").attr("is-job-paid") == 1)
+                {
+                    $("#edit-job-form").prepend("<div class='alert alert-error'>This job is paid and cannot be edited.</div>");
+                    $("#edit-job-form").find('input, textarea, button, select').attr('disabled','disabled');
+                    return;
+                }
         }
     });
     $('#update-job').click(function(e) {
