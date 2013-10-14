@@ -141,6 +141,7 @@ function get_user_fb_avatar($type = 'thumb') {
 function get_mn_user_avatar() {
 
     global $current_user_new;
+   
     if ($current_user_new->data->avatar !== false) {
         return wp_get_attachment_image($current_user_new->data->avatar, get_user_role());
     } else {
@@ -703,5 +704,20 @@ function is_facebook_user()
    
    return strlen($current_user->facebook_avatar_full) > 0 ? 'true' :'false';
    
+    
+}
+
+
+function get_user_avatar()
+{
+    global $current_user;
+    $user_header_meta=get_user_meta($current_user->data->ID);
+    
+  if ($current_user->avatar_attachment !== false) {
+        return wp_get_attachment_image($current_user->avatar_attachment);
+    } else {
+        return false;
+    }
+    
     
 }
