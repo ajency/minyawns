@@ -197,8 +197,9 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                         </div>
                     <?php } ?>
 
-                    <div id="add-job-form" style="display:none;">
-
+                    <div id="add-job-form" style="display:none;" >
+<div class="row-fluid">
+    <div class="span8">
                         <?php
                         if (check_access() === true) {
                             ?>
@@ -209,15 +210,16 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                 <input type="hidden" value="" id="user_skills"></input>
                                 <input type="hidden" value="" name="id"></input>
                                 <div class="control-group small">
-                                    <label class="control-label" for="inputtask">Tasks</label>
+                                    <label class="control-label" for="inputtask">Title of my job </label>
                                     <div class="controls ">
                                        <!-- <input type="text" id="job_task" name="job_task" value="" placeholder="" class="span3">-->
-                                        <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="" style="height:70px;"></textarea>
+                                        <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="example “Wash my Car”
+" style="height:70px;"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="control-group small float-left ">
-                                    <label class="control-label" for="inputtask">Start</label>
+                                    <label class="control-label" for="inputtask">Start the job</label>
                                     <div class="controls">
                                         <div class="input-prepend input-datepicker">
                                             <button type="button" class="btn"><span class="fui-calendar"></span></button>
@@ -234,7 +236,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                 </div>
                                 <div class="clear"></div>
                                 <div class="control-group small float-left" >
-                                    <label class="control-label" for="inputtask">End</label>
+                                    <label class="control-label" for="inputtask">End the job </label>
                                     <div class="controls">
                                         <div class="input-prepend input-datepicker">
                                             <button type="button" class="btn"><span class="fui-calendar"></span></button>
@@ -253,7 +255,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                 <div class="control-group small">
                                     <label class="control-label" for="inputtask">Minyawns Required</label>
                                     <div class="controls ">
-                                        <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="1" class="spinner">
+                                        <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="1" class="spinner sm-input">
                                     </div>
                                 </div>
 
@@ -264,7 +266,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                     <div class="controls small">
                                         <div class="input-prepend">
                                             <span class="add-on"><i class="icon-dollar"></i></span>
-                                            <input class="span2" id="job_wages" type="text" name="job_wages" >
+                                            <input class="span2 sm-input" id="job_wages" type="text" name="job_wages" >
                                         </div>
                                     </div>
 
@@ -296,15 +298,41 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                     </div>
                                 </div>
                                 <div class="control-group small">
-                                    <label class="control-label" for="inputtask">Details</label>
+                                    <label class="control-label" for="inputtask">Job Description</label>
                                     <div class="controls ">
-                                        <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder="" style="height:70px;"></textarea>
+                                        <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder ="example I need my blue corvette cleaned I need someone who knows how to use the car buffer and has cleaned classic cars before" style="height:70px;"></textarea>
                                     </div>
                                 </div>
                                 <hr>
                                 <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
                                 <div class="clear"></div>
                             </form>
+                        </div>
+                        <div class="span4">
+                            <div class="alert alert-info job-sidebar">
+                                    <h5>
+                                      Example of Jobs
+                                    </h5>
+                                        <hr>
+                                        <ul>
+                                            <li> Need help, I am moving out, require some extra hands.</li>
+                                            <li>Need a minion to clean my house</li>
+                                            <li>Need more likes for my Facebook page</li>
+                                        </ul>
+                                        <br>
+                                        <a href="#">See more examples of jobs</a>
+
+                            </div>
+
+                            <div class="alert alert-info help-sidebar">
+                                    <button class="btn btn-inverse btn-large">Click here to view a sample job</button>
+                                    Let us know if you are facing any difficulties, we are happy to be of assistance.
+                                    We can help you get your job online now. Just email us on <a href="mailto:support@minyawns.com">support@minyawns.com</a> and we will get your job posted to the site.
+
+
+                            </div>
+                       </div>
+                    </div>
 <?php } ?>                   
 
                     </div>

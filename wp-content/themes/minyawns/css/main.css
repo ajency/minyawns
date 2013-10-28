@@ -2449,7 +2449,7 @@ body .jobs_table .data-title .profile-job {
   float: right !important;
 }
 .hasDatepicker {
-  width: 102px !important;
+  width: 133px !important;
 }
 .bootstrap-timepicker input {
   height: 16px;
@@ -2623,5 +2623,46 @@ body .jobs_table .data-title .profile-job {
 }
 .delte-popup .modal-footer .action-btn {
   width: 20%;
+  margin: auto;
+}
+/* JOB SIDEBAR */
+.job-sidebar {
+  padding: 16px 30px 16px 30px;
+}
+.job-sidebar h5 {
+  font-size: 23px;
+}
+.job-sidebar hr {
+  margin: 11px 0;
+  border-top: 1px solid #D5D5D5;
+}
+.job-sidebar ul {
+  font-size: 13px;
+  margin-left: 15px;
+}
+.job-sidebar ul li {
+  margin-bottom: 10px;
+}
+.job-sidebar a {
+  display: block;
+  text-align: right;
+  color: #8ed030;
+  font-size: 14px;
+}
+.help-sidebar {
+  background: #AEFF81;
+  color: #174C0A;
+  padding: 16px 30px 16px 30px;
+  font-size: 14px;
+  border-color: #96E250;
+  text-align: center;
+}
+.help-sidebar a {
+  color: #000;
+}
+.help-sidebar button {
+  background-color: #32920C !important;
+  text-align: center;
+  display: block;
   margin: auto;
 }
