@@ -156,7 +156,7 @@ require 'templates/_jobs.php';
                                                   <input id="change-avatar" type="file" name="files" style="visibility:hidden">
                             <?php }?>
                     </div>
-                    <div class="span8">
+                    <div class="span6">
                         <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
@@ -238,6 +238,14 @@ require 'templates/_jobs.php';
                         </div>
 
                     </div>
+                    <div class="span4 profile-help-sidebar">
+                        Complete your profile and get more applications from eager minions
+                        To complete or <br>edit your profile click on <a href="#" id="edit-user-profile" class="edit-user-profile" >Edit</a> 
+                        <br> <br>
+                       <em> If you have any issues, please feel free to drop us an email on 
+                        <a href="mailto:support@minyawns.com">support@minyawns.com</a></em>
+
+                    </div>
                     <?php if (get_user_role() === 'minyawn'): ?>
                         <div class="span2" id="profile-view1">
                             <br>
@@ -305,6 +313,7 @@ require 'templates/_jobs.php';
             </div>
             <div class="span12" id="profile-edit" style="height:502px;">
                 <div class="row-fluid">	
+                    <div class="span8">
                     <form class="form-horizontal frm-edit" id="profile-edit-form">
 
 
@@ -380,10 +389,16 @@ require 'templates/_jobs.php';
                             </div>
                         <?php endif; ?>
                         <hr>
-                        <a href="#" class="btn btn-large btn-block btn-inverse span2 float-right" id="update-profile-info">Update Info</a>
+                        <a href="#" class="btn btn-large btn-block btn-inverse span3 float-right" id="update-profile-info">Update Info</a>
                         <input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
                         <div class="clear"></div>
                     </form>
+                   </div> 
+                   <div class="span4">
+                       <div class="">
+                        
+                       </div>
+                   </div>
                 </div>
             </div>
             <div class="clear"></div>
