@@ -587,7 +587,8 @@ font-size:11px;
 }
 #paypal_form .popover.bottom {
 margin-top: 30px !important;
-left: -34px !important;
+left: -5px !important;
+width: 106% !important;
 
 }
 #paypal_form .popover.bottom .arrow

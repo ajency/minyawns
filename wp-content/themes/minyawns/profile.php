@@ -127,6 +127,8 @@ require 'templates/_jobs.php';
             //{
             ?>
             <div class="span12" id="profile-view">
+                <div class="alert alert-msg">   Complete your profile and get more applications from eager minions
+                        To complete or edit your profile click on <a href="#" id="edit-user-profile" class="edit-user-profile" >Edit</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
                 <div class="row-fluid min_profile">
 
                     <div class="span2 ">
@@ -156,7 +158,7 @@ require 'templates/_jobs.php';
                                                   <input id="change-avatar" type="file" name="files" style="visibility:hidden">
                             <?php }?>
                     </div>
-                    <div class="span6">
+                    <div class="span8">
                         <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
@@ -238,14 +240,7 @@ require 'templates/_jobs.php';
                         </div>
 
                     </div>
-                    <div class="span4 profile-help-sidebar">
-                        Complete your profile and get more applications from eager minions
-                        To complete or <br>edit your profile click on <a href="#" id="edit-user-profile" class="edit-user-profile" >Edit</a> 
-                        <br> <br>
-                       <em> If you have any issues, please feel free to drop us an email on 
-                        <a href="mailto:support@minyawns.com">support@minyawns.com</a></em>
-
-                    </div>
+                  
                     <?php if (get_user_role() === 'minyawn'): ?>
                         <div class="span2" id="profile-view1">
                             <br>
@@ -283,13 +278,13 @@ require 'templates/_jobs.php';
                 <hr>
                 <div class="clear"></div>
 
-                <h4 class="job-view">To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
+                <h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
 
                 <div class="jobs_table">
-                    <div id="browse-jobs-table" class="table-border browse-jobs-table">
+                    <div id="browse-jobs-table" class=" browse-jobs-table">
 
                         <!-- Row Div header -->
-                        <div class="row-fluid ">
+                      <!--  <div class="row-fluid ">
                             <div class="span12 header-title">
                                 <div class="job-logo header-sub"> Logo</div>
                                 <div class="job-date header-sub"> Job Date</div>
@@ -304,7 +299,11 @@ require 'templates/_jobs.php';
 
                         <div class="row-fluid " id="accordion24" >
 
-                        </div>
+                        </div>-->
+
+                          <ul class="unstyled job-view-list" id="accordion24">
+
+                        </ul>
 
                         <button class="btn load_more load_more_profile" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
                     </div>

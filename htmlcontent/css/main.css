@@ -1985,3 +1985,32 @@ a:hover {
   background-color: #F5F5F5;
   cursor: pointer;
 }
+/* mobile resonsive */
+@media (max-width: 767px) {
+  .job-view-list ._li {
+    position: relative;
+  }
+  .job-view-list ._li .img-div {
+    width: 35%;
+    display: block;
+    margin-bottom: 17px;
+    height: 35px;
+  }
+  .job-view-list ._li .job-details .job-title h5 {
+    font-size: 16px;
+    color: #000;
+    font-weight: 700;
+  }
+  .job-view-list ._li .job-details .job-title h5 .btn-mini {
+    float: none;
+    position: absolute;
+    top: 17px;
+    display: block;
+    right: 5px;
+  }
+  .job-view-list ._li .job-details .job-meta ul li {
+    display: block;
+    border: 0px;
+    margin-bottom: 10px;
+  }
+}

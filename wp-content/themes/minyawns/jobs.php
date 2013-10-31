@@ -79,24 +79,17 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
 
             <div class="clear"></div><br>
             <span class='load-ajax-browse' style="display:block"></span> 
-            <div id="browse-jobs-table" class="table-border browse-jobs-table">
+            <div id="browse-jobs-table" class="browse-jobs-table">
 
                 <!-- Row Div header -->
-                <div class="row-fluid ">
-                    <div class="span12 header-title">
-                        <div class="job-logo header-sub"> Logo</div>
-                        <div class="job-date header-sub"> Job Date</div>
-                        <div class="job-time header-sub">Duration</div>
-                        <div class="job-wage header-sub">Applicants</div> 
-                        <div class="job-progress header-sub">Progress</div>
-                        <div class="job-action header-sub">Wages</div>
+             
 
-                    </div>
-                </div>
-
-                <div class="row-fluid " id="accordion2" >
+               <!-- <div class="row-fluid " id="accordion2" >
 	
-                </div>
+                </div>-->
+                  <ul class="unstyled job-view-list" id="accordion2">
+
+                        </ul>
 
                 <button class="btn load_more" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
             </div>
@@ -344,21 +337,14 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                     </div>
                     <span class='load_ajax1_myjobs' style="display:none"></span>
                     <div id="list-my-jobs">
-                        <div class="row-fluid ">
-                            <div class="span12 header-title">
-                                <div class="job-logo header-sub"> Logo</div>
-                                <div class="job-date header-sub"> Job Date</div>
-                                <div class="job-time header-sub">Duration</div>
-                                <div class="job-wage header-sub">Applicants</div> 
-                                <div class="job-progress header-sub">Progress</div>
-                                <div class="job-action header-sub">Wages</div>
+                       
 
-                            </div>
-                        </div>
+                        <!--<div class="row-fluid " id="accordion24" >
 
-                        <div class="row-fluid " id="accordion24" >
+                        </div>-->
+                        <ul class="unstyled job-view-list" id="accordion24">
 
-                        </div>
+                        </ul>
 
                         <button class="btn load_more" id="load-more-my-jobs"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
 

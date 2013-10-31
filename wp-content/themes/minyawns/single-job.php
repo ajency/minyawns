@@ -160,15 +160,18 @@ require 'templates/_jobs.php';
                 <!--Delete Pop uP-->	          
             </div>
             <span class='load_ajaxsingle_job' style="display:block"></span>
-            <div class="singlejobedit" style=" margin-left: 0; position: relative;
+              <ul class="singlejobedit single-jobs unstyled job-view-list" id="single-job-accordion"  style=" margin-left: 0; position: relative;
                  top: 50px;
-                 z-index: 10;" id="single-job-accordion">
+                 z-index: 10;">
+            
 
                 <span  id='single-job-page'style="display:none"></span>
+               
 
+                        </ul>
                 <!-- single jobs -->
 
-            </div>
+          
             <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%; " >
 
                 <form id="job-form" class="form-horizontal">

@@ -1,7 +1,39 @@
 <script type="text/template" id="jobs-table">
- <div style="clear:both;">
-    </div>
-    <div class="accordion-group view" id="job-accordion-<%= result.post_id %>">
+
+
+ <li class="_li">
+                                  <div class="row-fluid">
+                                      <div class="span1"> 
+                                      <div class="img-div">
+                                         <%= result.job_author_logo %>
+                                      </div>
+                                      </div>
+                                       <div class="span11 job-details">
+                                            <div class="job-title">
+                 <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %>  <%=  job_collapse_button%></h5>             
+                                            </div>
+                                            <div class="job-meta">
+                                              <ul class="inline">
+                                                <li ><i class="icon-calendar"></i> <%= result.job_start_day %> <%= result.job_start_month %>, <%= result.job_start_year %> </li>
+                                                <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
+                                                <li ><i class="icon-map-marker"></i> <%= result.job_location %> </li>
+                                                <li ><i class="icon-money"></i> $ <%= result.job_wages %></li>
+                                                <li class="no-bdr">Applicants: <span class="badge badge-success"><%= result.users_applied.length %></span></li>
+                                              </ul>
+                                            </div>
+                                            <p><%= result.job_details %></p>
+                                              <div class="additional-info">
+                                          <ul class="inline">
+                                                <li ><span> Category :</span> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%> </li>
+                                                <li ><span> Tags :</span>  <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></li>
+                                              </ul>
+                                                </div>
+
+                                       </div>
+                                    </div>
+                              </li>
+
+    <!--<div class="accordion-group view" id="job-accordion-<%= result.post_id %>">
     <div id="last-job-id" last-job="<%= result.post_id %>" value="<%= result.post_id %>">
     </div>
     <div class="accordion-heading">
@@ -99,7 +131,7 @@
 
     </div>
     </div>
-    </div>
+    </div>-->
 
     <form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">
 
