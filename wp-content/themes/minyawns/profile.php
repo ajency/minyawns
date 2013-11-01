@@ -394,8 +394,15 @@ require 'templates/_jobs.php';
                     </form>
                    </div> 
                    <div class="span4">
-                       <div class="">
-                        
+                       <div class=" widget-sidebar">
+							<h5>Help Text on the Right
+							Stand out from the crowd with a complete profile</h5>
+<hr>
+							Did you know? Adding your logo makes your profile 7 time more likely to have more applications. Simple updates like these make a difference.
+							Here are quick steps to create a complete profile and ensure you’re putting your best foot forward:<br><br>
+							Fill in the details on your left.<br>
+							Add your company logo (.jpg image)<br><br>
+							Click on Update Info to save your profile.
                        </div>
                    </div>
                 </div>
