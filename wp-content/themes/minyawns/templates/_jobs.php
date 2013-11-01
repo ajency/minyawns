@@ -1,7 +1,39 @@
 <script type="text/template" id="jobs-table">
- <div style="clear:both;">
-    </div>
-    <div class="accordion-group view" id="job-accordion-<%= result.post_id %>">
+
+
+ <li class="_li">
+                                  <div class="row-fluid">
+                                      <div class="span1"> 
+                                      <div class="img-div">
+                                         <%= result.job_author_logo %>
+                                      </div>
+                                      </div>
+                                       <div class="span11 job-details">
+                                            <div class="job-title">
+                 <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %>  <%=  job_collapse_button%></h5>             
+                                            </div>
+                                            <div class="job-meta">
+                                              <ul class="inline">
+                                                <li ><i class="icon-calendar"></i> <%= result.job_start_day %> <%= result.job_start_month %>, <%= result.job_start_year %> </li>
+                                                <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
+                                                <li ><i class="icon-map-marker"></i> <%= result.job_location %> </li>
+                                                <li ><i class="icon-money"></i> $ <%= result.job_wages %></li>
+                                                <li class="no-bdr">Applicants: <span class="badge badge-success"><%= result.users_applied.length %></span></li>
+                                              </ul>
+                                            </div>
+                                            <p><%= result.job_details %></p>
+                                              <div class="additional-info">
+                                          <ul class="inline">
+                                                <li ><span> Category :</span> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%> </li>
+                                                <li ><span> Tags :</span>  <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></li>
+                                              </ul>
+                                                </div>
+
+                                       </div>
+                                    </div>
+                              </li>
+
+    <!--<div class="accordion-group view" id="job-accordion-<%= result.post_id %>">
     <div id="last-job-id" last-job="<%= result.post_id %>" value="<%= result.post_id %>">
     </div>
     <div class="accordion-heading">
@@ -99,7 +131,7 @@
 
     </div>
     </div>
-    </div>
+    </div>-->
 
     <form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">
 
@@ -107,7 +139,7 @@
     <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
     <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url() . '/paypal-payments/'; ?>" / >
     <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
-    <div class="row-fluid minyawns-grid">
+    <div class="row-fluid minyawns-grid1">
     <ul class="thumbnails">
     <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
@@ -126,7 +158,34 @@
    <% if(result.is_verified === 'Y'){%>
     <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
    <% } %> 
+   <div class="m1">
    <div class="caption" >
+    <div class="minyawns-img" >
+    <%= result.user_image%>
+    </div>
+  
+    <h4> <%= result.name %></h4>
+    <div class="collage"> <%= result.college%> </div>
+    <div class="collage"> <%= result.major%> </div>
+    <div class="social-link">
+    <%= result.user_email %>
+    </div>
+    <div class="social-link">
+    <%= result.linkedin %>
+    </div>
+  <div class="rating">
+    <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
+    <i class="icon-thumbs-up" ></i> <%= result.rating_positive %>
+    </a>
+    <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
+    <i class="icon-thumbs-down" "></i> <%= result.rating_negative %>
+    </a>
+    </div>
+   
+    </div>
+	</div>
+	<div class="m2">
+	   <div class="caption" >
     <div class="minyawns-img" >
     <%= result.user_image%>
     </div>
@@ -160,6 +219,7 @@
     <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
     </div>
     </div>
+	</div>
     </div>
 
     </li>

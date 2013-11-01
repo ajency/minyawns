@@ -277,7 +277,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 if (isset($_GET['single_job']))
                     $post_content = $pagepost->post_content;
                 else
-                    $post_content = substr($pagepost->post_content, 0, 100);
+                    $post_content = substr($pagepost->post_content, 0, 300);
 
 
 

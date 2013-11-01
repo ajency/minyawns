@@ -127,6 +127,8 @@ require 'templates/_jobs.php';
             //{
             ?>
             <div class="span12" id="profile-view">
+                <div class="alert alert-msg">   Complete your profile and get more applications from eager minions
+                        To complete or edit your profile click on <a href="#" id="edit-user-profile" class="edit-user-profile" >Edit</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
                 <div class="row-fluid min_profile">
 
                     <div class="span2 ">
@@ -238,6 +240,7 @@ require 'templates/_jobs.php';
                         </div>
 
                     </div>
+                  
                     <?php if (get_user_role() === 'minyawn'): ?>
                         <div class="span2" id="profile-view1">
                             <br>
@@ -275,13 +278,13 @@ require 'templates/_jobs.php';
                 <hr>
                 <div class="clear"></div>
 
-                <h4 class="job-view">To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
+                <h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
 
                 <div class="jobs_table">
-                    <div id="browse-jobs-table" class="table-border browse-jobs-table">
+                    <div id="browse-jobs-table" class=" browse-jobs-table">
 
                         <!-- Row Div header -->
-                        <div class="row-fluid ">
+                      <!--  <div class="row-fluid ">
                             <div class="span12 header-title">
                                 <div class="job-logo header-sub"> Logo</div>
                                 <div class="job-date header-sub"> Job Date</div>
@@ -296,7 +299,11 @@ require 'templates/_jobs.php';
 
                         <div class="row-fluid " id="accordion24" >
 
-                        </div>
+                        </div>-->
+
+                          <ul class="unstyled job-view-list" id="accordion24">
+
+                        </ul>
 
                         <button class="btn load_more load_more_profile" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
                     </div>
@@ -305,6 +312,7 @@ require 'templates/_jobs.php';
             </div>
             <div class="span12" id="profile-edit" style="height:502px;">
                 <div class="row-fluid">	
+                    <div class="span8">
                     <form class="form-horizontal frm-edit" id="profile-edit-form">
 
 
@@ -380,10 +388,16 @@ require 'templates/_jobs.php';
                             </div>
                         <?php endif; ?>
                         <hr>
-                        <a href="#" class="btn btn-large btn-block btn-inverse span2 float-right" id="update-profile-info">Update Info</a>
+                        <a href="#" class="btn btn-large btn-block btn-inverse span3 float-right" id="update-profile-info">Update Info</a>
                         <input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
                         <div class="clear"></div>
                     </form>
+                   </div> 
+                   <div class="span4">
+                       <div class="">
+                        
+                       </div>
+                   </div>
                 </div>
             </div>
             <div class="clear"></div>
