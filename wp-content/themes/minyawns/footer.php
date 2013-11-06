@@ -1,6 +1,6 @@
 
 <footer>
-	<hr style="border-top: 1px solid #C7C3C3;">
+<span class="footer-top"></span>
 	<ul class="footer_menu">
 		<li><a href="<?php echo site_url(); ?>/about/">About</a></li>
 		<li><a href="<?php echo site_url(); ?>/terms-of-service/">Terms</a></li>
