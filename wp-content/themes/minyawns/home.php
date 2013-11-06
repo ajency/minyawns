@@ -80,7 +80,7 @@
                      <div class="carousel-caption">
                         <h4>Almost Anything !</h4>
                         <p>From simple tasks like office work, labor jobs, and event
-                           set-up to ones that require more specialty, our minions can do it all. Our maybe you just need an extra hand, our minions are capable of learning quickly on the job.
+                           set-up to ones that require more specialty, our minions can do it all. You may just need an extra hand, our minions are capable of learning quickly on the job.
                         </p>
                      </div>
                   </div>
@@ -97,7 +97,7 @@ an elite billion-dollar institution, awaiting your command.</p>
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider3.jpg" data-interval="500"  data-slide-to="2" />
                      <div class="carousel-caption">
                         <h4>Safe, Reliable, and Easy!</h4>
-                        <p>We take safety and reliability seriously. We aren't craiglist, we are backed by motiviated college students just looking for some extra money for books, Snacks and presents for our mothers</p>
+                        <p>We take safety and reliability seriously. We aren't craiglist but we are backed by motiviated college students just looking for some extra money for books and snacks.</p>
                      </div>
                   </div>
                </div>
@@ -123,9 +123,9 @@ an elite billion-dollar institution, awaiting your command.</p>
             <h3 class="heading-title">Features</h3>
             <p class="excerpt">Check out what you have access to once you sign up.</p>
             <ul class="nav nav-tabs" id="myTab">
-               <li class="active"><a href="#home">Command Center </a></li>
-               <li><a href="#profile"> Selection</a></li>
-               <li><a href="#messages"> Credit Card Payment</a></li>
+               <li class="active"><a href="#home">Add a Job</a></li>
+               <li><a href="#profile"> Select your minion</a></li>
+               <li><a href="#messages"> Secure Payment</a></li>
                <li><a href="#settings">Mobile Capatible</a></li>
             </ul>
             <div class="tab-content">
@@ -150,9 +150,15 @@ an elite billion-dollar institution, awaiting your command.</p>
 					</div>
                   <img src="<?php echo get_template_directory_uri() ?>/images/laptop-screen.jpg" class="img-center"/>
                </div>
-               <div class="tab-pane" id="profile">..2.</div>
-               <div class="tab-pane" id="messages">..4.</div>
-               <div class="tab-pane" id="settings">..5.</div>
+               <div class="tab-pane" id="profile">
+				 <h3>Get assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. </h3>
+			   </div>
+               <div class="tab-pane" id="messages">
+				 <h3>You can pay with a credit card or check. We will bill you after the job is complete. We are partnered up with Paypal inc. and our transactions are fully secure.</h3>
+			   </div>
+               <div class="tab-pane" id="settings">
+			   <h3>You can use Minyawns on the go so, if you just remembered you needed to get some task done while travelling, having lunch or hiking, simply log in to Minyawns from your phone.</h3>
+			   </div>
             </div>
          </div>
       </div>
