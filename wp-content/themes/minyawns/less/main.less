@@ -3467,6 +3467,9 @@ width: 97%;
 					display: table-cell;
 					vertical-align: middle;
 					height: 140px;
+					img{
+						 width: 68px;
+					}
 
 				}
 
@@ -3557,6 +3560,11 @@ width: 97%;
 
 /* mobile resonsive */
 @media (max-width: 767px) {
+
+#examplepopup {
+width: 93%;
+left: 3%;
+}
 .upper-link{
 	margin-right: 0;
 }
@@ -3652,11 +3660,36 @@ width: 97%;
 .job-view-list{
 		._li{
 				position: relative;
+				width:90%;
 				.img-div {
 					width: 35%;
 					display:block;
 					margin-bottom: 17px;
 					height: 35px;
+					img {
+					width: 47px;
+					}
+				}
+				.job-text-color {
+				float: none;
+				color: #8ed030;
+				position: absolute;
+				top: 22px;
+				width: 56%;
+				right: 0;
+				line-height: 15px;
+				
+				}
+				.job-expired {
+				font-size: 13px;
+				top: 22px;
+				position: absolute;
+				text-align:right;
+				width: 56%;
+				right: 0;
+				line-height: 15px;
+				float: none;
+				color: red;
 				}
 				.job-details {
 						.job-title {
@@ -3664,6 +3697,7 @@ width: 97%;
 								font-size: 16px;
 								color: #000;
 								font-weight: 700;
+								margin-top: 28px;
 								.btn-mini {
 									float: none;
 									position: absolute;

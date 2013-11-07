@@ -2988,6 +2988,9 @@ body .jobs_table .data-title .profile-job {
   vertical-align: middle;
   height: 140px;
 }
+.job-view-list ._li .img-div img {
+  width: 68px;
+}
 .job-view-list ._li .job-details .job-title h5 {
   margin: auto;
   font-size: 21px;
@@ -3052,6 +3055,10 @@ body .jobs_table .data-title .profile-job {
 }
 /* mobile resonsive */
 @media (max-width: 767px) {
+  #examplepopup {
+    width: 93%;
+    left: 3%;
+  }
   .upper-link {
     margin-right: 0;
   }
@@ -3128,6 +3135,7 @@ body .jobs_table .data-title .profile-job {
   }
   .job-view-list ._li {
     position: relative;
+    width: 90%;
   }
   .job-view-list ._li .img-div {
     width: 35%;
@@ -3135,10 +3143,34 @@ body .jobs_table .data-title .profile-job {
     margin-bottom: 17px;
     height: 35px;
   }
+  .job-view-list ._li .img-div img {
+    width: 47px;
+  }
+  .job-view-list ._li .job-text-color {
+    float: none;
+    color: #8ed030;
+    position: absolute;
+    top: 22px;
+    width: 56%;
+    right: 0;
+    line-height: 15px;
+  }
+  .job-view-list ._li .job-expired {
+    font-size: 13px;
+    top: 22px;
+    position: absolute;
+    text-align: right;
+    width: 56%;
+    right: 0;
+    line-height: 15px;
+    float: none;
+    color: red;
+  }
   .job-view-list ._li .job-details .job-title h5 {
     font-size: 16px;
     color: #000;
     font-weight: 700;
+    margin-top: 28px;
   }
   .job-view-list ._li .job-details .job-title h5 .btn-mini {
     float: none;

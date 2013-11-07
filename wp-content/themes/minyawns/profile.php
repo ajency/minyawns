@@ -127,8 +127,7 @@ require 'templates/_jobs.php';
             //{
             ?>
             <div class="span12" id="profile-view">
-                <div class="alert alert-msg">   Complete your profile and get more applications from eager minions
-                        To complete or edit your profile click on <a href="#" id="edit-user-profile" class="edit-user-profile" >Edit</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
+                <div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href="#" id="edit-user-profile" class="edit-user-profile" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
                 <div class="row-fluid min_profile">
 
                     <div class="span2 ">
