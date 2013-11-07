@@ -437,7 +437,7 @@ Enviormental Engineering </div>
       </ul>
    </div>
 
-	<br>
+	<br><br><br>
 	 <div class="bg-title-gray">
       <h3 class="heading-title">Our Customers</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
@@ -454,7 +454,7 @@ Enviormental Engineering </div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture7.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture8.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture9.png"></div>
-   </div><br><br>
+   </div><br><br><br><br>
   
 </div>
 <!-- End  Banner Layout -->
