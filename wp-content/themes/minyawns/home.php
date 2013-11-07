@@ -21,7 +21,7 @@ Backed by University of Washington students and designed for business profession
             <div class="span4"></div>
             <div class="span2"><a  href="#myModal" id="get-minon"  data-toggle="modal"   class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minion <span class="tooltip1"><b>Why do you need minions?</b>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</span></a></div>
 			
-            <div class="span2"><a id="become-minon"  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minion<span class="tooltip1"><b>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
+            <div class="span2"><a id="become-minon"  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minion<span class="tooltip1"><b>Perks of being a minion.</b>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
 </span></a></a>
 			
 			</div>
@@ -162,7 +162,8 @@ Backed by University of Washington students and designed for business profession
 						</div>
 						<div class="span4">
 						<br><br><br><br><br>
-						<p align="center" style="font-size: 15px;font-weight:bold;">Get assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. </p>
+						<h3 class="a-left">Hire minions with skills required for the job.</h3>
+						<p align="left" style="font-size: 15px;">Get assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. </p>
 						</div>
 						<div class="span1">
 						
