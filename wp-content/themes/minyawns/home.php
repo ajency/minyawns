@@ -13,8 +13,8 @@
       <div class="span12">
          <img class="log-img" src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
          <div class="banner-desc">
-            Minyawns is an easy to use. on-demand. reliable way to find work or help fast.<br>
-Backed by University of Washington students and designed for business professionals
+            Minyawns is an easy to use, on-demand, reliable way to find work or help fast.<br>
+Backed by University of Washington students and designed for business professionals.
          </div>
          <hr>
          <div class="row-fluid">
@@ -589,7 +589,7 @@ Enviormental Engineering </div>
    <span id="div_signup_subheader"></span>
       <div id="div_signupmsg" ></div>
       <div class="row-fluid">
-         <div class="span6">
+         <div class="span5">
             <form name="frm_signup"  id="frm_signup" action="" >
                <input type="hidden" name="signup_role" id="signup_role" value="" />
                <h6 class="align-center" style=" margin-bottom: 0px; ">
@@ -602,21 +602,24 @@ Enviormental Engineering </div>
                <div class="control-group ">
                   <input type="password" value="" name="signup_password"  id="signup_password"  placeholder="Password" class="span3">
                </div>
-               <div class="control-group ">
-                  <input type="text" value="" name="signup_company"  id="signup_company"  placeholder="Company Name" class="span3">
-               </div>
+             
                <div class="control-group span6 " style=" margin-left: 0px; ">
                   <input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="First Name" class="span3">
                </div>
                <div class="control-group span6 ">
                   <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Last Name" class="span3">
                </div>
-               
+                 <div class="control-group ">
+                  <input type="text" value="" name="signup_company"  id="signup_company"  placeholder="Company Name" class="span3">
+               </div>
                <div class="clear"></div>
                <button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup"  type="button">Sign Up</button>
             </form>
          </div>
-         <div class="span6">
+		  <div class="span2">
+			<b class="or">or</b>
+		  </div>
+         <div class="span5">
             <h6 class="align-center" style=" margin-bottom: 0px; ">
                Sign Up Using Facebook
             </h6>

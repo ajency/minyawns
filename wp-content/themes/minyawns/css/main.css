@@ -3520,3 +3520,15 @@ span.tooltip1:after {
   top: -35px;
   left: 120px;
 }
+#div_signup_subheader {
+  text-align: center;
+  display: block;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.or {
+  font-size: 40px;
+  padding: 25px;
+  line-height: 53px;
+  font-weight: 800;
+}
