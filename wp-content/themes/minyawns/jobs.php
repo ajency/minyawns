@@ -481,8 +481,8 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
    
   </div>
-</div>
-   
+  </div>
+     </div>  </div>  </div>
 <?php
 get_footer();
 ?>
