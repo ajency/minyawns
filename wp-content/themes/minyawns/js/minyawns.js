@@ -1557,6 +1557,8 @@ function ucfirst(str) {
     var f = str.charAt(0).toUpperCase();
     return f + str.substr(1);
 }
+(function($){$('.carousel').carousel({ interval: 1000, pause:'hover'});
+})(jQuery);
 
 jQuery('.collapse').live('show', function() {
     jQuery(this).parent().find('a').addClass('open'); //add active state to button on open
