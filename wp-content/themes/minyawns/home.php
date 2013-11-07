@@ -13,16 +13,15 @@
       <div class="span12">
          <img class="log-img" src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
          <div class="banner-desc">
-            Minyawns is an easy to use. on-demand. reliable way to find work help fast.<br>
-            Backed by University of Washington students, designed for business professionals
+            Minyawns is an easy to use. on-demand. reliable way to find work or help fast.<br>
+Backed by University of Washington students and designed for business professionals
          </div>
          <hr>
          <div class="row-fluid">
             <div class="span4"></div>
-            <div class="span2"><a  href="#myModal"  data-toggle="modal"   class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minion </a>
-		
-			</div>
-            <div class="span2"><a href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minion</a>
+            <div class="span2"><a  href="#myModal" id="get-minon"  data-toggle="modal"   class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minion <span class="tooltip1"><b>Why do you need minions?</b>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</span></a></div>
+			
+            <div class="span2"><a id="become-minon"  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minion<span class="tooltip1"><b>Perks of being a minion.</b>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</span></a></a>
 			
 			</div>
             <div class="span4"></div>
@@ -114,7 +113,7 @@
          </div>
       </div>
    </div>
-   <br><br>
+ 
 </div>
 <div class="features">
 <div class="bg-title">
@@ -154,13 +153,46 @@
 					</div>
                   <img src="<?php echo get_template_directory_uri() ?>/images/laptop-screen.jpg" class="img-center"/>
                </div>
-               <div class="tab-pane" id="profile">
-				 <h3>Get assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. </h3>
+               <div class="tab-pane" id="profile"><br><br><br>
+				 <div class="row-fluid">
+						
+						<div class="span7">
+						<img src="<?php echo get_template_directory_uri() ?>/images/selection.jpg"/>
+						</div>
+						<div class="span4">
+						<br><br><br><br><br>
+						<p align="center" style="font-size: 15px;font-weight:bold;">Get assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. </p>
+						</div>
+						<div class="span1">
+						
+						</div>
+						
+					</div><br><br>
+			
 			   </div>
                <div class="tab-pane" id="messages">
-				 <h3>You can pay with a credit card or check. We will bill you after the job is complete. We are partnered up with Paypal inc. and our transactions are fully secure.</h3>
+					<br><br>
+					<div class="row-fluid">
+						<div class="span1">
+						</div>
+						<div class="span5">
+						<img src="<?php echo get_template_directory_uri() ?>/images/paypal1.jpg"/>
+						</div>
+						<div class="span4">
+						<br><br><br><br>
+						<img src="<?php echo get_template_directory_uri() ?>/images/paypal2.jpg" class="img-center"/>
+						<br><br>
+						<p align="center" style="font-size: 15px;font-weight:bold;">You can pay with a credit card or check. We will bill you after the job is complete. We are partnered up with Paypal inc. and our transactions are fully secure.</p>
+						</div>
+						<div class="span2">
+						</div>
+					</div>
+				<br><br>
+				
 			   </div>
                <div class="tab-pane" id="settings">
+			   
+			   
 			   <h3>You can use Minyawns on the go so, if you just remembered you needed to get some task done while travelling, having lunch or hiking, simply log in to Minyawns from your phone.</h3>
 			   </div>
             </div>
@@ -170,12 +202,11 @@
 </div>
 <div class="customer">
    <div class="bg-title-gray">
-      <h3 class="heading-title">Our customers</h3>
-      <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
+      <h3 class="heading-title">Meet the minions</h3>
+      <p class="excerpt">The minions are thoroughly vetted University of Washington students.</p>
    </div>
    <div id="down-gray"></div><br>
-   <h3 class="title">STUDENTS</h3>
-   <hr class="hr-1">
+ 
    <div class="row-fluid minyawns-grid1">
       <ul class="thumbnails" style="left: 100px;">
          <li class="span3" id="10"  onclick="window.open('http://www.minyawns.com/profile/297/')">
@@ -406,9 +437,12 @@ Enviormental Engineering </div>
    </div>
 
 	<br>
-	<span class="space"></span><br>
-	 <h3 class="title">Companies</h3>
-   <hr class="hr-1">
+	 <div class="bg-title-gray">
+      <h3 class="heading-title">Our Customers</h3>
+      <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
+   </div>
+   <div id="down-gray"></div><br>
+ 
      <div class="slider1">
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture1.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture2.png"></div>
@@ -420,7 +454,7 @@ Enviormental Engineering </div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture8.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture9.png"></div>
    </div><br><br>
-   <span class="space"></span>
+  
 </div>
 <!-- End  Banner Layout -->
 <!--

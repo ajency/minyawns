@@ -1571,6 +1571,8 @@ jQuery('.collapse').live('hide', function() {
 jQuery(".edit-user-profile").click(function() {
     jQuery(".profile-wrapper").addClass("intro");
 });
+
+
 jQuery('a #edit-user-profile').click(function() {
     jQuery(this).addClass('active');
 });
