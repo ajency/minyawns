@@ -81,7 +81,7 @@ Backed by University of Washington students and designed for business profession
                   <div class="active item">
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider1.jpg" data-interval="500" data-slide-to="0" />
                      <div class="carousel-caption">
-                        <h4>Almost Anything !</h4>
+                        <h4>Almost anything !</h4>
                         <p>From simple tasks like office work, labor jobs, and event set-up to ones that need more specialty, our minions can do it all. You may just need an extra hand, our minions are capable of learning quickly on the job.
                         </p>
                      </div>
@@ -127,9 +127,9 @@ Backed by University of Washington students and designed for business profession
          <div class="span12">
 		 
             <ul class="nav nav-tabs" id="myTab">
-               <li class="active"><a href="#home">Add a Job</a></li>
+               <li class="active"><a href="#home">Add a job</a></li>
                <li><a href="#profile"> Select your minion</a></li>
-               <li><a href="#messages"> Secure Payment</a></li>
+               <li><a href="#messages"> Secure payment</a></li>
                <li><a href="#settings">Mobile compatible</a></li>
             </ul>
             <div class="tab-content">
