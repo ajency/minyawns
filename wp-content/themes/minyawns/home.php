@@ -19,9 +19,9 @@ Backed by University of Washington students and designed for business profession
          <hr>
          <div class="row-fluid">
             <div class="span4"></div>
-            <div class="span2"><a  href="#myModal" id="get-minon"  data-toggle="modal"   class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minion <span class="tooltip1"><b>Why do you need minions?</b>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</span></a></div>
+            <div class="span2"><a  href="#myModal" <?php /*id="get-minon"*/ ?>  data-toggle="modal"   class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minion <span class="tooltip1"><b>Why do you need minions?</b>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</span></a></div>
 			
-            <div class="span2"><a id="become-minon"  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minion<span class="tooltip1"><b>Perks of being a minion.</b>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
+            <div class="span2"><a <?php /*id="become-minon"*/ ?>  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minion<span class="tooltip1"><b>Perks of being a minion.</b>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
 </span></a></a>
 			
 			</div>
@@ -193,9 +193,8 @@ Backed by University of Washington students and designed for business profession
 				
 			   </div>
                <div class="tab-pane" id="settings">
-			   
-			   
-			   <h3>You can use Minyawns on the go so, if you just remembered you needed to get some task done while travelling, having lunch or hiking, simply log in to Minyawns from your phone.</h3>
+			   <img src="<?php echo get_template_directory_uri() ?>/images/minyawns-mobile.jpg" class="img-center"/>
+			  
 			   </div>
             </div>
          </div>
@@ -584,9 +583,10 @@ Enviormental Engineering </div>
 <div id="myModal" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
    <div class="modal-header">
       <button type="button" id="signup_popup_close" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
-      <h4 id="myModalLabel">Sign Up to <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"/> </h4>
+      <span id="div_signupheader"><h4 id="myModalLabel">Sign Up to <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"/> </h4></span>
    </div>
    <div class="modal-body">
+   <span id="div_signup_subheader"></span>
       <div id="div_signupmsg" ></div>
       <div class="row-fluid">
          <div class="span6">
@@ -602,12 +602,16 @@ Enviormental Engineering </div>
                <div class="control-group ">
                   <input type="password" value="" name="signup_password"  id="signup_password"  placeholder="Password" class="span3">
                </div>
+               <div class="control-group ">
+                  <input type="text" value="" name="signup_company"  id="signup_company"  placeholder="Company Name" class="span3">
+               </div>
                <div class="control-group span6 " style=" margin-left: 0px; ">
-                  <input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="Name" class="span3">
+                  <input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="First Name" class="span3">
                </div>
                <div class="control-group span6 ">
-                  <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Company Name" class="span3">
+                  <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Last Name" class="span3">
                </div>
+               
                <div class="clear"></div>
                <button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup"  type="button">Sign Up</button>
             </form>

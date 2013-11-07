@@ -808,8 +808,13 @@ jQuery(document).ready(function($) {
 
 
     /* POPUP SIGNUP */
-    jQuery("#link_minyawnregister").live("click", function() {
-        jQuery("#signup_role").val('minyawn');
+    
+    //function to set div,message for minion sign up modal
+    function setup_minionsignup_modal()
+    {
+    	jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up to <img src="'+siteurl+'/wp-content/themes/minyawns/images/logo.png"/> </h4>');
+        jQuery("#div_signup_subheader").html('Not a Minion? Go ahead sign up to get one <a href="#" id="show_employerreg">here</a>');
+    	jQuery("#signup_role").val('minyawn');
         if (jQuery("#usr_role").length > 0)
         {
             jQuery("#usr_role").val("minyawn");
@@ -826,6 +831,7 @@ jQuery(document).ready(function($) {
         jQuery("#div_alreadyregister").html("Already a Minyawn?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
+        jQuery("#signup_company").hide();
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
         jQuery("#signup_email").val("");
@@ -833,9 +839,26 @@ jQuery(document).ready(function($) {
         jQuery("#signup_fname").val("");
         jQuery("#signup_lname").val("");
         jQuery("#signup_email").removeClass('error');
+    }
+        
+    jQuery("#link_minyawnregister").live("click", function() {    	
+    	setup_minionsignup_modal()    	
     })
+    
+    jQuery("#show_minionreg").live("click", function() {
+    	setup_minionsignup_modal()
+     
+    })
+    
+    
 
-    jQuery("#link_employerregister").live("click", function() {
+    
+    //function to set div,message for employer sign up modal
+    function setupemployersignup_modal()
+    {
+    	jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up as an Employer </h4> ');
+    	
+    	jQuery("#div_signup_subheader").html('Looking for a job? Sign in as a <a href="#" id="show_minionreg">Minion</a>');
         jQuery("#signup_role").val('employer');
         if (jQuery("#usr_role").length > 0)
         {
@@ -850,8 +873,9 @@ jQuery(document).ready(function($) {
             jQuery("#fb_chk_usersigninform").remove();
         }
         jQuery("#div_alreadyregister").html("Already registered to Minyawn?");
-        jQuery("#signup_fname").attr("placeholder", "Name");
-        jQuery("#signup_lname").attr("placeholder", "Company Name");
+        jQuery("#signup_fname").attr("placeholder", "First Name");
+        jQuery("#signup_lname").attr("placeholder", "Last Name");
+        jQuery("#signup_company").show();
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
         jQuery("#signup_email").val("");
@@ -859,7 +883,19 @@ jQuery(document).ready(function($) {
         jQuery("#signup_fname").val("");
         jQuery("#signup_lname").val("");
         jQuery("#signup_email").removeClass("error");
+    }
+    
+    jQuery("#link_employerregister").live("click", function() {
+    	setupemployersignup_modal()
     })
+    
+    jQuery("#show_employerreg").live("click", function() {
+    	setupemployersignup_modal()
+     
+    })
+    
+    
+    
 
     jQuery("#btn_signup").live("click", function() {
         jQuery('#frm_signup').submit();
@@ -892,11 +928,12 @@ jQuery(document).ready(function($) {
             jQuery.post(ajaxurl, {
                 action: 'popup_usersignup',
                 //data :  data 
-                pdemail_: jQuery("#signup_email").val(),
-                pdpass_: jQuery("#signup_password").val(),
-                pdfname_: jQuery("#signup_fname").val(),
-                pdlname_: jQuery("#signup_lname").val(),
-                pdrole_: jQuery("#signup_role").val()
+                pdemail_	: jQuery("#signup_email").val(),
+                pdpass_		: jQuery("#signup_password").val(),
+                pdfname_	: jQuery("#signup_fname").val(),
+                pdlname_	: jQuery("#signup_lname").val(),
+                pdcompany_	: jQuery("#signup_company").val(),
+                pdrole_		: jQuery("#signup_role").val()
             },
             function(response) {
                 console.log(response);
