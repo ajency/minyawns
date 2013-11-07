@@ -3501,6 +3501,10 @@ span.tooltip1 {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 2px 0px;
   opacity: none;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 span.tooltip1 b {
   font-size: 20px;
