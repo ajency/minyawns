@@ -1476,9 +1476,6 @@ body .jobs_table .data-title .profile-job {
   font-weight: bold;
   border-bottom: 4px solid rgba(255, 255, 255, 0.36);
 }
-#innermainimage .banner-content .btn-huge:hover {
-  opacity: 0.9;
-}
 /* Home Page */
 .home {
   background: url(../images/back2.jpg) repeat-x;
@@ -1608,14 +1605,14 @@ body .jobs_table .data-title .profile-job {
   color: #fff;
   font-family: arial;
   line-height: 26px;
-  padding: 2px;
+  padding: 3px;
 }
 .home .features {
   background: #fff;
 }
 .home .features .nav-tabs {
   border: 0px;
-  width: 72%;
+  width: 71%;
   margin: auto;
 }
 .home .features .nav-tabs li {
@@ -1741,20 +1738,21 @@ body .jobs_table .data-title .profile-job {
 .home .heading-title {
   margin-top: -3px;
   display: block;
-  padding-top: 30px;
-  font-size: 27px;
+  padding-top: 26px;
+  font-size: 31px;
   font-family: arial;
-  font-weight: bold;
+  font-weight: bolder;
   text-align: center;
   text-transform: uppercase;
+  color: #000;
 }
 .home .excerpt {
-  font-size: 18px;
+  font-size: 17px;
   color: #575757;
   text-align: center;
   margin-bottom: 50px;
-  opacity: 0.5;
-  font-family: arial;
+  opacity: 0.7;
+  letter-spacing: 1px;
 }
 .home .big-heading-title {
   display: block;
@@ -3445,4 +3443,45 @@ body .jobs_table .data-title .profile-job {
   border-right: 30px solid transparent;
   border-top: 27px solid #ececec;
   margin: auto;
+}
+#get-minon:hover span.tooltip1 {
+  display: block !important;
+}
+#become-minon:hover span.tooltip1 {
+  display: block !important;
+}
+span.tooltip1 {
+  display: none;
+  position: absolute;
+  width: 270px;
+  margin-top: 31px;
+  line-height: 20px;
+  padding: 10px;
+  margin-left: -63px;
+  font-size: 14px;
+  text-align: center;
+  color: #666;
+  background: #fff;
+  border: 4px solid #ffffff;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 2px 0px;
+  opacity: none;
+}
+span.tooltip1 b {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000;
+  display: block;
+}
+span.tooltip1:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 20px;
+  border-style: solid;
+  border-color: transparent transparent #FFFFFF transparent;
+  top: -35px;
+  left: 120px;
 }
