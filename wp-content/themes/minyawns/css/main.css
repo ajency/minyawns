@@ -3479,10 +3479,10 @@ body .jobs_table .data-title .profile-job {
   border-top: 27px solid #ececec;
   margin: auto;
 }
-#get-minon:hover span.tooltip1 {
+#link_minyawnregister:hover span.tooltip1 {
   display: block !important;
 }
-#become-minon:hover span.tooltip1 {
+#link_employerregister:hover span.tooltip1 {
   display: block !important;
 }
 span.tooltip1 {

@@ -193,9 +193,8 @@ Backed by University of Washington students and designed for business profession
 				
 			   </div>
                <div class="tab-pane" id="settings">
-			   
-			   
-			   <h3>You can use Minyawns on the go so, if you just remembered you needed to get some task done while travelling, having lunch or hiking, simply log in to Minyawns from your phone.</h3>
+			   <img src="<?php echo get_template_directory_uri() ?>/images/minyawns-mobile.jpg" class="img-center"/>
+			  
 			   </div>
             </div>
          </div>
