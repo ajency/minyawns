@@ -675,7 +675,7 @@ jQuery(document).ready(function($) {
         },
         submitHandler: function(form) {
 
-            jQuery("#div_msgforgotpass").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+            jQuery("#div_msgforgotpass").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50' class='img-center'/>");
             jQuery.post(ajaxurl, {
                 action: 'retrieve_password_ajx',
                 user_login: jQuery("#user_login").val(),
@@ -772,7 +772,7 @@ jQuery(document).ready(function($) {
 
         },
         submitHandler: function(form) {
-            jQuery("#div_loginmsg").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+            jQuery("#div_loginmsg").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50' class='img-center'/>");
             jQuery.post(ajaxurl, {
                 action: 'popup_userlogin',
                 pdemail: jQuery("#txt_email").val(),
@@ -888,7 +888,7 @@ jQuery(document).ready(function($) {
         },
         submitHandler: function(form) {
 
-            jQuery("#div_signupmsg").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50'/>");
+            jQuery("#div_signupmsg").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50' class='img-center'/>");
             jQuery.post(ajaxurl, {
                 action: 'popup_usersignup',
                 //data :  data 

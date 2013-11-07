@@ -2988,6 +2988,9 @@ body .jobs_table .data-title .profile-job {
   vertical-align: middle;
   height: 140px;
 }
+.job-view-list ._li .img-div img {
+  width: 68px;
+}
 .job-view-list ._li .job-details .job-title h5 {
   margin: auto;
   font-size: 21px;
