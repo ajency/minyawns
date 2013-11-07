@@ -197,9 +197,9 @@ function popup_usersignup() {
     $userdata_['role'] = $_REQUEST['pdrole_'];
     $userdata_['user_status'] = 2;
     $userdata_['user_activation_key'] = $user_activation_key;
-    if ($_REQUEST['pdrole_'] == "minyawn") {
+   // if ($_REQUEST['pdrole_'] == "minyawn") {
         $userdata_['last_name'] = $_REQUEST['pdlname_'];
-    }
+    //}
 
 
 
@@ -221,7 +221,7 @@ function popup_usersignup() {
         } else {
 
             if ($_REQUEST['pdrole_'] == "employer")
-                add_user_meta($user_id, 'company_name', $_REQUEST['pdlname_']);
+                add_user_meta($user_id, 'company_name', $_REQUEST['pdcompany_']);
 
 
             /* $msg = "Error occured while creating a new user. Please try again.";			
