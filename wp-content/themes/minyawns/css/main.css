@@ -1619,41 +1619,19 @@ body .jobs_table .data-title .profile-job {
   margin: auto;
 }
 .home .features .nav-tabs li {
-  background: #b4de5a;
+  background: #8ed030;
   /* Old browsers */
-
-  background: -moz-linear-gradient(top, #b4de5a 0%, #99c53c 100%);
-  /* FF3.6+ */
-
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b4de5a), color-stop(100%, #99c53c));
-  /* Chrome,Safari4+ */
-
-  background: -webkit-linear-gradient(top, #b4de5a 0%, #99c53c 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -o-linear-gradient(top, #b4de5a 0%, #99c53c 100%);
-  /* Opera 11.10+ */
-
-  background: -ms-linear-gradient(top, #b4de5a 0%, #99c53c 100%);
-  /* IE10+ */
-
-  background: linear-gradient(to bottom, #b4de5a 0%, #99c53c 100%);
-  /* W3C */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b4de5a', endColorstr='#99c53c', GradientType=0);
-  /* IE6-9 */
 
   padding: 12px;
   font-size: 18px;
   border-right: 1px solid #8CB369;
   margin-bottom: 0px;
-  font-family: arial;
 }
 .home .features .nav-tabs li a {
-  color: #666;
+  color: #FFF;
   background: 0px;
   border: 0px;
-  padding: 9px 20px;
+  padding: 9px 27px;
 }
 .home .features .nav-tabs li.active {
   color: #fff;

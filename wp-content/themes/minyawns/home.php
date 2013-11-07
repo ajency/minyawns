@@ -161,8 +161,8 @@ Backed by University of Washington students and designed for business profession
 						<img src="<?php echo get_template_directory_uri() ?>/images/selection.jpg"/>
 						</div>
 						<div class="span4">
-						<br><br><br><br><br>
-						<h3 class="a-left">Hire minions with skills required for the job.</h3>
+						<br><br><br><br>
+						<h3 class="a-left">Hire minions with skills required for the job.</h3><br>
 						<p align="left" style="font-size: 15px;">Get assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. </p>
 						</div>
 						<div class="span1">
@@ -184,7 +184,7 @@ Backed by University of Washington students and designed for business profession
 						<br><br><br><br>
 						<img src="<?php echo get_template_directory_uri() ?>/images/paypal2.jpg" class="img-center"/>
 						<br><br>
-						<p align="center" style="font-size: 15px;font-weight:bold;">You can pay with a credit card or check. We will bill you after the job is complete. We are partnered up with Paypal inc. and our transactions are fully secure.</p>
+						<p align="center" style="font-size: 15px;">You can pay with a credit card or check. We will bill you after the job is complete. We are partnered up with Paypal inc. and our transactions are fully secure.</p>
 						</div>
 						<div class="span2">
 						</div>
