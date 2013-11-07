@@ -1505,7 +1505,8 @@ body .jobs_table .data-title .profile-job {
 
 }
 .home .how-does-it-work {
-  box-shadow: inset 0px 24px 40px 1px rgba(204, 204, 204, 0.66), inset 0px -37px 49px -10px rgba(204, 204, 203, 0.64);
+  /*box-shadow: inset 0px 24px 40px 1px rgba(204, 204, 204, 0.66), inset 0px -37px 49px -10px rgba(204, 204, 203, 0.64);*/
+
   background: #fff;
   font-family: arial;
 }
@@ -1541,19 +1542,7 @@ body .jobs_table .data-title .profile-job {
   line-height: 26px;
 }
 .home .what-we-can-do {
-  background: #ececec;
-}
-.home .what-we-can-do .bg-title {
   background: #fff;
-  height: 120px;
-}
-.home .what-we-can-do #down {
-  width: 0px;
-  height: 0px;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  border-top: 27px solid #FFF;
-  margin: auto;
 }
 .home .what-we-can-do .carousel {
   margin-top: 35px;
@@ -1614,12 +1603,12 @@ body .jobs_table .data-title .profile-job {
   line-height: 26px;
 }
 .home .what-we-can-do .satisfication {
-  background: #e1584e;
+  background: #3498db;
   font-size: 21px;
   color: #fff;
   font-family: arial;
   line-height: 26px;
-  padding: 10px;
+  padding: 2px;
 }
 .home .features {
   background: #fff;
@@ -3444,4 +3433,16 @@ body .jobs_table .data-title .profile-job {
 }
 .tooltip-right img {
   float: left;
+}
+.bg-title {
+  background: #ececec;
+  height: 120px;
+}
+#down {
+  width: 0px;
+  height: 0px;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 27px solid #ececec;
+  margin: auto;
 }

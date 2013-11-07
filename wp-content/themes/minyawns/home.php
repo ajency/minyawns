@@ -19,11 +19,11 @@
          <hr>
          <div class="row-fluid">
             <div class="span4"></div>
-            <div class="span2"><a  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minion </a>
-			<a href="#getminion"  data-toggle="modal" class="btn-links">Learn More for Get a Minion</a>
+            <div class="span2"><a  href="#myModal"  data-toggle="modal"   class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minion </a>
+		
 			</div>
             <div class="span2"><a href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minion</a>
-			<a href="#becomeminion"  data-toggle="modal" class="btn-links">Learn More for Become a minion</a>
+			
 			</div>
             <div class="span4"></div>
          </div>
@@ -34,24 +34,27 @@
    </div>
 </div>
 <div class="how-does-it-work">
-   <h3 class="heading-title">How does it work</h3>
+<div class="bg-title">
+   <h3 class="heading-title">How does it work?</h3>
    <p class="excerpt">Go from being burdened with menial jobs to doing more awesome stuff.</p>
+   </div>
+     <div id="down"></div><br><br>
    <div class="container steps-3">
       <div class="row-fluid">
          <div class="span4">
             <img src="<?php echo get_template_directory_uri() ?>/images/responsivescreen.jpg"/>
-            <h4><span class="badge">1</span> Post Gigs</h4>
-            <p>Describe what you need to get done, when you want help, and how much you are willing to  pay.</p>
+            <h4><span class="badge">1</span> Post gigs</h4>
+            <p>Describe what you need to get done, when you want help, and how much you are willing to pay.</p>
          </div>
          <div class="span4">
             <img src="<?php echo get_template_directory_uri() ?>/images/magnefine-glass.jpg"/>
-            <h4> <span class="badge">2</span> Pick Your Minion</h4>
+            <h4> <span class="badge">2</span> Pick your minion</h4>
             <p>We're talking about professional, reliable, competent, clean and sociable young college students looking for work.</p>
          </div>
          <div class="span4">
             <img src="<?php echo get_template_directory_uri() ?>/images/reachout.jpg"/>
-            <h4> <span class="badge">3</span> Get Work Done</h4>
-            <p>Get productive and eliminate your to-do list, 100% satisfaction guaranteed.</p>
+            <h4> <span class="badge">3</span> Get work done</h4>
+            <p>Get productive and end your to-do list, 100% satisfaction guaranteed.</p>
          </div>
       </div>
       <br><br><br>
@@ -59,8 +62,8 @@
 </div>
 <div class="what-we-can-do">
    <div class="bg-title">
-      <h3 class="heading-title">How does it work</h3>
-      <p class="excerpt">Go from being burdened with menial jobs to doing more awesome stuff.</p>
+      <h3 class="heading-title">What can we do?</h3>
+      <p class="excerpt">The minions have superpowers, find out what they are.</p>
    </div>
    <div id="down"></div>
    <div class="container">
@@ -79,25 +82,22 @@
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider1.jpg" data-interval="500" data-slide-to="0" />
                      <div class="carousel-caption">
                         <h4>Almost Anything !</h4>
-                        <p>From simple tasks like office work, labor jobs, and event
-                           set-up to ones that require more specialty, our minions can do it all. You may just need an extra hand, our minions are capable of learning quickly on the job.
+                        <p>From simple tasks like office work, labor jobs, and event set-up to ones that need more specialty, our minions can do it all. You may just need an extra hand, our minions are capable of learning quickly on the job.
                         </p>
                      </div>
                   </div>
                   <div class="item">
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider2.jpg" data-interval="500" data-slide-to="1" />
                      <div class="carousel-caption">
-                        <h4>Feel in Charge!</h4>
-                        <p>Our Minions are equiped with the valuable skills from 
-top universities. Its like having power and resources of 
-an elite billion-dollar institution, awaiting your command.</p>
+                        <h4>Make you feel in charge!</h4>
+                        <p>Our Minions are equipped with the valuable skills from top universities. Its like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
                      </div>
                   </div>
                   <div class="item">
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider3.jpg" data-interval="500"  data-slide-to="2" />
                      <div class="carousel-caption">
-                        <h4>Safe, Reliable, and Easy!</h4>
-                        <p>We take safety and reliability seriously. We aren't craiglist but we are backed by motiviated college students just looking for some extra money for books and snacks.</p>
+                        <h4>We are safe, reliable, and easy!</h4>
+                        <p>We take safety and reliability seriously. We aren't Craigslist but we are backed by motivated college students just looking for some extra money for books and snacks.</p>
                      </div>
                   </div>
                </div>
@@ -117,16 +117,20 @@ an elite billion-dollar institution, awaiting your command.</p>
    <br><br>
 </div>
 <div class="features">
+<div class="bg-title">
+            <h3 class="heading-title">Features</h3>
+            <p class="excerpt">Check out what you have access to once you sign up.</p>
+			</div>
+			 <div id="down"></div><br><br>
    <div class="container">
       <div class="row-fluid">
          <div class="span12">
-            <h3 class="heading-title">Features</h3>
-            <p class="excerpt">Check out what you have access to once you sign up.</p>
+		 
             <ul class="nav nav-tabs" id="myTab">
                <li class="active"><a href="#home">Add a Job</a></li>
                <li><a href="#profile"> Select your minion</a></li>
                <li><a href="#messages"> Secure Payment</a></li>
-               <li><a href="#settings">Mobile Capatible</a></li>
+               <li><a href="#settings">Mobile compatible</a></li>
             </ul>
             <div class="tab-content">
                <div class="tab-pane active" id="home">
@@ -174,26 +178,26 @@ an elite billion-dollar institution, awaiting your command.</p>
    <hr class="hr-1">
    <div class="row-fluid minyawns-grid1">
       <ul class="thumbnails" style="left: 100px;">
-         <li class="span3" id="10">
+         <li class="span3" id="10"  onclick="window.open('http://www.minyawns.com/profile/297/')">
+		
             <div class="thumbnail" id="thumbnail-10">
                <div class="m1">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="<?php echo get_template_directory_uri() ?>/images/profile.jpg" >
+                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg" >
                      </div>
-                     <h4> Anna Pritchard</h4>
-                     <div class="collage"> University of Washington Civil and 
-Enviormental Engineering</div>
+                     <h4> Ketfa Inthathirath</h4>
+                     <div class="collage">University of Washington</div>
                     
                      <div class="social-link">
-                        Shenw@uv.edu
+                        www.linkedin.com/pub/ketfa-inthathirath/74/b9b/a9a
                      </div>
 					<div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 3
+                        <i class="icon-thumbs-up"></i> 0
                         </a>
                         <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down"></i> 1
+                        <i class="icon-thumbs-down"></i> 0
                         </a>
                      </div>
                   </div>
@@ -201,57 +205,113 @@ Enviormental Engineering</div>
                <div class="m2">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="<?php echo get_template_directory_uri() ?>/images/profile.jpg">
+                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg">
                      </div>
                      <div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 3
+                        <i class="icon-thumbs-up"></i> 0
                         </a>
                         <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down" ></i> 1
+                        <i class="icon-thumbs-down" ></i> 0
                         </a>
                      </div>
-                     <h4>Anna Pritchard</h4>
+                     <h4>Ketfa Inthathirath</h4>
                      <div class="collage"> University of Washington Civil and 
 Enviormental Engineering </div>
+ <div class="collage"> Biology</div>
                      
                      <div class="social-link">
-                       Shenw@uv.edu
+                      www.linkedin.com/pub/ketfa-inthathirath/74/b9b/a9a
+                     </div>
+                    
+					 <div class="tags">
+					 Tags:<br>
+						<span class="label label-small">Interpersonal Skills</span>
+						<span class="label label-small">Leadership</span>
+						<span class="label label-small">Public Speaking</span>
+						
+					</div>
+                  </div>
+               </div>
+            </div>
+		
+         </li>
+		    <li class="span3" id="10" onclick="window.open('http://www.minyawns.com/profile/214/')" >
+            <div class="thumbnail" id="thumbnail-10">
+               <div class="m1">
+                  <div class="caption">
+                     <div class="minyawns-img">
+                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg" >
+                     </div>
+                     <h4> Jonathan Hodge</h4>
+                     <div class="collage"> University of Washington</div>
+                    
+                     <div class="social-link">
+                       https://www.facebook.com/jonny.hodge.39
+                     </div>
+					<div class="rating">
+                        <a href="#fakelink" id="thumbs_up_10">
+                        <i class="icon-thumbs-up"></i> 1
+                        </a>
+                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
+                        <i class="icon-thumbs-down"></i> 0
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <div class="m2">
+                  <div class="caption">
+                     <div class="minyawns-img">
+                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg">
+                     </div>
+                     <div class="rating">
+                        <a href="#fakelink" id="thumbs_up_10">
+                        <i class="icon-thumbs-up"></i> 1
+                        </a>
+                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
+                        <i class="icon-thumbs-down" ></i> 0
+                        </a>
+                     </div>
+                     <h4>Jonathan Hodge</h4>
+                     <div class="collage">University of Washington </div>
+					  <div class="collage"> Philosophy</div>
+                     
+                     <div class="social-link">
+                       https://www.facebook.com/jonny.hodge.39
                      </div>
                      <div class="social-link">
-                       www.annaprichad @gmail.com
+                      jonny5.myles@gmail.com
                      </div>
 					 <div class="tags">
 					 Tags:<br>
-						<span class="label label-small">Social-marketing</span>
-						<span class="label label-small">Video</span>
-						<span class="label label-small">Team</span>
-						<span class="label label-small">Documentdrafting</span>
+						<span class="label label-small">Welding</span>
+						<span class="label label-small">Worked a lot of Manual Labor</span>
+						<span class="label label-small">Construction</span>
+						
 					</div>
                   </div>
                </div>
             </div>
          </li>
-		    <li class="span3" id="10">
+		        <li class="span3" id="10" onclick="window.open('http://www.minyawns.com/profile/298/')" >
             <div class="thumbnail" id="thumbnail-10">
                <div class="m1">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="<?php echo get_template_directory_uri() ?>/images/profile1.jpg" >
+                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/298/minyawn298_Resized.jpg" >
                      </div>
-                     <h4> Anna Pritchard</h4>
-                     <div class="collage"> University of Washington Civil and 
-Enviormental Engineering</div>
+                     <h4>Theresa Wang</h4>
+                     <div class="collage"> University of Washington</div>
                     
                      <div class="social-link">
-                        Shenw@uv.edu
+                        http://www.linkedin.com/pub/theresa-wang/78/971/843
                      </div>
 					<div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 3
+                        <i class="icon-thumbs-up"></i> 0
                         </a>
                         <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down"></i> 1
+                        <i class="icon-thumbs-down"></i> 0
                         </a>
                      </div>
                   </div>
@@ -259,57 +319,53 @@ Enviormental Engineering</div>
                <div class="m2">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="<?php echo get_template_directory_uri() ?>/images/profile1.jpg">
+                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/298/minyawn298_Resized.jpg">
                      </div>
                      <div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 3
+                        <i class="icon-thumbs-up"></i> 0
                         </a>
                         <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down" ></i> 1
+                        <i class="icon-thumbs-down" ></i> 0
                         </a>
                      </div>
-                     <h4>Anna Pritchard</h4>
-                     <div class="collage"> University of Washington Civil and 
-Enviormental Engineering </div>
-                     
+                     <h4>Theresa Wang</h4>
+                     <div class="collage"> University of Washington </div>
+                    <div class="collage">  Biochemistry, Public Health</div>
                      <div class="social-link">
-                       Shenw@uv.edu
+                      http://www.linkedin.com/pub/theresa-wang/78/971/843
                      </div>
-                     <div class="social-link">
-                       www.annaprichad @gmail.com
-                     </div>
+                   
 					 <div class="tags">
 					 Tags:<br>
-						<span class="label label-small">Social-marketing</span>
-						<span class="label label-small">Video</span>
-						<span class="label label-small">Team</span>
-						<span class="label label-small">Documentdrafting</span>
+						<span class="label label-small">Public Speaking</span>
+						<span class="label label-small">Leadership</span>
+						<span class="label label-small">Teamwork</span>
+						<span class="label label-small">Event Planning</span>
 					</div>
                   </div>
                </div>
             </div>
          </li>
-		        <li class="span3" id="10">
+		       <li class="span3" id="10"  onclick="window.open('http://www.minyawns.com/profile/345/')">
             <div class="thumbnail" id="thumbnail-10">
                <div class="m1">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="<?php echo get_template_directory_uri() ?>/images/profile2.jpg" >
+                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/345/minyawn345_Lirra.jpg" >
                      </div>
-                     <h4> Anna Pritchard</h4>
-                     <div class="collage"> University of Washington Civil and 
-Enviormental Engineering</div>
+                     <h4> Lirra Zullo</h4>
+                     <div class="collage"> University of Washington</div>
                     
                      <div class="social-link">
-                        Shenw@uv.edu
+                        www.linkedin.com/pub/lirra-zullo/7b/b21/804
                      </div>
 					<div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 3
+                        <i class="icon-thumbs-up"></i> 0
                         </a>
                         <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down"></i> 1
+                        <i class="icon-thumbs-down"></i> 0
                         </a>
                      </div>
                   </div>
@@ -317,84 +373,23 @@ Enviormental Engineering</div>
                <div class="m2">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="<?php echo get_template_directory_uri() ?>/images/profile2.jpg">
+                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/345/minyawn345_Lirra.jpg">
                      </div>
                      <div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 3
+                        <i class="icon-thumbs-up"></i> 0
                         </a>
                         <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down" ></i> 1
+                        <i class="icon-thumbs-down" ></i> 0
                         </a>
                      </div>
-                     <h4>Anna Pritchard</h4>
-                     <div class="collage"> University of Washington Civil and 
-Enviormental Engineering </div>
-                     
+                     <h4>Lirra Zullo</h4>
+                     <div class="collage"> University of Washington </div>
+                   <div class="collage">   Psychology</div>
                      <div class="social-link">
-                       Shenw@uv.edu
+                      www.linkedin.com/pub/lirra-zullo/7b/b21/804
                      </div>
-                     <div class="social-link">
-                       www.annaprichad @gmail.com
-                     </div>
-					 <div class="tags">
-					 Tags:<br>
-						<span class="label label-small">Social-marketing</span>
-						<span class="label label-small">Video</span>
-						<span class="label label-small">Team</span>
-						<span class="label label-small">Documentdrafting</span>
-					</div>
-                  </div>
-               </div>
-            </div>
-         </li>
-		       <li class="span3" id="10">
-            <div class="thumbnail" id="thumbnail-10">
-               <div class="m1">
-                  <div class="caption">
-                     <div class="minyawns-img">
-                        <img alt="" src="<?php echo get_template_directory_uri() ?>/images/profile3.jpg" >
-                     </div>
-                     <h4> Anna Pritchard</h4>
-                     <div class="collage"> University of Washington Civil and 
-Enviormental Engineering</div>
                     
-                     <div class="social-link">
-                        Shenw@uv.edu
-                     </div>
-					<div class="rating">
-                        <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 3
-                        </a>
-                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down"></i> 1
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="m2">
-                  <div class="caption">
-                     <div class="minyawns-img">
-                        <img alt="" src="<?php echo get_template_directory_uri() ?>/images/profile3.jpg">
-                     </div>
-                     <div class="rating">
-                        <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 3
-                        </a>
-                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down" ></i> 1
-                        </a>
-                     </div>
-                     <h4>Anna Pritchard</h4>
-                     <div class="collage"> University of Washington Civil and 
-Enviormental Engineering </div>
-                     
-                     <div class="social-link">
-                       Shenw@uv.edu
-                     </div>
-                     <div class="social-link">
-                       www.annaprichad @gmail.com
-                     </div>
 					 <div class="tags">
 					 Tags:<br>
 						<span class="label label-small">Social-marketing</span>
@@ -409,8 +404,7 @@ Enviormental Engineering </div>
          <span class="load_ajaxsingle_job_minions" style="display: none;"></span>
       </ul>
    </div>
-    <hr>
-	<a href="#" class="view">View More </a>
+
 	<br>
 	<span class="space"></span><br>
 	 <h3 class="title">Companies</h3>
