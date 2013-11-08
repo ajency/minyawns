@@ -188,7 +188,7 @@
 	<div class="m2">
 	
 	   <div class="caption" >
-	   <div onclick="window.open('<?php echo site_url(); ?>/profile/<%= result.user_id %>')">
+	   <div  onclick="window.open('<?php echo site_url(); ?>/profile/<%= result.user_id %>')">
     <div class="minyawns-img" >
     <%= result.user_image%>
     </div>
@@ -217,7 +217,7 @@
     <span class="label label-small"><%= split_skills[index] %></span>
 
     <% } %>
-	
+		
     <hr>
     <div class="dwn-btn">
     <%= select_button %>
