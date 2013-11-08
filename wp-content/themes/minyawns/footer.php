@@ -17,7 +17,13 @@ var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>"
 		
 ?>	
 </script>
-
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+ jQuery('.carousel').carousel({
+	interval: 2000
+		})
+		  });
+</script>
 <footer>
 <span class="footer-top"></span>
 	<ul class="footer_menu">
