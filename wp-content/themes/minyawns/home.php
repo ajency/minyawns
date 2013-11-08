@@ -616,10 +616,10 @@ Enviormental Engineering </div>
                <button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup"  type="button">Sign Up</button>
             </form>
          </div>
-		  <div class="span2">
+		  <div class="span1">
 			<b class="or">or</b>
 		  </div>
-         <div class="span5">
+         <div class="span6">
             <h6 class="align-center" style=" margin-bottom: 0px; ">
                Sign Up Using Facebook
             </h6>
