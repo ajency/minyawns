@@ -3033,6 +3033,17 @@ body .jobs_table .data-title .profile-job {
 }
 /* mobile resonsive */
 @media (max-width: 767px) {
+  #profile-view1 .popover-content .tabs-below > .nav-tabs > li {
+    margin-top: 5px;
+    margin-bottom: -12px !important;
+    width: 42%;
+    display: inline-table;
+    font-size: 11px;
+  }
+  #profile-view1 .popover-content .close {
+    position: relative;
+    margin-top: -46px;
+  }
   #examplepopup {
     width: 93%;
     left: 3%;
