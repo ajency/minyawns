@@ -127,7 +127,21 @@ require 'templates/_jobs.php';
             //{
             ?>
             <div class="span12" id="profile-view">
-                <div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href="#" id="edit-user-profile" class="edit-user-profile" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
+                	<?php
+                                                                   
+                 if (get_user_role() == 'minyawn') {
+				   echo '<div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href="#" id="edit-user-profile" class="edit-user-profile" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
+				 }
+                    ?>
+				<?php
+                                                                   
+                    if (get_user_role() == 'employer') {
+					
+			 echo '<div class="alert alert-msg"> Complete your profile 
+and get more applications from eager minions. Simply <a href="#" id="edit-user-profile" class="edit-user-profile" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
+
+ }
+                    ?>
                 <div class="row-fluid min_profile">
 
                     <div class="span2 ">
@@ -394,7 +408,7 @@ require 'templates/_jobs.php';
                    </div> 
                    <div class="span4">
                        <div class=" widget-sidebar">
-							<h5>Help Text on the Right
+							<h5>
 							Stand out from the crowd with a complete profile</h5>
 <hr>
 							Did you know? Adding your logo makes your profile 7 time more likely to have more applications. Simple updates like these make a difference.
