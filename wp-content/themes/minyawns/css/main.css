@@ -3032,7 +3032,10 @@ body .jobs_table .data-title .profile-job {
     margin-bottom: 28px!important;
   }
   .how-does-it-work {
-    margin-top: 131px;
+    margin-top: 50px;
+  }
+  .carousel {
+    height: 380px;
   }
   .tooltip-right {
     display: none!important;
@@ -3344,7 +3347,7 @@ body .jobs_table .data-title .profile-job {
 }
 .minyawns-grid1 .span3 .thumbnail .m2 .dwn-btn {
   position: relative;
-  width: 69%;
+  width: 90%;
   margin: auto;
 }
 .minyawns-grid1 .span3 .thumbnail .m2 .dwn-btn .onoffswitch {
@@ -3569,4 +3572,7 @@ span.tooltip1:after {
     width: auto !important;
     display: inline-block;
   }
+}
+.job-view-list form.paypal {
+  margin: 0px;
 }
