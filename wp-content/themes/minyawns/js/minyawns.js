@@ -21,11 +21,11 @@ jQuery(document).ready(function($) {
               if($(this).scrollTop()>300)
               {
               
-                  $(".badge").show('fade');
+                  $(".badge2").show('fade');
               }
               else
               {
-                  $(".badge").hide('fade');
+                  $(".badge2").hide('fade');
               }
           });
               

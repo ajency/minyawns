@@ -153,7 +153,7 @@
 <script type="text/template" id="minion-cards">
 
 
-    <li class="span3" id="<%= result.user_id %>" >
+    <li class="span3" id="<%= result.user_id %>" onclick="window.open('<?php echo site_url(); ?>/profile/<%= result.user_id %>')">
 
     <div class="thumbnail" id="thumbnail-<%= result.user_id %>">
    <% if(result.is_verified === 'Y'){%>

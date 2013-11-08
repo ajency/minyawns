@@ -171,7 +171,13 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
         </div>
         <!-- /tabs -->
         <div class="tab-pane jobs_table  <?php if(!isset($_GET['cat_id'])){ ?> active <?php } ?>" id="tab2">
-            <div class="breadcrumb-text">
+        <?php
+                                                                   
+                 if (get_user_role() == 'minyawn') {  
+				 
+				 echo '<h6 class="uppermsg">  Browse Jobs to find opportunities that interest you and apply for it</h6>';
+				 } ?>
+			<div class="breadcrumb-text">
                 <p>
                     <a href="#">My Jobs</a>
                     Job List
