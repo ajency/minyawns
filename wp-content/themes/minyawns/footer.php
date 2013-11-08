@@ -39,5 +39,6 @@ var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>"
 	*/?>
 	<div class="site_link">All rights reserved 2013 @ Minyawns</div>
 </footer>
+
 </body>
 </html>

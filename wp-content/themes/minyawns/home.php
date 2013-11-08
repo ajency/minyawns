@@ -666,55 +666,6 @@ Enviormental Engineering </div>
 </div>
 
 
-   <script>
-      $(document).ready(function(){
-        $('.slider1').bxSlider({
-          slideWidth: 200,
-          minSlides: 1,
-          maxSlides: 3,
-          slideMargin: 10,
-      	auto: true,
-        autoControls: true
-        });
-        
-        
-        $(function(){
-          $(window).scroll(function(e)
-          {
-              if($(this).scrollTop()>300)
-              {
-              
-                  $(".badge").show('fade');
-              }
-              else
-              {
-                  $(".badge").hide('fade');
-              }
-          });
-              
-      })
-     
-	  
-	  $(function(){
-          $(window).scroll(function(e)
-          {
-              if($(this).scrollTop()>1900)
-              {
-              
-                  $(".tooltip-right").show('slide');
-				  $(".tooltip-left").show('slide');
-              }
-              else
-              {
-                   $(".tooltip-right").hide('slide');
-				    $(".tooltip-left").hide('slide');
-              }
-          });
-              
-      })
-      });
-      
-   </script>
  
 
 <?php
