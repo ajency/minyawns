@@ -143,7 +143,7 @@
     <ul class="thumbnails">
     <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
-	<span id="div_confirmhire"></span>
+	<br/><br/><span id="div_confirmhire"></span>
     </form>
     </div>
     </div>
