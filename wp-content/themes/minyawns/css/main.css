@@ -2402,6 +2402,9 @@ body .jobs_table .data-title .profile-job {
   }
 }
 @media (max-width: 767px) and only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .btn-block {
+    font-size: 15px;
+  }
   .home {
     background-position: 67px -50px;
   }
@@ -2419,6 +2422,47 @@ body .jobs_table .data-title .profile-job {
   }
   .home #innermainimage .banner-content .btn-huge {
     font-size: 12px;
+  }
+  .home #innermainimage {
+    height: 422px;
+  }
+  .home .what-we-can-do .carousel img {
+    width: 440px;
+  }
+  .home .what-we-can-do .carousel .carousel-indicators {
+    right: 50%;
+  }
+  .home .features .nav-tabs {
+    border: 0px;
+    width: 88%;
+  }
+  .home .tooltip-left {
+    width: 38%;
+    top: 223px;
+    margin-left: -18px;
+    z-index: 999;
+  }
+  .home .tooltip-left .data {
+    width: 42%;
+  }
+  .home .tooltip-left .data h4 {
+    font-size: 16px;
+  }
+  .home .tooltip-left img {
+    width: 32%;
+  }
+  .home .tooltip-right {
+    width: 29%;
+    position: absolute;
+    bottom: 128px;
+    right: 0px;
+    z-index: 999;
+  }
+  .home .tooltip-right img {
+    width: 38%;
+  }
+  .home .tooltip-right .data {
+    width: 49%;
   }
   .list-jobs .jobs-details .job-duration .row-fluid span {
     font-size: 20px;
