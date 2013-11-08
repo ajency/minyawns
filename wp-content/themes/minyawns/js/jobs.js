@@ -426,7 +426,7 @@ function job_collapse_button(model)
                         status_button = "<span  class='job-text-color' >Selection Complete.</span>";
 
                     else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check && model.toJSON().user_to_job_rating !== 'Rating:Awaited')
-                        status_button = "<span  class='job-text-color' >You have been rated" + model.toJSON().user_to_job_rating[i] + "</span>";
+                        status_button = "<span  class='job-text-color' >You have been rated &nbsp;&nbsp;" + model.toJSON().user_to_job_rating[i] + "</span>";
 
                     else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check)
                         status_button = '<span class="job-expired" >Job Expired.</span>';
