@@ -89,7 +89,7 @@ function minyawns_scripts_styles() {
 
             wp_enqueue_style('bootstrap-timepicker', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
 
-
+			wp_enqueue_script('bxslider', get_template_directory_uri() . '/js/jquery.bxslider.min.js', array('jquery'), null);
             //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
@@ -117,6 +117,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
             wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('jquery'), null);
+			 
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
             wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery', 'minyawns-js'), null);
