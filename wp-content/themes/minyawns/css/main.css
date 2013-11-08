@@ -3494,13 +3494,13 @@ span.tooltip1:after {
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
   .btn-block {
-    font-size: 15px!important;
+    font-size: 13px!important;
   }
   .home {
     background-position: 67px -50px;
   }
   .home #innermainimage {
-    height: 406px;
+    height: 400px;
   }
   .home #innermainimage .banner-content {
     margin-top: 20%;
@@ -3514,9 +3514,6 @@ span.tooltip1:after {
   .home #innermainimage .banner-content .btn-huge {
     font-size: 12px;
   }
-  .home #innermainimage {
-    height: 422px;
-  }
   .home .what-we-can-do .carousel img {
     width: 440px;
   }
@@ -3525,7 +3522,7 @@ span.tooltip1:after {
   }
   .home .features .nav-tabs {
     border: 0px;
-    width: 88%;
+    width: 95%;
   }
   .home .tooltip-left {
     width: 38%;

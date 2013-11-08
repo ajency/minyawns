@@ -153,7 +153,7 @@
 <script type="text/template" id="minion-cards">
 
 
-    <li class="span3" id="<%= result.user_id %>" onclick="window.open('<?php echo site_url(); ?>/profile/<%= result.user_id %>')">
+    <li class="span3" id="<%= result.user_id %>" >
 
     <div class="thumbnail" id="thumbnail-<%= result.user_id %>">
    <% if(result.is_verified === 'Y'){%>
@@ -186,7 +186,9 @@
     </div>
 	</div>
 	<div class="m2">
+	
 	   <div class="caption" >
+	   <div onclick="window.open('<?php echo site_url(); ?>/profile/<%= result.user_id %>')">
     <div class="minyawns-img" >
     <%= result.user_image%>
     </div>
@@ -207,12 +209,15 @@
     <div class="social-link">
     <%= result.linkedin %>
     </div>
+	</div>
     <%
     var split_skills=result.user_skills.split(',');
     for(var index=0;index<=split_skills.length;index++){
     %>
     <span class="label label-small"><%= split_skills[index] %></span>
+
     <% } %>
+	
     <hr>
     <div class="dwn-btn">
     <%= select_button %>
