@@ -13,9 +13,7 @@ jQuery(document).ready(function($) {
       	auto: true,
         autoControls: true
         });
-        jQuery('.carousel').carousel({
-	interval: 2000
-		})
+       
 				
         $(function(){
           $(window).scroll(function(e)
