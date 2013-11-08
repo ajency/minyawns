@@ -3343,8 +3343,12 @@ span.tooltip1:after {
     border: 0px;
     width: 95%;
   }
+  .home .features .nav-tabs li a {
+    padding: 9px 10px;
+    font-size: 15px;
+  }
   .home .what-we-can-do .carousel img {
-    width: 440px;
+    width: 300px;
   }
   .home .what-we-can-do .carousel .carousel-indicators {
     right: 50%;
