@@ -1150,6 +1150,8 @@ jQuery(document).ready(function($) {
         var _this = $(this);
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
+       
+        $(this).append(' <img src="'+siteurl+'/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
         $(".load_ajax1").show();
         $(".load_ajax3").show();
         $.post(ajaxurl,
@@ -1161,6 +1163,20 @@ jQuery(document).ready(function($) {
 
             load_browse_jobs(_job_id, 'single_json');/*appends a single row to the table*/
             $(".load_ajax1").hide();
+            
+            
+            if (response.new_action == 'apply')
+            {
+                $(_this).removeClass('btn btn-mini btn-danger').addClass('btn btn-primary btn-mini').attr('id', 'apply-job-browse').text('Apply');
+                $(_this).attr('data-action', 'apply');
+            }
+            if (response.new_action == 'unapply')
+            {
+                $(_this).removeClass('btn btn-primary btn-mini').addClass('btn btn-mini btn-danger').attr('id', 'unapply-job').text('Unapply');
+                $(_this).attr('data-action', 'unapply');
+            }
+             
+            
         }, 'json');
     });
 
@@ -1414,7 +1430,20 @@ jQuery(document).ready(function($) {
             $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
             //no_of_minyawns = no_of_minyawns + 1;
         }
-
+        
+        
+        if(!$('#paypal_form input[type="checkbox"]').is(':checked')){
+            
+            $("#div_confirmhire").html("");//alert("Please select atleast one minyawn to proceed.");
+            
+          }
+        else
+        	{
+        	
+        	 $("#div_confirmhire").html($("#confirm-hire").html());//alert("checked atleast once")
+        	
+        	
+        	}
 
     });
 
