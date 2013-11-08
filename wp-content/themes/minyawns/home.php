@@ -43,17 +43,17 @@ Backed by University of Washington students and designed for business profession
       <div class="row-fluid">
          <div class="span4">
             <img src="<?php echo get_template_directory_uri() ?>/images/responsivescreen.jpg"/>
-            <h4><span class="badge">1</span> Post gigs</h4>
+            <h4><span class="badge badge2">1</span> Post gigs</h4>
             <p>Describe what you need to get done, when you want help, and how much you are willing to pay.</p>
          </div>
          <div class="span4">
             <img src="<?php echo get_template_directory_uri() ?>/images/magnefine-glass.jpg"/>
-            <h4> <span class="badge">2</span> Pick your minion</h4>
+            <h4> <span class="badge badge2">2</span> Pick your minion</h4>
             <p>We're talking about professional, reliable, competent, clean and sociable young college students looking for work.</p>
          </div>
          <div class="span4">
             <img src="<?php echo get_template_directory_uri() ?>/images/reachout.jpg"/>
-            <h4> <span class="badge">3</span> Get work done</h4>
+            <h4> <span class="badge badge2">3</span> Get work done</h4>
             <p>Get productive and end your to-do list, 100% satisfaction guaranteed.</p>
          </div>
       </div>
@@ -616,10 +616,10 @@ Enviormental Engineering </div>
                <button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup"  type="button">Sign Up</button>
             </form>
          </div>
-		  <div class="span2">
+		  <div class="span1">
 			<b class="or">or</b>
 		  </div>
-         <div class="span5">
+         <div class="span6">
             <h6 class="align-center" style=" margin-bottom: 0px; ">
                Sign Up Using Facebook
             </h6>

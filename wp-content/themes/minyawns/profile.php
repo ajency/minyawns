@@ -408,14 +408,30 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                    </div> 
                    <div class="span4">
                        <div class=" widget-sidebar">
-							<h5>
+							<?php
+                                                                   
+                    if (get_user_role() == 'employer') {
+							echo '<h5>
 							Stand out from the crowd with a complete profile</h5>
-<hr>
+							<hr>
 							Did you know? Adding your logo makes your profile 7 time more likely to have more applications. Simple updates like these make a difference.
 							Here are quick steps to create a complete profile and ensure you’re putting your best foot forward:<br><br>
 							Fill in the details on your left.<br>
 							Add your company logo (.jpg image)<br><br>
-							Click on Update Info to save your profile.
+							Click on Update Info to save your profile. ';
+							} 
+							
+							?>
+							<?php
+                                                                   
+                    if (get_user_role() == 'minyawn') {
+							
+							echo 'Complete profiles usually get more attention from employers, making you a more eligible candidate. Create more opportunities for yourself to earn extra money, and bag amazing ratings and reviews from your employers.
+<br><br>
+							If you have any issues, please feel free to drop us an email on <a href="mailto:support@minyawns">support@minyawns</a>';
+							
+							} ?>
+							
                        </div>
                    </div>
                 </div>
