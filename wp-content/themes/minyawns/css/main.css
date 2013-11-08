@@ -2401,253 +2401,6 @@ body .jobs_table .data-title .profile-job {
     width: 100%;
   }
 }
-@media (max-width: 767px) and only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .home {
-    background-position: 67px -150px;
-  }
-  .home #innermainimage {
-    height: 300px;
-  }
-  .home #innermainimage .banner-content {
-    margin-top: 25%;
-  }
-  .home #innermainimage .banner-content .log-img {
-    width: 8%;
-  }
-  .home #innermainimage .banner-content .banner-desc {
-    font-size: 20px;
-  }
-  .home #innermainimage .banner-content .btn-huge {
-    font-size: 10px;
-    padding: 10px 10px 10px;
-  }
-  .home .small-header {
-    font-size: 14px;
-  }
-  .home .small-desc {
-    font-size: 12px;
-  }
-  .list-jobs {
-    border: 1px solid #E9E4E4;
-    background: #EEE;
-    margin-bottom: 20px;
-  }
-  .list-jobs .jobs-details {
-    background: url(../images/tablepsd_08.png);
-    border-bottom: 2px solid #CCC;
-  }
-  .list-jobs .jobs-details .img-logo {
-    border-right: 1px solid #E6E6E6;
-    height: 55px;
-  }
-  .list-jobs .jobs-details .img-logo img {
-    width: 60%;
-    display: block;
-    -webkit-filter: grayscale(100%);
-    opacity: 0.5;
-    margin-top: 14px !important;
-    margin: auto;
-  }
-  .list-jobs .jobs-details .minyawns-select {
-    border-right: 1px solid #E6E6E6;
-    height: 55px;
-  }
-  .list-jobs .jobs-details .minyawns-select span {
-    font-size: 37px;
-    text-align: center;
-    display: block;
-    color: #AEB1B4;
-    font-weight: bold;
-    float: left;
-    margin-right: 15px;
-    margin-left: 10px;
-    margin-top: 8px;
-    font-family: arial;
-  }
-  .list-jobs .jobs-details .minyawns-select div {
-    color: #888585;
-    font-size: 13px;
-    line-height: 57px;
-    font-weight: bold;
-  }
-  .list-jobs .jobs-details .minyawns-select div b {
-    border-bottom: 1px dotted #9B9999;
-    padding-bottom: 2px;
-  }
-  .list-jobs .jobs-details .job-complete {
-    font-family: arial;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 17px;
-    margin-left: 20px;
-    color: #8ed030;
-  }
-  .list-jobs .jobs-details .jobs-date {
-    border-right: 1px solid #E6E6E6;
-    height: 55px;
-  }
-  .list-jobs .jobs-details .jobs-date .posteddate {
-    color: #BEBBBB;
-    margin-bottom: 5px;
-    font-weight: bold;
-    margin-top: 5px;
-    font-size: 11px;
-  }
-  .list-jobs .jobs-details .jobs-date .posteddate span {
-    color: #BEBBBB;
-  }
-  .list-jobs .jobs-details .jobs-date .jobsdate {
-    font-weight: bold;
-    font-size: 12px;
-    font-family: arial;
-  }
-  .list-jobs .jobs-details .job-duration {
-    border-right: 1px solid #E6E6E6;
-    height: 55px;
-  }
-  .list-jobs .jobs-details .job-duration .row-fluid {
-    margin-top: 11px;
-  }
-  .list-jobs .jobs-details .job-duration .row-fluid span {
-    font-size: 14px !important;
-    text-align: left;
-    color: #AEB1B4;
-    display: block;
-    font-weight: bold;
-    float: left;
-    margin-right: 5px;
-  }
-  .list-jobs .jobs-details .job-duration .row-fluid div {
-    font-size: 11px;
-  }
-  .list-jobs .jobs-details .job-duration .row-fluid .time-bold {
-    font-size: 14px !important;
-    line-height: 20px;
-  }
-  .list-jobs .jobs-details .wages {
-    text-align: left;
-    font-family: arial;
-    font-size: 17px;
-    font-weight: bold;
-    color: #8ed030;
-    line-height: 32px;
-    line-height: 54px;
-    /*color: #B4B2B2;*/
-  
-    margin-left: 12px;
-  }
-  .list-jobs .expand {
-    margin-left: 0px;
-    background: #F8F8F8 ;
-    width: 96%;
-    margin-left: 2%;
-    margin-right: 2%;
-    border: 1px solid #E0E0E0;
-    display: block;
-    float: left;
-    padding: 10px 0px 10px 0px;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    position: relative;
-  }
-  .list-jobs .expand .details {
-    border-right: 1px solid #ccc;
-    position: relative;
-  }
-  .list-jobs .expand .details .span4 img {
-    width: 56%;
-  }
-  .list-jobs .expand .details .span8 {
-    font-size: 12px;
-    line-height: 19px;
-    color: #857F7F;
-  }
-  .list-jobs .expand .details .arrow-left {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    right: -40px;
-  }
-  .list-jobs .expand .left-border {
-    border-left: 1px solid #ccc;
-  }
-  .list-jobs .expand .span4 .div-box {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    height: 0px;
-    width: 70%;
-  }
-  .list-jobs .expand .span4 .div-box .btn-success {
-    width: 70%;
-    margin-top: 87px;
-    background: #8ed030;
-    margin-left: 42px;
-  }
-  .list-jobs .expand .span4 .div-box .btn-rate {
-    width: 70%;
-    margin-top: 37px;
-    margin-left: 42px;
-  }
-  .list-jobs .expand .span4 .div-box .btn-apply {
-    width: 70%;
-    margin-top: 56px;
-    margin-left: 42px;
-  }
-  .list-jobs .expand .span4 .div-box .btn-unapply {
-    width: 70%;
-    margin-left: 42px;
-  }
-  .list-jobs .expand .span4 .like_btn {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    height: 41px;
-  }
-  .list-jobs .expand .span4 .like_btn b {
-    font-size: 20px;
-    margin-left: 5px;
-    margin-right: 10px;
-  }
-  .list-jobs .expand .span4 .like_btn a {
-    margin-left: 6px;
-    font-size: 26px;
-  }
-  .list-jobs .expand .span4 .like_btn .icon-thumbs {
-    color: #F55568;
-  }
-  .list-jobs .expand .minyawansgrid .span4 {
-    margin-left: 8px;
-    border-bottom: 1px dotted#CCC;
-    margin-bottom: 5px;
-    width: 47%;
-  }
-  .list-jobs .expand .minyawansgrid .span4 img {
-    width: 11%;
-    padding: 5px;
-  }
-  .list-jobs .expand .minyawansgrid .span4 b {
-    width: 70%;
-    display: inline-block;
-  }
-  .list-jobs .expand .minyawansgrid .span4 a {
-    font-size: 10px;
-  }
-  .list-jobs .expand .minyawansgrid .span4 .icon-thumbs-up {
-    margin-left: 20px;
-  }
-  .list-jobs .expand .minyawansgrid .span4 .icon-thumbs {
-    margin-left: 10px;
-    color: #F65151;
-  }
-  .list-jobs .expand .minyawansgrid .span4:hover {
-    cursor: pointer;
-    background: #EEE9E9;
-  }
-}
 @media (max-width: 767px) and screen and (-webkit-min-device-pixel-ratio: 0) {
   #innermainimage .banner-content {
     position: absolute;
@@ -3575,4 +3328,255 @@ span.tooltip1:after {
 }
 .job-view-list form.paypal {
   margin: 0px;
+}
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: portrait) {
+  #innermainimage .bg-background {
+    position: absolute;
+    height: 462px;
+  }
+  .home {
+    background-position: 67px -150px;
+  }
+  .home #innermainimage {
+    height: 300px;
+  }
+  .home #innermainimage .banner-content {
+    margin-top: 25%;
+  }
+  .home #innermainimage .banner-content .log-img {
+    width: 8%;
+  }
+  .home #innermainimage .banner-content .banner-desc {
+    font-size: 20px;
+  }
+  .home #innermainimage .banner-content .btn-huge {
+    font-size: 10px;
+    padding: 10px 10px 10px;
+  }
+  .home .small-header {
+    font-size: 14px;
+  }
+  .home .small-desc {
+    font-size: 12px;
+  }
+  .list-jobs {
+    border: 1px solid #E9E4E4;
+    background: #EEE;
+    margin-bottom: 20px;
+  }
+  .list-jobs .jobs-details {
+    background: url(../images/tablepsd_08.png);
+    border-bottom: 2px solid #CCC;
+  }
+  .list-jobs .jobs-details .img-logo {
+    border-right: 1px solid #E6E6E6;
+    height: 55px;
+  }
+  .list-jobs .jobs-details .img-logo img {
+    width: 60%;
+    display: block;
+    -webkit-filter: grayscale(100%);
+    opacity: 0.5;
+    margin-top: 14px !important;
+    margin: auto;
+  }
+  .list-jobs .jobs-details .minyawns-select {
+    border-right: 1px solid #E6E6E6;
+    height: 55px;
+  }
+  .list-jobs .jobs-details .minyawns-select span {
+    font-size: 37px;
+    text-align: center;
+    display: block;
+    color: #AEB1B4;
+    font-weight: bold;
+    float: left;
+    margin-right: 15px;
+    margin-left: 10px;
+    margin-top: 8px;
+    font-family: arial;
+  }
+  .list-jobs .jobs-details .minyawns-select div {
+    color: #888585;
+    font-size: 13px;
+    line-height: 57px;
+    font-weight: bold;
+  }
+  .list-jobs .jobs-details .minyawns-select div b {
+    border-bottom: 1px dotted #9B9999;
+    padding-bottom: 2px;
+  }
+  .list-jobs .jobs-details .job-complete {
+    font-family: arial;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 17px;
+    margin-left: 20px;
+    color: #8ed030;
+  }
+  .list-jobs .jobs-details .jobs-date {
+    border-right: 1px solid #E6E6E6;
+    height: 55px;
+  }
+  .list-jobs .jobs-details .jobs-date .posteddate {
+    color: #BEBBBB;
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 11px;
+  }
+  .list-jobs .jobs-details .jobs-date .posteddate span {
+    color: #BEBBBB;
+  }
+  .list-jobs .jobs-details .jobs-date .jobsdate {
+    font-weight: bold;
+    font-size: 12px;
+    font-family: arial;
+  }
+  .list-jobs .jobs-details .job-duration {
+    border-right: 1px solid #E6E6E6;
+    height: 55px;
+  }
+  .list-jobs .jobs-details .job-duration .row-fluid {
+    margin-top: 11px;
+  }
+  .list-jobs .jobs-details .job-duration .row-fluid span {
+    font-size: 14px !important;
+    text-align: left;
+    color: #AEB1B4;
+    display: block;
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+  }
+  .list-jobs .jobs-details .job-duration .row-fluid div {
+    font-size: 11px;
+  }
+  .list-jobs .jobs-details .job-duration .row-fluid .time-bold {
+    font-size: 14px !important;
+    line-height: 20px;
+  }
+  .list-jobs .jobs-details .wages {
+    text-align: left;
+    font-family: arial;
+    font-size: 17px;
+    font-weight: bold;
+    color: #8ed030;
+    line-height: 32px;
+    line-height: 54px;
+    /*color: #B4B2B2;*/
+  
+    margin-left: 12px;
+  }
+  .list-jobs .expand {
+    margin-left: 0px;
+    background: #F8F8F8 ;
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 1px solid #E0E0E0;
+    display: block;
+    float: left;
+    padding: 10px 0px 10px 0px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    position: relative;
+  }
+  .list-jobs .expand .details {
+    border-right: 1px solid #ccc;
+    position: relative;
+  }
+  .list-jobs .expand .details .span4 img {
+    width: 56%;
+  }
+  .list-jobs .expand .details .span8 {
+    font-size: 12px;
+    line-height: 19px;
+    color: #857F7F;
+  }
+  .list-jobs .expand .details .arrow-left {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: -40px;
+  }
+  .list-jobs .expand .left-border {
+    border-left: 1px solid #ccc;
+  }
+  .list-jobs .expand .span4 .div-box {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 0px;
+    width: 70%;
+  }
+  .list-jobs .expand .span4 .div-box .btn-success {
+    width: 70%;
+    margin-top: 87px;
+    background: #8ed030;
+    margin-left: 42px;
+  }
+  .list-jobs .expand .span4 .div-box .btn-rate {
+    width: 70%;
+    margin-top: 37px;
+    margin-left: 42px;
+  }
+  .list-jobs .expand .span4 .div-box .btn-apply {
+    width: 70%;
+    margin-top: 56px;
+    margin-left: 42px;
+  }
+  .list-jobs .expand .span4 .div-box .btn-unapply {
+    width: 70%;
+    margin-left: 42px;
+  }
+  .list-jobs .expand .span4 .like_btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 41px;
+  }
+  .list-jobs .expand .span4 .like_btn b {
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+  .list-jobs .expand .span4 .like_btn a {
+    margin-left: 6px;
+    font-size: 26px;
+  }
+  .list-jobs .expand .span4 .like_btn .icon-thumbs {
+    color: #F55568;
+  }
+  .list-jobs .expand .minyawansgrid .span4 {
+    margin-left: 8px;
+    border-bottom: 1px dotted#CCC;
+    margin-bottom: 5px;
+    width: 47%;
+  }
+  .list-jobs .expand .minyawansgrid .span4 img {
+    width: 11%;
+    padding: 5px;
+  }
+  .list-jobs .expand .minyawansgrid .span4 b {
+    width: 70%;
+    display: inline-block;
+  }
+  .list-jobs .expand .minyawansgrid .span4 a {
+    font-size: 10px;
+  }
+  .list-jobs .expand .minyawansgrid .span4 .icon-thumbs-up {
+    margin-left: 20px;
+  }
+  .list-jobs .expand .minyawansgrid .span4 .icon-thumbs {
+    margin-left: 10px;
+    color: #F65151;
+  }
+  .list-jobs .expand .minyawansgrid .span4:hover {
+    cursor: pointer;
+    background: #EEE9E9;
+  }
 }
