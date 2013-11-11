@@ -7,7 +7,8 @@ jQuery(document).ready(function($) {
 
  jQuery('#link_employerregister').attr("onclick","return true");		
  jQuery('#link_minyawnregister').attr("onclick","return true");	 
-		  
+	 jQuery('.m1').attr("onclick","return true");	 
+  
 
      $('.slider1').bxSlider({
           slideWidth: 200,

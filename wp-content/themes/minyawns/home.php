@@ -213,7 +213,7 @@ Backed by University of Washington students and designed for business profession
          <li class="span3" id="10"  onclick="window.open('http://www.minyawns.com/profile/297/')">
 		
             <div class="thumbnail" id="thumbnail-10">
-               <div class="m1">
+               <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
                         <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg" >
@@ -270,7 +270,7 @@ Enviormental Engineering </div>
          </li>
 		    <li class="span3" id="10" onclick="window.open('http://www.minyawns.com/profile/214/')" >
             <div class="thumbnail" id="thumbnail-10">
-               <div class="m1">
+               <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
                         <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg" >
@@ -327,7 +327,7 @@ Enviormental Engineering </div>
          </li>
 		        <li class="span3" id="10" onclick="window.open('http://www.minyawns.com/profile/298/')" >
             <div class="thumbnail" id="thumbnail-10">
-               <div class="m1">
+               <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
                         <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/298/minyawn298_Resized.jpg" >
@@ -381,7 +381,7 @@ Enviormental Engineering </div>
          </li>
 		       <li class="span3" id="10"  onclick="window.open('http://www.minyawns.com/profile/345/')">
             <div class="thumbnail" id="thumbnail-10">
-               <div class="m1">
+               <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
                         <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/345/minyawn345_Lirra.jpg" >
