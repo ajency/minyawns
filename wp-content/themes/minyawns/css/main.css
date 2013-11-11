@@ -3269,7 +3269,7 @@ span.tooltip1:after {
     width: 10%;
   }
   .home #innermainimage .banner-content .banner-desc {
-    font-size: 28px;
+    font-size: 20px;
   }
   .home #innermainimage .banner-content .btn-huge {
     font-size: 12px;
@@ -3282,7 +3282,7 @@ span.tooltip1:after {
   }
   .home .features .nav-tabs {
     border: 0px;
-    width: 95%;
+    width: 90%;
   }
   .home .tooltip-left {
     width: 38%;
