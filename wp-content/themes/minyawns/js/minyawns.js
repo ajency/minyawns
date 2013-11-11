@@ -5,14 +5,9 @@
 
 jQuery(document).ready(function($) {
 
-				  
-	// Touch events
-$('#link_employerregister').on('touchend', function(){
-     $(".tooltip1").hide();
-});	
-$('#link_minyawnregister').on('touchend', function(){
-     $(".tooltip1").hide();
-});			  
+ jQuery('#link_employerregister').attr("onclick","return true");		
+ jQuery('#link_minyawnregister').attr("onclick","return true");	 
+		  
 
      $('.slider1').bxSlider({
           slideWidth: 200,
