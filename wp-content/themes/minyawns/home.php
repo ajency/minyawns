@@ -19,9 +19,9 @@ Backed by University of Washington students and designed for business profession
          <hr>
          <div class="row-fluid">
             <div class="span4"></div>
-            <div class="span2"><a  href="#myModal" <?php /*id="get-minon"*/ ?>  data-toggle="modal"   class="btn btn-huge btn-block btn-primary"  id="link_employerregister" >Get a Minion <span class="tooltip1"><b>Why do you need minions?</b>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</span></a></div>
+            <div class="span2"><a  href="#myModal" <?php /*id="get-minon"*/ ?>  data-toggle="modal"   class="btn btn-huge btn-block btn-primary"  id="link_employerregister"  onClick="return true">Get a Minion <span class="tooltip1"><b>Why do you need minions?</b>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</span></a></div>
 			
-            <div class="span2"><a <?php /*id="become-minon"*/ ?>  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister"  >Become a Minion<span class="tooltip1"><b>Perks of being a minion.</b>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
+            <div class="span2"><a <?php /*id="become-minon"*/ ?>  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister" onClick="return true" >Become a Minion<span class="tooltip1"><b>Perks of being a minion.</b>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
 </span></a></a>
 			
 			</div>
