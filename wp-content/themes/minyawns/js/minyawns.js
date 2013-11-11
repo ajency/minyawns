@@ -5,6 +5,12 @@
 
 jQuery(document).ready(function($) {
 
+				  
+	// Touch events
+$('#link_employerregister').on('touchend', function(){
+     $(".tooltip1").hide();
+});			  
+
      $('.slider1').bxSlider({
           slideWidth: 200,
           minSlides: 1,
