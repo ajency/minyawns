@@ -3350,6 +3350,9 @@ span.tooltip1:after {
     padding: 9px 10px;
     font-size: 15px;
   }
+  .home .features .nav-tabs .tab-content h3 {
+    font-size: 20px;
+  }
   .home .what-we-can-do .carousel img {
     width: 300px;
   }
