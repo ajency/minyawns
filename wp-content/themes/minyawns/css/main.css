@@ -3280,6 +3280,9 @@ span.tooltip1:after {
   .home .what-we-can-do .carousel .carousel-indicators {
     right: 50%;
   }
+  .home .what-we-can-do .carousel .carousel-caption h4 {
+    line-height: 20px;
+  }
   .home .features .nav-tabs {
     border: 0px;
     width: 90%;
