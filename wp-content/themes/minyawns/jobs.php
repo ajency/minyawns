@@ -192,7 +192,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                             Take the next step, start adding jobs! Click on the add jobs button below <br><br>
 							<button class="btn btn-primary btn-wide mll" id="add-job-button">
                                 <i class="fui-mail"></i>
-                                Add Jobs
+                                Add a Job
                             </button>
                         </div>
                     <?php } ?>

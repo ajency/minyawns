@@ -175,7 +175,8 @@
 										</div>
 										<div class="row-fluid">
 											<div class="span4">
-												<a href="#" class="btn btn-large btn-block btn-inverse "
+												
+												<a type="button" href="#" class="btn btn-large btn-block btn-inverse "
 													id="btn_login">Login</a>
 											</div>
 											<div class="span8">
