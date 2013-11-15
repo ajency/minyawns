@@ -5,6 +5,15 @@
 
 jQuery(document).ready(function($) {
 
+$('#frm_login #txt_email, #frm_login #txt_pass').keydown(function (e) {
+    if (e.keyCode == 13) {
+        $('#form1').submit();
+    }
+});
+$('.roundedTwo input').click(function(){
+    $('.thumbnail').addClass('highlight')
+})
+
  jQuery('#link_employerregister').attr("onclick","return true");		
  jQuery('#link_minyawnregister').attr("onclick","return true");	 
 	 jQuery('.m1').attr("onclick","return true");	 
@@ -26,11 +35,11 @@ jQuery(document).ready(function($) {
               if($(this).scrollTop()>300)
               {
               
-                  $(".badge2").show('fade');
+                  $(".steps-3 h4").show('fade');
               }
               else
               {
-                  $(".badge2").hide('fade');
+                  $(".steps-3 h4").hide('fade');
               }
           });
               
@@ -860,7 +869,7 @@ jQuery(document).ready(function($) {
     //function to set div,message for minion sign up modal
     function setup_minionsignup_modal()
     {
-    	jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up to <img src="'+siteurl+'/wp-content/themes/minyawns/images/logo.png"/> </h4>');
+    	jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up to Minyawns</h4>');
         jQuery("#div_signup_subheader").html('Not a Minion? Go ahead sign up to get one <a href="#" id="show_employerreg">here</a>');
     	jQuery("#signup_role").val('minyawn');
         if (jQuery("#usr_role").length > 0)
@@ -1428,11 +1437,13 @@ jQuery(document).ready(function($) {
 
         if ($("#" + $(this).attr('id')).find(':checkbox').is(':checked')) {
             $("#" + $(this).attr('id')).find(':checkbox').not(this).prop('checked', false);
+			$(".thumbnail").removeClass("Select-minyawns");
 
         } else {
             //$("#hidden_selected_min").append(1);
 
             $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
+			$(".thumbnail").addClass("Select-minyawns");
             //no_of_minyawns = no_of_minyawns + 1;
         }
         

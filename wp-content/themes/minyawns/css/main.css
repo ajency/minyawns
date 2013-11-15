@@ -27,6 +27,10 @@ a:hover {
   font-size: 15px;
   color: #F30606;
 }
+.Select-minyawns {
+  background: rgba(179, 255, 185, 0.45);
+  border: 1px solid #3DDF4A !important;
+}
 .m1 {
   position: relative;
   top: 0px;
@@ -1462,6 +1466,7 @@ body .jobs_table .data-title .profile-job {
 }
 #innermainimage .bg-background {
   position: absolute;
+  z-index: 99;
 }
 #innermainimage .banner-content {
   position: absolute;
@@ -2681,8 +2686,7 @@ body .jobs_table .data-title .profile-job {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  border: 1px solid rgba(222, 222, 222, 0.36);
-  margin-bottom: 20px;
+  border: 1px solid rgba(204, 204, 204, 0.35);
   box-shadow: 0 3px 4px #D6D6D6;
   padding: 15px;
   width: 97%;
@@ -2904,13 +2908,13 @@ body .jobs_table .data-title .profile-job {
   }
 }
 .job-expired {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 22px;
   float: right;
   color: red;
 }
 .job-text-color {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 22px;
   float: right;
   color: #8ed030;
@@ -2935,6 +2939,15 @@ body .jobs_table .data-title .profile-job {
   color: #FFFFFF;
   opacity: 0.6;
   font-weight: 100;
+}
+.singlejobedit .minyawns-grid1 {
+  margin-top: 20px;
+}
+.singlejobedit .job-title a.job-text-color {
+  display: none;
+}
+.singlejobedit .job-title a.job-expired {
+  display: none;
 }
 .minyawns-grid1 {
   margin: auto;
@@ -3197,13 +3210,23 @@ body .jobs_table .data-title .profile-job {
   border-top: 27px solid #ececec;
   margin: auto;
 }
-#link_minyawnregister:hover span.tooltip1 {
+#link_minyawnregister:hover div.tooltip1 {
   display: block !important;
+  opacity: 9;
+  transition: opacity 0.2s ease-out;
+  -moz-transition: opacity 0.2s ease-out;
+  -webkit-transition: opacity 0.2s ease-out;
+  -o-transition: opacity 0.2s ease-out;
 }
-#link_employerregister:hover span.tooltip1 {
+#link_employerregister:hover div.tooltip1 {
   display: block !important;
+  opacity: 9;
+  transition: opacity 0.2s ease-out;
+  -moz-transition: opacity 0.2s ease-out;
+  -webkit-transition: opacity 0.2s ease-out;
+  -o-transition: opacity 0.2s ease-out;
 }
-span.tooltip1 {
+div.tooltip1 {
   display: none;
   position: absolute;
   width: 270px;
@@ -3218,20 +3241,22 @@ span.tooltip1 {
   border: 4px solid #ffffff;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 2px 0px;
+  z-index: 99999;
 }
-span.tooltip1 b {
+div.tooltip1 b {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
   color: #000;
   display: block;
 }
-span.tooltip1:after {
+div.tooltip1:after {
   content: "";
   position: absolute;
   width: 0;
   height: 0;
   border-width: 20px;
+  z-index: 99999;
   border-style: solid;
   border-color: transparent transparent #FFFFFF transparent;
   top: -35px;
@@ -3255,6 +3280,12 @@ span.tooltip1:after {
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
   .btn-block {
     font-size: 13px!important;
+  }
+  .minyawns-grid1 {
+    margin-top: 40px;
+  }
+  span.tooltip1 {
+    margin-left: -80px;
   }
   .home {
     background-position: 67px -50px;
@@ -3281,7 +3312,7 @@ span.tooltip1:after {
     right: 50%;
   }
   .home .what-we-can-do .carousel .carousel-caption h4 {
-    line-height: 20px;
+    line-height: 26px;
   }
   .home .features .nav-tabs {
     border: 0px;
