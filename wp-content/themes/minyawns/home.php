@@ -10,23 +10,42 @@
    ?>
 <div id="innermainimage">
    <div class="row-fluid banner-content">
-      <div class="span12">
-         <img class="log-img" src="<?php echo get_template_directory_uri() ?>/images/minyawns.png"/>
+    <div class="span2">
+	</div>
+      <div class="span4"><br>
+         <h3 class="banner-title">Why do you need minions?</h3>
          <div class="banner-desc">
-            Minyawns is an easy to use, on-demand, reliable way to find work or help fast.<br>
+
+            Minyawns is an easy to use, on-demand, reliable way to find work or help fast.
 Backed by University of Washington students and designed for business professionals.
          </div>
-         <hr>
-         <div class="row-fluid">
-            <div class="span4"></div>
-            <div class="span2"><a  href="#myModal" <?php /*id="get-minon"*/ ?>  data-toggle="modal"   class="btn btn-huge btn-block btn-primary"  id="link_employerregister"  onClick="return true">Get a Minion <div class="tooltip1"><b>Why do you need minions?</b>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</div></a></div>
-			
-            <div class="span2"><a <?php /*id="become-minon"*/ ?>  href="#myModal"  data-toggle="modal"  class="btn btn-huge btn-block btn-info"  id="link_minyawnregister" onClick="return true"  >Become a Minion<div class="tooltip1"><b>Perks of being a minion.</b>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
-</div></a></a>
-			
-			</div>
-            <div class="span4"></div>
-         </div>
+		 </div>
+         <div class="span5">
+			<ul class="nav nav-tabs" id="myTab">
+				
+				<li class="active"><a href="#businesses">Minyawns for businesses</a></li>
+				<li ><a href="#students">Minyawns for students</a></li>
+
+			</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane " id="students">
+	<p><a href="#video1"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png" align="right"/></a>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</p>
+	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-info" id="link_minyawnregister" onclick="return true">Become a Minion</a>
+	
+  </div>
+  <div class="tab-pane active" id="businesses">
+  <p><a href="#video2"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png" align="right"/></a>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.</p>
+	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Get a Minion</a>
+
+  
+  </div>
+
+</div>
+		 
+	  </div>
+      <div class="span1">
+	  </div>
 		 <div class="row-fluid">
 				<div class="span12 learn-more">
 					<a  href="#pliip" class="jumper"> Learn More
@@ -37,7 +56,8 @@ Backed by University of Washington students and designed for business profession
 				</div>
 		 </div>
       </div>
-   </div>
+	
+  
    <div class="bg-overflow">
       <img class="bg-background" src="<?php echo get_template_directory_uri() ?>/images/banner1.jpg"/>
    </div>
@@ -66,16 +86,8 @@ Backed by University of Washington students and designed for business profession
             <p>Get productive and end your to-do list, 100% satisfaction guaranteed.</p>
          </div>
       </div>
-      <br><br>
-	  <h6 class="s-bold">To make things even more simple, watch our video walk-through.</h6>
-	  <br>
-	  <div class="row-fluid">
-			<div class="span3"></div>
-			<div class="span3"><button href="#video1"  data-toggle="modal" class="btn btn-large btn-primary pull-right" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns for students</button></div>
-			<div class="span3"><button href="#video2"  data-toggle="modal" class="btn btn-large btn-info" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns for businesses</button></div>
-			<div class="span3"></div>
-			
-	  </div><br><br>
+      <br>
+	 
    </div>
    
 </div>

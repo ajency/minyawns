@@ -1270,9 +1270,38 @@ background: #F8F8F8!important;
 
 /* mobile resonsive */
 @media (max-width: 767px) {
+body #innermainimage {
+	.banner-content {
+	position: relative;
+		.banner-title {
+			font-size: 28px;
+			margin-bottom: 10px;
+			margin-top: -30px;
+			text-align: center;
+			}
+			.banner-desc {
+				text-align: center;
+			}
+			.nav-tabs li {
+				width: 93%;
+				margin: 10px auto;
+				text-align: center;
+			}
+			.tab-content .tab-pane {
+				height: 100%;
+					p{
+					margin-bottom:10px;
+						img{
+							width:100%;
+						}
+					}
+				}
+	}
+}
+
 
 .back-satisfication {
-
+margin-top: 109px;
 .text {
 		img{
 			margin-right: 5%;
@@ -1678,7 +1707,7 @@ background: url(../images/up.png)no-repeat right 39px !important;
 	
 }
 #innermainimage {
-	height: 516px;
+	height: 580px;
 	margin: 0 auto;
 	width: 100%;
 	max-width: 1920px;
@@ -1689,22 +1718,80 @@ background: url(../images/up.png)no-repeat right 39px !important;
 	.bg-background{
 			position: absolute;
 			z-index: 99;
+			height:100%;
 		}
 	.banner-content{
 		position: absolute;
 		z-index: 999;
 		margin-top:120px;
+		.banner-title{
+			font-family: 'Open Sans', sans-serif;
+			font-weight:900;
+			color:#fff;
+			font-size: 35px;
+			margin-bottom: 20px;
+			margin-top: 50px;
+
+		}
 		img{
 			display:block;
 			margin:auto;
 			
 		}
+		.nav-tabs{
+		border-bottom-width: 2px;
+		border-bottom-color: rgba(142, 208, 48, 0);
+			li.active{
+				a{
+					background: @green;
+					color: #fff;
+					font-size: 18px;
+					padding: 13px;
+					border: 2px solid @green;
+					border-radius:0px;
+					line-height: 20px;
+				}
+			}
+			li{
+			width: 50%;
+text-align: center;
+				a{
+					font-size: 17px;
+					border-radius:0px;
+					color: #fff;
+					border: 2px solid #fff;
+					padding: 13px;
+					margin-bottom:0px;
+				}
+			}
+		
+		}
+		.tab-content{
+		.tab-pane{
+			height:285px;
+		}
+			margin-top: -10px;
+			min-height: 100%;
+			background: rgba(0, 0, 0, 0.50);
+			padding-bottom: 5px;
+			border: 0;
+			p{
+				font-size: 14px;
+				color: #fff;
+				line-height: 21px;
+				img{
+					width: 62%;
+					margin-left: 9px;
+				}
+			}
+		}	
 		
 		.banner-desc{
-		font-size: 26px;
-		color: rgba(255, 255, 255, 0.8);
-		font-weight: 100;
-		text-align: center;
+		font-size: 17px;
+		color: rgba(255, 255, 255, 1);
+		font-weight: 600;
+		text-align: left;
+		line-height: 27px;
 		}
 		hr{
 			width: 9%;
@@ -1714,12 +1801,16 @@ background: url(../images/up.png)no-repeat right 39px !important;
 		.btn-huge{
 			font-size: 17px;
 			line-height: 26px;
-			
 			font-weight: bold;
 			border-bottom: 4px solid rgba(255, 255, 255, 0.36);
+			width: 48%;
+			margin: 17px auto;
+			padding: 9px;
 			&:hover{
 				
 			}
+	
+			
 		}
 	}
 	
@@ -1796,7 +1887,7 @@ background: url(../images/up.png)no-repeat right 39px !important;
 	}
 	.what-we-can-do{
 		background:url(../images/what-we-can-do-bg.jpg);
-		padding-bottom:100px;
+		padding-bottom:50px;
 			
 					.heading-title{
 						color:#fff;
@@ -1804,6 +1895,7 @@ background: url(../images/up.png)no-repeat right 39px !important;
 					}
 					.excerpt{
 						color: #222;
+						margin-bottom: 15px;
 					}
 					.back-satisfication{
 						background:url(../images/satisfication-bg.png)no-repeat;
@@ -2017,7 +2109,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42464a', end
 	.heading-title{
 		margin-top: -3px;
 		display: block;
-		padding-top: 46px;
+		padding-top: 20px;
 		font-size: 38px;
 		font-weight: bolder;
 		font-weight: 900;
@@ -3376,7 +3468,7 @@ left: 3%;
 	margin-bottom: 28px!important;
 }
 .how-does-it-work {
-	margin-top: 50px;
+	margin-top: 360px;
 
 }
 .carousel {
