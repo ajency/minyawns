@@ -9,7 +9,6 @@ Version:        0.1.0
 */
 /****Webfonts****/
 /****Sitewide Variables****/
-
 a {
   text-decoration: none;
 }
@@ -2044,7 +2043,13 @@ body .jobs_table .data-title .profile-job {
   clear: both;
   display: block;
 }
-
+@media (max-width: 767px) {
+  {
+    /* Job Time*/
+  
+    /* safari hack*/
+  
+  }
   .jobs_table .accordion-inner {
     padding: 9px 15px 31px !important;
   }
@@ -2558,7 +2563,7 @@ body .jobs_table .data-title .profile-job {
     margin: auto !important;
     width: 100%;
   }
-
+}
 @media (max-width: 767px) and screen and (-webkit-min-device-pixel-ratio: 0) {
   #innermainimage .banner-content {
     position: absolute;
@@ -3477,11 +3482,14 @@ div.tooltip1:after {
   span.tooltip1 {
     margin-left: -80px;
   }
+  .bg-background {
+    height: 100%;
+  }
   .home {
     background-position: 67px -50px;
   }
   .home #innermainimage {
-    height: 400px;
+    height: 500px;
   }
   .home #innermainimage .banner-content {
     margin-top: 20%;
