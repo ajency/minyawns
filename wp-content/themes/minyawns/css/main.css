@@ -3597,6 +3597,9 @@ div.tooltip1:after {
   .home .features .nav-tabs .tab-content h3 {
     font-size: 20px;
   }
+  .home .what-we-can-do .carousel .carousel-inner {
+    overflow: none;
+  }
   .home .what-we-can-do .carousel .carousel-inner img {
     width: 40%;
   }
