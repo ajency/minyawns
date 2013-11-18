@@ -2201,4 +2201,146 @@ background-position: 60px 480px;
 		}
 	}
 }
- 
+
+
+/* Job View List */
+.job-view-list{
+		._li{
+			background-color: #fff;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+border: 1px solid rgba(222, 222, 222, 0.36);
+margin-bottom: 20px;
+box-shadow: 0 3px 4px #D6D6D6;
+padding: 15px;
+				.img-div{
+					display: table-cell;
+					vertical-align: middle;
+					height: 140px;
+
+				}
+
+				.job-details{
+					.job-title{
+						h5{
+							margin: auto;
+							font-size: 21px;
+							color: #000;
+							font-weight:700;
+							.btn-mini {
+								font-size: 12.998px;
+								padding: 5px 13px 5px;
+								line-height: 1.2;
+								font-weight: 100;
+								float:right;
+								}
+							}
+
+
+					}
+					.job-meta{
+								margin-top: 10px;
+								margin-bottom: 20px;
+								color: #616161;
+								font-weight: 400;
+								ul{
+									li{
+										padding-left: 0px;
+										border-right: 1px solid #999;
+										margin-right: 10px;
+										padding-right: 14px;
+										i{
+											margin-right:5px;
+										}
+										.badge-success{
+											background:@green;
+											padding: 1px 5px 2px;
+										}
+										
+									}
+									.no-bdr{
+										border:0px;
+									}
+
+								}
+							}
+							p {
+											font-size: 13.004px;
+											line-height: 1.4;
+											color: #868686;
+											font-weight: 300;
+											margin-bottom: 18px;
+								}
+							.additional-info{
+										color: #616161;
+										font-weight:normal;
+								ul{
+									li{
+										padding-left: 0px;
+										margin-right: 10px;
+										padding-right: 14px;
+										span{
+											margin-right:10px;
+										}
+										
+									}
+
+								}
+
+							}
+
+
+				}
+
+		&:hover{
+			background-color: #F5F5F5;
+			cursor:pointer;
+		}
+		}
+
+}
+
+/* mobile resonsive */
+@media (max-width: 767px) {
+.job-view-list{
+		._li{
+				position: relative;
+				.img-div {
+					width: 35%;
+					display:block;
+					margin-bottom: 17px;
+					height: 35px;
+				}
+				.job-details {
+						.job-title {
+							h5{
+								font-size: 16px;
+								color: #000;
+								font-weight: 700;
+								.btn-mini {
+									float: none;
+									position: absolute;
+									top: 17px;
+									display: block;
+									right: 5px;
+								}
+							}
+
+
+						}
+						.job-meta ul li {
+							display:block;
+							border:0px;
+							margin-bottom:10px;
+
+						}
+
+				}
+
+			}
+
+		}
+
+
+}

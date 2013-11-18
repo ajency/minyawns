@@ -496,8 +496,11 @@ display: inline-block;
 
 width: 450px !important;
 
+<<<<<<< HEAD
 	width: 450px !important;
 
+=======
+>>>>>>> ebcac76f0571d534cc233a6f323c5860c9f74959
 min-width: 450px;
 max-height: 500px;
 overflow-y: auto;
@@ -505,6 +508,7 @@ overflow-y: auto;
 
 .minyawansgrid .popover .tab-content
 {
+<<<<<<< HEAD
 
 min-height:186px;
 padding:12px;
@@ -512,11 +516,17 @@ background: #F7F6F6;
 border: 0;
 
 
+=======
+
+>>>>>>> ebcac76f0571d534cc233a6f323c5860c9f74959
 	min-height:186px;
 	padding:12px;
 	background: #F7F6F6;
 	border: 0;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> ebcac76f0571d534cc233a6f323c5860c9f74959
 
 }
 
@@ -544,8 +554,12 @@ border-right-color: #F7F6F6;
 .minyawansgrid .popover .tab-content ul li .yourcomment
 {
 font-size: 13px;
+<<<<<<< HEAD
 
 	border-right-color: #F7F6F6;
+=======
+border-right-color: #F7F6F6;
+>>>>>>> ebcac76f0571d534cc233a6f323c5860c9f74959
 }
 .minyawansgrid .popover .tab-content ul li .yourcomment
 {

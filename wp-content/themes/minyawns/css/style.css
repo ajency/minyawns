@@ -22,6 +22,9 @@
 	color:#fff;
 	margin-left:10px;
 	
+}
+body .heading-title{
+	font-family: arial \9;
 }	
 .verfied-help{
 	font-size: 19px;
@@ -208,6 +211,8 @@ float: right;
 .signup .modal-header h4 {
 	color:#fff;
 	text-align:center;
+	font-weight: bold;
+text-shadow: 1px 1px 2px #000;
 }
 .signup .close {
 	background: #838383;
@@ -240,8 +245,8 @@ float: right;
 	font-weight: bold;
 }
 .signup{
-	width: 620px;
-	left: 47%;
+	width: 665px;
+left: 47%;
 
 }
 .align-center{
@@ -306,6 +311,7 @@ float: right;
 	overflow-x:hidden;
 	padding: 20px;
 	padding-bottom: 60px;
+	min-height: 600px;
 }
 .ui-datepicker {
 	z-index:999!important;
@@ -440,7 +446,7 @@ div.profile-wrapper{
 	overflow: hidden;
 	width: 100%;
 	height: auto !important;
-	min-height: 530px;
+	min-height: 600px;
 }
 .single-job-1 .data-title {
 width: 1124px;
@@ -639,7 +645,8 @@ font-size:11px;
 }
 #paypal_form .popover.bottom {
 margin-top: 30px !important;
-left: -34px !important;
+left: -5px !important;
+width: 106% !important;
 
 }
 #paypal_form .popover.bottom .arrow
@@ -937,4 +944,22 @@ background: url(../images/down.png)no-repeat right !important;
 .accordion-group .accordion-heading a.open .job-action{
 background: url(../images/up.png)no-repeat right  !important;
 font-weight: bold;
-}		
+
+}	
+.row-fluid [class*="span"] {
+	min-height: 34px !important;
+}
+.sm-input{
+
+	width: 90px!important;
+}
+
+.learn-more a{
+	text-align: center;
+	color: #fff;
+	text-transform: uppercase;
+	display: block;
+	margin-top: 26px ;
+	font-size: 16px;
+}
+

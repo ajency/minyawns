@@ -17,9 +17,11 @@
 	<title><?php wp_title('|', true, 'right'); ?></title>
 	
 	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.bxslider.min.js" type="application/javascript"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
    
 	<!-- media-queries.js (fallback) -->
 	<!--[if lt IE 9]>
@@ -144,22 +146,20 @@
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
 						style="">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
+							<button id="close_btn" type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">
 								<img
 									src="<?php echo get_template_directory_uri(); ?>/images/delete.png"
 									alt="" />
 							</button>
 							<h4 id="myModalLabel">
-								Login to <img
-									src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
-									alt="" />
+								Login to Minyawns
 							</h4>
 						</div>
 						<div class="modal-body">
 							<div id="div_loginmsg"></div>
 							<div class="row-fluid">
-								<div class="span6">
+								<div class="span5">
 
 
 									<form name="frm_login" id="frm_login" action="">
@@ -173,7 +173,8 @@
 										</div>
 										<div class="row-fluid">
 											<div class="span4">
-												<a href="#" class="btn btn-large btn-block btn-inverse "
+												
+												<a type="button" href="#" class="btn btn-large btn-block btn-inverse "
 													id="btn_login">Login</a>
 											</div>
 											<div class="span8">
@@ -186,7 +187,11 @@
 
 
 								</div>
-								<div class="span6 fb-login fb-deskstop">
+								<div class="span2">
+								<b class="or">or</b>
+								
+								</div>
+								<div class="span5 fb-login fb-deskstop">
 									<h6 class="align-center" style="margin-bottom: 0px;">Login
 										Using Facebook</h6>
 									<p class="align-center">Get using Minions, faster !</p>
@@ -199,6 +204,7 @@
 									jfb_output_facebook_btn();
 									?>
 								</div>
+						
 								<span id="div_msgforgotpass"></span>
 
 								<div id="div_forgotpass" class="tab_content_login"
@@ -239,7 +245,7 @@
 									jfb_output_facebook_btn();
 									?>
 								</div>
-								
+									<span id="signup_subheader">Don’t have an account? <a href="#myModal" <?php /*id="get-minon"*/ ?>  data-toggle="modal" id="link_employerregister" class="login-signup" >Sign up here</a></span>	
 							</div>
 						</div>
 

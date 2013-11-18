@@ -295,19 +295,19 @@ function job_status_li(model)
 
                     //  console.log(model.toJSON().user_to_job_status);
                     if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'hired' && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* if logged in minion in hired*/
-                        job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You have been selected for this job.</span>";
+                        job_status1 = "<span  class='job-text-color'>You have been selected for this job.</span>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'applied')/*logged in user has applied for the job*/
-                        job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You have applied for this job.</span>";
+                        job_status1 = "<span  class='job-text-color'>You have applied for this job.</span>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'applied' && model.toJSON().job_status === 2) /*logged in user has applied for the job*/
-                        job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You have applied for this job.</span>";
+                        job_status1 = "<span  class='job-text-color'>You have applied for this job.</span>";
 //                    else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /*expired*/
 //                        job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'hired' && model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* if logged in minion in hired*/
-                        job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Ratings .</span>";
+                        job_status1 = "<span  class='job-text-color'>Ratings .</span>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().user_to_job_status[i] === 'applied') /* if logged in minion in hired*/
-                        job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions Selected.</span>";
+                        job_status1 = "<span  class='job-text-color'>Minions Selected.</span>";
                     else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /*expired*/
-                        job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
+                        job_status1 = "<span class='job-expired'>Job Expired.</span>";
 
 
                 }
@@ -317,15 +317,15 @@ function job_status_li(model)
             {
                 //      alert("blank_users");
                 if (model.toJSON().user_to_job_status.indexOf('hired') >= 0)/* if logged in is not hired but othes are*/
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions have been selected.</span>";
+                    job_status1 = "<span  class='job-text-color'>Minions have been selected.</span>";
 
                 else if (model.toJSON().job_status === 3 && model.toJSON().user_to_job_status.indexOf('hired') === -1)/* if logged in is not hired but othes are*/
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications Closed.</span>";
+                    job_status1 = "<span  class='job-text-color'>Applications Closed.</span>";
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /*expired*/
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
+                    job_status1 = "<span class='job-expired'>Job Expired.</span>";
 
                 else
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available.</span>";
+                    job_status1 = "<span  class='job-text-color'>Available.</span>";
                 //     return job_status1;
             }
 
@@ -340,34 +340,34 @@ function job_status_li(model)
             {
 
                 if (model.toJSON().users_applied.length === 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>No Applicants yet.</span>";
+                    job_status1 = "<span  class='job-text-color'>No Applicants yet.</span>";
                 else if (model.toJSON().users_applied.length > 0 && model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().job_status !== 3 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /*applied but not hired*/
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions Applied.</span>";
+                    job_status1 = "<span  class='job-text-color'>Minions Applied.</span>";
                 else if (model.toJSON().job_status === 3 && model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* max applications job locked  */
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
+                    job_status1 = "<span  class='job-text-color'>Applications closed.</span>";
                 else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* not locked but hired  */
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions Selected.</span>";
+                    job_status1 = "<span  class='job-text-color'>Minions Selected.</span>";
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check && model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* hired and expired  */
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Rate Your Minions.</span>";
+                    job_status1 = "<span  class='job-text-color'>Rate Your Minions.</span>";
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* job Exipred */
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
+                    job_status1 = "<span class='job-expired'>Job Expired.</span>";
                 //return job_status1;
             }
             else
             {
 
                 if (model.toJSON().users_applied.length === 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available</span>";
+                    job_status1 = "<span  class='job-text-color'>Available</span>";
                 else if (model.toJSON().job_status === 3 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)  /* applied and but not hired */
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete</span>";
+                    job_status1 = "<span  class='job-text-color'>Selection Complete</span>";
                 else if (model.toJSON().job_status === 2 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* applied and but not hired */
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications Closed</span>";
+                    job_status1 = "<span  class='job-text-color'>Applications Closed</span>";
                 else if (model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* hired */
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Please login as a Minion to apply.</span>";
+                    job_status1 = "<span  class='job-text-color'>Please login as a Minion to apply.</span>";
 //                else if (model.toJSON().job_status === 2 && model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* hired */
 //                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Please login as a Minion to apply.</span>";
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* job Exipred */
-                    job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
+                    job_status1 = "<span class='job-expired'>Job Expired.</span>";
 
             }
 
@@ -379,17 +379,17 @@ function job_status_li(model)
     {
 
         if (model.toJSON().users_applied.length === 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
-            job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available</span>";
+            job_status1 = "<span  class='job-text-color'>Available</span>";
         else if (model.toJSON().users_applied.length > 0 && model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* applied and but not hired */
-            job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions have been selected </span>";
+            job_status1 = "<span  class='job-text-color'>Minions have been selected </span>";
         else if (model.toJSON().users_applied.length > 0 && model.toJSON().user_to_job_status.indexOf('applied') >= 0 && model.toJSON().job_status === 1) /* applied and but not hired */
-            job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions have Applied </span>";
+            job_status1 = "<span  class='job-text-color'>Minions have Applied </span>";
         else if (model.toJSON().job_status === 3) /* job locked */
-            job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
+            job_status1 = "<span  class='job-text-color'>Applications closed.</span>";
         else if (model.toJSON().job_status === 2 && model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* hired */
-            job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
+            job_status1 = "<span  class='job-text-color'>Applications closed.</span>";
         else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* job Exipred */
-            job_status1 = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
+            job_status1 = "<span class='job-expired'>Job Expired.</span>";
     }
     //});
     return job_status1;
@@ -415,21 +415,21 @@ function job_collapse_button(model)
                     // if (model.toJSON().applied_user_id[i] === logged_in_user_id  && model.toJSON().user_to_job_status.indexOf('hired') >=  0)
                     //   status_button = ""; 
                     if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
-                        status_button = "<a href = '#' id = 'unapply-job' class ='btn btn-medium btn-block btn-danger red-btn' data-action ='unapply' data-job-id= " + model.toJSON().post_id + "  > Unapply </a>";
+                        status_button = "<a href = '#' id = 'unapply-job' class ='btn btn-mini btn-danger ' data-action ='unapply' data-job-id= " + model.toJSON().post_id + "  > Unapply </a>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'hired' && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
-                        status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You are Hired.</span>";
+                        status_button = "<span  class='job-text-color'>You are Hired.</span>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
-                        status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Minions Have been selected.</span>";
+                        status_button = "<span  class='job-text-color'>Minions Have been selected.</span>";
                     //else if (model.toJSON().applied_user_id[i] !== logged_in_user_id && model.toJSON().user_to_job_status.indexOf('applied') >= 0)
                     //    status_button = '<a href="#" id="apply-job-browse" class="btn btn-medium btn-block green-btn btn-success" data-action="apply" data-job-id="' + model.toJSON().post_id + '">Apply</a>';
                     else if (model.toJSON().applied_user_id.indexOf(logged_in_user_id) === -1 && model.toJSON().job_status === 2 && model.toJSON().user_to_job_status[i] !== 'hired')
-                        status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete.</span>";
+                        status_button = "<span  class='job-text-color' >Selection Complete.</span>";
 
                     else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check && model.toJSON().user_to_job_rating !== 'Rating:Awaited')
-                        status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>You have been rated" + model.toJSON().user_to_job_rating[i] + "</span>";
+                        status_button = "<span  class='job-text-color' >You have been rated &nbsp;&nbsp;" + model.toJSON().user_to_job_rating[i] + "</span>";
 
                     else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check)
-                        status_button = '<span style="display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;">Job Expired.</span>';
+                        status_button = '<span class="job-expired" >Job Expired.</span>';
 
 
 
@@ -437,13 +437,13 @@ function job_collapse_button(model)
             } else
             {
                 if (model.toJSON().job_status === 3 && model.toJSON().user_to_job_status.indexOf('hired') === -1)
-                    status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications Closed.</span>";
+                    status_button = "<span  class='job-text-color'>Applications Closed.</span>";
                 else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0)
-                    status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete.</span>";
+                    status_button = "<span class='job-text-color'>Selection Complete.</span>";
                 else if (model.toJSON().job_status === 1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
-                    status_button = '<a href="#" id="apply-job-browse" class="btn btn-medium btn-block green-btn btn-success" data-action="apply" data-job-id="' + model.toJSON().post_id + '">Apply</a>';
+                    status_button = '<a href="#" id="apply-job-browse" class="btn btn-primary btn-mini " data-action="apply" data-job-id="' + model.toJSON().post_id + '">Apply</a>';
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check)
-                    status_button = '<span style="display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;">Job Expired.</span>';
+                    status_button = '<span class="job-expired" >Job Expired.</span>';
 
 
             }
@@ -456,27 +456,27 @@ function job_collapse_button(model)
             {
 
                 if (model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /*applied but not hired*/
-                    status_button = '<a href="' + siteurl + '/jobs/' + model.toJSON().post_slug + '" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="' + model.toJSON().post_id + '">Select Your Minions</a>';
+                    status_button = '<a href="' + siteurl + '/jobs/' + model.toJSON().post_slug + '" target="_blank" id="select-minyawn" class="job-text-color " data-action="apply" data-job-id="' + model.toJSON().post_id + '">Select Your Minions</a>';
                 else if (model.toJSON().job_status === 3 && model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* max applications job locked  */
-                    status_button = '<a href="' + siteurl + '/jobs/' + model.toJSON().post_slug + '" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="' + model.toJSON().post_id + '">Select Your Minions</a>';
+                    status_button = '<a href="' + siteurl + '/jobs/' + model.toJSON().post_slug + '" target="_blank" id="select-minyawn" class="job-text-color" data-action="apply" data-job-id="' + model.toJSON().post_id + '">Select Your Minions</a>';
                 else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* not locked but hired  */
-                    status_button = '<span style="display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;">Minions Hired.</span>';
+                    status_button = '<span class="job-text-color" >Minions Hired.</span>';
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check && model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* hired and expired  */
-                    status_button = '<a href="' + siteurl + '/jobs/' + model.toJSON().post_slug + '" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="' + model.toJSON().post_id + '">Rate Your Minions</a>';
+                    status_button = '<a href="' + siteurl + '/jobs/' + model.toJSON().post_slug + '" target="_blank" id="select-minyawn" class="job-text-color" data-action="apply" data-job-id="' + model.toJSON().post_id + '">Rate Your Minions</a>';
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check && model.toJSON().user_to_job_status.indexOf('hired') === -1) /*not hired and expired*/
-                    status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
+                    status_button = "<span class='job-expired'>Job Expired.</span>";
             } else
             {
                 if (model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().job_status !== 3 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* applied and but not hired */
-                    status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Please log-in as minion to apply</span>";
+                    status_button = "<span class='job-text-color'>Please log-in as minion to apply</span>";
                 else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* applied and but not hired */
-                    status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete</span>";
+                    status_button = "<span class='job-text-color'>Selection Complete</span>";
                 else if (model.toJSON().job_status === 3 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* job locked */
-                    status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
+                    status_button = "<span class='job-text-color'>Applications closed.</span>";
                 else if (model.toJSON().job_status === 2 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) /* hired */
-                    status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
+                    status_button = "<span class='job-text-color'>Applications closed.</span>";
                 else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* job Exipred */
-                    status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
+                    status_button = "<span class='job-expired'>Job Expired.</span>";
 
             }
             //status_button = '<a href="' + siteurl + '/jobs/' + model.toJSON().post_slug + '" target="_blank" id="select-minyawn" class="btn btn-medium btn-block green-btn btn-success " data-action="apply" data-job-id="' + model.toJSON().post_id + '">Select Your Minions</a>';
@@ -489,14 +489,14 @@ function job_collapse_button(model)
     } else
     {
         if ((model.toJSON().users_applied.length === 0 || model.toJSON().users_applied.length >= 0) && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check && model.toJSON().job_status !== 3)
-            status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Available</span>";
+            status_button = "<span class='job-text-color'>Available</span>";
         else if (model.toJSON().job_status === 3) /* job locked */
-            status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Applications closed.</span>";
+            status_button = "<span class='job-text-color'>Applications closed.</span>";
         else if (model.toJSON().job_status === 2 && model.toJSON().user_to_job_status.indexOf('hired') >= 0) /* hired */
-            status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Selection Complete.</span>";
+            status_button = "<span class='job-text-color'>Selection Complete.</span>";
 
         else if (model.toJSON().todays_date_time > model.toJSON().job_end_date_time_check) /* job Exipred */
-            status_button = "<span style='display: block;font-size: 13px;line-height: 22px;margin: auto;text-align: center;width: 67%;'>Job Expired.</span>";
+            status_button = "<span class='job-expired'>Job Expired.</span>";
 
     }
     return status_button;

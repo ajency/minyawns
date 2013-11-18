@@ -79,24 +79,17 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
 
             <div class="clear"></div><br>
             <span class='load-ajax-browse' style="display:block"></span> 
-            <div id="browse-jobs-table" class="table-border browse-jobs-table">
+            <div id="browse-jobs-table" class="browse-jobs-table">
 
                 <!-- Row Div header -->
-                <div class="row-fluid ">
-                    <div class="span12 header-title">
-                        <div class="job-logo header-sub"> Logo</div>
-                        <div class="job-date header-sub"> Job Date</div>
-                        <div class="job-time header-sub">Duration</div>
-                        <div class="job-wage header-sub">Applicants</div> 
-                        <div class="job-progress header-sub">Progress</div>
-                        <div class="job-action header-sub">Wages</div>
+             
 
-                    </div>
-                </div>
-
-                <div class="row-fluid " id="accordion2" >
+               <!-- <div class="row-fluid " id="accordion2" >
 	
-                </div>
+                </div>-->
+                  <ul class="unstyled job-view-list" id="accordion2">
+
+                        </ul>
 
                 <button class="btn load_more" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
             </div>
@@ -178,7 +171,13 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
         </div>
         <!-- /tabs -->
         <div class="tab-pane jobs_table  <?php if(!isset($_GET['cat_id'])){ ?> active <?php } ?>" id="tab2">
-            <div class="breadcrumb-text">
+        <?php
+                                                                   
+                 if (get_user_role() == 'minyawn') {  
+				 
+				 echo '<h6 class="uppermsg">  Browse Jobs to find opportunities that interest you and apply for it</h6>';
+				 } ?>
+			<div class="breadcrumb-text">
                 <p>
                     <a href="#">My Jobs</a>
                     Job List
@@ -190,15 +189,17 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                     if (get_user_role() === "employer") {
                         ?>
                         <div class="dialog dialog-success">
-                            <button class="btn btn-primary btn-wide mll" id="add-job-button">
+                            Take the next step, start adding jobs! Click on the add jobs button below <br><br>
+							<button class="btn btn-primary btn-wide mll" id="add-job-button">
                                 <i class="fui-mail"></i>
-                                Add Jobs
+                                Add a Job
                             </button>
                         </div>
                     <?php } ?>
 
-                    <div id="add-job-form" style="display:none;">
-
+                    <div id="add-job-form" style="display:none;" >
+<div class="row-fluid">
+    <div class="span8">
                         <?php
                         if (check_access() === true) {
                             ?>
@@ -209,15 +210,17 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                 <input type="hidden" value="" id="user_skills"></input>
                                 <input type="hidden" value="" name="id"></input>
                                 <div class="control-group small">
-                                    <label class="control-label" for="inputtask">Tasks</label>
+                                    <label class="control-label" for="inputtask">Title of my job </label>
                                     <div class="controls ">
                                        <!-- <input type="text" id="job_task" name="job_task" value="" placeholder="" class="span3">-->
-                                        <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="" style="height:70px;"></textarea>
+                                        <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="
+" style="height:70px;"></textarea>
+<span class="help-block">Eg: Wash my Car.</span>
                                     </div>
                                 </div>
 
                                 <div class="control-group small float-left ">
-                                    <label class="control-label" for="inputtask">Start</label>
+                                    <label class="control-label" for="inputtask">Start the job</label>
                                     <div class="controls">
                                         <div class="input-prepend input-datepicker">
                                             <button type="button" class="btn"><span class="fui-calendar"></span></button>
@@ -234,7 +237,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                 </div>
                                 <div class="clear"></div>
                                 <div class="control-group small float-left" >
-                                    <label class="control-label" for="inputtask">End</label>
+                                    <label class="control-label" for="inputtask">End the job </label>
                                     <div class="controls">
                                         <div class="input-prepend input-datepicker">
                                             <button type="button" class="btn"><span class="fui-calendar"></span></button>
@@ -253,7 +256,8 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                 <div class="control-group small">
                                     <label class="control-label" for="inputtask">Minyawns Required</label>
                                     <div class="controls ">
-                                        <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="1" class="spinner">
+                                        <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="1" class="spinner sm-input">
+                                        <span class="help-block">Eg: 2</span>
                                     </div>
                                 </div>
 
@@ -264,7 +268,8 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                     <div class="controls small">
                                         <div class="input-prepend">
                                             <span class="add-on"><i class="icon-dollar"></i></span>
-                                            <input class="span2" id="job_wages" type="text" name="job_wages" >
+                                            <input class="span2 sm-input" id="job_wages" type="text" name="job_wages" >
+                                            <span class="help-block">Eg: $120.00</span>
                                         </div>
                                     </div>
 
@@ -274,6 +279,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                     <label class="control-label" for="inputtask">Location</label>
                                     <div class="controls ">
                                         <input type="text" name="job_location" id="job_location" value="" placeholder="" class="span8">
+                                         <span class="help-block">Eg: 1410 NE Campus Pkwy Seattle, WA 98195.</span>
                                     </div>
                                 </div>
                                
@@ -281,6 +287,7 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                     <label class="control-label" for="inputtask">Tags</label>
                                     <div class="controls ">
                                         <input  name="job_tags" id="job_tags" value="" placeholder="Tags here" class="tm-input tagsinput">
+                                         <span class="help-block">Eg: washing.</span>
                                     </div>
                                 </div>
                                  <div class="control-group small">
@@ -296,35 +303,55 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                                     </div>
                                 </div>
                                 <div class="control-group small">
-                                    <label class="control-label" for="inputtask">Details</label>
+                                    <label class="control-label" for="inputtask">Job Description</label>
                                     <div class="controls ">
-                                        <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder="" style="height:70px;"></textarea>
+                                        <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder ="example I need my blue corvette cleaned I need someone who knows how to use the car buffer and has cleaned classic cars before" style="height:70px;"></textarea>
+                                    <span class="help-block">Eg: I need my blue corvette cleaned. I need someone who knows how to use the car buffer and has cleaned classic cars before.</span>
                                     </div>
                                 </div>
                                 <hr>
                                 <a id="add-job" href="#" class="btn btn-large btn-block btn-inverse span2 float-right" >Submit</a>
                                 <div class="clear"></div>
                             </form>
+                        </div>
+                        <div class="span4">
+                            <div class="alert alert-info job-sidebar">
+                                    <h5>
+                                      Example of Jobs
+                                    </h5>
+                                        <hr>
+                                        <ul>
+                                            <li> Need help, I am moving out, require some extra hands.</li>
+                                            <li>Need a minion to clean my house</li>
+                                            <li>Need more likes for my Facebook page</li>
+                                        </ul>
+                                        <br>
+                                        <a href="#examplepopup"  data-toggle="modal" >See more examples of jobs</a>
+
+                            </div>
+
+                            <div class="alert alert-info help-sidebar">
+                                    <a href="#examplejob" role="button" data-toggle="modal" class="btn btn-inverse btn-large">Click here to view a sample job</a><br>
+                                    Let us know if you are facing any difficulties, we are happy to be of assistance.
+                                    We can help you get your job online now. Just email us on <a href="mailto:support@minyawns.com">support@minyawns.com</a> and we will get your job posted to the site.
+
+
+                            </div>
+                       </div>
+                    </div>
 <?php } ?>                   
 
                     </div>
                     <span class='load_ajax1_myjobs' style="display:none"></span>
                     <div id="list-my-jobs">
-                        <div class="row-fluid ">
-                            <div class="span12 header-title">
-                                <div class="job-logo header-sub"> Logo</div>
-                                <div class="job-date header-sub"> Job Date</div>
-                                <div class="job-time header-sub">Duration</div>
-                                <div class="job-wage header-sub">Applicants</div> 
-                                <div class="job-progress header-sub">Progress</div>
-                                <div class="job-action header-sub">Wages</div>
+                       
 
-                            </div>
-                        </div>
+                        <!--<div class="row-fluid " id="accordion24" >
 
-                        <div class="row-fluid " id="accordion24" >
+                        </div>-->
+                        <ul class="unstyled job-view-list" id="accordion24">
 
-                        </div>
+                        </ul>
 
                         <button class="btn load_more" id="load-more-my-jobs"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
 
@@ -337,7 +364,131 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
         </div>
 
     </div>
+    <div id="examplejob" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h5 id="myModalLabel">Sample Job Popup</h5>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal sample-form">
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">Title of my job:</label>
+    <div class="controls">
+     Wash my Car
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Job Description:</label>
+    <div class="controls">
+      I need my blue corvette cleaned. I need someone who knows how to use the car buffer and has cleaned classic cars before.
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Location:</label>
+    <div class="controls">
+      1410 NE Campus Pkwy  Seattle, WA 98195,
+    </div>
+  </div>
+    <div class="control-group">
+    <label class="control-label" for="inputPassword">Start the job:</label>
+    <div class="controls">
+      24 October,   2013    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 2:45 pm
+    </div>
+  </div>
+    <div class="control-group">
+    <label class="control-label" for="inputPassword">End the job:</label>
+    <div class="controls">
+      24 October,   2013    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;3:45 pm
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Minyawns Required:</label>
+    <div class="controls">
+      2
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Total Price Per Minion:</label>
+    <div class="controls">
+      $12.10
+    </div>
+  </div>
+   <div class="control-group">
+    <label class="control-label" for="inputPassword">Job Category:</label>
+    <div class="controls">
+       Check the category that best describes your job
+    </div>
+  </div>
+ </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    
+  </div>
+</div>
+
+<!-- model box for example -->
+<div id="examplepopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h5 id="myModalLabel">See more examples of jobs</h5>
+  </div>
+  <div class="modal-body">
+   <div class="row-fluid">
+        <div class="span3">
+                <h5>Labor Gigs</h5>
+                <ul>
+                    <li> Dry cleaning  </li>
+                    <li>  Drop off gifts </li>
+                    <li>  Laundry </li>
+                    <li>  Distribute flyers </li>
+                    <li>  Pick up groceries </li>
+                    <li> Wait in line</li>
+                    <li>  Grocery delivery</li>
+                    <li>  Cleaning</li>
+                    <li>  Junk removal</li>
+                    <li>  Spring cleaning</li>
+                    <li>  Transport heavy furniture</li>
+                </ul>
+        </div>
+        <div class="span3">
+                <h5>Events Setup</h5>
+                <ul>
+                    <li> Catering </li>
+                    <li> Videography</li>
+                    <li> Marketing </li>
+                    <li> Holiday parties </li>
+                    <li> Organise rooms </li>
+                    <li> Sort and label</li>
+                    <li>  Sort through boxes</li>
+                </ul>
+        </div>
+        <div class="span3">
+                <h5>Tech and Computers</h5>
+                <ul>
+                    <li> Social media help</li>
+                    <li> Data Entry</li>
+                    <li> SEO</li>
+                    <li> Website designing</li>
+                </ul>
+        </div>
+        <div class="span3">
+                <h5>Office work</h5>
+                <ul>
+                    <li> Local searches</li>
+                    <li> Research work</li>
+                    <li> Admin work </li>
+                    <li> Edit documents</li>
+                </ul>
+        </div>
+   </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
    
+  </div>
+  </div>
+     </div>  </div>  </div>
 <?php
 get_footer();
 ?>

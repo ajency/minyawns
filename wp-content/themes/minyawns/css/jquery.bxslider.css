@@ -20,6 +20,8 @@ margin: 0px auto 0px;
 padding: 0;
 max-width: 1041px !important;
 max-height: 60px;
+padding-top:30px;
+padding-bottom:30px;
 	*zoom: 1;
 }
 

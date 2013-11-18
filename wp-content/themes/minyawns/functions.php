@@ -72,6 +72,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome.css', array(), null);
             wp_enqueue_style('data_grids_main', get_template_directory_uri() . '/css/data_grids_main.css', array(), null);
             wp_enqueue_style('data_grids_main_01', get_template_directory_uri() . '/css/data_grids_style_01.css', array(), null);
+			wp_enqueue_style('tooltip', get_template_directory_uri() . '/css/tipTip.css', array(), null);
             wp_enqueue_style('ajaxload', get_template_directory_uri() . '/css/ajaxload.css', array(), null);
             wp_enqueue_style('imgareaselect-animated', get_template_directory_uri() . '/css/imgareaselect-animated.css', array(), null);
             wp_enqueue_style('imgareaselect-default', get_template_directory_uri() . '/css/imgareaselect-default.css', array(), null);
@@ -88,7 +89,7 @@ function minyawns_scripts_styles() {
 
             wp_enqueue_style('bootstrap-timepicker', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
 
-
+			wp_enqueue_script('bxslider', get_template_directory_uri() . '/js/jquery.bxslider.min.js', array('jquery'), null);
             //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
@@ -106,6 +107,7 @@ function minyawns_scripts_styles() {
 //            wp_enqueue_script('bootstrap-lightbox', get_template_directory_uri() . '/js/bootstrap-lightbox.min.js', array('jquery'), null);
             wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
+			 wp_enqueue_script('simple', get_template_directory_uri() . '/js/jquery.simpletip-1.3.1.pack.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() . '/js/bootstrap-timepicker.js', array('jquery', 'bootstrap-min'), null);
             wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
 
@@ -116,6 +118,7 @@ function minyawns_scripts_styles() {
             wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
             wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('jquery'), null);
+			 
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
             wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery', 'minyawns-js'), null);
@@ -196,9 +199,9 @@ function popup_usersignup() {
     $userdata_['role'] = $_REQUEST['pdrole_'];
     $userdata_['user_status'] = 2;
     $userdata_['user_activation_key'] = $user_activation_key;
-    if ($_REQUEST['pdrole_'] == "minyawn") {
+   // if ($_REQUEST['pdrole_'] == "minyawn") {
         $userdata_['last_name'] = $_REQUEST['pdlname_'];
-    }
+    //}
 
 
 
@@ -220,7 +223,7 @@ function popup_usersignup() {
         } else {
 
             if ($_REQUEST['pdrole_'] == "employer")
-                add_user_meta($user_id, 'company_name', $_REQUEST['pdlname_']);
+                add_user_meta($user_id, 'company_name', $_REQUEST['pdcompany_']);
 
 
             /* $msg = "Error occured while creating a new user. Please try again.";			
@@ -955,12 +958,4 @@ function verified_minyawns_save($user_id) {
 
     update_user_meta($user_id, 'user_verified', $value);
 }
-
-//    function prevent_admin_access()
-//    {
-//    if ( false !== strpos( strtolower( $_SERVER['REQUEST_URI'] ), '/wp-admin' ) && !current_user_can( 'administrator' ) )
-//    wp_redirect( home_url() );
-//    }
-//    add_action( 'init', 'prevent_admin_access', 0 );
-
 ?>
