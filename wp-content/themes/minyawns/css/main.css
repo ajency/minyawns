@@ -1557,6 +1557,7 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 0px;
 }
 #innermainimage .banner-content .tab-content {
+  overflow-y: hidden;
   margin-top: -10px;
   min-height: 100%;
   background: rgba(0, 0, 0, 0.5);
@@ -3482,14 +3483,24 @@ div.tooltip1:after {
   span.tooltip1 {
     margin-left: -80px;
   }
+  .bg-background {
+    height: 100%;
+  }
   .home {
     background-position: 67px -50px;
   }
   .home #innermainimage {
-    height: 400px;
+    height: 500px;
   }
   .home #innermainimage .banner-content {
     margin-top: 20%;
+  }
+  .home #innermainimage .banner-content .banner-title {
+    font-size: 24px;
+  }
+  .home #innermainimage .banner-content .banner-desc {
+    font-size: 15px;
+    line-height: 23px;
   }
   .home #innermainimage .banner-content .log-img {
     width: 10%;
@@ -3499,9 +3510,6 @@ div.tooltip1:after {
   }
   .home #innermainimage .banner-content .btn-huge {
     font-size: 12px;
-  }
-  .home .what-we-can-do .carousel img {
-    width: 440px;
   }
   .home .what-we-can-do .carousel .carousel-indicators {
     right: 50%;
@@ -3880,4 +3888,12 @@ div.tooltip1:after {
 .sign-up-txt span {
   font-size: 24px;
   font-weight: 200;
+}
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
+  #innermainimage .banner-content .nav-tabs li.active a {
+    font-size: 14px;
+  }
+  #innermainimage .banner-content .nav-tabs li a {
+    font-size: 14px;
+  }
 }
