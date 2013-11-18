@@ -3490,7 +3490,7 @@ div.tooltip1:after {
     background-position: 67px -50px;
   }
   .home #innermainimage {
-    height: 500px;
+    height: 560px;
   }
   .home #innermainimage .banner-content {
     margin-top: 20%;
@@ -3499,7 +3499,7 @@ div.tooltip1:after {
     font-size: 24px;
   }
   .home #innermainimage .banner-content .banner-desc {
-    font-size: 15px;
+    font-size: 13px !important;
     line-height: 23px;
   }
   .home #innermainimage .banner-content .log-img {
@@ -3895,5 +3895,15 @@ div.tooltip1:after {
   }
   #innermainimage .banner-content .nav-tabs li a {
     font-size: 14px;
+  }
+  .home .what-we-can-do .back-satisfication .text {
+    padding: 50px 10px 10px 20px;
+    font-size: 15px;
+  }
+  .home .what-we-can-do .back-satisfication h4 {
+    text-align: center;
+    font-size: 20px;
+    line-height: 26px;
+    margin-top: 18px;
   }
 }
