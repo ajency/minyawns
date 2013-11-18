@@ -342,8 +342,7 @@ border-top: 1px solid #DAD7D7;
     right: 0px; 
 }
 
-<<<<<<< HEAD
-<<<<<<< .merge_file_a05616
+
 .expand .popover.bottom
 {
 margin-top: 12px !important;
@@ -360,7 +359,7 @@ border-radius: 6px;
 height: auto;
 width: 90% !important;
 margin-bottom:0
-=======
+}
 .list-jobs .expand .minyawansgrid .span6 b {
 width: 142px !important;
 display: inline-block;
@@ -459,7 +458,7 @@ border-top: 0px solid #ddd;
 border-bottom:2px solid #e74c3c;
 color: #ffffff;
 background: #e74c3c;
->>>>>>> dd2cfd60a9a863b6f3229eb55591f82d64fb6d9c
+ 
 }
 
 .expand .popover-content .maxchar
@@ -475,7 +474,7 @@ color:#606060;
 font-size:11px;
 }
 
-<<<<<<< HEAD
+
 .expand .popover.bottom .arrow
 {
 border-bottom-color:#E0E1D8;
@@ -487,19 +486,18 @@ margin-left: -10px;
 border-bottom-color: #FFF;
 border-width: 0 10px 10px;
 }
-=======
->>>>>>> .merge_file_a09188
+
 .list-jobs .expand .minyawansgrid .span6 b {
 width: 142px !important;
 display: inline-block;
 }
 .minyawansgrid .popover
 {
-<<<<<<< .merge_file_a05616
+
 width: 450px !important;
-=======
+
 	width: 450px !important;
->>>>>>> .merge_file_a09188
+
 min-width: 450px;
 max-height: 500px;
 overflow-y: auto;
@@ -507,19 +505,19 @@ overflow-y: auto;
 
 .minyawansgrid .popover .tab-content
 {
-<<<<<<< .merge_file_a05616
+
 min-height:186px;
 padding:12px;
 background: #F7F6F6;
 border: 0;
 
-=======
+
 	min-height:186px;
 	padding:12px;
 	background: #F7F6F6;
 	border: 0;
 	
->>>>>>> .merge_file_a09188
+
 }
 
 .minyawansgrid .popover .tab-content input
@@ -540,40 +538,40 @@ margin-bottom: 4px;
 }
 .minyawansgrid .popover.right .arrow
 {
-<<<<<<< .merge_file_a05616
+
 border-right-color: #F7F6F6;
 }
 .minyawansgrid .popover .tab-content ul li .yourcomment
 {
 font-size: 13px;
-=======
+
 	border-right-color: #F7F6F6;
 }
 .minyawansgrid .popover .tab-content ul li .yourcomment
 {
 	font-size: 13px;
->>>>>>> .merge_file_a09188
+
 color: #676965;
 font-style:italic;
 }
 .minyawansgrid .popover .tab-content ul li .submited
 {
-<<<<<<< .merge_file_a05616
+
 font-size: 11px;
 color:#ABA8A8;
 font-style:italic;
-=======
+
 	font-size: 11px;
 	color:#ABA8A8;
 	font-style:italic;
->>>>>>> .merge_file_a09188
+
 }
 
 .minyawansgrid .popover .tab-content ul li .jobname a
 {
-<<<<<<< .merge_file_a05616
+
 font-size:15px;
-=======
+
 	font-size:15px;
 }
 
@@ -616,7 +614,7 @@ border-top: 0px solid #ddd;
 border-bottom:2px solid #e74c3c;
 color: #ffffff;
 background: #e74c3c;
->>>>>>> .merge_file_a09188
+
 }
 
 .minyawansgrid .popover .tab-content .tariblecontent ul li .jobname a
@@ -707,8 +705,7 @@ overflow-y: auto;
 }
 }
 
-=======
->>>>>>> dd2cfd60a9a863b6f3229eb55591f82d64fb6d9c
+
 .minyawansgrid .popover-content .tabs-below > .nav-tabs > .active > a, .tabs-below > .nav-tabs > .active > a:hover, .tabs-below > .nav-tabs > .active > a:focus {
 border-color: transparent #ddd #ddd #ddd;
 border-width: 0px;
@@ -753,8 +750,3 @@ min-width: 92%;
 max-height: 300px;
 overflow-y: auto;
 	}
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> dd2cfd60a9a863b6f3229eb55591f82d64fb6d9c
