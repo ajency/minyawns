@@ -146,10 +146,10 @@ require 'templates/_jobs.php';
                             else
                                 echo get_avatar(get_user_id(), 168)
                                 ?>
-
-                            <?php if (is_user_logged_in()) { ?>              
-                        </a>
+</a>
 						</div>
+                            <?php if (is_user_logged_in()) { ?>              
+                        
                         <?php if(is_facebook_user() === 'false'){ ?>
 						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">Change Profile Pic</a>
                         <?php }?>
