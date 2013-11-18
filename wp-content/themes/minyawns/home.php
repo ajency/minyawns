@@ -27,18 +27,27 @@ Backed by University of Washington students and designed for business profession
 			</div>
             <div class="span4"></div>
          </div>
+		 <div class="row-fluid">
+				<div class="span12 learn-more">
+					<a  href="#pliip" class="jumper"> Learn More
+					<br> 
+					<i class="icon-chevron-down"></i>
+					</a>
+					
+				</div>
+		 </div>
       </div>
    </div>
    <div class="bg-overflow">
       <img class="bg-background" src="<?php echo get_template_directory_uri() ?>/images/banner1.jpg"/>
    </div>
 </div>
-<div class="how-does-it-work">
-<div class="bg-title">
+<div id="pliip" class="how-does-it-work">
+<div class="">
    <h3 class="heading-title">How does it work?</h3>
    <p class="excerpt">Go from being burdened with menial jobs to doing more awesome stuff.</p>
    </div>
-     <div id="down"></div><br><br>
+     
    <div class="container steps-3">
       <div class="row-fluid">
          <div class="span4">
@@ -57,29 +66,40 @@ Backed by University of Washington students and designed for business profession
             <p>Get productive and end your to-do list, 100% satisfaction guaranteed.</p>
          </div>
       </div>
-      <br><br><br>
+      <br><br>
+	  <h6 class="s-bold">Go from being burdened with menial jobs to doing more awesome stuff.</h6>
+	  <br>
+	  <div class="row-fluid">
+			<div class="span3"></div>
+			<div class="span3"><button class="btn btn-large btn-primary pull-right" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns For Student</button></div>
+			<div class="span3"><button class="btn btn-large btn-info" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns For Buisnesses</button></div>
+			<div class="span3"></div>
+			
+	  </div><br><br>
    </div>
+   
 </div>
 <div class="what-we-can-do">
-   <div class="bg-title">
+     <div id="down"></div>
+   <div class="">
       <h3 class="heading-title">What can we do?</h3>
       <p class="excerpt">The minions have superpowers, find out what they are.</p>
    </div>
-   <div id="down"></div>
+ 
    <div class="container">
       <div class="row-fluid">
-         <div class="span12">
+         <div class="span8">
             <br>
-            <div id="myCarousel" class="carousel slide">
+           <div id="myCarousel" class="carousel slide">
                <ol class="carousel-indicators">
                   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                   <li data-target="#myCarousel" data-slide-to="1"></li>
                   <li data-target="#myCarousel" data-slide-to="2"></li>
                </ol>
-               <!-- Carousel items -->
+              
                <div class="carousel-inner">
                   <div class="active item">
-                     <img src="<?php echo get_template_directory_uri() ?>/images/slider1.jpg" data-interval="500" data-slide-to="0" />
+                     <img src="<?php echo get_template_directory_uri() ?>/images/slider1.png" data-interval="500" data-slide-to="0" />
                      <div class="carousel-caption">
                         <h4>Almost anything !</h4>
                         <p>From simple tasks like office work, labor jobs, and event set-up to ones that need more specialty, our minions can do it all. You may just need an extra hand, our minions are capable of learning quickly on the job.
@@ -87,14 +107,14 @@ Backed by University of Washington students and designed for business profession
                      </div>
                   </div>
                   <div class="item">
-                     <img src="<?php echo get_template_directory_uri() ?>/images/slider2.jpg" data-interval="500" data-slide-to="1" />
+                     <img src="<?php echo get_template_directory_uri() ?>/images/slider2.png" data-interval="500" data-slide-to="1" />
                      <div class="carousel-caption">
                         <h4>Make you feel in charge!</h4>
                         <p>Our Minions are equipped with the valuable skills from top universities. Its like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
                      </div>
                   </div>
                   <div class="item">
-                     <img src="<?php echo get_template_directory_uri() ?>/images/slider3.jpg" data-interval="500"  data-slide-to="2" />
+                     <img src="<?php echo get_template_directory_uri() ?>/images/slider3.png" data-interval="500"  data-slide-to="2" />
                      <div class="carousel-caption">
                         <h4>We are safe, reliable, and easy!</h4>
                         <p>We take safety and reliability seriously. We aren't Craigslist but we are backed by motivated college students just looking for some extra money for books and snacks.</p>
@@ -102,26 +122,30 @@ Backed by University of Washington students and designed for business profession
                   </div>
                </div>
             </div>
-         </div>
+		</div>
+		<div class="span4">
+			<div class="back-satisfication">
+				<div class="text">
+					We are so sure that our Minyawns will be the best decision you have ever made. If you are not satisfied for any 
+					reason <img src="<?php echo get_template_directory_uri() ?>/images/satisfication.png" align="right"/>at all we will fully refund every cent you spent, 
+					no questions asked.<br><br>
+					<h4>Sign up and we'll demolish your to-do list today.</h4>
+				</div>
+				<button class="btn btn-large btn-info" type="button">Get Started Now</button>
+			</div>
+		</div>
       </div>
    </div>
-   <!-- MInyans Satisfication-->
-   <div class="satisfication">
-      <div class="container">
-         <div class="row-fluid">
-            <div class="span2"> <img src="<?php echo get_template_directory_uri() ?>/images/satisfaction.jpg" class="img-center"/></div>
-            <div class="span10"><br>	We are so sure that our Minyawns will be the best decision you have ever made. If you are not satisfied for any reason at all we will fully refund every cent you spent, no questions asked.</div>
-         </div>
-      </div>
-   </div>
+
  
 </div>
+<div id="down-green"></div><br>
 <div class="features">
-<div class="bg-title">
+<div class="">
             <h3 class="heading-title">Features</h3>
             <p class="excerpt">Check out what you have access to once you sign up.</p>
 			</div>
-			 <div id="down"></div><br><br>
+			
    <div class="container">
       <div class="row-fluid">
          <div class="span12">
@@ -201,12 +225,13 @@ Backed by University of Washington students and designed for business profession
       </div>
    </div>
 </div>
+
 <div class="customer">
    <div class="bg-title-gray">
-      <h3 class="heading-title">Meet the minions</h3>
+      <h3 class="heading-title">Last week <span class="highlight">500 Minions</span> signed up for Minyawns </h3>
       <p class="excerpt">The minions are thoroughly vetted University of Washington students.</p>
    </div>
-   <div id="down-gray"></div><br>
+  <br><br><br>
  
    <div class="row-fluid minyawns-grid1">
       <ul class="thumbnails" style="left: 100px;">
@@ -438,13 +463,12 @@ Enviormental Engineering </div>
    </div>
 
 	<br><br><br>
-	 <div class="bg-title-gray">
-      <h3 class="heading-title">Our Customers</h3>
+	<div class="customer_bg">
+	 <div class="">
+      <h3 class="heading-title">97% of customers recommend Minyawns</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
    </div>
-   <div id="down-gray"></div><br>
- 
-     <div class="slider1">
+   <div class="slider1">
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture1.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture2.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture3.png"></div>
@@ -455,7 +479,17 @@ Enviormental Engineering </div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture8.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture9.png"></div>
    </div><br><br><br><br>
-  
+  </div>
+  <div id="down-green"></div>
+  <div class="sign-up-txt">
+  What are you waiting for?<br>
+<span>
+  The power and resources of an elite billion-dollar 
+institution, awaiting your command.</span>
+<br>
+<br>
+<button class="btn btn-large btn-primary " type="button">Get Started Now</button><br><br>
+  </div>
 </div>
 <!-- End  Banner Layout -->
 <!--

@@ -22,6 +22,9 @@
 	color:#fff;
 	margin-left:10px;
 	
+}
+body .heading-title{
+	font-family: arial \9;
 }	
 .verfied-help{
 	font-size: 19px;
@@ -896,4 +899,13 @@ font-weight: bold;
 .sm-input{
 
 	width: 90px!important;
+}
+
+.learn-more a{
+	text-align: center;
+	color: #fff;
+	text-transform: uppercase;
+	display: block;
+	margin-top: 72px ;
+	font-size: 16px;
 }

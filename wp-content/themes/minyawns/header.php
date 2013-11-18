@@ -153,9 +153,7 @@
 									alt="" />
 							</button>
 							<h4 id="myModalLabel">
-								Login to <img
-									src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
-									alt="" />
+								Login to Minyawns
 							</h4>
 						</div>
 						<div class="modal-body">

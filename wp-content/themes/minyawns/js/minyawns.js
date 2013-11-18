@@ -5,6 +5,27 @@
 
 jQuery(document).ready(function($) {
 
+$(".jumper").on("click", function( e ) {
+    
+    e.preventDefault();
+
+    $("body, html").animate({ 
+        scrollTop: $( $(this).attr('href') ).offset().top 
+    },600);
+    
+});
+
+var _rys = jQuery.noConflict();  
+        _rys("document").ready(function(){  
+            _rys(window).scroll(function () {  
+                if (_rys(this).scrollTop() > 136) {  
+                    _rys('.bottom-menu-inverse').addClass("f-menublock");  
+                } else {  
+                    _rys('.bottom-menu-inverse').removeClass("f-menublock");  
+                }  
+            });  
+        });
+
 $('#frm_login #txt_email, #frm_login #txt_pass').keydown(function (e) {
     if (e.keyCode == 13) {
         $('#form1').submit();

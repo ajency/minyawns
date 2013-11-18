@@ -210,6 +210,8 @@
     <%= result.linkedin %>
     </div>
 	</div>
+	<div class="tags">
+	Tags:<br>
     <%
     var split_skills=result.user_skills.split(',');
     for(var index=0;index<=split_skills.length;index++){
@@ -217,8 +219,8 @@
     <span class="label label-small"><%= split_skills[index] %></span>
 
     <% } %>
-		
-    <hr>
+		</div>
+    
     <div class="dwn-btn">
     <%= select_button %>
     <%= ratings_button %>
