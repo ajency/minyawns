@@ -28,12 +28,16 @@ a:hover {
   color: #F30606;
 }
 .Select-minyawns {
-  background: rgba(179, 255, 185, 0.45);
+  background: rgba(209, 255, 179, 0.45);
   border: 1px solid #3DDF4A !important;
 }
 .m1 {
   position: relative;
   top: 0px;
+}
+.s-bold {
+  text-align: center;
+  font-weight: 800;
 }
 .uppermsg {
   padding: 0px;
@@ -43,6 +47,12 @@ a:hover {
 }
 footer {
   background: #212326;
+}
+.top-menu.f-menublock {
+  position: relative;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.84) !important;
+  width: 100%;
 }
 .btn-links {
   padding-top: 10px;
@@ -1520,6 +1530,7 @@ body .jobs_table .data-title .profile-job {
 
 }
 .home .how-does-it-work {
+  margin-bottom: 40px;
   /*box-shadow: inset 0px 24px 40px 1px rgba(204, 204, 204, 0.66), inset 0px -37px 49px -10px rgba(204, 204, 203, 0.64);*/
 
   background: #fff;
@@ -1557,7 +1568,42 @@ body .jobs_table .data-title .profile-job {
   line-height: 26px;
 }
 .home .what-we-can-do {
-  background: #fff;
+  background: url(../images/what-we-can-do-bg.jpg);
+  padding-bottom: 100px;
+}
+.home .what-we-can-do .heading-title {
+  color: #fff;
+}
+.home .what-we-can-do .excerpt {
+  color: #222;
+}
+.home .what-we-can-do .back-satisfication {
+  background: url(../images/satisfication-bg.png) no-repeat;
+  height: 372px;
+}
+.home .what-we-can-do .back-satisfication .text {
+  color: #615323;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 50px 70px 10px 20px;
+}
+.home .what-we-can-do .back-satisfication h4 {
+  text-align: center;
+  font-size: 22px;
+  line-height: 26px;
+  margin-top: 40px;
+}
+.home .what-we-can-do .back-satisfication .btn-info {
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 50px 15px 50px;
+  margin: auto;
+  display: block;
+  margin-top: 5px;
+  margin-left: 12%;
 }
 .home .what-we-can-do .carousel {
   margin-top: 35px;
@@ -1569,26 +1615,20 @@ body .jobs_table .data-title .profile-job {
 .home .what-we-can-do .carousel .carousel-indicators {
   position: absolute;
   bottom: -5px;
-  right: 548px;
+  right: 380px;
   top: initial;
   z-index: 5;
   margin: -18px;
   list-style: none;
 }
 .home .what-we-can-do .carousel .carousel-indicators .active {
-  background-color: #666;
+  background-color: #226F18;
 }
 .home .what-we-can-do .carousel .carousel-indicators li {
-  background-color: #c4c4c4;
+  background-color: #419E34;
 }
 .home .what-we-can-do .carousel img {
   height: auto !important;
-  -moz-box-shadow: 0 8px 21px #ccc;
-  -webkit-box-shadow: 0 8px 21px #ccc;
-  box-shadow: 0px 8px 21px #9C9C9A;
-  border: solid #fff 12px;
-  background: #fff;
-  width: 550px;
   border-radius: 15px;
   margin-left: 20px;
 }
@@ -1598,22 +1638,23 @@ body .jobs_table .data-title .profile-job {
   padding: 18px;
   background: #333333;
   background: rgba(0, 0, 0, 0);
-  width: 43%;
+  width: 50%;
   position: absolute;
   top: 0;
   color: #000;
-  left: 55%;
+  left: 40%;
 }
 .home .what-we-can-do .carousel .carousel-caption h4 {
-  color: #585858;
-  font-size: 33px;
+  color: #1D1D1D;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 25px;
-  margin-top: 75px;
+  margin-top: 10px;
+  line-height: 30px;
 }
 .home .what-we-can-do .carousel .carousel-caption p {
-  font-size: 17px;
-  color: #808080;
+  font-size: 16px;
+  color: #5b8420;
   font-family: arial;
   line-height: 26px;
 }
@@ -1693,10 +1734,16 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 12px;
 }
 .home .customer {
-  background: #fff;
+  background: #F3F3F3;
+  border-top: 1px solid #ccc;
+}
+.home .customer .heading-title {
+  text-transform: lowercase;
+}
+.home .customer .heading-title .highlight {
+  color: #8ed030;
 }
 .home .customer .bg-title-gray {
-  background: #ececec;
   height: 120px;
 }
 .home .customer .space {
@@ -1734,19 +1781,21 @@ body .jobs_table .data-title .profile-job {
 .home .heading-title {
   margin-top: -3px;
   display: block;
-  padding-top: 26px;
-  font-size: 31px;
-  font-family: arial;
+  padding-top: 46px;
+  font-size: 38px;
   font-weight: bolder;
+  font-weight: 800;
   text-align: center;
   text-transform: uppercase;
   color: #000;
+  font-family: arial\9;
+  font-family: arial Black;
 }
 .home .excerpt {
   font-size: 17px;
   color: #575757;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   opacity: 0.7;
   letter-spacing: 1px;
 }
@@ -1850,6 +1899,19 @@ body .jobs_table .data-title .profile-job {
   padding: 10px;
 }
 @media (max-width: 767px) {
+  .learn-more {
+    margin-top: -80px;
+  }
+  .s-bold {
+    font-size: 18px;
+    line-height: 27px;
+  }
+  .steps-3 .btn-large {
+    float: none;
+    margin: auto;
+    display: block;
+    margin-bottom: 15px;
+  }
   .minyawns-satisfication .span2 {
     width: 22%;
     float: left;
@@ -2763,6 +2825,19 @@ body .jobs_table .data-title .profile-job {
 }
 /* mobile resonsive */
 @media (max-width: 767px) {
+  .features .tab-content {
+    min-height: 100%;
+  }
+  .sign-up-txt {
+    font-size: 25px;
+  }
+  .sign-up-txt span {
+    font-size: 17px;
+    line-height: 25px;
+    display: block;
+    font-weight: 200;
+    margin-top: 20px;
+  }
   #profile-view1 .popover-content .tabs-below > .nav-tabs > li {
     margin-top: 5px;
     margin-bottom: -12px !important;
@@ -2807,11 +2882,31 @@ body .jobs_table .data-title .profile-job {
   .minyawns-grid1 {
     width: 88%!important;
   }
+  .home .what-we-can-do .back-satisfication {
+    background-size: 100%;
+  }
+  .home .what-we-can-do .back-satisfication .text {
+    padding: 35px 20px 10px 12px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .home .what-we-can-do .back-satisfication h4 {
+    font-size: 19px;
+    line-height: 26px;
+    margin-top: 17px;
+  }
+  .home .what-we-can-do .back-satisfication .btn-info {
+    margin-top: 27px;
+    margin-left: 5%;
+  }
   .home .what-we-can-do .carousel-inner {
     overflow: visible;
   }
+  .home .what-we-can-do .carousel {
+    margin-top: -5px;
+  }
   .home .what-we-can-do .carousel img {
-    width: 80%;
+    width: 90%;
   }
   .home .what-we-can-do .carousel .carousel-caption {
     width: 98%;
@@ -2832,9 +2927,10 @@ body .jobs_table .data-title .profile-job {
   }
   .home .what-we-can-do .carousel .carousel-indicators {
     position: absolute;
-    bottom: -13px;
+    bottom: -58px;
     right: 38%;
     top: initial;
+    top: none;
     z-index: 5;
     margin: 0px;
     list-style: none;
@@ -3118,7 +3214,7 @@ body .jobs_table .data-title .profile-job {
 .minyawns-grid1 .span3 .thumbnail .m2 .dwn-btn {
   position: relative;
   width: 90%;
-  margin: auto;
+  margin: 10px auto;
 }
 .minyawns-grid1 .span3 .thumbnail .m2 .dwn-btn .onoffswitch {
   margin-left: 37px;
@@ -3207,7 +3303,7 @@ body .jobs_table .data-title .profile-job {
   height: 0px;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
-  border-top: 27px solid #ececec;
+  border-top: 27px solid #fff;
   margin: auto;
 }
 #link_minyawnregister:hover div.tooltip1 {
@@ -3643,4 +3739,46 @@ div.tooltip1:after {
     cursor: pointer;
     background: #EEE9E9;
   }
+}
+.customer_bg {
+  background: url(../images/what-we-can-do-bg.jpg);
+}
+.customer_bg .heading-title {
+  color: #000;
+}
+.customer_bg .excerpt {
+  color: #222222;
+}
+.customer_bg .bx-wrapper {
+  background: #fff;
+  border-radius: 27px;
+  -moz-border-radius: 27px;
+  -webkit-border-radius: 27px;
+  padding: 30px 30px 37px 30px;
+  margin-top: -10px;
+}
+#down-green {
+  width: 0px;
+  height: 0px;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 27px solid #9fd157;
+  margin: auto;
+}
+.sign-up-txt {
+  font-size: 40px;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+.sign-up-txt .btn-primary {
+  margin: auto;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 16px 40px 16px 40px;
+  border-bottom: 2px solid #3DB80D;
+}
+.sign-up-txt span {
+  font-size: 24px;
+  font-weight: 200;
 }
