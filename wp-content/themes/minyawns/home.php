@@ -71,8 +71,8 @@ Backed by University of Washington students and designed for business profession
 	  <br>
 	  <div class="row-fluid">
 			<div class="span3"></div>
-			<div class="span3"><button class="btn btn-large btn-primary pull-right" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns For Student</button></div>
-			<div class="span3"><button class="btn btn-large btn-info" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns For Buisnesses</button></div>
+			<div class="span3"><button href="#video1"  data-toggle="modal" class="btn btn-large btn-primary pull-right" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns For Student</button></div>
+			<div class="span3"><button href="#video2"  data-toggle="modal" class="btn btn-large btn-info" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns For Buisnesses</button></div>
 			<div class="span3"></div>
 			
 	  </div><br><br>
@@ -131,7 +131,7 @@ Backed by University of Washington students and designed for business profession
 					no questions asked.<br><br>
 					<h4>Sign up and we'll demolish your to-do list today.</h4>
 				</div>
-				<button class="btn btn-large btn-info" type="button">Get Started Now</button>
+				<button href="#myModal"  data-toggle="modal" class="btn btn-large btn-info" type="button">Get Started Now</button>
 			</div>
 		</div>
       </div>
@@ -488,9 +488,25 @@ Enviormental Engineering </div>
 institution, awaiting your command.</span>
 <br>
 <br>
-<button class="btn btn-large btn-primary " type="button">Get Started Now</button><br><br>
+<button href="#myModal"  data-toggle="modal" class="btn btn-large btn-primary " type="button">Get Started Now</button><br><br>
   </div>
 </div>
+  	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   		  <div class="modal-body">
+   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gbbkC7yIduS/" frameborder="0" allowfullscreen></iframe></p>
+   		  </div>
+   		  <div class="modal-footer">
+   			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   		</div>
+   	</div>
+	  	 <div id="video2" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   		  <div class="modal-body">
+   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gdPRX5igKP7/" frameborder="0" allowfullscreen></iframe></p>
+   		  </div>
+   		  <div class="modal-footer">
+   			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   		</div>
+   	</div>
 <!-- End  Banner Layout -->
 <!--
    <div class="video-home ">
@@ -503,25 +519,11 @@ institution, awaiting your command.</span>
    	 <a  href="#video1"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png"/></a>
    	  <a  href="#video1"  data-toggle="modal"  style="color: #34495E;"> <h3>Minyawns For Students</h3></a>
    	</div>
-   	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   		  <div class="modal-body">
-   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gbbkC7yIduS/" frameborder="0" allowfullscreen></iframe></p>
-   		  </div>
-   		  <div class="modal-footer">
-   			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-   		</div>
-   	</div>
+ 
    	<div class="span5">
    		 <a  href="#video2"  data-toggle="modal"> <img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png"/></a>
    	 <a  href="#video2"  data-toggle="modal" style="color: #34495E;"> <h3>Minyawns For Businesses</h3></a>
-   	 <div id="video2" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   		  <div class="modal-body">
-   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gdPRX5igKP7/" frameborder="0" allowfullscreen></iframe></p>
-   		  </div>
-   		  <div class="modal-footer">
-   			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-   		</div>
-   	</div>
+ 
    	</div>
    	<div class="span1">
    	 
