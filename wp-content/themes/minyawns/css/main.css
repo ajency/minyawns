@@ -3946,3 +3946,6 @@ div.tooltip1:after {
     padding: 15px 30px 15px 30px;
   }
 }
+#frm_signup .control-group {
+  position: initial;
+}
