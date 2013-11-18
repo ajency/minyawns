@@ -3597,6 +3597,9 @@ div.tooltip1:after {
   .home .features .nav-tabs .tab-content h3 {
     font-size: 20px;
   }
+  .home .what-we-can-do .carousel .carousel-inner img {
+    width: 40%;
+  }
   .home .what-we-can-do .carousel .carousel-caption h4 {
     margin-top: 25px;
     font-size: 28px;
@@ -3605,7 +3608,7 @@ div.tooltip1:after {
     right: 50%;
   }
   .home #innermainimage {
-    height: 600px;
+    height: 640px;
   }
   .home #innermainimage .banner-content {
     margin-top: 25%;
@@ -3916,7 +3919,7 @@ div.tooltip1:after {
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: portrait) {
   #innermainimage .banner-content .tab-content {
-    min-height: 100%;
+    min-height: 100% !important;
   }
   #innermainimage .banner-content .nav-tabs li.active a {
     font-size: 13px;
@@ -3932,6 +3935,11 @@ div.tooltip1:after {
     text-align: center;
     font-size: 18px;
     line-height: 26px;
-    margin-top: 18px;
+    margin-top: 0px;
+  }
+  .home .what-we-can-do .back-satisfication .btn-info {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 15px 30px 15px 30px;
   }
 }
