@@ -67,12 +67,12 @@ Backed by University of Washington students and designed for business profession
          </div>
       </div>
       <br><br>
-	  <h6 class="s-bold">Go from being burdened with menial jobs to doing more awesome stuff.</h6>
+	  <h6 class="s-bold">To make things even more simple, watch our video walk-through.</h6>
 	  <br>
 	  <div class="row-fluid">
 			<div class="span3"></div>
-			<div class="span3"><button class="btn btn-large btn-primary pull-right" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns For Student</button></div>
-			<div class="span3"><button class="btn btn-large btn-info" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns For Buisnesses</button></div>
+			<div class="span3"><button href="#video1"  data-toggle="modal" class="btn btn-large btn-primary pull-right" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns for students</button></div>
+			<div class="span3"><button href="#video2"  data-toggle="modal" class="btn btn-large btn-info" type="button"><i class="icon-youtube-play"></i> &nbsp;&nbsp;Minyawns for businesses</button></div>
 			<div class="span3"></div>
 			
 	  </div><br><br>
@@ -126,12 +126,12 @@ Backed by University of Washington students and designed for business profession
 		<div class="span4">
 			<div class="back-satisfication">
 				<div class="text">
-					We are so sure that our Minyawns will be the best decision you have ever made. If you are not satisfied for any 
+					We are so sure that Minyawns We will be the best decision you have ever made. If you are not satisfied for any 
 					reason <img src="<?php echo get_template_directory_uri() ?>/images/satisfication.png" align="right"/>at all we will fully refund every cent you spent, 
 					no questions asked.<br><br>
 					<h4>Sign up and we'll demolish your to-do list today.</h4>
 				</div>
-				<button class="btn btn-large btn-info" type="button">Get Started Now</button>
+				<button href="#myModal"  data-toggle="modal" class="btn btn-large btn-info" type="button">Get started now!</button>
 			</div>
 		</div>
       </div>
@@ -228,7 +228,7 @@ Backed by University of Washington students and designed for business profession
 
 <div class="customer">
    <div class="bg-title-gray">
-      <h3 class="heading-title">Last week <span class="highlight">500 Minions</span> signed up for Minyawns </h3>
+      <h3 class="heading-title">Meet the <span class="highlight">500 Minions</span>  that signed up last week. </h3>
       <p class="excerpt">The minions are thoroughly vetted University of Washington students.</p>
    </div>
   <br><br><br>
@@ -484,13 +484,28 @@ Enviormental Engineering </div>
   <div class="sign-up-txt">
   What are you waiting for?<br>
 <span>
-  The power and resources of an elite billion-dollar 
-institution, awaiting your command.</span>
+  The power and resources of an elite billion-dollar institution is only a click away. </span>
 <br>
 <br>
-<button class="btn btn-large btn-primary " type="button">Get Started Now</button><br><br>
+<button href="#myModal"  data-toggle="modal" class="btn btn-large btn-primary " type="button">Get started now!</button><br><br>
   </div>
 </div>
+  	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   		  <div class="modal-body">
+   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gbbkC7yIduS/" frameborder="0" allowfullscreen></iframe></p>
+   		  </div>
+   		  <div class="modal-footer">
+   			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   		</div>
+   	</div>
+	  	 <div id="video2" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   		  <div class="modal-body">
+   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gdPRX5igKP7/" frameborder="0" allowfullscreen></iframe></p>
+   		  </div>
+   		  <div class="modal-footer">
+   			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   		</div>
+   	</div>
 <!-- End  Banner Layout -->
 <!--
    <div class="video-home ">
@@ -503,25 +518,11 @@ institution, awaiting your command.</span>
    	 <a  href="#video1"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png"/></a>
    	  <a  href="#video1"  data-toggle="modal"  style="color: #34495E;"> <h3>Minyawns For Students</h3></a>
    	</div>
-   	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   		  <div class="modal-body">
-   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gbbkC7yIduS/" frameborder="0" allowfullscreen></iframe></p>
-   		  </div>
-   		  <div class="modal-footer">
-   			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-   		</div>
-   	</div>
+ 
    	<div class="span5">
    		 <a  href="#video2"  data-toggle="modal"> <img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png"/></a>
    	 <a  href="#video2"  data-toggle="modal" style="color: #34495E;"> <h3>Minyawns For Businesses</h3></a>
-   	 <div id="video2" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   		  <div class="modal-body">
-   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gdPRX5igKP7/" frameborder="0" allowfullscreen></iframe></p>
-   		  </div>
-   		  <div class="modal-footer">
-   			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-   		</div>
-   	</div>
+ 
    	</div>
    	<div class="span1">
    	 
@@ -662,7 +663,7 @@ institution, awaiting your command.</span>
             <?php 	
                jfb_output_facebook_btn(); ?>
             <br><br>
-            <p class="align-center"><span id="div_alreadyregister">Already registered to Minyawn?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
+            <p class="align-center"><span id="div_alreadyregister">Already registered at Minyawns?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
          </div>
       </div>
 	   <span id="div_signup_subheader"></span>

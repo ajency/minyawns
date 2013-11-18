@@ -883,6 +883,9 @@ $('.roundedTwo input').click(function(){
         jQuery("#signup_popup_close").click();
         jQuery("#btn__login").click();
     })
+ jQuery(".login-signup").live("click", function() {
+     $('#mylogin').modal('hide')
+    })
 
 
     /* POPUP SIGNUP */
@@ -890,7 +893,7 @@ $('.roundedTwo input').click(function(){
     //function to set div,message for minion sign up modal
     function setup_minionsignup_modal()
     {
-    	jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up to Minyawns</h4>');
+    	jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up as a Minion</h4>');
         jQuery("#div_signup_subheader").html('Not a Minion? Go ahead sign up to get one <a href="#" id="show_employerreg">here</a>');
     	jQuery("#signup_role").val('minyawn');
         if (jQuery("#usr_role").length > 0)
@@ -950,7 +953,7 @@ $('.roundedTwo input').click(function(){
         {
             jQuery("#fb_chk_usersigninform").remove();
         }
-        jQuery("#div_alreadyregister").html("Already registered to Minyawn?");
+        jQuery("#div_alreadyregister").html("Already registered at Minyawns?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
         jQuery("#signup_company").show();
