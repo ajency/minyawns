@@ -3598,7 +3598,7 @@ div.tooltip1:after {
     font-size: 20px;
   }
   .home .what-we-can-do .carousel .carousel-inner {
-    overflow: none;
+    overflow: visible;
   }
   .home .what-we-can-do .carousel .carousel-inner img {
     width: 40%;
