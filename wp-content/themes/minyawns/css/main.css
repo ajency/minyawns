@@ -1790,12 +1790,11 @@ body .jobs_table .data-title .profile-job {
   padding-top: 46px;
   font-size: 38px;
   font-weight: bolder;
-  font-weight: 800;
+  font-weight: 900;
   text-align: center;
   text-transform: uppercase;
   color: #000;
-  font-family: arial\9;
-  font-family: arial Black;
+  font-family: 'Open Sans', sans-serif;
 }
 .home .excerpt {
   font-size: 17px;
