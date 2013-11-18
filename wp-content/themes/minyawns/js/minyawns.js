@@ -953,7 +953,7 @@ $('.roundedTwo input').click(function(){
         {
             jQuery("#fb_chk_usersigninform").remove();
         }
-        jQuery("#div_alreadyregister").html("Already registered to Minyawn?");
+        jQuery("#div_alreadyregister").html("Already registered at Minyawns?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
         jQuery("#signup_company").show();
