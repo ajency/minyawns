@@ -3952,3 +3952,18 @@ div.tooltip1:after {
 #frm_signup .control-group {
   position: initial;
 }
+.upper-tab {
+  padding-top: 25px;
+  padding-bottom: 4px;
+  background: #F0F0F0;
+  margin-top: -20px;
+}
+.upper-tab .ui-slider {
+  background: #C9C9C9;
+}
+.upper-tab .text-right {
+  display: block;
+  font-size: 16px;
+  line-height: 12px;
+  text-align: right;
+}

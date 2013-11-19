@@ -62,13 +62,13 @@ String.prototype.repeat = function(num) {
         }
 
         var $slider3 = $("#slider3")
-                , slider3ValueMultiplier = 100
+                , slider3ValueMultiplier = 30
                 , slider3Options;
         if ($slider3.length > 0) {
             $slider3.slider({
-                min: 1,
-                max: 5,
-                values: [3, 4],
+                min: 0,
+                max:20,
+                values: [0, 10],
                 orientation: "horizontal",
                 range: true,
                 slide: function(event, ui) {

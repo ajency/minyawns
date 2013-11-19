@@ -73,9 +73,36 @@ $all_categories = get_categories(array('hide_empty' => 0 ) );
                     <a href="#" id="calendar-jobs" style="display:none">Calendar Jobs</a>                
                 </p>
             </div>
-            <?php if(isset($_GET['cat_id'])){?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-',' ',$_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -19px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php }?>
-            <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
+		<div class="row-fluid upper-tab">
+			<div class="span1"><b class="text-right" >Wages :</b></div>
+			<div class="span2">
+		
+					<div id="slider3" class="ui-slider">
+					
+						<span class="ui-slider-value first">$500</span>
+						<span class="ui-slider-value last">$1000</span>
+					</div>
+			
+			</div>
+			<div class="span7">
+				    <form action="submit.php" method="POST" accept-charset="utf-8">
+					<select id="select3" name="select3" place-holder=" cool">
+						<option value="sleep" class="selected">sleep</option>
+						<option value="sport">sport</option>
+						<option value="freestyle">freestyle</option>
+					</select>
+					</form>
+			
+			</div>
+			<div class="span2">
+			 <button class="btn btn-primary float-right" id="show-calendar" style="margin-right:20px;"><i class="icon-calendar calender"></i> Show calendar</button>
             <button class="btn btn-primary float-right" id="hide-calendar" style="margin-right:20px;display:none"><i class="icon-calendar calender"></i> Hide calendar</button>
+			
+			</div>
+		</div>
+	
+            <?php if(isset($_GET['cat_id'])){?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-',' ',$_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -19px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php }?>
+           
 
             <div class="clear"></div><br>
             <span class='load-ajax-browse' style="display:block"></span> 

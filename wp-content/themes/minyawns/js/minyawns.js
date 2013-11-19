@@ -4,7 +4,16 @@
 
 
 jQuery(document).ready(function($) {
-
+$("#select3").fcbkcomplete({
+                    json_url: "data.txt",
+                    addontab: true,                   
+                    maxitems: 10,
+                    input_min_size: 0,
+                    height: 10,
+                    cache: true,
+                    newel: true,
+                    select_all_text: "select",
+                });
 $(".jumper").on("click", function( e ) {
     
     e.preventDefault();
