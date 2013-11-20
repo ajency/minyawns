@@ -954,3 +954,43 @@ ul.holder li.bit-box-focus a.closebutton, ul.holder li.bit-box-focus a.closebutt
 
 #demo ul.holder li.bit-input input { padding: 2px 0 1px; border: 1px solid #999; }
 .ie6fix {height:1px;width:1px; position:absolute;top:0px;left:0px;z-index:1;}
+
+
+
+
+
+#innermainimage .banner-content .banner-desc {
+	font-size: 18px;
+	color: #ffffff;
+	font-weight: 100;
+}
+
+#innermainimage .banner-content .btn-primary:hover {
+	background-color:#72B119;
+}
+#innermainimage .banner-content .btn-info:hover {
+	background-color: #237FBD;
+}
+.sign-up-txt .btn-huge {
+	font-size: 17px;
+	line-height: 26px;
+	font-weight: bold;
+	border-bottom: 4px solid rgba(255, 255, 255, 0.36);
+	width: 16%;
+	margin: 17px auto;
+	padding: 9px;
+}
+.sign-up-txt .btn-huge:hover {
+	background-color:#72B119;
+}
+#innermainimage .banner-content .nav-tabs li a {
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	
+}
+#innermainimage .banner-content .nav-tabs li.active a {
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+}

@@ -1,7 +1,7 @@
 <script type="text/template" id="jobs-table">
 
 
- <li class="_li">
+ <li class="_li  " >
                                   <div class="row-fluid">
                                       <div class="span1"> 
                                       <div class="img-div">
@@ -18,10 +18,12 @@
                                                 <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
                                                 <li ><i class="icon-map-marker"></i> <%= result.job_location %> </li>
                                                 <li ><i class="icon-money"></i> $ <%= result.job_wages %></li>
-                                                <li class="no-bdr">Applicants: <span class="badge badge-success"><%= result.users_applied.length %></span></li>
+                                                <li class="no-bdr applicants">Applicants: <span class="badge badge-success"><%= result.users_applied.length %></span> <div class="minyawns-list"><div class="row-fluid">  <%= minyawns_grid %></div></div></li>
                                               </ul>
+											
                                             </div>
                                             <p><%= result.job_details %></p>
+											
                                               <div class="additional-info">
                                           <ul class="inline">
                                                 <li ><span> Category :</span> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%> </li>
@@ -140,11 +142,49 @@
     <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url() . '/paypal-payments/'; ?>" / >
     <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
     <div class="row-fluid minyawns-grid1">
+	<div class="span9 ">
     <ul class="thumbnails">
     <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
-	<br/><br/><span id="div_confirmhire"></span>
+	</br></br></br></br><span id="div_confirmhire"></span>
     </form>
+	</div>
+	<div class="span3"><br>
+	<div class="alert alert-success alert-sidebar jobexpired" >
+		<div>Job has expired.</div>
+	</div>
+		<div class="alert alert-success alert-sidebar">
+					 <h3>Your selection</h3><hr>
+					<b> You have selected : <span id="no_of_minyawns">0</span></b>
+					<b> Wages :<span id="wages_per_minyawns">0</span><span>$</span></b>
+					<b class="total-cost"> Total Cost:<span id="total_wages" >0</span><span>$</span></b></br>
+				  <span id='paypal_pay'><input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"></span>
+		 </form>
+		</div>
+		<div class="alert alert-success alert-sidebar pending" >
+		<div>Payment is pending</div>
+	</div>
+		<div class="alert alert-success alert-sidebar">
+					 <h3>Your selection</h3><hr>
+					<b> You have selected : <span id="no_of_minyawns">10</span></b>
+					<b> Wages :<span id="wages_per_minyawns">200</span><span>$</span></b>
+					<b class="total-cost"> Total Cost:<span id="total_wages" >2000</span><span>$</span></b></br>
+					<i>Your Selection will not be processed until payement is made</i>
+				  <span id='paypal_pay'><input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"></span>
+		 </form>
+		</div>
+			<div class="alert alert-success alert-sidebar payement-done" >
+		<div>Payment is done</div>
+	</div>
+		<div class="alert alert-success alert-sidebar">
+					 <h3>Your selection</h3><hr>
+					<b> You have selected : <span id="no_of_minyawns">10</span></b>
+					<b> Wages :<span id="wages_per_minyawns">200</span><span>$</span></b>
+					<b class="total-cost"> Total Cost:<span id="total_wages" >2000</span><span>$</span></b></br>
+					
+		 </form>
+		</div>
+	</div>
     </div>
     </div>
 
@@ -155,7 +195,7 @@
 
     <li class="span3" id="<%= result.user_id %>" >
 
-    <div class="thumbnail" id="thumbnail-<%= result.user_id %>">
+    <div class="thumbnail select-button-<%= result.user_id %>" id="thumbnail-<%= result.user_id %>">
    <% if(result.is_verified === 'Y'){%>
     <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
    <% } %> 
@@ -237,7 +277,7 @@
 <script type="text/template" id="confirm-hire">
     <input type="hidden" id="hidden_selected_min"/>
     <span class="load_ajaxconfirm" style="display:none"></span>
-    <a  id="confirm-hire-button" data-toggle="modal" class="btn btn-medium btn-block green-btn btn-success">Confirm & Hire</a>
+    <a  id="confirm-hire-button"  class="btn btn-medium btn-block green-btn btn-success">Confirm & Hire</a>
 
 </script>
 

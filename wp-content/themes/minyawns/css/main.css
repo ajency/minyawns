@@ -37,6 +37,8 @@ a:hover {
 .m1 {
   position: relative;
   top: 0px;
+  display: inline-block;
+  vertical-align: top;
 }
 .s-bold {
   text-align: center;
@@ -230,7 +232,7 @@ body .jobs_table .data-title .profile-job {
 }
 .green-btn {
   background-color: #8ed030 !important;
-  width: 14%;
+  width: 17%;
   margin: auto;
   font-weight: bold;
 }
@@ -999,6 +1001,9 @@ body .jobs_table .data-title .profile-job {
 }
 .single-jobs .inner-data {
   padding: 14px 0;
+}
+.single-jobs .job-expired {
+  display: none;
 }
 .single-jobs .jobdesc .jobsimg img {
   margin: auto;
@@ -2848,6 +2853,7 @@ body .jobs_table .data-title .profile-job {
   box-shadow: 0 3px 4px #D6D6D6;
   padding: 15px;
   width: 97%;
+  margin-bottom: 35px;
 }
 .job-view-list ._li .img-div {
   display: table-cell;
@@ -3966,4 +3972,180 @@ div.tooltip1:after {
   font-size: 16px;
   line-height: 12px;
   text-align: right;
+}
+.alert-sidebar.payement-done {
+  background: #8ed030;
+}
+.alert-sidebar.payement-done div {
+  font-size: 18px;
+  color: white;
+  font-weight: 800;
+  text-align: center;
+}
+.alert-sidebar.jobexpired {
+  background: red;
+}
+.alert-sidebar.jobexpired div {
+  font-size: 18px;
+  color: white;
+  font-weight: 800;
+  text-align: center;
+}
+.alert-sidebar.pending {
+  background: orange;
+}
+.alert-sidebar.pending div {
+  font-size: 18px;
+  color: white;
+  font-weight: 800;
+  text-align: center;
+}
+.alert-sidebar {
+  padding: 15px;
+  border-radius: 1px;
+  border: 1px solid #E0E0E0;
+  background: #F0F0F0;
+  text-align: left;
+}
+.alert-sidebar i {
+  font-style: normal;
+  font-size: 15px;
+  margin-bottom: 14px;
+  display: block;
+}
+.alert-sidebar #submitBtn {
+  margin: auto;
+  width: 140px;
+  height: 47px;
+  border: none;
+  display: block;
+}
+.alert-sidebar .btn-social-linkedin {
+  display: block;
+  margin: auto;
+  width: 76%;
+  font-weight: 400;
+}
+.alert-sidebar .btn-social-linkedin span {
+  font-size: 15px;
+  font-weight: 700;
+  margin-right: 6px;
+}
+.alert-sidebar b {
+  font-size: 14px;
+  font-weight: 400;
+  display: block;
+  padding-bottom: 10px;
+}
+.alert-sidebar b span {
+  float: right;
+}
+.alert-sidebar .total-cost {
+  border-top: 1px dotted #ADADAD;
+  border-bottom: 1px dotted #ADADAD;
+  font-weight: bold;
+  padding-top: 10px;
+  font-size: 16px;
+}
+.alert-sidebar .total-cost span {
+  float: right;
+}
+.alert-sidebar ul.holder {
+  margin: 0 !important;
+  width: 95% !important;
+  background: #fff;
+  height: auto!important;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+}
+.alert-sidebar .facebook-auto {
+  width: 20% !important;
+}
+.alert-sidebar .checkbox.checked {
+  padding-left: 32px;
+}
+.alert-sidebar .fui-checkbox-checked {
+  background: #fff;
+}
+.alert-sidebar hr {
+  border-top: 1px solid #D8D8D8;
+}
+.alert-sidebar h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #757575;
+}
+.alert-sidebar .ui-slider {
+  background: #CACACA;
+  height: 9px;
+  margin-bottom: 0px;
+}
+.alert-sidebar .ui-slider-segment {
+  height: 0px;
+}
+.alert-sidebar .ui-slider-handle {
+  top: -5px;
+}
+.alert-sidebar .ui-slider-value {
+  font-size: 13px;
+}
+.all-minyawns .minyawns-grid1 ul li {
+  width: 31%;
+  display: inline-block !important;
+}
+#list-my-jobs .minyawns-grid1 {
+  display: none;
+}
+#list-my-jobs .minyawns-grid1 .alert-sidebar {
+  display: none;
+}
+.browse-jobs-table .minyawns-grid1 {
+  display: none;
+}
+/*
+.single-jobs{
+	.minyawns-grid1 .span3 .thumbnail .m2{
+		height: 440px;
+		.tags{
+			position: absolute;
+			bottom: 0px;
+		}
+	}
+
+}*/
+.applicants .minyawns-list {
+  display: none;
+  width: 29%;
+  right: 5%;
+}
+.applicants .minyawns-list .span4 {
+  width: 22%;
+}
+.applicants .minyawns-list .span4 b {
+  display: block;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+  margin-top: 5px;
+  height: 40px;
+}
+.applicants .minyawns-list .span4 .minyawns-job {
+  display: none;
+}
+.applicants .minyawns-list .span4 .minyawns-details {
+  text-align: center;
+  margin-bottom: 5px;
+}
+.applicants .minyawns-list .span4 .minyawns-details #vote-up {
+  margin-right: 5px;
+}
+.applicants .minyawns-list .span4 .minyawns-details #vote-down {
+  color: red;
+}
+.applicants:hover .minyawns-list {
+  display: block;
+  position: absolute;
+  background: #fff;
+  padding: 5px;
+  border: 1px solid #ccc;
 }

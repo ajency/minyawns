@@ -1470,13 +1470,15 @@ $('.roundedTwo input').click(function(){
 
         if ($("#" + $(this).attr('id')).find(':checkbox').is(':checked')) {
             $("#" + $(this).attr('id')).find(':checkbox').not(this).prop('checked', false);
-			$(".thumbnail").removeClass("Select-minyawns");
+			
+			$("."+ $(this).attr('id')).removeClass("Select-minyawns");
+			
 
         } else {
             //$("#hidden_selected_min").append(1);
 
             $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
-			$(".thumbnail").addClass("Select-minyawns");
+			$("." + $(this).attr('id')).addClass("Select-minyawns");
             //no_of_minyawns = no_of_minyawns + 1;
         }
         
