@@ -59,7 +59,7 @@
             var is_admin='<?php echo current_user_can( 'administrator' ); ?>';
             </script>
             
-<body <?php body_class('logged-out'); ?>>
+<body <?php body_class('logged-out'); ?> >
 	<div class=" pbl mtn top-menu">
 		<div class="bottom-menu  bottom-menu-inverse top-menu">
 			<div class="container">
@@ -144,7 +144,7 @@
 
 					<div id="mylogin" class="modal signup  hide fade" tabindex="-1"
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-						style="">
+						style="" >
 						<div class="modal-header">
 							<button id="close_btn" type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">
@@ -162,14 +162,18 @@
 								<div class="span5">
 
 
-									<form name="frm_login" id="frm_login" action="">
+									<form name="frm_login" id="frm_login" action="" autocomplete="off" >
 										<div class="control-group ">
-											<input type="text" name="txt_email" id="txt_email" value=""
-												placeholder="Email Address" class="span3">
+							<input type="text" name="txt_email" id="txt_email" value="" placeholder="Email Address" class="span3"
+							onblur="this.placeholder = 'Email Address'"  onfocus="this.placeholder = ''"
+							autocomplete="off"
+							>
 										</div>
 										<div class="control-group ">
-											<input type="password" name="txt_pass" id="txt_pass" value=""
-												placeholder="Password" class="span3">
+				<input class="span3" type="password" name="txt_pass" id="txt_pass" value=""  onblur="this.placeholder = 'Password'"  onfocus="this.placeholder = ''" autocomplete="off"  placeholder="Password">
+				
+				
+				
 										</div>
 										<div class="row-fluid">
 											<div class="span4">

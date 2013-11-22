@@ -3,8 +3,25 @@
 
 
 
-jQuery(document).ready(function($) {
 
+
+jQuery(document).ready(function($) {
+ 
+
+
+$("#select3").fcbkcomplete({
+                    json_url: "data.txt",
+                    addontab: true,                   
+                    maxitems: 10,
+                    input_min_size: 0,
+                    height: 10,
+                    cache: true,
+                    newel: true,
+                    select_all_text: "select",
+                });
+				
+				
+				
 $(".jumper").on("click", function( e ) {
     
     e.preventDefault();
@@ -1461,13 +1478,15 @@ $('.roundedTwo input').click(function(){
 
         if ($("#" + $(this).attr('id')).find(':checkbox').is(':checked')) {
             $("#" + $(this).attr('id')).find(':checkbox').not(this).prop('checked', false);
-			$(".thumbnail").removeClass("Select-minyawns");
+			
+			$("."+ $(this).attr('id')).removeClass("Select-minyawns");
+			
 
         } else {
             //$("#hidden_selected_min").append(1);
 
             $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
-			$(".thumbnail").addClass("Select-minyawns");
+			$("." + $(this).attr('id')).addClass("Select-minyawns");
             //no_of_minyawns = no_of_minyawns + 1;
         }
         
@@ -1772,3 +1791,46 @@ window.location.href=siteurl+'/jobs';
 //				}
 //			);
 //		});
+jQuery(document).ready(function($) {
+ 
+    // cache references to the input elements into variables
+    var passwordField = $('input[name=pass]');
+    var emailField = $('input[name=email]');
+    // get the default value for the email address field
+    var emailFieldDefault = emailField.val();
+ 
+    // add a password placeholder field to the html
+   // passwordField.after('<input id="passwordPlaceholder" type="text" value="Password" autocomplete="off" style="display:none;"/>');
+    //var passwordPlaceholder = $('#passwordPlaceholder');
+ 
+    // show the placeholder with the prompt text and hide the actual password field
+    passwordPlaceholder.show();
+    passwordField.hide();
+
+    // when focus is placed on the placeholder hide the placeholder and show the actual password field
+    passwordPlaceholder.focus(function() {
+        passwordPlaceholder.hide();
+        passwordField.show();
+        passwordField.focus();
+    });
+    // and vice versa: hide the actual password field if no password has yet been entered
+    passwordField.blur(function() {
+        if(passwordField.val() == '') {
+            passwordPlaceholder.show();
+            passwordField.hide();
+        }
+    });
+ 
+    // when focus goes to and moves away from the email field, reset it to blank or restore the default depending if a value is entered
+    emailField.focus(function() {
+        if(emailField.val() == emailFieldDefault) {
+            emailField.val('');
+        }
+    });
+    emailField.blur(function() {
+        if(emailField.val() == '') {
+            emailField.val(emailFieldDefault);
+        }
+    });
+ 
+});
