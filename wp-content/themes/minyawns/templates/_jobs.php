@@ -10,7 +10,7 @@
                                       </div>
                                        <div class="span11 job-details">
                                             <div class="job-title">
-                 <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %>  <%=  job_collapse_button%></h5>             
+                 <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %>  <%=  job_collapse_button%></a></h5>             
                                             </div>
                                             <div class="job-meta">
                                               <ul class="inline">
@@ -18,7 +18,7 @@
                                                 <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
                                                 <li ><i class="icon-map-marker"></i> <%= result.job_location %> </li>
                                                 <li ><i class="icon-money"></i> $ <%= result.job_wages %></li>
-                                                <li class="no-bdr applicants">Applicants: <span class="badge badge-success"><%= result.users_applied.length %></span> <div class="minyawns-list"><div class="row-fluid">  <%= minyawns_grid %></div></div></li>
+                                                <li class="no-bdr applicants">Applicants: <span class="badge badge-success"><%= result.users_applied.length %></span> <div class="minyawns-list"><div class="row-fluid sm-minyans-card">  <%= minyawns_grid %></div></div></li>
                                               </ul>
 											
                                             </div>
@@ -142,49 +142,14 @@
     <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url() . '/paypal-payments/'; ?>" / >
     <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
     <div class="row-fluid minyawns-grid1">
-	<div class="span9 ">
+	<div class="span12 ">
     <ul class="thumbnails">
     <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
 	</br></br></br></br><span id="div_confirmhire"></span>
     </form>
 	</div>
-	<div class="span3"><br>
-	<div class="alert alert-success alert-sidebar jobexpired" >
-		<div>Job has expired.</div>
-	</div>
-		<div class="alert alert-success alert-sidebar">
-					 <h3>Your selection</h3><hr>
-					<b> You have selected : <span id="no_of_minyawns">0</span></b>
-					<b> Wages :<span id="wages_per_minyawns">0</span><span>$</span></b>
-					<b class="total-cost"> Total Cost:<span id="total_wages" >0</span><span>$</span></b></br>
-				  <span id='paypal_pay'><input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"></span>
-		 </form>
-		</div>
-		<div class="alert alert-success alert-sidebar pending" >
-		<div>Payment is pending</div>
-	</div>
-		<div class="alert alert-success alert-sidebar">
-					 <h3>Your selection</h3><hr>
-					<b> You have selected : <span id="no_of_minyawns">10</span></b>
-					<b> Wages :<span id="wages_per_minyawns">200</span><span>$</span></b>
-					<b class="total-cost"> Total Cost:<span id="total_wages" >2000</span><span>$</span></b></br>
-					<i>Your Selection will not be processed until payement is made</i>
-				  <span id='paypal_pay'><input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"></span>
-		 </form>
-		</div>
-			<div class="alert alert-success alert-sidebar payement-done" >
-		<div>Payment is done</div>
-	</div>
-		<div class="alert alert-success alert-sidebar">
-					 <h3>Your selection</h3><hr>
-					<b> You have selected : <span id="no_of_minyawns">10</span></b>
-					<b> Wages :<span id="wages_per_minyawns">200</span><span>$</span></b>
-					<b class="total-cost"> Total Cost:<span id="total_wages" >2000</span><span>$</span></b></br>
-					
-		 </form>
-		</div>
-	</div>
+	
     </div>
     </div>
 
@@ -267,6 +232,7 @@
     <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
     </div>
     </div>
+	
 	</div>
     </div>
 

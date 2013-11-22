@@ -2903,7 +2903,7 @@ body .jobs_table .data-title .profile-job {
   border: 0px;
 }
 .job-view-list ._li .job-details p {
-  font-size: 13.004px;
+  font-size: 14px;
   line-height: 1.4;
   color: #868686;
   font-weight: 300;
@@ -3975,6 +3975,7 @@ div.tooltip1:after {
 }
 .alert-sidebar.payement-done {
   background: #8ed030;
+  border: 0px;
 }
 .alert-sidebar.payement-done div {
   font-size: 18px;
@@ -3984,6 +3985,7 @@ div.tooltip1:after {
 }
 .alert-sidebar.jobexpired {
   background: red;
+  border: 0px;
 }
 .alert-sidebar.jobexpired div {
   font-size: 18px;
@@ -3993,6 +3995,7 @@ div.tooltip1:after {
 }
 .alert-sidebar.pending {
   background: orange;
+  border: 0px;
 }
 .alert-sidebar.pending div {
   font-size: 18px;
@@ -4006,6 +4009,9 @@ div.tooltip1:after {
   border: 1px solid #E0E0E0;
   background: #F0F0F0;
   text-align: left;
+}
+.alert-sidebar .checkbox {
+  margin-bottom: 0px;
 }
 .alert-sidebar i {
   font-style: normal;
@@ -4056,7 +4062,9 @@ div.tooltip1:after {
   background: #fff;
   height: auto!important;
   border: 1px solid #ccc;
-  border-radius: 12px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
 }
 .alert-sidebar .facebook-auto {
   width: 20% !important;
@@ -4114,14 +4122,22 @@ div.tooltip1:after {
 
 }*/
 .applicants .minyawns-list {
-  display: none;
+  opacity: 0;
+  -webkit-transition: none;
+  position: absolute;
   width: 29%;
-  right: 5%;
+  margin-left: -130px;
 }
-.applicants .minyawns-list .span4 {
+.applicants .minyawns-list .sm-minyans-card {
+  display: table;
+}
+.applicants .minyawns-list .sm-minyans-card .span4 {
   width: 22%;
+  display: table-cell;
+  float: none;
+  padding-left: 9px;
 }
-.applicants .minyawns-list .span4 b {
+.applicants .minyawns-list .sm-minyans-card .span4 b {
   display: block;
   font-size: 11px;
   line-height: 16px;
@@ -4129,17 +4145,22 @@ div.tooltip1:after {
   margin-top: 5px;
   height: 40px;
 }
-.applicants .minyawns-list .span4 .minyawns-job {
+.applicants .minyawns-list .sm-minyans-card .span4 .minyawns-job {
   display: none;
 }
-.applicants .minyawns-list .span4 .minyawns-details {
+.applicants .minyawns-list .sm-minyans-card .span4 .minyawns-details {
   text-align: center;
   margin-bottom: 5px;
 }
-.applicants .minyawns-list .span4 .minyawns-details #vote-up {
+.applicants .minyawns-list .sm-minyans-card .span4 .minyawns-details .image-div img {
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+}
+.applicants .minyawns-list .sm-minyans-card .span4 .minyawns-details #vote-up {
   margin-right: 5px;
 }
-.applicants .minyawns-list .span4 .minyawns-details #vote-down {
+.applicants .minyawns-list .sm-minyans-card .span4 .minyawns-details #vote-down {
   color: red;
 }
 .applicants:hover .minyawns-list {
@@ -4147,5 +4168,23 @@ div.tooltip1:after {
   position: absolute;
   background: #fff;
   padding: 5px;
-  border: 1px solid #ccc;
+  opacity: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-box-shadow: 0 0 15px #ccc;
+  -moz-box-shadow: 0 0 15px #ccc;
+  box-shadow: 0 0 15px #ccc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* IE9 & I10 CSS */
+#frm_login input {
+  min-height: 38px !important;
+}
+.home input {
+  min-height: 36px !important;
+  padding-bottom: 6px;
 }

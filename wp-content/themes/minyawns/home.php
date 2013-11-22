@@ -638,7 +638,7 @@ Enviormental Engineering </div>
       <div id="div_signupmsg" ></div>
       <div class="row-fluid">
          <div class="span5">
-            <form name="frm_signup"  id="frm_signup" action="" >
+            <form name="frm_signup"  id="frm_signup" action="" autocomplete="off">
                <input type="hidden" name="signup_role" id="signup_role" value="" />
                <h6 class="align-center" style=" margin-bottom: 0px; ">
                   Create an Account
@@ -648,7 +648,8 @@ Enviormental Engineering </div>
                   <input type="text" value="" name="signup_email"  id="signup_email"  placeholder="Email Address" class="span3">
                </div>
                <div class="control-group ">
-                  <input type="password" value="" name="signup_password"  id="signup_password"  placeholder="Password" class="span3">
+                  <input type="password" value="" name="signup_password"  id="signup_password" onblur="this.placeholder = 'Password'"  onfocus="this.placeholder = ''"
+							autocomplete="off"  placeholder="Password" class="span3">
                </div>
              
                <div class="control-group span6 " style=" margin-left: 0px; ">

@@ -159,6 +159,8 @@ require 'templates/_jobs.php';
                 </div>
                 <!--Delete Pop uP-->	          
             </div>
+			<div class="row-fluid">
+			<div class="span9">
             <span class='load_ajaxsingle_job' style="display:block"></span>
               <ul class="singlejobedit single-jobs unstyled job-view-list" id="single-job-accordion"  style=" margin-left: 0; position: relative;
                  top: 50px;
@@ -169,6 +171,44 @@ require 'templates/_jobs.php';
                
 
                         </ul>
+						</div>
+						<div class="span3"><br>
+	<div class="alert alert-success alert-sidebar jobexpired" >
+		<div>Job has expired.</div>
+	</div>
+		<div class="alert alert-success alert-sidebar">
+					 <h3>Your selection</h3><hr>
+					<b> You have selected : <span id="no_of_minyawns">0</span></b>
+					<b> Wages :<span id="wages_per_minyawns">0</span><span>$</span></b>
+					<b class="total-cost"> Total Cost:<span id="total_wages" >0</span><span>$</span></b></br>
+				  <span id='paypal_pay'><input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"></span>
+		 </form>
+		</div>
+		<div class="alert alert-success alert-sidebar pending" >
+		<div>Payment is pending</div>
+	</div>
+		<div class="alert alert-success alert-sidebar">
+					 <h3>Your selection</h3><hr>
+					<b> You have selected : <span id="no_of_minyawns">10</span></b>
+					<b> Wages :<span id="wages_per_minyawns">200</span><span>$</span></b>
+					<b class="total-cost"> Total Cost:<span id="total_wages" >2000</span><span>$</span></b></br>
+					<i>Your Selection will not be processed until payement is made</i>
+				  <span id='paypal_pay'><input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"></span>
+		 </form>
+		</div>
+			<div class="alert alert-success alert-sidebar payement-done" >
+		<div>Payment is done</div>
+	</div>
+		<div class="alert alert-success alert-sidebar">
+					 <h3>Your selection</h3><hr>
+					<b> You have selected : <span id="no_of_minyawns">10</span></b>
+					<b> Wages :<span id="wages_per_minyawns">200</span><span>$</span></b>
+					<b class="total-cost"> Total Cost:<span id="total_wages" >2000</span><span>$</span></b></br>
+					
+		 </form>
+		</div>
+	</div>
+	</div>
                 <!-- single jobs -->
 
           

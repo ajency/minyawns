@@ -173,7 +173,7 @@
 
       function addInput(focusme) {
         var li = $('<li class="bit-input" id="'+elemid + '_annoninput">');
-        var input = $('<input placeholder="Type something…" type="text" class="maininput" size="' + options.input_min_size + '" autocomplete="off">');
+        var input = $('<input placeholder="Enter Major or Skills" type="text" class="maininput" size="' + options.input_min_size + '" autocomplete="off">');
         if (options.input_tabindex > 0) input.attr("tabindex", options.input_tabindex);
         if (options.input_name != "") input.attr("name", options.input_name);
 
