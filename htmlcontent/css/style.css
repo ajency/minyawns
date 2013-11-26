@@ -257,6 +257,7 @@ text-align: right;
 	background:#fff;
 	border-top: 2px solid #8ED030;
 	min-height: 400px;
+	overflow: visible;
 }
 .jobs_menu.nav-append-content > li.active:first-child:before {
 background-color: #FFF;
