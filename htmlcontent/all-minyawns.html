@@ -118,10 +118,10 @@
                   </div>
                </div>
                <div class="span9">
-			   <div class="alert alert-info alert-job-allminion">
-			   Job Title:
+			   <div id="theFixed" class="alert alert-info alert-job-allminion" style="position:fixed;top:160px;"> 
+			   <h6>Invite Minions for following job</h6>
 			   <h5>
-			   <a href="#" target="_blank">The template has been conceived with a proper balance
+			   <a href="#" target="_blank" style="color:#8ED030;">The template has been conceived with a proper balance
                                                 UI &amp; UX in order to offer an excellent  </a>
                </h5>
 				</div>
@@ -132,7 +132,7 @@
                            <div class="thumbnail " id="thumbnail-10">
                               <div class="m1" onclick="return true">
                                  <div class="caption">
-								<div class="minions-applied"> <i class="icon-flag "></i> Minion have applied</div>
+								<div class="minions-applied"> <i class="icon-ok "></i> Minion have applied</div>
                                     <div class="minyawns-img">
                                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg">
                                     </div>
@@ -191,7 +191,7 @@
                            <div class="thumbnail" id="thumbnail-10">
                               <div class="m1" onclick="return true">
                                  <div class="caption">
-								 
+								 <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion is Invited</div>
                                     <div class="minyawns-img">
                                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg">
                                     </div>
@@ -250,7 +250,7 @@
                            <div class="thumbnail" id="thumbnail-10">
                               <div class="m1" onclick="return true">
                                  <div class="caption">
-								 <div class="minions-applied"> <i class="icon-flag "></i> Minion have applied</div>
+								 <div class="minions-applied"> <i class="icon-ok "></i> Minion have applied</div>
                                     <div class="minyawns-img">
                                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/298/minyawn298_Resized.jpg">
                                     </div>
@@ -514,6 +514,9 @@
          			content : '<div id="profile-data"><a href="http://greekconnect.com/members/admin/profile/change-avatar/" class="change-avatar"><img src="images/iconsult6.png" alt="Avatar Image" class="avatar user-1-avatar" width="150" height="150" /><span>Change Avatar</span></a><div class="profile-data-display"><h4>Test User1</h4><p class="muted">@admin</p></div><div class="profile-actions"><span><a href="#" class="popup_link"><i class="icon-user"></i> View Profile</a>&nbsp;<a href="#" class="popup_link"><i class="icon-cog"></i> Settings</a>&nbsp;<a href="#" class="popup_link"><i class="icon-unlock"></i> Logout</a></span></div></div>',
          		}
          	);
+			$(window).scroll(function(){
+    $("#theFixed").css("top",Math.max(0,160-$(this).scrollTop()));
+		});
          });
            
       </script>
