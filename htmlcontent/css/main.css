@@ -27,6 +27,9 @@ a:hover {
 .bdr-gray {
   border-bottom: 1px solid #EBEBEB;
 }
+.invite-btn {
+  margin-bottom: 10px;
+}
 .arrow-up1 {
   width: 0;
   height: 0;
@@ -3405,11 +3408,41 @@ body .jobs_table .data-title .profile-job {
   list-style-type: none;
   text-align: center;
 }
+.minyawns-grid1 .thumbspan.card {
+  background: #F5F5F5;
+  border: 1px solid #E7E7E7;
+}
+.minyawns-grid1 .thumbspan.card .m1 .caption .minyawns-img {
+  width: 120px!important;
+  height: 120px!important;
+}
+.minyawns-grid1 .thumbspan.card .m1 .caption .minyawns-img img {
+  width: 120px!important;
+  height: 120px!important;
+}
+.minyawns-grid1 .thumbspan.card .m1 .caption h4 {
+  color: #8ed030;
+  margin-top: 10px;
+  font-size: 18px !important;
+}
+.minyawns-grid1 .thumbspan.card .m1 .caption .text-meta-bold {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #E41A1A;
+  font-weight: 400;
+}
+.minyawns-grid1 .thumbspan.card .m1 .caption .text-meta {
+  font-size: 14px;
+  margin-bottom: 12px;
+  font-weight: 300;
+}
 .minyawns-grid1 .thumbspan {
-  margin-right: 16px;
-  float: none !important;
-  display: inline-table !important;
-  margin-left: 0px !important;
+  /*margin-right: 16px;
+				float:none !important;
+				display:inline-table !important;
+				margin-left:0px !important;*/
+  display: inline-block;
+  width: 30%;
 }
 .minyawns-grid1 .thumbspan .thumbnail {
   position: relative;
@@ -3421,6 +3454,17 @@ body .jobs_table .data-title .profile-job {
   font-size: 19PX;
   text-align: center;
   font-weight: bold;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m1 .caption .minions-applied {
+  position: absolute;
+  text-align: center;
+  left: 0px;
+  right: 0px;
+  top: -25px;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m1 .caption .minions-applied i {
+  color: red;
+  margin-right: 5px;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption .collage {
   text-align: center;
@@ -3435,8 +3479,9 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 10px;
   margin-top: 10px;
   text-overflow: ellipsis;
-  width: 100%;
+  width: 72%;
   overflow: hidden;
+  margin: 10px auto;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption .label-small {
   margin-bottom: 5px;
@@ -3515,7 +3560,9 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 10px;
   margin-top: 10px;
   text-overflow: ellipsis;
+  width: 72%;
   overflow: hidden;
+  margin: 10px auto;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m2 .caption .tags {
   background: #efefef;
@@ -4349,7 +4396,7 @@ div.tooltip1:after {
   font-size: 13px;
 }
 .all-minyawns .minyawns-grid1 ul li {
-  width: 31%;
+  width: 30%;
   display: inline-block !important;
 }
 #list-my-jobs .minyawns-grid1 {
@@ -4441,4 +4488,143 @@ div.tooltip1:after {
 }
 .single-view ._li {
   background-size: 25%;
+}
+.alert-job-allminion h5 {
+  font-size: 18px;
+  line-height: 26px;
+}
+.peplist.more {
+  text-align: center;
+  width: 100%;
+  margin: 0 0 50px 0;
+  padding: 0 0 11px 0;
+  display: block;
+  cursor: pointer;
+  color: #2AABE4;
+  line-height: 50px;
+  font-size: 17px;
+}
+.peplist.more:after {
+  background: url("../images/sprite-horizontal.png") no-repeat;
+  z-index: -1;
+  width: 100%;
+  height: 43px;
+  content: "";
+  display: block;
+  background-position: center -60px;
+}
+.disscussion .ask-bg {
+  background: #E7E4E4;
+  padding: 7px;
+  padding-bottom: 0px;
+  margin-bottom: 14px;
+}
+.disscussion .btn {
+  margin-top: 5px;
+}
+.disscussion textarea {
+  width: 88% !important;
+}
+.disscussion ul.commentlist {
+  list-style: none;
+  margin-left: 15px;
+}
+.disscussion ul.commentlist li {
+  margin-bottom: 20px;
+  list-style: none;
+}
+.disscussion ul.commentlist li .coombody {
+  float: left;
+  min-width: 50%;
+  padding-bottom: 20px;
+  width: 99%;
+  border-bottom: 1px solid #DADADA;
+  margin-bottom: 15px;
+}
+.disscussion ul.commentlist li .coombody .comment-author {
+  float: left;
+  padding-right: 13px;
+}
+.disscussion ul.commentlist li .coombody .name {
+  color: #636260;
+  font-size: 13px;
+  line-height: 17px;
+}
+.disscussion ul.commentlist li .coombody .commentmetadata {
+  font-size: 12px;
+}
+.disscussion ul.commentlist li .coombody .commentmetadata a {
+  color: #9C9C9C;
+}
+.disscussion ul.commentlist li .coombody .commenttext p {
+  margin: 10px auto;
+  padding: 0px 0 0 0 !important;
+  display: block;
+  font-size: 13px;
+  line-height: 20px;
+  color: #747474;
+}
+.disscussion ul.commentlist li .coombody .reply {
+  position: absolute;
+  right: 30px;
+  width: 78px;
+  height: 30px;
+  font-size: 14px;
+  color: #2187BB;
+  margin-top: -10px;
+  cursor: pointer;
+}
+.disscussion ul.commentlist li .coombody .reply .reply-in {
+  float: left;
+  margin-right: 9px;
+}
+.disscussion ul.commentlist li .coombody .reply .delete {
+  display: inline-block;
+}
+.disscussion ul.commentlist li .coombody .reply .delete i {
+  color: #918B8B;
+  margin-left: 4px;
+}
+.disscussion ul.commentlist li:hover {
+  border-right: 1px solid #8ed030;
+}
+.disscussion ul.commentlist .latest_comment {
+  clear: both;
+}
+.disscussion ul.commentlist .latest_comment .coombody {
+  background: #D6D6D6 !important;
+}
+.disscussion ul.commentlist .children {
+  margin-left: 50px;
+}
+.disscussion ul.commentlist .children li {
+  border-top: 0px;
+  margin-bottom: 0px;
+}
+.disscussion ul.commentlist .children li .coombody {
+  width: 99%;
+}
+.disscussion ul.commentlist .children li .coombody .comment-author {
+  width: 11%;
+}
+.disscussion ul.commentlist .children li .coombody .name {
+  font-size: 12px;
+  line-height: 9px;
+}
+.disscussion ul.commentlist .children li .coombody .commentmetadata {
+  font-size: 11px;
+}
+.disscussion ul.commentlist .children li .coombody .commentmetadata a {
+  color: #9C9C9C;
+}
+.disscussion ul.commentlist .children li .coombody .commenttext p {
+  margin: 10px auto;
+  padding: 0px 0 0 0 !important;
+  display: block;
+  font-size: 13px;
+  line-height: 20px;
+  color: #747474;
+}
+.disscussion ul.commentlist .children li .coombody .reply {
+  font-size: 13px;
 }

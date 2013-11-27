@@ -214,7 +214,7 @@ float: right;
 	font-weight: bold;
 text-shadow: 1px 1px 2px #000;
 }
-.home  .signup .close {
+.home  .signup .modal-header .close {
 	background: #838383;
 	opacity: 10;
 	color: #FFF;
@@ -421,6 +421,8 @@ color: #999999;
 	margin-right:-15px;
 	color: #AAA5A5;
 	border:0px;
+	opacity: 0.8;
+margin-top: -2px;
 }
 .upper-link a{
     color:#fff;
