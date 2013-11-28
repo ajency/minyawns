@@ -3,8 +3,24 @@
 
 
 
-jQuery(document).ready(function($) {
 
+
+jQuery(document).ready(function($) {
+ 
+
+$("#select3").fcbkcomplete({
+                    json_url: "data.txt",
+                    addontab: true,                   
+                    maxitems: 10,
+                    input_min_size: 0,
+                    height: 10,
+                    cache: true,
+                    newel: true,
+                    select_all_text: "select",
+                });
+				
+				
+				
 $(".jumper").on("click", function( e ) {
     
     e.preventDefault();
@@ -567,7 +583,7 @@ $('.roundedTwo input').click(function(){
         $("#job_task").val('');
         $("#job_details").val(" ");
 
-        $('#job_tags_tagsinput').find('span').remove();
+        //$('#job_tags_tagsinput').find('span').remove();
     });
 
     $('#add-job').click(function(e) {
@@ -1461,13 +1477,15 @@ $('.roundedTwo input').click(function(){
 
         if ($("#" + $(this).attr('id')).find(':checkbox').is(':checked')) {
             $("#" + $(this).attr('id')).find(':checkbox').not(this).prop('checked', false);
-			$(".thumbnail").removeClass("Select-minyawns");
+			
+			$("."+ $(this).attr('id')).removeClass("Select-minyawns");
+			
 
         } else {
             //$("#hidden_selected_min").append(1);
 
             $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
-			$(".thumbnail").addClass("Select-minyawns");
+			$("." + $(this).attr('id')).addClass("Select-minyawns");
             //no_of_minyawns = no_of_minyawns + 1;
         }
         

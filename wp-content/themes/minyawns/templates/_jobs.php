@@ -1,7 +1,7 @@
 <script type="text/template" id="jobs-table">
 
 
- <li class="_li">
+ <li class="_li  " >
                                   <div class="row-fluid">
                                       <div class="span1"> 
                                       <div class="img-div">
@@ -10,7 +10,7 @@
                                       </div>
                                        <div class="span11 job-details">
                                             <div class="job-title">
-                 <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %>  <%=  job_collapse_button%></h5>             
+                 <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %>  <%=  job_collapse_button%></a></h5>             
                                             </div>
                                             <div class="job-meta">
                                               <ul class="inline">
@@ -18,10 +18,12 @@
                                                 <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
                                                 <li ><i class="icon-map-marker"></i> <%= result.job_location %> </li>
                                                 <li ><i class="icon-money"></i> $ <%= result.job_wages %></li>
-                                                <li class="no-bdr">Applicants: <span class="badge badge-success"><%= result.users_applied.length %></span></li>
+                                                <li class="no-bdr applicants">Applicants: <span class="badge badge-success"><%= result.users_applied.length %></span> <div class="minyawns-list"><div class="row-fluid sm-minyans-card">  <%= minyawns_grid %></div></div></li>
                                               </ul>
+											
                                             </div>
                                             <p><%= result.job_details %></p>
+											
                                               <div class="additional-info">
                                           <ul class="inline">
                                                 <li ><span> Category :</span> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%> </li>
@@ -140,11 +142,14 @@
     <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url() . '/paypal-payments/'; ?>" / >
     <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
     <div class="row-fluid minyawns-grid1">
+	<div class="span12 ">
     <ul class="thumbnails">
     <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
-	<br/><br/><span id="div_confirmhire"></span>
+	</br></br></br></br><span id="div_confirmhire"></span>
     </form>
+	</div>
+	
     </div>
     </div>
 
@@ -155,7 +160,7 @@
 
     <li class="span3" id="<%= result.user_id %>" >
 
-    <div class="thumbnail" id="thumbnail-<%= result.user_id %>">
+    <div class="thumbnail select-button-<%= result.user_id %>" id="thumbnail-<%= result.user_id %>">
    <% if(result.is_verified === 'Y'){%>
     <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
    <% } %> 
@@ -227,6 +232,7 @@
     <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
     </div>
     </div>
+	
 	</div>
     </div>
 
@@ -237,7 +243,7 @@
 <script type="text/template" id="confirm-hire">
     <input type="hidden" id="hidden_selected_min"/>
     <span class="load_ajaxconfirm" style="display:none"></span>
-    <a  id="confirm-hire-button" data-toggle="modal" class="btn btn-medium btn-block green-btn btn-success">Confirm & Hire</a>
+    <a  id="confirm-hire-button"  class="btn btn-medium btn-block green-btn btn-success">Confirm & Hire</a>
 
 </script>
 
@@ -312,6 +318,33 @@
     <% } %>       
     </ul>
     </div></div></div>
-
-
 </script>
+
+<script type="text/template" id="sample-jobs-template">
+    <li id="<%= result.post_id %>">
+      <div class="row-fluid"> 
+        <div class="span2">
+        <i class="icon-suitcase"></i>
+         </div>
+              <div class="span10">
+               <%= result.post_title %>
+                <div class="date-meta">Posted on <%= result.job_start_day %> <%= result.job_start_month %>, <%= result.job_start_year %></div>
+                 </div>
+                 </div>
+                <div id="hidden_values">
+                <input type="hidden" class="hidden_elements" name="job_task" id="job_title" value="<%= result.post_title %>"/>
+                <input type="hidden" class="hidden_elements" name="job_start_date" id="start-date" value="<%= result.job_start_date %>"/>
+                <input type="hidden" class="hidden_elements" name="job_end_date" id="end-date" value="<%= result.job_end_date %>"/>
+                 <input type="hidden" class="hidden_elements" name="job_start_time" id="start-time" value="<%= result.job_start_time %> <%= result.job_start_meridiem %>"/>
+                 <input type="hidden" class="hidden_elements" name="job_end_time" id="start-end" value="<%= result.job_end_time %> <%= result.job_end_meridiem %>"/>
+                 <input type="hidden" class="hidden_elements" name="job_required_minyawns" id="mrequired" value="<%= result.required_minyawns %>"/>
+                 <input type="hidden" class="hidden_elements" name="job_wages" id="jwages" value="<%= result.job_wages %>"/>
+                 <input type="hidden" class="hidden_elements" name="job_location" id="jlocation" value="<%= result.job_location %>"/>
+                 <input type="hidden" class="hidden_elements" name="job_tags" id="jtags" value="<%= result.tags %>"/>
+                 <input type="hidden" class="hidden_elements" name="categories" id="jcategories" value="<%= result.job_category_ids %>"/>
+                 <input type="hidden" class="hidden_elements" name="job_details" id="jdesc" value="<%= result.job_details %>"/>
+                </div>
+                 </li>
+    
+</script>
+        

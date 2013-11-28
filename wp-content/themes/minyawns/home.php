@@ -30,13 +30,14 @@ Backed by University of Washington students and designed for business profession
  
 <div class="tab-content">
   <div class="tab-pane " id="students">
-	<p><a href="#video1"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png" align="right"/></a>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</p>
-	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-info" id="link_minyawnregister" onclick="return true">Become a Minion</a>
+	<p><a href="#video1"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png" align="right"/></a>  
+  Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.</p>
+	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-info" id="link_minyawnregister" onclick="return true">Minyawns for students</a>
 	
   </div>
   <div class="tab-pane active" id="businesses">
-  <p><a href="#video2"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png" align="right"/></a>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.</p>
-	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Get a Minion</a>
+  <p><a href="#video2"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png" align="right"/></a>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</p>
+	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Minyawns for businesses</a>
 
   
   </div>
@@ -498,8 +499,8 @@ Enviormental Engineering </div>
 <span>
   The power and resources of an elite billion-dollar institution is only a click away. </span>
 <br>
-<br>
-<button href="#myModal"  data-toggle="modal" class="btn btn-large btn-primary " type="button">Get started now!</button><br><br>
+
+<button href="#myModal"  data-toggle="modal" class="btn btn-huge btn-block btn-primary" type="button">Get started now!</button>
   </div>
 </div>
   	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -637,7 +638,7 @@ Enviormental Engineering </div>
       <div id="div_signupmsg" ></div>
       <div class="row-fluid">
          <div class="span5">
-            <form name="frm_signup"  id="frm_signup" action="" >
+            <form name="frm_signup"  id="frm_signup" action="" autocomplete="off">
                <input type="hidden" name="signup_role" id="signup_role" value="" />
                <h6 class="align-center" style=" margin-bottom: 0px; ">
                   Create an Account
@@ -647,7 +648,8 @@ Enviormental Engineering </div>
                   <input type="text" value="" name="signup_email"  id="signup_email"  placeholder="Email Address" class="span3">
                </div>
                <div class="control-group ">
-                  <input type="password" value="" name="signup_password"  id="signup_password"  placeholder="Password" class="span3">
+                  <input type="password" value="" name="signup_password"  id="signup_password" onblur="this.placeholder = 'Password'"  onfocus="this.placeholder = ''"
+							autocomplete="off"  placeholder="Password" class="span3">
                </div>
              
                <div class="control-group span6 " style=" margin-left: 0px; ">

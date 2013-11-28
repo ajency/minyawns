@@ -1,3 +1,10 @@
+//jQuery(document).ready(function($) {
+// $(".tagsinput_jobs").importTags('foo,bar,baz');
+//function ab(){
+//   alert("three"); 
+//}
+//
+//});
 function load_browse_jobs(id, _action, category_ids) {
     //jQuery("#browse-jobs-table").append("<button id='load-more' class='btn load_more'> <div><span style='display: none;' class='load_ajax'></span> <b>Load more</b></div></button>");
     jQuery("#tab_identifier").val('0');
@@ -64,6 +71,7 @@ function load_browse_jobs(id, _action, category_ids) {
             } else {
 
                 var template = _.template(jQuery("#jobs-table").html());
+                var samplejobs = _.template(jQuery("#sample-jobs-template").html());
                 _.each(collection.models, function(model) {
                     var job_stat = job_status_li(model);
                     var job_collapse_button_var = job_collapse_button(model);
@@ -101,6 +109,12 @@ function load_browse_jobs(id, _action, category_ids) {
                             jQuery("#accordion24").prepend(html);
 
 
+
+                            var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
+                            jQuery("#accordion24").append(html);
+
+                            var sample = samplejobs({result: model.toJSON()});
+                            jQuery(".reuse-job").append(sample);
 
 
                         } else {
@@ -151,8 +165,10 @@ function load_browse_jobs(id, _action, category_ids) {
 
 
 
+
 function fetch_my_jobs(id)
 {
+
     if (window.location.href.indexOf("cat_id") > 0)
         window.location = window.location.href.split('?')[0];
 
@@ -181,12 +197,14 @@ function fetch_my_jobs(id)
                 var template = _.template(jQuery("#no-result").html());
 
                 jQuery("#load-more-my-jobs,.load_more_profile").hide();
+                jQuery(".previous-jobs").hide();
                 jQuery("#accordion24").html(jQuery("#no-result").html());
             } else {
                 // jQuery("#load-more-my-jobs").hide();
-                jQuery("#no-result").hide()
+                jQuery(".no-result").hide()
                 jQuery("#accordion24").empty();
                 var template = _.template(jQuery("#jobs-table").html());
+                var samplejobs = _.template(jQuery("#sample-jobs-template").html());
                 var minyawns_grid;
                 _.each(collection.models, function(model) {
                     //alert(id);
@@ -207,10 +225,18 @@ function fetch_my_jobs(id)
 
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                         jQuery("#accordion24").append(html);
+
+                        //if (model.toJSON().load_more === 1) {
+                            var sample = samplejobs({result: model.toJSON()});
+                            jQuery(".reuse-job").append(sample);
+                       // }
+
+
+
                     } else
                     {
-                         jQuery(".load_more").hide();
-                         var template = _.template(jQuery("#no-result").html());
+                        jQuery(".load_more").hide();
+                        var template = _.template(jQuery("#no-result").html());
                         jQuery("#accordion24").html(jQuery("#no-result").html());
 
                     }
@@ -226,6 +252,8 @@ function fetch_my_jobs(id)
         }
 
     });
+
+
 }
 
 var Job = Backbone.Model.extend({
@@ -517,11 +545,11 @@ function load_job_minions(jobmodel)
             job_id: jQuery("#job_id").val()
         },
         success: function(collection, response) {
-            
+
             if (collection.length > 0) {
                 var template = _.template(jQuery("#minion-cards").html());
                 _.each(collection.models, function(model) {
-                   var  global_model = model;
+                    var global_model = model;
                     if (is_job_owner(jobmodel.toJSON().job_owner_id) || is_admin === '1')
                         var select_button = is_minion_selected(jobmodel, model);
 
@@ -644,21 +672,25 @@ function job_minyawns_grid(job)
     var miny_grid = "";
     console.log(job.toJSON().users_applied.length);
     for (var i = 0; i < job.toJSON().users_applied.length; i++) {
-if(job.toJSON().is_verfied[i] == 'Y')
-                        var is_verified="<span>Minyawn verified </span>";
-                    else
-                        var is_verified="";
+        if (job.toJSON().is_verfied[i] == 'Y')
+            var is_verified = "<span>Minyawn verified </span>";
+        else
+            var is_verified = "";
         if (job.toJSON().user_to_job_status.indexOf('hired') >= 0)
         {
 
             if (job.toJSON().user_to_job_status[i] === 'hired') {
-           
-           
-                    
+
+                /* miny_grid += "<a href=" + siteurl + "/profile/" + job.toJSON().applied_user_id[i] + " target='_blank'><div class='span4'>";
+                 miny_grid += "<div class='minyawns-details'><span class='image-div'>" + job.toJSON().user_profile_image[i] + "</span><div style='float: left; width: 54%; '><b>" + job.toJSON().users_applied[i] + "</b><br>"+is_verified+"</div></a>";
+                 miny_grid += "<a id='vote-up' href='#fakelink' employer-vote='1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-up'></i>" + job.toJSON().user_rating_like[i] + "</a>";
+                 miny_grid += "<a id='vote-down' href='#fakelink'  class='icon-thumbs' employer-vote='-1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-down'></i>" + job.toJSON().user_rating_dislike[i] + "</a>";
+                 miny_grid += "</div><div class='minyawns-job'><b>" + job.toJSON().user_to_job_status[i] + "</b><span >" + job.toJSON().user_to_job_rating[i] + "</span></div></div>";*/
 
 
-                miny_grid += "<a href=" + siteurl + "/profile/" + job.toJSON().applied_user_id[i] + " target='_blank'><div class='span4'>";
-                miny_grid += "<div class='minyawns-details'><span class='image-div'>" + job.toJSON().user_profile_image[i] + "</span><div style='float: left; width: 54%; '><b>" + job.toJSON().users_applied[i] + "</b><br>"+is_verified+"</div></a>";
+
+                miny_grid += "<div class='span4'>";
+                miny_grid += "<div class='minyawns-details'><span class='image-div'>" + job.toJSON().user_profile_image[i] + "</span><div ><b>" + job.toJSON().users_applied[i] + "</b>" + is_verified + "</div>";
                 miny_grid += "<a id='vote-up' href='#fakelink' employer-vote='1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-up'></i>" + job.toJSON().user_rating_like[i] + "</a>";
                 miny_grid += "<a id='vote-down' href='#fakelink'  class='icon-thumbs' employer-vote='-1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-down'></i>" + job.toJSON().user_rating_dislike[i] + "</a>";
                 miny_grid += "</div><div class='minyawns-job'><b>" + job.toJSON().user_to_job_status[i] + "</b><span >" + job.toJSON().user_to_job_rating[i] + "</span></div></div>";
@@ -670,8 +702,8 @@ if(job.toJSON().is_verfied[i] == 'Y')
         } else
         {
             //  alert("print_applied");
-            miny_grid += "<a href=" + siteurl + "/profile/" + job.toJSON().applied_user_id[i] + " target='_blank'><div class='span4'>";
-            miny_grid += "<div class='minyawns-details'><span class='image-div'>" + job.toJSON().user_profile_image[i] + "</span><div style='float: left; width: 54%; '><b>" + job.toJSON().users_applied[i] + "</b><br>"+is_verified+"</div></a>";
+            miny_grid += "<div class='span4'><a href=" + siteurl + "/profile/" + job.toJSON().applied_user_id[i] + " target='_blank'>";
+            miny_grid += "<div class='minyawns-details'><span class='image-div'>" + job.toJSON().user_profile_image[i] + "</span><div ><b>" + job.toJSON().users_applied[i] + "</b>" + is_verified + "</a></div>";
             miny_grid += "<a id='vote-up' href='#fakelink' employer-vote='1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-up'></i>" + job.toJSON().user_rating_like[i] + "</a>";
             miny_grid += "<a id='vote-down' href='#fakelink'  class='icon-thumbs' employer-vote='-1' job-id=" + job.toJSON().post_id + "><i class='icon-thumbs-down'></i>" + job.toJSON().user_rating_dislike[i] + "</a>";
             miny_grid += "</div><div class='minyawns-job'><b>" + job.toJSON().user_to_job_status[i] + "</b><span >" + job.toJSON().user_to_job_rating[i] + "</span></div></div>";
@@ -745,3 +777,60 @@ function load_comments(user_id)
 
     });
 }
+
+
+/*
+ *  LOADS PRE-LOADED TEMPLATES FOR NEW JOB
+ *   
+ *  ONCLICK OF THE LI
+ * 
+ */
+$("li").live('click', function() {
+
+    var id = $(this).attr('id');
+    $('#job_tags_tagsinput').find('span').remove();
+
+    var map = {};
+    $("#" + id + " input").each(function() {
+        map[$(this).attr("name")] = $(this).val(); // creates an array for hidden names with values pairs
+
+        $("#" + $(this).attr("name")).val($(this).val()); // *here the hidden field names are same as form input ids* assign based on name.
+
+        /*
+         *  FOR CATEGORIES 
+         *  
+         */
+        if ($(this).attr("name") === 'categories') {
+            var categories = $(this).val();
+
+            var indv_categories = categories.split(','); //category ids saved as , seperated in hidden type. they are split and looped through
+
+
+            for (var i = 0; i < indv_categories.length; i++)
+            {
+                $("#category-" + indv_categories[i]).removeAttr('checked'); //clears checkboxes before loading new values
+                $("#category-" + indv_categories[i]).attr('checked', 'checked');
+
+            }
+
+        }
+        /*
+         *  END CATEFORIES
+         * 
+         */
+
+        var tags;
+        if ($(this).attr("name") == 'job_tags') {
+            tags = $(this).val();
+            var tags_jquery = tags.split(',');
+            for (var i = 0; i < tags_jquery.length; i++)
+            {
+                $("#job_tags_tagsinput").prepend('<span class="tag"><span>' + tags_jquery[i] + '&nbsp;&nbsp;</span><a class="tagsinput-remove-link"></a></span>');
+            }
+            $("#user_skills").val(tags);
+        }
+
+
+    });
+
+});
