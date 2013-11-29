@@ -52,17 +52,14 @@ $app->post('/addjob', function() use ($app) {
                     $start = $value;
                     $end = $value;
                     update_post_meta($post_id, $key, strtotime($value));
-                    update_post_meta($post_id, 'job_end_date', strtotime($value));
+                    update_post_meta($post_id,'job_end_date',strtotime($end));
+                   
                 } elseif ($key == "job_start_time") {
 
                     update_post_meta($post_id, $key, strtotime($value));
                     update_post_meta($post_id, 'job_start_date_time', strtotime(date("j-m-Y", strtotime($start)) . $value));
-                } elseif ($key == "job_end_date") {
-                    $end = $start;
-                    update_post_meta($post_id, $key, strtotime($end));
-                } elseif ($key == "job_end_time") {
-
-
+                }elseif ($key == "job_end_time") {
+                    
                     $date = date("j-m-Y", strtotime($end));
 
                     update_post_meta($post_id, $key, strtotime($value));
@@ -186,6 +183,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $minyawns_verified=array();
                 
                 $user_rating_job = array();
+                
+              
                 foreach ($min_job->minyawns as $min) {
 
                     $user = array_push($user_data, $min['first_name'] . ' ' . $min['last_name']);
@@ -291,7 +290,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'post_title' => $pagepost->post_title,
                     'post_id' => $pagepost->ID,
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
-                    'job_end_date' => date('d M Y', strtotime($post_meta['job_end_date'][0])),
+                    'job_end_date' => date('d M Y',$post_meta['job_end_date'][0]),
                     'job_day' => date('l', $post_meta['job_start_date'][0]),
                     'job_wages' => $wages,
                     //'job_progress' => 'available',
@@ -332,7 +331,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_categories' => $categories,
                     'job_category_ids' => $category_ids,
                     'job_category_slug' => $category_slug,
-                    'is_verfied'=>$minyawns_verified
+                    'is_verfied'=>$minyawns_verified,
+                    'required_minyawns'=>$post_meta['job_required_minyawns'][0]
                 );
             }
 
@@ -736,6 +736,13 @@ $app->post('/delete-job/', function() use($app) {
             echo "deleted";
         });
 
-
+$app->post('/reloadtags',function() use($app){
+   
+    
+    echo '<input  name="job_tags" id="job_tags" value="asdasd,asdssssasd,asdasd,asdasdddd" placeholder="Tags here" class="tm-input tagsinput_jobs">';
+    
+});
+        
+        
 $app->run();
 

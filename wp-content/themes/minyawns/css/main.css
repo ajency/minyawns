@@ -4304,11 +4304,11 @@ div.tooltip1:after {
 }
 .alert-job-allminion {
   border-radius: 0px;
-  border: 1px solid #83F3A2;
+  border: 1px solid #CCC;
   padding: 9px;
   width: 60%;
   z-index: 999;
-  background-color: #F0FFF1;
+  background-color: #F0F0F0;
 }
 .alert-job-allminion h6 {
   font-size: 17px;
