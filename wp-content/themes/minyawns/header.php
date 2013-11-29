@@ -178,8 +178,8 @@
 										<div class="row-fluid">
 											<div class="span4">
 												
-												<a type="button" href="#" class="btn btn-large btn-block btn-inverse "
-													id="btn_login">Login</a>
+												<a type="button" href="#" class="btn btn-medium btn-block btn-inverse "
+													id="btn_login"><i class="icon-unlock-alt"></i> &nbsp;Login</a>
 											</div>
 											<div class="span8">
 												<a href="#"

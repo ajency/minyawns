@@ -4261,11 +4261,11 @@ div.tooltip1:after {
 }
 .alert-job-allminion {
   border-radius: 0px;
-  border: 1px solid #CCC;
+  border: 1px solid #83F3A2;
   padding: 9px;
   width: 60%;
   z-index: 999;
-  background-color: #F0F0F0;
+  background-color: #F0FFF1;
 }
 .alert-job-allminion h6 {
   font-size: 17px;
@@ -4274,6 +4274,11 @@ div.tooltip1:after {
 .alert-job-allminion h5 {
   font-size: 18px;
   line-height: 26px;
+}
+.alert-job-allminion h5 a {
+  color: #7CC415;
+  font-size: 17px;
+  font-weight: 400;
 }
 .peplist.more {
   text-align: center;

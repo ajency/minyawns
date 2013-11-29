@@ -401,7 +401,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             </div>
                         <?php endif; ?>
                         <hr>
-                        <a href="#" class="btn btn-large btn-block btn-inverse span3 float-right" id="update-profile-info">Update Info</a>
+                        <a href="#" class="btn btn-large btn-block btn-inverse span3 float-right" id="update-profile-info"><i class="icon-refresh"></i>&nbsp; Update Info</a>
                         <input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
                         <div class="clear"></div>
                     </form>

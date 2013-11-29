@@ -245,12 +245,12 @@ Backed by University of Washington students and designed for business profession
       <p class="excerpt">The minions are thoroughly vetted University of Washington students.</p>
    </div>
   <br><br><br>
- 
+ <div class="container">
    <div class="row-fluid minyawns-grid1">
       <ul class="thumbnails" style="left: 100px;">
-         <li class="span3" id="10"  onclick="window.open('http://www.minyawns.com/profile/297/')">
+         <li class="span3 thumbspan" id="10"  onclick="window.open('http://www.minyawns.com/profile/297/')">
 		
-            <div class="thumbnail" id="thumbnail-10">
+            <div class="thumbnail " id="thumbnail-10">
                <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
@@ -306,7 +306,7 @@ Enviormental Engineering </div>
             </div>
 		
          </li>
-		    <li class="span3" id="10" onclick="window.open('http://www.minyawns.com/profile/214/')" >
+		    <li class="span3 thumbspan" id="10" onclick="window.open('http://www.minyawns.com/profile/214/')" >
             <div class="thumbnail" id="thumbnail-10">
                <div class="m1" onClick="return true">
                   <div class="caption">
@@ -363,7 +363,7 @@ Enviormental Engineering </div>
                </div>
             </div>
          </li>
-		        <li class="span3" id="10" onclick="window.open('http://www.minyawns.com/profile/298/')" >
+		        <li class="span3 thumbspan" id="10" onclick="window.open('http://www.minyawns.com/profile/298/')" >
             <div class="thumbnail" id="thumbnail-10">
                <div class="m1" onClick="return true">
                   <div class="caption">
@@ -417,7 +417,7 @@ Enviormental Engineering </div>
                </div>
             </div>
          </li>
-		       <li class="span3" id="10"  onclick="window.open('http://www.minyawns.com/profile/345/')">
+		       <li class="span3 thumbspan" id="10"  onclick="window.open('http://www.minyawns.com/profile/345/')">
             <div class="thumbnail" id="thumbnail-10">
                <div class="m1" onClick="return true">
                   <div class="caption">
@@ -474,14 +474,126 @@ Enviormental Engineering </div>
          <span class="load_ajaxsingle_job_minions" style="display: none;"></span>
       </ul>
    </div>
-
-	<br><br><br>
-	<div class="customer_bg">
+</div>
+	<br><br><br></div> <div id="down-gray"></div>
+	<div class="customer_bg"><br>
 	 <div class="">
+      <h3 class="heading-title">Have a look at some of the tasks posted</h3>
+      <p class="excerpt">C'mon don't be shy, you know you want to.</p>
+   </div>
+   <div class="container">
+		<div class="row-fluid">
+		<div class="span6">
+			<h3 class="recent-job-header"> Recent Jobs</h3>
+			<ul class="unstyled recent-jobs">
+				<li>
+					<div class="row-fluid">
+					<div class="span9">
+							<a href="#" class="rj-title">Teaching and helping students with science classes</a>
+							<div class="rj-location"><i class="icon-map-marker"></i>1410 NE Campus Pkwy Seattle</div>
+						</div>
+						<div class="span3">
+							<b class="rj-price">$ 1000 </b>
+							<span class="label label-info">Job Open</span>
+							<p> 2 days ago</p>
+						</div>
+					</div>
+				</li>
+				<li>
+				<div class="row-fluid">
+					<div class="span9">
+							<a href="#" class="rj-title">Teaching and helping students with science classes</a>
+							<div class="rj-location"><i class="icon-map-marker"></i>1410 NE Campus Pkwy Seattle</div>
+						</div>
+						<div class="span3">
+							<b class="rj-price">$ 1000 </b>
+							<span class="label label-info">Job Open</span>
+							<p> 2 days ago</p>
+						</div>
+					</div>
+				
+				</li>
+				<li>
+					<div class="row-fluid">
+					
+						<div class="span9">
+							<a href="#" class="rj-title">Teaching and helping students with science classes</a>
+							<div class="rj-location"><i class="icon-map-marker"></i>1410 NE Campus Pkwy Seattle</div>
+						</div>
+						<div class="span3">
+							<b class="rj-price">$ 1000 </b>
+							<span class="label label-info">Job Open</span>
+							<p> 2 days ago</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="span6">
+			<h3 class="recent-job-header"> Completed Jobs</h3>
+			<ul class="unstyled recent-jobs">
+				<li>
+					<div class="row-fluid">
+					
+						<div class="span9">
+							<a href="#" class="rj-title">Teaching and helping students with science classes</a>
+							<div class="rj-location"><i class="icon-map-marker"></i>1410 NE Campus Pkwy Seattle</div>
+						</div>
+						<div class="span3">
+							<b class="rj-price">$ 1000 </b>
+							<span class="label label-success">Completed</span>
+							<p> 2 days ago</p>
+						</div>
+					</div>
+				</li>
+				<li>
+				<div class="row-fluid">
+						<div class="span9">
+							<a href="#" class="rj-title">Teaching and helping students with science classes</a>
+							<div class="rj-location"><i class="icon-map-marker"></i>1410 NE Campus Pkwy Seattle</div>
+						</div>
+						<div class="span3">
+							<b class="rj-price">$ 1000 </b>
+							<span class="label label-success">Completed</span>
+							<p> 2 days ago</p>
+						</div>
+					</div>
+				
+				</li>
+				<li>
+					<div class="row-fluid">
+					<div class="span9">
+							<a href="#" class="rj-title">Teaching and helping students with science classes</a>
+							<div class="rj-location"><i class="icon-map-marker"></i>1410 NE Campus Pkwy Seattle</div>
+						</div>
+						<div class="span3">
+							<b class="rj-price">$ 1000 </b>
+							<span class="label label-success">Completed</span>
+							<p> 2 days ago</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		</div>
+		<div class="browse-all"><a href="#"> Browse All Tasks</a></div>
+		  <div class="sign-up-txt">
+  What are you waiting for?<br>
+<span>
+  The power and resources of an elite billion-dollar institution is only a click away. </span>
+<br>
+
+<button href="#myModal"  data-toggle="modal" class="btn btn-huge btn-block btn-info" type="button">Get started now!</button>
+  </div>
+   </div><br>
+  
+  </div>
+  <div id="down-green"></div>
+  <div class="">
       <h3 class="heading-title">97% of customers recommend Minyawns</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
    </div>
-   <div class="slider1">
+ <div class="slider1">
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture1.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture2.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture3.png"></div>
@@ -491,17 +603,7 @@ Enviormental Engineering </div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture7.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture8.png"></div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture9.png"></div>
-   </div><br><br><br><br>
-  </div>
-  <div id="down-green"></div>
-  <div class="sign-up-txt">
-  What are you waiting for?<br>
-<span>
-  The power and resources of an elite billion-dollar institution is only a click away. </span>
-<br>
-
-<button href="#myModal"  data-toggle="modal" class="btn btn-huge btn-block btn-primary" type="button">Get started now!</button>
-  </div>
+   </div><br><br>
 </div>
   	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    		  <div class="modal-body">
