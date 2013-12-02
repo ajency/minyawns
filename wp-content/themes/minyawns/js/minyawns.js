@@ -666,7 +666,7 @@ $('.roundedTwo input').click(function(){
     $("#load-more,#load-more-my-jobs").click(function(e) {
         $(".load_ajax").show();
         // $("#accordion2").empty();
-        // console.log(window.fetchj.models.length);
+         
         var _data = {
             offset: window.fetchj.models.length
 
@@ -1680,32 +1680,30 @@ $('.roundedTwo input').click(function(){
     });
 
 
-    var first = getUrlVars()["cat_id"];
-
-    if (typeof(first) !== 'undefined')
-    {
-
-        load_browse_jobs('', '', first);
-    } else {
-        /* function on page load*/
-
-        fetch_my_jobs(logged_in_user_id);//moved to jobs.js
-
-    }
+    
 
 });
 
 function getUrlVars()
 {
     var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for (var i = 0; i < hashes.length; i++)
+
+    if (window.location.href.indexOf('?') === -1)
     {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-    }
+              return false;
+
+    } else {
+
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+   
     return vars;
+     }
 }
 
 

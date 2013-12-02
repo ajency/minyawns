@@ -1,10 +1,20 @@
-//jQuery(document).ready(function($) {
-// $(".tagsinput_jobs").importTags('foo,bar,baz');
-//function ab(){
-//   alert("three"); 
-//}
-//
-//});
+jQuery(document).ready(function($) {
+ 
+ var first = getUrlVars()["cat_id"];
+
+    if (typeof(first) !== 'undefined')
+    {
+
+        load_browse_jobs('', '', first);
+    } else {
+        /* function on page load*/
+
+        fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+
+    }
+ 
+
+});
 function load_browse_jobs(id, _action, category_ids) {
     //jQuery("#browse-jobs-table").append("<button id='load-more' class='btn load_more'> <div><span style='display: none;' class='load_ajax'></span> <b>Load more</b></div></button>");
     jQuery("#tab_identifier").val('0');
@@ -143,7 +153,7 @@ function load_browse_jobs(id, _action, category_ids) {
                     } else {
 
                         if (model.toJSON().load_more === 1)
-                            jQuery(".load_more").hide();
+                           // jQuery(".load_more").hide();
 
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                         jQuery("#accordion2").append(html);
@@ -161,6 +171,7 @@ function load_browse_jobs(id, _action, category_ids) {
         }
 
     });
+   alert(window.fetchj.models.length);
 }
 
 
@@ -833,4 +844,15 @@ $("li").live('click', function() {
 
     });
 
+});
+
+
+/* 
+ *  TO DELETE TAGS ON ADDING 
+ *  
+ *  FROM A TEMPLATE
+ */
+$(".tag a").live('click',function(){
+  
+  $(this).parent().remove();
 });
