@@ -69,13 +69,15 @@ get_header();
                      </div>
 					    <div class="alert alert-success alert-sidebar">
                         <label class="checkbox" for="checkbox1">
-                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span>
+                        <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
                        Minions who have applied to your jobs before
                         </label>
                      </div>
                      <div class="alert alert-success alert-sidebar">
-                        <label class="checkbox" for="checkbox1">
-                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                        <label  class="checkbox" for="checkbox-verified">
+                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span>
+                        <input type="checkbox" value="" id="checkbox-verified" >
                         Verified profiles only
                         </label>
                      </div>

@@ -1,5 +1,5 @@
 <script type="text/template" id="minyawn-directory-card">
-    <li class="span3 thumbspan" id="10" onclick="window.open('http://www.minyawns.com/profile/214/')">
+    <li class="span3 thumbspan" id="minyawn<%= result.user_id %>" onclick="window.open('http://www.minyawns.com/profile/214/')">
                            <div class="thumbnail" id="thumbnail-10">
                               <div class="m1" onclick="return true">
                                  <div class="caption">
