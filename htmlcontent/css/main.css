@@ -4455,3 +4455,61 @@ div.tooltip1:after {
   background: #EBEBEB;
   cursor: pointer;
 }
+.recent-job-header {
+  font-size: 31px;
+  margin-bottom: 12px;
+  color: #FFF;
+}
+.browse-all {
+  text-align: center;
+  padding-top: 30px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.browse-all a {
+  color: #2B2B2B;
+  border-bottom: 1px solid #2E6106;
+}
+.recent-jobs li {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  background: #f4f4f4;
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 70px;
+}
+.recent-jobs li .img-div {
+  display: table-cell;
+  vertical-align: middle;
+  height: 60px;
+}
+.recent-jobs li .rj-title {
+  font-size: 15px;
+  font-weight: bold;
+}
+.recent-jobs li .rj-location {
+  margin-top: 8px;
+  color: #9B9797;
+}
+.recent-jobs li .rj-location i {
+  margin-right: 5px;
+}
+.recent-jobs li .rj-price {
+  text-align: center;
+  display: block;
+  font-size: 17px;
+  color: #858484;
+  margin-bottom: 5px;
+}
+.recent-jobs li .label {
+  text-align: center;
+  margin: auto;
+  width: 52%;
+  display: block;
+}
+.recent-jobs li p {
+  text-align: center;
+  font-size: 12px;
+  padding-top: 2px;
+}
