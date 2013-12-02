@@ -982,15 +982,14 @@ ul.holder li.bit-box-focus a.closebutton, ul.holder li.bit-box-focus a.closebutt
 }
 .sign-up-txt .btn-huge {
 	font-size: 17px;
-	line-height: 26px;
-	font-weight: bold;
-	border-bottom: 4px solid rgba(255, 255, 255, 0.36);
-	width: 16%;
-	margin: 17px auto;
-	padding: 9px;
+line-height: 26px;
+font-weight: bold;
+width: 16%;
+margin: 17px auto;
+padding: 13px;
 }
 .sign-up-txt .btn-huge:hover {
-	background-color:#72B119;
+	background-color: #237FBD;
 }
 
 .home .placeholder{

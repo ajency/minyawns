@@ -5,7 +5,7 @@ Description:    Theme for Minyawans
 Author:         Amit for Ajency.in
 Author URI:     http://ajency.in/
 Template:       Minyawans
-Version:        0.1.0
+Version:        0.1.0.
 */
 
 
@@ -78,6 +78,10 @@ vertical-align: top;
 	margin-bottom: 6px;
 	text-align: center;
 	font-size: 16px
+}
+.home .minyawns-grid1 .thumbspan {
+display: inline-block;
+width: 23.076923076923077%;
 }
 footer{
 	background: #212326;
@@ -1018,6 +1022,37 @@ background: #F8F8F8!important;
 
 /* mobile resonsive */
 @media (max-width: 767px) {
+
+.sign-up-txt .btn-huge {
+	width:51% !important;
+
+}
+.home .recent-jobs{
+	li{
+		height:auto;
+		width:90%;
+		margin:10px auto;
+		.img-div {
+		display: none;
+		}
+		.span1{
+			display:none;
+		}
+		.span8{
+			width: 63%;
+			float: left;
+		}
+		.span3{
+			width: 37%;
+			float: left;
+		}
+	
+		
+	}
+}
+
+
+
 body .disscussion{
 	h3{
 		text-align:center;
@@ -1582,10 +1617,9 @@ text-align: center;
 			font-size: 17px;
 			line-height: 26px;
 			font-weight: bold;
-			border-bottom: 4px solid rgba(255, 255, 255, 0.36);
 			width: 48%;
 			margin: 17px auto;
-			padding: 9px;
+			padding: 13px;
 			&:hover{
 				
 			}
@@ -4656,12 +4690,31 @@ overflow: visible;
 			border-top: 27px solid #9fd157;
 			margin: auto;
 		}
+		 #down-gray {
+			width: 0px;
+			height: 0px;
+			border-left: 30px solid transparent;
+			border-right: 30px solid transparent;
+			border-top: 27px solid #F3F3F3;
+			margin: auto;
+			position: absolute;
+			left: 50%;
+			right: 50%;
+			margin-top: -5px;
+		}
+		@-moz-document url-prefix() { 
+   #down-gray {
+   margin-top: 0px !important;
+   
+   }
+}
 		
 .sign-up-txt{
 	font-size:40px;
 	text-align: center;
 	padding-top: 50px;
 	padding-bottom: 30px;
+	color: #23570F;
 	.btn-primary{
 		margin:auto;
 		font-size: 20px;
@@ -5044,6 +5097,7 @@ padding: 9px;
 width: 60%;
 z-index:999;
 background-color: #F0F0F0;
+
 	h6{
 		font-size: 17px;
 		font-weight: 600;
@@ -5051,6 +5105,13 @@ background-color: #F0F0F0;
 	h5{
 	font-size: 18px;
 	line-height: 26px;
+
+		a{
+			color: #7CC415;
+			font-size: 17px;
+			font-weight: 400;		
+		}
+
 	}
 }
 .peplist.more {
@@ -5243,6 +5304,70 @@ textarea{
 			cursor:pointer;
 		}
 	
+	}
+
+
+}
+.recent-job-header{
+	font-size: 31px;
+margin-bottom: 12px;
+color: #FFF;
+}
+.browse-all{
+	text-align: center;
+padding-top: 30px;
+font-size: 17px;
+font-weight: 700;
+	a{
+		color: #2B2B2B;
+		border-bottom: 1px solid #2E6106;
+	}
+}
+.recent-jobs{
+	li{
+		border-radius:3px;
+		-webkit-border-radius:3px;
+		-moz-border-radius:3px;
+		background:#f4f4f4;
+		padding:10px;
+		margin-bottom:10px;
+		height:70px;
+		.img-div {
+		display: table-cell;
+		vertical-align: middle;
+		height: 60px;
+		}
+		.rj-title{
+			font-size: 15px;
+			font-weight: bold;
+		}
+		.rj-location{
+			margin-top: 8px;
+			color: #9B9797;
+			i{
+				margin-right:5px;
+			}
+		}
+		.rj-price{
+			text-align: center;
+			display: block;
+			font-size: 17px;
+			color: #858484;
+			margin-bottom: 5px;
+		}
+		.label{
+			text-align: center;
+			margin: auto;
+			width: 52%;
+			display: block;
+		}
+		p{
+			text-align: center;
+			font-size: 12px;
+			padding-top: 2px;
+		
+		}
+		
 	}
 
 }

@@ -86,7 +86,7 @@ $('.roundedTwo input').click(function(){
 	  $(function(){
           $(window).scroll(function(e)
           {
-              if($(this).scrollTop()>1900)
+              if($(this).scrollTop()>1600)
               {
               
                   $(".tooltip-right").show('slide');
