@@ -8,7 +8,7 @@
                                       <%= result.user_avatar %>
                                     </div>
                                     <h4><%= result.minion_name %></h4>
-                                    <div class="collage"> University of Washington</div>
+                                    <div class="collage"> <%= result.college %></div>
                                     <div class="social-link">
                                       <%= result.linkedin %>
                                     </div>
