@@ -8,7 +8,6 @@
 jQuery(document).ready(function($) {
  
 
-
 $("#select3").fcbkcomplete({
                     json_url: "data.txt",
                     addontab: true,                   
@@ -584,7 +583,7 @@ $('.roundedTwo input').click(function(){
         $("#job_task").val('');
         $("#job_details").val(" ");
 
-        $('#job_tags_tagsinput').find('span').remove();
+        //$('#job_tags_tagsinput').find('span').remove();
     });
 
     $('#add-job').click(function(e) {
