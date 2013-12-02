@@ -55,7 +55,7 @@ function fetch_minyawns_list(){
 //     if (typeof(first) !== 'undefined')
 //        _data.filter = first;
     
-     
+      window.verified_users={};
      window.minyawndir = new MinyawnsDir();
     window.minyawndir.fetch({
         data: _data,
@@ -201,7 +201,7 @@ function fetch_minyawns_list(){
 function create_verified_array(modelTojson)
 {
     var user_id='';
-    window.verified_users={};
+   
     $.each(modelTojson, function(index, value) {
         
         
@@ -214,6 +214,7 @@ function create_verified_array(modelTojson)
         if(index === 'user_verified' && value === 'N'){
        
          window.verified_users[user_id]=value;   
+         
         }
         
         

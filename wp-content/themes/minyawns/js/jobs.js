@@ -171,7 +171,7 @@ function load_browse_jobs(id, _action, category_ids) {
         }
 
     });
-   alert(window.fetchj.models.length);
+   
 }
 
 
