@@ -69,6 +69,10 @@ function fetch_minyawns_list(){
                         jQuery(".minyawnslist").append(html);
                         
                         window.total=model.toJSON().total;
+                        
+                        create_verified_array(model.toJSON());
+                        
+                        
               });
             if(window.total === window.minyawndir.length){
                 
@@ -194,3 +198,52 @@ function fetch_minyawns_list(){
 
 }
 
+function create_verified_array(modelTojson)
+{
+    var user_id='';
+    window.verified_users={};
+    $.each(modelTojson, function(index, value) {
+        
+        
+      
+        if(index == 'user_id'){
+            user_id=value;
+            
+        }
+        
+        if(index === 'user_verified' && value === 'N'){
+       
+         window.verified_users[user_id]=value;   
+        }
+        
+        
+  // do your stuff here
+});
+   console.log(window.verified_users);     
+        
+   
+  
+}
+
+
+$(".checkbox").live('click',function(){
+  
+if($("#checkbox-verified").attr("checked")=== 'checked')
+{
+   $.each(window.verified_users, function(index, value) {
+   
+       $("#minyawn"+index).hide();
+   
+   });
+   
+   
+}
+else
+{
+   $.each(window.verified_users, function(index, value) {
+   
+       $("#minyawn"+index).show();
+   
+   });
+}
+});

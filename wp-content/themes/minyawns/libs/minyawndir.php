@@ -43,6 +43,7 @@ $app->get('/allminyawns', function() use ($app) {
                         //'type' => 'string'
                         )
                     ),
+                    'role'=>'minyawn'
                 );
 
 
@@ -60,10 +61,11 @@ $app->get('/allminyawns', function() use ($app) {
                 $args = array(
                     'offset' => $_GET['offset'],
                     'order' => 'ASC',
-                    'number' => '5'
+                    'number' => '5',
+                    'role'=>'minyawn'
                 );
 
-                $total = count(get_users());
+                $total = count(get_users($args));
                 $usersData = get_users($args);
             }
 
@@ -102,7 +104,8 @@ $app->get('/allminyawns', function() use ($app) {
                         'rating_negative' => isset($user_dislike) ? $user_dislike : 0,
                         'user_avatar' => $user_pic_img_src,
                         'total' => $total,
-                        'minion_name' => $user_meta['first_name'][0] . $user_meta['last_name'][0]
+                        'minion_name' => $user_meta['first_name'][0] . $user_meta['last_name'][0],
+                        'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N'     
                     );
                 }
             } else {
