@@ -159,10 +159,10 @@ function formSubmit()
 
 
 $("#load_more").live('click', function() {
-    
+   
  var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
    jQuery(".minyawns-grid1").append(filter_loader_template);
-   
+  
     var first = getUrlVars()["filter"];
 
     var _data = {
@@ -172,6 +172,7 @@ $("#load_more").live('click', function() {
     if (typeof(first) !== 'undefined')
         _data.filter = first;
 
+   var counter=0;
     window.minyawndir.fetch({
         data: _data,
         remove: false,
@@ -180,8 +181,12 @@ $("#load_more").live('click', function() {
 
             if (response.error !== '404') { //if no results returned
                 var template = _.template(jQuery("#minyawn-directory-card").html());
+                
+                jQuery(".minyawnslist").empty();
                 _.each(collection.models, function(model) {
+                    console.log(collection.models);
                     var html = template({result: model.toJSON()});
+   
                     jQuery(".minyawnslist").append(html);
 
                     window.total = model.toJSON().total;
@@ -207,7 +212,7 @@ $("#load_more").live('click', function() {
 
     });
     
-    jQuery(".minyawns-grid1").find('#filters-loader').remove(); //remove loader after load more completes
+  setTimeout(function(){ jQuery(".minyawns-grid1").find('#filters-loader').remove()},1000); //remove loader after load more completes
 
 });
 

@@ -3,7 +3,7 @@
                            <div class="thumbnail" id="thumbnail-10">
                               <div class="m1" onclick="return true">
                                  <div class="caption">
-								 <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion is Invited</div>
+								
                                     <div class="minyawns-img">
                                       <%= result.user_avatar %>
                                     </div>
@@ -44,10 +44,7 @@
                                     <div class="social-link">
                                        <%= result.user_email %>
                                     </div>
-									<a href="#fakelink" class="btn btn-primary invite-btn">
-												   <i class="icon-ok"></i>
-												 Invite Minion
-												   </a>
+									
                                     <div class="tags">
                                      <% var sk=result.skills.split(',');
                                      if(result.skills.length > 0){ %>

@@ -743,7 +743,7 @@ function get_minyawn_profile($userData,$total)
 
 
                     if ($user_profile_pic !== false) {
-                        $user_pic_img_src = "<img alt='' src=" . wp_get_attachment_image($user_profile_pic, get_user_role()) . "class='avatar avatar-96 photo' height='96' width='96'></img>";
+                        $user_pic_img_src =  wp_get_attachment_image($user_profile_pic, get_user_role());
                     } else {
                         $user_pic_img_src = get_avatar($userData->ID);
                     }

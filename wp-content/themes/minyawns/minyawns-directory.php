@@ -5,6 +5,13 @@
 require 'templates/_minyawnsdir.php';
 get_header();
 ?>
+<!--  <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion is Invited</div> 
+<a href="#fakelink" class="btn btn-primary invite-btn">
+												   <i class="icon-ok"></i>
+												 Invite Minion
+												   </a> below user email id
+
+-->
 <div class="container">
     <div id="main-content" class="main-content bg-white all-minyawns">
         <div class="breadcrumb-text">

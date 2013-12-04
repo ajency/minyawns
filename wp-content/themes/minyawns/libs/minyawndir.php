@@ -57,9 +57,10 @@ $app->get('/allminyawns', function() use ($app) {
                     ),
                     //'role'=>'minyawn'
                 );
-
-
-                $total = count(get_users($args));
+                 
+                $args_total['role']='minyawn';
+                  
+                $total = count(get_users($args_total));
                 $args['offset'] = $_GET['offset'];
                 $args['order'] = 'ASC';
                 $args['number'] = '5';
@@ -67,14 +68,11 @@ $app->get('/allminyawns', function() use ($app) {
 
                 $usersData =get_users($args);
 //               print_r($filter_key); print_r($usersData);exit();
-                
+                $total=count($usersData);
             } else {
 
                 $args = array(
-                    'offset' => $_GET['offset'],
-                    'order' => 'ASC',
-                    'number' => '5',
-                    'role'=>'minyawn'
+                 'role'=>'minyawn'
                 );
 
                 $total = count(get_users($args));
@@ -83,9 +81,12 @@ $app->get('/allminyawns', function() use ($app) {
                     'order' => 'ASC',
                     'number' => '5',
                     'role'=>'minyawn',
-                    'total'=>$total);
-               
+                    );
+             
                 $usersData = get_users($args);
+                 
+               // $total=count($usersData);
+                
             }
 
 
