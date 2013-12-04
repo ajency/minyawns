@@ -284,7 +284,7 @@ $(".checkbox").live('click', function() {
             jQuery("#load_more").toggle();
             return;
         }
-  jQuery("#load_more").toggle();
+  
     }
     else
     {
