@@ -280,11 +280,12 @@ $(".checkbox").live('click', function() {
     }
     
    setTimeout(function(){ jQuery(".minyawns-grid1").find('#filters-loader').remove()},1000); 
-    
-     if (window.count === window.total)
+    console.log(window.count); console.log(window.total);
+     if (window.count === window.total || window.count < window.total)
     {
         var no_result = _.template($("#no-result-verfied-minyawn-dir").html());
-        jQuery(".minyawnslist").append(no_result);
+        jQuery(".minyawnslist").html(no_result);
+        jQuery("#load_more").hide();
         return;
     }
 });

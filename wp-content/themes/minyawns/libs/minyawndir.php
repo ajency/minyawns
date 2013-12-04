@@ -9,6 +9,7 @@ require '../../../../wp-load.php';
 
 $app->get('/allminyawns', function() use ($app) {
 
+           global $wpdb;
             $filter_key = $_GET['filter'];
 
             $args = array();
@@ -18,12 +19,7 @@ $app->get('/allminyawns', function() use ($app) {
                     'meta_query' =>
                     array(
                         'relation' => 'OR',
-                        array(
-                            'key' => 'description',
-                            'value' => $filter_key,
-                            'compare' => "like",
-                        //'type' => 'string'
-                        ),
+                        
                         array(
                             'key' => 'college',
                             'value' => $filter_key,
@@ -67,8 +63,13 @@ $app->get('/allminyawns', function() use ($app) {
 
 
                 $usersData =get_users($args);
-//               print_r($filter_key); print_r($usersData);exit();
                 $total=count($usersData);
+
+                $querystr=$wpdb->prepare("SELECT * FROM {$wpdb->prefix}users,{$wpdb->prefix}usermeta WHERE {$wpdb->prefix}users.ID={$wpdb->prefix}usermeta.post_id AND {$wpdb->prefix}usermeta.meta_key='user_skills' AND  {$wpdb->prefix}usermeta.meta_value LIKE '".$filter_key."' OR {$wpdb->prefix}usermeta.meta_key='major' AND  {$wpdb->prefix}usermeta.meta_value LIKE '".$filter_key."' OR {$wpdb->prefix}usermeta.meta_key='college' AND  {$wpdb->prefix}usermeta.meta_value LIKE '".$filter_key."'");
+                 print_r($querystr);exit(); 
+                $pageposts = $wpdb->get_results($querystr, OBJECT);
+                
+                
             } else {
 
                 $args = array(
