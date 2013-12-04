@@ -189,7 +189,7 @@ $("#load_more").live('click', function() {
                     var html = template({result: model.toJSON()});
 
                     jQuery(".minyawnslist").append(html);
-
+create_verified_array( model.toJSON());
                     window.total = model.toJSON().total;
                 });
 
@@ -244,7 +244,7 @@ function create_verified_array(modelTojson)
 
         } else if (index === 'user_verified' && value === 'Y') {
             window.count = window.count + 1;
-        }
+        } 
 
 
         // do your stuff here
@@ -276,6 +276,7 @@ $(".checkbox").live('click', function() {
             $("#minyawn" + index).hide();
 
         });
+        console.log(window.verified_users);
         if (window.count === 0)
         {
             var no_result = _.template($("#no-result-verfied-minyawn-dir").html());
@@ -283,7 +284,7 @@ $(".checkbox").live('click', function() {
             jQuery("#load_more").toggle();
             return;
         }
-
+  jQuery("#load_more").toggle();
     }
     else
     {

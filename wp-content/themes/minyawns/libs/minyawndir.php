@@ -9,7 +9,7 @@ require '../../../../wp-load.php';
 
 $app->get('/allminyawns', function() use ($app) {
 
-           global $wpdb;
+            global $wpdb;
             $filter_key = $_GET['filter'];
 
             $args = array();
@@ -19,7 +19,6 @@ $app->get('/allminyawns', function() use ($app) {
                     'meta_query' =>
                     array(
                         'relation' => 'OR',
-                        
                         array(
                             'key' => 'college',
                             'value' => $filter_key,
@@ -36,7 +35,7 @@ $app->get('/allminyawns', function() use ($app) {
                             'key' => 'user_skills',
                             'value' => $filter_key,
                             'compare' => "like"
-                            //'type' => 'string'
+                        //'type' => 'string'
                         ),
 //                        array(
 //                            'key' => 'first_name',
@@ -51,42 +50,43 @@ $app->get('/allminyawns', function() use ($app) {
 //                            //'type' => 'string'
 //                        )
                     ),
-                    //'role'=>'minyawn'
+                        //'role'=>'minyawn'
                 );
-                 
-                $args_total['role']='minyawn';
-                  
+
+                $args_total['role'] = 'minyawn';
+
                 $total = count(get_users($args_total));
                 $args['offset'] = $_GET['offset'];
                 $args['order'] = 'ASC';
                 $args['number'] = '5';
 
 
-                $usersData =get_users($args);
-                $total=count($usersData);
+                $usersData = get_users($args);
+                $total = count($usersData);
 
-                $querystr=$wpdb->prepare("SELECT * FROM {$wpdb->prefix}users,{$wpdb->prefix}usermeta WHERE {$wpdb->prefix}users.ID={$wpdb->prefix}usermeta.post_id AND {$wpdb->prefix}usermeta.meta_key='user_skills' AND  {$wpdb->prefix}usermeta.meta_value LIKE '".$filter_key."' OR {$wpdb->prefix}usermeta.meta_key='major' AND  {$wpdb->prefix}usermeta.meta_value LIKE '".$filter_key."' OR {$wpdb->prefix}usermeta.meta_key='college' AND  {$wpdb->prefix}usermeta.meta_value LIKE '".$filter_key."'");
-                 print_r($querystr);exit(); 
-                $pageposts = $wpdb->get_results($querystr, OBJECT);
-                
-                
+
+                $querystr = "SELECT * FROM {$wpdb->prefix}users, {$wpdb->prefix}usermeta WHERE {$wpdb->prefix}users.ID = {$wpdb->prefix}usermeta.user_id AND ({$wpdb->prefix}usermeta.meta_key = 'user_skills' AND {$wpdb->prefix}usermeta.meta_value LIKE '".$filter_key.",%' OR  {$wpdb->prefix}usermeta.meta_value LIKE '%,".$filter_key.",%'  OR {$wpdb->prefix}usermeta.meta_value LIKE '%,".$filter_key."' OR {$wpdb->prefix}usermeta.meta_key = 'major' AND {$wpdb->prefix}usermeta.meta_value like '".$filter_key."%' OR {$wpdb->prefix}usermeta.meta_key = 'college' AND {$wpdb->prefix}usermeta.meta_value like '".$filter_key."%' OR {$wpdb->prefix}usermeta.meta_key = 'first_name' AND {$wpdb->prefix}usermeta.meta_value like '".$filter_key."%' OR {$wpdb->prefix}usermeta.meta_key = 'last_name' AND {$wpdb->prefix}usermeta.meta_value like '".$filter_key."%')";
+               
+                $usersData = $wpdb->get_results($querystr, OBJECT);
+                 
+               $total=count($usersData);
+               
             } else {
 
                 $args = array(
-                 'role'=>'minyawn'
+                    'role' => 'minyawn'
                 );
 
                 $total = count(get_users($args));
-                
-                $args=array( 'offset' => $_GET['offset'],
+
+                $args = array('offset' => $_GET['offset'],
                     'order' => 'ASC',
                     'number' => '5',
-                    'role'=>'minyawn',
-                    );
-             
+                    'role' => 'minyawn',
+                );
+
                 $usersData = get_users($args);
-                 
-               // $total=count($usersData);
+
                 
             }
 
@@ -94,10 +94,8 @@ $app->get('/allminyawns', function() use ($app) {
 
             if (count($usersData) > 0) {
                 foreach ($usersData as $userData) {
-                 
-                    $data[]=get_minyawn_profile($userData,$total);
-                    
-               
+
+                    $data[] = get_minyawn_profile($userData, $total);
                 }
             } else {
 
@@ -112,11 +110,6 @@ $app->get('/allminyawns', function() use ($app) {
 
 $app->get('filterAllminyawns', function() use($app) {
             
-     
-    
-    
-    
-    
         });
 
 $app->run();
