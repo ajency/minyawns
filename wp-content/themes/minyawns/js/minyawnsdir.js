@@ -163,7 +163,6 @@ $("#load_more").live('click', function() {
 
     var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
     jQuery(".minyawns-grid1").append(filter_loader_template);
-
     var first = getUrlVars()["filter"];
 
     var _data = {

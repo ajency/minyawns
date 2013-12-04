@@ -754,14 +754,14 @@ function get_minyawn_profile($userData,$total)
                         'user_url' => isset($userData->user_url) ? $userData->user_url : '',
                         'description' => isset($user_meta['description'][0]) ? $user_meta['description'][0] : '',
                         'skills' => isset($user_meta['user_skills'][0]) ? $user_meta['user_skills'][0] : '',
-                        'major' => isset($user_meta['major'][0]) ? $user_meta['major'][0] : '',
-                        'college' => isset($user_meta['college'][0]) ? $user_meta['college'][0] : '',
+                        'major' => isset($user_meta['major'][0]) ? substr($user_meta['major'][0],0,20) : '',
+                        'college' => isset($user_meta['college'][0]) ? substr($user_meta['college'][0],0,20) : '',
                         'linkedin' => isset($user_meta['linkedin'][0]) ? $user_meta['linkedin'][0] : '',
                         'rating_positive' => isset($user_rating) ? $user_rating : 0,
                         'rating_negative' => isset($user_dislike) ? $user_dislike : 0,
                         'user_avatar' => $user_pic_img_src,
                         'total' => $total,
-                        'minion_name' => $user_meta['first_name'][0] . $user_meta['last_name'][0],
+                        'minion_name' => substr($user_meta['first_name'][0] . $user_meta['last_name'][0],0,20),
                         'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N'     
                     );
                     

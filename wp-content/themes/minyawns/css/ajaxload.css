@@ -23,8 +23,10 @@
     left: 265px;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.23) url('../images/ajax-loader.gif') 50% 50% no-repeat;
-    position: absolute;
+    background: rgba(0, 0, 0, 0.72) url('../images/ajax-loader.gif') 40% 50% no-repeat;
+position: absolute;
+background-size: 4%;
+   
 }
 
 .load_ajax_large{
