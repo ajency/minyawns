@@ -34,11 +34,11 @@ jQuery(document).ready(function($) {
 
 function fetch_minyawns_list() {
 
-    
-    
-     var no_result = _.template($("#loader-image").html());
-     jQuery(".minyawnslist").html(no_result);
-     
+
+
+    var no_result = _.template($("#loader-image").html());
+    jQuery(".minyawnslist").html(no_result);
+
 
     var first = getUrlVars()["filter"];
 
@@ -63,6 +63,7 @@ function fetch_minyawns_list() {
 
     window.verified_users = {};
     window.count = 0;
+    window.ncount = 0;
     window.total = 0;
     window.minyawndir = new MinyawnsDir();
     window.minyawndir.fetch({
@@ -72,11 +73,11 @@ function fetch_minyawns_list() {
 
             if (response.error !== '404') {
                 var template = _.template(jQuery("#minyawn-directory-card").html());
-                
-             
-                
+
+
+
                 _.each(collection.models, function(model) {
-                            
+
                     var html = template({result: model.toJSON()});
                     jQuery(".minyawnslist").append(html);
 
@@ -103,7 +104,7 @@ function fetch_minyawns_list() {
                 jQuery(".minyawnslist").append(no_result);
 
             }
-              jQuery(".minyawns-grid1").find('.load_ajax_large').remove(); //remove loader after load more completes
+            jQuery(".minyawns-grid1").find('.load_ajax_large').remove(); //remove loader after load more completes
         }
     });
 
@@ -159,10 +160,10 @@ function formSubmit()
 
 
 $("#load_more").live('click', function() {
-   
- var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
-   jQuery(".minyawns-grid1").append(filter_loader_template);
-  
+
+    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
+    jQuery(".minyawns-grid1").append(filter_loader_template);
+
     var first = getUrlVars()["filter"];
 
     var _data = {
@@ -172,7 +173,7 @@ $("#load_more").live('click', function() {
     if (typeof(first) !== 'undefined')
         _data.filter = first;
 
-   var counter=0;
+    var counter = 0;
     window.minyawndir.fetch({
         data: _data,
         remove: false,
@@ -181,12 +182,12 @@ $("#load_more").live('click', function() {
 
             if (response.error !== '404') { //if no results returned
                 var template = _.template(jQuery("#minyawn-directory-card").html());
-                
+
                 jQuery(".minyawnslist").empty();
                 _.each(collection.models, function(model) {
                     console.log(collection.models);
                     var html = template({result: model.toJSON()});
-   
+
                     jQuery(".minyawnslist").append(html);
 
                     window.total = model.toJSON().total;
@@ -211,8 +212,10 @@ $("#load_more").live('click', function() {
         }
 
     });
-    
-  setTimeout(function(){ jQuery(".minyawns-grid1").find('#filters-loader').remove()},1000); //remove loader after load more completes
+
+    setTimeout(function() {
+        jQuery(".minyawns-grid1").find('#filters-loader').remove()
+    }, 1000); //remove loader after load more completes
 
 });
 
@@ -236,9 +239,11 @@ function create_verified_array(modelTojson)
         }
 
         if (index === 'user_verified' && value === 'N') {
-            window.count = window.count + 1;
+            window.ncount = window.ncount + 1;
             window.verified_users[user_id] = value;
 
+        } else if (index === 'user_verified' && value === 'Y') {
+            window.count = window.count + 1;
         }
 
 
@@ -253,39 +258,53 @@ function create_verified_array(modelTojson)
 
 $(".checkbox").live('click', function() {
 
-   
 
 
-  var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
-   jQuery(".minyawns-grid1").append(filter_loader_template);
-   
 
+    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
+    jQuery(".minyawns-grid1").append(filter_loader_template);
+
+    setTimeout(function() {
+        jQuery(".minyawns-grid1").find('#filters-loader').remove()
+    }, 1000);
+    console.log(window.count);
+    console.log(window.ncount);
     if ($("#checkbox-verified").attr("checked") === 'checked')
     {
+        alert("checked");
         $.each(window.verified_users, function(index, value) {
 
             $("#minyawn" + index).hide();
-            
-        });
 
+        });
+        if (window.count === 0)
+        {
+            var no_result = _.template($("#no-result-verfied-minyawn-dir").html());
+            jQuery(".minyawnslist").append(no_result);
+            jQuery("#load_more").toggle();
+            return;
+        }
 
     }
     else
     {
+        jQuery(".minyawnslist").find(".no-job").remove();
+        jQuery("#load_more").toggle();
         $.each(window.verified_users, function(index, value) {
 
             $("#minyawn" + index).show();
-           
+
         });
+
+//        if (window.ncount === 0)
+//        {
+//            var no_result = _.template($("#no-result-verfied-minyawn-dir").html());
+//            jQuery(".minyawnslist").html(no_result);
+//            jQuery("#load_more").hide();
+//            return;
+//        }
     }
-    
-   setTimeout(function(){ jQuery(".minyawns-grid1").find('#filters-loader').remove()},1000); 
-    console.log(window.count); console.log(window.total);
-     if (window.count === window.total || window.count < window.total)
-    {
-        var no_result = _.template($("#no-result-verfied-minyawn-dir").html());
-        jQuery(".minyawnslist").html(no_result);
-        jQuery("#load_more").hide();
-        return;
-    }
+
+
+
 });
