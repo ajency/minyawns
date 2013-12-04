@@ -267,11 +267,10 @@ $(".checkbox").live('click', function() {
     setTimeout(function() {
         jQuery(".minyawns-grid1").find('#filters-loader').remove()
     }, 1000);
-    console.log(window.count);
-    console.log(window.ncount);
+    
     if ($("#checkbox-verified").attr("checked") === 'checked')
     {
-        alert("checked");
+       
         $.each(window.verified_users, function(index, value) {
 
             $("#minyawn" + index).hide();
