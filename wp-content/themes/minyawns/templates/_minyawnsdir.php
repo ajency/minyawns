@@ -74,3 +74,19 @@
     There doesn't seem to be anything here.
     </div>
 </script>
+
+
+<script type="text/templates" id="no-result-verfied-minyawn-dir">
+    <div class="alert alert-info myjobs no-job ">
+    <b style="text-align: center">No Minions Verified yet ! </b>&nbsp;
+    There doesn't seem to be anything here.
+    </div>
+</script>
+
+<script type="text/templates" id="loader-image">
+ <span class='load_ajax_large'"></span>
+</script>
+
+<script type="text/templates" id="filters-loader-image">
+ <span class='modal_ajax_large_filter' id="filters-loader"></span>
+</script>
