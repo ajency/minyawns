@@ -15,6 +15,31 @@
     position: absolute;
 }
 
+.modal_ajax_large_filter {
+
+
+    z-index: 1000;
+    top: 0px;
+    left: 265px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.72) url('../images/ajax-loader.gif') 40% 50% no-repeat;
+position: absolute;
+background-size: 4%;
+   
+}
+
+.load_ajax_large{
+     background: url("../images/ajax-loader.gif") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 101px;
+    margin: 12px auto auto 223px;
+    position: inherit;
+    width: 94px;
+    z-index: 99999;
+    
+}
+
 .modal_ajax {
 
     background: url("../images/ajax-loader.gif") no-repeat scroll 0 0 transparent;

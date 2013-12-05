@@ -9,6 +9,7 @@ require '../../../../wp-load.php';
 
 $app->get('/allminyawns', function() use ($app) {
 
+            global $wpdb;
             $filter_key = $_GET['filter'];
 
             $args = array();
@@ -18,12 +19,6 @@ $app->get('/allminyawns', function() use ($app) {
                     'meta_query' =>
                     array(
                         'relation' => 'OR',
-                        array(
-                            'key' => 'description',
-                            'value' => $filter_key,
-                            'compare' => "like",
-                        //'type' => 'string'
-                        ),
                         array(
                             'key' => 'college',
                             'value' => $filter_key,
@@ -39,34 +34,60 @@ $app->get('/allminyawns', function() use ($app) {
                         array(
                             'key' => 'user_skills',
                             'value' => $filter_key,
-                            'compare' => "like",
+                            'compare' => "like"
                         //'type' => 'string'
-                        )
+                        ),
+//                        array(
+//                            'key' => 'first_name',
+//                            'value' => $filter_key,
+//                            'compare' => "like"
+//                            //'type' => 'string'
+//                        ),
+//                        array(
+//                            'key' => 'last_name',
+//                            'value' => $filter_key,
+//                            'compare' => "like"
+//                            //'type' => 'string'
+//                        )
                     ),
-                    'role'=>'minyawn'
+                        //'role'=>'minyawn'
                 );
 
+                $args_total['role'] = 'minyawn';
 
-                $total = count(get_users($args));
-
-
+                $total = count(get_users($args_total));
                 $args['offset'] = $_GET['offset'];
                 $args['order'] = 'ASC';
                 $args['number'] = '5';
 
 
                 $usersData = get_users($args);
+                $total = count($usersData);
+
+
+                $querystr = "SELECT * FROM {$wpdb->prefix}users, {$wpdb->prefix}usermeta WHERE {$wpdb->prefix}users.ID = {$wpdb->prefix}usermeta.user_id AND ({$wpdb->prefix}usermeta.meta_key = 'user_skills' AND {$wpdb->prefix}usermeta.meta_value LIKE '".$filter_key.",%' OR {$wpdb->prefix}usermeta.meta_value LIKE '".$filter_key."%' OR  {$wpdb->prefix}usermeta.meta_value LIKE '%,".$filter_key.",%'  OR {$wpdb->prefix}usermeta.meta_value LIKE '%,".$filter_key."' OR {$wpdb->prefix}usermeta.meta_key = 'major' AND {$wpdb->prefix}usermeta.meta_value like '".$filter_key."%' OR {$wpdb->prefix}usermeta.meta_key = 'college' AND {$wpdb->prefix}usermeta.meta_value like '".$filter_key."%' OR {$wpdb->prefix}usermeta.meta_key = 'first_name' AND {$wpdb->prefix}usermeta.meta_value like '".$filter_key."%' OR {$wpdb->prefix}usermeta.meta_key = 'last_name' AND {$wpdb->prefix}usermeta.meta_value like '".$filter_key."%') LIMIT 5 OFFSET ".$_GET['offset']."";
+              
+                $usersData = $wpdb->get_results($querystr, OBJECT);
+                 
+               $total=count($usersData);
+               
             } else {
 
                 $args = array(
-                    'offset' => $_GET['offset'],
-                    'order' => 'ASC',
-                    'number' => '5',
-                    'role'=>'minyawn'
+                    'role' => 'minyawn'
                 );
 
                 $total = count(get_users($args));
+
+                $args = array('offset' => $_GET['offset'],
+                    'order' => 'ASC',
+                    'number' => '5',
+                    'role' => 'minyawn',
+                );
+
                 $usersData = get_users($args);
+
+                
             }
 
 
@@ -74,39 +95,7 @@ $app->get('/allminyawns', function() use ($app) {
             if (count($usersData) > 0) {
                 foreach ($usersData as $userData) {
 
-                    $user_meta = get_user_meta($userData->ID);
-
-                    $minyawns_rating = get_user_rating_data($userData->ID, '');
-                    foreach ($minyawns_rating as $rating) {
-                        $user_rating = $rating->positive;
-                        $user_dislike = $rating->negative;
-                    }
-
-                    $user_profile_pic = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
-
-
-                    if ($user_profile_pic !== false) {
-                        $user_pic_img_src = "<img alt='' src=" . wp_get_attachment_image($user_profile_pic, get_user_role()) . "class='avatar avatar-96 photo' height='96' width='96'></img>";
-                    } else {
-                        $user_pic_img_src = get_avatar($userData->ID);
-                    }
-
-                    $data[] = array(
-                        'user_id' => $userData->ID,
-                        'user_email' => isset($userData->user_email) ? $userData->user_email : '',
-                        'user_url' => isset($userData->user_url) ? $userData->user_url : '',
-                        'description' => isset($user_meta['description'][0]) ? $user_meta['description'][0] : '',
-                        'skills' => isset($user_meta['user_skills'][0]) ? $user_meta['user_skills'][0] : '',
-                        'major' => isset($user_meta['major'][0]) ? $user_meta['major'][0] : '',
-                        'college' => isset($user_meta['college'][0]) ? $user_meta['college'][0] : '',
-                        'linkedin' => isset($user_meta['linkedin'][0]) ? $user_meta['linkedin'][0] : '',
-                        'rating_positive' => isset($user_rating) ? $user_rating : 0,
-                        'rating_negative' => isset($user_dislike) ? $user_dislike : 0,
-                        'user_avatar' => $user_pic_img_src,
-                        'total' => $total,
-                        'minion_name' => $user_meta['first_name'][0] . $user_meta['last_name'][0],
-                        'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N'     
-                    );
+                    $data[] = get_minyawn_profile($userData, $total);
                 }
             } else {
 
@@ -121,11 +110,6 @@ $app->get('/allminyawns', function() use ($app) {
 
 $app->get('filterAllminyawns', function() use($app) {
             
-     
-    
-    
-    
-    
         });
 
 $app->run();

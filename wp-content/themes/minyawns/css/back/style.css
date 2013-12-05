@@ -982,14 +982,15 @@ ul.holder li.bit-box-focus a.closebutton, ul.holder li.bit-box-focus a.closebutt
 }
 .sign-up-txt .btn-huge {
 	font-size: 17px;
-line-height: 26px;
-font-weight: bold;
-width: 16%;
-margin: 17px auto;
-padding: 13px;
+	line-height: 26px;
+	font-weight: bold;
+	border-bottom: 4px solid rgba(255, 255, 255, 0.36);
+	width: 16%;
+	margin: 17px auto;
+	padding: 9px;
 }
 .sign-up-txt .btn-huge:hover {
-	background-color: #237FBD;
+	background-color:#72B119;
 }
 
 .home .placeholder{
@@ -1011,55 +1012,4 @@ border-bottom-color: rgba(142, 208, 48, 1);
 #innermainimage .banner-content .tab-content {
 	margin-top: -20px;
 
-}
-
-/*
-Back to top button 
-*/
-#back-top {
-  position: fixed;
-  bottom: 30px;
-  right: 100px;
-}
-#back-top a {
-  width: 64px;
-  display: block;
-  text-align: center;
-  font: 11px/100% Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #bbb;
-  /* background color transition */
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  transition: 1s;
-}
-#back-top a:hover {
-  color: #000;
-}
-/* arrow icon (span tag) */
-#back-top span {
-  width: 64px;
-  height: 64px;
-  display: block;
-  margin-bottom: 7px;
-  background: #ddd url(top.png) no-repeat center center;
-  /* rounded corners */
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-  /* background color transition */
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  transition: 1s;
-}
-#back-top a:hover span {
-  background-color: #fff;
-}
-#back{
-  font-weight: bold;
-  font-size: 22px;
-  padding:10px;
-  border: 2px solid #333;
-  border-radius: 29px;
 }
