@@ -4513,3 +4513,7 @@ div.tooltip1:after {
   font-size: 12px;
   padding-top: 2px;
 }
+.home .minyawns-grid1 .thumbspan {
+  display: inline-block;
+  width: 23.076923076923077%;
+}
