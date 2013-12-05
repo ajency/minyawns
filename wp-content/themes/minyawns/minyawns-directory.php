@@ -117,6 +117,9 @@ get_header();
         </div>
     </div>
 </div>
+ <div id="back-top"><!-- scroll top button -->
+    <a href="#top"><span></span>Back to Top</a>
+  </div>
 
 
 

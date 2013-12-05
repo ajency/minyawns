@@ -80,6 +80,15 @@
     </div>
 </script>
 
+
+<script type="text/templates" id="no-more-results-pagination">
+    <div class="alert alert-info myjobs no-job ">
+    <b style="text-align: center">No More Results ! </b>&nbsp;
+   
+    </div>
+</script>
+
+
 <script type="text/templates" id="loader-image">
  <span class='load_ajax_large'"></span>
 </script>

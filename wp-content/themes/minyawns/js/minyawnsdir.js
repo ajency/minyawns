@@ -20,6 +20,19 @@ jQuery(document).ready(function($) {
 //newel: true
 //});
 
+
+
+
+//    b.on('click', function() {
+//        $('html,body').animate({
+//            scrollTop: 0
+//        }, 500);
+//        return false;
+//    });
+var b = $('#back-top');
+    // Hide scroll top button
+    b.hide();
+
     fetch_minyawns_list();
 
 //$("#searchbox").keyup(function(){
@@ -27,8 +40,46 @@ jQuery(document).ready(function($) {
 //    searchString();
 //    
 //});
+// $(window).scroll(function(){  
+//                    if  ($(window).scrollTop() == 0){  
+//                       alert("here");  
+//                       
+//                    }   
+//            }); 
+
+});
+
+document.addEventListener('scroll', function(event) {
+    var b = $('#back-top');
+    // Hide scroll top button
+   
+    if (document.body.scrollHeight ==
+            document.body.scrollTop +
+            window.innerHeight) {
+        if (window.error !== 404)
+            load_more();
+
+    }
+
+    if ($(this).scrollTop() > 400) {
+
+        if ($(this).scrollTop() > 400) {
+          
+            b.fadeIn();
+            // otherwise fadeout button
+        } else {
+            b.fadeOut();
+        }
+    }
 
 
+    b.on('click', function() {
+        $('html,body').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+    
 });
 
 
@@ -92,8 +143,8 @@ function fetch_minyawns_list() {
 
 
                 } else {
-                    var load_more_template = _.template(jQuery("#load-more").html());
-                    jQuery(".minyawns-grid1").append(load_more_template);
+//                    var load_more_template = _.template(jQuery("#load-more").html());
+//                    jQuery(".minyawns-grid1").append(load_more_template);
                 }
 
 
@@ -159,10 +210,10 @@ function formSubmit()
  */
 
 
-$("#load_more").live('click', function() {
+function load_more() {
 
-    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
-    jQuery(".minyawns-grid1").append(filter_loader_template);
+//    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
+//    jQuery(".minyawns-grid1").append(filter_loader_template);
     var first = getUrlVars()["filter"];
 
     var _data = {
@@ -188,7 +239,7 @@ $("#load_more").live('click', function() {
                     var html = template({result: model.toJSON()});
 
                     jQuery(".minyawnslist").append(html);
-create_verified_array( model.toJSON());
+                    create_verified_array(model.toJSON());
                     window.total = model.toJSON().total;
                 });
 
@@ -204,8 +255,9 @@ create_verified_array( model.toJSON());
 
             } else
             {
-
-                jQuery("#load_more").hide();
+                window.error = 404;
+                var no_more_load = _.template(jQuery("#no-more-results-pagination").html());
+                jQuery(".minyawns-grid1").append(no_more_load);
 
             }
         }
@@ -216,7 +268,7 @@ create_verified_array( model.toJSON());
         jQuery(".minyawns-grid1").find('#filters-loader').remove()
     }, 1000); //remove loader after load more completes
 
-});
+}
 
 function remove_filter()
 {
@@ -243,7 +295,7 @@ function create_verified_array(modelTojson)
 
         } else if (index === 'user_verified' && value === 'Y') {
             window.count = window.count + 1;
-        } 
+        }
 
 
         // do your stuff here
@@ -266,10 +318,10 @@ $(".checkbox").live('click', function() {
     setTimeout(function() {
         jQuery(".minyawns-grid1").find('#filters-loader').remove()
     }, 1000);
-    
+
     if ($("#checkbox-verified").attr("checked") === 'checked')
     {
-       
+
         $.each(window.verified_users, function(index, value) {
 
             $("#minyawn" + index).hide();
@@ -283,7 +335,7 @@ $(".checkbox").live('click', function() {
             jQuery("#load_more").toggle();
             return;
         }
-  
+
     }
     else
     {
