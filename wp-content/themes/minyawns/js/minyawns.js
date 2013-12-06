@@ -727,7 +727,7 @@ $('.roundedTwo input').click(function(){
                 $("#accordion2").empty();
                 $("#accordion24").empty();
                 _.each(collection.models, function(model) {
-                    var job_stat = job_status_li(model);
+                    var job_stat = job_status_e(model);
                     var job_collapse_button_var = job_collapse_button(model);
                     var minyawns_grid = job_minyawns_grid(model)
                     if (model.toJSON().load_more === 1)

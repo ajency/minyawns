@@ -1,141 +1,51 @@
-<script type="text/template" id="jobs-table">
-
-
- <li class="_li  " >
-                                  <div class="row-fluid">
-                                      <div class="span1"> 
-                                      <div class="img-div">
-                                         <%= result.job_author_logo %>
-                                      </div>
-                                      </div>
-                                       <div class="span11 job-details">
-                                            <div class="job-title">
-                 <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %>  <%=  job_collapse_button%></a></h5>             
-                                            </div>
-                                            <div class="job-meta">
-                                              <ul class="inline">
-                                                <li ><i class="icon-calendar"></i> <%= result.job_start_day %> <%= result.job_start_month %>, <%= result.job_start_year %> </li>
-                                                <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
-                                                <li ><i class="icon-map-marker"></i> <%= result.job_location %> </li>
-                                                <li ><i class="icon-money"></i> $ <%= result.job_wages %></li>
-                                                <li class="no-bdr applicants">Applicants: <span class="badge badge-success"><%= result.users_applied.length %></span> <div class="minyawns-list"><div class="row-fluid sm-minyans-card">  <%= minyawns_grid %></div></div></li>
-                                              </ul>
-											
-                                            </div>
-                                            <p><%= result.job_details %></p>
-											
-                                              <div class="additional-info">
-                                          <ul class="inline">
-                                                <li ><span> Category :</span> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%> </li>
-                                                <li ><span> Tags :</span>  <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></li>
-                                              </ul>
-                                                </div>
-
+<script type="text/template" id="jobs-table">   
+      <li class="_li job-open">
+                              <div class="row-fluid">
+                                 <div class="span9 ">
+                                    <div class="row-fluid bdr-gray">
+                                      <div class="span12 job-details">
+                                          <div class="job-title">
+                                             <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %></a></h5>
+                                          </div>
+                                          <div class="job-meta">
+                                             <ul class="inline">
+                                                <li><i class="icon-calendar"></i><%= result.job_start_day %> <%= result.job_start_month %>, <%= result.job_start_year %></li>
+                                                <li><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
+                                                <li class="no-bdr"><i class="icon-map-marker"></i> <%= result.job_location %></li>
+                                             </ul>
+                                          </div>
+                                          <p> <%= result.job_details %></p>
                                        </div>
                                     </div>
-                              </li>
-
-    <!--<div class="accordion-group view" id="job-accordion-<%= result.post_id %>">
-    <div id="last-job-id" last-job="<%= result.post_id %>" value="<%= result.post_id %>">
-    </div>
-    <div class="accordion-heading">
-    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= result.post_id %>">
-    <div class="span12 data-title available">
-    <div class="job-logo header-sub"> <div class="logo "><%= result.job_author_logo %></div></div>
-    <div class="job-date header-sub">
-    <span class="service-total-demand" data-count="0"><%= result.job_start_day %></span>
-    <div>
-    <%= result.job_start_month %><b class="service-client-demand" data-count="0"><%= result.job_start_year %></b>
-    </div>
-    <div class="demand"><%= result.job_day %>
-    </div>
-    </div>
-    <div class="job-time header-sub duration_mob">
-    <div class="row-fluid">
-    <div class="span5 mob-botm">
-    <span data-count="0" class="total-exchange-count"><%= result.job_start_time %></span>
-    <div>
-    <%= result.job_start_meridiem %>
-    </div>
-    </div>
-    <div class="span2">
-    <b class="time-bold">to</b>
-    </div>
-    <div class="span5">
-    <span data-count="0" class="total-exchange-count"><%= result.job_end_time %></span>
-    <div>
-    <%= result.job_end_meridiem %>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <div class="job-wage header-sub">
-    <ins><span><%= result.users_applied.length %></span></ins>
-    </div>
-    <div class="job-progress header-sub">
-    <%= job_progress
-
-    %>
-
-
-    </div>
-
-
-    <div class="job-action header-sub">
-    <ins><span class="amount">$ <%= result.job_wages %></span>
-    </div>
-    </div>
-    </a>
-    </div>
-
-    <div id="collapse<%= result.post_id %>" class="accordion-body  single-jobs collapse " >
-    <div class="accordion-inner list-jobs ">
-    <div class="row-fluid header-title">
-    <div class="span12">
-    <h3><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %> <span class="view-link"><i class="icon-search"></i> View</span></a> </h3>
-    </div>
-    </div>
-    <div class="row-fluid job-data expand">
-    <div class="span9 inner-data details">
-    <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Requested by :</b></div><div class="span9"> <a href="<?php echo site_url() ?>/profile/<%= result.job_author_id%>" target="_blank" class="request_link"><%= result.job_author %></a>
-    </div>
-    </div>
-    <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Location :</b></div><div class="span9"><%= result.job_location %>
-    </div>
-    </div>
-    <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Details :</b></div><div class="span9" style=" margin-bottom: 13px;
-    word-wrap: break-word;"><%= result.job_details %>
-    </div>
-    </div>
-    <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Tags :</b></div><div class="span9"> <% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%>
-    </div>
-    </div>
-    <div class="row-fluid minywans_list">
-    <div class="span3 "><b>Job Category :</b></div><div class="span9"> <% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%>
-    </div>
-    </div>
-    <div class="row-fluid minyawansgrid">
-    <%= minyawns_grid %>
-    <img class="arrow-left" src="<?php echo get_template_directory_uri(); ?>/images/left-arrow.png">
-    </div>
-    </div>
-
-    <div class="span3 action">
-
-    <div class="div-box-block">
-    <span class='load_ajax1' style="display:none"></span>
-    <%=  job_collapse_button%>
-
-    </div>
-    </div>
-    </div>-->
-
-    <form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">
+                                    <div class="additional-info">
+                                       <div class="row-fluid">
+                                          <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%></div>
+                                          <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="span3 status">
+                                    <div class="st-fluid">
+                                       <div class="st-moile-span1">
+                                          <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
+                                       </div>
+                                       <div class="st-moile-span2">
+                                           <%= job_progress %>
+                                          
+                                       </div>
+                                       <div class="clear"></div>
+                                    </div>
+                                    <div class="st-footer">
+                                       <div class="st-applicant">No Applications yet. </div>
+                                       <a href="#fakelink" class="btn btn-primary">
+                                       <i class="icon-location-arrow"></i>
+                                       Send Invites
+                                       </a>
+                                       </a>
+                                    </div>
+                                 </div>
+                              </div>
+                                <form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">
 
     <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $returnUrl; ?>" / >
     <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
@@ -148,11 +58,7 @@
     </ul>
 	</br></br></br></br><span id="div_confirmhire"></span>
     </form>
-	</div>
-	
-    </div>
-    </div>
-
+                           </li>
 </script>
 
 <script type="text/template" id="minion-cards">

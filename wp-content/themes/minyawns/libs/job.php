@@ -277,7 +277,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $post_content = $pagepost->post_content;
                 else
                     $post_content = substr($pagepost->post_content, 0, 300);
-
+              
+                
+                
+              $difference=strtotime(date('d M Y', $post_meta['job_start_date'][0]))-strtotime(date('d M Y'));  
 
 
                 /*
@@ -317,7 +320,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_start_date_time_check' => $post_meta['job_start_date_time'][0],
                     'todays_date_time' => current_time('timestamp'),
                     'post_slug' => wp_unique_post_slug($pagepost->post_name, $pagepost->ID, 'published', 'job', ''),
-                    'users_applied' => $user_data,
+                    'users_applied' => isset($user_data) ? $user_data : array(),
                     'load_more' => $show_load,
                     'user_profile_image' => $user_image,
                     'user_rating_like' => $user_rating_like,
@@ -332,7 +335,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_category_ids' => $category_ids,
                     'job_category_slug' => $category_slug,
                     'is_verfied'=>$minyawns_verified,
-                    'required_minyawns'=>$post_meta['job_required_minyawns'][0]
+                    'required_minyawns'=>$post_meta['job_required_minyawns'][0],
+                    'days_to_job_expired'=>  round($difference/86400)
                 );
             }
 
