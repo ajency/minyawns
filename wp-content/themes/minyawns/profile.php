@@ -121,6 +121,7 @@ require 'templates/_jobs.php';
                 <a href="#" class="view loaded edit-user-profile"><?php if(get_user_id()== get_current_user_id()) echo "My"; else if(strlen(user_profile_company_name())>0) echo mb_convert_case(user_profile_company_name(), MB_CASE_TITLE, "UTF-8"); else echo mb_convert_case(user_profile_first_name(), MB_CASE_TITLE, "UTF-8"); ?></a>
             </p>
         </div>
+		  
         <div class="row-fluid profile-wrapper">
             <?php
             //if(check_access()===true)
@@ -141,11 +142,11 @@ require 'templates/_jobs.php';
 and get more applications from eager minions. Simply <a href="#" id="edit-user-profile" class="edit-user-profile" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 
  }
-                    ?>
-                <div class="row-fluid min_profile">
+                    ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
+                <div class="row-fluid min_profile  <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">
 
                     <div class="span2 ">
-					<div class="<?php
+					<div id="change-avt" class="<?php
                                                                    
                     if (get_user_role() == 'employer') {
                         echo 'employer-image';
@@ -161,18 +162,21 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             else
                                 echo get_avatar(get_user_id(), 168)
                                 ?>
-</a>
+</a> <?php if(is_facebook_user() === 'false'){ ?>
+						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal">Change Profile Pic</a>
+                        <?php }?>
 						</div>
                             <?php if (is_user_logged_in()) { ?>              
                         
-                        <?php if(is_facebook_user() === 'false'){ ?>
-						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">Change Profile Pic</a>
-                        <?php }?>
-                                                  <input id="change-avatar" type="file" name="files" style="visibility:hidden">
+                       
+                                                  <input id="change-avatar" type="file" name="files" style="display:none;">
                             <?php }?>
                     </div>
-                    <div class="span8">
-                        <h4 class="name"> <?php
+                    <div class="span10">
+					  <?php if (get_user_role() === 'minyawn'): ?>
+					<div class="social-link"><i class="icon-twitter"></i>   <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
+    <?php endif; ?>		                      
+					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
                             } else {
@@ -190,80 +194,63 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                                                          <?php }?>
 
 								</h4> 
-                        <div class="row-fluid profile-list">
-                            <?php if (get_user_role() === 'minyawn'): ?>
-
-
-                                <div class="span2">
-                                    College :
-                                </div>
-                                <div class="span10 college">
-                                    <?php user_college(); ?>
-                                </div>
-                                <div class="span2">
-                                    Major :
-                                </div>
-                                <div class="span10 major">
-                                    <?php user_college_major(); ?>
-                                </div>
-                                <div class="span2">
-                                    Social Page :
-                                </div>
-                                <div class="span10 profileemail">
-                                    <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><?php echo user_profile_linkedin() ?></a>
-
-                                </div>
-                                <div class="span2">
-                                    Skills :
-                                </div>
-                                <div class="span10 user_skills">
-                                    <?php
-                                    if ((get_user_skills() != " ")) {
-                                        $skills = explode(',', get_user_skills());
-
-                                        for ($skill = 0; $skill < sizeof($skills); $skill++)
-                                            echo "<span class='label label-small'>$skills[$skill]</span>";
-                                    }
-                                    ?>
-                                </div>
-                                <?php
+								 <?php if (get_user_role() === 'employer'): ?>
+								<div class="employer-body">
+								
+								 <?php user_profile_body(); ?>
+								</div>
+								<?php endif; ?>	
+								
+								
+                     <div class="profiledata ">
+					  <?php if (get_user_role() === 'minyawn'): ?>
+                                   <ul class="college-data inline">
+									<li>
+								   College : <b>  <?php user_college(); ?></b>
+								   </li>
+								   <li>
+								   Major : <b>  <?php user_college_major(); ?></b>
+								   </li>
+								   </ul>
+                     <?php
                             else :
-                                ?>		
-                                <div class="span3">
-                                    Location :
-                                </div>
-                                <div class="span9 location">
-                                    <?php user_location(); ?>
-                                </div>
-                                <div class="span3">
-                                    Body :
-                                </div>
-                                <div class="span9 profilebody">
-                                    <?php user_profile_body(); ?>
-                                </div>
-                                <div class="span3">
-                                    Company Website :
-                                </div>
-                                <div class="span9 company_website">
-                                    - <a href="<?php user_company_website(); ?>" target="_blank"><?php user_company_website(); ?></a>
-                                </div>
-                            <?php
+                                ?>	
+								<ul class="college-data inline">
+									<li>
+								   Location : <b>    <?php user_location(); ?></b>
+								   </li>
+								   <li>
+								   Company Website : <b>  <a href="<?php user_company_website(); ?>" target="_blank"><?php user_company_website(); ?></a></b>
+								   </li>
+								   </ul>
+								
+								
+								 <?php
                             endif;
                             ?>
-                        </div>
+					 
+					 </div>
 
                     </div>
                   
-                    <?php if (get_user_role() === 'minyawn'): ?>
-                        <div class="span2" id="profile-view1">
-                            <br>
-                            <div class="like_btn"><br><br>
-                                <a href="#fakelink" style="float:left;" >
-                                    <i class="icon-thumbs-up"></i><br>
+                 		
+                </div>
+<div class="clear"></div><br>
+ <?php if (get_user_role() === 'minyawn'): ?>
+				<div class="row-fluid">
+					<div class="span2">
+						<div class="right-wideget-bar">
+							<h3>Ratings</h3>
+							<?php if (get_user_role() === 'minyawn'): ?>
+                        <div  id="profile-view1">
+                         
+                            <div class="like_btn">
+                                <a href="#fakelink" >
+                                    <i class="icon-thumbs-up"></i>
                                     <b class="like"><?php user_like_count(); ?></b>
                                 </a> 
                                 <a href="#fakelink" >
-                                    <i class="icon-thumbs-down"></i><br>
+                                    <i class="icon-thumbs-down"></i>
                                     <b class="dislike"><?php user_dislike_count(); ?></b>
                                 </a> 
                             </div>
@@ -285,34 +272,257 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             <!-- Mobile View Like Button -->
                             <?php }?>
                         </div>	
-                    <?php endif; ?>			
-                </div>
+                    <?php endif; ?>	
+						</div>
+					
+					</div>
+					<div class="span10">
+						<div class="list-box">
+							<h3>Skills</h3>
+							 <?php
+                                    if ((get_user_skills() != " ")) {
+                                        $skills = explode(',', get_user_skills());
 
-                <hr>
-                <div class="clear"></div>
+                                        for ($skill = 0; $skill < sizeof($skills); $skill++)
+                                            echo "<span class='label label-small'>$skills[$skill]</span>";
+                                    }
+                                    ?>
+						</div>
+					</div>
+				</div>
+				    <?php endif; ?>		
+				
+				<hr>
+				<h4><i class="icon-briefcase"></i> &nbsp; Job List</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </p>
+				<div class="row-fluid">
+					<div class="span9">
+						<ul class="unstyled job-view-list" id="accordion2">
+                           <li class="_li job-open">
+						    <div class="jobs-rating">
+								<div class="well-done">
+								<i class="icon-thumbs-up"></i>You Have Been Rated <br><b>Well Done</b>
+									<div class="clear"></div><br>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, se magna aliqua. </p>
+								<span> - Jogn Schwell</span>
+								</div>
+							  </div>
+                              <div class="row-fluid">
+                                 <div class="span9 ">
+                                    <div class="row-fluid bdr-gray">
+                                      <div class="span12 job-details">
+                                          <div class="job-title">
+                                             <h5><a href="#" target="_blank"> Wash My Car  </a></h5>
+                                          </div>
+                                          <div class="job-meta">
+                                             <ul class="inline">
+                                                <li><i class="icon-calendar"></i> 28 November, 2013 </li>
+                                                <li><i class="icon-time"></i> 4:08 &nbsp;pm to 4:08  &nbsp;pm</li>
+                                                <li class="no-bdr"><i class="icon-map-marker"></i> 1410 NE Campus Pkwy Seattle</li>
+                                             </ul>
+                                          </div>
+                                          <p> I am a recent graduate of Dalhousie University with a combined Honours in Chemistry and Biology. Teaching and helping students with science classes [....]</p>
+                                       </div>
+                                    </div>
+                                    <div class="additional-info">
+                                       <div class="row-fluid">
+                                          <div class="span6"><span> Category :</span><br><a href="#"> Workshop</a>, <a href="#"> Cleaning</a>,  <a href="#"> Washing Car</a>,  <a href="#"> College Students</a></div>
+                                          <div class="span6"> <span> Tags :</span> <br><span class="label">cleaning</span> <span class="label">Washing</span><span class="label">cleaning</span> <span class="label">Washing</span><span class="label">Mathematics</span></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="span3 status">
+                                    <div class="st-fluid">
+                                       <div class="st-moile-span1">
+                                          <div class="st-wages"> wages <b>$3000</b></div>
+                                       </div>
+                                       <div class="st-moile-span2">
+                                          <div class="st-status open">Applications Open.</div>
+                                          <div class="st-meta">12 Days to Go</div>
+                                       </div>
+                                       <div class="clear"></div>
+                                    </div>
+                                    <div class="st-footer">
+                                       <div class="st-applicant">No Applications yet. </div>
+                                       <a href="#fakelink" class="btn btn-primary">
+                                       <i class="icon-location-arrow"></i>
+                                       Send Invites
+                                       </a>
+                                    </div>
+                                 </div>
+                              </div>
+							 
+                           </li>
+                           <li class="_li job-open">
+						    <div class="jobs-rating">
+								<div class="terrible">
+								<i class="icon-thumbs-down"></i>You Have Been Rated <br><b>Terrible</b>
+									<div class="clear"></div><br>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, se magna aliqua. </p>
+								<span> - Jogn Schwell</span>
+								</div>
+							  </div>
+                              <div class="row-fluid">
+                                 <div class="span9">
+                                    <div class="row-fluid bdr-gray">
+                                      <div class="span12 job-details">
+                                          <div class="job-title">
+                                             <h5><a href="#" target="_blank">The template has been conceived with a proper balance
+                                                UI &amp; UX in order to offer an excellent  </a>
+                                             </h5>
+                                          </div>
+                                          <div class="job-meta">
+                                             <ul class="inline">
+                                                <li><i class="icon-calendar"></i> 28 November, 2013 </li>
+                                                <li><i class="icon-time"></i> 4:08 &nbsp;pm to 4:08  &nbsp;pm</li>
+                                                <li class="no-bdr"><i class="icon-map-marker"></i> 1410 NE Campus Pkwy Seattle</li>
+                                             </ul>
+                                          </div>
+                                          <p> I am a recent graduate of Dalhousie University with a combined Honours in Chemistry and Biology. Teaching and helping students with science classes  [....]</p>
+                                       </div>
+                                    </div>
+                                    <div class="additional-info">
+                                       <div class="row-fluid">
+                                          <div class="span6"><span> Category :</span><br><a href="#"> Workshop</a>, <a href="#"> Cleaning</a>,  <a href="#"> Washing Car</a>,  <a href="#"> College Students</a></div>
+                                          <div class="span6"> <span> Tags :</span> <br><span class="label">cleaning</span> <span class="label">Washing</span><span class="label">cleaning</span> <span class="label">Washing</span><span class="label">Mathematics</span></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="span3 status">
+                                    <div class="st-fluid">
+                                       <div class="st-moile-span1">
+                                          <div class="st-wages"> wages <b>$3000</b></div>
+                                       </div>
+                                       <div class="st-moile-span2">
+                                          <div class="st-status open">Applications Open.</div>
+                                          <div class="st-meta">12 Days to Go</div>
+                                       </div>
+                                       <div class="clear"></div>
+                                    </div>
+                                    <div class="st-footer">
+                                       <div class="st-minyawn">
+                                          2
+                                          <div class="st-selected-box">
+                                             <div class="arrow-up1"></div>
+                                             <ul class="unstyled">
+                                                <li>
+                                                   <img src="images/iconsult1.png"><a href="#" class="minyawn-name">Lisa Farmaro</a>
+                                                   <a id="vote-up" href="#fakelink" employer-vote="1" job-id="616"><i class="icon-thumbs-up"></i>2</a>
+                                                   <a id="vote-down" href="#fakelink" class="icon-thumbs" employer-vote="-1" job-id="616"><i class="icon-thumbs-down"></i>1</a>
+                                                   <div class="clear"></div>
+                                                </li>
+                                                <li>
+                                                   <img src="images/iconsult2.png"><a href="#" class="minyawn-name">Maria Donwell </a>
+                                                   <a id="vote-up" href="#fakelink" employer-vote="1" job-id="616"><i class="icon-thumbs-up"></i>2</a>
+                                                   <a id="vote-down" href="#fakelink" class="icon-thumbs" employer-vote="-1" job-id="616"><i class="icon-thumbs-down"></i>1</a>
+                                                   <div class="clear"></div>
+                                                </li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                       <div class="st-applicant">Minions have applied.  </div>
+                                       <a href="#fakelink" class="btn btn-primary">
+                                       <i class="icon-check"></i>
+                                       Select Minions
+                                       </a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </li>
+                           <li class="_li job-open">
+						       <div class="jobs-rating">
+								<div class="not-rated">
+								<div class="msg">You have been <br>not yet rated</div>
+									<i class="icon-thumbs-up"></i><i class="icon-thumbs-down"></i>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, se magna aliqua.  </p>
+							
+								</div>
+							  </div>
+                              <div class="row-fluid">
+                                 <div class="span9">
+                                    <div class="row-fluid bdr-gray">
+                                      <div class="span12 job-details">
+                                          <div class="job-title">
+                                             <h5><a href="#" target="_blank">The template has been conceived with a proper balance
+                                                UI &amp; UX in order to offer an excellent  </a>
+                                             </h5>
+                                          </div>
+                                          <div class="job-meta">
+                                             <ul class="inline">
+                                                <li><i class="icon-calendar"></i> 28 November, 2013 </li>
+                                                <li><i class="icon-time"></i> 4:08 &nbsp;pm to 4:08  &nbsp;pm</li>
+                                                <li class="no-bdr"><i class="icon-map-marker"></i> 1410 NE Campus Pkwy Seattle</li>
+                                             </ul>
+                                          </div>
+                                          <p> I am a recent graduate of Dalhousie University with a combined Honours in Chemistry and Biology. Teaching and helping students with science classes  [....]</p>
+                                       </div>
+                                    </div>
+                                    <div class="additional-info">
+                                       <div class="row-fluid">
+                                          <div class="span6"><span> Category :</span><br><a href="#"> Workshop</a>, <a href="#"> Cleaning</a>,  <a href="#"> Washing Car</a>,  <a href="#"> College Students</a></div>
+                                          <div class="span6"> <span> Tags :</span> <br><span class="label">cleaning</span> <span class="label">Washing</span><span class="label">cleaning</span> <span class="label">Washing</span><span class="label">Mathematics</span></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="span3 status">
+                                    <div class="st-fluid">
+                                       <div class="st-moile-span1">
+                                          <div class="st-wages"> wages <b>$3000</b></div>
+                                       </div>
+                                       <div class="st-moile-span2">
+                                          <div class="st-status closed">Applications Closed</div>
+                                          <div class="st-meta">Maximum number of minions have applied.</div>
+                                       </div>
+                                       <div class="clear"></div>
+                                    </div>
+                                    <div class="st-footer">
+                                       <div class="st-minyawn">
+                                          3
+                                          <div class="st-selected-box">
+                                             <div class="arrow-up1"></div>
+                                             <ul class="unstyled">
+                                                <li>
+                                                   <img src="images/iconsult1.png"><a href="#" class="minyawn-name">Lisa Farmaro</a>
+                                                   <a id="vote-up" href="#fakelink" employer-vote="1" job-id="616"><i class="icon-thumbs-up"></i>2</a>
+                                                   <a id="vote-down" href="#fakelink" class="icon-thumbs" employer-vote="-1" job-id="616"><i class="icon-thumbs-down"></i>1</a>
+                                                   <div class="clear"></div>
+                                                </li>
+                                                <li>
+                                                   <img src="images/iconsult2.png"><a href="#" class="minyawn-name">Maria Donwell </a>
+                                                   <a id="vote-up" href="#fakelink" employer-vote="1" job-id="616"><i class="icon-thumbs-up"></i>2</a>
+                                                   <a id="vote-down" href="#fakelink" class="icon-thumbs" employer-vote="-1" job-id="616"><i class="icon-thumbs-down"></i>1</a>
+                                                   <div class="clear"></div>
+                                                </li>
+                                                <li>
+                                                   <img src="images/iconsult3.png"><a href="#" class="minyawn-name">Richard Screwll </a>
+                                                   <a id="vote-up" href="#fakelink" employer-vote="1" job-id="616"><i class="icon-thumbs-up"></i>2</a>
+                                                   <a id="vote-down" href="#fakelink" class="icon-thumbs" employer-vote="-1" job-id="616"><i class="icon-thumbs-down"></i>1</a>
+                                                   <div class="clear"></div>
+                                                </li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                       <div class="st-applicant">Minions have applied.  </div>
+                                       <a href="#fakelink" class="btn btn-primary">
+                                       <i class="icon-check"></i>
+                                       Select Minions
+                                       </a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </li>
+						  <a href="#" class="btn load-btn" style="width:99%;"><i class="icon-undo"></i> Load more</a>
+						   </ul>
+					</div>
+					<div class="span3">
+					</div>
+				</div>
 
-                <h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
+              
 
-                <div class="jobs_table">
+             <!--   <div class="jobs_table">
                     <div id="browse-jobs-table" class=" browse-jobs-table">
 
-                        <!-- Row Div header -->
-                      <!--  <div class="row-fluid ">
-                            <div class="span12 header-title">
-                                <div class="job-logo header-sub"> Logo</div>
-                                <div class="job-date header-sub"> Job Date</div>
-                                <div class="job-time header-sub">Duration</div>
-                                <div class="job-wage header-sub">Wages</div>
-
-                                <div class="job-progress profile-job header-sub">Progress</div>
-
-
-                            </div>
-                        </div>
-
-                        <div class="row-fluid " id="accordion24" >
-
-                        </div>-->
 
                           <ul class="unstyled job-view-list" id="accordion24">
 
@@ -320,7 +530,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
 
                         <button class="btn load_more load_more_profile" id="load-more"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
                     </div>
-                </div>
+                </div>-->
                 <div class="clear"></div>
             </div>
             <div class="span12" id="profile-edit" style="height:502px;">

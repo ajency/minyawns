@@ -375,12 +375,28 @@ body .jobs_table .data-title .profile-job {
   margin-top: 4px;
   background: #E2E2E2;
 }
+#change-avt {
+  position: relative;
+}
+.avtar-btn {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.62);
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: -47px;
+}
+.min_profile {
+  border: 1px solid #ccc;
+  width: 99.8%;
+  background: url(../images/profilebg-pattern.jpg) bottom repeat-x;
+  background-size: 2.9%;
+}
 .min_profile .change-avtar {
   position: relative;
   text-align: center;
   display: block;
   font-weight: bold;
-  padding: 2px;
 }
 .min_profile .change-avtar span {
   font-size: 13px;
@@ -398,8 +414,24 @@ body .jobs_table .data-title .profile-job {
 .min_profile .change-avtar:hover span {
   display: block!important;
 }
-.min_profile .change-avtar img {
-  border: 2px solid;
+.min_profile .name {
+  font-size: 28px;
+  font-family: arial;
+  font-weight: bold;
+  margin-top: 70px;
+}
+.min_profile .profiledata {
+  height: 46px;
+}
+.min_profile .profiledata .college-data {
+  font-weight: 100;
+}
+.min_profile .profiledata .college-data li {
+  padding: 13px;
+  border-right: 1px solid #ccc;
+}
+.min_profile .profiledata .college-data li:first-child {
+  padding-left: 0px !important;
 }
 .min_profile .edit {
   font-size: 17px;
@@ -2506,11 +2538,9 @@ body .jobs_table .data-title .profile-job {
   }
 }
 .job-view {
-  font-size: 14px;
-  background: #F1F1F1;
+  font-size: 17px;
   padding: 12px 10px;
   width: 98% !important;
-  border: 1px solid rgba(204, 204, 204, 0.35);
 }
 .job-view a {
   border-bottom: 1px dotted;
@@ -3144,13 +3174,14 @@ body .jobs_table .data-title .profile-job {
   color: #8ed030;
 }
 .alert-msg {
-  color: #FFFFFF;
+  color: #FFF;
   padding: 5px;
   text-shadow: none;
-  background-color: #4C5152;
+  background-color: #888;
   border: 1px solid #494949;
   font-size: 14px;
   font-weight: 300;
+  border-radius: 2px;
 }
 .alert-msg a {
   color: #8ed030;
@@ -4524,4 +4555,172 @@ div.tooltip1:after {
 .home .minyawns-grid1 .thumbspan {
   display: inline-block;
   width: 23.076923076923077%;
+}
+/* new profile */
+.right-wideget-bar {
+  background-color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid rgba(204, 204, 204, 0.35);
+  box-shadow: 0 3px 15px #D6D6D6;
+  -moz-box-shadow: 0 3px 15px #D6D6D6;
+  -webkit-box-shadow: 0 3px 15px #D6D6D6;
+  padding: 16px;
+}
+.right-wideget-bar h3 {
+  font-size: 17px !important;
+}
+.right-wideget-bar .like_btn {
+  font-size: 24px;
+  margin-top: 13px;
+}
+.right-wideget-bar .like_btn .icon-thumbs-down {
+  color: #f65151;
+}
+.right-wideget-bar .like_btn b {
+  color: #A5A5A5;
+  margin-right: 13px;
+}
+.list-box {
+  background-color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid rgba(204, 204, 204, 0.35);
+  box-shadow: 0 3px 15px #D6D6D6;
+  -moz-box-shadow: 0 3px 15px #D6D6D6;
+  -webkit-box-shadow: 0 3px 15px #D6D6D6;
+  padding: 16px;
+}
+.list-box h3 {
+  font-size: 17px !important;
+  margin-bottom: 12px;
+}
+.list-box .label {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.jobs-rating {
+  position: absolute;
+  right: -268px;
+  width: 27%;
+  height: 100%;
+  top: 14%;
+}
+.jobs-rating .well-done i {
+  font-size: 46px;
+  float: left;
+  margin-right: 5px;
+  color: #8ed030;
+}
+.jobs-rating .well-done b {
+  font-size: 19px;
+  color: #8ed030;
+}
+.jobs-rating .terrible i {
+  font-size: 46px;
+  float: left;
+  margin-right: 5px;
+  color: #F65151;
+}
+.jobs-rating .terrible b {
+  font-size: 19px;
+  color: #F65151;
+}
+.jobs-rating .not-rated {
+  text-align: center;
+}
+.jobs-rating .not-rated .msg {
+  font-size: 18px;
+  color: #969292;
+  margin-bottom: 13px;
+}
+.jobs-rating .not-rated i {
+  font-size: 46px;
+  color: #CCC;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.jobs-rating .not-rated p {
+  margin-top: 10px;
+}
+.jobs-rating p {
+  font-size: 13px;
+  line-height: 18px;
+}
+.jobs-rating span {
+  text-align: right;
+  display: block;
+  color: #8ed030;
+}
+.social-link {
+  float: right;
+  margin-right: 5px;
+  margin-top: 6px;
+}
+.social-link a,
+.social-link i {
+  width: 30px;
+  height: 30px;
+  background: #8ed030;
+  border-radius: 100%;
+  color: #FFF;
+  font-size: 19px;
+  display: inline-block;
+  text-align: center;
+  line-height: 29px;
+}
+.employe-detail .name {
+  margin-top: 10px;
+}
+.employe-detail .employer-body {
+  margin-bottom: 20px;
+  color: #AAA;
+}
+.employe-detail .avtar-btn {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.62);
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  bottom: 0px;
+}
+@media (max-width: 767px) {
+  .min_profile {
+    background: none;
+    padding: 5px;
+    width: 96% !important;
+  }
+  .min_profile .name {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .min_profile .social-link {
+    margin-top: 0px;
+  }
+  .min_profile .social-link a,
+  .min_profile .social-link i {
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    line-height: 23px;
+  }
+  .profiledata {
+    height: 100% !important;
+  }
+  .profiledata .college-data li {
+    display: block;
+    border: 0px!important;
+    padding-left: 0px!important;
+    padding: 0px !important;
+    padding-bottom: 5px !important;
+  }
+  .right-wideget-bar {
+    margin-bottom: 20px;
+  }
 }
