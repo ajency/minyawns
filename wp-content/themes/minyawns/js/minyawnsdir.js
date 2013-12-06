@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
 //    autoTriggerUntil:true
 //    
 //    });
-
+var b = $('#back-top');
 
 
 //$("#searchbox").fcbkcomplete({
@@ -50,12 +50,14 @@ var b = $('#back-top');
 });
 
 document.addEventListener('scroll', function(event) {
-    var b = $('#back-top');
+    
     // Hide scroll top button
-   
-    if (document.body.scrollHeight ==
-            document.body.scrollTop +
-            window.innerHeight) {
+//      alert(document.body.scrollHeight);
+//      alert(document.body.scrollTop);
+//       alert(window.Height);
+    if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
+       
+        
         if (window.error !== 404)
             load_more();
 
@@ -73,14 +75,16 @@ document.addEventListener('scroll', function(event) {
     }
 
 
-    b.on('click', function() {
+   
+    
+});
+
+ b.on('click', function() {
         $('html,body').animate({
             scrollTop: 0
         }, 500);
         return false;
     });
-    
-});
 
 
 function fetch_minyawns_list() {

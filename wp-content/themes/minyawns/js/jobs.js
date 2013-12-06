@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
- 
- var first = getUrlVars()["cat_id"];
+
+    var first = getUrlVars()["cat_id"];
 
     if (typeof(first) !== 'undefined')
     {
@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
         fetch_my_jobs(logged_in_user_id);//moved to jobs.js
 
     }
- 
+
 
 });
 function load_browse_jobs(id, _action, category_ids) {
@@ -50,7 +50,7 @@ function load_browse_jobs(id, _action, category_ids) {
 
 //  if(filter === 1)
 //    var catids=$("#category_id").val();
-//     
+//
     window.fetchj = new Fetchjobs;
     // if(!isNaN(id))
     window.fetchj.set({single_job: '1'});
@@ -83,7 +83,7 @@ function load_browse_jobs(id, _action, category_ids) {
                 var template = _.template(jQuery("#jobs-table").html());
                 var samplejobs = _.template(jQuery("#sample-jobs-template").html());
                 _.each(collection.models, function(model) {
-                    var job_stat = job_status_li(model);
+                    var job_stat = job_status_e(model);
                     var job_collapse_button_var = job_collapse_button(model);
                     var minyawns_grid = job_minyawns_grid(model);
                     if (model.toJSON().post_id === id) { /*for single job page*/
@@ -153,9 +153,9 @@ function load_browse_jobs(id, _action, category_ids) {
                     } else {
 
                         if (model.toJSON().load_more === 1)
-                           // jQuery(".load_more").hide();
+                            // jQuery(".load_more").hide();
 
-                        var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
+                            var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                         jQuery("#accordion2").append(html);
 
                     }
@@ -171,7 +171,7 @@ function load_browse_jobs(id, _action, category_ids) {
         }
 
     });
-   
+
 }
 
 
@@ -225,9 +225,9 @@ function fetch_my_jobs(id)
                         var template = _.template(jQuery("#jobs-table").html());
                         // alert(model.toJSON().load_more);
                         //  console.log(model.toJSON().applied_user_id);
-                        var job_stat = job_status_li(model);
+                        var job_stat = job_status_e(model);
                         var job_collapse_button_var = job_collapse_button(model);
-                        //console.log(model); 
+                        //console.log(model);
                         var minyawns_grid = job_minyawns_grid(model);
                         // console.log(minyawns_grid);
 
@@ -238,9 +238,9 @@ function fetch_my_jobs(id)
                         jQuery("#accordion24").append(html);
 
                         //if (model.toJSON().load_more === 1) {
-                            var sample = samplejobs({result: model.toJSON()});
-                            jQuery(".reuse-job").append(sample);
-                       // }
+                        var sample = samplejobs({result: model.toJSON()});
+                        jQuery(".reuse-job").append(sample);
+                        // }
 
 
 
@@ -320,6 +320,104 @@ var Job = Backbone.Model.extend({
     }
 
 });
+/*
+ *
+ * @param {type} model of each job with details
+ * @returns string having job status
+ *
+ */
+function job_status_e(model) {
+    var job_status = '';
+    var return_status = '';
+    if (model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check) {
+
+        job_status = "Available";
+
+    }
+    else if (model.toJSON().job_status === 3 && model.toJSON().user_to_job_status.indexOf('hired') === -1) {
+
+        job_status = "Closed";
+    }
+    else
+    {
+
+        job_status = "Expired";
+    }
+
+    switch (job_status)
+    {
+        case 'Available': //job status available
+
+
+
+            if (model.toJSON().users_applied.length === 0) // 0 applicants
+            {
+
+                 if(model.toJSON().user_to_job_status.indexOf('hired') >= 0)
+                   return_status='';
+                 else
+                   return_status = "<div class='st-status open'>Applications Open.</div><div class='st-meta'>" + model.toJSON().days_to_job_expired + "days to go</div>";
+
+
+            }
+            else //X minions applied
+            {
+
+                    if(model.toJSON().user_to_job_status.indexOf('hired') >= 0)
+                         return_status='';
+                     else
+                            return_status = "<div class='st-status open'>Applications Open.</div><div class='st-meta'>" + model.toJSON().days_to_job_expired + "days to go</div>";
+
+            }
+
+
+            break;
+
+        case 'Closed': //job status closed
+
+
+            if(model.toJSON().job_status === 3 && model.toJSON().user_to_job_status.indexOf('hired') === -1)//Max Applicants reached
+            {
+                 if (model.toJSON().job_owner_id !== logged_in_user_id && role === 'employer'){
+                   return_status = 'Applications Closed';
+                 }else  if(model.toJSON().user_to_job_status.indexOf('hired') >= 0){
+                      return_status='';
+                 }else{
+                     return_status = "<div class='st-status open'>"+'Applications Closed Maximum number of minions have applied</div>';
+                       }
+            }
+            else   //selection done
+            {
+                var numOfHired = 0;
+                for(var i=0;i< model.toJSON().user_to_job_status.length;i++){
+                    if(model.toJSON.user_to_job_status === 'hired')
+                        numOfHired++;
+                        
+                        
+                }
+                    if(model.toJSON().user_to_job_rating.length >0)
+                    return_status='';
+                    else
+                    return_status=numOfHired+'have een selected'+model.toJSON().days_to_job_expired+'to go for the job';
+
+
+                }
+                
+        break;
+        case 'Expired': //expired
+            return_status = "<span class='job-expired'>Job Date is Over</span>";
+            break;
+        default:
+            return_status = 'Bummer! We will have this fixed';
+
+    }
+
+    return return_status;
+
+}
+
+
+
 function job_status_li(model)
 {
     var job_status1;
@@ -431,11 +529,13 @@ function job_status_li(model)
             job_status1 = "<span class='job-expired'>Job Expired.</span>";
     }
     //});
+
     return job_status1;
 }
 
 function job_collapse_button(model)
 {
+
     var status_button;
     if (logged_in_user_id)
     {
@@ -452,7 +552,7 @@ function job_collapse_button(model)
 //                    alert(model.toJSON().applied_user_id[i]);
                     //alert(model.toJSON().user_to_job_status.indexOf('hired'));
                     // if (model.toJSON().applied_user_id[i] === logged_in_user_id  && model.toJSON().user_to_job_status.indexOf('hired') >=  0)
-                    //   status_button = ""; 
+                    //   status_button = "";
                     if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status.indexOf('hired') === -1 && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
                         status_button = "<a href = '#' id = 'unapply-job' class ='btn btn-mini btn-danger ' data-action ='unapply' data-job-id= " + model.toJSON().post_id + "  > Unapply </a>";
                     else if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_status[i] === 'hired' && model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check)
@@ -538,6 +638,7 @@ function job_collapse_button(model)
             status_button = "<span class='job-expired'>Job Expired.</span>";
 
     }
+    //alert(status_button);
     return status_button;
 }
 
@@ -602,7 +703,7 @@ var Usercomments = Backbone.Model.extend({
 //        if ($(this).is(':checked')) {
 //            $('input:checkbox').not(this).prop('checked', false);
 //        }
-//       
+//
 //        $(this).attr("checked", "checked");
 //    });
 
@@ -730,7 +831,7 @@ function filter_categories(id, cat_name)
 
     var cat_id = (jQuery("#category_id").val()) > 0 ? jQuery("#category_id").val() + ',' + id : id;
     jQuery("input[name='categoryids[]']").val(cat_id);
-//    
+//
     // load_browse_jobs('','',cat_id)
     window.location = siteurl + '/jobs/?cat_id=' + id + '&cat_name=' + cat_name.replace(' ', '-');
 
@@ -757,7 +858,7 @@ function load_comments(user_id)
     }).popover('show');
 
 
-    //$(".commentsclick").popover({placement:'right',content:'asdasd'});  
+    //$(".commentsclick").popover({placement:'right',content:'asdasd'});
     var Fetchusercomments = Backbone.Collection.extend({
         model: Usercomments,
         url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/getcomments'
@@ -782,7 +883,7 @@ function load_comments(user_id)
 //                });
 ////
 //
-//            } 
+//            }
 
         }
 
@@ -792,9 +893,9 @@ function load_comments(user_id)
 
 /*
  *  LOADS PRE-LOADED TEMPLATES FOR NEW JOB
- *   
+ *
  *  ONCLICK OF THE LI
- * 
+ *
  */
 $("li").live('click', function() {
 
@@ -808,8 +909,8 @@ $("li").live('click', function() {
         $("#" + $(this).attr("name")).val($(this).val()); // *here the hidden field names are same as form input ids* assign based on name.
 
         /*
-         *  FOR CATEGORIES 
-         *  
+         *  FOR CATEGORIES
+         *
          */
         if ($(this).attr("name") === 'categories') {
             var categories = $(this).val();
@@ -827,7 +928,7 @@ $("li").live('click', function() {
         }
         /*
          *  END CATEFORIES
-         * 
+         *
          */
 
         var tags;
@@ -847,12 +948,12 @@ $("li").live('click', function() {
 });
 
 
-/* 
- *  TO DELETE TAGS ON ADDING 
- *  
+/*
+ *  TO DELETE TAGS ON ADDING
+ *
  *  FROM A TEMPLATE
  */
-$(".tag a").live('click',function(){
-  
-  $(this).parent().remove();
+$(".tag a").live('click', function() {
+
+    $(this).parent().remove();
 });

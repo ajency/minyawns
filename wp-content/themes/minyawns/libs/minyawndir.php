@@ -58,7 +58,7 @@ $app->get('/allminyawns', function() use ($app) {
                 $total = count(get_users($args_total));
                 $args['offset'] = $_GET['offset'];
                 $args['order'] = 'ASC';
-                $args['number'] = '5';
+                $args['number'] = '10';
 
 
                 $usersData = get_users($args);
@@ -81,7 +81,7 @@ $app->get('/allminyawns', function() use ($app) {
 
                 $args = array('offset' => $_GET['offset'],
                     'order' => 'ASC',
-                    'number' => '5',
+                    'number' => '10',
                     'role' => 'minyawn',
                 );
 
