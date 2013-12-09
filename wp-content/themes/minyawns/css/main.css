@@ -3024,11 +3024,11 @@ body .jobs_table .data-title .profile-job {
     font-size: 18px;
   }
   .job-open {
-    border-top: 4px solid #8ed030 !important;
+    border-top: 0px solid #8ed030 !important;
     border-left: 0px!important;
   }
   .job-closed {
-    border-top: 4px solid #ee5959!important;
+    border-top: 0px solid #ee5959!important;
     border-left: 0px!important;
   }
   .job-view-list ._li {
@@ -4691,10 +4691,66 @@ div.tooltip1:after {
   bottom: 0px;
 }
 @media (max-width: 767px) {
+  .job-mob-title {
+    display: block !important;
+  }
+  .min_profile .span2 {
+    float: left;
+    width: 28%;
+    margin-right: 5px;
+  }
+  .min_profile .span2 .avtar-btn {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    bottom: 0px;
+  }
+  .min_profile .span10 {
+    float: left;
+    width: 70%;
+  }
+  .min_profile .span10 .name {
+    font-size: 16px;
+  }
+  .min_profile .span10 .profiledata .college-data {
+    font-size: 12px;
+  }
+  .min_profile .span10 .edit {
+    font-size: 12px;
+  }
+  .accordion .avial {
+    border-left: 2px solid #8ed030;
+    padding-left: 5px;
+  }
+  .accordion .non-avial {
+    border-left: 2px solid red;
+    padding-left: 5px;
+  }
+  .accordion dt {
+    margin-bottom: 7px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    display: block !important;
+  }
+  .accordion dt span {
+    color: #000;
+    margin-left: 8px;
+    font-size: 12px;
+  }
+  .accordion dd .job-title {
+    display: none;
+  }
+  .accordion dd .jobs-rating {
+    position: relative;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+  }
   .min_profile {
     background: none;
     padding: 5px;
-    width: 96% !important;
+    width: 94% !important;
   }
   .min_profile .name {
     font-size: 20px;
@@ -4723,4 +4779,10 @@ div.tooltip1:after {
   .right-wideget-bar {
     margin-bottom: 20px;
   }
+}
+.job-mob-title {
+  display: none;
+}
+.accordion dt {
+  display: none;
 }

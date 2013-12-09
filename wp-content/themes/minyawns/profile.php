@@ -295,10 +295,15 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
 				<hr>
 				<h4><i class="icon-briefcase"></i> &nbsp; Job List</h4>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </p>
-				<div class="row-fluid">
+				<div class="row-fluid accordion">
 					<div class="span9">
 						<ul class="unstyled job-view-list" id="accordion2">
-                           <li class="_li job-open">
+						<dl class="accordion">
+                            <dt class="avial">
+                                             <a href="#"> Wash My Car  <span>View More</span></a>
+                               </dt>
+						 <dd>  <li class="_li job-open ">
+						  
 						    <div class="jobs-rating">
 								<div class="well-done">
 								<i class="icon-thumbs-up"></i>You Have Been Rated <br><b>Well Done</b>
@@ -353,7 +358,12 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                               </div>
 							 
                            </li>
-                           <li class="_li job-open">
+						   </dd>
+						    <dt class="non-avial">
+                                             <a href="#"> The template has been conceived with a proper balance UI & UX in order to offer an excellent  <span>View More</span></a>
+                               </dt>
+						    <dd>
+                           <li class="_li job-open accord-content">
 						    <div class="jobs-rating">
 								<div class="terrible">
 								<i class="icon-thumbs-down"></i>You Have Been Rated <br><b>Terrible</b>
@@ -428,7 +438,11 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                                     </div>
                                  </div>
                               </div>
-                           </li>
+                           </li>  </dd>
+						    <dt class="avial">
+                                             <a href="#"> The template has been conceived with a proper balance UI & UX in order to offer an excellent  <span>View More</span></a>
+                               </dt>
+						    <dd>
                            <li class="_li job-open">
 						       <div class="jobs-rating">
 								<div class="not-rated">
@@ -510,8 +524,9 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                                     </div>
                                  </div>
                               </div>
-                           </li>
+                           </li> </dd>
 						  <a href="#" class="btn load-btn" style="width:99%;"><i class="icon-undo"></i> Load more</a>
+						  </dl>
 						   </ul>
 					</div>
 					<div class="span3">
