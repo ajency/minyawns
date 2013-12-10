@@ -30,18 +30,14 @@
                                           <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
                                        </div>
                                        <div class="st-moile-span2">
-                                           <%= job_progress %>
-                                          
+                                           <%= job_progress %>                                          
                                        </div>
                                        <div class="clear"></div>
                                     </div>
-                                    <div class="st-footer">
-                                       <div class="st-applicant">No Applications yet. </div>
-                                       <a href="#fakelink" class="btn btn-primary">
-                                       <i class="icon-location-arrow"></i>
-                                       Send Invites
-                                       </a>
-                                       </a>
+                                    <div class="st-footer">                                       
+                                        
+                                       <%= job_collapse_button %>
+                                      
                                     </div>
                                  </div>
                               </div>

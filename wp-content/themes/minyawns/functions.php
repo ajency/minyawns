@@ -135,7 +135,7 @@ function minyawns_scripts_styles() {
 
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
-            
+             wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery'), null);
 
             // wp_dequeue_script('jquery');
             if (is_page('jobs') || is_page('jobs-2')) {
@@ -178,7 +178,7 @@ function popup_userlogin() {
     $user = wp_authenticate($pd_email, $pd_pass);
 
     if (is_wp_error($user)) {
-        $msg = "<div class='alert alert-error alert-box' style='padding: 10px 45px 10px 5px;font-size:12px'>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Invalid email/password or verify your account with the verification link send to your email id. </div>";
+        $msg = "<div class='alert alert-error alert-box' style='padding: 10px 45px 10px 5px;font-size:12px'>  <button type='button' class='close' data-dismiss='alert'>&times;</button>Invalid email/password</div>";
         $response = array('success' => false, 'user' => $user_->user_login . $pd_pass, 'msg' => $msg);
         wp_send_json($response);
     } else {
@@ -257,15 +257,16 @@ function popup_usersignup() {
               $response = array('success' => true,'user'=>$user_->user_login.$pd_pass );
               wp_send_json($response);
               $success = true; */
-            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered. Please check your mail to complete registration</div>";
+            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.</div>";
 
             $wpdb->update($wpdb->users, array('user_activation_key' => $user_activation_key), array('user_login' => $userdata_['user_email']));
-            $wpdb->update($wpdb->users, array('user_status' => 2), array('user_login' => $userdata_['user_email']));
+            $wpdb->update($wpdb->users, array('user_status' => 0), array('user_login' => $userdata_['user_email']));
 
 
             $subject = "You have successfully registered on Minyawns";
-            $message = "Hi, <br/><br/>You have successfully registered on <a href='" . site_url() . "' >Minyawns</a>.<br/><br/> To verify your account visit the following address";
-            $message.=" <a href='" . site_url() . "/newuser-verification/?action=ver&key=" . $user_activation_key . "&email=" . $userdata_['user_email'] . "'>" . site_url() . "/newuser-verification/?action=ver&key=" . $user_activation_key . "&email=" . $userdata_['user_email'] . "</a>\r\n";
+            $message = "Hi, <br/><br/>You have successfully registered on <a href='" . site_url() . "' >Minyawns</a>.<br/><br/>";
+            //To verify your account visit the following address";
+            //$message.=" <a href='" . site_url() . "/newuser-verification/?action=ver&key=" . $user_activation_key . "&email=" . $userdata_['user_email'] . "'>" . site_url() . "/newuser-verification/?action=ver&key=" . $user_activation_key . "&email=" . $userdata_['user_email'] . "</a>\r\n";
             //$message.= '<' . network_site_url("activate/?action=ver&key=$user_activation_key&email=" . $userdata_['user_email']) . ">\r\n";
             /* $message.="<br/><br/> Regards,
               <br/>Minyawns Team<br/> ";
@@ -718,7 +719,7 @@ function check_access() {
     $queryresult = $wpdb->get_results($wpdb->prepare("SELECT  count(id) as cnt_perm from  " . $wpdb->base_prefix . "userpermissions where role = %s and  noperm_slug = %s ", $user_role, $page_slug), OBJECT);
     foreach ($queryresult as $res)
         if ($res->cnt_perm > 0) {
-            no_access_page($user_role, $page_slug);
+          //  no_access_page($user_role, $page_slug);
             //return false;
         }
         else

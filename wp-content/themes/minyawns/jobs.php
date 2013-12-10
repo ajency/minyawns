@@ -286,7 +286,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         </div>
                     <?php } ?>
 
-                    <div id="add-job-form" style="display:none;" >
+                    <div id="add-job-form" >
                         <div class="row-fluid">
                             <div class="span8">
                                 <?php

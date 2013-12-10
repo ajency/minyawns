@@ -371,7 +371,7 @@ class Minyawn_Job {
     function check_minyawn_job_status($jobID, $user_id) {
         global $wpdb;
         $applied = 0;
-        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}' AND {$wpdb->prefix}userjobs.status='hired'";
+        $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}'";
 
         $querystr = "
                             SELECT {$wpdb->prefix}userjobs.status
@@ -384,18 +384,37 @@ class Minyawn_Job {
 
         $user_applied_to = $wpdb->get_results($querystr, OBJECT);
 //print_r($user_applied_to);
-        if (count($user_applied_to) > 0)
-            $applied = 2;
-        else
-            $applied = 1;
-
-
-
-
-        $min_job = new Minyawn_Job($jobID);
-        if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns))
-            $applied = 3;
-
+//        if (count($user_applied_to) > 0)
+//            $applied = 2;
+//        else
+//            $applied = 1;
+//
+//
+//
+//
+//        $min_job = new Minyawn_Job($jobID);
+//        if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns))
+//            $applied = 3;
+        
+         $applied_count=0;
+        
+       foreach($user_applied_to as $user_applied){
+           
+           if($user_applied->status === 'hired'){
+                 $applied = 2;//USERS HIRED
+           break;                
+           }else if($user_applied->status ==='applied')
+           {
+               $applied_count=$applied_count+1;
+               
+               if($applied_count === $this->required_minyawns+1)
+                 $applied=3;//JOB LOCKED MAX APPLICANTS          
+               
+               else
+                  $applied=1; 
+           
+       } 
+       }
 
 
         return $applied;
