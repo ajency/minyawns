@@ -333,7 +333,7 @@ function job_status_e(model) {
     var job_status = '';
     var return_status = '';
 //model.toJSON().job_status != 1
-    if (model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check && model.toJSON().job_status == 1) {
+    if (model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check && (model.toJSON().job_status == 1||  model.toJSON().job_status == 0)) {
 
         job_status = "Available";
 
@@ -459,7 +459,7 @@ function job_collapse_b(model) {
     var job_button = '';
 
 
-     if (model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check && model.toJSON().job_status == 1) {
+     if (model.toJSON().todays_date_time < model.toJSON().job_end_date_time_check && (model.toJSON().job_status == 1 ||  model.toJSON().job_status == 0)) {
 
         job_time = "Available";
 
