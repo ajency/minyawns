@@ -122,14 +122,31 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         </div>
                         <br>
                     </div>
+                    <?php 
+
+	     $args = array(
+         	  'orderby' => 'name',
+	          'show_count' => 0,
+        	  'pad_counts' => 0,
+	          'hierarchical' => 1,
+        	 // 'taxonomy' => $tax,
+        	  'title_li' => ''
+        	);
+
+	     $category=get_categories( $args );
+  
+    
+
+                    
+                    ?>
 					  <div class="alert alert-success alert-sidebar">
                         <h3> Categories</h3><hr>
 						<ul class="unstyled categories">
-							<li><a href="#">Categories 1</a></li>
-							<li><a href="#">Categories 2</a></li>
-							<li><a href="#">Categories 3</a></li>
-							<li><a href="#">Categories 4</a></li>
-						</ul>
+						<?php foreach($category as $cats){?>	
+                                                    <li onclick="filter_categories('<?php echo $cats->term_id ?>','<?php echo $cats->name; ?>')"><?php echo $cats->name; ?></li>
+						
+						<?php } ?>
+                                                </ul>
                         <br>
                     </div>
 
