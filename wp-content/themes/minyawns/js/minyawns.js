@@ -728,7 +728,7 @@ $('.roundedTwo input').click(function(){
                 $("#accordion24").empty();
                 _.each(collection.models, function(model) {
                     var job_stat = job_status_e(model);
-                    var job_collapse_button_var = job_collapse_button(model);
+                    var job_collapse_button_var = job_collapse_b(model);
                     var minyawns_grid = job_minyawns_grid(model)
                     if (model.toJSON().load_more === 1)
                         $("#load-more,#load-more-my-jobs").hide();
@@ -1221,12 +1221,12 @@ $('.roundedTwo input').click(function(){
             
             if (response.new_action == 'apply')
             {
-                $(_this).removeClass('btn btn-mini btn-danger').addClass('btn btn-primary btn-mini').attr('id', 'apply-job-browse').text('Apply');
+                $(_this).removeClass('btn btn-danger').addClass('btn btn-primary').attr('id', 'apply-job-browse').text('Apply');
                 $(_this).attr('data-action', 'apply');
             }
             if (response.new_action == 'unapply')
             {
-                $(_this).removeClass('btn btn-primary btn-mini').addClass('btn btn-mini btn-danger').attr('id', 'unapply-job').text('Unapply');
+                $(_this).removeClass('btn btn-primary').addClass('btn btn-danger').attr('id', 'unapply-job').text('Unapply');
                 $(_this).attr('data-action', 'unapply');
             }
              

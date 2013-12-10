@@ -183,8 +183,13 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $minyawns_verified=array();
                 
                 $user_rating_job = array();
-                
-              
+               
+             $count_hired=0;
+             $count_applied=0;
+             $count_rated=0;
+             
+             
+             
                 foreach ($min_job->minyawns as $min) {
 
                     $user = array_push($user_data, $min['first_name'] . ' ' . $min['last_name']);
@@ -219,18 +224,22 @@ $app->get('/fetchjobs/', function() use ($app) {
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
 
-                    if ($user_to_job_rating->positive > 0)
+                    if ($user_to_job_rating->positive > 0){
                         array_push($user_rating_job, ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited');
-                    elseif ($user_to_job_rating->negative > 0)
+                        $count_rated=$count_rated+1;
+                    }elseif ($user_to_job_rating->negative > 0){
                         array_push($user_rating_job, ($user_to_job_rating->negative) > 0 ? 'Terrible' : 'Rating:Awaited');
-                    else
-                        array_push($user_rating_job, 'Rating:Awaited');
+                        $count_rated=$count_rated+1;                        
+                    }else
+                    {   array_push($user_rating_job, 'Rating:Awaited');}
 
-                    if ($user_to_job_rating->status == 'applied')
+                    if ($user_to_job_rating->status == 'applied'){
                         $status = 'Applied';
-                    else
+                        $count_applied=$count_applied+1;
+                    }else{
                         $status = 'Hired';
-                    
+                        $count_hired=$count_hired+1;
+                    }
                     
                     
                      
@@ -281,7 +290,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 
                 
               $difference=strtotime(date('d M Y', $post_meta['job_start_date'][0]))-strtotime(date('d M Y'));  
-
+if($count_hired == $count_rated){$final_count=1;}else{    $final_count=0;}
 
                 /*
                  *  1 ->running
@@ -336,7 +345,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_category_slug' => $category_slug,
                     'is_verfied'=>$minyawns_verified,
                     'required_minyawns'=>$post_meta['job_required_minyawns'][0],
-                    'days_to_job_expired'=>  round($difference/86400)
+                    'days_to_job_expired'=>  round($difference/86400),
+                    'no_applied'=>$count_applied,
+                    'no_hired'=>$count_hired,
+                    'count_rated'=>$final_count
                 );
             }
 
