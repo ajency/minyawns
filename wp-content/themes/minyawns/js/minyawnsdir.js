@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
 //    autoTriggerUntil:true
 //    
 //    });
-var b = $('#back-top');
+    var b = $('#back-top');
 
 
 //$("#searchbox").fcbkcomplete({
@@ -29,7 +29,7 @@ var b = $('#back-top');
 //        }, 500);
 //        return false;
 //    });
-var b = $('#back-top');
+    var b = $('#back-top');
     // Hide scroll top button
     b.hide();
 
@@ -50,14 +50,14 @@ var b = $('#back-top');
 });
 
 document.addEventListener('scroll', function(event) {
-    
+
     // Hide scroll top button
 //      alert(document.body.scrollHeight);
 //      alert(document.body.scrollTop);
 //       alert(window.Height);
     if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
-       
-        
+
+
         if (window.error !== 404)
             load_more();
 
@@ -66,7 +66,7 @@ document.addEventListener('scroll', function(event) {
     if ($(this).scrollTop() > 400) {
 
         if ($(this).scrollTop() > 400) {
-          
+
             b.fadeIn();
             // otherwise fadeout button
         } else {
@@ -75,16 +75,16 @@ document.addEventListener('scroll', function(event) {
     }
 
 
-   
-    
-});
 
- b.on('click', function() {
-        $('html,body').animate({
-            scrollTop: 0
-        }, 500);
-        return false;
-    });
+
+});
+var b = $('#back-top');
+b.on('click', function() {
+    $('html,body').animate({
+        scrollTop: 0
+    }, 500);
+    return false;
+});
 
 
 function fetch_minyawns_list() {
@@ -111,6 +111,11 @@ function fetch_minyawns_list() {
     if (typeof(first) !== 'undefined')
         _data.filter = first;
 
+    if (typeof(window.is_verified) !== 'undefined')
+        _data.verified = window.is_verified;
+
+//   if(typeof(window.minions_applied) != 'undefined')
+//       _data.minions_applied = window.minions_applied;
 
 
 //     if (typeof(first) !== 'undefined')
@@ -227,6 +232,9 @@ function load_more() {
     if (typeof(first) !== 'undefined')
         _data.filter = first;
 
+    if (typeof(window.is_verified) !== 'undefined')
+        _data.verified = window.is_verified;
+
     var counter = 0;
     window.minyawndir.fetch({
         data: _data,
@@ -325,40 +333,31 @@ $(".checkbox").live('click', function() {
 
     if ($("#checkbox-verified").attr("checked") === 'checked')
     {
+        window.is_verified = 'Y';
+        fetch_minyawns_list();
 
-        $.each(window.verified_users, function(index, value) {
-
-            $("#minyawn" + index).hide();
-
-        });
-        console.log(window.verified_users);
-        if (window.count === 0)
-        {
-            var no_result = _.template($("#no-result-verfied-minyawn-dir").html());
-            jQuery(".minyawnslist").append(no_result);
-            jQuery("#load_more").toggle();
-            return;
-        }
 
     }
     else
     {
-        jQuery(".minyawnslist").find(".no-job").remove();
-        jQuery("#load_more").toggle();
-        $.each(window.verified_users, function(index, value) {
 
-            $("#minyawn" + index).show();
 
-        });
+        window.is_verified = 'N';
+        fetch_minyawns_list();
 
-//        if (window.ncount === 0)
-//        {
-//            var no_result = _.template($("#no-result-verfied-minyawn-dir").html());
-//            jQuery(".minyawnslist").html(no_result);
-//            jQuery("#load_more").hide();
-//            return;
-//        }
     }
+    
+    
+    if($("#applied-minyawns").attr("checked") === 'checked'){
+        
+         window.minions_applied = '1';
+        fetch_minyawns_list();
+    }else
+        {
+            window.minions_applied = '0';
+        fetch_minyawns_list(); 
+            
+        }
 
 
 

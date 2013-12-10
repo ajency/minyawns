@@ -370,7 +370,7 @@ class Minyawn_Job {
 
     function check_minyawn_job_status($jobID, $user_id) {
         global $wpdb;
-        $applied = 0;
+        $applied = 1;
         $my_jobs_filter = "WHERE $wpdb->posts.ID = {$wpdb->prefix}userjobs.job_id  AND  {$wpdb->prefix}userjobs.job_id='{$jobID}'";
 
         $querystr = "
