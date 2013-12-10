@@ -73,7 +73,7 @@ get_header();
                                             <span class="ui-slider-value first">Atleast 3 job done</span>
                                             <br>
                                          </div>-->
-                    <div class="alert alert-success alert-sidebar">
+<!--                    <div class="alert alert-success alert-sidebar">
                         <label class="checkbox" for="hired-minyawns">
                             <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span>
                             <input type="checkbox" value="" id="hired-minyawns" data-toggle="checkbox">
@@ -86,7 +86,7 @@ get_header();
                             <input type="checkbox" value="" id="applied-minyawns" data-toggle="checkbox">
                             Minions who have applied to your jobs before
                         </label>
-                    </div>
+                    </div>-->
                     <div class="alert alert-success alert-sidebar">
                         <label  class="checkbox" for="checkbox-verified">
                             <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span>

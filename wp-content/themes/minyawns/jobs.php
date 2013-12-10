@@ -102,7 +102,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     </div>-->
             <div class="row-fluid">
                 <div class="span3">
-                    <div class="alert alert-success alert-sidebar">
+<!--                    <div class="alert alert-success alert-sidebar">
                         <h3>Skills / Major </h3><hr>
                         <form action="submit.php" method="POST" accept-charset="utf-8">
                             <select id="select3" name="select3" place-holder=" cool">
@@ -111,8 +111,8 @@ $all_categories = get_categories(array('hide_empty' => 0));
                                 <option value="freestyle">freestyle</option>
                             </select>
                         </form>
-                    </div>
-                    <div class="alert alert-success alert-sidebar">
+                    </div>-->
+<!--                    <div class="alert alert-success alert-sidebar">
                         <h3> Number of Jobs Completed </h3><hr>
 
                         <div id="slider3" class="ui-slider">
@@ -121,7 +121,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                             <span class="ui-slider-value last">$1000</span>
                         </div>
                         <br>
-                    </div>
+                    </div>-->
                     <?php 
 
 	     $args = array(
@@ -140,10 +140,12 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     
                     ?>
 					  <div class="alert alert-success alert-sidebar">
-                        <h3> Categories</h3><hr>
+                        <h3> Job Categories</h3><hr>
 						<ul class="unstyled nav nav-list categories">
-						<?php foreach($category as $cats){?>	
-                                                    <li onclick="filter_categories('<?php echo $cats->term_id ?>','<?php echo $cats->name; ?>')"><?php echo $cats->name; ?> <span class="nav-counter">19</span></li>
+						<?php foreach($category as $cats){
+                                                    $count=query_posts("category_name='. $cats->name.'");
+                                                    ?>	
+                                                    <li onclick="filter_categories('<?php echo $cats->term_id ?>','<?php echo $cats->name; ?>')"><?php echo $cats->name; ?> <span class="nav-counter"><?php echo count($count);?></span></li>
 						
 						<?php } ?>
                                                 </ul>
