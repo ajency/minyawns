@@ -6,7 +6,22 @@
 
 
 jQuery(document).ready(function($) {
- 
+if ($(window).width() < 800){
+
+(function($) {
+    
+  var allPanels = $('.accordion > dd').hide();
+    
+  $('.accordion > dt > a').click(function() {
+    allPanels.slideUp();
+    $(this).parent().next().slideDown();
+    return false;
+  });
+
+})(jQuery);
+	
+// do stuff
+}
 
 $("#select3").fcbkcomplete({
                     json_url: "data.txt",

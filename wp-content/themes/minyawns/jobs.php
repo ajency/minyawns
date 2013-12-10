@@ -122,6 +122,36 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         </div>
                         <br>
                     </div>
+					  <div class="alert alert-success alert-sidebar">
+                        <h3> Categories</h3><hr>
+						<label class="checkbox" for="checkbox1">
+                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                       Categories 1
+                        </label>
+
+						<label class="checkbox" for="checkbox1">
+                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                       Categories 2
+                        </label>
+						<label class="checkbox" for="checkbox1">
+                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                        Categories 3
+                        </label>
+						<label class="checkbox" for="checkbox1">
+                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                       Categories 4
+                        </label>
+
+						<label class="checkbox" for="checkbox1">
+                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                       Categories 5
+                        </label>
+						<label class="checkbox" for="checkbox1">
+                        <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                        Categories 6
+                        </label>
+                        <br>
+                    </div>
 
                 </div>
                 <div class="span9">
