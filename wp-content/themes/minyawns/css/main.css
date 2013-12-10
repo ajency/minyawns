@@ -4839,3 +4839,9 @@ div.tooltip1:after {
 .accordion dt {
   display: none;
 }
+.categories a {
+  padding: 5px;
+  border-bottom: 1px dotted #BEBEBE;
+  margin-bottom: 5px;
+  display: block;
+}
