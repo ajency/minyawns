@@ -129,7 +129,7 @@ function load_browse_jobs(id, _action, category_ids) {
 
 
                         } else {
-                            alert("load");
+                           
                             jQuery(".singlejobedit").empty();
                             jQuery("#hidden_minion_id").val(model.toJSON().applied_user_id);
                             jQuery("#job_id").val(id);
