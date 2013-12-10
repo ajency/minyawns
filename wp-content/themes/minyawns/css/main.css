@@ -964,11 +964,6 @@ body .jobs_table .data-title .profile-job {
   body #innermainimage .banner-content .banner-desc {
     text-align: center;
   }
-  body #innermainimage .banner-content .nav-tabs li {
-    width: 93%;
-    margin: 10px auto;
-    text-align: center;
-  }
   body #innermainimage .banner-content .tab-content .tab-pane {
     height: 100%;
   }
@@ -2939,9 +2934,6 @@ body .jobs_table .data-title .profile-job {
     font-size: 13px !important;
     margin-bottom: 28px!important;
   }
-  .how-does-it-work {
-    margin-top: 360px;
-  }
   .carousel {
     height: 380px;
   }
@@ -2955,7 +2947,7 @@ body .jobs_table .data-title .profile-job {
     width: 88%!important;
   }
   .home .what-we-can-do .back-satisfication {
-    background-size: 100%;
+    display: none;
   }
   .home .what-we-can-do .back-satisfication .text {
     padding: 35px 20px 10px 12px;
@@ -4691,6 +4683,52 @@ div.tooltip1:after {
   bottom: 0px;
 }
 @media (max-width: 767px) {
+  .social-link {
+    float: none;
+  }
+  .recent-jobs li {
+    height: auto;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  .customer_bg .recent-job-header {
+    text-align: center;
+  }
+  .customer_bg .span9 {
+    width: 70%;
+    float: left;
+  }
+  .customer_bg .span3 {
+    width: 30%;
+    float: left;
+  }
+  .home #innermainimage {
+    height: auto;
+  }
+  .home #innermainimage .banner-content .nav-tabs {
+    border-bottom: 4px solid  #8ED030;
+  }
+  .home #innermainimage .banner-content .nav-tabs li {
+    width: 49%;
+    display: inline-block;
+    margin-bottom: -4px;
+  }
+  .home #innermainimage .banner-content .nav-tabs li a {
+    font-size: 12px;
+    border-radius: 0px;
+    color: #FFF;
+    border: 2px solid #FFF;
+    padding: 8px;
+    border-bottom: 0px;
+    margin-bottom: 2px;
+  }
+  .home #innermainimage .banner-content li.active a {
+    font-size: 12px;
+    border-radius: 0px;
+    border: 0px;
+    padding: 10px !important;
+  }
   .job-mob-title {
     display: block !important;
   }
