@@ -4839,9 +4839,15 @@ div.tooltip1:after {
 .accordion dt {
   display: none;
 }
-.categories a {
-  padding: 5px;
-  border-bottom: 1px dotted #BEBEBE;
-  margin-bottom: 5px;
-  display: block;
+.categories li {
+  border-bottom: 1px dotted #CCC;
+  padding-bottom: 9px;
+  margin-bottom: 9px;
+  cursor: pointer;
+}
+.categories li:hover {
+  color: #8ed030;
+}
+.categories li:hover span {
+  background: #8ed030;
 }

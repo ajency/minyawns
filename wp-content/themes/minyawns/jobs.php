@@ -141,9 +141,9 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     ?>
 					  <div class="alert alert-success alert-sidebar">
                         <h3> Categories</h3><hr>
-						<ul class="unstyled categories">
+						<ul class="unstyled nav nav-list categories">
 						<?php foreach($category as $cats){?>	
-                                                    <li onclick="filter_categories('<?php echo $cats->term_id ?>','<?php echo $cats->name; ?>')"><?php echo $cats->name; ?></li>
+                                                    <li onclick="filter_categories('<?php echo $cats->term_id ?>','<?php echo $cats->name; ?>')"><?php echo $cats->name; ?> <span class="nav-counter">19</span></li>
 						
 						<?php } ?>
                                                 </ul>
