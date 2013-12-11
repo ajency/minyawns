@@ -1517,6 +1517,25 @@ var no_of_minyawns = 0;
             no_of_minyawns = no_of_minyawns + 1;
             paypal_form_values(no_of_minyawns);
             
+          
+       var xPos=$(this).closest('.m2').offset().left;
+       var $clone=$(this).closest('.m2').clone();
+       $(this).append($clone);
+       var leftpos=$(".alert-sidebar").offset().left; 
+      // alert(leftpos);
+       xPos += 200+1000;
+       console.log($clone);
+        $clone.animate({"left":'1000px',opacity: 0.25,top:'10px'},'slow', function(){
+             $clone.hide();
+        });
+        
+       
+       
+       
+       
+       
+       
+            
         }
 
 

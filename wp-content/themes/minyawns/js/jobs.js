@@ -525,7 +525,7 @@ function job_collapse_b(model) {
                 {
                     if (role === 'Employer') {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
-                            job_button = " <div class='st-applicant'>" + model.toJSON().no_applied + " have applied.</div><a href='#fakelink' class='btn btn-primary'><i class='icon-check'></i>Select Minions</a>"
+                            job_button = " <div class='st-applicant'>" + model.toJSON().no_applied + " have applied.</div><a href='" + siteurl + '/jobs/' + model.toJSON().post_slug +"' class='btn btn-primary'><i class='icon-check'></i>Select Minions</a>"
                         else
                             job_button = "<a class='st-green-link' href='#'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
                     } else// USER ROLE MINION
@@ -571,7 +571,7 @@ function job_collapse_b(model) {
                     if (role == "Employer")//EMPLOYER
                     {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
-                            job_button = " <div class='st-applicant'>" + model.toJSON().no_applied + " have applied.</div><a href='#fakelink' class='btn btn-primary'><i class='icon-check'></i>Select Minions</a>"
+                            job_button = " <div class='st-applicant'>" + model.toJSON().no_applied + " have applied.</div><a href='" + siteurl + '/jobs/' + model.toJSON().post_slug +"' class='btn btn-primary'><i class='icon-check'></i>Select Minions</a>"
                         else
                             job_button = "<a class='st-green-link' href='#'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
 
