@@ -129,15 +129,15 @@ function load_browse_jobs(id, _action, category_ids) {
 
 
                         } else {
-                           
-                            jQuery(".singlejobedit").empty();
+                         
+                            jQuery(".job-view-list").empty();
                             jQuery("#hidden_minion_id").val(model.toJSON().applied_user_id);
                             jQuery("#job_id").val(id);
 
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
-                            jQuery(".singlejobedit").animate({
-                                left: parseInt(jQuery(".singlejobedit").css('left'), 100) === 0 ?
-                                        -jQuery(".singlejobedit").outerWidth() :
+                            jQuery(".job-view-list").animate({
+                                left: parseInt(jQuery(".job-view-list").css('left'), 100) === 0 ?
+                                        -jQuery(".job-view-list").outerWidth() :
                                         0
                             }, "slow").append(html);
                             jQuery(".details").find(".minyawansgrid").hide();
@@ -546,7 +546,7 @@ function job_collapse_b(model) {
 
 
                         }
-                        alert(job_button);
+                    
                     }
 
                 }
@@ -993,6 +993,7 @@ function job_status_li(model)
 
 function load_job_minions(jobmodel)
 {
+   
     jQuery(".load_ajaxsingle_job_minions").show();
     var Fetchuserprofiles = Backbone.Collection.extend({
         model: Userprofile,

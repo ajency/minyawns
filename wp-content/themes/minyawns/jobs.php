@@ -144,6 +144,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
 						<ul class="unstyled nav nav-list categories">
 						<?php foreach($category as $cats){
                                                     $count=query_posts("category_name='. $cats->name.'");
+                                                    
                                                     ?>	
                                                     <li onclick="filter_categories('<?php echo $cats->term_id ?>','<?php echo $cats->name; ?>')"><?php echo $cats->name; ?> <span class="nav-counter"><?php echo count($count);?></span></li>
 						

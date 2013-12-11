@@ -10,6 +10,7 @@ require 'templates/_jobs.php';
         load_browse_jobs('<?php the_ID() ?>', 'single_job');
         jQuery("#single-job-page").hide();
 
+       
 
     });
 </script>
@@ -160,11 +161,9 @@ require 'templates/_jobs.php';
                 <!--Delete Pop uP-->	          
             </div>
 			<div class="row-fluid">
-			<div class="span9">
+			<div class="span12">
             <span class='load_ajaxsingle_job' style="display:block"></span>
-              <ul class="singlejobedit single-jobs unstyled job-view-list" id="single-job-accordion"  style=" margin-left: 0; position: relative;
-                 top: 50px;
-                 z-index: 10;">
+              <ul class="unstyled job-view-list" id="single-job-accordion" >
             
 
                 <span  id='single-job-page'style="display:none"></span>
@@ -172,7 +171,7 @@ require 'templates/_jobs.php';
 
                         </ul>
 						</div>
-						<div class="span3"><br>
+<!--						<div class="span3"><br>
 	<div class="alert alert-success alert-sidebar jobexpired" >
 		<div>Job has expired.</div>
 	</div>
@@ -207,7 +206,7 @@ require 'templates/_jobs.php';
 					
 		 </form>
 		</div>
-	</div>
+	</div>-->
 	</div>
                 <!-- single jobs -->
 

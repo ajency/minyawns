@@ -44,7 +44,7 @@ $app->get('/allminyawns', function() use ($app) {
                         $where = "AND({$wpdb->prefix}usermeta.meta_key = 'user_skills' AND {$wpdb->prefix}usermeta.meta_value LIKE '" . $filter_key . ",%' OR {$wpdb->prefix}usermeta.meta_value LIKE '" . $filter_key . "%' OR  {$wpdb->prefix}usermeta.meta_value LIKE '%," . $filter_key . ",%'  OR {$wpdb->prefix}usermeta.meta_value LIKE '%," . $filter_key . "' OR {$wpdb->prefix}usermeta.meta_key = 'major' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'college' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'first_name' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'last_name' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%') AND ({$wpdb->prefix}usermeta.meta_key = 'user_verified' AND {$wpdb->prefix}usermeta.meta_value LIKE '" . $verified . "')";
                     } else {
 
-                        all_results();
+                        all_results($app);
                     }
                 }
 
@@ -97,36 +97,40 @@ $app->get('filterAllminyawns', function() use($app) {
             
         });
 
-$app->run();
 
-function all_results() {
+
+function all_results($app) {
 
     $args = array(
-        'role' => 'minyawn'
-    );
+                    'role' => 'minyawn'
+                );
 
-    $total = count(get_users($args));
+                $total = count(get_users($args));
 
-    $args = array('offset' => $_GET['offset'],
-        'order' => 'ASC',
-        'number' => '10',
-        'role' => 'minyawn',
-    );
+                $args = array('offset' => $_GET['offset'],
+                    'order' => 'ASC',
+                    'number' => '10',
+                    'role' => 'minyawn',
+                );
 
-    $usersData = get_users($args);
+                $usersData = get_users($args);
+           
 
 
-    if (count($usersData) > 0) {
-        foreach ($usersData as $userData) {
 
-            $data[] = get_minyawn_profile($userData, $total);
-        }
-    } else {
+            if (count($usersData) > 0) {
+                foreach ($usersData as $userData) {
 
-        $data = array(
-            'error' => '404'
-        );
-    }
-    $app->response()->header("Content-Type", "application/json");
-    echo json_encode($data);
+                    $data[] = get_minyawn_profile($userData, $total);
+                }
+            } else {
+
+                $data = array(
+                    'error' => '404'
+                );
+            }
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode($data);
 }
+
+$app->run();

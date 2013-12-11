@@ -202,7 +202,6 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                     $rating = array_push($single_job_rating, $min['user_job_rating']);
 
-
                     $minyawns_rating = get_user_rating_data($min['user_id'], $pagepost->ID);
 
                     $verified=get_user_meta($min['user_id'],'user_verified');

@@ -40,27 +40,300 @@
                                       
                                     </div>
                                  </div>
-                              </div>
-                                <form class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">
-
-    <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $returnUrl; ?>" / >
+                              </div>        
+                           </li>  
+                           <?php $salt_job = wp_generate_password(20);
+                            $key_job = sha1($salt .uniqid(time(), true));
+                           ?>
+   <form class="paypal" action="<?php echo site_url() . '/paypal-payments/'; ?>" method="post" id="paypal_form" target="_blank">
+   <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $return_url; ?>" / >
     <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
     <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url() . '/paypal-payments/'; ?>" / >
     <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
+                <input type="hidden" name="lc" value="UK" />
+                            <input type="hidden" name="no_note" value="1" />
+                <input type="hidden" name="custom" value="<?php echo $key_job ?>" />
+                            <input type="hidden" name="amount" id="amount"  />
+                                        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" /> 
+                                                    <input type="hidden" name="first_name" value="Customer  First Name"  />
+			    <input type="hidden" name="last_name" value="Customer  Last Name"  />
+                                        <input type="hidden" name="item_number" id="item_number"  / >
+                                                    <input type="hidden" name="item_name" value="<?php  get_the_title($_POST['job_id']) ?>" / >
     <div class="row-fluid minyawns-grid1">
-	<div class="span12 ">
+	<div class="span9">
     <ul class="thumbnails">
     <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
 	</br></br></br></br><span id="div_confirmhire"></span>
-    </form>
+</div>
+<div class="span3">
+                   
+                   <!--  <div class="alert alert-success alert-sidebar jobexpired">
+                        <div>Job has expired.</div>
+                     </div>-->
+                     <div class="alert alert-success alert-sidebar">
+                        <h3>Your selection</h3>
+                        <hr>
+                        <b> You have selected : <span id="no_of_minyawns">0</span></b>
+                        <b> Wages :<span id="wages_per_minyawns">0</span><span>$</span></b>
+                        <b class="total-cost"> Total Cost:<span id="total_wages">0</span><span>$</span></b><br>
+                        <span id="paypal_pay" style="display:none"><input type="submit"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal"/></span>
+                     <span id="selection_message">Please Select Atleast One Minion.</span>
+                                    </div>
+                 
+					   <div class="alert alert-success alert-sidebar dissussion">
+                   <div class="tab-pane active disscussion" id="QNA">
+				   <div class="ask-bg">
+   <div class="askquation">
+      <h3>Ask your questions here</h3>
+      <p></p>
+   </div>
+   <div class="askyorquation clearfix"><a class="btn btn-primary btn-small button" href="#qna_askquestion" id="ask_question">Ask a question</a></div></div>
+   <ul id="comment-list" class="commentlist">
+      <ul id="parent-0" class="commentlist">
+         <li id="qna-102" class="comment remove_relative  byuser comment-author-admin bypostauthor even thread-even depth-1">
+            <div class="comment-body row" id="div-comment-15">
+               <div class="avt">
+               </div>
+               <div class="coombody">
+                  <div class="comment-author vcard">
+                     <img width="32" height="32" class="avatar avatar-32 photo" src="images/default_avatar.jpg" alt="">			
+                  </div>
+                  <div class="name">
+                     <cite class="fn">Investor One </cite>         &nbsp;
+                  </div>
+                  <div class="comment-meta commentmetadata"> 
+                     <a>15th Nov 2013 9:14 am</a>&nbsp;&nbsp; 	
+                  </div>
+                  <span class="commenttext">
+                     <p>Do Business Proposal have deadline for Investment?</p>
+                  </span>
+                  <div class="reply">
+                     <div class="comment-reply-link">
+                        <div class="reply-in" data-id="5" id="respond-5">
+                           <span qna_id="102" class="comment-reply-link qna-reply">Reply</span>
+                        </div>
+                        | <a class="delete" href="javascript://"><i comment-id="102" class="icon-trash text-primary"></i></a>
+                     </div>
+                  </div>
+                  <div style="display:none" class="respondhide" id="5">
+                  </div>
+               </div>
+               <ul id="parent-102" class="children">
+                  <li id="qna-140" class="comment remove_relative  byuser comment-author-admin bypostauthor even thread-even depth-1">
+                     <div class="comment-body row" id="div-comment-15">
+                        <div class="avt">
+                        </div>
+                        <div class="coombody">
+                           <div class="comment-author vcard">
+                              <img width="32" height="32" class="avatar avatar-32 photo" src="images/default_avatar.jpg" alt="">			
+                           </div>
+                           <div class="name">
+                              <cite class="fn">admin </cite>         &nbsp;
+                           </div>
+                           <div class="comment-meta commentmetadata"> 
+                              <a>27th Nov 2013 4:32 am</a>&nbsp;&nbsp; 	
+                           </div>
+                           <span class="commenttext">
+                              <p>rrrr l have deadline for Investment?</p>
+                           </span>
+                           <div class="reply">
+                              <div class="comment-reply-link">
+                                 <div class="reply-in" data-id="5" id="respond-5">
+                                    <span qna_id="140" class="comment-reply-link qna-reply">Reply</span>
+                                 </div>
+                                 | <a class="delete" href="javascript://"><i comment-id="140" class="icon-trash text-primary"></i></a>
+                              </div>
+                           </div>
+                           <div style="display:none" class="respondhide" id="5">
+                           </div>
+                        </div>
+                        <ul id="parent-140" class="children"></ul>
+                     </div>
+                  </li>
+                  <li id="qna-137" class="comment remove_relative  byuser comment-author-admin bypostauthor even thread-even depth-1">
+                     <div class="comment-body row" id="div-comment-15">
+                        <div class="avt">
+                        </div>
+                        <div class="coombody">
+                           <div class="comment-author vcard">
+                              <img width="32" height="32" class="avatar avatar-32 photo" src="images/default_avatar.jpg" alt="">			
+                           </div>
+                           <div class="name">
+                              <cite class="fn">admin </cite>         &nbsp;
+                           </div>
+                           <div class="comment-meta commentmetadata"> 
+                              <a>27th Nov 2013 4:32 am</a>&nbsp;&nbsp; 	
+                           </div>
+                           <span class="commenttext">
+                              <p>rrrrr l have deadline for Investment?</p>
+                           </span>
+                           <div class="reply">
+                              <div class="comment-reply-link">
+                                 <div class="reply-in" data-id="5" id="respond-5">
+                                    <span qna_id="137" class="comment-reply-link qna-reply">Reply</span>
+                                 </div>
+                                 | <a class="delete" href="javascript://"><i comment-id="137" class="icon-trash text-primary"></i></a>
+                              </div>
+                           </div>
+                           <div style="display:none" class="respondhide" id="5">
+                           </div>
+                        </div>
+                        <ul id="parent-137" class="children"></ul>
+                     </div>
+                  </li>
+                  <li id="qna-103" class="comment remove_relative  byuser comment-author-admin bypostauthor even thread-even depth-1">
+                     <div class="comment-body row" id="div-comment-15">
+                        <div class="avt">
+                        </div>
+                        <div class="coombody">
+                           <div class="comment-author vcard">
+                              <img width="32" height="32" class="avatar avatar-32 photo" src="images/default_avatar.jpg" alt="">			
+                           </div>
+                           <div class="name">
+                              <cite class="fn">Business OwnerTwo </cite>         &nbsp;
+                           </div>
+                           <div class="comment-meta commentmetadata"> 
+                              <a>15th Nov 2013 9:14 am</a>&nbsp;&nbsp; 	
+                           </div>
+                           <span class="commenttext">
+                              <p>may not have met the deadline. However once a deadline has passed, in most cases this project will be removed from the current business proposals.</p>
+                           </span>
+                           <div class="reply">
+                              <div class="comment-reply-link">
+                                 <div class="reply-in" data-id="5" id="respond-5">
+                                    <span qna_id="103" class="comment-reply-link qna-reply">Reply</span>
+                                 </div>
+                                 | <a class="delete" href="javascript://"><i comment-id="103" class="icon-trash text-primary"></i></a>
+                              </div>
+                           </div>
+                           <div style="display:none" class="respondhide" id="5">
+                           </div>
+                        </div>
+                        <ul id="parent-103" class="children">
+                           <li id="qna-141" class="comment latest_comment remove_relative byuser comment-author-admin bypostauthor even thread-even depth-1">
+                              <div class="comment-body row" id="div-comment-15">
+                                 <div class="avt">
+                                 </div>
+                                 <div class="coombody">
+                                    <div class="comment-author vcard">
+                                       <img width="32" height="32" class="avatar avatar-32 photo" src="images/default_avatar.jpg" alt="">			
+                                    </div>
+                                    <div class="name">
+                                       <cite class="fn">admin </cite>         &nbsp;
+                                    </div>
+                                    <div class="comment-meta commentmetadata"> 
+                                       <a>27th Nov 2013 4:35 am</a>&nbsp;&nbsp; 	
+                                    </div>
+                                    <span class="commenttext">
+                                       <p>reeeree l have deadline for Investment?</p>
+                                    </span>
+                                    <div class="reply">
+                                       <div class="comment-reply-link">
+                                          <div class="reply-in" data-id="5" id="respond-5">
+                                             <span qna_id="141" class="comment-reply-link qna-reply">Reply</span>
+                                          </div>
+                                          | <a class="delete" href="javascript://"><i comment-id="141" class="icon-trash text-primary"></i></a>
+                                       </div>
+                                    </div>
+                                    <div style="display:none" class="respondhide" id="5">
+                                    </div>
+                                 </div>
+                              </div>
                            </li>
+                        </ul>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </li>
+         <li id="qna-95" class="comment remove_relative  byuser comment-author-admin bypostauthor even thread-even depth-1">
+            <div class="comment-body row" id="div-comment-15">
+               <div class="avt">
+               </div>
+               <div class="coombody">
+                  <div class="comment-author vcard">
+                     <img width="32" height="32" class="avatar avatar-32 photo" src="images/default_avatar.jpg" alt="">			
+                  </div>
+                  <div class="name">
+                     <cite class="fn">Investor One </cite>         &nbsp;
+                  </div>
+                  <div class="comment-meta commentmetadata"> 
+                     <a>12th Nov 2013 3:19 pm</a>&nbsp;&nbsp; 	
+                  </div>
+                  <span class="commenttext">
+                     <p>Question by the Investor</p>
+                  </span>
+                  <div class="reply">
+                     <div class="comment-reply-link">
+                        <div class="reply-in" data-id="5" id="respond-5">
+                           <span qna_id="95" class="comment-reply-link qna-reply">Reply</span>
+                        </div>
+                        | <a class="delete" href="javascript://"><i comment-id="95" class="icon-trash text-primary"></i></a>
+                     </div>
+                  </div>
+                  <div style="display:none" class="respondhide" id="5">
+                  </div>
+               </div>
+               <ul id="parent-95" class="children">
+                  <li id="qna-101" class="comment remove_relative  byuser comment-author-admin bypostauthor even thread-even depth-1">
+                     <div class="comment-body row" id="div-comment-15">
+                        <div class="avt">
+                        </div>
+                        <div class="coombody">
+                           <div class="comment-author vcard">
+                              <img width="32" height="32" class="avatar avatar-32 photo" src="images/default_avatar.jpg" alt="">			
+                           </div>
+                           <div class="name">
+                              <cite class="fn">Business OwnerTwo </cite>         &nbsp;
+                           </div>
+                           <div class="comment-meta commentmetadata"> 
+                              <a>15th Nov 2013 8:57 am</a>&nbsp;&nbsp; 	
+                           </div>
+                           <span class="commenttext">
+                              <p>Most projects have an investment  by the owners with details of where to make payment for shares and contact for investment. From this point forward you will own shares in the ltd company of your choice</p>
+                           </span>
+                           <div class="reply">
+                              <div class="comment-reply-link">
+                                 <div class="reply-in" data-id="5" id="respond-5">
+                                    <span qna_id="101" class="comment-reply-link qna-reply">Reply</span>
+                                 </div>
+                                 | <a class="delete" href="javascript://"><i comment-id="101" class="icon-trash text-primary"></i></a>
+                              </div>
+                           </div>
+                           <div style="display:none" class="respondhide" id="5">
+                           </div>
+                        </div>
+                        <ul id="parent-101" class="children"></ul>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </li>
+      </ul>
+   </ul>
+   <div class="clearfix"></div>
+   <div class="qna" id="qna_askquestion">
+      <div id="user-question-alerts"></div>
+      <h6>Ask a question</h6>
+      
+         <p><textarea class="qna qna-textarea" tabindex="4" rows="3" cols="58" id="qna-content" name="qna-question"></textarea></p>
+        <a class="btn btn-primary btn-small button" href="#qna_askquestion" id="ask_question">Submit</a>
+      
+   </div>
+   <!-- #comment-## -->
+</div>
+
+                       
+                     </div>
+                  </div>
+    </form>
 </script>
 
 <script type="text/template" id="minion-cards">
 
 
-    <li class="span3" id="<%= result.user_id %>" >
+    <li class="span3 thumbspan" id="<%= result.user_id %>" >
 
     <div class="thumbnail select-button-<%= result.user_id %>" id="thumbnail-<%= result.user_id %>">
    <% if(result.is_verified === 'Y'){%>

@@ -6,115 +6,115 @@
 
 
 jQuery(document).ready(function($) {
-if ($(window).width() < 800){
+    if ($(window).width() < 800) {
 
-(function($) {
-    
-  var allPanels = $('.accordion > dd').hide();
-    
-  $('.accordion > dt > a').click(function() {
-    allPanels.slideUp();
-    $(this).parent().next().slideDown();
-    return false;
-  });
+        (function($) {
 
-})(jQuery);
-	
+            var allPanels = $('.accordion > dd').hide();
+
+            $('.accordion > dt > a').click(function() {
+                allPanels.slideUp();
+                $(this).parent().next().slideDown();
+                return false;
+            });
+
+        })(jQuery);
+
 // do stuff
-}
-
-$("#select3").fcbkcomplete({
-                    json_url: "data.txt",
-                    addontab: true,                   
-                    maxitems: 10,
-                    input_min_size: 0,
-                    height: 10,
-                    cache: true,
-                    newel: true,
-                    select_all_text: "select",
-                });
-				
-				
-				
-$(".jumper").on("click", function( e ) {
-    
-    e.preventDefault();
-
-    $("body, html").animate({ 
-        scrollTop: $( $(this).attr('href') ).offset().top 
-    },600);
-    
-});
-
-var _rys = jQuery.noConflict();  
-        _rys("document").ready(function(){  
-            _rys(window).scroll(function () {  
-                if (_rys(this).scrollTop() > 136) {  
-                    _rys('.bottom-menu-inverse').addClass("f-menublock");  
-                } else {  
-                    _rys('.bottom-menu-inverse').removeClass("f-menublock");  
-                }  
-            });  
-        });
-
-$('#frm_login #txt_email, #frm_login #txt_pass').keydown(function (e) {
-    if (e.keyCode == 13) {
-        $('#form1').submit();
     }
-});
-$('.roundedTwo input').click(function(){
-    $('.thumbnail').addClass('highlight')
-})
 
- jQuery('#link_employerregister').attr("onclick","return true");		
- jQuery('#link_minyawnregister').attr("onclick","return true");	 
-	 jQuery('.m1').attr("onclick","return true");	 
-  
+    $("#select3").fcbkcomplete({
+        json_url: "data.txt",
+        addontab: true,
+        maxitems: 10,
+        input_min_size: 0,
+        height: 10,
+        cache: true,
+        newel: true,
+        select_all_text: "select",
+    });
 
-     $('.slider1').bxSlider({
-          slideWidth: 200,
-          minSlides: 1,
-          maxSlides: 3,
-          slideMargin: 10,
-      	auto: true,
-        autoControls: true
+var no_of_minyawns = 0;
+
+    $(".jumper").on("click", function(e) {
+
+        e.preventDefault();
+
+        $("body, html").animate({
+            scrollTop: $($(this).attr('href')).offset().top
+        }, 600);
+
+    });
+
+    var _rys = jQuery.noConflict();
+    _rys("document").ready(function() {
+        _rys(window).scroll(function() {
+            if (_rys(this).scrollTop() > 136) {
+                _rys('.bottom-menu-inverse').addClass("f-menublock");
+            } else {
+                _rys('.bottom-menu-inverse').removeClass("f-menublock");
+            }
         });
-       
-				
-        $(function(){
-          $(window).scroll(function(e)
-          {
-              if($(this).scrollTop()>300)
-              {
-              
-                  $(".steps-3 h4").show('fade');
-              }
-              else
-              {
-                  $(".steps-3 h4").hide('fade');
-              }
-          });
-              
-      })
-     
-	  
-	  $(function(){
-          $(window).scroll(function(e)
-          {
-              if($(this).scrollTop()>1600)
-              {
-              
-                  $(".tooltip-right").show('slide');
-				  $(".tooltip-left").show('slide');
-              }
-              else
-              {
-                   $(".tooltip-right").hide('slide');
-				    $(".tooltip-left").hide('slide');
-              }
-          });
-              
-      })
+    });
+
+    $('#frm_login #txt_email, #frm_login #txt_pass').keydown(function(e) {
+        if (e.keyCode == 13) {
+            $('#form1').submit();
+        }
+    });
+    $('.roundedTwo input').click(function() {
+        $('.thumbnail').addClass('highlight')
+    })
+
+    jQuery('#link_employerregister').attr("onclick", "return true");
+    jQuery('#link_minyawnregister').attr("onclick", "return true");
+    jQuery('.m1').attr("onclick", "return true");
+
+
+    $('.slider1').bxSlider({
+        slideWidth: 200,
+        minSlides: 1,
+        maxSlides: 3,
+        slideMargin: 10,
+        auto: true,
+        autoControls: true
+    });
+
+
+    $(function() {
+        $(window).scroll(function(e)
+        {
+            if ($(this).scrollTop() > 300)
+            {
+
+                $(".steps-3 h4").show('fade');
+            }
+            else
+            {
+                $(".steps-3 h4").hide('fade');
+            }
+        });
+
+    })
+
+
+    $(function() {
+        $(window).scroll(function(e)
+        {
+            if ($(this).scrollTop() > 1600)
+            {
+
+                $(".tooltip-right").show('slide');
+                $(".tooltip-left").show('slide');
+            }
+            else
+            {
+                $(".tooltip-right").hide('slide');
+                $(".tooltip-left").hide('slide');
+            }
+        });
+
+    })
 
 
 //    $('#trigger').popover({
@@ -419,22 +419,22 @@ $('.roundedTwo input').click(function(){
         {
             if ($(this).hasClass('view'))
             {
-                
+
                 $(span1).animate({left: 0}, 500);
                 $(span2).show().animate({left: w}, 500);
-              //  $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
-                $('#bread-crumbs-id').html("<a href='"+siteurl+"/jobs' class='view loaded'>My Jobs</a><a href='#' class='view edit-user-profile'>Profile</a><a href='#' class='view loaded edit-user-profile'>My</a>");
+                //  $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+                $('#bread-crumbs-id').html("<a href='" + siteurl + "/jobs' class='view loaded'>My Jobs</a><a href='#' class='view edit-user-profile'>Profile</a><a href='#' class='view loaded edit-user-profile'>My</a>");
             }
             else
             {
-               
+
                 $(this).removeClass('loaded');
                 $('#profile-edit').find('div.alert').remove();
                 $(span1).animate({left: -1 * w}, 500);
                 $(span2).css({'left': w, 'top': 0});
                 $(span2).show().animate({left: 0}, 500);
-                        $('#bread-crumbs-id').html("<a href='"+siteurl+"/jobs' class='view loaded'>My Jobs</a><a href='#' class='view edit-user-profile'>Profile</a><a href='#' class='view loaded edit-user-profile'>Edit Profile</a>");
-       
+                $('#bread-crumbs-id').html("<a href='" + siteurl + "/jobs' class='view loaded'>My Jobs</a><a href='#' class='view edit-user-profile'>Profile</a><a href='#' class='view loaded edit-user-profile'>Edit Profile</a>");
+
             }
         }
     });
@@ -681,7 +681,7 @@ $('.roundedTwo input').click(function(){
     $("#load-more,#load-more-my-jobs").click(function(e) {
         $(".load_ajax").show();
         // $("#accordion2").empty();
-         
+
         var _data = {
             offset: window.fetchj.models.length
 
@@ -914,19 +914,19 @@ $('.roundedTwo input').click(function(){
         jQuery("#signup_popup_close").click();
         jQuery("#btn__login").click();
     })
- jQuery(".login-signup").live("click", function() {
-     $('#mylogin').modal('hide')
+    jQuery(".login-signup").live("click", function() {
+        $('#mylogin').modal('hide')
     })
 
 
     /* POPUP SIGNUP */
-    
+
     //function to set div,message for minion sign up modal
     function setup_minionsignup_modal()
     {
-    	jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up as a Minion</h4>');
+        jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up as a Minion</h4>');
         jQuery("#div_signup_subheader").html('Not a Minion? Go ahead sign up to get one <a href="#" id="show_employerreg">here</a>');
-    	jQuery("#signup_role").val('minyawn');
+        jQuery("#signup_role").val('minyawn');
         if (jQuery("#usr_role").length > 0)
         {
             jQuery("#usr_role").val("minyawn");
@@ -952,25 +952,25 @@ $('.roundedTwo input').click(function(){
         jQuery("#signup_lname").val("");
         jQuery("#signup_email").removeClass('error');
     }
-        
-    jQuery("#link_minyawnregister").live("click", function() {    	
-    	setup_minionsignup_modal()    	
-    })
-    
-    jQuery("#show_minionreg").live("click", function() {
-    	setup_minionsignup_modal()
-     
-    })
-    
-    
 
-    
+    jQuery("#link_minyawnregister").live("click", function() {
+        setup_minionsignup_modal()
+    })
+
+    jQuery("#show_minionreg").live("click", function() {
+        setup_minionsignup_modal()
+
+    })
+
+
+
+
     //function to set div,message for employer sign up modal
     function setupemployersignup_modal()
     {
-    	jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up as an Employer </h4> ');
-    	
-    	jQuery("#div_signup_subheader").html('Looking for a job? Sign in as a <a href="#" id="show_minionreg">Minion</a>');
+        jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up as an Employer </h4> ');
+
+        jQuery("#div_signup_subheader").html('Looking for a job? Sign in as a <a href="#" id="show_minionreg">Minion</a>');
         jQuery("#signup_role").val('employer');
         if (jQuery("#usr_role").length > 0)
         {
@@ -996,18 +996,18 @@ $('.roundedTwo input').click(function(){
         jQuery("#signup_lname").val("");
         jQuery("#signup_email").removeClass("error");
     }
-    
+
     jQuery("#link_employerregister").live("click", function() {
-    	setupemployersignup_modal()
+        setupemployersignup_modal()
     })
-    
+
     jQuery("#show_employerreg").live("click", function() {
-    	setupemployersignup_modal()
-     
+        setupemployersignup_modal()
+
     })
-    
-    
-    
+
+
+
 
     jQuery("#btn_signup").live("click", function() {
         jQuery('#frm_signup').submit();
@@ -1040,12 +1040,12 @@ $('.roundedTwo input').click(function(){
             jQuery.post(ajaxurl, {
                 action: 'popup_usersignup',
                 //data :  data 
-                pdemail_	: jQuery("#signup_email").val(),
-                pdpass_		: jQuery("#signup_password").val(),
-                pdfname_	: jQuery("#signup_fname").val(),
-                pdlname_	: jQuery("#signup_lname").val(),
-                pdcompany_	: jQuery("#signup_company").val(),
-                pdrole_		: jQuery("#signup_role").val()
+                pdemail_: jQuery("#signup_email").val(),
+                pdpass_: jQuery("#signup_password").val(),
+                pdfname_: jQuery("#signup_fname").val(),
+                pdlname_: jQuery("#signup_lname").val(),
+                pdcompany_: jQuery("#signup_company").val(),
+                pdrole_: jQuery("#signup_role").val()
             },
             function(response) {
                 console.log(response);
@@ -1086,21 +1086,21 @@ $('.roundedTwo input').click(function(){
         }
         else
         {
-           
+
             $("#delete_jobs_link").show();
             $(".alert-error").hide();
             $('#edit-job-form').find('div.alert').remove();
             $(span1).animate({left: -2 * w}, 500);
             $(span2).css({'left': w, 'top': '60px'});
             $(span2).show().animate({left: 0}, 500);
-            if($(".edit").attr("is-job-paid") == 1)
-                {
-                    $("#edit-job-form").prepend("<div class='alert alert-error'>This job is paid and cannot be edited.</div>");
-                    $("#edit-job-form").find('input, textarea, button, select').attr('disabled','disabled');
-                    return;
-                }
+            if ($(".edit").attr("is-job-paid") == 1)
+            {
+                $("#edit-job-form").prepend("<div class='alert alert-error'>This job is paid and cannot be edited.</div>");
+                $("#edit-job-form").find('input, textarea, button, select').attr('disabled', 'disabled');
+                return;
+            }
         }
-    }); 
+    });
     $('#update-job').click(function(e) {
 
         e.preventDefault();
@@ -1219,8 +1219,8 @@ $('.roundedTwo input').click(function(){
         var _this = $(this);
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
-       
-        $(this).append(' <img src="'+siteurl+'/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
+
+        $(this).append(' <img src="' + siteurl + '/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
         $(".load_ajax1").show();
         $(".load_ajax3").show();
         $.post(ajaxurl,
@@ -1232,8 +1232,8 @@ $('.roundedTwo input').click(function(){
 
             load_browse_jobs(_job_id, 'single_json');/*appends a single row to the table*/
             $(".load_ajax1").hide();
-            
-            
+
+
             if (response.new_action == 'apply')
             {
                 $(_this).removeClass('btn btn-danger').addClass('btn btn-primary').attr('id', 'apply-job-browse').text('Apply');
@@ -1244,8 +1244,8 @@ $('.roundedTwo input').click(function(){
                 $(_this).removeClass('btn btn-primary').addClass('btn btn-danger').attr('id', 'unapply-job').text('Unapply');
                 $(_this).attr('data-action', 'unapply');
             }
-             
-            
+
+
         }, 'json');
     });
 
@@ -1481,42 +1481,57 @@ $('.roundedTwo input').click(function(){
 
     $(".roundedTwo").live('click', function(e) {
 
-        var no_of_minyawns = 0;
-//      $('#paypal_form input[name=confirm-miny\\[\\]]:checked').each(function() {
-//          
-//            no_of_minyawns = no_of_minyawns + 1;
-//alert(no_of_minyawns);
-//        });
+        
+
 
 
 
         if ($("#" + $(this).attr('id')).find(':checkbox').is(':checked')) {
             $("#" + $(this).attr('id')).find(':checkbox').not(this).prop('checked', false);
-			
-			$("."+ $(this).attr('id')).removeClass("Select-minyawns");
-			
 
+            $("." + $(this).attr('id')).removeClass("Select-minyawns");
+
+            no_of_minyawns = no_of_minyawns - 1;
+            
+            
+            $("#paypal_pay").show();
+            $("#selection_message").hide();
+            
+            if(no_of_minyawns == 0){
+            $("#wages_per_minyawns").html("0");
+            $("#paypal_pay").hide();
+            $("#selection_message").show();
+            }
+            
+            paypal_form_values(no_of_minyawns);
+            
         } else {
             //$("#hidden_selected_min").append(1);
 
             $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
-			$("." + $(this).attr('id')).addClass("Select-minyawns");
+            $("." + $(this).attr('id')).addClass("Select-minyawns");
+            
+             $("#paypal_pay").show();
+            $("#selection_message").hide();
             //no_of_minyawns = no_of_minyawns + 1;
+            no_of_minyawns = no_of_minyawns + 1;
+            paypal_form_values(no_of_minyawns);
+            
         }
-        
-        
-        if(!$('#paypal_form input[type="checkbox"]').is(':checked')){
-            
-            $("#div_confirmhire").html("");//alert("Please select atleast one minyawn to proceed.");
-            
-          }
-        else
-        	{
-        	
-        	 $("#div_confirmhire").html($("#confirm-hire").html());//alert("checked atleast once")
-        	
-        	
-        	}
+
+
+//        if (!$('#paypal_form input[type="checkbox"]').is(':checked')) {
+//
+//            $("#div_confirmhire").html("");//alert("Please select atleast one minyawn to proceed.");
+//
+//        }
+//        else
+//        {
+//
+//            $("#div_confirmhire").html($("#confirm-hire").html());//alert("checked atleast once")
+//
+//
+//        }
 
     });
 
@@ -1600,13 +1615,13 @@ $('.roundedTwo input').click(function(){
         if (evt.target.id === 'vote-up') {
             $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
             $("#review" + $(this).attr('user_id')).attr("vote", "1");
-             //$("#review-text" + $(this).attr('user_id')).removeClass();
-           // $("#review-text" + $(this).attr('user_id')).addClass("welldone-textarea");
+            //$("#review-text" + $(this).attr('user_id')).removeClass();
+            // $("#review-text" + $(this).attr('user_id')).addClass("welldone-textarea");
         } else {
             $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
             $("#review" + $(this).attr('user_id')).attr("vote", "-1");
-           // $("#review-text" + $(this).attr('user_id')).removeClass();
-           // $("#review-text" + $(this).attr('user_id')).addClass("terrible-textarea");
+            // $("#review-text" + $(this).attr('user_id')).removeClass();
+            // $("#review-text" + $(this).attr('user_id')).addClass("terrible-textarea");
         }
 
         $("#review-box" + $(this).attr('user_id')).show();
@@ -1666,8 +1681,8 @@ $('.roundedTwo input').click(function(){
 
                 $("#thumbs_up_" + _user_id).append(response.rating);
                 $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
-               // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
-                $("#rating_container" + _user_id).append("<div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'>"+_desc+"</div></div>");
+                // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
+                $("#rating_container" + _user_id).append("<div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'>" + _desc + "</div></div>");
             }
             if (response.action === "vote-down") {
 
@@ -1678,9 +1693,9 @@ $('.roundedTwo input').click(function(){
 
                 $("#thumbs_down_" + _user_id).append(response.rating);
                 $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='1'>Terrible</a>");
-               // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
+                // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
                 $("#rating_container" + _user_id).append(_desc);
-          
+
             }
             $("#thumbnail-" + _user_id).css("height", '480px');
 
@@ -1695,7 +1710,7 @@ $('.roundedTwo input').click(function(){
     });
 
 
-    
+
 
 });
 
@@ -1705,7 +1720,7 @@ function getUrlVars()
 
     if (window.location.href.indexOf('?') === -1)
     {
-              return false;
+        return false;
 
     } else {
 
@@ -1716,9 +1731,9 @@ function getUrlVars()
             vars.push(hash[0]);
             vars[hash[0]] = hash[1];
         }
-   
-    return vars;
-     }
+
+        return vars;
+    }
 }
 
 
@@ -1737,7 +1752,8 @@ function ucfirst(str) {
     var f = str.charAt(0).toUpperCase();
     return f + str.substr(1);
 }
-(function($){$('.carousel').carousel({ interval: 1000, pause:'hover'});
+(function($) {
+    $('.carousel').carousel({interval: 1000, pause: 'hover'});
 })(jQuery);
 
 jQuery('.collapse').live('show', function() {
@@ -1773,25 +1789,46 @@ function load_profile(id)
     window.open(url, '_blank');
 }
 
-$('.collapse').live('show', function(){
-$(this).parent().find('.data-title').addClass('open'); //add active state to button on open
+$('.collapse').live('show', function() {
+    $(this).parent().find('.data-title').addClass('open'); //add active state to button on open
 });
 
-$('.collapse').live('hide', function(){
-$(this).parent().find('.data-title').removeClass('open'); //remove active state to button on close
+$('.collapse').live('hide', function() {
+    $(this).parent().find('.data-title').removeClass('open'); //remove active state to button on close
 });
 
-jQuery("#delete_job").live("click",function(){
-  $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/delete-job',
-                    {
-                        job_id: jQuery("#delete_job").attr("job-id"),
-                       
-                    },
+jQuery("#delete_job").live("click", function() {
+    $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/delete-job',
+            {
+                job_id: jQuery("#delete_job").attr("job-id"),
+            },
             function(response) {
-window.location.href=siteurl+'/jobs';
-            });  
-    
+                window.location.href = siteurl + '/jobs';
+            });
+
 });
+
+function paypal_form_values(no_of_minyawns){
+    
+            $("#hdn_jobwages").val($("#job_wages").val());
+            $("#no_of_minyawns").html(no_of_minyawns);
+            $("#wages_per_minyawns").html($("#job_wages").val());
+            var total = no_of_minyawns * $("#job_wages").val();
+            if(no_of_minyawns == 0)
+            $("#wages_per_minyawns").html("0");    
+                
+            $("#total_wages").html(total.toFixed(2));
+            
+    
+            $("#amount").val(total.toFixed(2));
+            $("#item_number").val($("#job_id").val());
+    
+    
+    
+    
+}
+
+
 
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
