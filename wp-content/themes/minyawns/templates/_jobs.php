@@ -74,7 +74,7 @@
                      <div id="selection" class="alert alert-success alert-sidebar">
                         <h3>Your selection</h3>
                         <hr>
-                        <b> No. Of Selections : <span id="no_of_minyawns">0</span></b>
+                        <b> No. Of Selections <img src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
                         <b> Wages :<span id="wages_per_minyawns">0</span><span>$</span></b>
                         <b class="total-cost"> Total Due:<span id="total_wages">0</span><span>$</span></b><br>
                         <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
@@ -415,8 +415,12 @@
 	</div>
 	 
     </div>
- <div class='switch switch-square' data-on-label='Select' data-off-label='Unselect'>
- <input type="checkbox" checked />
+<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <div class="onoffswitch-inner"></div>
+        <div class="onoffswitch-switch"></div>
+    </label>
 </div>
     </li>
 
