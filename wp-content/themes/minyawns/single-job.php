@@ -10,10 +10,18 @@ require 'templates/_jobs.php';
         load_browse_jobs('<?php the_ID() ?>', 'single_job');
         jQuery("#single-job-page").hide();
 
-       
+       $(window).bind('beforeunload', function(){
+       if($("#no_of_minyawns").html() == '0')
+      return 'Are you sure you want to leave?';
+      
+      
+      });
+
 
     });
 </script>
+<!-- Minions have not been selected.  
+You need to confirm the minion selection by making the payment,if you leave this page the selections will be lost.-->
 <style type="text/css">
     /* ROUNDED TWO */
     .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn {

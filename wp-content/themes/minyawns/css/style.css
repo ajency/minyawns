@@ -1113,3 +1113,10 @@ Back to top button
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+img {
+    border: 0 none;
+    height: auto;
+    max-width: 100%;
+    position: absolute !important;
+    vertical-align: middle;
+}

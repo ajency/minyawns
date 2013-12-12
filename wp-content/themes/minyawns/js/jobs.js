@@ -1010,6 +1010,7 @@ function load_job_minions(jobmodel)
 
             if (collection.length > 0) {
                 var template = _.template(jQuery("#minion-cards").html());
+                var blank=_.template((jQuery("#blank-card").html()));
                 _.each(collection.models, function(model) {
                     var global_model = model;
                     if (is_job_owner(jobmodel.toJSON().job_owner_id) || is_admin === '1')
@@ -1019,6 +1020,7 @@ function load_job_minions(jobmodel)
 
                     var html = template({result: model.toJSON(), select_button: select_button, ratings_button: ratings_button_text});
                     jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
+                    //jQuery(".thumbnails").append(blank);
                 });
 
                 if (is_job_owner(jobmodel.toJSON().job_owner_id) && jobmodel.toJSON().user_to_job_status.indexOf('hired') === -1 && jobmodel.toJSON().todays_date_time < jobmodel.toJSON().job_end_date_time_check) {
@@ -1079,7 +1081,8 @@ function is_minion_selected(jobmodel, model)
 
 
             if (jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'applied' && jobmodel.toJSON().job_owner_id === logged_in_user_id && jobmodel.toJSON().user_to_job_status.indexOf('hired') === -1 && jobmodel.toJSON().todays_date_time < jobmodel.toJSON().job_end_date_time_check) {
-                selectButton = '<div class="roundedTwo" id="select-button-' + model.toJSON().user_id + '"><input type="checkbox" id="select-' + model.toJSON().user_id + '" name="confirm-miny[]" value="' + model.toJSON().user_id + '"  data-user-id="' + model.toJSON().user_id + '" data-job-id="' + jobmodel.toJSON().post_id + '"><label for="rounded1' + model.toJSON().user_id + '" > </label>Select Your Minions</div>';
+                selectButton = '<div class="onoffswitch" id="select-button-' + model.toJSON().user_id + '"><input type="checkbox" id="select-' + model.toJSON().user_id + '" name="confirm-miny[]" value="' + model.toJSON().user_id + '"  data-user-id="' + model.toJSON().user_id + '" data-job-id="' + jobmodel.toJSON().post_id + '" class="onoffswitch-checkbox" checked><label for="confirm-miny[]' + model.toJSON().user_id + '" class=onoffswitch-label"><div class="onoffswitch-inner"></div><div class="onoffswitch-switch"></div></label></div>';
+            selectButton="<div class='onoffswitch' id='select-button-" + model.toJSON().user_id + "'><input type='checkbox' id='select-" + model.toJSON().user_id + "' name='confirm-miny[]' value='" + model.toJSON().user_id + "' data-user-id='" + model.toJSON().user_id + "' class='onoffswitch-checkbox'><label for='confirm-miny[]" + model.toJSON().user_id + "' class='onoffswitch-label' for='myonoffswitch'><div class='onoffswitch-inner'></div><div class='onoffswitch-switch'></div></label></div>";
             } else if ((jobmodel.toJSON().todays_date_time > jobmodel.toJSON().job_end_date_time_check && jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'hired' && model.toJSON().user_to_job_rating_like === '0' && model.toJSON().user_to_job_rating_dislike === '0'))
             {
                 //alert(model.toJSON().rating_positive);
@@ -1091,7 +1094,9 @@ function is_minion_selected(jobmodel, model)
 
 
             }
+           
         }
+         
     }
     return selectButton;
 
