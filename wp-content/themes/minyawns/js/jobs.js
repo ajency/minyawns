@@ -360,7 +360,7 @@ function job_status_e(model) {
                 if (model.toJSON().user_to_job_status.indexOf('hired') >= 0)
                     return_status = '';
                 else
-                    return_status = "<div class='st-status open'>Applications Open.</div><div class='st-meta'>" + model.toJSON().days_to_job_expired + "days to go</div>";
+                    return_status = "<div class='st-status open'>Applications Open.</div><div class='st-meta'>" + model.toJSON().days_to_job_expired + " days to go</div>";
 
 
             }
@@ -370,7 +370,7 @@ function job_status_e(model) {
                 if (model.toJSON().user_to_job_status.indexOf('hired') >= 0)
                     return_status = '';
                 else
-                    return_status = "<div class='st-status open'>Applications Open.</div><div class='st-meta'>" + model.toJSON().days_to_job_expired + "days to go</div>";
+                    return_status = "<div class='st-status open'>Applications Open.</div><div class='st-meta'>" + model.toJSON().days_to_job_expired + " days to go</div>";
 
             }
 
@@ -382,11 +382,11 @@ function job_status_e(model) {
             if (model.toJSON().job_status === 3)//Max Applicants reached
             {
                 if (model.toJSON().job_owner_id !== logged_in_user_id && role === 'employer') {
-                    return_status = 'Applications Closed';
+                    return_status = "<div class='st-status closed'>Applications Closed</div>";
                 } else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0) {
                     return_status = '';
                 } else {
-                    return_status = "<div class='st-status open'>Maximum number of minions have applied. Applications are now closed</div>";
+                    return_status = "<div class='st-status closed'>Applications Closed</div><div class='st-meta'>Maximum number of minions have applied</div><br/>";
                 }
                
             }
@@ -405,7 +405,7 @@ function job_status_e(model) {
                
                 
                 if (numOfHired > 0)
-                   return_status = "<div class='st-status open'>"+numOfHired + '  have een selected' + model.toJSON().days_to_job_expired + '  day to go for the job</div>';
+                   return_status = "<div class='st-status open'>"+numOfHired + '  have been selected' + model.toJSON().days_to_job_expired + '  days to go for the job</div>';
 
 
      
@@ -648,7 +648,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
                             job_button = "<a class='st-green-link' href='" + siteurl + '/jobs/' + model.toJSON().post_slug +"' target='_blank'>Give ratings to minions</a>";
                         else
-                            job_button = "<a href='#fakelink' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
+                            job_button = "<a href='"+ siteurl + "/jobs/' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
 
                     } else if (role === 'minion') //USER ROLE MINION
                     {
@@ -678,7 +678,7 @@ function job_collapse_b(model) {
                     if (role === 'Employer') { // ROLE IS EMPLOYER
 
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
-                            job_button = "<a id='new-job' href='"+siteurl+"/jobs' class='st-green-link'>Add A New Job.</a>";
+                            job_button = "<a  href='"+siteurl+"/jobs' class='st-green-link'>Add A New Job.</a>";
                         else
                             job_button = "<a href='#fakelink' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
 
