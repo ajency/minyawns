@@ -1520,7 +1520,7 @@ $(".job-view-list").hide();
        
        
            var cart = $('#imgselect');
-        var imgtodrag =$(this).closest('.m2').find('img').eq(0);
+        var imgtodrag =$(this).closest('.thumbspan').find('img').eq(0);
         console.log(imgtodrag);
         if (imgtodrag) {
             var imgclone = imgtodrag.clone()
