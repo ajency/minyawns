@@ -146,11 +146,12 @@ You need to confirm the minion selection by making the payment,if you leave this
                 <p>
                     <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
                     <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
-                    <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0): ?> 
-                        <a href="#edit-job-form" class="edit loaded edit-job-data "  is-job-paid="<?php echo job_selection_status(get_the_ID()) ?>"><i class="icon-edit"></i> Edit</a>
-                    <?php endif; ?>
+                  
 
                 </p> 
+				  <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0): ?> 
+                        <a href="#edit-job-form" class="edit loaded edit-job-data "  is-job-paid="<?php echo job_selection_status(get_the_ID()) ?>"><i class="icon-edit"></i> Edit</a>
+                    <?php endif; ?>
                 <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 && job_selection_status(get_the_ID()) === 0): ?> 
                     <a href="#myModal"  data-toggle="modal"  id="delete_jobs_link" class="delte-job "  job-id="<?php echo get_the_ID() ?>" style="display:none"><i class="icon-trash"></i> Delete</a>
                 <?php endif; ?>

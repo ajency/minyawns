@@ -113,6 +113,7 @@
 							<a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a>
 						</div>
 						</div>
+							<div class="clear"></div>
 					</div>
 				
 				
@@ -143,6 +144,7 @@
 				
 		</ul>
 		</div>
+		<div class="clear"></div>
 	</div>
 			<?php } else { ?>
 					<div class="bottom-menu  bottom-menu top-menu home-menu">
