@@ -1515,7 +1515,29 @@ var no_of_minyawns = 0;
             $("#selection_message").hide();
             //no_of_minyawns = no_of_minyawns + 1;
             no_of_minyawns = no_of_minyawns + 1;
-            paypal_form_values(no_of_minyawns);
+           
+            
+          
+       var xPos=$(this).closest('.m2').offset().left;
+       var $clone=$(this).closest('.m2').clone();
+       $(this).append($clone);
+       var leftpos=$("#selection").offset().left; 
+       var toppos=$("#selection").offset().top; 
+      // alert(leftpos);
+       leftpos += 200+1000;
+       toppos =toppos-800;
+       console.log($clone);
+        $clone.animate({left:leftpos,opacity: 0.25,top:toppos},'slow', function(){
+             $clone.hide();
+              paypal_form_values(no_of_minyawns);
+        });
+        
+       
+       
+       
+       
+       
+       
             
         }
 

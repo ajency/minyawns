@@ -71,7 +71,7 @@
                    <!--  <div class="alert alert-success alert-sidebar jobexpired">
                         <div>Job has expired.</div>
                      </div>-->
-                     <div class="alert alert-success alert-sidebar">
+                     <div id="selection" class="alert alert-success alert-sidebar">
                         <h3>Your selection</h3>
                         <hr>
                         <b> You have selected : <span id="no_of_minyawns">0</span></b>
