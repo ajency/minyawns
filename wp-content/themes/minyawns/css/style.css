@@ -52,11 +52,12 @@ ul { margin:0px; padding:0px; margin-left:20px; }
 float: right;
 }
 #logged-in a img {
-	width: 30px;
-	height:30px;
+	width: 22px;
+height: 22px;
 	padding: 2px;
 	border: 1px solid #DFDFDF;
 	margin-right: 7px;
+	margin-top: 4px;
 	
 }
 #logged-in  b {
@@ -272,13 +273,7 @@ left: 47%;
 	line-height: 30px;
 	font-size: 13px;
 }
-.help_icon{
-	font-size: 24px;
-	margin-top: 11px;
-	margin-top: 3px;
-	color: #E3E6E5!important;
 
-}
 .help_icon:hover{
 	color: #79B91E!important;
 }
@@ -309,16 +304,38 @@ left: 47%;
 	color: #E3E6E5!important;
 	margin-right: 10px;
 }
+.breadcrumb-text p {
+	border:0px;
+}
+.breadcrumb-text p a:after {
+font-family: FontAwesome;
+font-weight: normal;
+font-style: normal;
+text-decoration: inherit;
+-webkit-font-smoothing: antialiased;
+color: #868686;
+content: "\f105";
+font-weight: 300;
+margin: 0 4px 0 9px;
+font-size: 14px;
+}
+.breadcrumb-text a{
+	color:#474747;
+}
 .tab-content {
 	border-radius:0px!important;
-	background:#fff;
-	border-top: 2px solid #8ED030;
+
+	
 	/*min-height: 630px;*/
 	/*overflow-y:hidden;*/
 	overflow-x:hidden;
 	padding: 20px;
 	padding-bottom: 60px;
 	min-height: 600px;
+	background:url(../images/gray.png)repeat-x #fff;
+}
+.main-content{
+background:url(../images/gray.png)repeat-x #fff;
 }
 .ui-datepicker {
 	z-index:999!important;

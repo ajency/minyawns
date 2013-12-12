@@ -58,11 +58,11 @@ $all_categories = get_categories(array('hide_empty' => 0));
     <input type="hidden" name="categoryids[]" id="category_id" value="<?php if (isset($_GET['cat_id'])) {
     $_GET['cat_id'];
 } ?>"/>
-    <ul class="nav nav-tabs nav-append-content jobs_menu">
+    <!--<ul class="nav nav-tabs nav-append-content jobs_menu">
         <li <?php if (isset($_GET['cat_id'])) { ?>class="active" <?php } ?> ><a  href="#tab1" id="browse">Browse Jobs</a></li>
         <li <?php if (!isset($_GET['cat_id'])) { ?>class="active" <?php } ?> id="my_jobs"><a href="#tab2">My Jobs</a></li>
 
-    </ul>  
+    </ul>  -->
     <input type="hidden" id="tab_identifier" />
     <div class="tab-content">
         <div class="tab-pane jobs_table <?php if (isset($_GET['cat_id'])) { ?> active <?php } ?>" id="tab1">
