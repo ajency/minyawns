@@ -204,14 +204,110 @@ body .jobs_table .data-title  .profile-job{
 	background:url(../images/pattern-bg.png)repeat;
 	
 }
+.home-menu{
+background-color: rgba(0, 0, 0, 0.33);
+}
 .top-menu{
 	position:relative;
 	z-index:999;
 	.bottom-menu-inverse {
-			background-color: rgba(0, 0, 0, 0.33);
+			background:#f4f4f4;
+	border-bottom: 1px solid #C9C9C9;
+	padding: 0px;
+	color: #9C9797;
+	
+	.small-tag-line{
+		width: 50%;
+		float: left;
+			p{
+				line-height: 38px;
+				margin-bottom: 0px;
+				margin-left: 40px;
+				font-weight: 100;
+font-size: 15px;
+			}
+	}
+	.notify{
+			width: 50%;
+			float: left;
+		}
+			#logged-in{
+				float:left;
+				padding-top: 4px;
+				padding-bottom: 6px;
+				color: #B8B8B8;
+				width:auto;
+				border-right: 1px solid #E9E9E9;
+				b {
+				margin-top: -5px;
+				font-size: 14px;
+				padding-bottom: 2px;
+				font-weight: 400;
+				color: #8B8B8B;
+				}
+				.profile-pic {
+				float: right;
+				}
+				.user-profile{
+					float: right;
+					margin-right: 9px;
+				}
+				
+			}
+			.data-link{
+				float:left;
+				padding: 12px;
+				color: #B8B8B8;
+				border-right: 1px solid #E9E9E9;
+				i{
+					margin-right:5px;
+					color: #C2C2C2;
+				}
+			}
 			
 		
 		}
+}
+.top-menu-header{
+background: #8D8A8A;
+	.minions-logo{
+		width: 161px;
+		padding:10px;
+	}
+	.main-menu{
+		
+		float:right;
+		ul{
+		float:right;
+	
+		li{
+			padding: 19.4px;
+			color:#fff;
+			font-weight: 700;
+			padding-left: 5px;
+			
+			a{
+				color:#fff;
+			}
+			
+			b{
+				color: #D3D3D3;
+			}
+		}
+		.selected{
+				a{
+					color: #B9F169;
+					border-bottom:1px dotted #B9F169;
+					padding-bottom: 4px;
+				}
+			}
+		}
+		.green-btn-top{
+			background:@green;
+			padding-left: 19px;
+			cursor:pointer;
+		}
+	}
 }
 .signup {
 	.alert-success {

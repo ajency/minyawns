@@ -61,22 +61,29 @@
             
 <body <?php body_class('logged-out'); ?> >
 	<div class=" pbl mtn top-menu">
+	<?php
+
+					if (is_user_logged_in() == TRUE) {
+                            ?>
 		<div class="bottom-menu  bottom-menu-inverse top-menu">
-			<div class="container">
+		
 				<div class="row">
-					<div class="span2 brand">
-						<a href="<?php echo site_url(); ?>"><img
-							src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
-							alt="" /> </a>
+					<div  class="small-tag-line ">
+						<p>Minyawns is an easy to use, on-demand, reliable way to find work or help fast.</p>
 					</div>
-					<div class="span4"></div>
+			
 					<?php
 
 					if (is_user_logged_in() == TRUE) {
                             ?>
-					<div class="span3 notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
-					
+					<div class=" notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
+					<div class="pull-right">
 						<div id="logged-in">
+						
+						<div class="user-profile">
+									<b><?php echo get_logged_in_email(); ?></b><br>
+									Role :<?php echo get_logged_in_role(); ?>
+									</div>
 						 <div class="profile-pic">
 						 <a id="user-popdown" > 
 									 <?php 
@@ -86,10 +93,7 @@
 										echo get_avatar(get_user_id(), 168 ) ?>
 									</a>
 									</div>
-									<div>
-									<b><?php echo get_logged_in_email(); ?></b><br>
-									Role :<?php echo get_logged_in_role(); ?>
-									</div>
+									
 									<!--                   
 							<a id="user-popdown" href="javascript:void(0);"> <?php 
 									if(get_mn_user_avatar() !== false)
@@ -99,15 +103,58 @@
 							
                              -->                           </a>
 						</div>
-						
+						<div class="data-link">
+							<a class="" href="<?php echo site_url() ?>/profile"><i class="icon-user"></i> View Profile</a>
+						</div>
+							<div class="data-link">
+							<a class="" href="<?php  echo wp_logout_url(''); ?>"><i class="icon-unlock"></i> Logout</a>
+						</div>
+							<div class="data-link">
+							<a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a>
+						</div>
+						</div>
 					</div>
-					<div class="span3 user-action">
-					<a class="" href="<?php echo site_url() ?>/profile"><i class="icon-user"></i> View Profile</a>
-					<a class="" href="<?php  echo wp_logout_url(''); ?>"><i class="icon-unlock"></i> Logout</a>
-					<a href="<?php echo site_url(); ?>/helpfaqs/" class="help_icon" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> </a>
+				
+				
+				
+					
+
+					<?php } ?>
+                    </div>
+         
+            </div> <!-- /bottom-menu-inverse -->
+				<div class="top-menu-header">
+		<a href="<?php echo site_url(); ?>">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt=""  class="minions-logo"/> 
+		</a>
+		<div class="main-menu">
+		<ul class="inline">
+				<li><b>Browse:</b></li>
+				<li><a href="#">All Jobs </a></li>
+				<li><a href="#">My Jobs</a></li>
+				<li class="selected"><a href="#">Minions Directory</a></li>
+				<li class="green-btn-top">
+				 <?php if (get_user_role() === 'minyawn'): ?>
+				<i class="icon-edit"></i>&nbsp; Update Your Profile
+				   <?php endif; ?>	
+				    <?php if (get_user_role() === 'employer'): ?>
+				<i class="icon-plus-sign"></i>&nbsp; Create a job
+				   <?php endif; ?>
+				
+		</ul>
+		</div>
+	</div>
+			<?php } else { ?>
+					<div class="bottom-menu  bottom-menu top-menu home-menu">
+			<div class="container">
+				<div class="row">
+					<div class="span2 brand">
+						<a href="<?php echo site_url(); ?>"><img
+							src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
+							alt="" /> </a>
 					</div>
-					<?php } else {
-						?>
+					<div class="span4"></div>
+					
 
 					<div class="span2 upper-link ">
 						<!-- <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	-->
@@ -116,11 +163,13 @@
 					</div>
 					
 
-					<?php } ?>
                     </div>
                 </div>
             </div> <!-- /bottom-menu-inverse -->
-	
+			
+			
+				<?php } ?>
+
 
         </div>
 

@@ -187,12 +187,100 @@ body .jobs_table .data-title .profile-job {
 .single {
   background: url(../images/pattern-bg.png) repeat;
 }
+.home-menu {
+  background-color: rgba(0, 0, 0, 0.33);
+}
 .top-menu {
   position: relative;
   z-index: 999;
 }
 .top-menu .bottom-menu-inverse {
-  background-color: rgba(0, 0, 0, 0.33);
+  background: #f4f4f4;
+  border-bottom: 1px solid #C9C9C9;
+  padding: 0px;
+  color: #9C9797;
+}
+.top-menu .bottom-menu-inverse .small-tag-line {
+  width: 50%;
+  float: left;
+}
+.top-menu .bottom-menu-inverse .small-tag-line p {
+  line-height: 38px;
+  margin-bottom: 0px;
+  margin-left: 40px;
+  font-weight: 100;
+  font-size: 15px;
+}
+.top-menu .bottom-menu-inverse .notify {
+  width: 50%;
+  float: left;
+}
+.top-menu .bottom-menu-inverse #logged-in {
+  float: left;
+  padding-top: 4px;
+  padding-bottom: 6px;
+  color: #B8B8B8;
+  width: auto;
+  border-right: 1px solid #E9E9E9;
+}
+.top-menu .bottom-menu-inverse #logged-in b {
+  margin-top: -5px;
+  font-size: 14px;
+  padding-bottom: 2px;
+  font-weight: 400;
+  color: #8B8B8B;
+}
+.top-menu .bottom-menu-inverse #logged-in .profile-pic {
+  float: right;
+}
+.top-menu .bottom-menu-inverse #logged-in .user-profile {
+  float: right;
+  margin-right: 9px;
+}
+.top-menu .bottom-menu-inverse .data-link {
+  float: left;
+  padding: 12px;
+  color: #B8B8B8;
+  border-right: 1px solid #E9E9E9;
+}
+.top-menu .bottom-menu-inverse .data-link i {
+  margin-right: 5px;
+  color: #C2C2C2;
+}
+.top-menu-header {
+  background: #8D8A8A;
+}
+.top-menu-header .minions-logo {
+  width: 161px;
+  padding: 10px;
+}
+.top-menu-header .main-menu {
+  float: right;
+}
+.top-menu-header .main-menu ul {
+  float: right;
+}
+.top-menu-header .main-menu ul li {
+  padding: 19.4px;
+  color: #fff;
+  font-weight: 700;
+  padding-left: 5px;
+}
+.top-menu-header .main-menu ul li a {
+  color: #fff;
+}
+.top-menu-header .main-menu ul li b {
+  color: #D3D3D3;
+}
+.top-menu-header .main-menu ul .selected a {
+  color: #B9F169;
+  border-bottom: 1px dotted #B9F169;
+  padding-bottom: 4px;
+}
+.top-menu-header .main-menu .green-btn-top {
+  background: #8ed030;
+  padding-left: 19px;
+  cursor: pointer;
 }
 .signup .alert-success {
   background-color: #AFE54E;
