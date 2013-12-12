@@ -1518,15 +1518,15 @@ var no_of_minyawns = 0;
            
             
           
-       var xPos=$(this).closest('.minyawns-img').offset().left;
-       var $clone=$(this).closest('.minyawns-img').clone();
+       //var xPos=$(this).closest('.m2').offset().left;
+       var $clone=$(this).closest('.m2').find('img').clone();
        $(this).append($clone);
        var leftpos=$("#selection").offset().left; 
        var toppos=$("#selection").offset().top; 
       // alert(leftpos);
        leftpos += 200+1000;
        toppos =toppos-800;
-       console.log($clone);
+       
         $clone.animate({left:leftpos,opacity: 0.25,top:toppos},'slow', function(){
              $clone.hide();
               paypal_form_values(no_of_minyawns);
