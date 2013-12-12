@@ -321,8 +321,13 @@ font-size: 14px;
 }
 .breadcrumb-text a{
 	color:#474747;
+	
 }
-.tab-content {
+.breadcrumb-text {
+	
+	margin-bottom: 38px;
+}
+.logged-in .tab-content {
 	border-radius:0px!important;
 
 	
@@ -1084,8 +1089,19 @@ Back to top button
 .onoffswitch {
     position: relative; width: 80px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-	margin:auto
+	margin: 20px auto;
 }
+#show-single-job{
+	display:none;
+ }
+ .jobs_table ._li {
+background-size: 25%;
+}
+ .edit{
+	float: right;
+	margin-top: -46px;
+	font-size: 20px;
+ }
 .onoffswitch-checkbox {
     display: none;
 }
@@ -1129,11 +1145,4 @@ Back to top button
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
-}
-img {
-    border: 0 none;
-    height: auto;
-    max-width: 100%;
-    position: absolute !important;
-    vertical-align: middle;
 }
