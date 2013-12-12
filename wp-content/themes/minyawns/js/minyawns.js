@@ -1518,8 +1518,8 @@ var no_of_minyawns = 0;
            
             
           
-       var xPos=$(this).closest('.m2').offset().left;
-       var $clone=$(this).closest('.m2').clone();
+       var xPos=$(this).closest('.minyawns-img').offset().left;
+       var $clone=$(this).closest('.minyawns-img').clone();
        $(this).append($clone);
        var leftpos=$("#selection").offset().left; 
        var toppos=$("#selection").offset().top; 

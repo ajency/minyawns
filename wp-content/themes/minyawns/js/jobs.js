@@ -386,7 +386,7 @@ function job_status_e(model) {
                 } else if (model.toJSON().user_to_job_status.indexOf('hired') >= 0) {
                     return_status = '';
                 } else {
-                    return_status = "<div class='st-status open'>" + 'Applications Closed Maximum number of minions have applied</div>';
+                    return_status = "<div class='st-status open'>Maximum number of minions have applied. Applications are now closed</div>";
                 }
                
             }
@@ -491,7 +491,7 @@ function job_collapse_b(model) {
 
 
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
-                            job_button = "<a href='#fakelink' class='btn btn-primary'><i class='icon-location-arrow'></i>Send Invites</a>";
+                            job_button = "<div class='st-applicant'>No Applicants Yet.</div><a href='#fakelink' class='btn btn-primary'><i class='icon-location-arrow'></i>Send Invites</a>";
                         else //OTHER EMPLOYERS
                             job_button = "<i class='icon-location-arrow'></i>Create Similar Jobs";
                     }
@@ -516,7 +516,7 @@ function job_collapse_b(model) {
                         }
                          }else
                              {
-                                 job_button = "<div class='st-applicant'>" + model.toJSON().no_applied + " have applied.</div><a href = '#' id = 'unapply-job' class ='btn btn-primary ' data-action ='apply' data-job-id= " + model.toJSON().post_id + "><i class='icon-ok'></i>Apply Now</a>"; 
+                                 job_button = "<a href = '#' id = 'apply-job-browse' class ='btn btn-primary ' data-action ='apply' data-job-id= " + model.toJSON().post_id + "><i class='icon-ok'></i>Apply Now</a>"; 
                              }
 
                     }
@@ -525,7 +525,7 @@ function job_collapse_b(model) {
                 {
                     if (role === 'Employer') {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
-                            job_button = " <div class='st-applicant'>" + model.toJSON().no_applied + " have applied.</div><a href='" + siteurl + '/jobs/' + model.toJSON().post_slug +"' class='btn btn-primary'><i class='icon-check'></i>Select Minions</a>"
+                            job_button = " <div class='st-applicant'>" + model.toJSON().no_applied + " Minions have applied.</div><a href='" + siteurl + '/jobs/' + model.toJSON().post_slug +"' class='btn btn-primary'><i class='icon-check'></i>Select Minions</a>"
                         else
                             job_button = "<a class='st-green-link' href='#'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
                     } else// USER ROLE MINION
@@ -535,12 +535,12 @@ function job_collapse_b(model) {
 
                             if (model.toJSON().applied_user_id[i] === logged_in_user_id)   //user has applied   
                             {
-                                job_button = "<div class='st-applicant'>" + model.toJSON().no_applied + " have applied.</div><a href = '#' id = 'unapply-job' class ='btn btn-danger ' data-action ='unapply' data-job-id= " + model.toJSON().post_id + "><i class='icon-remove'></i>Un-apply</a>";
+                                job_button = "<div class='st-applicant'>You have Applied</div><a href = '#' id = 'unapply-job' class ='btn btn-danger ' data-action ='unapply' data-job-id= " + model.toJSON().post_id + "><i class='icon-remove'></i>Un-apply</a>";
                                 break;
                             } else
                             {
 
-                                job_button = "<div class='st-applicant'>" + model.toJSON().no_applied + " have applied.</div><a href = '#' id = 'unapply-job' class ='btn btn-primary ' data-action ='apply' data-job-id= " + model.toJSON().post_id + "><i class='icon-ok'></i>Apply Now</a>";
+                                job_button = "<a href = '#' id = 'apply-job-browse' class ='btn btn-primary ' data-action ='apply' data-job-id= " + model.toJSON().post_id + "><i class='icon-ok'></i>Apply Now</a>";
 
                             }
 

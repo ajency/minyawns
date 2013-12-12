@@ -74,9 +74,9 @@
                      <div id="selection" class="alert alert-success alert-sidebar">
                         <h3>Your selection</h3>
                         <hr>
-                        <b> You have selected : <span id="no_of_minyawns">0</span></b>
+                        <b> No. Of Selections : <span id="no_of_minyawns">0</span></b>
                         <b> Wages :<span id="wages_per_minyawns">0</span><span>$</span></b>
-                        <b class="total-cost"> Total Cost:<span id="total_wages">0</span><span>$</span></b><br>
+                        <b class="total-cost"> Total Due:<span id="total_wages">0</span><span>$</span></b><br>
                         <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
                      <span id="selection_message">Please Select Atleast One Minion.</span>
                                     </div>
