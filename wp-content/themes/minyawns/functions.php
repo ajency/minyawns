@@ -95,7 +95,7 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('calendar_3', get_template_directory_uri() . '/css/alert.css', array(), null);
                 wp_enqueue_style('calendar_4', get_template_directory_uri() . '/css/main-cal.css', array(), null);
                 wp_enqueue_style('bootstrap-tagmanager', get_template_directory_uri() . '/css/bootstrap-tagmanager.css', array(), null);
-
+wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
                 wp_enqueue_style('bootstrap-timepicker', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
             }
 

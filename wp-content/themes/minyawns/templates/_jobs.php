@@ -77,7 +77,7 @@
                         <b> You have selected : <span id="no_of_minyawns">0</span></b>
                         <b> Wages :<span id="wages_per_minyawns">0</span><span>$</span></b>
                         <b class="total-cost"> Total Cost:<span id="total_wages">0</span><span>$</span></b><br>
-                        <span id="paypal_pay" style="display:none"><input type="submit"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal"/></span>
+                        <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
                      <span id="selection_message">Please Select Atleast One Minion.</span>
                                     </div>
                  
@@ -336,24 +336,23 @@
     <li class="span3 thumbspan" id="<%= result.user_id %>" >
 
     <div class="thumbnail select-button-<%= result.user_id %>" id="thumbnail-<%= result.user_id %>">
-   <% if(result.is_verified === 'Y'){%>
-    <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />
-   <% } %> 
-   <div class="m1">
+  <div class="layer">
+   <div id="a" class="m1">
    <div class="caption" >
     <div class="minyawns-img" >
     <%= result.user_image%>
     </div>
-  
+   <% if(result.is_verified === 'Y'){%>
+   <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
+	<div class="verfied-txt">Minions Verfied</div>
+   <% } %> 
     <h4> <%= result.name %></h4>
     <div class="collage"> <%= result.college%> </div>
-    <div class="collage"> <%= result.major%> </div>
+    
     <div class="social-link">
     <%= result.user_email %>
     </div>
-    <div class="social-link">
-    <%= result.linkedin %>
-    </div>
+ 
   <div class="rating">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
     <i class="icon-thumbs-up" ></i> <%= result.rating_positive %>
@@ -362,10 +361,13 @@
     <i class="icon-thumbs-down" "></i> <%= result.rating_negative %>
     </a>
     </div>
-   
+
     </div>
+	
 	</div>
-	<div class="m2">
+	
+
+	<div id="b" class="m2">
 	
 	   <div class="caption" >
 	   <div  onclick="window.open('<?php echo site_url(); ?>/profile/<%= result.user_id %>')">
@@ -390,6 +392,13 @@
     <%= result.linkedin %>
     </div>
 	</div>
+	
+    
+    <div class="dwn-btn">
+    <%= select_button %>
+    <%= ratings_button %>
+    <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
+    </div>
 	<div class="tags">
 	Tags:<br>
     <%
@@ -400,17 +409,15 @@
 
     <% } %>
 		</div>
-    
-    <div class="dwn-btn">
-    <%= select_button %>
-    <%= ratings_button %>
-    <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
-    </div>
     </div>
 	
 	</div>
+	</div>
+	 
     </div>
-
+ <div class='switch switch-square' data-on-label='Select' data-off-label='Unselect'>
+ <input type="checkbox" checked />
+</div>
     </li>
 
 </script>

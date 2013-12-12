@@ -158,7 +158,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     <?php if (isset($_GET['cat_id'])) { ?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -19px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php } ?>
 
 
-                    <div class="clear"></div><br>
+                   
                     <span class='load-ajax-browse' style="display:block"></span> 
                     <div id="browse-jobs-table" class="browse-jobs-table">
 
