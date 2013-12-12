@@ -3850,6 +3850,10 @@ font-weight: 100;
 							font-size: 19PX;
 							text-align: center;
 							font-weight: bold;
+							cursor:pointer;
+								&:hover{
+									color:@green;
+								}
 							}
 							.minions-applied{
 					position: absolute;
@@ -3875,9 +3879,9 @@ font-weight: 100;
 							margin-bottom: 10px;
 							margin-top: 10px;
 							text-overflow: ellipsis;
-							width: 72%;
+							/*width: 72%;*/
 							overflow: hidden;
-							margin: -2px auto;
+							margin: 0px auto;
 							}
 							
 							.label-small{
@@ -3912,7 +3916,7 @@ font-weight: 100;
 											margin: auto;
 											padding: 10px;
 											position: absolute;
-											bottom: 0px;
+											bottom: -10px;
 											left: 21%;
 											right: 21%;
 											.icon-thumbs-up{
@@ -4045,12 +4049,12 @@ bottom: 0;
 									
 									
 							}
-							&:hover{
+							/*&:hover{
 									.m2{
 										
 										display:block !important;
 									}
-								}
+								}*/
 						}
 					}
 }
@@ -5762,4 +5766,12 @@ padding-left: 5px!important;
 font-size: 12px!important;
 	text-align:right!important;
 
+}
+.top-header-bg{
+	background:#f4f4f4;
+	border-bottom: 1px solid #C9C9C9;
+	padding: 14px;
+	color: #9C9797;
+	padding-bottom: 2px;
+	
 }

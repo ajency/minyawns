@@ -347,10 +347,13 @@
 	<div class="verfied-txt">Minions Verfied</div>
    <% } %> 
     <h4> <%= result.name %></h4>
-    <div class="collage"> <%= result.college%> </div>
-    
+   <div class="collage"> <%= result.college%> </div>
+    <div class="collage"> <%= result.major%> </div>
     <div class="social-link">
     <%= result.user_email %>
+    </div>
+    <div class="social-link">
+    <%= result.linkedin %>
     </div>
  
   <div class="rating">

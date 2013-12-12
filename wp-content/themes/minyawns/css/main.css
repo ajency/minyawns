@@ -3247,11 +3247,21 @@ body .jobs_table .data-title .profile-job {
   cursor: pointer;
   border: 0px;
   box-shadow: none;
+  /*&:hover{
+									.m2{
+										
+										display:block !important;
+									}
+								}*/
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption h4 {
   font-size: 19PX;
   text-align: center;
   font-weight: bold;
+  cursor: pointer;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m1 .caption h4:hover {
+  color: #8ed030;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption .minions-applied {
   position: absolute;
@@ -3277,9 +3287,9 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 10px;
   margin-top: 10px;
   text-overflow: ellipsis;
-  width: 72%;
+  /*width: 72%;*/
   overflow: hidden;
-  margin: -2px auto;
+  margin: 0px auto;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption .label-small {
   margin-bottom: 5px;
@@ -3310,7 +3320,7 @@ body .jobs_table .data-title .profile-job {
   margin: auto;
   padding: 10px;
   position: absolute;
-  bottom: 0px;
+  bottom: -10px;
   left: 21%;
   right: 21%;
 }
@@ -3431,9 +3441,6 @@ body .jobs_table .data-title .profile-job {
 .minyawns-grid1 .thumbspan .thumbnail .m2 .dwn-btn .terrible {
   padding: 5px;
   margin-bottom: 10px;
-}
-.minyawns-grid1 .thumbspan .thumbnail:hover .m2 {
-  display: block !important;
 }
 .bootstrap-timepicker-widget input {
   width: 25px !important;
@@ -4891,4 +4898,11 @@ div.tooltip1:after {
 .single-view .has-switch .switch-right {
   font-size: 12px!important;
   text-align: right!important;
+}
+.top-header-bg {
+  background: #f4f4f4;
+  border-bottom: 1px solid #C9C9C9;
+  padding: 14px;
+  color: #9C9797;
+  padding-bottom: 2px;
 }
