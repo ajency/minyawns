@@ -583,7 +583,7 @@ var no_of_minyawns = 0;
     });
     /********************************** PROFILE JS CODE *************************************/
 
-    $("#add-job-button").live('click', function(e) {
+    $("#add-job-button,#new-job").live('click', function(e) {
 
         var _this = $(this);
         e.preventDefault();

@@ -491,7 +491,7 @@ function job_collapse_b(model) {
 
 
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
-                            job_button = "<div class='st-applicant'>No Applicants Yet.</div><a href='#fakelink' class='btn btn-primary'><i class='icon-location-arrow'></i>Send Invites</a>";
+                            job_button = "<div class='st-applicant'>No Applicants Yet.</div>";
                         else //OTHER EMPLOYERS
                             job_button = "<i class='icon-location-arrow'></i>Create Similar Jobs";
                     }
@@ -638,7 +638,7 @@ function job_collapse_b(model) {
         case 'Expired':
 
 
-            if (model.toJSON().user_to_job_rating.indexOf('Well Done') == -1 || model.toJSON().user_to_job_rating.indexOf('Terrible') == -1) //RATINGS PENDING FOR ALL
+            if ((model.toJSON().user_to_job_rating.indexOf('Well Done') == -1 || model.toJSON().user_to_job_rating.indexOf('Terrible') == -1) && model.toJSON().user_to_job_status.indexOf('hired') >= 0) //RATINGS PENDING FOR ALL
             {
 
                 if (logged_in_user_id)// IF USER IS LOGGED IN
@@ -678,7 +678,7 @@ function job_collapse_b(model) {
                     if (role === 'Employer') { // ROLE IS EMPLOYER
 
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
-                            job_button = "<a href='#' class='st-green-link'>Do you want to  repeat the job ?</a>";
+                            job_button = "<a id='new-job' href='"+siteurl+"/jobs' class='st-green-link'>Add A New Job.</a>";
                         else
                             job_button = "<a href='#fakelink' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
 

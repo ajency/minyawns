@@ -108,7 +108,7 @@
     </div>
    <% if(result.is_verified === 'Y'){%>
    <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
-	<div class="verfied-txt">Minions Verfied</div>
+	<div class="verfied-txt">Verfied Minion</div>
    <% } %> 
     <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
    <div class="collage"> <%= result.college%> </div>
@@ -213,11 +213,11 @@
                                                 <div class="text-meta-bold">With over 500 Minions equipped with valuable skills from top universities. 
 													</div>
 												<div class="text-meta">
-												You can invite Minions just right for your Job.
+												
 												</div>
                                              <a href="<?php echo site_url()?>/minyawns-directory" target="_blank" class="btn btn-primary">
 												   <i class="icon-eye-open"></i>
-												 View All Minion
+												 View All Minions
 												   </a>
                                              </div>
                                           </div>

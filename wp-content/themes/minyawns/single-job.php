@@ -11,7 +11,7 @@ require 'templates/_jobs.php';
         jQuery("#single-job-page").hide();
 
        $(window).bind('beforeunload', function(){
-       if($("#no_of_minyawns").html() == '0')
+       if($("#no_of_minyawns").html() > 0)
       return 'Are you sure you want to leave?';
       
       });
