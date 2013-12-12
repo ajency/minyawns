@@ -131,7 +131,10 @@ require 'templates/_jobs.php';
 <div class="container">
     <div class="tab-content" style="min-height:928px;">
 
-        <div class="tab-pane jobs_table active single-job-1" id="tab2">
+        
+        <div class="tab-pane jobs_table active single-job-1 single-view" id="tab2">
+		
+          
             <div class="breadcrumb-text">
                 <p>
                     <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
