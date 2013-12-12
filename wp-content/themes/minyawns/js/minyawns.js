@@ -1072,7 +1072,7 @@ var no_of_minyawns = 0;
 
         e.preventDefault();
 
-        var span1 = $('.singlejobedit');
+        var span1 = $('.job-view-list');
         var span2 = $('#edit-job-form');
         var w = $(span1).width();
         if ($(this).hasClass('view'))
@@ -1080,13 +1080,13 @@ var no_of_minyawns = 0;
             $("#delete_jobs_link").hide();
             $(span1).animate({left: 0}, 500);
             $(span2).show().animate({left: w}, 500);
-
+$(".job-view-list").show();
             if ($(".alert-error").length > 0)
                 $(".alert-error").show();
         }
         else
         {
-
+$(".job-view-list").hide();
             $("#delete_jobs_link").show();
             $(".alert-error").hide();
             $('#edit-job-form').find('div.alert').remove();
@@ -1521,7 +1521,7 @@ var no_of_minyawns = 0;
        
            var cart = $('#imgselect');
         var imgtodrag =$(this).closest('.m2').find('img').eq(0);
-       
+        console.log(imgtodrag);
         if (imgtodrag) {
             var imgclone = imgtodrag.clone()
                 .offset({

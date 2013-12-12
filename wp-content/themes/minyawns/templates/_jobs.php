@@ -103,14 +103,14 @@
   <div class="layer">
    <div id="a" class="m1">
    <div class="caption" >
-    <div class="minyawns-img" >
+    <div class="minyawns-img" onclick="window.open('<?php echo site_url(); ?>/profile/<%= result.user_id %>')">
     <%= result.user_image%>
     </div>
    <% if(result.is_verified === 'Y'){%>
    <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
 	<div class="verfied-txt">Minions Verfied</div>
    <% } %> 
-    <h4> <%= result.name %></h4>
+    <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
    <div class="collage"> <%= result.college%> </div>
     <div class="collage"> <%= result.major%> </div>
     <div class="social-link">
@@ -134,7 +134,7 @@
 	</div>
 	
 
-	<div id="b" class="m2">
+<!--	<div id="b" class="m2">
 	
 	   <div class="caption" >
 	   <div  onclick="window.open('<?php echo site_url(); ?>/profile/<%= result.user_id %>')">
@@ -181,7 +181,7 @@
 	</div>
 	</div>
 	 
-    </div>
+    </div>-->
      <%= select_button %>
 <!--<div class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
@@ -202,37 +202,28 @@
 </script>
 
 <script type="text/template" id="blank-card">
-
-    <div class="row-fluid minyawns-grid">
-    <ul class="thumbnails apply-job">
-    <li class="span3">
-    <div class="thumbnail">
-
-    <div class="caption">
-    <div class="minyawns-img">
-    <img src="<?php echo get_template_directory_uri() ?>/images/profile.png">
-    </div>
-    <div class="rating">
-    <a href="#fakelink">
-    <i class="icon-thumbs-up"></i> 0
-    </a>
-
-    <a href="#fakelink" class="icon-thumbs">
-    <i class="icon-thumbs-down"></i> 0
-    </a>
-    </div>
-    <h4></h4>
-    <div class="collage">"Give it a shot. Be the first to apply.</div>
-    <hr>
-    <div class="dwn-btn">
-
-    </div>
-    </div>
-    </div>
-    </li>
-    </ul>
-    </div>
-
+ <li class="span3 thumbspan card" id="91">
+                                       <div class="thumbnail select-button-91" id="thumbnail-91">
+                                          <div class="m1">
+                                             <div class="caption">
+                                                <div class="minyawns-img">
+                                                <img src="<?php echo get_template_directory_uri(); ?>/images/avatar2.jpg" height="96" width="96"/>
+                                                </div>
+                                                <h4> Why wait for Minions to apply?</h4>
+                                                <div class="text-meta-bold">With over 500 Minions equipped with valuable skills from top universities. 
+													</div>
+												<div class="text-meta">
+												You can invite Minions just right for your Job.
+												</div>
+                                             <a href="<?php echo site_url()?>/minyawns-directory" target="_blank" class="btn btn-primary">
+												   <i class="icon-eye-open"></i>
+												 View All Minion
+												   </a>
+                                             </div>
+                                          </div>
+                                         
+                                       </div>
+                                    </li>
 </script>
 
 <script type="text/templates" id="no-result">

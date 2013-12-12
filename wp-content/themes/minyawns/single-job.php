@@ -14,7 +14,6 @@ require 'templates/_jobs.php';
        if($("#no_of_minyawns").html() == '0')
       return 'Are you sure you want to leave?';
       
-      
       });
 
 
@@ -148,7 +147,7 @@ You need to confirm the minion selection by making the payment,if you leave this
                     <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
                     <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
                     <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0): ?> 
-                        <a href="#edit-job-form" class="edit loaded edit-job-data"  is-job-paid="<?php echo job_selection_status(get_the_ID()) ?>"><i class="icon-edit"></i> Edit</a>
+                        <a href="#edit-job-form" class="edit loaded edit-job-data "  is-job-paid="<?php echo job_selection_status(get_the_ID()) ?>"><i class="icon-edit"></i> Edit</a>
                     <?php endif; ?>
 
                 </p> 
@@ -174,7 +173,7 @@ You need to confirm the minion selection by making the payment,if you leave this
 			<div class="row-fluid">
 			<div class="span12">
             <span class='load_ajaxsingle_job' style="display:block"></span>
-              <ul class="unstyled job-view-list" id="single-job-accordion" >
+              <ul class="unstyled job-view-list " id="single-job-accordion" >
             
 
                 <span  id='single-job-page'style="display:none"></span>
