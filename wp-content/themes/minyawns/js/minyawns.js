@@ -583,7 +583,7 @@ var no_of_minyawns = 0;
     });
     /********************************** PROFILE JS CODE *************************************/
 
-    $("#add-job-button").live('click', function(e) {
+    $("#add-job-button,#new-job").live('click', function(e) {
 
         var _this = $(this);
         e.preventDefault();
@@ -1072,7 +1072,7 @@ var no_of_minyawns = 0;
 
         e.preventDefault();
 
-        var span1 = $('.singlejobedit');
+        var span1 = $('.job-view-list');
         var span2 = $('#edit-job-form');
         var w = $(span1).width();
         if ($(this).hasClass('view'))
@@ -1080,13 +1080,13 @@ var no_of_minyawns = 0;
             $("#delete_jobs_link").hide();
             $(span1).animate({left: 0}, 500);
             $(span2).show().animate({left: w}, 500);
-
+$(".job-view-list").show();
             if ($(".alert-error").length > 0)
                 $(".alert-error").show();
         }
         else
         {
-
+$(".job-view-list").hide();
             $("#delete_jobs_link").show();
             $(".alert-error").hide();
             $('#edit-job-form').find('div.alert').remove();
@@ -1479,7 +1479,7 @@ var no_of_minyawns = 0;
 
 
 
-    $(".roundedTwo").live('click', function(e) {
+    $(".onoffswitch").live('click', function(e) {
 
         
 
@@ -1517,23 +1517,46 @@ var no_of_minyawns = 0;
             no_of_minyawns = no_of_minyawns + 1;
            
             
-          
-       //var xPos=$(this).closest('.m2').offset().left;
-       var $clone=$(this).closest('.m2').find('img').clone();
-       $(this).append($clone);
-       var leftpos=$("#selection").offset().left; 
-       var toppos=$("#selection").offset().top; 
-      // alert(leftpos);
-       leftpos += 200+1000;
-       toppos =toppos-800;
-       
-        $clone.animate({left:leftpos,opacity: 0.25,top:toppos},'slow', function(){
-             $clone.hide();
-              paypal_form_values(no_of_minyawns);
-        });
-        
        
        
+           var cart = $('#imgselect');
+        var imgtodrag =$(this).closest('.thumbspan').find('img').eq(0);
+        console.log(imgtodrag);
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+                .offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+            })
+                .css({
+                'opacity': '0.5',
+                    'position': 'absolute',
+                    'height': '150px',
+                    'width': '150px',
+                    'z-index': '100'
+            })
+                .appendTo($('body'))
+                .animate({
+                'top': cart.offset().top + 10,
+                    'left': cart.offset().left + 10,
+                    'width': 75,
+                    'height': 75
+            }, 1000, 'easeInOutExpo');
+            
+            setTimeout(function () {
+                cart.effect("shake", {
+                    times: 2
+                }, 200);
+            }, 1500);
+
+            imgclone.animate({
+                'width': 0,
+                    'height': 0
+            }, function () {
+                paypal_form_values(no_of_minyawns);
+                $(this).detach()
+            });
+        }
        
        
        
