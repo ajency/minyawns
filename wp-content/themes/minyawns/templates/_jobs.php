@@ -1,6 +1,6 @@
 <script type="text/template" id="jobs-table">   
   
-      <li class="_li job-open">
+      <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%>">
                               <div class="row-fluid">
                                  <div class="span9 ">
                                     <div class="row-fluid bdr-gray">
@@ -60,7 +60,7 @@
 			    <input type="hidden" name="last_name" value="Customer  Last Name"  />
                                         <input type="hidden" name="item_number" id="item_number"  / >
                                                     <input type="hidden" name="item_name" value="<?php  get_the_title($_POST['job_id']) ?>" / >
-    <% if(result.job_owner_id === logged_in_user_id){%>
+                                                    <% if(result.job_owner_id === logged_in_user_id){%>
     Please Select Your Minions
     <%}%>
              <div class="row-fluid minyawns-grid1">

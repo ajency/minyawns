@@ -16,6 +16,8 @@ require 'templates/_jobs.php';
       
       });
 
+      
+      $("#show-single-job").show();
 
     });
 </script>
