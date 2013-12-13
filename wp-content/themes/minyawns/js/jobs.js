@@ -119,7 +119,8 @@ function load_browse_jobs(id, _action, category_ids) {
     
    
     jQuery("#accordion24").empty();
-    $("#loader").show();    
+    $("#loader").show(); 
+   
     $(".dialog-success").hide();//hiding add job button
     //jQuery("#browse-jobs-table").append("<button id='load-more' class='btn load_more'> <div><span style='display: none;' class='load_ajax'></span> <b>Load more</b></div></button>");
     jQuery("#tab_identifier").val('0');
@@ -127,12 +128,12 @@ function load_browse_jobs(id, _action, category_ids) {
     jQuery("#calendar-jobs").hide(); /*bread crumbs*/
     jQuery("#calendar").hide();
     jQuery("#add-job-form").hide();//hides the job form
-    jQuery(".load_more").show();
+    jQuery(".load_more").hide();
     jQuery(".load-ajax-browse").hide();
     //$("#list-my-jobs").toggle();
     jQuery("#parent_item").html("Browse Jobs");
     jQuery("#sub_item").html("Job List");
-    
+   
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
         url: function() {
@@ -268,9 +269,9 @@ function load_browse_jobs(id, _action, category_ids) {
                         }
 
                     } else {
-
+jQuery(".load_more").show();
                         if (model.toJSON().load_more === 1)
-                            // jQuery(".load_more").hide();
+                             jQuery(".load_more").hide();
 
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
@@ -303,12 +304,13 @@ function load_browse_jobs(id, _action, category_ids) {
 
 function fetch_my_jobs(id)
 {
+  
     jQuery("#accordion24").empty();
     jQuery("#loader").show();
     jQuery("#add-job-form").show();
     jQuery("#parent_item").html("My Jobs");
     jQuery("#sub_item").html("Job List");
-     
+   
     if (window.location.href.indexOf("cat_id") > 0)
         window.location = window.location.href.split('?')[0];
 
@@ -318,7 +320,7 @@ function fetch_my_jobs(id)
     jQuery("#accordion2").empty();
 //  jQuery("#list-my-jobs").empty();
     //jQuery(".browse-jobs-table").empty();
-    jQuery("#load-more-my-jobs").show();
+    jQuery("#load-more-my-jobs").hide();
 
     //if(window.location.hash != '#my-jobs'){
     $("#add-job-form").toggle();
@@ -349,6 +351,7 @@ function fetch_my_jobs(id)
                 jQuery("#accordion24").html(jQuery("#no-result").html());
             } else {
                 // jQuery("#load-more-my-jobs").hide();
+                jQuery("#list-my-jobs").show();
                 jQuery(".no-result").hide()
                 jQuery("#accordion24").empty();
                 var template = _.template(jQuery("#jobs-table").html());

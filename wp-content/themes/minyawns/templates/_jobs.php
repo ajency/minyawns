@@ -75,6 +75,7 @@
                    <!--  <div class="alert alert-success alert-sidebar jobexpired">
                         <div>Job has expired.</div>
                      </div>-->
+              <% if(result.job_owner_id === logged_in_user_id){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>
                         <hr>
@@ -84,6 +85,7 @@
                         <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
                      <span id="selection_message"></span>
                                     </div>
+                            <%}%>
                  
 					   
 </div>

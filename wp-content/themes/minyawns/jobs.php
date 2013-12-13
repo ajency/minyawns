@@ -445,8 +445,15 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         <?php } ?>                   
 
                     </div>
+                    
                     <span class='load_ajax1_myjobs' style="display:none"></span>
-                    <div id="list-my-jobs">
+                    
+                </div>
+              
+
+
+            </div>
+             <div id="list-my-jobs">
 
 
                         <!--<div class="row-fluid " id="accordion24" >
@@ -459,11 +466,6 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         <button class="btn load_more" id="load-more-my-jobs"> <div><span class='load_ajax' ></span> <b>Load more</b></div></button>
                            <span id="loader" class='load_ajax_large_jobs' ></span>
                     </div>
-                </div>
-
-
-
-            </div>
         </div>
 
     </div>
