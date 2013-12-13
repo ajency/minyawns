@@ -174,7 +174,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                     </div>
                     <div class="span10">
 					  <?php if (get_user_role() === 'minyawn'): ?>
-					<div class="social-link"><i class="icon-twitter"></i>   <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
+					<div class="social-link profile-social-link"><i class="icon-twitter"></i>   <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
     <?php endif; ?>		                      
 					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {

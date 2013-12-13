@@ -134,7 +134,7 @@
 	</div>
 	
 
-<!--	<div id="b" class="m2">
+<div id="b" class="m2">
 	
 	   <div class="caption" >
 	   <div  onclick="window.open('<?php echo site_url(); ?>/profile/<%= result.user_id %>')">
@@ -162,7 +162,7 @@
 	
     
     <div class="dwn-btn">
-    <%= select_button %>
+  
     <%= ratings_button %>
     <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
     </div>
@@ -181,7 +181,7 @@
 	</div>
 	</div>
 	 
-    </div>-->
+    </div>
      <%= select_button %>
 <!--<div class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
