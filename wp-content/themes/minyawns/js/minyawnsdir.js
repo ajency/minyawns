@@ -104,6 +104,8 @@ function fetch_minyawns_list() {
             return SITEURL + '/wp-content/themes/minyawns/libs/minyawndir.php/allminyawns'
         }
     });
+    
+    
 
     var _data = {
         'offset': 0,
@@ -167,7 +169,9 @@ function fetch_minyawns_list() {
             jQuery(".minyawns-grid1").find('.load_ajax_large').remove(); //remove loader after load more completes
         }
     });
+$(".inline li").removeClass("selected");
 
+    $("#directory").addClass('selected');
 }
 
 

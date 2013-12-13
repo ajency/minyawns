@@ -17,6 +17,7 @@ var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>"
 		
 ?>	
 </script>
+<?php if(is_page('home')){ ?>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
  jQuery('.carousel').carousel({
@@ -24,6 +25,7 @@ jQuery(document).ready(function($) {
 		})
 		  });
 </script>
+<?php } ?>
 <footer>
 <span class="footer-top"></span>
 	<ul class="footer_menu">

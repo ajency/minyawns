@@ -131,9 +131,9 @@
 		<div class="main-menu">
 		<ul class="inline">
 				<li><b>Browse:</b></li>
-				<li><a href="#">All Jobs </a></li>
-				<li><a href="#">My Jobs</a></li>
-				<li class="selected"><a href="#">Minions Directory</a></li>
+				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
+                                <li id="myjobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
+				<li id="directory" class="selected"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
 				<li class="green-btn-top">
 				 <?php if (get_user_role() === 'minyawn'): ?>
 				<i class="icon-edit"></i>&nbsp; Update Your Profile
