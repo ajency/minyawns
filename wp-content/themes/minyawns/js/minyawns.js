@@ -911,7 +911,7 @@ var no_of_minyawns = 0;
                             if (jQuery("#noaccess_redirect_url").length > 0)
                                 window.location.href = jQuery("#noaccess_redirect_url").val();
                             else
-                                window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/';
+                                window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#my-jobs';
                         }
                         else
                         {
