@@ -224,6 +224,7 @@ function fetch_my_jobs(id)
 //                     alert(model.toJSON().applied_user_id);
                     if (model.toJSON().job_owner_id === id || model.toJSON().applied_user_id.indexOf(id) >= 0)/* to show my jobs*/
                     {
+                        
                         var template = _.template(jQuery("#jobs-table").html());
                         // alert(model.toJSON().load_more);
                         //  console.log(model.toJSON().applied_user_id);
