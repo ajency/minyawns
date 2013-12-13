@@ -270,6 +270,19 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     <span id="sub_item">Job List</span>
                 </p>
             </div>
+             <div class="alert alert-success alert-sidebar">
+                        <h3> Job Categories</h3><hr>
+						<ul class="unstyled nav nav-list categories">
+						<?php foreach($category as $cats){
+                                                    $count=query_posts("category_name='. $cats->name.'");
+                                                    
+                                                    ?>	
+                                                    <li onclick="filter_categories('<?php echo $cats->term_id ?>','<?php echo $cats->name; ?>')"><?php echo $cats->name; ?> <span class="nav-counter"></span></li>
+						
+						<?php } ?>
+                                                </ul>
+                        <br>
+                    </div>
             <div id="jobs-list">
                 <div class="tab-pane" id="tab2">
                     <?php
