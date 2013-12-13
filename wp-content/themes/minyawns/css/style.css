@@ -1156,3 +1156,7 @@ background-size: 25%;
     margin: 10px auto;
     width: 98%;
 }
+.job-view-list ._li:hover {
+    background-color: #F5F5F5;
+    cursor: default;
+}

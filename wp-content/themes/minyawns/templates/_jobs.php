@@ -6,7 +6,7 @@
                                     <div class="row-fluid bdr-gray">
                                       <div class="span12 job-details">
                                           <div class="job-title">
-                                             <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %> target="_blank" > <%= result.post_title %></a></h5>
+                                             <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
                                           </div>
                                           <div class="job-meta">
                                              <ul class="inline">
@@ -47,11 +47,10 @@
                             $key_job = sha1($salt .uniqid(time(), true));
                            ?>
    <form class="paypal" action="<?php echo site_url() . '/paypal-payments/'; ?>" method="post" id="paypal_form" target="_blank">
-   <input type="hidden"  name="returnUrl" id="returnUrl" value="<?php echo $return_url; ?>" / >
-    <input type="hidden" name="cancelUrl" id="cancelUrl"  value="<?php echo $cancelUrl; ?>" / >
-    <input type="hidden"  name="notify_url" id="notify_url" value="<?php echo site_url() . '/paypal-payments/'; ?>" / >
-    <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
+    <input type="hidden" name="cmd" value="_xclick">
+                <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
                 <input type="hidden" name="lc" value="UK" />
+                            
                             <input type="hidden" name="no_note" value="1" />
                 <input type="hidden" name="custom" value="<?php echo $key_job ?>" />
                             <input type="hidden" name="amount" id="amount"  />
