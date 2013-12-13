@@ -583,16 +583,28 @@ var no_of_minyawns = 0;
     });
     /********************************** PROFILE JS CODE *************************************/
 
-    $("#add-job-button,#new-job").live('click', function(e) {
-
-        var _this = $(this);
+    $("#add-job-button,#new-job,#create_my_jobs").live('click', function(e) {
+       
+        //jQuery("#parent_item").html("My Jobs");
+        jQuery("#sub_item").html("Add Job");
+        window.location.hash = '#add-job';
+        var _this = $("#add-job-button");
         e.preventDefault();
+        $("#accordion24").empty();
+        $(".load_more").toggle();
+       // $("#add-job-form").toggle();
+        $(".main-menu ul li").removeClass("selected");
         $("#job-success").hide();
         $("#add-job-form").toggle("slow", function() {
-            if ($("#add-job-form").is(':hidden'))
+            if ($("#add-job-form").is(':hidden')){
                 $(_this).html('<i class="fui-mail"></i> Add Jobs');
-            else
+                 $("#my_jobs").removeClass('selected');
+                 $("#load-more-my-jobs").hide();
+            }else{
                 $(_this).html('Cancel');
+                $("#load-more-my-jobs").hide();
+           
+            }
         });
         $("#add-job-form").find('input:text').val('');
         $("#job_task").val('');
@@ -600,6 +612,9 @@ var no_of_minyawns = 0;
 
         //$('#job_tags_tagsinput').find('span').remove();
     });
+    
+    
+  
 
     $('#add-job').click(function(e) {
 
@@ -647,6 +662,7 @@ var no_of_minyawns = 0;
                         $("#job-success").show();
                         $(".modal_ajax_large").hide();
                         var id;
+                        
                         load_browse_jobs(resp.post_id + '', 'single_json_my_jobs');
                     },
                     errors: function() {
@@ -675,6 +691,7 @@ var no_of_minyawns = 0;
 
         fetch_my_jobs(logged_in_user_id);
     });
+ 
 
 
 

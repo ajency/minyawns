@@ -266,8 +266,8 @@ $all_categories = get_categories(array('hide_empty' => 0));
             ?>
             <div class="breadcrumb-text">
                 <p>
-                    <a href="#">My Jobs</a>
-                    Job List
+                    <a href="#"><span id="parent_item">My Jobs</span></a>
+                    <span id="sub_item">Job List</span>
                 </p>
             </div>
             <div id="jobs-list">

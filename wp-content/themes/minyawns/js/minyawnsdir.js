@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
 //    });
     var b = $('#back-top');
 
-
+$("#directory").addClass("selected");
 //$("#searchbox").fcbkcomplete({
 //json_url: SITEURL + '/wp-content/themes/minyawns/libs/minyawndir.php/allminyawns',
 //cache: true,
@@ -366,3 +366,4 @@ $(".checkbox").live('click', function() {
 
 
 });
+

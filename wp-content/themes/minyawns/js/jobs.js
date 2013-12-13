@@ -12,13 +12,49 @@ jQuery(document).ready(function($) {
           fetch_my_jobs(logged_in_user_id);//moved to jobs.js
       else if(window.location.hash === '#browse')
           load_browse_jobs();
-      else
+      else if(window.location.hash === '#add-job')
+          load_add_job_form();
+          else
         fetch_my_jobs(logged_in_user_id);//moved to jobs.js
 
     }
 
 
-});
+});  
+
+function load_add_job_form_hash(){
+    
+ 
+location.href=SITEURL+"/jobs/#add-job"
+
+
+}
+function load_add_job_form(e){
+     window.location.hash = '#add-job';
+    jQuery("#parent_item").html("My Jobs");
+    jQuery("#sub_item").html("Add Job");
+    $("#load-more-my-jobs").hide();
+        var _this = $("#add-job-button");
+        e.preventDefault();
+        $("#accordion24").empty();
+        $(".load_more").toggle();
+       $(".inline li").removeClass("selected");
+        $("#directory").removeClass("selected");
+        $("#job-success").hide();
+        $("#add-job-form").toggle("slow", function() {
+            if ($("#add-job-form").is(':hidden')){
+                $(_this).html('<i class="fui-mail"></i> Add Jobs');
+                 $("#my_jobs").addClass('selected');
+            }else{
+                $(_this).html('Cancel');
+           
+            }
+        });
+        $("#add-job-form").find('input:text').val('');
+        $("#job_task").val('');
+        $("#job_details").val(" ");
+        
+    }
 function load_browse_jobs(id, _action, category_ids) {
    
     //jQuery("#browse-jobs-table").append("<button id='load-more' class='btn load_more'> <div><span style='display: none;' class='load_ajax'></span> <b>Load more</b></div></button>");
@@ -29,7 +65,9 @@ function load_browse_jobs(id, _action, category_ids) {
     jQuery("#add-job-form").hide();//hides the job form
     jQuery(".load_more").show();
     jQuery(".load-ajax-browse").hide();
-
+    //$("#list-my-jobs").toggle();
+    jQuery("#parent_item").html("Browse Jobs");
+    jQuery("#sub_item").html("Job List");
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
         url: function() {
@@ -80,19 +118,25 @@ function load_browse_jobs(id, _action, category_ids) {
         success: function(collection, response) {
             
             if (collection.length === 0) {
-                jQuery("#accordion2").empty();
+                jQuery("#accordion24").empty();
                 var template = _.template(jQuery("#no-result").html());
-                jQuery("#accordion2").append(template);
+                jQuery("#accordion24").append(template);
                 jQuery("#load-more").hide();
             } else {
 
                 var template = _.template(jQuery("#jobs-table").html());
                 var samplejobs = _.template(jQuery("#sample-jobs-template").html());
-                jQuery("#accordion24").empty();//clears the my jobs div to write browse jobs data
+               
+                if (typeof(first) === 'undefined')
+               jQuery("#accordion24").empty();
+               
+               
                 _.each(collection.models, function(model) {
                     var job_stat = job_status_e(model);
                     var job_collapse_button_var = job_collapse_b(model);
                     var minyawns_grid = job_minyawns_grid(model);
+                    
+                    
                     if (model.toJSON().post_id === id) { /*for single job page*/
 
                         if (_action === 'single_json')
@@ -127,8 +171,8 @@ function load_browse_jobs(id, _action, category_ids) {
 
 
 
-                            var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
-                            jQuery("#accordion24").append(html);
+//                            var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
+//                            jQuery("#accordion24").append(html);
 
                             var sample = samplejobs({result: model.toJSON()});
                             jQuery(".reuse-job").append(sample);
@@ -159,13 +203,18 @@ function load_browse_jobs(id, _action, category_ids) {
                         }
 
                     } else {
-
+   
                         if (model.toJSON().load_more === 1)
                             // jQuery(".load_more").hide();
 
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
-                        jQuery("#accordion24").append(html);
-                        jQuery(".dialog-success").hide(); // hides the ADD JOB FORM ON BROWSE JOBS
+                     
+                    if (typeof(first) !== 'undefined')
+                    jQuery("#accordion2").append(html);
+                    else
+                    jQuery("#accordion24").append(html);
+                    
+                    jQuery(".dialog-success").hide(); // hides the ADD JOB FORM ON BROWSE JOBS
 
                     }
                 });
@@ -190,6 +239,8 @@ function fetch_my_jobs(id)
 {
     
     jQuery("#add-job-form").show();
+    jQuery("#parent_item").html("My Jobs");
+    jQuery("#sub_item").html("Job List");
      jQuery(".dialog-success").show();
     if (window.location.href.indexOf("cat_id") > 0)
         window.location = window.location.href.split('?')[0];
@@ -202,11 +253,12 @@ function fetch_my_jobs(id)
     //jQuery(".browse-jobs-table").empty();
     jQuery("#load-more-my-jobs").show();
     
+    //if(window.location.hash != '#my-jobs'){
     $("#add-job-form").toggle();
-    
+    //}    
     $(".inline li").removeClass("selected");
 
-    $("#myjobs").addClass('selected');
+    $("#my_jobs").addClass('selected');
     
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
@@ -1290,10 +1342,12 @@ $("li").live('click', function() {
 
             var indv_categories = categories.split(','); //category ids saved as , seperated in hidden type. they are split and looped through
 
-
+           $('.controls').find('input[type=checkbox]:checked').removeAttr('checked');//clears all checkboxes before adding new
             for (var i = 0; i < indv_categories.length; i++)
             {
-                $("#category-" + indv_categories[i]).removeAttr('checked'); //clears checkboxes before loading new values
+                
+               
+                //$("#category-" + indv_categories[i]).removeAttr('checked'); //clears checkboxes before loading new values
                 $("#category-" + indv_categories[i]).attr('checked', 'checked');
 
             }
