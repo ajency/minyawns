@@ -134,12 +134,12 @@
 				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
                                 <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
 				<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
-				<li class="green-btn-top">
+				<li class="green-btn-top"   >
 				 <?php if (get_user_role() === 'minyawn'): ?>
 				<i class="icon-edit"></i>&nbsp; Update Your Profile
 				   <?php endif; ?>	
 				    <?php if (get_user_role() === 'employer'): ?>
-				<i class="icon-plus-sign" ></i><a onclick="load_add_job_form_hash()" >&nbsp; Create a job</a>
+				<i class="icon-plus-sign" ></i><a onclick="load_add_job_form_hash(1)" >&nbsp; Create a job</a>
 				   <?php endif; ?>
 				   </li>
 				

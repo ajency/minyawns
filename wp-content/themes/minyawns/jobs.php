@@ -275,7 +275,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     <?php
                     if (get_user_role() === "employer") {
                         ?>
-                        <div class="dialog dialog-success">
+                        <div class="dialog dialog-success" style="display:none">
                             Take the next step, start adding jobs! Click on the add jobs button below <br><br>
 
 							<button class="btn btn-primary btn-large  mll" id="add-job-button">
@@ -456,8 +456,8 @@ $all_categories = get_categories(array('hide_empty' => 0));
 
                         </ul>
 
-                        <button class="btn load_more" id="load-more-my-jobs"> <div><span class='load_ajax' style="display:block"></span> <b>Load more</b></div></button>
-
+                        <button class="btn load_more" id="load-more-my-jobs"> <div><span class='load_ajax' ></span> <b>Load more</b></div></button>
+                           <span id="loader" class='load_ajax_large_jobs' ></span>
                     </div>
                 </div>
 

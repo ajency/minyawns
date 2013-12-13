@@ -12,6 +12,8 @@ jQuery(document).ready(function($) {
     var b = $('#back-top');
 
 $("#directory").addClass("selected");
+
+$(".green-btn-top").attr('data-page','md');
 //$("#searchbox").fcbkcomplete({
 //json_url: SITEURL + '/wp-content/themes/minyawns/libs/minyawndir.php/allminyawns',
 //cache: true,

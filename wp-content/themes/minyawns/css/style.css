@@ -1146,3 +1146,13 @@ background-size: 25%;
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+.load_more{
+    
+     background: none repeat scroll 0 0 #E9E7E7;
+    border: 1px solid #C0C0C0;
+    color: #000000;
+    
+    font-weight: bold;
+    margin: 10px auto;
+    width: 98%;
+}
