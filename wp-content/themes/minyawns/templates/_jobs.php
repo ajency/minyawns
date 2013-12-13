@@ -61,7 +61,7 @@
                                         <input type="hidden" name="item_number" id="item_number"  / >
                                                     <input type="hidden" name="item_name" value="<?php  get_the_title($_POST['job_id']) ?>" / >
                                                     <% if(result.job_owner_id === logged_in_user_id){%>
-    Please Select Your Minions
+    <div id="show-single-job" style="display:none">Please Select Your Minions</div>
     <%}%>
              <div class="row-fluid minyawns-grid1">
 	<div class="span9">
