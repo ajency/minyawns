@@ -41,10 +41,8 @@ a:hover {
   left: 45%;
 }
 .delte-job {
-  float: right;
-  margin-top: -49px;
-  font-size: 15px;
-  color: #F30606;
+  font-size: 20px;
+  color: red !important;
 }
 #frm_signup .control-group {
   position: initial;
@@ -5015,4 +5013,9 @@ div.tooltip1:after {
   padding: 14px;
   color: #9C9797;
   padding-bottom: 2px;
+}
+.single-job-action {
+  width: 15%;
+  float: right;
+  margin-top: -46px;
 }
