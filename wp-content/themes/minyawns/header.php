@@ -141,9 +141,30 @@
 				    <?php if (get_user_role() === 'employer'): ?>
 				<i class="icon-plus-sign"></i>&nbsp; Create a job
 				   <?php endif; ?>
+				   </li>
 				
 		</ul>
+		
+
+
 		</div>
+		<div class="dropdown mobile-menu">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse Menu <i class="icon-reorder"></i></a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+  
+				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
+                                <li id="myjobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
+				<li id="directory" ><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
+				<li >
+				 <?php if (get_user_role() === 'minyawn'): ?>
+				<a href="#"> Update Your Profile</a>
+				   <?php endif; ?>	
+				    <?php if (get_user_role() === 'employer'): ?>
+					<a href="#"> Create a job</a>
+				   <?php endif; ?>
+				   </li>
+  </ul>
+</div>
 		<div class="clear"></div>
 	</div>
 			<?php } else { ?>

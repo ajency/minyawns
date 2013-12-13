@@ -246,14 +246,56 @@ body .jobs_table .data-title .profile-job {
   margin-right: 5px;
   color: #C2C2C2;
 }
+.mobile-menu {
+  display: none;
+}
 @media (max-width: 767px) {
-  .page-template .top-menu {
+  .mobile-menu {
+    display: block !important;
+    padding: 9px;
+  }
+  .mobile-menu a {
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+  }
+  .mobile-menu a i {
+    float: right;
+  }
+  .dropdown-menu {
+    border-radius: 0px!important;
+    -moz-border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+    margin-top: 0px!important;
+  }
+  .dropdown-menu li a {
+    border-radius: 0px!important;
+    -moz-border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+    font-size: 15px;
+  }
+  .main-menu {
+    display: none;
+  }
+  .single-edit {
+    font-size: 15px !important;
+  }
+  .single-job-action {
+    width: auto!important;
+    margin-top: -43px !important;
+  }
+  .delte-job {
+    font-size: 15px !important;
+  }
+  .logged-in .top-menu {
     margin-bottom: 0px;
   }
-  .page-template .top-menu .notify {
+  .logged-in .top-menu .notify {
     width: 100%!important;
   }
-  .page-template .top-menu #logged-in {
+  .logged-in .top-menu #logged-in {
     border-right: 0px !important;
     border-bottom: 1px solid #E0E0E0!important;
     width: 100%!important;
