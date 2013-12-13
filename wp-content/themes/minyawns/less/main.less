@@ -48,10 +48,9 @@ top: -5px;
 left: 45%;
 }
 .delte-job{
-	float: right;
-	margin-top: -49px;
-	font-size: 15px;
-	color: #F30606;
+
+	font-size: 20px;
+	color: red !important;
 	
 }
 #frm_signup{
@@ -269,9 +268,55 @@ font-size: 15px;
 		
 		}
 }
+.mobile-menu{
+	display:none;
+}
 @media (max-width: 767px) {
+.mobile-menu{
+	display:block !important;
+	padding: 9px;
+	a{
+		color:#fff;
+		font-size:18px;
+		text-transform: uppercase;
+font-weight: 600;
+display:block;
+	i{
+		float:right;
+	}
+		
+	}
+}
+.dropdown-menu{
+	border-radius:0px!important;
+	-moz-border-radius:0px!important;
+	-webkit-border-radius:0px!important;
+	margin-top:0px!important;
+	li{
+		a{
+		border-radius:0px!important;
+	-moz-border-radius:0px!important;
+	-webkit-border-radius:0px!important;
+	font-size:15px;
+		
+		}
+	}
+}
+.main-menu{
+display:none;
+}
+.single-edit {
+font-size: 15px !important;
+}
+.single-job-action {
+width: auto!important;
+margin-top: -43px!important;
 
-.page-template .top-menu{
+}
+.delte-job {
+font-size: 15px !important;
+}
+ .logged-in .top-menu{
 margin-bottom:0px;
 .notify {
 width: 100%!important;
@@ -5901,4 +5946,9 @@ font-size: 12px!important;
 	color: #9C9797;
 	padding-bottom: 2px;
 	
+}
+.single-job-action{
+	width: 15%;
+float: right;
+margin-top: -46px;
 }

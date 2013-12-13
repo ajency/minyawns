@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="additional-info">
                                        <div class="row-fluid">
-                                          <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %></span><%}%></div>
+                                          <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
                                           <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
                                        </div>
                                     </div>
@@ -61,7 +61,7 @@
                                         <input type="hidden" name="item_number" id="item_number"  / >
                                                     <input type="hidden" name="item_name" value="<?php  get_the_title($_POST['job_id']) ?>" / >
                                                     <% if(result.job_owner_id === logged_in_user_id){%>
-    <div id="show-single-job" style="display:none">Please Select Your Minions</div>
+    <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
              <div class="row-fluid minyawns-grid1">
 	<div class="span9">
