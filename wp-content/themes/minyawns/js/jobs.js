@@ -7,7 +7,20 @@ jQuery(document).ready(function($) {
         load_browse_jobs('', '', first);
     } else {
         /* function on page load*/
-
+$(window).on('hashchange',function(){ 
+   
+   if(window.location.hash === '#my-jobs')
+          fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+      else if(window.location.hash === '#browse')
+          load_browse_jobs();
+      else if(window.location.hash === 'add-job')
+          load_add_job_form();
+          else
+        fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+    
+    
+    return false;   
+});
       if(window.location.hash === '#my-jobs')
           fetch_my_jobs(logged_in_user_id);//moved to jobs.js
       else if(window.location.hash === '#browse')

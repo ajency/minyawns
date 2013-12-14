@@ -96,3 +96,5 @@
 <script type="text/templates" id="filters-loader-image">
  <span class='modal_ajax_large_filter' id="filters-loader"></span>
 </script>
+
+
