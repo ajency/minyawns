@@ -270,6 +270,8 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     <span id="sub_item">Job List</span>
                 </p>
             </div>
+            <dic class="row-fluid">
+            <div class="span3">
              <div class="alert alert-success alert-sidebar">
                         <h3> Job Categories</h3><hr>
 						<ul class="unstyled nav nav-list categories">
@@ -283,6 +285,8 @@ $all_categories = get_categories(array('hide_empty' => 0));
                                                 </ul>
                         <br>
                     </div>
+                </div>
+                <div class="span9">
             <div id="jobs-list">
                 <div class="tab-pane" id="tab2">
                     <?php
@@ -479,6 +483,8 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         <button class="btn load_more" id="load-more-my-jobs"> <div><span class='load_ajax' ></span> <b>Load more</b></div></button>
                            <span id="loader" class='load_ajax_large_jobs' ></span>
                     </div>
+                </div>
+                <div>
         </div>
 
     </div>
