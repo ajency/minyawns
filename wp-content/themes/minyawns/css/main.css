@@ -50,6 +50,7 @@ a:hover {
 .Select-minyawns {
   /*background: rgba(209, 255, 179, 0.45);
 	border: 1px solid #3DDF4A !important;*/
+
 }
 .Select-minyawns .m1 .minyawns-img {
   border: 5px solid #8ed030 !important;
@@ -735,6 +736,7 @@ body .jobs_table .data-title .profile-job {
   line-height: 32px;
   line-height: 54px;
   /*color: #B4B2B2;*/
+
   margin-left: 12px;
 }
 .list-jobs .expand {
@@ -1588,10 +1590,12 @@ body .jobs_table .data-title .profile-job {
 			}
 		}
 	}*/
+
 }
 .home .how-does-it-work {
   margin-bottom: 40px;
   /*box-shadow: inset 0px 24px 40px 1px rgba(204, 204, 204, 0.66), inset 0px -37px 49px -10px rgba(204, 204, 203, 0.64);*/
+
   background: #fff;
   font-family: arial;
 }
@@ -1737,6 +1741,7 @@ body .jobs_table .data-title .profile-job {
 .home .features .nav-tabs li {
   background: #8ed030;
   /* Old browsers */
+
   padding: 12px;
   font-size: 18px;
   border-right: 1px solid #8CB369;
@@ -1752,20 +1757,28 @@ body .jobs_table .data-title .profile-job {
   color: #fff;
   background: #42464a;
   /* Old browsers */
+
   background: -moz-linear-gradient(top, #42464a 0%, #000000 100%);
   /* FF3.6+ */
+
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #42464a), color-stop(100%, #000000));
   /* Chrome,Safari4+ */
+
   background: -webkit-linear-gradient(top, #42464a 0%, #000000 100%);
   /* Chrome10+,Safari5.1+ */
+
   background: -o-linear-gradient(top, #42464a 0%, #000000 100%);
   /* Opera 11.10+ */
+
   background: -ms-linear-gradient(top, #42464a 0%, #000000 100%);
   /* IE10+ */
+
   background: linear-gradient(to bottom, #42464a 0%, #000000 100%);
   /* W3C */
+
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#42464a', endColorstr='#000000', GradientType=0);
   /* IE6-9 */
+
 }
 .home .features .nav-tabs li.active a {
   color: #fff;
@@ -2002,6 +2015,12 @@ body .jobs_table .data-title .profile-job {
   display: block;
 }
 @media (max-width: 767px) {
+  {
+    /* Job Time*/
+  
+    /* safari hack*/
+  
+  }
   .jobs_table .accordion-inner {
     padding: 9px 15px 31px !important;
   }
@@ -2337,7 +2356,6 @@ body .jobs_table .data-title .profile-job {
     padding: 5px!important;
     line-height: 24px;
   }
-  /* Job Time*/
   .label,
   .badge {
     margin-top: 4px;
@@ -2507,7 +2525,6 @@ body .jobs_table .data-title .profile-job {
   .myjobs .default-btn {
     margin: 10px auto;
   }
-  /* safari hack*/
   .page-error {
     width: auto;
     margin: auto;
@@ -2811,7 +2828,7 @@ body .jobs_table .data-title .profile-job {
   -moz-box-shadow: 0 3px 15px #D6D6D6;
   -webkit-box-shadow: 0 3px 15px #D6D6D6;
   padding: 15px;
-  width: 97%;
+  width: 96%;
   margin-bottom: 35px;
   position: relative;
 }
@@ -3358,6 +3375,9 @@ body .jobs_table .data-title .profile-job {
   list-style-type: none;
   text-align: center;
 }
+.minyawns-grid1 .thumbnails:hover {
+  margin-top: 39px;
+}
 .minyawns-grid1 .thumbspan.card {
   background: #F5F5F5;
   border: 1px solid #E7E7E7;
@@ -3391,6 +3411,7 @@ body .jobs_table .data-title .profile-job {
 				float:none !important;
 				display:inline-table !important;
 				margin-left:0px !important;*/
+
   display: inline-block;
   width: 30%;
 }
@@ -3426,16 +3447,17 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 0px;
   font-weight: bold;
   color: #0CB2C0;
+  min-height: 20px;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption .social-link {
   text-align: center;
   font-size: 14px;
-  margin-bottom: 10px;
-  margin-top: 10px;
   text-overflow: ellipsis;
   /*width: 72%;*/
+
   overflow: hidden;
-  margin: 0px auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption .label-small {
   margin-bottom: 5px;
@@ -3497,6 +3519,7 @@ body .jobs_table .data-title .profile-job {
 .minyawns-grid1 .thumbspan .thumbnail .m2 .caption {
   padding: 0px ;
   margin-top: 10px;
+  min-height: 296px;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m2 .caption h4 {
   font-size: 19PX;
@@ -4012,6 +4035,7 @@ div.tooltip1:after {
     line-height: 32px;
     line-height: 54px;
     /*color: #B4B2B2;*/
+  
     margin-left: 12px;
   }
   .list-jobs .expand {

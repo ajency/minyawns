@@ -3334,7 +3334,7 @@ line-height: 16px;
 		-moz-box-shadow: 0 3px 15px #D6D6D6;
 		-webkit-box-shadow: 0 3px 15px #D6D6D6;
 		padding: 15px;
-		width: 97%;
+		width: 96%;
 		margin-bottom:35px;
 		position:relative;
 		.additional-info{
@@ -3969,6 +3969,12 @@ font-weight: 100;
 	padding: 0;
 	list-style-type: none;
 	text-align: center;
+  .thumbnails{
+  &:hover{
+  margin-top:39px;
+  }
+  }
+
 	.thumbspan.card{
 		background: #F5F5F5;
 		border: 1px solid #E7E7E7;
@@ -4010,6 +4016,7 @@ font-weight: 100;
 				margin-left:0px !important;*/
 				display:inline-block;
 				width:30%;
+				
 					.thumbnail{
 						position: relative;
 						cursor:pointer;
@@ -4044,16 +4051,19 @@ font-weight: 100;
 								margin-bottom: 0px;
 								font-weight:bold;
 								color: #0CB2C0;
+								min-height: 20px;
 							}
 							.social-link{
 							text-align: center;
 							font-size: 14px;
-							margin-bottom: 10px;
-							margin-top: 10px;
+							
 							text-overflow: ellipsis;
 							/*width: 72%;*/
 							overflow: hidden;
-							margin: 0px auto;
+							margin-right: auto;
+							margin-left: auto;
+
+
 							}
 							
 							.label-small{
@@ -4122,6 +4132,7 @@ font-weight: 100;
 									.caption{
 									padding:0px ;
 									margin-top:10px;
+									min-height: 296px;
 								h4{
 							font-size: 19PX;
 							text-align: center;
