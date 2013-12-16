@@ -161,13 +161,19 @@ else
 			$curl_err = curl_error($ch);
 			curl_close($ch);
 			
-			$req = str_replace("&", "\n", $req);
 			$data_1 = explode('&',$req);
+			wp_mail('parag@ajency.in','exp1',print_r($data_1));
 			foreach($data_1 as  $data1_val)
 			{
 				$data2 = explode(",",$data1_val);
 				$data[$data2[0]] = $data2[1];
+				
+				wp_mail('parag@ajency.in','exp2',print_r($data2));
 			}
+			
+			$req = str_replace("&", "\n", $req);
+			
+			
 			
 			wp_mail('parag@ajency.in','test ',$req.$curl_result);
 			if ($curl_result== "VERIFIED") 
