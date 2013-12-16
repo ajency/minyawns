@@ -58,13 +58,10 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 }
 else
 {
-	$post22=print_r($_POST);
-	$k = var_dump($_REQUEST);
-	$j = var_dump($_GET);
-	wp_mail('parag@ajency.in','minyaw',  $post22."--".$data."++".$k."99".$j);
+	
 			get_header();			
 			
-			$data['receiver_id']			= $_POST['receiver_id'];
+		/*	$data['receiver_id']			= $_POST['receiver_id'];
 			$data['shipping']			= $_POST['shipping'];
 			$data['item_name']			= $_POST['item_name'];
 			$data['item_number'] 		= $_POST['item_number'];
@@ -98,7 +95,7 @@ else
 				
 			}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )	
 	
-	
+	*/
 			// STEP 1: read POST data
 			
 			// Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
@@ -163,7 +160,9 @@ else
 			wp_mail('parag@ajency.in','test ',$req.$curl_result);
 			if ($curl_result== "VERIFIED") 
 			{
-								
+				
+				
+				
 				
 				
 				$data['receiver_id']			= $_POST['receiver_id'];
@@ -182,17 +181,36 @@ else
 				$data['mc_gross1']	 = trim($_POST['mc_gross1']);
 				//$total_amount = $amount + $tax;
 				$data['total_amount'] = trim($_POST['mc_gross']);
-			 	$item__number = $data['item_number'];
+				
+				
+				 
+					
+					
+				$item__number = $data['item_number'];
+					
+					
+					
+					
+				
+				
+				if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
+				{
+					update_paypal_payment($data,'');
+				
+				}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
+				
+				
+				
+				$post22=print_r($_POST);
+				$k = var_dump($_REQUEST);
+				$j = var_dump($_GET);
+				wp_mail('parag@ajency.in','minyaw',  $post22."--".$data."++".$k."99".$j);
 				
 				
 				
 				
 				
-				
-				
-				
-				
-				
+								
 				$mail_data = "\n\nPaypal Verified OK";							
 				
 				$job_data = get_post($item__number);
