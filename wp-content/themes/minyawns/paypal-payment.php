@@ -96,6 +96,12 @@ else
 			}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )	
 	
 	*/
+			
+			if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
+			{
+				update_paypal_payment($data,'');
+			
+			}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
 			// STEP 1: read POST data
 			
 			// Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
@@ -140,7 +146,7 @@ else
  
                         $url = PAYPAL_SEC_PAYMENTSITE.'/webscr';
                         
-                        $curl_result=$curl_err='';
+            $curl_result=$curl_err='';
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL,$url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
@@ -155,17 +161,35 @@ else
 			$curl_err = curl_error($ch);
 			curl_close($ch);
 			
+			
+			$data_1 = array();
+			$data_1 = explode('&',$req);
+			
+			$pp = print_r($data_1);
+			$qq = var_dump($data_1);
+			
+			wp_mail('parag@ajency.in','exp1',$pp.$qq);
+			foreach($data_1 as  $data1_val)
+			{
+				$data2 = explode("=",$data1_val);
+				$data[$data2[0]] = $data2[1];
+				
+				wp_mail('parag@ajency.in','exp2',print_r($data2));
+			}
+			
 			$req = str_replace("&", "\n", $req);
+			
+			
 			
 			wp_mail('parag@ajency.in','test ',$req.$curl_result);
 			if ($curl_result== "VERIFIED") 
 			{
 				
 				
+					
 				
 				
-				
-				$data['receiver_id']			= $_POST['receiver_id'];
+			/*	$data['receiver_id']			= $_POST['receiver_id'];
 				$data['shipping']			= $_POST['shipping'];
 				$data['item_name']			= $_POST['item_name'];
 				$data['item_number'] 		= $_POST['item_number'];
@@ -180,11 +204,12 @@ else
 				//$mc_gross = $_POST['mc_gross'];
 				$data['mc_gross1']	 = trim($_POST['mc_gross1']);
 				//$total_amount = $amount + $tax;
-				$data['total_amount'] = trim($_POST['mc_gross']);
+				$data['total_amount'] = trim($_POST['mc_gross']);*/
 				
 				
-				 
-					
+				$data['payment_currency']	= $data['mc_currency'];
+				$data['payment_amount'] = $data['mc_gross'];
+				$data['total_amount'] = $data['mc_gross'];
 					
 				$item__number = $data['item_number'];
 					
@@ -193,11 +218,7 @@ else
 					
 				
 				
-				if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
-				{
-					update_paypal_payment($data,'');
 				
-				}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
 				
 				
 				
