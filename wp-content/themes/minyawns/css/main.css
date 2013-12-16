@@ -3406,6 +3406,12 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 12px;
   font-weight: 300;
 }
+.minyawns-grid1 .thumbspan.card .thumbnail {
+  cursor: auto;
+}
+.minyawns-grid1 .thumbspan.card .thumbnail .m1 .caption h4 {
+  cursor: auto;
+}
 .minyawns-grid1 .thumbspan {
   /*margin-right: 16px;
 				float:none !important;
