@@ -76,7 +76,7 @@ else
 			$data['mc_gross1']	 = trim($_POST['mc_gross1']);
 			//$total_amount = $amount + $tax;
 			$data['total_amount'] = trim($_POST['mc_gross']);
-			
+			 wp_mail('ansley@ajency.in','minyaw',  $data);
 			
 			
 			$item__number = $data['item_number'];
@@ -207,7 +207,7 @@ else
 					//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
 					$cnt_sel_minyawns  = 1;
 					$wages_minyawns = get_post_meta($data['item_number'] , 'job_wages', true) - ( (get_post_meta($data['item_number'] , 'job_wages', true) *13)/100 );
-					 wp_mail('ansley@ajency.in','minyaw',  $minyawn_data);
+					
                                         foreach($minyawn_data as $key=>$value)
 					{
 						//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
