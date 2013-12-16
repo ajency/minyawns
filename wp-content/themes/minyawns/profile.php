@@ -294,7 +294,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
 				
 				<hr>
 				<h4><i class="icon-briefcase"></i> &nbsp; Job List</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </p>
+				<p>All your Jobs are listed below</p>
 				<div class="row-fluid accordion">
 					<div class="span9">
 						<ul class="unstyled job-view-list" id="accordion24">
