@@ -77,6 +77,7 @@ else
 			//$total_amount = $amount + $tax;
 			$data['total_amount'] = trim($_POST['mc_gross']);
 			 wp_mail('ansley@ajency.in','minyaw',  $data);
+                         wp_mail('ansley@ajency.in','minyaw',  $_POST);
 			
 			
 			$item__number = $data['item_number'];
