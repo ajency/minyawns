@@ -421,24 +421,26 @@ var profile_page=0;
                             jQuery("#load-more-my-jobs,.load_more_profile").hide();
 
 
-alert(review);
+
                         
                         
                          if(profile_page == 1){
                                var html = profiletemp({result: model.toJSON(),review:review, job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
                             jQuery("#accordion24").prepend(html);
+                            jQuery("#selection").hide();
                                
                            }else
                                {
                                  var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                         jQuery("#accordion24").append(html); 
+                         var sample = samplejobs({result: model.toJSON()});
+                        jQuery(".reuse-job").append(sample);
                                    
                                }
 
                         //if (model.toJSON().load_more === 1) {
-                        var sample = samplejobs({result: model.toJSON()});
-                        jQuery(".reuse-job").append(sample);
+                       
                         // }
 
                         $(".load_more").show();
