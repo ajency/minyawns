@@ -21,7 +21,7 @@ get_header();
         </div>
         <div>
             <?php if (strlen($_GET['filter']) > 0) { ?>
-                <span onclick="remove_filter()" class="label"><?php echo $_GET['filter'] ?><button data-dismiss="alert" class="close" type="button" style=" margin-left: 10px;margin-top: -19px;">×</button></span>
+                <span style="margin-bottom: 10px; padding-top: 5px;" onclick="remove_filter()" class="label"><?php echo $_GET['filter'] ?><button data-dismiss="alert" class="close" type="button" style=" margin-left: 10px;margin-top: -2px;">×</button></span>
             <?php } ?>
         </div>
         <div class="row-fluid profile-wrapper">

@@ -42,12 +42,13 @@ background-size: 4%;
 
 .load_ajax_large_jobs{
      background: url("../images/ajax-loader.gif") no-repeat scroll 0 0 transparent;
-    float: left;
     height: 101px;
-     margin: 25px 58px auto 500px;
-    position: inherit;
-    width: 94px;
-    z-index: 99999;
+margin: 25px auto;
+position: inherit;
+width: 94px;
+z-index: 99999;
+
+display: block;
     
     
 }
