@@ -1501,7 +1501,8 @@ $(".job-view-list").hide();
         
 
 
-
+ var user_id=$("#" + $(this).attr('id')).find(':checkbox').attr('data-user-id');
+ var group_id=$("#minyawn_id").val();
 
         if ($("#" + $(this).attr('id')).find(':checkbox').is(':checked')) {
             $("#" + $(this).attr('id')).find(':checkbox').not(this).prop('checked', false);
@@ -1533,9 +1534,9 @@ $(".job-view-list").hide();
             //no_of_minyawns = no_of_minyawns + 1;
             no_of_minyawns = no_of_minyawns + 1;
            
-            
+             group_id += user_id + ',';
        
-       
+       $("#minyawn_id").val(group_id);
            var cart = $('#imgselect');
         var imgtodrag =$(this).closest('.thumbspan').find('img').eq(0);
         console.log(imgtodrag);

@@ -26,7 +26,15 @@ $notify_url = PAYPAL_PAYMENTSITE.'/paypal-payments/';
 if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 
 	// Firstly Append paypal account to querystring
-	 
+    
+    $salt_job = wp_generate_password(20); // 20 character "random" string
+            $key_job = sha1($salt . $_POST['job_id'] . uniqid(time(), true));
+
+	  $paypal_payment = array('minyawn_txn_id' => $key_job, 'paypal_txn_id' => '', 'status' => '', 'minyawns_selected' =>$_POST['minyawn_id']);
+          add_post_meta($_POST['job_id'], 'paypal_payment', $paypal_payment);
+            
+            
+            
 	$querystring .= "?business=".urlencode($paypal_email)."&";	
 	
 	//loop for posted values and append to querystring
