@@ -162,10 +162,10 @@ else
 			curl_close($ch);
 			
 			$data_1 = explode('&',$req);
-			wp_mail('parag@ajency.in','exp1',print_r($data_1));
+			wp_mail('parag@ajency.in','exp1',$req.print_r($data_1));
 			foreach($data_1 as  $data1_val)
 			{
-				$data2 = explode(",",$data1_val);
+				$data2 = explode("=",$data1_val);
 				$data[$data2[0]] = $data2[1];
 				
 				wp_mail('parag@ajency.in','exp2',print_r($data2));
