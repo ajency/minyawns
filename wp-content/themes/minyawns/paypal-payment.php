@@ -161,7 +161,7 @@ else
 			$curl_err = curl_error($ch);
 			curl_close($ch);
 			
-			
+			$data = array();
 			$data_1 = array();
 			$data_1 = explode('&',$req);
 			$pp="";
@@ -169,16 +169,16 @@ else
 			
 			foreach($data_1 as $j_key =>$j_val)
 			{
-				$pp.= "\n exp1".$j_key." = ".$j_val ;
+				//$pp.= "\n exp1".$j_key." = ".$j_val ;
 				$data2 = explode("=",$j_val);
-				$qq.= "\n exp2".$data2[0]." = ".$data2[1]; 
+				//$qq.= "\n exp2".$data2[0]." = ".$data2[1]; 
 				$data[$data2[0]] = $data2[1]; 
 				
 			}
 			
 			
 			
-			wp_mail('parag@ajency.in','exp1',$pp.$qq);
+			//wp_mail('parag@ajency.in','exp1',$pp.$qq);
 			/*foreach($data_1 as  $data1_val)
 			{
 				
@@ -196,7 +196,7 @@ else
 			{
 				
 				
-				wp_mail('parag@ajency.in','verified exp1',$pp.$qq);
+			//	wp_mail('parag@ajency.in','verified exp1',$pp.$qq);
 				
 				
 			/*	$data['receiver_id']			= $_POST['receiver_id'];
