@@ -164,6 +164,35 @@ else
 			if ($curl_result== "VERIFIED") 
 			{
 								
+				
+				
+				$data['receiver_id']			= $_POST['receiver_id'];
+				$data['shipping']			= $_POST['shipping'];
+				$data['item_name']			= $_POST['item_name'];
+				$data['item_number'] 		= $_POST['item_number'];
+				$data['payment_status'] 	= $_POST['payment_status'];
+				$data['payment_amount'] 	= $_POST['mc_gross'];
+				$data['payment_currency']	= $_POST['mc_currency'];
+				$data['txn_id']				= $_POST['txn_id'];
+				$data['receiver_email'] 	= $_POST['receiver_email'];
+				$data['payer_email'] 		= $_POST['payer_email'];
+				$data['custom'] 			= $_POST['custom'];
+				$data['mc_fee'] = trim($_POST['mc_fee']);
+				//$mc_gross = $_POST['mc_gross'];
+				$data['mc_gross1']	 = trim($_POST['mc_gross1']);
+				//$total_amount = $amount + $tax;
+				$data['total_amount'] = trim($_POST['mc_gross']);
+			 	$item__number = $data['item_number'];
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				$mail_data = "\n\nPaypal Verified OK";							
 				
 				$job_data = get_post($item__number);
