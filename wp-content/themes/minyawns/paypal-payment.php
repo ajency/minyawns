@@ -161,14 +161,16 @@ else
 			$curl_err = curl_error($ch);
 			curl_close($ch);
 			
+			
+			$data_1 = array();
 			$data_1 = explode('&',$req);
-			wp_mail('parag@ajency.in','exp1',$req.print_r($data_1));
+			wp_mail('parag@ajency.in','exp1',var_dump($data_1));
 			foreach($data_1 as  $data1_val)
 			{
 				$data2 = explode("=",$data1_val);
 				$data[$data2[0]] = $data2[1];
 				
-				wp_mail('parag@ajency.in','exp2',print_r($data2));
+				wp_mail('parag@ajency.in','exp2',var_dump($data2));
 			}
 			
 			$req = str_replace("&", "\n", $req);
