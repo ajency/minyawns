@@ -59,7 +59,9 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 else
 {
 	$post22=print_r($_POST);
-	wp_mail('parag@ajency.in','minyaw',  $post22.$data);
+	$k = var_dump($_REQUEST);
+	$j = var_dump($_GET);
+	wp_mail('parag@ajency.in','minyaw',  $post22."--".$data."++".$k."99".$j);
 			get_header();			
 			
 			$data['receiver_id']			= $_POST['receiver_id'];
