@@ -164,14 +164,23 @@ else
 			
 			$data_1 = array();
 			$data_1 = explode('&',$req);
+			$pp="";
+			$qq="";
 			
-			$pp = print_r($data_1);
-			$qq = var_dump($data_1);
+			foreach($data_1 as $j_key =>$j_val)
+			{
+				$pp.= "\n exp1".$j_key." = ".$j_val ;
+				$data2 = explode("=",$j_val);
+				$qq.= "\n exp2".$data2[0]." = ".$data2[1]; 
+				
+			}
+			
+			
 			
 			wp_mail('parag@ajency.in','exp1',$pp.$qq);
 			foreach($data_1 as  $data1_val)
 			{
-				$data2 = explode("=",$data1_val);
+				
 				$data[$data2[0]] = $data2[1];
 				
 				wp_mail('parag@ajency.in','exp2',print_r($data2));
