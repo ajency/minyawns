@@ -811,6 +811,8 @@ function get_paypal_payment_meta($transaction_id, $minyawns_tx_id, $jobid) {
 
 function update_paypal_payment($data, $curl_result) {
     global $wpdb;
+    $test_data = var_dump($data);
+    wp_mail('parag@ajency.in','update paypal function call ',$test_data);
     $transaction_id = $data['txn_id'];
     $minyawns_tx_id = $data['custom'];
     if ($curl_result == "VERIFIED")
