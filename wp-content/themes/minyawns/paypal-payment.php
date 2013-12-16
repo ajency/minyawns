@@ -160,7 +160,7 @@ else
 			
 			$req = str_replace("&", "\n", $req);
 			
-			
+			wp_mail('parag@ajency.in','test ',$req.$curl_result);
 			if ($curl_result== "VERIFIED") 
 			{
 								
