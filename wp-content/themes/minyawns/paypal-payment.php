@@ -50,7 +50,7 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	$querystring .= "notify_url=".urlencode($notify_url)."& ";
 	$querystring .= "currency_code=USD";
 	
-wp_mail("parag@ajency.in",'query string',$querystring);
+
  
        header('location:'.PAYPAL_SEC_PAYMENTSITE.'/cgi-bin/webscr'.$querystring);
 	exit();
@@ -59,7 +59,7 @@ wp_mail("parag@ajency.in",'query string',$querystring);
 else
 {
 			get_header();			
-			wp_mail('parag@ajency.in','check response','test');
+			
 			$data['receiver_id']			= $_POST['receiver_id'];
 			$data['shipping']			= $_POST['shipping'];
 			$data['item_name']			= $_POST['item_name'];
@@ -77,7 +77,7 @@ else
 			//$total_amount = $amount + $tax;
 			$data['total_amount'] = trim($_POST['mc_gross']);
                         
-                        $post22=var_dump($_POST);
+                        $post22=print_r($_POST);
 			 wp_mail('parag@ajency.in','minyaw',  $post22.$data);
                          
 			
