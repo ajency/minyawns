@@ -60,6 +60,7 @@
                                                     <input type="hidden" name="first_name" value="Customer  First Name"  />
 			    <input type="hidden" name="last_name" value="Customer  Last Name"  />
                                         <input type="hidden" name="item_number" id="item_number"  / >
+                                                    <input type="hidden" name="minyawn_id" id="minyawn_id" />
                                                     <input type="hidden" name="item_name" value="<?php  get_the_title($_POST['job_id']) ?>" / >
                                                     <% if(result.job_owner_id === logged_in_user_id){%>
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>

@@ -26,7 +26,15 @@ $notify_url = PAYPAL_PAYMENTSITE.'/paypal-payments/';
 if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 
 	// Firstly Append paypal account to querystring
-	 
+    
+    $salt_job = wp_generate_password(20); // 20 character "random" string
+            $key_job = sha1($salt . $_POST['item_number'] . uniqid(time(), true));
+
+	  $paypal_payment = array('minyawn_txn_id' => $key_job, 'paypal_txn_id' => '', 'status' => '', 'minyawns_selected' =>$_POST['minyawn_id']);
+          add_post_meta($_POST['item_number'], 'paypal_payment', $paypal_payment);
+            
+            
+            
 	$querystring .= "?business=".urlencode($paypal_email)."&";	
 	
 	//loop for posted values and append to querystring
@@ -68,7 +76,8 @@ else
 			$data['mc_gross1']	 = trim($_POST['mc_gross1']);
 			//$total_amount = $amount + $tax;
 			$data['total_amount'] = trim($_POST['mc_gross']);
-			
+			 wp_mail('ansley@ajency.in','minyaw',  $data);
+                         wp_mail('ansley@ajency.in','minyaw',  $_POST);
 			
 			
 			$item__number = $data['item_number'];
@@ -199,7 +208,8 @@ else
 					//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
 					$cnt_sel_minyawns  = 1;
 					$wages_minyawns = get_post_meta($data['item_number'] , 'job_wages', true) - ( (get_post_meta($data['item_number'] , 'job_wages', true) *13)/100 );
-					foreach($minyawn_data as $key=>$value)
+					
+                                        foreach($minyawn_data as $key=>$value)
 					{
 						//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
 					

@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
         select_all_text: "select",
     });
 
-var no_of_minyawns = 0;
+    var no_of_minyawns = 0;
 
     $(".jumper").on("click", function(e) {
 
@@ -584,7 +584,7 @@ var no_of_minyawns = 0;
     /********************************** PROFILE JS CODE *************************************/
 
     $("#add-job-button,#new-job,#create_my_jobs").live('click', function(e) {
-       
+
         //jQuery("#parent_item").html("My Jobs");
         jQuery("#sub_item").html("Add Job");
         window.location.hash = '#add-job';
@@ -592,18 +592,18 @@ var no_of_minyawns = 0;
         e.preventDefault();
         $("#accordion24").empty();
         $(".load_more").toggle();
-       // $("#add-job-form").toggle();
+        // $("#add-job-form").toggle();
         $(".main-menu ul li").removeClass("selected");
         $("#job-success").hide();
         $("#add-job-form").toggle("slow", function() {
-            if ($("#add-job-form").is(':hidden')){
+            if ($("#add-job-form").is(':hidden')) {
                 $(_this).html('<i class="fui-mail"></i> Add Jobs');
-                 $("#my_jobs").removeClass('selected');
-                 $("#load-more-my-jobs").hide();
-            }else{
+                $("#my_jobs").removeClass('selected');
+                $("#load-more-my-jobs").hide();
+            } else {
                 $(_this).html('Cancel');
                 $("#load-more-my-jobs").hide();
-           
+
             }
         });
         $("#add-job-form").find('input:text').val('');
@@ -612,9 +612,9 @@ var no_of_minyawns = 0;
 
         //$('#job_tags_tagsinput').find('span').remove();
     });
-    
-    
-  
+
+
+
 
     $('#add-job').click(function(e) {
 
@@ -662,7 +662,7 @@ var no_of_minyawns = 0;
                         $("#job-success").show();
                         $(".modal_ajax_large").hide();
                         var id;
-                        
+
                         load_browse_jobs(resp.post_id + '', 'single_json_my_jobs');
                     },
                     errors: function() {
@@ -691,7 +691,7 @@ var no_of_minyawns = 0;
 
         fetch_my_jobs(logged_in_user_id);
     });
- 
+
 
 
 
@@ -1097,13 +1097,13 @@ var no_of_minyawns = 0;
             $("#delete_jobs_link").hide();
             $(span1).animate({left: 0}, 500);
             $(span2).show().animate({left: w}, 500);
-$(".job-view-list").show();
+            $(".job-view-list").show();
             if ($(".alert-error").length > 0)
                 $(".alert-error").show();
         }
         else
         {
-$(".job-view-list").hide();
+            $(".job-view-list").hide();
             $("#delete_jobs_link").show();
             $(".alert-error").hide();
             $('#edit-job-form').find('div.alert').remove();
@@ -1495,90 +1495,103 @@ $(".job-view-list").hide();
 //    });
 
 
+function remove(array,to_remove)
+{
+  var elements=array.split(",");
+  var remove_index=elements.indexOf(to_remove);
+  elements.splice(remove_index,1);
+  var result=elements.join(",");
+  return result;
+}
 
     $(".onoffswitch").live('click', function(e) {
 
-        
 
 
 
+        var user_id = $("#" + $(this).attr('id')).find(':checkbox').attr('data-user-id');
+        var group_id = $("#minyawn_id").val();
 
         if ($("#" + $(this).attr('id')).find(':checkbox').is(':checked')) {
             $("#" + $(this).attr('id')).find(':checkbox').not(this).prop('checked', false);
 
             $("." + $(this).attr('id')).removeClass("Select-minyawns");
 
-            no_of_minyawns = no_of_minyawns - 1;
+    
+            var explode = remove(group_id,user_id); 
+        
             
-            
+
+           
+            $("#minyawn_id").val(explode);
             $("#paypal_pay").show();
             $("#selection_message").hide();
-            
-            if(no_of_minyawns == 0){
-            $("#wages_per_minyawns").html("0");
-            $("#paypal_pay").hide();
-            $("#selection_message").show();
+
+            if (no_of_minyawns == 0) {
+                $("#wages_per_minyawns").html("0");
+                $("#paypal_pay").hide();
+                $("#selection_message").show();
             }
-            
+
             paypal_form_values(no_of_minyawns);
-            
+
         } else {
             //$("#hidden_selected_min").append(1);
 
             $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
             $("." + $(this).attr('id')).addClass("Select-minyawns");
-            
-             $("#paypal_pay").show();
+
+            $("#paypal_pay").show();
             $("#selection_message").hide();
             //no_of_minyawns = no_of_minyawns + 1;
             no_of_minyawns = no_of_minyawns + 1;
-           
-            
-       
-       
-           var cart = $('#imgselect');
-        var imgtodrag =$(this).closest('.thumbspan').find('img').eq(0);
-        console.log(imgtodrag);
-        if (imgtodrag) {
-            var imgclone = imgtodrag.clone()
-                .offset({
-                top: imgtodrag.offset().top,
-                left: imgtodrag.offset().left
-            })
-                .css({
-                'opacity': '0.5',
+
+            group_id += user_id + ',';
+
+            $("#minyawn_id").val(group_id);
+            var cart = $('#imgselect');
+            var imgtodrag = $(this).closest('.thumbspan').find('img').eq(0);
+            console.log(imgtodrag);
+            if (imgtodrag) {
+                var imgclone = imgtodrag.clone()
+                        .offset({
+                    top: imgtodrag.offset().top,
+                    left: imgtodrag.offset().left
+                })
+                        .css({
+                    'opacity': '0.5',
                     'position': 'absolute',
                     'height': '150px',
                     'width': '150px',
                     'z-index': '100'
-            })
-                .appendTo($('body'))
-                .animate({
-                'top': cart.offset().top + 10,
+                })
+                        .appendTo($('body'))
+                        .animate({
+                    'top': cart.offset().top + 10,
                     'left': cart.offset().left + 10,
                     'width': 75,
                     'height': 75
-            }, 1000, 'easeInOutExpo');
-            
-            setTimeout(function () {
-                cart.effect("shake", {
-                    times: 2
-                }, 200);
-            }, 1500);
+                }, 1000, 'easeInOutExpo');
 
-            imgclone.animate({
-                'width': 0,
+                setTimeout(function() {
+                    cart.effect("shake", {
+                        times: 2
+                    }, 200);
+                }, 1500);
+
+                imgclone.animate({
+                    'width': 0,
                     'height': 0
-            }, function () {
-                paypal_form_values(no_of_minyawns);
-                $(this).detach()
-            });
-        }
-       
-       
-       
-       
-            
+                }, function() {
+                    paypal_form_values(no_of_minyawns);
+                    $(this).detach()
+                });
+            }
+
+
+
+
+
         }
 
 
@@ -1870,24 +1883,24 @@ jQuery("#delete_job").live("click", function() {
 
 });
 
-function paypal_form_values(no_of_minyawns){
-    
-            $("#hdn_jobwages").val($("#job_wages").val());
-            $("#no_of_minyawns").html(no_of_minyawns);
-            $("#wages_per_minyawns").html($("#job_wages").val());
-            var total = no_of_minyawns * $("#job_wages").val();
-            if(no_of_minyawns == 0)
-            $("#wages_per_minyawns").html("0");    
-                
-            $("#total_wages").html(total.toFixed(2));
-            
-    
-            $("#amount").val(total.toFixed(2));
-            $("#item_number").val($("#job_id").val());
-    
-    
-    
-    
+function paypal_form_values(no_of_minyawns) {
+
+    $("#hdn_jobwages").val($("#job_wages").val());
+    $("#no_of_minyawns").html(no_of_minyawns);
+    $("#wages_per_minyawns").html($("#job_wages").val());
+    var total = no_of_minyawns * $("#job_wages").val();
+    if (no_of_minyawns == 0)
+        $("#wages_per_minyawns").html("0");
+
+    $("#total_wages").html(total.toFixed(2));
+
+
+    $("#amount").val(total.toFixed(2));
+    $("#item_number").val($("#job_id").val());
+
+
+
+
 }
 
 
