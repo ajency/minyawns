@@ -155,14 +155,14 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                         <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
 						
                             <?php
-                            
-                            
-                            if(get_user_avatar() !== false)
-										echo get_user_avatar() ;
-									else
-										echo get_avatar(get_user_id(), 168 ) 
+                           
+                           
+                            if(get_mn_user_avatar() !== false)
+		               echo get_mn_user_avatar() ;
+		             else
+				echo get_avatar(get_user_id(), 168 ) 
                                 ?>
-</a> <?php if(is_facebook_user() === 'false'){ ?>
+                        </a> <?php if(is_facebook_user() === 'false' && get_current_user_id() == get_user_id()){ ?>
 						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal">Change Profile Pic</a>
                         <?php }?>
 						</div>
@@ -174,7 +174,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                     </div>
                     <div class="span10">
 					  <?php if (get_user_role() === 'minyawn'): ?>
-					<div class="social-link profile-social-link"><i class="icon-twitter"></i>   <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
+					<div class="social-link profile-social-link"> <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
     <?php endif; ?>		                      
 					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
