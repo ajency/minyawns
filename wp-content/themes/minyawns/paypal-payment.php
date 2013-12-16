@@ -172,30 +172,31 @@ else
 				$pp.= "\n exp1".$j_key." = ".$j_val ;
 				$data2 = explode("=",$j_val);
 				$qq.= "\n exp2".$data2[0]." = ".$data2[1]; 
+				$data[$data2[0]] = $data2[1]; 
 				
 			}
 			
 			
 			
 			wp_mail('parag@ajency.in','exp1',$pp.$qq);
-			foreach($data_1 as  $data1_val)
+			/*foreach($data_1 as  $data1_val)
 			{
 				
 				$data[$data2[0]] = $data2[1];
 				
 				wp_mail('parag@ajency.in','exp2',print_r($data2));
-			}
+			}*/
 			
 			$req = str_replace("&", "\n", $req);
 			
 			
 			
-			wp_mail('parag@ajency.in','test ',$req.$curl_result);
+			//wp_mail('parag@ajency.in','test ',$req.$curl_result);
 			if ($curl_result== "VERIFIED") 
 			{
 				
 				
-					
+				wp_mail('parag@ajency.in','verified exp1',$pp.$qq);
 				
 				
 			/*	$data['receiver_id']			= $_POST['receiver_id'];
