@@ -297,7 +297,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </p>
 				<div class="row-fluid accordion">
 					<div class="span9">
-						<ul class="unstyled job-view-list" id="accordion2">
+						<ul class="unstyled job-view-list" id="accordion24">
 						<dl class="accordion">
                             <dt class="avial">
                                              <a href="#"> Wash My Car  <span>View More</span></a>
