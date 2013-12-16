@@ -58,6 +58,8 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 }
 else
 {
+	$post22=print_r($_POST);
+	wp_mail('parag@ajency.in','minyaw',  $post22.$data);
 			get_header();			
 			
 			$data['receiver_id']			= $_POST['receiver_id'];
@@ -77,8 +79,7 @@ else
 			//$total_amount = $amount + $tax;
 			$data['total_amount'] = trim($_POST['mc_gross']);
                         
-                        $post22=print_r($_POST);
-			 wp_mail('parag@ajency.in','minyaw',  $post22.$data);
+                    
                          
 			
 			
