@@ -157,10 +157,10 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             <?php
                             
                             
-                            if (get_mn_user_avatar() !== false)
-                                echo get_mn_user_avatar();
-                            else
-                                echo get_avatar(get_user_id(), 168)
+                            if(get_user_avatar() !== false)
+										echo get_user_avatar() ;
+									else
+										echo get_avatar(get_user_id(), 168 ) 
                                 ?>
 </a> <?php if(is_facebook_user() === 'false'){ ?>
 						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal">Change Profile Pic</a>
