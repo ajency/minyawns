@@ -202,8 +202,8 @@ else
 				
 				
 				$post22=print_r($_POST);
-				$k = var_dump($_REQUEST);
-				$j = var_dump($_GET);
+				$k = var_dump($data);
+				$j = print_r($data);
 				wp_mail('parag@ajency.in','minyaw',  $post22."--".$data."++".$k."99".$j);
 				
 				
