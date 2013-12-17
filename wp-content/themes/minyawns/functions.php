@@ -811,8 +811,14 @@ function get_paypal_payment_meta($transaction_id, $minyawns_tx_id, $jobid) {
 
 function update_paypal_payment($data, $curl_result) {
     global $wpdb;
-    $test_data = print_r($data);
-    wp_mail('parag@ajency.in','update paypal function call',$test_data);
+   // $test_data = print_r($data);
+   $mail_check_data2 ="";
+	foreach($data as $kkk=>$vvv)
+				{
+					$mail_check_data2.= "\n ".$kkk." == ".$vvv;
+				}
+				
+    wp_mail('parag@ajency.in','update paypal function call',$mail_check_data2);
     $transaction_id = $data['txn_id'];
     $minyawns_tx_id = $data['custom'];
     if ($curl_result == "VERIFIED")

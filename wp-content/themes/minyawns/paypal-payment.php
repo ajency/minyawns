@@ -14,7 +14,7 @@ $paypal_email = PAYPAL_BUSINESSEMAIL;
  
  
 $return_url = PAYPAL_PAYMENTSITE.'/success-payment/';
-$cancel_url = PAYPAL_PAYMENTSITE.'/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
+$cancel_url = PAYPAL_PAYMENTSITE.'/cancel-payment/'."?jb=".$_POST['amount']."&amnt=".$_POST['amount'];
 $notify_url = PAYPAL_PAYMENTSITE.'/paypal-payments/';
 //}
 
@@ -47,7 +47,9 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	 
 	$querystring .= "return=".urlencode(stripslashes($return_url))."&";
 	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."& ";
+	$querystring .= "mntx=".$key_job."& ";
 	$querystring .= "notify_url=".urlencode($notify_url)."& ";
+	
 	$querystring .= "currency_code=USD";
 	
 
