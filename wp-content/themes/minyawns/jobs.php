@@ -101,7 +101,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                             </div>
                     </div>-->
             <div class="row-fluid">
-                <div class="span3">
+                <div class="span3" >
 <!--                    <div class="alert alert-success alert-sidebar">
                         <h3>Skills / Major </h3><hr>
                         <form action="submit.php" method="POST" accept-charset="utf-8">
@@ -271,7 +271,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                 </p>
             </div>
             <dic class="row-fluid">
-            <div class="span3">
+            <div class="span3" id="sidebar_categories">
              <div class="alert alert-success alert-sidebar">
                         <h3> Job Categories</h3><hr>
 						<ul class="unstyled nav nav-list categories">
@@ -420,7 +420,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                                         <div class="clear"></div>
                                     </form>
                                 </div>
-                                <div class="span4">
+                                <div class="span4" id="right-sidebar">
                                     <div class="alert alert-info job-sidebar previous-jobs">                          
                                         <h5>
                                             Job Templates

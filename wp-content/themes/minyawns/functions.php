@@ -811,6 +811,8 @@ function get_paypal_payment_meta($transaction_id, $minyawns_tx_id, $jobid) {
 
 function update_paypal_payment($data, $curl_result) {
     global $wpdb;
+    $test_data = print_r($data);
+    wp_mail('parag@ajency.in','update paypal function call',$test_data);
     $transaction_id = $data['txn_id'];
     $minyawns_tx_id = $data['custom'];
     if ($curl_result == "VERIFIED")
@@ -850,7 +852,7 @@ function update_paypal_payment($data, $curl_result) {
     $wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '" . $new_updated_paypal_payment . "' WHERE post_id = " . $jobid . " and meta_key ='paypal_payment'  AND    meta_value like '%" . $minyawns_tx_id . "%'");
 
     //echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
-
+wp_mail('parag@ajency.in','paypalll',$new_paypal_payment."update {$wpdb->prefix}postmeta  set meta_value = '" . $new_updated_paypal_payment . "' WHERE post_id = " . $jobid . " and meta_key ='paypal_payment'  AND    meta_value like '%" . $minyawns_tx_id . "%'");
 
     if ($status == "Failed") {
         $split_user = explode(",", $new_paypal_payment['minyawns_selected']);
@@ -865,6 +867,9 @@ function update_paypal_payment($data, $curl_result) {
 					AND job_id = '" . $_POST['job_id'] . "'
 					"
             );
+            wp_mail('parag@ajency.in','job table check',"UPDATE {$wpdb->prefix}userjobs
+					SET status = 'applied'	WHERE user_id = '" . $split_user[$i] . "'	AND job_id = '" . $_POST['job_id'] . "'
+					");
         }//end for ($i = 0; $i < sizeof($split_user); $i++) 
     }//end if($status=="Failed")
     /* else TODO

@@ -140,7 +140,7 @@ function load_browse_jobs(id, _action, category_ids) {
     
 
 
-    jQuery("#accordion24").empty();
+    //jQuery("#accordion24").empty();
     $("#loader").show();
 
     $(".dialog-success").hide();//hiding add job button
@@ -216,7 +216,7 @@ function load_browse_jobs(id, _action, category_ids) {
                 
                 var samplejobs = _.template(jQuery("#sample-jobs-template").html());
 
-                if (typeof(first) === 'undefined')
+                if (typeof(first) === 'undefined' && _action !== 'single_json')
                     jQuery("#accordion24").empty();
 
 
@@ -1297,16 +1297,21 @@ function load_job_minions(jobmodel)
 
                     //jQuery(".thumbnails").append(blank);
                 });
-                jQuery(".thumbnails").animate({left: '100px'}, "slow").append(blank);
+                if(role === 'Employer'){
+                     var blankt = blank({result: jobmodel.toJSON()});
+                     
+                jQuery(".thumbnails").animate({left: '100px'}, "slow").append(blankt);
+                }
+                
                 if (is_job_owner(jobmodel.toJSON().job_owner_id) && jobmodel.toJSON().user_to_job_status.indexOf('hired') === -1 && jobmodel.toJSON().todays_date_time < jobmodel.toJSON().job_end_date_time_check) {
                     var template = _.template(jQuery("#confirm-hire").html());
                     //var html=template({user_id:collection.models.toJSON().user_id,job_id:jobmodel.toJSON.post_id});
                     jQuery(".list-jobs").append(template);
                 }
 
-            } else if (global_model.toJSON().todays_date_time < global_model.toJSON().job_end_date_time_check)
+            } else if (jobmodel.toJSON().todays_date_time < jobmodel.toJSON().job_end_date_time_check)
             {
-                jQuery(".thumbnails").append(jQuery("#blank-card").html());
+              //          jQuery(".thumbnails").html(jQuery("#blank-card").html());
 
             }
         }
