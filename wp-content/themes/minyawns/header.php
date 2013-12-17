@@ -136,7 +136,7 @@
 				<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
 				<li class="green-btn-top"   >
 				 <?php if (get_user_role() === 'minyawn'): ?>
-				<i class="icon-edit"></i>&nbsp; Update Your Profile
+				<i class="icon-edit"></i>&nbsp;<a class="edit-user-profile"> Update Your Profile</a>
 				   <?php endif; ?>	
 				    <?php if (get_user_role() === 'employer'): ?>
 				<i class="icon-plus-sign" ></i><a href="<?php echo site_url() ?>/add-job/">&nbsp; Create a job</a>
