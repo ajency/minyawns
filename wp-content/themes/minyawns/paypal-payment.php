@@ -177,7 +177,7 @@ else
 			}
 			
 			$data_values = print_r($data);
-			$test_array = print_r(array('a'=>34,'b'=>56));
+			
 			
 			//wp_mail('parag@ajency.in','exp1',$pp.$qq);
 			/*foreach($data_1 as  $data1_val)
@@ -195,6 +195,10 @@ else
 			wp_mail('parag@ajency.in','test ',$req.$curl_result);
 			if ($curl_result== "VERIFIED") 
 			{
+				
+				$test_array = var_dump(array('a'=>34,'b'=>56));
+				
+				
 			wp_mail('parag@ajency.in','verified ',$req.$curl_result);	
 			wp_mail('parag@ajency.in','test array verified ',$test_array);
 				wp_mail('parag@ajency.in','DATA array verified ',$test_array);
