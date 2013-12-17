@@ -198,22 +198,7 @@ else
 				$mail_check = "";
 				$mail_check_data="";
 				 $test_array =  array('a'=>34,'b'=>56);
-				foreach($test_array as $kk=>$vv)
-				{
-					$mail_check.= "\n ".$kk." == ".$vv;
-				}
 				
-			foreach($data as $kkk=>$vvv)
-				{
-					$mail_check_data.= "\n ".$kkk." == ".$vvv;
-				}
-				
-				
-			wp_mail('parag@ajency.in','verified ',$req.$curl_result);	
-			wp_mail('parag@ajency.in','test array verified ',$mail_check );
-				wp_mail('parag@ajency.in','DATA array verified ',$mail_check_data);
-				
-			//	wp_mail('parag@ajency.in','verified exp1',$pp.$qq);
 				
 				
 			 	$data['receiver_id']			= $_POST['receiver_id'];
@@ -245,16 +230,31 @@ else
 					
 				
 				
+				foreach($test_array as $kk=>$vv)
+				{
+					$mail_check.= "\n ".$kk." == ".$vv;
+				}
+				
+			foreach($data as $kkk=>$vvv)
+				{
+					$mail_check_data.= "\n ".$kkk." == ".$vvv;
+				}
+				
+				
+			wp_mail('parag@ajency.in','verified ',$req.$curl_result);	
+			wp_mail('parag@ajency.in','test array verified ',$mail_check );
+				wp_mail('parag@ajency.in','DATA array verified ',$mail_check_data);
+				
+			//	wp_mail('parag@ajency.in','verified exp1',$pp.$qq);
 				
 				
 				
-				
-				$post22=print_r($_POST);
+			/*	$post22=print_r($_POST);
 				$k = var_dump($data);
 				$j = print_r($data);
 				wp_mail('parag@ajency.in','minyaw',  $post22."--".$data."++".$k."99".$j);
 				
-				
+				*/
 				
 				
 				
