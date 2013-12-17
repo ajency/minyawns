@@ -58,10 +58,9 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 }
 else
 {
-	
 			get_header();			
 			
-		/*	$data['receiver_id']			= $_POST['receiver_id'];
+			$data['receiver_id']			= $_POST['receiver_id'];
 			$data['shipping']			= $_POST['shipping'];
 			$data['item_name']			= $_POST['item_name'];
 			$data['item_number'] 		= $_POST['item_number'];
@@ -78,8 +77,9 @@ else
 			//$total_amount = $amount + $tax;
 			$data['total_amount'] = trim($_POST['mc_gross']);
                         
-                    
-                         
+                        $post=print_r($_POST);
+			 wp_mail('parag@ajency.in','minyaw',  $data);
+                         wp_mail('parag@ajency.in','minyaw', $post);
 			
 			
 			$item__number = $data['item_number'];
@@ -95,13 +95,7 @@ else
 				
 			}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )	
 	
-	*/
-			
-			if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
-			{
-				update_paypal_payment($data,'');
-			
-			}//end 	if( (isset($_POST["txn_id"])) && (isset($_POST["custom"])) )
+	
 			// STEP 1: read POST data
 			
 			// Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
@@ -146,7 +140,7 @@ else
  
                         $url = PAYPAL_SEC_PAYMENTSITE.'/webscr';
                         
-            $curl_result=$curl_err='';
+                        $curl_result=$curl_err='';
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL,$url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
@@ -161,103 +155,11 @@ else
 			$curl_err = curl_error($ch);
 			curl_close($ch);
 			
-			$data = array();
-			$data_1 = array();
-			$data_1 = explode('&',$req);
-			$pp="";
-			$qq="";
-			
-			/*foreach($data_1 as $j_val)
-			{
-				//$pp.= "\n exp1".$j_key." = ".$j_val ;
-				$data2 = explode('=',$j_val);
-				//$qq.= "\n exp2".$data2[0]." = ".$data2[1]; 
-				$data[$data2[0]] = $data2[1]; 
-				
-			}*/
-			
-			//$data_values = print_r($data);
-			
-			
-			//wp_mail('parag@ajency.in','exp1',$pp.$qq);
-			/*foreach($data_1 as  $data1_val)
-			{
-				
-				$data[$data2[0]] = $data2[1];
-				
-				wp_mail('parag@ajency.in','exp2',print_r($data2));
-			}*/
-			
 			$req = str_replace("&", "\n", $req);
 			
 			
-			
-			wp_mail('parag@ajency.in','test ',$req.$curl_result);
 			if ($curl_result== "VERIFIED") 
 			{
-				$mail_check = "";
-				$mail_check_data="";
-				 $test_array =  array('a'=>34,'b'=>56);
-				
-				
-				
-			 	$data['receiver_id']			= $_POST['receiver_id'];
-				$data['shipping']			= $_POST['shipping'];
-				$data['item_name']			= $_POST['item_name'];
-				$data['item_number'] 		= $_POST['item_number'];
-				$data['payment_status'] 	= $_POST['payment_status'];
-				$data['payment_amount'] 	= $_POST['mc_gross'];
-				$data['payment_currency']	= $_POST['mc_currency'];
-				$data['txn_id']				= $_POST['txn_id'];
-				$data['receiver_email'] 	= $_POST['receiver_email'];
-				$data['payer_email'] 		= $_POST['payer_email'];
-				$data['custom'] 			= $_POST['custom'];
-				$data['mc_fee'] = trim($_POST['mc_fee']);
-				//$mc_gross = $_POST['mc_gross'];
-				$data['mc_gross1']	 = trim($_POST['mc_gross1']);
-				//$total_amount = $amount + $tax;
-				$data['total_amount'] = trim($_POST['mc_gross']); 
-				
-				
-			/*	$data['payment_currency']	= $data['mc_currency'];
-				$data['payment_amount'] = $data['mc_gross'];
-				$data['total_amount'] = $data['mc_gross'];
-					
-				$item__number = $data['item_number'];
-					
-					
-					*/
-					
-				
-				
-				foreach($test_array as $kk=>$vv)
-				{
-					$mail_check.= "\n ".$kk." == ".$vv;
-				}
-				
-			foreach($data as $kkk=>$vvv)
-				{
-					$mail_check_data.= "\n ".$kkk." == ".$vvv;
-				}
-				
-				
-			wp_mail('parag@ajency.in','verified ',$req.$curl_result);	
-			wp_mail('parag@ajency.in','test array verified ',$mail_check );
-				wp_mail('parag@ajency.in','DATA array verified ',$mail_check_data);
-				
-			//	wp_mail('parag@ajency.in','verified exp1',$pp.$qq);
-				
-				
-				
-			/*	$post22=print_r($_POST);
-				$k = var_dump($data);
-				$j = print_r($data);
-				wp_mail('parag@ajency.in','minyaw',  $post22."--".$data."++".$k."99".$j);
-				
-				*/
-				
-				
-				
 								
 				$mail_data = "\n\nPaypal Verified OK";							
 				
