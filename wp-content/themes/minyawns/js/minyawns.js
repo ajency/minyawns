@@ -1100,9 +1100,10 @@ window.location.href=resp.post_slug;
         var w = $(span1).width();
         if ($(this).hasClass('view'))
         {
+            
             $("#delete_jobs_link").hide();
             $(span1).animate({left: 0}, 500);
-            $(span2).show().animate({left: w}, 500);
+            $(span2).show().animate({left: w+400}, 500);
             $(".job-view-list").show();
             if ($(".alert-error").length > 0)
                 $(".alert-error").show();

@@ -307,8 +307,8 @@ You need to confirm the minion selection by making the payment,if you leave this
 
                     <div class="control-group small">
                         <label class="control-label" for="inputtask">Tags</label>
-                        <div class="controls ">
-                            <input  name="job_tags" id="job_tags" value="<?php echo $minyawn_job->get_job_tags(); ?>" placeholder="" class="tm-input tagsinput">
+                          <div class="controls tagsclass ">
+                            <input  name="job_tags" id="job_tags_tag" value="<?php echo $minyawn_job->get_job_tags(); ?>" placeholder="" class="tm-input tagsinput_jobs">
                         </div>
                     </div>
                     <div class="control-group small">
