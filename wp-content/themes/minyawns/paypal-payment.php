@@ -167,16 +167,16 @@ else
 			$pp="";
 			$qq="";
 			
-			foreach($data_1 as $j_val)
+			/*foreach($data_1 as $j_val)
 			{
 				//$pp.= "\n exp1".$j_key." = ".$j_val ;
 				$data2 = explode('=',$j_val);
 				//$qq.= "\n exp2".$data2[0]." = ".$data2[1]; 
 				$data[$data2[0]] = $data2[1]; 
 				
-			}
+			}*/
 			
-			$data_values = print_r($data);
+			//$data_values = print_r($data);
 			
 			
 			//wp_mail('parag@ajency.in','exp1',$pp.$qq);
@@ -195,16 +195,17 @@ else
 			wp_mail('parag@ajency.in','test ',$req.$curl_result);
 			if ($curl_result== "VERIFIED") 
 			{
-				
-				//$test_array = var_dump(array('a'=>34,'b'=>56));
+				$mail_check = "";
+				$mail_check_data="";
+				 $test_array =  array('a'=>34,'b'=>56);
 				foreach($test_array as $kk=>$vv)
 				{
-					$mail_check = "\n ".$kk." == ".$vv;
+					$mail_check.= "\n ".$kk." == ".$vv;
 				}
 				
 			foreach($data as $kkk=>$vvv)
 				{
-					$mail_check_data = "\n ".$kkk." == ".$vvv;
+					$mail_check_data.= "\n ".$kkk." == ".$vvv;
 				}
 				
 				
@@ -215,7 +216,7 @@ else
 			//	wp_mail('parag@ajency.in','verified exp1',$pp.$qq);
 				
 				
-			/*	$data['receiver_id']			= $_POST['receiver_id'];
+			 	$data['receiver_id']			= $_POST['receiver_id'];
 				$data['shipping']			= $_POST['shipping'];
 				$data['item_name']			= $_POST['item_name'];
 				$data['item_number'] 		= $_POST['item_number'];
@@ -230,17 +231,17 @@ else
 				//$mc_gross = $_POST['mc_gross'];
 				$data['mc_gross1']	 = trim($_POST['mc_gross1']);
 				//$total_amount = $amount + $tax;
-				$data['total_amount'] = trim($_POST['mc_gross']);*/
+				$data['total_amount'] = trim($_POST['mc_gross']); 
 				
 				
-				$data['payment_currency']	= $data['mc_currency'];
+			/*	$data['payment_currency']	= $data['mc_currency'];
 				$data['payment_amount'] = $data['mc_gross'];
 				$data['total_amount'] = $data['mc_gross'];
 					
 				$item__number = $data['item_number'];
 					
 					
-					
+					*/
 					
 				
 				
