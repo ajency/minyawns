@@ -3432,6 +3432,7 @@ body .jobs_table .data-title .profile-job {
   text-align: center;
   font-weight: bold;
   cursor: pointer;
+  color: #79B91E;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption h4:hover {
   color: #8ed030;
@@ -3453,7 +3454,8 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 0px;
   font-weight: bold;
   color: #0CB2C0;
-  min-height: 20px;
+  height: 20px;
+  overflow: hidden;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption .social-link {
   text-align: center;
@@ -3464,6 +3466,7 @@ body .jobs_table .data-title .profile-job {
   overflow: hidden;
   margin-right: auto;
   margin-left: auto;
+  height: 20px;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption .label-small {
   margin-bottom: 5px;
