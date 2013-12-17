@@ -271,6 +271,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                 </p>
             </div>
             <dic class="row-fluid">
+                
             <div class="span3" id="sidebar_categories">
              <div class="alert alert-success alert-sidebar">
                         <h3> Job Categories</h3><hr>
