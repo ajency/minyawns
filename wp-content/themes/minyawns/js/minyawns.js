@@ -1520,7 +1520,7 @@ function remove(array,to_remove)
     
             var explode = remove(group_id,user_id); 
         
-            
+            no_of_minyawns=no_of_minyawns-1;
 
            
             $("#minyawn_id").val(explode);
@@ -1889,6 +1889,7 @@ function paypal_form_values(no_of_minyawns) {
     $("#no_of_minyawns").html(no_of_minyawns);
     $("#wages_per_minyawns").html($("#job_wages").val());
     var total = no_of_minyawns * $("#job_wages").val();
+    
     if (no_of_minyawns == 0)
         $("#wages_per_minyawns").html("0");
 
