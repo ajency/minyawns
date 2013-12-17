@@ -318,7 +318,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     </div>
     <div class="text-meta">
     </div>
- <% if(result.job_owner_id === logged_in_user_id){ %>
+ <% if(result.job_owner_id === logged_in_user_id || result == 1){ %>
     <a href="<?php echo site_url() ?>/minyawns-directory" target="_blank" class="btn btn-primary">
     <i class="icon-eye-open"></i>
     View All Minions
