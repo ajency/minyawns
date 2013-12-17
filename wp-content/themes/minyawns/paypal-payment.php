@@ -14,7 +14,7 @@ $paypal_email = PAYPAL_BUSINESSEMAIL;
  
  
 $return_url = PAYPAL_PAYMENTSITE.'/success-payment/';
-$cancel_url = PAYPAL_PAYMENTSITE.'/cancel-payment/'."?jb=".$_POST['amount']."&amnt=".$_POST['amount'];
+$cancel_url = PAYPAL_PAYMENTSITE.'/cancel-payment/'."?mntx=".$_POST['custom']."&jb=".$_POST['amount']."&amnt=".$_POST['amount'];
 $notify_url = PAYPAL_PAYMENTSITE.'/paypal-payments/';
 //}
 
@@ -30,7 +30,7 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
     $salt_job = wp_generate_password(20); // 20 character "random" string
             $key_job = sha1($salt . $_POST['item_number'] . uniqid(time(), true));
 
-	  $paypal_payment = array('minyawn_txn_id' => $key_job, 'paypal_txn_id' => '', 'status' => '', 'minyawns_selected' =>$_POST['minyawn_id']);
+	  $paypal_payment = array('minyawn_txn_id' => $_POST['custom'], 'paypal_txn_id' => '', 'status' => '', 'minyawns_selected' =>$_POST['minyawn_id']);
           add_post_meta($_POST['item_number'], 'paypal_payment', $paypal_payment);
             
             
@@ -47,9 +47,7 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
 	 
 	$querystring .= "return=".urlencode(stripslashes($return_url))."&";
 	$querystring .= "cancel_return=".urlencode(stripslashes($cancel_url))."& ";
-	$querystring .= "mntx=".$key_job."& ";
 	$querystring .= "notify_url=".urlencode($notify_url)."& ";
-	
 	$querystring .= "currency_code=USD";
 	
 
