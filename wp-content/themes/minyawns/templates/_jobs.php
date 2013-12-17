@@ -260,7 +260,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     <%= result.user_email %>
     </div>
     <div class="social-link">
-    <a href='<%= result.linkedin %>' target='_blank'><%= result.linkedin %></a>
+    <a href='http://<%= result.linkedin %>' target='_blank'><%= result.linkedin %></a>
     </div>
     </div>
 

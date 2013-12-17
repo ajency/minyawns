@@ -197,7 +197,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
 								 <?php if (get_user_role() === 'employer'): ?>
 								<div class="employer-body">
 								
-								 <?php user_profile_body(); ?>
+								 <?php echo user_profile_body(); ?>
 								</div>
 								<?php endif; ?>	
 								
@@ -205,22 +205,22 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                      <div class="profiledata ">
 					  <?php if (get_user_role() === 'minyawn'): ?>
                                    <ul class="college-data inline">
-									<li>
-								   College : <b>  <?php user_college(); ?></b>
+									<li class="college_data">
+								   College : <b>  <?php echo user_college(); ?></b>
 								   </li>
-								   <li>
-								   Major : <b>  <?php user_college_major(); ?></b>
+								   <li class="major_data">
+								   Major : <b>  <?php echo user_college_major(); ?></b>
 								   </li>
 								   </ul>
                      <?php
                             else :
                                 ?>	
 								<ul class="college-data inline">
-									<li>
-								   Location : <b>    <?php user_location(); ?></b>
+									<li class="location">
+								   Location : <b>    <?php echo user_location(); ?></b>
 								   </li>
-								   <li>
-								   Company Website : <b>  <a href="<?php user_company_website(); ?>" target="_blank"><?php user_company_website(); ?></a></b>
+								   <li class="website">
+								   Company Website : <b>  <a href="<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
 								   </li>
 								   </ul>
 								
@@ -582,7 +582,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             <div class="control-group">
                                 <label class="control-label" for="inputmajor">Major</label>
                                 <div class="controls">
-                                    <input type="text" id="major"  name="major" placeholder="" value="<?php user_college_major() ?>" class="input">
+                                    <input type="text" id="major"  name="major"  placeholder="" value="<?php user_college_major() ?>" class="input">
                                 </div>
                             </div>
                             <div class="control-group">
@@ -615,7 +615,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             <div class="control-group">
                                 <label class="control-label" for="inputbody">Company Website</label>
                                 <div class="controls">
-                                    <input type="text" id="company_website"  name="company_website" placeholder="" value="<?php user_company_website(); ?>" class="input">
+                                    <input type="text" id="company_website"  name="company_website" placeholder="www.companywebsite.com" value="<?php user_company_website(); ?>" class="input">
                                 </div>
                             </div>
                             <div class="control-group">

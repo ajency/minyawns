@@ -544,8 +544,8 @@ jQuery(document).ready(function($) {
                     $('#profile-view').find('.name').html(data.company_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
                 }
                 //minyawns role
-                $('#profile-view').find('.college').text(data.college);
-                $('#profile-view').find('.major').text(data.major);
+                $('#profile-view').find('.college_data').text('College:'+data.college);
+                $('#profile-view').find('.major_data').text('Major:'+data.major);
                 var skills = '';
                 var skill_name = '';
 
@@ -560,11 +560,12 @@ jQuery(document).ready(function($) {
                     skills += "<span class='label label-small'>" + skill_name[i] + "</span>";
                 }
 
-                $('#profile-view').find('.user_skills').html(skills);
+                $('#profile-view').find('.list-box').html(skills);
                 //employer role
                 $('#profile-view').find('.location').text(data.location);
+                $('#profile-view').find('.employer-body').text(data.profilebody);
                 $('#profile-view').find('.profilebody').text(data.profilebody);
-                $('#profile-view').find('.company_website').html(' <a href="' + data.company_website + '">' + data.company_website + '</a>');
+                $('#profile-view').find('.website').html('Company Website : <a href="http://' + data.company_website + '" target="_blank">' + data.company_website + '</a>');
                 //show success message
                 $('#profile-edit').prepend('<div class="alert alert-success alert-box"><b>Profile</b> updated succesfully <button type="button" class="close fui-cross" data-dismiss="alert"></button></div>');
                 var span1 = $('#profile-view');
