@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
 
-
+    $("#sidebar_categories").show();//is hidden on the add job function
 
     var first = getUrlVars()["cat_id"];
 
@@ -59,6 +59,10 @@ function load_add_job_form_hash(s) {
 }
 function load_add_job_form(event) {
 
+
+
+    $("#sidebar_categories").hide();
+
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
         unique: true,
@@ -87,7 +91,7 @@ function load_add_job_form(event) {
                 var samplejobs = _.template(jQuery("#sample-jobs-template").html());
 
                 _.each(collection.models, function(model) {
-//                
+//
                     //if (model.toJSON().load_more === 1) {
                     var sample = samplejobs({result: model.toJSON()});
                     jQuery(".reuse-job").append(sample);
@@ -149,12 +153,13 @@ function load_browse_jobs(id, _action, category_ids) {
     jQuery(".load_ajax").css('display', 'block');
     jQuery("#calendar-jobs").hide(); /*bread crumbs*/
     jQuery("#calendar").hide();
-    jQuery("#add-job-form").hide();//hides the job form
+    //jQuery("#add-job-form").hide();//hides the job form
     jQuery(".load_more").hide();
     jQuery(".load-ajax-browse").hide();
     //$("#list-my-jobs").toggle();
     jQuery("#parent_item").html("Browse Jobs");
     jQuery("#sub_item").html("Job List");
+    jQuery("#accordion24").empty();
 
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
@@ -259,11 +264,14 @@ function load_browse_jobs(id, _action, category_ids) {
                             //jQuery(".jobs_menu").find("li").removeClass("active");
                             //    jQuery(".jobs_menu").append("<li class='active' id='my_jobsm'><a href='#tab2'>'" + model.toJSON().load_more + "'</a></li>");
 
-
+                            $(".inline li").removeClass("selected");
 
 
                             var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
-                            jQuery("#accordion24").prepend(html);
+                            //jQuery("#jobs-list").find('.span8').prepend(html);
+                            // jQuery("#jobs-list").parent('.span12').prepend(html);
+                            jQuery("#add-job-view").prepend(html);
+                            jQuery(".minyawns-grid1").find('.span3').remove();
 
 
 
@@ -337,13 +345,15 @@ function load_browse_jobs(id, _action, category_ids) {
 function fetch_my_jobs(id)
 {
 
+
+
     var profile_page = 0;
 
 
 
     jQuery("#accordion24").empty();
     jQuery("#loader").show();
-    jQuery("#add-job-form").show();
+    //jQuery("#add-job-form").show();
     jQuery("#parent_item").html("My Jobs");
     jQuery("#sub_item").html("Job List");
 
@@ -359,7 +369,7 @@ function fetch_my_jobs(id)
     jQuery("#load-more-my-jobs").hide();
 
     //if(window.location.hash != '#my-jobs'){
-    $("#add-job-form").toggle();
+    // $("#add-job-form").toggle();
     //}
     $(".inline li").removeClass("selected");
 
@@ -401,7 +411,7 @@ function fetch_my_jobs(id)
 
                     if (model.toJSON().job_owner_id === id || model.toJSON().applied_user_id.indexOf(id) >= 0)/* to show my jobs*/
                     {
-                      
+
                         var template = _.template(jQuery("#jobs-table").html());
                         // alert(model.toJSON().load_more);
                         //  console.log(model.toJSON().applied_user_id);
@@ -447,7 +457,7 @@ function fetch_my_jobs(id)
                     } else
                     {
                         // jQuery(".load_more").hide();
-                       
+
                         var template = _.template(jQuery("#no-result").html());
                         jQuery("#accordion24").html(jQuery("#no-result").html());
 

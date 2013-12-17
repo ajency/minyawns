@@ -75,7 +75,7 @@ $app->post('/addjob', function() use ($app) {
 
 
             $app->response()->header("Content-Type", "application/json");
-            echo json_encode(array('post_id' => $post_id));
+            echo json_encode(array('post_slug' => get_permalink($post_id)));
         });
 
 

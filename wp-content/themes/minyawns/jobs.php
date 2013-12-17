@@ -296,15 +296,15 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         <div class="dialog dialog-success" style="display:none">
                             Take the next step, start adding jobs! Click on the add jobs button below <br><br>
 
-							<button class="btn btn-primary btn-large  mll" id="add-job-button">
+                            <a href="<?php echo site_url()  ?>/add-job" class="btn btn-primary btn-large  mll" id="add-job-button">
                                 <i class="icon-plus-sign"></i>
                                 &nbsp;Add a Job
 
-                            </button>
+                            </a>
                         </div>
                     <?php } ?>
 
-                    <div id="add-job-form" >
+                    <div id="add-job-form" style="display:none">
                         <div class="row-fluid">
                             <div class="span8">
                                 <?php

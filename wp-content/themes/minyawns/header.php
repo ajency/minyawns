@@ -139,7 +139,7 @@
 				<i class="icon-edit"></i>&nbsp; Update Your Profile
 				   <?php endif; ?>	
 				    <?php if (get_user_role() === 'employer'): ?>
-				<i class="icon-plus-sign" ></i><a onclick="load_add_job_form_hash(1)" >&nbsp; Create a job</a>
+				<i class="icon-plus-sign" ></i><a href="<?php echo site_url() ?>/add-job/">&nbsp; Create a job</a>
 				   <?php endif; ?>
 				   </li>
 				
