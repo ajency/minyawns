@@ -196,12 +196,21 @@ else
 			if ($curl_result== "VERIFIED") 
 			{
 				
-				$test_array = var_dump(array('a'=>34,'b'=>56));
+				//$test_array = var_dump(array('a'=>34,'b'=>56));
+				foreach($test_array as $kk=>$vv)
+				{
+					$mail_check = "\n ".$kk." == ".$vv;
+				}
+				
+			foreach($data as $kkk=>$vvv)
+				{
+					$mail_check_data = "\n ".$kkk." == ".$vvv;
+				}
 				
 				
 			wp_mail('parag@ajency.in','verified ',$req.$curl_result);	
-			wp_mail('parag@ajency.in','test array verified ',$test_array);
-				wp_mail('parag@ajency.in','DATA array verified ',$test_array);
+			wp_mail('parag@ajency.in','test array verified ',$mail_check );
+				wp_mail('parag@ajency.in','DATA array verified ',$mail_check_data);
 				
 			//	wp_mail('parag@ajency.in','verified exp1',$pp.$qq);
 				
