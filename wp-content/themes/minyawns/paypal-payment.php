@@ -31,7 +31,7 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])){
             $key_job = sha1($salt . $_POST['item_number'] . uniqid(time(), true));
 
 	  $paypal_payment = array('minyawn_txn_id' => $_POST['custom'], 'paypal_txn_id' => '', 'status' => '', 'minyawns_selected' =>$_POST['minyawn_id']);
-          add_post_meta($_POST['item_number'], 'paypal_payment', $paypal_payment);
+          update_post_meta($_POST['item_number'], 'paypal_payment', $paypal_payment);
             
             
             
@@ -77,9 +77,7 @@ else
 			//$total_amount = $amount + $tax;
 			$data['total_amount'] = trim($_POST['mc_gross']);
                         
-                        $post=print_r($_POST);
-			 wp_mail('parag@ajency.in','minyaw',  $data);
-                         wp_mail('parag@ajency.in','minyaw', $post);
+                        
 			
 			
 			$item__number = $data['item_number'];
