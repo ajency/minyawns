@@ -476,7 +476,7 @@ Enviormental Engineering </div>
    </div>
 </div>
 	<br><br><br></div> <div id="down-gray"></div>
-	<div class="customer_bg"><br>
+<!--	<div class="customer_bg"><br>
 	 <div class="">
       <h3 class="heading-title">Have a look at some of the tasks posted</h3>
       <p class="excerpt">C'mon don't be shy, you know you want to.</p>
@@ -588,7 +588,7 @@ Enviormental Engineering </div>
    </div><br>
   
   </div>
-  <div id="down-green"></div>
+  <div id="down-green"></div>-->
   <div class="">
       <h3 class="heading-title">97% of customers recommend Minyawns</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
