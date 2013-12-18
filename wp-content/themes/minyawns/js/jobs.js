@@ -702,7 +702,7 @@ function profile_review(model) {
                         
                         } else
                         {
-                            return_status = "<div class='jobs-rating'><div class='terribles'><i class='icon-thumbs-down'></i>You Have Been Rated <br><b>Terrible</b><div class='clear'></div><br>"+ model.toJSON().comment +"</p><span> - " + model.toJSON().job_author + "</span></div></div>"
+                            return_status = "<div class='jobs-rating'><div class='terrible'><i class='icon-thumbs-down'></i>You Have Been Rated <br><b>Terrible</b><div class='clear'></div><br>"+ model.toJSON().comment +"</p><span> - " + model.toJSON().job_author + "</span></div></div>"
                         }
 
 
