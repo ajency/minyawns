@@ -568,11 +568,13 @@ jQuery(document).ready(function($) {
                 $('#profile-view').find('.website').html('Company Website : <a href="http://' + data.company_website + '" target="_blank">' + data.company_website + '</a>');
                 //show success message
                 $('#profile-edit').prepend('<div class="alert alert-success alert-box"><b>Profile</b> updated succesfully <button type="button" class="close fui-cross" data-dismiss="alert"></button></div>');
-                var span1 = $('#profile-view');
-                var span2 = $('#profile-edit');
-                var w = $(span1).width();
-                $(span1).animate({left: 0}, 500);
-                $(span2).hide();
+//                var span1 = $('#profile-view');
+//                var span2 = $('#profile-edit');
+//                var w = $(span1).width();
+//                $(span1).animate({left: 0}, 500);
+//                $(span2).hide();
+//                
+                window.location.href=SITEURL+'/profile';
                 // $(span1).show().animate({left: w}, 500);
                 $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
             },

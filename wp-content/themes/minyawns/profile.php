@@ -182,7 +182,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             } else {
                                 user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
-                                ?>  <a href="#"id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
+                                ?>  <a href="<?php echo site_url ?>/edit-profile" id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
 
 								
 
@@ -548,119 +548,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                 </div>-->
                 <div class="clear"></div>
             </div>
-            <div class="span12" id="profile-edit" style="height:502px;">
-                <div class="row-fluid">	
-                    <div class="span8">
-                    <form class="form-horizontal frm-edit" id="profile-edit-form">
-
-
-                        <?php if (get_user_role() === 'minyawn'): ?>
-                            <div class="control-group">
-                                <label class="control-label" for="inputFirst">First Name</label>
-                                <div class="controls">
-                                    <input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name() ?>" class="input">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputlast">Last Name</label>
-                                <div class="controls">
-                                    <input type="text" id="last_name"  name="last_name" placeholder="" value="<?php echo user_profile_last_name() ?>" class="input">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputemail">Email</label>
-                                <div class="controls">
-                                    <input type="text" id="profileemail" disabled  name="profileemail" placeholder="" value="<?php user_profile_email() ?>" class="input">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inptcollege">College</label>
-                                <div class="controls">
-                                    <input type="text" id="college"  name="college" placeholder="" value="<?php user_college() ?>" class="input">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputmajor">Major</label>
-                                <div class="controls">
-                                    <input type="text" id="major"  name="major"  placeholder="" value="<?php user_college_major() ?>" class="input">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputskill">Skill</label>
-                                <div class="controls">
-
-                                    <input name="user_skills2" id="user_skills2" class="tagsinput1" value="<?php echo get_user_skills(); ?>"  style="width:60%;"/>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="LinkedIn">LinkedIn url</label>
-                                <div class="controls">
-                                    <input type="text" id="linkedin"  name="linkedin" placeholder="www.linkedin.in/username" value="<?php user_profile_linkedin(); ?>" class="input">
-                                </div>
-                            </div>
-                        <?php else : ?>
-                            <div class="control-group">
-                                <label class="control-label" for="inputFirst">Company Name</label>
-                                <div class="controls">
-                                    <input type="text" id="company_name" name="company_name" placeholder="" value="<?php echo user_profile_company_name() ?>" class="input">
-
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputbody">Location</label>
-                                <div class="controls">
-                                    <input type="text" id="location"  name="location" placeholder="" value="<?php user_location(); ?>" class="input">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputbody">Company Website</label>
-                                <div class="controls">
-                                    <input type="text" id="company_website"  name="company_website" placeholder="www.companywebsite.com" value="<?php user_company_website(); ?>" class="input">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputbody">Profile Body</label>
-                                <div class="controls">
-                                    <textarea rows="5" type="text" id="profilebody"  name="profilebody"  placeholder="" class="input" style=" width: 90% !important; " ><?php user_profile_body(); ?></textarea>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-                        <hr>
-                        <a href="#" class="btn btn-large btn-block btn-inverse span3 float-right" id="update-profile-info"><i class="icon-refresh"></i>&nbsp; Update Info</a>
-                        <input type="hidden" value="<?php user_id(); ?>" name="id" id="id"/>
-                        <div class="clear"></div>
-                    </form>
-                   </div> 
-                   <div class="span4">
-                       <div class=" widget-sidebar">
-							<?php
-                                                                   
-                    if (get_user_role() == 'employer') {
-							echo '<h5>
-							Stand out from the crowd with a complete profile</h5>
-							<hr>
-							Did you know? Adding your logo makes your profile 7 time more likely to have more applications. Simple updates like these make a difference.
-							Here are quick steps to create a complete profile and ensure you’re putting your best foot forward:<br><br>
-							Fill in the details on your left.<br>
-							Add your company logo (.jpg image)<br><br>
-							Click on Update Info to save your profile. ';
-							} 
-							
-							?>
-							<?php
-                                                                   
-                    if (get_user_role() == 'minyawn') {
-							
-							echo 'Complete profiles usually get more attention from employers, making you a more eligible candidate. Create more opportunities for yourself to earn extra money, and bag amazing ratings and reviews from your employers.
-<br><br>
-							If you have any issues, please feel free to drop us an email on <a href="mailto:support@minyawns">support@minyawns</a>';
-							
-							} ?>
-							
-                       </div>
-                   </div>
-                </div>
-            </div>
+          
             <div class="clear"></div>
             <?php
 //} 

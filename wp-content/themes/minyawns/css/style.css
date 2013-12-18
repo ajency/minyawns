@@ -492,7 +492,7 @@ div.profile-wrapper #profile-view,#single-jobs{
 div.profile-wrapper #profile-edit,#edit-job-form{
 	position: absolute;
 	z-index: 10;
-	display: none;
+	/*display: none;*/
 	margin-left: 0;
         top:50px;
 }
