@@ -1169,6 +1169,30 @@ background-size: 25%;
 .review_popover{
     position: absolute;
 bottom: -41px;
-width: 100%;
+width: 83%;
     
+}
+
+.popover-box{
+    position: absolute;
+    bottom: -140px;
+    background: #777272;
+    width: 94%;
+    padding: 7px;
+    z-index: 99999;
+    
+}
+.popover-box textarea{
+     width: 89% !important;
+    
+}
+.popover-box .maxchar{
+    margin-right:0px !important;
+    
+}
+
+body .minyawns-grid1 .thumbspan {
+    display: inline-block;
+    min-height: 365px !important;
+    width: 30%;
 }

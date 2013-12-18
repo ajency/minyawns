@@ -164,7 +164,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     <div class="row-fluid minyawns-grid1">
     <div class="span9">
     <ul class="thumbnails">
-    <span class='load_ajaxsingle_job_minions' style="display:none"></span>
+<!--    <span class='load_ajaxsingle_job_minions' style="display:none"></span>-->
     </ul>
     </br></br></br></br><span id="div_confirmhire"></span>
     </div>
