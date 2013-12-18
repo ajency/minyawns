@@ -1,6 +1,4 @@
-<script type="text/template" id="jobs-table">   
-  
-  
+<script type="text/template" id="jobs-table"> 
       <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%>">
       
                               <div class="row-fluid">
@@ -232,7 +230,11 @@ $key_job = sha1($salt . uniqid(time(), true));
     <i class="icon-thumbs-down" "></i> <%= result.rating_negative %>
     </a>
     </div>
+<div class="dwn-btn">
 
+    <%= ratings_button %>
+    <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
+    </div>
     </div>
 
     </div>
@@ -265,11 +267,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     </div>
 
 
-    <div class="dwn-btn">
-
-    <%= ratings_button %>
-    <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
-    </div>
+    
     <div class="tags">
     Tags:<br>
     <%

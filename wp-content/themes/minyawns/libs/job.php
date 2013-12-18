@@ -594,7 +594,7 @@ $app->post('/user-vote', function() use ($app) {
 
 
 
-            echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id']));
+            echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id'],'review'=>$_POST['review']));
         });
 
 $app->get('/jobminions/', function() use ($app) {

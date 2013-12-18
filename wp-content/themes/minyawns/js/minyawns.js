@@ -1707,7 +1707,7 @@ function remove(array,to_remove)
         }
 
         $("#review-box" + $(this).attr('user_id')).show();
-        $("#thumbnail-" + $(this).attr('user_id')).css("height", '545px');
+       // $("#thumbnail-" + $(this).attr('user_id')).css("height", '545px');
 
 
 //
@@ -1755,6 +1755,7 @@ function remove(array,to_remove)
 
                 },
         function(response) {
+           
             $(".rating").find('a').prop('disabled', false);
             if (response.action === "vote-up") {
                 $("#thumbs_up_" + _user_id).contents().filter(function() {
@@ -1779,7 +1780,7 @@ function remove(array,to_remove)
                 $("#rating_container" + _user_id).append(_desc);
 
             }
-            $("#thumbnail-" + _user_id).css("height", '480px');
+            //$("#thumbnail-" + _user_id).css("height", '480px');
 
         }, 'json');
 
