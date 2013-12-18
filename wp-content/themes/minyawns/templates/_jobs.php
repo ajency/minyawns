@@ -73,9 +73,7 @@ $key_job = sha1($salt . uniqid(time(), true));
 </div>
 <div class="span3">
                    
-                   <!--  <div class="alert alert-success alert-sidebar jobexpired">
-                        <div>Job has expired.</div>
-                     </div>-->
+                 
               <% if(result.job_owner_id === logged_in_user_id){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>

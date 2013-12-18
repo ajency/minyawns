@@ -230,7 +230,7 @@ You need to confirm the minion selection by making the payment,if you leave this
                 <!-- single jobs -->
 
           
-            <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%; " >
+            <div id="edit-job-form" class="span12" style=" margin-left: 30px; width: 95%;display: none " >
 </br>
                 <form id="job-form" class="form-horizontal">
 
