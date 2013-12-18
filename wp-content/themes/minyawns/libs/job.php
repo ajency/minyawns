@@ -188,7 +188,20 @@ $app->get('/fetchjobs/', function() use ($app) {
              $count_applied=0;
              $count_rated=0;
              
-             
+             $object_id = get_object_id('3','32');
+            
+                   
+                    foreach ($object_id as $object_post_id) {
+                    
+                    $defaults = array(
+                            'post_id' => $object_id->id,
+                        );
+                       
+                    }
+                    $all_comment = get_comments($defaults);
+                    
+                    $comment = $all_comment[0]->comment_content;
+                     
              
                 foreach ($min_job->minyawns as $min) {
 
@@ -219,6 +232,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                         else
                             $user['is_job_rated'] = 0;
                     }
+                    
+                    
 
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
@@ -347,7 +362,8 @@ if($count_hired == $count_rated){$final_count=1;}else{    $final_count=0;}
                     'days_to_job_expired'=>  round($difference/86400),
                     'no_applied'=>$count_applied,
                     'no_hired'=>$count_hired,
-                    'count_rated'=>$final_count
+                    'count_rated'=>$final_count,
+                    'comment' => strlen($comment) > 0 ? $comment : '',
                 );
             }
 

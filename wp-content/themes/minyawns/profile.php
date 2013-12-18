@@ -268,7 +268,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             </div>
                             
                              <?php if(count(get_object_id(get_user_id())) > 0){ ?>
-                            <span class="userrev">User reviews <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a><span class='load_ajax_profile_comments' style="display:none; float:right"></span></span> 
+<!--                            <span class="userrev">User reviews <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a><span class='load_ajax_profile_comments' style="display:none; float:right"></span></span> -->
                             <!-- Mobile View Like Button -->
                             <?php }?>
                         </div>	

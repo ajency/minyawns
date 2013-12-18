@@ -694,10 +694,10 @@ function profile_review(model) {
 
                         if (model.toJSON().user_to_job_rating[i] === 'Well Done') {
 
-                            return_status = "<div class='jobs-rating'><div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div><br><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, se magna aliqua. </p><span> - " + model.toJSON().job_author + "</span></div></div>";
+                            return_status = "<div class='jobs-rating'><div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div><br><p>"+ model.toJSON().comment +"</p><span> - " + model.toJSON().job_author + "</span></div></div>";
                         } else
                         {
-                            return_status = "<div class='jobs-rating'><div class='terribles'><i class='icon-thumbs-down'></i>You Have Been Rated <br><b>Terrible</b><div class='clear'></div><br><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, se magna aliqua. </p><span> - " + model.toJSON().job_author + "</span></div></div>"
+                            return_status = "<div class='jobs-rating'><div class='terribles'><i class='icon-thumbs-down'></i>You Have Been Rated <br><b>Terrible</b><div class='clear'></div><br>"+ model.toJSON().comment +"</p><span> - " + model.toJSON().job_author + "</span></div></div>"
                         }
 
 
