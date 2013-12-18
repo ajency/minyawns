@@ -188,7 +188,7 @@ $app->get('/fetchjobs/', function() use ($app) {
              $count_applied=0;
              $count_rated=0;
              
-             $object_id = get_object_id('3','32');
+             $object_id = get_object_id(get_current_user_id(),$pagepost->ID);
             
                    
                     foreach ($object_id as $object_post_id) {
