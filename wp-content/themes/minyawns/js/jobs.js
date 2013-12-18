@@ -1290,6 +1290,7 @@ function load_job_minions(jobmodel)
             job_id: jQuery("#job_id").val()
         },
         success: function(collection, response) {
+           
  var blank = _.template((jQuery("#blank-card").html()));    
             if (collection.length > 0) {
                 var template = _.template(jQuery("#minion-cards").html());
@@ -1306,7 +1307,7 @@ function load_job_minions(jobmodel)
 
                     //jQuery(".thumbnails").append(blank);
                 });
-                //alert(role);
+               
                 if (role === 'Employer') {
                     var blankt = blank({result: jobmodel.toJSON()});
 
@@ -1319,9 +1320,10 @@ function load_job_minions(jobmodel)
                     jQuery(".list-jobs").append(template);
                 }
 
-            } else if (jobmodel.toJSON().todays_date_time < jobmodel.toJSON().job_end_date_time_check)
+            } else 
             {
-               var blankt = blank({result: 1});
+               
+               var blankt = blank({result: jobmodel.toJSON()});
 
                     jQuery(".thumbnails").animate({left: '100px'}, "slow").append(blankt);
 

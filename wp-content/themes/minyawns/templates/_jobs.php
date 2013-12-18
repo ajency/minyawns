@@ -230,7 +230,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     <i class="icon-thumbs-down" "></i> <%= result.rating_negative %>
     </a>
     </div>
-<div class="dwn-btn">
+<div class="dwn-btn review_popover">
 
     <%= ratings_button %>
     <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
@@ -316,7 +316,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     </div>
     <div class="text-meta">
     </div>
- <% if(result.job_owner_id === logged_in_user_id || result == 1){ %>
+ <% if(result.job_owner_id === logged_in_user_id){ %>
     <a href="<?php echo site_url() ?>/minyawns-directory" target="_blank" class="btn btn-primary">
     <i class="icon-eye-open"></i>
     View All Minions
