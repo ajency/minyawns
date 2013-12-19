@@ -447,10 +447,7 @@ function fetch_my_jobs(id)
 
                         }
 
-                        //if (model.toJSON().load_more === 1) {
-
-                        // }
-
+                        if (model.toJSON().load_more === 0) 
                         $(".load_more").show();
 
 
