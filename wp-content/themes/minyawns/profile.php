@@ -6,7 +6,7 @@
 get_header();
 require 'templates/_jobs.php';
 ?>
-<script>
+<script type="text/javascript">
     jQuery(document).ready(function($) {
 
         if (is_logged_in.length === 0) {
@@ -16,7 +16,9 @@ require 'templates/_jobs.php';
 
         jQuery("#tab_identifier").val('1');
         
-         $("#example_right").live('click', function() {
+        $(".inline li").removeClass("selected");
+        
+        $("#example_right").live('click', function() {
 
             $(".load_ajax_profile_comments").show();
             var Fetchusercomments = Backbone.Collection.extend({

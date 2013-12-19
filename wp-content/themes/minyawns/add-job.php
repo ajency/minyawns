@@ -52,11 +52,14 @@ $all_categories = get_categories(array('hide_empty' => 0));
   <a id="link" href="#">click</a>
 </div>
 <button id="trigger" data-placement="bottom" title="title">Reveal popover</button>-->
-<script>
+<script tyep="text/javascript">
     jQuery(document).ready(function($) {
+    
 $(".inline li").removeClass("selected");
- $("#add-job-form").find('input:text').val('');
-    });
+ 
+$("#add-job-form").find('input:text').val('');
+
+});
     </script>
 <div class="container">
 
