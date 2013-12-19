@@ -787,7 +787,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
                             job_button = "<div class='st-applicant'>No Applicants Yet.</div>";
                         else //OTHER EMPLOYERS
-                            job_button = "<a href='"+siteurl+"'/add-job'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
+                            job_button = "<a class='st-green-link' href='"+siteurl+"'/add-job'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
                     }
                     else// USER ROLE MINION
                     {
