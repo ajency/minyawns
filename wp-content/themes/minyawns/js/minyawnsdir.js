@@ -118,13 +118,6 @@ function fetch_minyawns_list() {
     if (typeof(window.is_verified) !== 'undefined')
         _data.verified = window.is_verified;
 
-//   if(typeof(window.minions_applied) != 'undefined')
-//       _data.minions_applied = window.minions_applied;
-
-
-//     if (typeof(first) !== 'undefined')
-//        _data.filter = first;
-
     window.verified_users = {};
     window.count = 0;
     window.ncount = 0;
@@ -330,12 +323,12 @@ $(".checkbox").live('click', function() {
 
 
 
-    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
-    jQuery(".minyawns-grid1").append(filter_loader_template);
+//    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
+//    jQuery(".minyawns-grid1").append(filter_loader_template);
 
-    setTimeout(function() {
-        jQuery(".minyawns-grid1").find('#filters-loader').remove()
-    }, 1000);
+//    setTimeout(function() {
+//        jQuery(".minyawns-grid1").find('#filters-loader').remove()
+//    }, 1000);
 
     if ($("#checkbox-verified").attr("checked") === 'checked')
     {
@@ -348,22 +341,13 @@ $(".checkbox").live('click', function() {
     {
 
 
-        window.is_verified = 'N';
+       delete  window.is_verified;
         fetch_minyawns_list();
 
     }
     
     
-    if($("#applied-minyawns").attr("checked") === 'checked'){
-        
-         window.minions_applied = '1';
-        fetch_minyawns_list();
-    }else
-        {
-            window.minions_applied = '0';
-        fetch_minyawns_list(); 
-            
-        }
+
 
 
 

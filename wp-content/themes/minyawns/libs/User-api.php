@@ -764,7 +764,7 @@ function get_minyawn_profile($userData,$total)
                         'rating_negative' => isset($user_dislike) ? $user_dislike : 0,
                         'user_avatar' => $user_pic_img_src,
                         'total' => $total,
-                        'minion_name' => substr($user_meta['first_name'][0] . $user_meta['last_name'][0],0,20),
+                        'minion_name' => isset($user_meta['first_name'][0]) > 0 ? substr($user_meta['first_name'][0] . $user_meta['last_name'][0],0,20) :'',
                         'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N'     
                     );
                     
