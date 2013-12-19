@@ -186,7 +186,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             } else {
                                 user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
-                                ?>  <a href="<?php echo site_url ?>/edit-profile" id="edit-user-profile" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a><?php } ?>
+                                ?>  <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit"><i class="icon-edit"></i> Edit</a><?php } ?>
 
 								
 
