@@ -42,10 +42,18 @@ a:hover {
 }
 .delte-job {
   font-size: 20px;
-  color: red !important;
+  color: #E40E0E !important;
 }
 #frm_signup .control-group {
   position: initial;
+}
+.single-job-action {
+  width: auto !important;
+  margin-top: -43px !important;
+  font-weight: 800;
+}
+.single-job-action li {
+  margin-left: 5px;
 }
 .Select-minyawns {
   /*background: rgba(209, 255, 179, 0.45);
@@ -283,7 +291,7 @@ body .jobs_table .data-title .profile-job {
     font-size: 15px !important;
   }
   .single-job-action {
-    width: auto!important;
+    width: auto !important;
     margin-top: -43px !important;
   }
   .delte-job {
@@ -3493,6 +3501,7 @@ body .jobs_table .data-title .profile-job {
 .minyawns-grid1 .thumbspan .thumbnail .m2 {
   display: none ;
   color: #333;
+  z-index: 9999;
   position: absolute;
   left: -10px;
   right: -10px;
@@ -5071,7 +5080,9 @@ div.tooltip1:after {
   padding-bottom: 2px;
 }
 .single-job-action {
-  width: 15%;
   float: right;
   margin-top: -46px;
+}
+.review_popover .popover {
+  z-index: 999;
 }
