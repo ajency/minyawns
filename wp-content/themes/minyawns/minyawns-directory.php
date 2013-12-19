@@ -16,7 +16,7 @@ get_header();
     <div id="main-content" class="main-content bg-white all-minyawns">
         <div class="breadcrumb-text">
             <p id="bread-crumbs-id">
-                <a href="http://www.minyawns.ajency.in/jobs/" class="view loaded">View all Minions</a>
+                <a href="<?php echo site_url() ?>/minyawns-directory" class="view loaded">Minion Directory</a>
             </p>
         </div>
         <div>
@@ -112,6 +112,7 @@ get_header();
 
                         <span class="load_ajaxsingle_job_minions" style="display: none;"></span>
                     </ul>
+                    <span class='load_ajax_large'></span>
                 </div>
             </div>
         </div>

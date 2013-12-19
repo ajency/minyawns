@@ -57,7 +57,7 @@ $app->get('/allminyawns', function() use ($app) {
 //                 $where = "{$wpdb->prefix}users.ID={$wpdb->prefix}users.user_id AND {$wpdb->prefix}userjobs='status' AND({$wpdb->prefix}usermeta.meta_key = 'user_skills' AND {$wpdb->prefix}usermeta.meta_value LIKE '" . $filter_key . ",%' OR {$wpdb->prefix}usermeta.meta_value LIKE '" . $filter_key . "%' OR  {$wpdb->prefix}usermeta.meta_value LIKE '%," . $filter_key . ",%'  OR {$wpdb->prefix}usermeta.meta_value LIKE '%," . $filter_key . "' OR {$wpdb->prefix}usermeta.meta_key = 'major' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'college' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'first_name' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'last_name' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%') AND ({$wpdb->prefix}usermeta.meta_key = 'user_verified' AND {$wpdb->prefix}usermeta.meta_value LIKE '" . $verified . "')";   
 //                }
 
-                $querystr = "SELECT * FROM " . $where . " LIMIT 5 OFFSET " . $_GET['offset'] . "";
+                $querystr = "SELECT * FROM " . $where . " LIMIT 9 OFFSET " . $_GET['offset'] . "";
 
                 $usersData = $wpdb->get_results($querystr, OBJECT);
 
@@ -71,7 +71,7 @@ $app->get('/allminyawns', function() use ($app) {
 
                 $args = array('offset' => $_GET['offset'],
                     'order' => 'ASC',
-                    'number' => '10',
+                    'number' => '9',
                     'role' => 'minyawn',
                 );
 

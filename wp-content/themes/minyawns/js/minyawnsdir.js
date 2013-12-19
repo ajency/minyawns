@@ -11,9 +11,9 @@ jQuery(document).ready(function($) {
 //    });
     var b = $('#back-top');
 
-$("#directory").addClass("selected");
+    $("#directory").addClass("selected");
 
-$(".green-btn-top").attr('data-page','md');
+    $(".green-btn-top").attr('data-page', 'md');
 //$("#searchbox").fcbkcomplete({
 //json_url: SITEURL + '/wp-content/themes/minyawns/libs/minyawndir.php/allminyawns',
 //cache: true,
@@ -49,37 +49,48 @@ $(".green-btn-top").attr('data-page','md');
 //                    }   
 //            }); 
 
-});
 
-document.addEventListener('scroll', function(event) {
 
-    // Hide scroll top button
+    document.addEventListener('scroll', function(event) {
+
+        // Hide scroll top button
 //      alert(document.body.scrollHeight);
 //      alert(document.body.scrollTop);
 //       alert(window.Height);
-    if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
-
-
-        if (window.error !== 404)
-            load_more();
-
-    }
-
-    if ($(this).scrollTop() > 400) {
+        if (document.body.scrollHeight == (document.body.scrollTop + window.innerHeight)) {
+            if (window.error !== 404) {
+//                var no_result = _.template($("#loader-image").html());
+//                jQuery(".minyawns-grid1").append(no_result);
+$(".load_ajax_large").show();
+                load_more();
+            }
+        }
 
         if ($(this).scrollTop() > 400) {
 
-            b.fadeIn();
-            // otherwise fadeout button
-        } else {
-            b.fadeOut();
+            if ($(this).scrollTop() > 400) {
+
+                b.fadeIn();
+                // otherwise fadeout button
+            } else {
+                b.fadeOut();
+            }
         }
-    }
 
 
 
+
+    });
+
+//$(window).scroll(function() {
+//    if($(window).scrollTop() == $(document).height() + $(window).height()) {
+//           // ajax call get data from server and append to the div
+//   alert("Scrolled");
+//    }
+//});
 
 });
+
 var b = $('#back-top');
 b.on('click', function() {
     $('html,body').animate({
@@ -93,8 +104,6 @@ function fetch_minyawns_list() {
 
 
 
-    var no_result = _.template($("#loader-image").html());
-    jQuery(".minyawnslist").html(no_result);
 
 
     var first = getUrlVars()["filter"];
@@ -106,8 +115,8 @@ function fetch_minyawns_list() {
             return SITEURL + '/wp-content/themes/minyawns/libs/minyawndir.php/allminyawns'
         }
     });
-    
-    
+
+
 
     var _data = {
         'offset': 0,
@@ -161,10 +170,10 @@ function fetch_minyawns_list() {
                 jQuery(".minyawnslist").append(no_result);
 
             }
-            jQuery(".minyawns-grid1").find('.load_ajax_large').remove(); //remove loader after load more completes
+            jQuery(".minyawns-grid1").find('.load_ajax_large').hide(); //remove loader after load more completes
         }
     });
-$(".inline li").removeClass("selected");
+    $(".inline li").removeClass("selected");
 
     $("#directory").addClass('selected');
 }
@@ -219,7 +228,7 @@ function formSubmit()
 
 
 function load_more() {
-
+   
 //    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
 //    jQuery(".minyawns-grid1").append(filter_loader_template);
     var first = getUrlVars()["filter"];
@@ -271,6 +280,7 @@ function load_more() {
                 jQuery(".minyawns-grid1").append(no_more_load);
 
             }
+            jQuery(".minyawns-grid1").find('.load_ajax_large').hide(); //remove loader after load more completes
         }
 
     });
@@ -341,15 +351,14 @@ $(".checkbox").live('click', function() {
     {
 
 
-       delete  window.is_verified;
+        delete  window.is_verified;
         fetch_minyawns_list();
 
     }
-    
-    
+
+
 
 
 
 
 });
-
