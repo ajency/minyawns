@@ -74,7 +74,7 @@ $key_job = sha1($salt . uniqid(time(), true));
 <div class="span3">
                    
                  
-              <% if(result.job_owner_id === logged_in_user_id){%>
+              <% if(result.job_owner_id === logged_in_user_id && result.user_to_job_status.indexOf('hired') == -1){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>
                         <hr>
@@ -173,7 +173,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     <!--  <div class="alert alert-success alert-sidebar jobexpired">
     <div>Job has expired.</div>
     </div>-->
-    <% if(result.job_owner_id === logged_in_user_id){%>
+    <% if(result.job_owner_id === logged_in_user_id ){%>
     <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
     <h3>Your selection</h3>
     <hr>
@@ -314,7 +314,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     </div>
     <div class="text-meta">
     </div>
- <% if(result.job_owner_id === logged_in_user_id){ %>
+ <% if(result.job_owner_id === logged_in_user_id && result.user_to_job_status.indexOf('hired') == -1){ %>
     <a href="<?php echo site_url() ?>/minyawns-directory" target="_blank" class="btn btn-primary">
     <i class="icon-eye-open"></i>
     View All Minions
