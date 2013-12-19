@@ -4,7 +4,16 @@
 
  */
 get_header();
+
 global $minyawn_job;
+
+$_SERVER['REQUEST_URI_PATH'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$segments = explode('/', rtrim($_SERVER['REQUEST_URI_PATH'], '/'));
+$count=count($segments);
+
+$minyawn_job= New Minyawn_Job($segments[$count-1]);
+
+
 require 'templates/_jobs.php';
 
 $args = array(
@@ -22,6 +31,17 @@ $args = array(
     'pad_counts' => false
 );
 $all_categories = get_categories(array('hide_empty' => 0));
+//print_r($all_categories);
+
+$new_array=array();
+foreach($minyawn_job->get_job_categories() as $job_categories){
+$array=in_array($job_categories[0],$all_categories);
+
+        
+}
+
+
+
 
 ///$object_id=get_object_id(10,691);
 //
@@ -57,7 +77,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
     
 $(".inline li").removeClass("selected");
  
-$("#add-job-form").find('input:text').val('');
+//$("#add-job-form").find('input:text').val('');
 
 });
     </script>
@@ -287,8 +307,8 @@ $("#add-job-form").find('input:text').val('');
                                             <label class="control-label" for="inputtask">Title of my job </label>
                                             <div class="controls ">
                                                <!-- <input type="text" id="job_task" name="job_task" value="" placeholder="" class="span3">-->
-                                                <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" cols="4" placeholder="
-                                                          " style="height:70px;"></textarea>
+                                                <textarea class="span6" name="job_task" rows="10" id="job_task" maxlength="100" value="<?php echo $minyawn_job->get_title(); ?>" cols="4" placeholder="
+                                                          " style="height:70px;"><?php echo $minyawn_job->get_title(); ?></textarea>
                                                 <span class="help-block">Eg: Wash my Car.</span>
                                             </div>
                                         </div>
@@ -298,13 +318,13 @@ $("#add-job-form").find('input:text').val('');
                                             <div class="controls">
                                                 <div class="input-prepend input-datepicker">
                                                     <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                                    <input type="text" class="span1" readonly name="job_start_date" value="" id="job_start_date">
+                                                    <input type="text" class="span1" readonly name="job_start_date" value="<?php echo $minyawn_job->get_job_date_addjob()  ?>" id="job_start_date">
                                                 </div>
 
                                             </div>
                                         </div>
                                         <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
-                                            <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" >
+                                            <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" value="<?php echo $minyawn_job->get_job_start_time()  ?>">
                                             <span class="add-on">
                                                 <i class="icon-time"></i>
                                             </span>
@@ -315,13 +335,13 @@ $("#add-job-form").find('input:text').val('');
                                             <div class="controls">
                                                 <div class="input-prepend input-datepicker">
                                                     <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                                    <input type="text"  name="job_end_date" class="span1 hasDatepicker" value="" disabled id="job_end_date" style="width: 100px;">
+                                                    <input type="text"  name="job_end_date" class="span1 hasDatepicker" value="<?php echo $minyawn_job->get_job_date_addjob()  ?>" disabled id="job_end_date" style="width: 100px;">
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
-                                            <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time">
+                                            <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time" value="<?php echo $minyawn_job->get_job_end_time()  ?>">
                                             <span class="add-on">
                                                 <i class="icon-time"></i>
                                             </span>
@@ -330,7 +350,7 @@ $("#add-job-form").find('input:text').val('');
                                         <div class="control-group small">
                                             <label class="control-label" for="inputtask">Minyawns Required</label>
                                             <div class="controls ">
-                                                <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="1" class="spinner sm-input">
+                                                <input type="text" name="job_required_minyawns" id="job_required_minyawns" placeholder="" value="<?php echo $minyawn_job->get_job_required_minyawns() ?>" class="spinner sm-input">
                                                 <span class="help-block">Eg: 2</span>
                                             </div>
                                         </div>
@@ -342,7 +362,7 @@ $("#add-job-form").find('input:text').val('');
                                             <div class="controls small">
                                                 <div class="input-prepend">
                                                     <span class="add-on"><i class="icon-dollar"></i></span>
-                                                    <input class="span2 sm-input" id="job_wages" type="text" name="job_wages" >
+                                                    <input class="span2 sm-input" id="job_wages" type="text" value="<?php echo $minyawn_job->get_job_wages()?>" name="job_wages" >
                                                     <span class="help-block">Eg: $120.00</span>
                                                 </div>
                                             </div>
@@ -352,7 +372,7 @@ $("#add-job-form").find('input:text').val('');
                                         <div class="control-group small">
                                             <label class="control-label" for="inputtask">Location</label>
                                             <div class="controls ">
-                                                <input type="text" name="job_location" id="job_location" value="" placeholder="" class="span8">
+                                                <input type="text" name="job_location" id="job_location" value="<?php echo $minyawn_job->get_job_location()?>" placeholder="" class="span8">
                                                 <span class="help-block">Eg: 1410 NE Campus Pkwy Seattle, WA 98195.</span>
                                             </div>
                                         </div>
@@ -360,7 +380,7 @@ $("#add-job-form").find('input:text').val('');
                                         <div class="control-group small">
                                             <label class="control-label" for="inputtask">Tags</label>
                                             <div class="controls tagsclass ">
-                                                <input  name="job_tags" id="job_tags" value="" placeholder="Tags here" class="tm-input tagsinput_jobs">
+                                                <input  name="job_tags" id="job_tags" value="<?php echo $minyawn_job->get_job_tags(); ?>" placeholder="Tags here" class="tm-input tagsinput_jobs">
                                                 <span class="help-block">Eg: washing.</span>
                                             </div>
                                         </div>
@@ -368,10 +388,14 @@ $("#add-job-form").find('input:text').val('');
                                             <label class="control-label" for="inputtask">Job Category</label>
                                             <div class="controls ">
                                                 <?php
+                                              
+                                                
                                                 foreach ($all_categories as $category) {
+                                                  
                                                     ?>
-                                                    <input class="category_label" type="checkbox"  value="<?php echo $category->cat_ID ?>" name="category-<?php echo $category->cat_ID ?>" id="category-<?php echo $category->cat_ID ?>"/><span class="category_name"><?php echo $category->name ?></span>
+                                                    <input class="category_label" type="checkbox"  value="<?php echo $category->cat_ID ?>"   <?php if($checked_values[0] === $category->cat_ID){?>checked <?php }?>              name="category-<?php echo $category->cat_ID ?>" id="category-<?php echo $category->cat_ID ?>"/><span class="category_name"><?php echo $category->name ?></span>
                                                     <?php
+                                               
                                                 }
                                                 ?>
                                             </div>
@@ -379,7 +403,7 @@ $("#add-job-form").find('input:text').val('');
                                         <div class="control-group small">
                                             <label class="control-label" for="inputtask">Job Description</label>
                                             <div class="controls ">
-                                                <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder ="example I need my blue corvette cleaned I need someone who knows how to use the car buffer and has cleaned classic cars before" style="height:70px;"></textarea>
+                                                <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder ="example I need my blue corvette cleaned I need someone who knows how to use the car buffer and has cleaned classic cars before" style="height:70px;"><?php  echo $minyawn_job->get_job_details;?></textarea>
                                                 <span class="help-block">Eg: I need my blue corvette cleaned. I need someone who knows how to use the car buffer and has cleaned classic cars before.</span>
                                             </div>
                                         </div>

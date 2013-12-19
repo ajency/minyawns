@@ -34,6 +34,7 @@ class Minyawn_Job {
     public $job_status;
     //can apply
     public $can_apply;
+    public $job_title;
     public $include_meta = array('job_date',
         'job_task',
         'job_start_date',
@@ -73,7 +74,11 @@ class Minyawn_Job {
         $job = $wpdb->get_row($sql);
 
 
-        $this->job_details = $job->post_content;
+        $this->job_title = isset($job->post_title) > 0 ? $job->post_title : '';
+
+        $this->job_details = isset($job->post_content) > 0 ? $job->post_content : '';
+
+
 
         $this->posted_date = $job->post_date;
 
@@ -236,6 +241,20 @@ class Minyawn_Job {
         return $this->job_status == 'complete';
     }
 
+    public function get_job_categories() {
+        $categories = array();
+        $category_ids = array();
+        $category_slug = array();
+        $post_categories = get_the_category($this->ID);
+        foreach ($post_categories as $job_categories) {
+            array_push($categories, $job_categories->name);
+            array_push($category_ids, $job_categories->cat_ID);
+            array_push($category_slug, $job_categories->slug);
+        }
+
+        return $category_ids;
+    }
+
     public function get_job_status() {
         return $this->job_status;
     }
@@ -250,10 +269,22 @@ class Minyawn_Job {
         return date('d M Y', strtotime($this->posted_date));
     }
 
+    public function get_title() {
+        global $minyawn_job;
+
+        return $this->job_title;
+    }
+
     public function get_job_date() {
         global $minyawn_job;
 
         return date('d M Y', $this->job_start_date);
+    }
+    
+    public function get_job_date_addjob() {
+        global $minyawn_job;
+
+        return date('d m Y', $this->job_start_date);
     }
 
     public function get_job_required_minyawns() {
@@ -395,26 +426,23 @@ class Minyawn_Job {
 //        $min_job = new Minyawn_Job($jobID);
 //        if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns))
 //            $applied = 3;
-        
-         $applied_count=0;
-        
-       foreach($user_applied_to as $user_applied){
-           
-           if($user_applied->status === 'hired'){
-                 $applied = 2;//USERS HIRED
-           break;                
-           }else if($user_applied->status ==='applied')
-           {
-               $applied_count=$applied_count+1;
-               
-               if($applied_count === $this->required_minyawns+1)
-                 $applied=3;//JOB LOCKED MAX APPLICANTS          
-               
-               else
-                  $applied=1; 
-           
-       } 
-       }
+
+        $applied_count = 0;
+
+        foreach ($user_applied_to as $user_applied) {
+
+            if ($user_applied->status === 'hired') {
+                $applied = 2; //USERS HIRED
+                break;
+            } else if ($user_applied->status === 'applied') {
+                $applied_count = $applied_count + 1;
+
+                if ($applied_count === $this->required_minyawns + 1)
+                    $applied = 3; //JOB LOCKED MAX APPLICANTS          
+                else
+                    $applied = 1;
+            }
+        }
 
 
         return $applied;
@@ -476,7 +504,7 @@ function get_total_jobs() {
 
     $querystr = "
                             SELECT $wpdb->posts.* 
-                            FROM $tables"."$filtertables
+                            FROM $tables" . "$filtertables
                             $my_jobs_filter
                             $category_filter
                             AND $wpdb->posts.post_status = 'publish' 

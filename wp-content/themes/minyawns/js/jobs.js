@@ -1,5 +1,9 @@
 jQuery(document).ready(function($) {
 
+//if(!logged_in_user_id){
+//load_browse_jobs();
+//return false;
+//}
 
     $("#sidebar_categories").show();//is hidden on the add job function
 
@@ -25,15 +29,20 @@ jQuery(document).ready(function($) {
 
             return false;
         });
-        if (window.location.hash === '#my-jobs')
+        if (window.location.hash === '#my-jobs'){
             fetch_my_jobs(logged_in_user_id);//moved to jobs.js
-        else if (window.location.hash === '#browse')
+        }else if (window.location.hash === '#browse'){
             load_browse_jobs();
-        else if (window.location.hash === '#add-job')
+        }else if (window.location.hash === '#add-job'){
             load_add_job_form();
-        else
+        }else{
+         if(logged_in_user_id.length >0)
             fetch_my_jobs(logged_in_user_id);//moved to jobs.js
-
+        else
+          load_browse_jobs();
+        
+        
+        }
     }
 
 
@@ -610,7 +619,7 @@ function job_status_e(model) {
 
 
                 if (numOfHired > 0)
-                    return_status = "<div class='st-status open'>" + numOfHired + '  have been selected' + model.toJSON().days_to_job_expired + '  days to go for the job</div>';
+                    return_status = "<div class='st-status open'>" + numOfHired + "have been selected</div><div class='st-meta'>" + model.toJSON().days_to_job_expired + '  days to go for the job</div>';
 
 
 
@@ -778,7 +787,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
                             job_button = "<div class='st-applicant'>No Applicants Yet.</div>";
                         else //OTHER EMPLOYERS
-                            job_button = "<a href='"+siteurl+"'/add-job'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
+                            job_button = "<a class='st-green-link' href='"+siteurl+"'/add-job/"+model.toJSON().post_id+"'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
                     }
                     else// USER ROLE MINION
                     {
@@ -812,7 +821,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
                             job_button = " <div class='st-applicant'>" + model.toJSON().no_applied + " Minions have applied.</div><a href='" + siteurl + '/jobs/' + model.toJSON().post_slug + "' class='btn btn-primary'><i class='icon-check'></i>Select Minions</a>"
                         else
-                            job_button = "<a class='st-green-link' href='"+siteurl+"/add-job'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
+                            job_button = "<a class='st-green-link' href='"+siteurl+"/add-job/"+model.toJSON().post_id+"'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
                     } else// USER ROLE MINION
                     {
 
@@ -839,7 +848,7 @@ function job_collapse_b(model) {
 
             } else
             {
-                job_button = job_button = "<a class='st-green-link' href='#'><i class='icon-location-arrow'></i>Sign In to apply</a>";
+                job_button = job_button = "<a id='btn__login_pop' data-toggle='modal' class='st-green-link' href='#mylogin'><i class='icon-location-arrow'></i>Sign In to apply</a>";
 
             }
 
@@ -858,7 +867,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
                             job_button = " <div class='st-applicant'>" + model.toJSON().no_applied + " have applied.</div><a href='" + siteurl + '/jobs/' + model.toJSON().post_slug + "' class='btn btn-primary'><i class='icon-check'></i>Select Minions</a>"
                         else
-                            job_button = "<a class='st-green-link' href='"+siteurl+"/add-job'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
+                            job_button = "<a class='st-green-link' href='"+siteurl+"/add-job/"+model.toJSON().post_id+"'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
 
 
                     } else //MINION
@@ -890,7 +899,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // IS JOB OWNER
                             job_button = "";
                         else
-                            job_button = "<a class='st-green-link' href='"+siteurl+"/add-job'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
+                            job_button = "<a class='st-green-link' href='"+siteurl+"/add-job/"+model.toJSON().post_id+"'><i class='icon-location-arrow'></i>Create Similar Jobs</a>";
 
 
                     } else //MINION
@@ -933,7 +942,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
                             job_button = "<a class='st-green-link' href='" + siteurl + '/jobs/' + model.toJSON().post_slug + "' target='_blank'>Give ratings to minions</a>";
                         else
-                            job_button = "<a href='"+siteurl+"/add-job' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
+                            job_button = "<a href='"+siteurl+"/add-job/"+model.toJSON().post_id+"' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
 
                     } else if (role === 'minion') //USER ROLE MINION
                     {
@@ -965,7 +974,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
                             job_button = "<a  href='" + siteurl + "/jobs/#add-job' class='st-green-link'>Add A New Job.</a>";
                         else
-                            job_button = "<a href='"+siteurl+"add-job' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
+                            job_button = "<a href='"+siteurl+"add-job/"+model.toJSON().post_id+"' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
 
 
                     } else // ROLE IS MINIONS
@@ -992,7 +1001,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
                             job_button = "<a href='#' class='st-green-link'>Do you want to repeat the job ?</a>";
                         else
-                            job_button = "<a href='"+siteurl+"add-job' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
+                            job_button = "<a href='"+siteurl+"add-job/"+model.toJSON().post_id+"' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
 
                     } else //ROLE MINION
                     {
