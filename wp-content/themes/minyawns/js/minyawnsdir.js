@@ -140,7 +140,7 @@ function fetch_minyawns_list() {
             if (response.error !== '404') {
                 var template = _.template(jQuery("#minyawn-directory-card").html());
 
-
+$(".load_ajax_large").show();
 
                 _.each(collection.models, function(model) {
 
@@ -251,9 +251,11 @@ function load_more() {
         success: function(collection, response) {
 
             if (response.error !== '404') { //if no results returned
+               
+                $(".minyawnslist").empty();    
                 var template = _.template(jQuery("#minyawn-directory-card").html());
 
-                jQuery(".minyawnslist").empty();
+                
                 _.each(collection.models, function(model) {
                     console.log(collection.models);
                     var html = template({result: model.toJSON()});
@@ -343,6 +345,9 @@ $(".checkbox").live('click', function() {
     if ($("#checkbox-verified").attr("checked") === 'checked')
     {
         window.is_verified = 'Y';
+        jQuery(".minyawnslist").empty();
+        jQuery(".load_ajax_large").show();
+        
         fetch_minyawns_list();
 
 
@@ -350,7 +355,8 @@ $(".checkbox").live('click', function() {
     else
     {
 
-
+jQuery(".minyawnslist").empty();
+        jQuery(".load_ajax_large").show();
         delete  window.is_verified;
         fetch_minyawns_list();
 
