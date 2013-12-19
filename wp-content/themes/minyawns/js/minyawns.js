@@ -873,7 +873,7 @@ window.location.href=resp.post_slug;
     /* POPUP LOGIN */
 
     //hide forget password section on login pop up link click
-    jQuery("#btn__login").live("click", function() {
+    jQuery("#btn__login,#btn__loginpop").live("click", function() {
         jQuery("#div_forgotpass").hide();
         jQuery("#div_msgforgotpass").html("");
         jQuery("#user_login").val("");

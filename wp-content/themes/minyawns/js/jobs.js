@@ -1,5 +1,9 @@
 jQuery(document).ready(function($) {
 
+//if(!logged_in_user_id){
+//load_browse_jobs();
+//return false;
+//}
 
     $("#sidebar_categories").show();//is hidden on the add job function
 
@@ -25,15 +29,20 @@ jQuery(document).ready(function($) {
 
             return false;
         });
-        if (window.location.hash === '#my-jobs')
+        if (window.location.hash === '#my-jobs'){
             fetch_my_jobs(logged_in_user_id);//moved to jobs.js
-        else if (window.location.hash === '#browse')
+        }else if (window.location.hash === '#browse'){
             load_browse_jobs();
-        else if (window.location.hash === '#add-job')
+        }else if (window.location.hash === '#add-job'){
             load_add_job_form();
-        else
+        }else{
+         if(logged_in_user_id.length >0)
             fetch_my_jobs(logged_in_user_id);//moved to jobs.js
-
+        else
+          load_browse_jobs();
+        
+        
+        }
     }
 
 
@@ -839,7 +848,7 @@ function job_collapse_b(model) {
 
             } else
             {
-                job_button = job_button = "<a class='st-green-link' href='#'><i class='icon-location-arrow'></i>Sign In to apply</a>";
+                job_button = job_button = "<a id='btn__login_pop' data-toggle='modal' class='st-green-link' href='#mylogin'><i class='icon-location-arrow'></i>Sign In to apply</a>";
 
             }
 
