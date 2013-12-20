@@ -1141,17 +1141,18 @@ background-size: 25%;
 }
 
 .onoffswitch-inner:before {
-    content: "Select";
+    content: "UnSelect";
     padding-left: 8px;
-    background-color: #61B5F7;
-color: #FFF;
+    background-color: #EEEEEE; color: #999999;
+    
 text-align: left;
 }
 
 .onoffswitch-inner:after {
-    content: "Unselect";
+    content: "Select";
     padding-right: 8px;
-    background-color: #EEEEEE; color: #999999;
+    background-color: #61B5F7;
+color: #FFF;
     text-align: right;
 }
 
