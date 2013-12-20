@@ -8,7 +8,8 @@ require 'templates/_jobs.php';
 ?>
 <script>
     jQuery(document).ready(function($) {
-
+  $(".inline li").removeClass("selected");
+  
         if (is_logged_in.length === 0) {
             jQuery("#change-avatar-span").attr("href", "#")
             jQuery("#change-avatar-span").find("span").remove();
