@@ -3506,7 +3506,7 @@ body .jobs_table .data-title .profile-job {
   left: -10px;
   right: -10px;
   top: 0;
-  z-index: 2;
+  z-index: 999;
   -webkit-box-shadow: 0 0 15px #ccc;
   -moz-box-shadow: 0 0 15px #ccc;
   box-shadow: 0 0 15px #ccc;
