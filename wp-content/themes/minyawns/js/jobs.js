@@ -29,18 +29,17 @@ jQuery(document).ready(function($) {
 
             return false;
         });
-        if (window.location.hash === '#my-jobs' && logged_in_user_id.length >0){
+        if (window.location.hash === '#my-jobs'){
             fetch_my_jobs(logged_in_user_id);//moved to jobs.js
         }else if (window.location.hash === '#browse'){
             load_browse_jobs();
         }else if (window.location.hash === '#add-job'){
             load_add_job_form();
         }else{
-          
          if(logged_in_user_id.length >0)
             fetch_my_jobs(logged_in_user_id);//moved to jobs.js
-//        else
-//          load_browse_jobs();
+        else
+          load_browse_jobs();
         
         
         }
@@ -384,6 +383,9 @@ function fetch_my_jobs(id)
     $(".inline li").removeClass("selected");
 
     $("#my_jobs").addClass('selected');
+    
+  
+    
 
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,

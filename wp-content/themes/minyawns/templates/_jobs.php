@@ -393,3 +393,18 @@ $key_job = sha1($salt . uniqid(time(), true));
     </li>
 
 </script>
+
+<script type="text/templates" id="no_access">
+      <div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
+			<div class="row-fluid">
+                            <div class="span3"><br><img src="<?php echo get_template_directory_uri(); ?>/images/404error.png"/></div>
+				<div class="span9">	<h4 >No Access</h4>
+		<hr>
+		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
+		<br>
+		<a href="#mylogin" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
+		<div class="clear"></div></div>
+			</div>
+		</div>
+    
+</script>
