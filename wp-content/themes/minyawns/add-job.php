@@ -406,7 +406,7 @@ $(".inline li").removeClass("selected");
                                         <div class="control-group small">
                                             <label class="control-label" for="inputtask">Job Description</label>
                                             <div class="controls ">
-                                                <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder ="example I need my blue corvette cleaned I need someone who knows how to use the car buffer and has cleaned classic cars before" style="height:70px;"><?php  echo $minyawn_job->get_job_details;?></textarea>
+                                                <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder ="example I need my blue corvette cleaned I need someone who knows how to use the car buffer and has cleaned classic cars before" style="height:70px;"><?php  echo $minyawn_job->get_job_details();?></textarea>
                                                 <span class="help-block">Eg: I need my blue corvette cleaned. I need someone who knows how to use the car buffer and has cleaned classic cars before.</span>
                                             </div>
                                         </div>
