@@ -216,11 +216,15 @@
 		</a>
 		<div class="main-menu">
 		<ul class="inline">
-				
+				<li><b>Browse:</b></li>
+				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
+                                <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
+				<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
 				<li class="green-btn-top"   >
-				
-				<i class="icon-plus-sign" ></i><a href="<?php echo site_url() ?>/add-job/">&nbsp; Create a job</a>
+				 
 				   
+				<i class="icon-plus-sign" ></i><a href="<?php echo site_url() ?>/add-job/">&nbsp; Create a job</a>
+				  
 				   </li>
 				
 		</ul>
