@@ -468,7 +468,7 @@ $(".inline li").removeClass("selected");
 		<a href="#mylogin" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
 		<div class="clear"></div></div>
 			</div>
-		</div> <input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="' . site_url() . '/' . $page_slug . '/" />'
+		</div>
                         <?php } ?>
                     </div>
                     

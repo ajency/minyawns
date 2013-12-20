@@ -101,6 +101,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                             </div>
                     </div>-->
             <div class="row-fluid">
+              
                 <div class="span3" >
 <!--                    <div class="alert alert-success alert-sidebar">
                         <h3>Skills / Major </h3><hr>
@@ -250,6 +251,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
 
                     </div>
                 </div>
+               
             </div>
 
 
@@ -265,13 +267,15 @@ $all_categories = get_categories(array('hide_empty' => 0));
             }
             ?>
             <div class="breadcrumb-text">
+                <?php if(is_user_logged_in()) {?>
                 <p>
                     <a href="#"><span id="parent_item">My Jobs</span></a>
                     <span id="sub_item">Job List</span>
                 </p>
+                <?php } ?> 
             </div>
-            <dic class="row-fluid">
-                
+            <div class="row-fluid">
+                <?php if(is_user_logged_in()){ ?>
             <div class="span3" id="sidebar_categories">
              <div class="alert alert-success alert-sidebar">
                         <h3> Job Categories</h3><hr>
@@ -487,7 +491,19 @@ $all_categories = get_categories(array('hide_empty' => 0));
                 </div>
                 <div>
         </div>
-
+                <?php }else { ?>
+                   <div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
+			<div class="row-fluid">
+                            <div class="span3"><br><img src="<?php echo get_template_directory() ?>/images/404error.png"/></div>
+				<div class="span9">	<h4 >No Access</h4>
+		<hr>
+		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
+		<br>
+		<a href="#mylogin" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
+		<div class="clear"></div></div>
+			</div>
+		</div>
+                <?php }?>
     </div>
     <div id="examplejob" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
