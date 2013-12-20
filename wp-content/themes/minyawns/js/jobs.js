@@ -932,7 +932,7 @@ function job_collapse_b(model) {
         case 'Expired':
 
 
-            if ((model.toJSON().user_to_job_rating.indexOf('Well Done') == -1 || model.toJSON().user_to_job_rating.indexOf('Terrible') == -1) && model.toJSON().user_to_job_status.indexOf('hired') >= 0) //RATINGS PENDING FOR ALL
+            if ((model.toJSON().user_to_job_rating.indexOf('Well Done') == -1 && model.toJSON().user_to_job_rating.indexOf('Terrible') == -1) && model.toJSON().user_to_job_status.indexOf('hired') >= 0) //RATINGS PENDING FOR ALL
             {
 
                 if (logged_in_user_id)// IF USER IS LOGGED IN
