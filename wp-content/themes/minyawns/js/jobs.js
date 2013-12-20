@@ -619,7 +619,7 @@ function job_status_e(model) {
 
 
                 if (numOfHired > 0)
-                    return_status = "<div class='st-status open'>" + numOfHired + "&nbsp;have been selected</div><div class='st-meta'>" + model.toJSON().days_to_job_expired + '  days to go for the job</div>';
+                    return_status = "<div class='st-status open'>" + numOfHired + "&nbsp;Minions have been selected</div><div class='st-meta'>" + model.toJSON().days_to_job_expired + '  days to go for the job</div>';
 
 
 
