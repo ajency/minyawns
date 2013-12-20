@@ -178,28 +178,75 @@
 		<div class="clear"></div>
 	</div>
 			<?php } else { ?>
-					<div class="bottom-menu  bottom-menu top-menu home-menu">
-			<div class="container">
+					<div class="bottom-menu  bottom-menu-inverse top-menu">
+		
 				<div class="row">
-					<div class="span2 brand">
-						<a href="<?php echo site_url(); ?>"><img
-							src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
-							alt="" /> </a>
+					<div  class="small-tag-line ">
+						<p>Minyawns is an easy to use, on-demand, reliable way to find work or help fast.</p>
 					</div>
-					<div class="span4"></div>
-					
-
-					<div class="span2 upper-link ">
-						<!-- <a href="#myModal"  data-toggle="modal">Sign Up </a> &nbsp; &nbsp; 	-->
-						<a href="#mylogin" data-toggle="modal" id="btn__login"><i class="icon-signin"></i> Login </a>
-
-					</div>
-					
-
-                    </div>
-                </div>
-            </div> <!-- /bottom-menu-inverse -->
 			
+					
+					<div class=" notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
+					<div class="pull-right">
+					
+						<div class="data-link">
+							<a href="#myModal"  data-toggle="modal"><i class="icon-signin"></i> Sign Up </a> 
+						</div>
+							<div class="data-link">
+							<a href="#mylogin" data-toggle="modal" id="btn__login"><i class="icon-unlock-alt"></i> Login </a>
+						</div>
+							<div class="data-link">
+							<a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a>
+						</div>
+						</div>
+							<div class="clear"></div>
+					</div>
+				
+				
+				
+					
+
+				
+                    </div>
+         
+            </div>
+					<div class="top-menu-header">
+		<a href="<?php echo site_url(); ?>">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt=""  class="minions-logo"/> 
+		</a>
+		<div class="main-menu">
+		<ul class="inline">
+				
+				<li class="green-btn-top"   >
+				
+				<i class="icon-plus-sign" ></i><a href="<?php echo site_url() ?>/add-job/">&nbsp; Create a job</a>
+				   
+				   </li>
+				
+		</ul>
+		
+
+
+		</div>
+		<div class="dropdown mobile-menu">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse Menu <i class="icon-reorder"></i></a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+  
+				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
+                                <li id="myjobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
+				<li id="directory" ><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
+				<li >
+				 <?php if (get_user_role() === 'minyawn'): ?>
+				<a href="#"> Update Your Profile</a>
+				   <?php endif; ?>	
+				    <?php if (get_user_role() === 'employer'): ?>
+					<a href="#"> Create a job</a>
+				   <?php endif; ?>
+				   </li>
+  </ul>
+</div>
+		<div class="clear"></div>
+	</div>
 			
 				<?php } ?>
 

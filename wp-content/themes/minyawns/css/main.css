@@ -5086,3 +5086,6 @@ div.tooltip1:after {
 .review_popover .popover {
   z-index: 999;
 }
+.home .top-menu-header {
+  background: rgba(51, 50, 50, 0.86);
+}
