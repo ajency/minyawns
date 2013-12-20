@@ -51,8 +51,8 @@ $app->post('/addjob', function() use ($app) {
                 } elseif ($key == "job_start_date") {
                     $start = $value;
                     $end = $value;
-                    update_post_meta($post_id, $key, strtotime($value));
-                    update_post_meta($post_id,'job_end_date',strtotime($end));
+                    update_post_meta($post_id, $key, strtotime(str_replace(',',' ',$value)));
+                    update_post_meta($post_id,'job_end_date',strtotime(str_replace(',',' ',$value)));
                    
                 } elseif ($key == "job_start_time") {
 
@@ -60,11 +60,11 @@ $app->post('/addjob', function() use ($app) {
                     update_post_meta($post_id, 'job_start_date_time', strtotime(date("j-m-Y", strtotime($start)) . $value));
                 }elseif ($key == "job_end_time") {
                     
-                    $date = date("j-m-Y", strtotime($end));
+                    $date = date("j-m-Y ", strtotime($end));
 
                     update_post_meta($post_id, $key, strtotime($value));
 
-                    update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y", strtotime($start)) . $value));
+                    update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y", strtotime(str_replace(',',' ',$start))) . $value));
                 } elseif (strstr($key, 'category')) {
                     $categories[] = $value;
                 } elseif ($key !== 'job_details') {

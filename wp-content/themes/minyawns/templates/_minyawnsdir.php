@@ -9,7 +9,7 @@
                                     </div>
                                      <% if(result.user_verified === 'Y'){%>
     <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
-    <div class="verfied-txt">Verfied Minion</div>
+    <div class="verfied-txt">Verified Minion</div>
     <% } %> 
                                     <h4><%= result.minion_name %></h4>
                                     <div class="collage"> <%= result.college %></div>
