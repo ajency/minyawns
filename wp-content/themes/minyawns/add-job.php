@@ -13,7 +13,8 @@ $count=count($segments);
 
 $segment=is_numeric($segments[$count-1]) ? $segments[$count-1] : ""; 
 
-$minyawn_job= New Minyawn_Job($segment);
+if(is_numeric($segments[$count-1]))
+$minyawn_job= New Minyawn_Job($segments[$count-1]);
 
 
 require 'templates/_jobs.php';
