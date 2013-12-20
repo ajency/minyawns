@@ -298,10 +298,10 @@ $(".inline li").removeClass("selected");
                 <div class="tab-pane" id="tab2">
                    <div id="add-job-form" >
                         <div class="row-fluid">
-                            <div class="span8">
-                                <?php
+                              <?php
                                 if (is_user_logged_in()) {
                                     ?>
+                            <div class="span8">                              
                                     <div class="alert alert-success alert-box " id="job-success" style="display:none;">  <button data-dismiss="alert" class="close" type="button">×</button>You have successfully add a job.</div>
                                     <!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
                                     <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
@@ -456,11 +456,13 @@ $(".inline li").removeClass("selected");
                                     </div>
                                 </div>
                             </div>
-                        <?php }else{ ?>                   
+                      
+                    </div>
+                      <?php }else{ ?>                   
 
                        <div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
 			<div class="row-fluid">
-                            <div class="span3"><br><img src="<?php echo get_template_directory() ?>/images/404error.png"/></div>
+                            <div class="span3"><br><img src="<?php echo get_template_directory_uri(); ?>/images/404error.png"/></div>
 				<div class="span9">	<h4 >No Access</h4>
 		<hr>
 		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
@@ -468,10 +470,8 @@ $(".inline li").removeClass("selected");
 		<a href="#mylogin" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
 		<div class="clear"></div></div>
 			</div>
-		</div> <input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="' . site_url() . '/' . $page_slug . '/" />'
+		</div>
                         <?php } ?>
-                    </div>
-                    
                    
                     
                 </div>

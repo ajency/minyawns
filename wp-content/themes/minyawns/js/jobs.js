@@ -383,6 +383,9 @@ function fetch_my_jobs(id)
     $(".inline li").removeClass("selected");
 
     $("#my_jobs").addClass('selected');
+    
+  
+    
 
     var Fetchjobs = Backbone.Collection.extend({
         model: Job,
