@@ -635,7 +635,7 @@ function job_status_e(model) {
                 {
 
                     if (model.toJSON().applied_user_id[i] === logged_in_user_id && model.toJSON().user_to_job_rating[i] !== 'Rating:Awaited') {
-                        return_status = "<div class='st-status open'>Job Date is Over.You have been rated &nbsp;&nbsp;" + model.toJSON().user_to_job_rating[i] + "</div>";
+                        return_status = "<div class='st-status open'>Job Date is Over.</div><div class='st-meta'>You have been rated &nbsp;&nbsp;" + model.toJSON().user_to_job_rating[i] + "</div>";
                         break;
                     } else {
                         return_status = "<div class='st-status closed'>Job Date is Over</div>";
@@ -972,7 +972,7 @@ function job_collapse_b(model) {
                     if (role === 'Employer') { // ROLE IS EMPLOYER
 
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
-                            job_button = "<a  href='" + siteurl + "/jobs/#add-job' class='st-green-link'>Add A New Job.</a>";
+                            job_button = "<a  href='" + siteurl + "/jobs/add-job' class='st-green-link'>Add A New Job.</a>";
                         else
                             job_button = "<a href='"+siteurl+"add-job/"+model.toJSON().post_id+"' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
 

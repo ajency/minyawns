@@ -11,7 +11,9 @@ $_SERVER['REQUEST_URI_PATH'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', rtrim($_SERVER['REQUEST_URI_PATH'], '/'));
 $count=count($segments);
 
-$minyawn_job= New Minyawn_Job($segments[$count-1]);
+$segment=is_numeric($segments[$count-1]) ? $segments[$count-1] : ""; 
+
+$minyawn_job= New Minyawn_Job($segment);
 
 
 require 'templates/_jobs.php';

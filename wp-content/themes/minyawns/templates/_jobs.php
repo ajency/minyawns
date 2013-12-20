@@ -208,7 +208,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     </div>
     <% if(result.is_verified === 'Y'){%>
     <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
-    <div class="verfied-txt">Verfied Minion</div>
+    <div class="verfied-txt">Verified Minion</div>
     <% } %> 
     <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
     <div class="collage"> <%= result.college%> </div>
