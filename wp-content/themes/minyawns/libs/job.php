@@ -36,7 +36,7 @@ $app->post('/addjob', function() use ($app) {
 
             $post_id = wp_insert_post($post);
 //$post_id=934;
-
+//print_r($json_a);exit();
             foreach ($json_a as $key => $value) {
 
                 if ($key == 'job_tags') {
@@ -57,7 +57,7 @@ $app->post('/addjob', function() use ($app) {
                 } elseif ($key == "job_start_time") {
 
                     update_post_meta($post_id, $key, strtotime($value));
-                    update_post_meta($post_id, 'job_start_date_time', strtotime(date("j-m-Y", strtotime($start)) . $value));
+                    update_post_meta($post_id, 'job_start_date_time', strtotime(date("j-m-Y", strtotime(str_replace(',',' ',$start))) . $value));
                 }elseif ($key == "job_end_time") {
                     
                     $date = date("j-m-Y ", strtotime($end));
@@ -67,7 +67,7 @@ $app->post('/addjob', function() use ($app) {
                     update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y", strtotime(str_replace(',',' ',$start))) . $value));
                 } elseif (strstr($key, 'category')) {
                     $categories[] = $value;
-                } elseif ($key !== 'job_details') {
+                } elseif ($key !== 'job_details' && $key !== "job_end_date" ) {
                     update_post_meta($post_id, $key, $value);
                 }
             }
