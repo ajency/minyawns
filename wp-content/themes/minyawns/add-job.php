@@ -282,10 +282,12 @@ $(".inline li").removeClass("selected");
             }
             ?>
             <div class="breadcrumb-text">
+                <?php if(is_user_logged_in()){?>
                 <p>
                     <a href="#"><span id="parent_item">My Jobs</span></a>
                     <span id="sub_item">Job List</span>
                 </p>
+                <?php } ?>
             </div>
             <dic class="row-fluid">
                 
