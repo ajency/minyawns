@@ -79,7 +79,7 @@ require 'templates/_jobs.php';
             <p id="bread-crumbs-id">
 
                 <a href="<?php echo site_url() ?>/jobs/" class="view loaded">My Jobs</a>
-                <a href="<?php echo site_url() ?>/profile" class="view loaded edit-user-profile">My Profile</a>
+                <a href="<?php echo site_url() ?>/profile" class="view loaded">My Profile</a>
                
 <!--                <a href="#" class="view loaded edit-user-profile"><?php if(get_user_id()== get_current_user_id()) echo "My"; else if(strlen(user_profile_company_name())>0) echo mb_convert_case(user_profile_company_name(), MB_CASE_TITLE, "UTF-8"); else echo mb_convert_case(user_profile_first_name(), MB_CASE_TITLE, "UTF-8"); ?></a>-->
                 <a href="<?php echo site_url() ?>/profile/<?php echo get_current_user_id() ?>" class="view loaded edit-user-profile">Edit Profile</a>
