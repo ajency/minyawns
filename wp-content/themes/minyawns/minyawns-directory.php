@@ -123,4 +123,69 @@ get_header();
   </div>
 
 
-
+<div class="modal fade minion-dir" id="miniondir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Invite minion to...</h4>
+      </div>
+      <div class="modal-body">
+       <table class="table">
+        <thead>
+          <tr>
+            <th>Job Title</th>
+            <th>Date</th>
+            <th>Status</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="active">
+            <td class="td-job-title">Jobs status grid</td>
+            <td class="sm-font">09 December, 2013</td>
+            <td>
+			<a href="#" class="btn btn-primary invite-btn">
+			 <i class="icon-ok"></i> invite
+			</a>
+			
+			</td>
+          </tr>
+          <tr>
+            <td class="td-job-title">Wash my car</td>
+            <td class="sm-font">09 December, 2013</td>
+            <td><a href="#" class="btn btn-primary invite-btn">
+			 <i class="icon-ok"></i> Resend Invite
+			</a></td>
+          
+          </tr>
+          <tr class="success">
+            <td class="td-job-title">Paint the office balcony</td>
+            <td class="sm-font">09 December, 2013</td>
+            <td><span class="applied">applied</span></td>
+           
+          </tr>
+       
+          <tr class="warning">
+            <td class="td-job-title">Jobs status grid</td>
+            <td class="sm-font">09 December, 2013</td>
+            <td><span class="hired">Hired</span></td>
+        
+          </tr>
+        
+          <tr class="success">
+            <td class="td-job-title">Paint the office balcony</td>
+            <td class="sm-font">09 December, 2013</td>
+            <td ><span class="applied">applied</span></td>
+           
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

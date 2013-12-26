@@ -1,3 +1,4 @@
+
 <script type="text/template" id="minyawn-directory-card">
     <li class="span3 thumbspan" id="minyawn<%= result.user_id %>">
                            <div class="thumbnail" id="thumbnail-10">
@@ -48,7 +49,7 @@
                                     <div class="social-link">
                                        <%= result.user_email %>
                                     </div>
-					<a href="#fakelink" class="btn btn-primary invite-btn">
+					<a data-toggle="modal" data-target="#miniondir" class="btn btn-primary invite-btn">
 												   <i class="icon-ok"></i>
 												 Invite Minion
 												   </a>				
