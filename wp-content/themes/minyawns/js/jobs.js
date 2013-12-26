@@ -224,6 +224,7 @@ function load_browse_jobs(id, _action, category_ids) {
                 var template = _.template(jQuery("#no-result").html());
                 jQuery("#accordion24").append(template);
                 jQuery("#load-more").hide();
+                jQuery("#loader").hide();
             } else {
 
                 var template = _.template(jQuery("#jobs-table").html());

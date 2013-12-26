@@ -544,8 +544,8 @@ jQuery(document).ready(function($) {
                     $('#profile-view').find('.name').html(data.company_name + ' <a href="#" class="edit edit-user-profile"><i class="icon-edit"></i> Edit</a>');
                 }
                 //minyawns role
-                $('#profile-view').find('.college_data').text('College:'+data.college);
-                $('#profile-view').find('.major_data').text('Major:'+data.major);
+                $('#profile-view').find('.college_data').text('College:' + data.college);
+                $('#profile-view').find('.major_data').text('Major:' + data.major);
                 var skills = '';
                 var skill_name = '';
 
@@ -574,7 +574,7 @@ jQuery(document).ready(function($) {
 //                $(span1).animate({left: 0}, 500);
 //                $(span2).hide();
 //                
-                window.location.href=SITEURL+'/profile';
+                window.location.href = SITEURL + '/profile';
                 // $(span1).show().animate({left: w}, 500);
                 $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
             },
@@ -585,10 +585,10 @@ jQuery(document).ready(function($) {
         });
     });
     /********************************** PROFILE JS CODE *************************************/
-/*
- *  LOADs a new link now
- * 
- */
+    /*
+     *  LOADs a new link now
+     * 
+     */
 //    $("#add-job-button,#new-job,#create_my_jobs").live('click', function(e) {
 //
 //load_add_job_form(e);
@@ -659,7 +659,7 @@ jQuery(document).ready(function($) {
                         //get model data
                         // $(_this).removeAttr('disabled');
                         $("#add-job-form").slideUp("slow");
-                      //  $("#add-job-button").html('<i class="fui-mail"></i> Add Jobs');
+                        //  $("#add-job-button").html('<i class="fui-mail"></i> Add Jobs');
                         $("#add-job-form").find('input:text').val('');
                         $("#job_task").val('');
                         $("#job_details").val(" ");
@@ -669,9 +669,9 @@ jQuery(document).ready(function($) {
                         $("#job-success").show();
                         $(".modal_ajax_large").hide();
                         var id;
-                        
-window.location.href=resp.post_slug;
-                       // load_browse_jobs(resp.post_id + '', 'single_json_my_jobs');
+
+                        window.location.href = resp.post_slug;
+                        // load_browse_jobs(resp.post_id + '', 'single_json_my_jobs');
                     },
                     errors: function() {
                         $(_this).removeAttr('disabled');
@@ -1102,10 +1102,10 @@ window.location.href=resp.post_slug;
         var w = $(span1).width();
         if ($(this).hasClass('view'))
         {
-            
+
             $("#delete_jobs_link").hide();
             $(span1).animate({left: 0}, 500);
-            $(span2).show().animate({left: w+400}, 500);
+            $(span2).show().animate({left: w + 400}, 500);
             $(".job-view-list").show();
             if ($(".alert-error").length > 0)
                 $(".alert-error").show();
@@ -1249,12 +1249,17 @@ window.location.href=resp.post_slug;
         $(this).append(' <img src="' + siteurl + '/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
         $(".load_ajax1").show();
         $(".load_ajax3").show();
+     
         $.post(ajaxurl,
                 {
                     action: 'minyawn_job_' + _action,
                     job_id: parseInt(_job_id)
                 },
         function(response) {
+
+           if(window.page === '1') //single job page reload to get new minion data
+               window.location.reload();
+           
 
             load_browse_jobs(_job_id, 'single_json');/*appends a single row to the table*/
             $(".load_ajax1").hide();
@@ -1504,14 +1509,14 @@ window.location.href=resp.post_slug;
 //    });
 
 
-function remove(array,to_remove)
-{
-  var elements=array.split(",");
-  var remove_index=elements.indexOf(to_remove);
-  elements.splice(remove_index,1);
-  var result=elements.join(",");
-  return result;
-}
+    function remove(array, to_remove)
+    {
+        var elements = array.split(",");
+        var remove_index = elements.indexOf(to_remove);
+        elements.splice(remove_index, 1);
+        var result = elements.join(",");
+        return result;
+    }
 
     $(".onoffswitch").live('click', function(e) {
 
@@ -1526,12 +1531,12 @@ function remove(array,to_remove)
 
             $("." + $(this).attr('id')).removeClass("Select-minyawns");
 
-    
-            var explode = remove(group_id,user_id); 
-        
-            no_of_minyawns=no_of_minyawns-1;
 
-           
+            var explode = remove(group_id, user_id);
+
+            no_of_minyawns = no_of_minyawns - 1;
+
+
             $("#minyawn_id").val(explode);
             $("#paypal_pay").show();
             $("#selection_message").hide();
@@ -1709,7 +1714,7 @@ function remove(array,to_remove)
         }
 
         $("#review-box" + $(this).attr('user_id')).show();
-       // $("#thumbnail-" + $(this).attr('user_id')).css("height", '545px');
+        // $("#thumbnail-" + $(this).attr('user_id')).css("height", '545px');
 
 
 //
@@ -1757,7 +1762,7 @@ function remove(array,to_remove)
 
                 },
         function(response) {
-           
+
             $(".rating").find('a').prop('disabled', false);
             if (response.action === "vote-up") {
                 $("#thumbs_up_" + _user_id).contents().filter(function() {
@@ -1899,7 +1904,7 @@ function paypal_form_values(no_of_minyawns) {
     $("#no_of_minyawns").html(no_of_minyawns);
     $("#wages_per_minyawns").html($("#job_wages").val());
     var total = no_of_minyawns * $("#job_wages").val();
-    
+
     if (no_of_minyawns == 0)
         $("#wages_per_minyawns").html("0");
 
