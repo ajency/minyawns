@@ -3361,6 +3361,25 @@ body .jobs_table .data-title .profile-job {
 .singlejobedit .job-title a.job-expired {
   display: none;
 }
+.page-template-minyawns-directory-php .minyawns-grid1 .m2 {
+  min-height: 350px !important;
+}
+.page-template-minyawns-directory-php .minyawns-grid1 .m2 .rating {
+  padding: 3px !important;
+}
+.page-template-minyawns-directory-php .minyawns-grid1 .m2 .collage {
+  font-size: 12px!important;
+  line-height: 14px;
+  margin-bottom: 2px!important;
+}
+.page-template-minyawns-directory-php .minyawns-grid1 .m2 h4 {
+  line-height: 5px;
+}
+.page-template-minyawns-directory-php .minyawns-grid1 .m2 .social-link {
+  font-size: 12px!important;
+  margin-bottom: 2px!important;
+  margin-top: 0px!important;
+}
 .minyawns-grid1 {
   margin: 22px auto;
   padding: 0;
@@ -3554,6 +3573,8 @@ body .jobs_table .data-title .profile-job {
   position: absolute;
   width: 100%;
   bottom: 0;
+  height: 62px;
+  overflow: hidden;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m2 .caption .tags .label {
   background-color: #dedede;
