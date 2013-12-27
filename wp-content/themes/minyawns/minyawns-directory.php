@@ -131,7 +131,7 @@ get_header();
         <h4 class="modal-title" id="myModalLabel">Invite minion to...</h4>
       </div>
       <div class="modal-body">
-       <table class="table">
+       <table class="table" id="invite_to">
         <thead>
           <tr>
             <th>Job Title</th>
@@ -141,17 +141,8 @@ get_header();
           </tr>
         </thead>
         <tbody>
-          <tr class="active">
-            <td class="td-job-title">Jobs status grid</td>
-            <td class="sm-font">09 December, 2013</td>
-            <td>
-			<a href="#" class="btn btn-primary invite-btn">
-			 <i class="icon-ok"></i> invite
-			</a>
-			
-			</td>
-          </tr>
-          <tr>
+          
+         <!-- <tr>
             <td class="td-job-title">Wash my car</td>
             <td class="sm-font">09 December, 2013</td>
             <td><a href="#" class="btn btn-primary invite-btn">
@@ -178,13 +169,13 @@ get_header();
             <td class="sm-font">09 December, 2013</td>
             <td ><span class="applied">applied</span></td>
            
-          </tr>
+          </tr> -->
         </tbody>
       </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

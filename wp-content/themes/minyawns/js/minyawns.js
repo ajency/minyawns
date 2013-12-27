@@ -1920,6 +1920,72 @@ function paypal_form_values(no_of_minyawns) {
 }
 
 
+jQuery("#invite-minion").live("click",function(){
+    
+      
+        var Fetchuserinvites= Backbone.Collection.extend({
+       
+        url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/invitejobs'
+    });
+      window.fetchi= new Fetchuserinvites;
+    window.fetchi.fetch({
+        data: {
+            user_id: jQuery("#invite-minion").attr("minion-id"),
+                employer_id:jQuery("#invite-minion").attr("employer-id")       
+        },
+        success: function(collection, response) {
+           
+var invites = _.template(jQuery("#active_invites").html());  
+jQuery("#miniondir").modal('show');
+            if (collection.length > 0) {
+                
+               
+                _.each(collection.models, function(model) {
+                 
+//                    if (is_job_owner(jobmodel.toJSON().job_owner_id) || is_admin === '1')
+//                        var select_button = is_minion_selected(jobmodel, model);
+
+               
+//jQuery("#invite_to").append();
+                    var html = invites({result: model.toJSON()});
+                    
+
+                    jQuery("#invite_to").append(html);
+                });
+               
+
+            } else 
+            {
+               
+               alert("no jobs");
+
+            }
+        }
+    });
+
+    
+    
+    
+    
+//    $.get(SITEURL + '/wp-content/themes/minyawns/libs/job.php/invitejobs',
+//            {
+//                user_id: jQuery("#invite-minion").attr("minion-id"),
+//                employer_id:jQuery("#invite-minion").attr("employer-id")       
+//    },
+//            function(response) {
+//               
+//               
+//               
+//               
+//               
+//            });
+   
+   
+   
+    
+});
+
+
 
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
