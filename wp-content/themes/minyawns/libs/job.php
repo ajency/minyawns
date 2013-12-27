@@ -51,23 +51,22 @@ $app->post('/addjob', function() use ($app) {
                 } elseif ($key == "job_start_date") {
                     $start = $value;
                     $end = $value;
-                    update_post_meta($post_id, $key, strtotime(str_replace(',',' ',$value)));
-                    update_post_meta($post_id,'job_end_date',strtotime(str_replace(',',' ',$value)));
-                   
+                    update_post_meta($post_id, $key, strtotime(str_replace(',', ' ', $value)));
+                    update_post_meta($post_id, 'job_end_date', strtotime(str_replace(',', ' ', $value)));
                 } elseif ($key == "job_start_time") {
 
                     update_post_meta($post_id, $key, strtotime($value));
-                    update_post_meta($post_id, 'job_start_date_time', strtotime(date("j-m-Y", strtotime(str_replace(',',' ',$start))) . $value));
-                }elseif ($key == "job_end_time") {
-                    
+                    update_post_meta($post_id, 'job_start_date_time', strtotime(date("j-m-Y", strtotime(str_replace(',', ' ', $start))) . $value));
+                } elseif ($key == "job_end_time") {
+
                     $date = date("j-m-Y ", strtotime($end));
 
                     update_post_meta($post_id, $key, strtotime($value));
 
-                    update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y", strtotime(str_replace(',',' ',$start))) . $value));
+                    update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y", strtotime(str_replace(',', ' ', $start))) . $value));
                 } elseif (strstr($key, 'category')) {
                     $categories[] = $value;
-                } elseif ($key !== 'job_details' && $key !== "job_end_date" ) {
+                } elseif ($key !== 'job_details' && $key !== "job_end_date") {
                     update_post_meta($post_id, $key, $value);
                 }
             }
@@ -179,30 +178,29 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $default_applied_user_avatar = array();
 
                 $single_job_rating = array();
-                
-                $minyawns_verified=array();
-                
+
+                $minyawns_verified = array();
+
                 $user_rating_job = array();
-               
-             $count_hired=0;
-             $count_applied=0;
-             $count_rated=0;
-             
-             $object_id = get_object_id(get_current_user_id(),$pagepost->ID);
-            
-                   
-                    foreach ($object_id as $object_post_id) {
-                    
+
+                $count_hired = 0;
+                $count_applied = 0;
+                $count_rated = 0;
+
+                $object_id = get_object_id(get_current_user_id(), $pagepost->ID);
+
+
+                foreach ($object_id as $object_post_id) {
+
                     $defaults = array(
-                            'post_id' => $object_id->id,
-                        );
-                       
-                    }
-                    $all_comment = get_comments($defaults);
-                    
-                    $comment = $all_comment[0]->comment_content;
-                     
-             
+                        'post_id' => $object_id->id,
+                    );
+                }
+                $all_comment = get_comments($defaults);
+
+                $comment = $all_comment[0]->comment_content;
+
+
                 foreach ($min_job->minyawns as $min) {
 
                     $user = array_push($user_data, $min['first_name'] . ' ' . $min['last_name']);
@@ -217,11 +215,11 @@ $app->get('/fetchjobs/', function() use ($app) {
 
                     $minyawns_rating = get_user_rating_data($min['user_id'], $pagepost->ID);
 
-                    $verified=get_user_meta($min['user_id'],'user_verified');
-                    
-                    array_push($minyawns_verified,$verified);
-                            
-                            
+                    $verified = get_user_meta($min['user_id'], 'user_verified');
+
+                    array_push($minyawns_verified, $verified);
+
+
                     foreach ($minyawns_rating as $rating) {
                         $user_rating = array_push($user_rating_like, $rating->positive);
                         $user_dislike = array_push($user_rating_dislike, $rating->negative);
@@ -232,31 +230,29 @@ $app->get('/fetchjobs/', function() use ($app) {
                         else
                             $user['is_job_rated'] = 0;
                     }
-                    
-                    
+
+
 
                     /* getting rating for a single job   */
                     $user_to_job_rating = get_user_job_rating_data($min['user_id'], $pagepost->ID);
 
-                    if ($user_to_job_rating->positive > 0){
+                    if ($user_to_job_rating->positive > 0) {
                         array_push($user_rating_job, ($user_to_job_rating->positive) > 0 ? 'Well Done' : 'Rating:Awaited');
-                        $count_rated=$count_rated+1;
-                    }elseif ($user_to_job_rating->negative > 0){
+                        $count_rated = $count_rated + 1;
+                    } elseif ($user_to_job_rating->negative > 0) {
                         array_push($user_rating_job, ($user_to_job_rating->negative) > 0 ? 'Terrible' : 'Rating:Awaited');
-                        $count_rated=$count_rated+1;                        
-                    }else
-                    {   array_push($user_rating_job, 'Rating:Awaited');}
-
-                    if ($user_to_job_rating->status == 'applied'){
-                        $status = 'Applied';
-                        $count_applied=$count_applied+1;
-                    }else{
-                        $status = 'Hired';
-                        $count_hired=$count_hired+1;
+                        $count_rated = $count_rated + 1;
+                    } else {
+                        array_push($user_rating_job, 'Rating:Awaited');
                     }
-                    
-                    
-                     
+
+                    if ($user_to_job_rating->status == 'applied') {
+                        $status = 'Applied';
+                        $count_applied = $count_applied + 1;
+                    } else {
+                        $status = 'Hired';
+                        $count_hired = $count_hired + 1;
+                    }
                 }
 
                 $job_status = $min_job->check_minyawn_job_status($pagepost->ID, $min['user_id']);
@@ -300,11 +296,15 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $post_content = $pagepost->post_content;
                 else
                     $post_content = substr($pagepost->post_content, 0, 300);
-              
-                
-                
-              $difference=strtotime(date('d M Y', $post_meta['job_start_date'][0]))-strtotime(date('d M Y'));  
-if($count_hired == $count_rated){$final_count=1;}else{    $final_count=0;}
+
+
+
+                $difference = strtotime(date('d M Y', $post_meta['job_start_date'][0])) - strtotime(date('d M Y'));
+                if ($count_hired == $count_rated) {
+                    $final_count = 1;
+                } else {
+                    $final_count = 0;
+                }
 
                 /*
                  *  1 ->running
@@ -316,7 +316,7 @@ if($count_hired == $count_rated){$final_count=1;}else{    $final_count=0;}
                     'post_title' => $pagepost->post_title,
                     'post_id' => $pagepost->ID,
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
-                    'job_end_date' => date('d M Y',$post_meta['job_end_date'][0]),
+                    'job_end_date' => date('d M Y', $post_meta['job_end_date'][0]),
                     'job_day' => date('l', $post_meta['job_start_date'][0]),
                     'job_wages' => $wages,
                     //'job_progress' => 'available',
@@ -357,12 +357,12 @@ if($count_hired == $count_rated){$final_count=1;}else{    $final_count=0;}
                     'job_categories' => $categories,
                     'job_category_ids' => $category_ids,
                     'job_category_slug' => $category_slug,
-                    'is_verfied'=>$minyawns_verified,
-                    'required_minyawns'=>$post_meta['job_required_minyawns'][0],
-                    'days_to_job_expired'=>  round($difference/86400),
-                    'no_applied'=>$count_applied,
-                    'no_hired'=>$count_hired,
-                    'count_rated'=>$final_count,
+                    'is_verfied' => $minyawns_verified,
+                    'required_minyawns' => $post_meta['job_required_minyawns'][0],
+                    'days_to_job_expired' => round($difference / 86400),
+                    'no_applied' => $count_applied,
+                    'no_hired' => $count_hired,
+                    'count_rated' => $final_count,
                     'comment' => strlen($comment) > 0 ? $comment : '',
                 );
             }
@@ -610,7 +610,7 @@ $app->post('/user-vote', function() use ($app) {
 
 
 
-            echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id'],'review'=>$_POST['review']));
+            echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id'], 'review' => $_POST['review']));
         });
 
 $app->get('/jobminions/', function() use ($app) {
@@ -650,11 +650,10 @@ $app->get('/jobminions/', function() use ($app) {
                     $object_id = get_object_id($minion_ids[$i], $_GET['job_id']);
 //                    print_r($object_id);exit();
                     foreach ($object_id as $object_post_id) {
-                    
-                    $defaults = array(
+
+                        $defaults = array(
                             'post_id' => $object_id->id,
                         );
-                       
                     }
                     $all_comment = get_comments($defaults);
                     $comment = $all_comment[0]->comment_content;
@@ -688,7 +687,7 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
                         'comment' => isset($comment) > 0 ? $comment : 0,
-                        'is_verified'=>isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] :''
+                        'is_verified' => isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] : ''
                     );
                 }
             }
@@ -708,7 +707,7 @@ $app->get('/getcomments/', function() use ($app) {
             $positive = array();
             $positive_title = array();
 
-            $object_id = get_object_id($_GET['minion_id'], '',1);
+            $object_id = get_object_id($_GET['minion_id'], '', 1);
 
             foreach ($object_id as $objid) {
 
@@ -767,13 +766,73 @@ $app->post('/delete-job/', function() use($app) {
             echo "deleted";
         });
 
-$app->post('/reloadtags',function() use($app){
-   
-    
-    echo '<input  name="job_tags" id="job_tags" value="asdasd,asdssssasd,asdasd,asdasdddd" placeholder="Tags here" class="tm-input tagsinput_jobs">';
-    
-});
-        
-        
+$app->post('/reloadtags', function() use($app) {
+
+
+            echo '<input  name="job_tags" id="job_tags" value="asdasd,asdssssasd,asdasd,asdasdddd" placeholder="Tags here" class="tm-input tagsinput_jobs">';
+        });
+
+
+$app->get('/invitejobs', function () use ($app) {
+
+            global $wpdb;
+            $requestBody = $app->request()->getBody();  // <- getBody() of http reques
+            $json_a = json_decode($requestBody, true);
+
+
+            //PLEASE CHANGE THE < TO  >
+            //first we find jobs which are not expired
+            $tables = "$wpdb->posts, $wpdb->postmeta";
+            $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
+                            AND $wpdb->postmeta.meta_value < '" . current_time('timestamp') . "'";
+            $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
+                            ORDER BY $wpdb->postmeta.meta_value ASC";
+
+
+            $querystr = "
+                            SELECT DISTINCT $wpdb->posts.* 
+                            FROM $tables" . "$filtertables
+                            $my_jobs_filter
+                            $category_filter
+                            AND $wpdb->posts.post_status = 'publish' 
+                            AND $wpdb->posts.post_type = 'job'
+                            $order_by
+                           
+                         ";
+
+            $jobids = $wpdb->get_results($querystr, OBJECT);
+            //using these ids we will get the status invited/applied/hired
+
+            foreach ($jobids as $jobid) {
+                $post_meta = get_post_meta($jobid->ID);
+
+                $data[] = array(
+                    'job_title' => $jobid->post_title,
+                    'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
+                    'job_status' => get_current_job_status($jobid->ID, $json_a['user_id']),
+                    'job_id'=>$jobid->ID,
+                    'minyawn_id'=>$json_a['user_id']
+                );
+            }
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode($data);
+        });
+
+
 $app->run();
 
+function get_current_job_status($job_id) {
+
+    global $wpdb;
+
+    $applied_sql = "select * from userinvites where job_id='" . $job_id . "' AND user_id='" . $user_id . "'";
+
+    $jobids = $wpdb->get_results($applied_sql, OBJECT);
+
+    if (count($jobids) > 0) {
+
+        return 1; //invited
+    } else {
+        return 0;
+    }
+}

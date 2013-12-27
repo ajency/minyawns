@@ -49,7 +49,7 @@
                                     <div class="social-link">
                                        <%= result.user_email %>
                                     </div>
-					<a data-toggle="modal" data-target="#miniondir" class="btn btn-primary invite-btn">
+					<a class="btn btn-primary invite-btn" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
 												   <i class="icon-ok"></i>
 												 Invite Minion
 												   </a>				
@@ -104,5 +104,18 @@
 <script type="text/templates" id="filters-loader-image">
  <span class='modal_ajax_large_filter' id="filters-loader"></span>
 </script>
+
+<script type="text/templates" id="active_invites">
+    <tr class="active">
+            <td class="td-job-title"><%= result.job_title%></td>
+            <td class="sm-font"><%= result.job_start_date%></td>
+            <td>
+			<a href="#" class="btn btn-primary invite-btn" job-id=<%= result.job_id%> minyawn-id=<% result.minyawn_id %>>
+			 <i class="icon-ok"></i> invite
+			</a>
+			
+			</td>
+          </tr>
+    </script>
 
 
