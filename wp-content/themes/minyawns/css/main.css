@@ -3361,21 +3361,21 @@ body .jobs_table .data-title .profile-job {
 .singlejobedit .job-title a.job-expired {
   display: none;
 }
-.page-template-minyawns-directory-php .minyawns-grid1 .m2 {
+body .minyawns-grid1 .m2 {
   min-height: 350px !important;
 }
-.page-template-minyawns-directory-php .minyawns-grid1 .m2 .rating {
+body .minyawns-grid1 .m2 .rating {
   padding: 3px !important;
 }
-.page-template-minyawns-directory-php .minyawns-grid1 .m2 .collage {
+body .minyawns-grid1 .m2 .collage {
   font-size: 12px!important;
   line-height: 14px;
   margin-bottom: 2px!important;
 }
-.page-template-minyawns-directory-php .minyawns-grid1 .m2 h4 {
+body .minyawns-grid1 .m2 h4 {
   line-height: 5px;
 }
-.page-template-minyawns-directory-php .minyawns-grid1 .m2 .social-link {
+body .minyawns-grid1 .m2 .social-link {
   font-size: 12px!important;
   margin-bottom: 2px!important;
   margin-top: 0px!important;
@@ -4898,9 +4898,6 @@ div.tooltip1:after {
   left: 17%;
   font-size: 12px;
   font-family: arial;
-}
-.single-job .tags {
-  position: relative!important;
 }
 @media (max-width: 767px) {
   .sign-up-txt {

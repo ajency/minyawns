@@ -228,11 +228,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     <i class="icon-thumbs-down" "></i> <%= result.rating_negative %>
     </a>
     </div>
-<div class="dwn-btn review_popover">
 
-    <%= ratings_button %>
-    <%  if(result.comment !== 0){ %>   <div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'> <%= result.comment %></div></div><% } %>
-    </div>
     </div>
 
     </div>
@@ -281,6 +277,11 @@ $key_job = sha1($salt . uniqid(time(), true));
     </div>
     </div>
 
+    </div>
+	<div class="dwn-btn review_popover">
+
+    <%= ratings_button %>
+    <%  if(result.comment !== 0){ %>   <div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <div><%= result.comment %></div></div><% } %>
     </div>
     <%= select_button %>
     <!--<div class="onoffswitch">
