@@ -1,5 +1,5 @@
 <script type="text/template" id="minyawn-directory-card">
-    <li class="span3 thumbspan" id="minyawn<%= result.user_id %>" onclick="window.open('http://www.minyawns.ajency.in/profile/<%= result.user_id %>/')">
+    <li class="span3 thumbspan" id="minyawn<%= result.user_id %>">
                            <div class="thumbnail" id="thumbnail-10">
                               <div class="m1" onclick="return true">
                                  <div class="caption">
@@ -11,7 +11,7 @@
     <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
     <div class="verfied-txt">Verified Minion</div>
     <% } %> 
-                                    <h4><%= result.minion_name %></h4>
+                                    <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"> <%= result.college %></div>
                                     <div class="social-link">
                                       <%= result.linkedin %>
@@ -39,7 +39,7 @@
                                        <i class="icon-thumbs-down"></i><%= result.rating_negative %>
                                        </a>
                                     </div>
-                                    <h4><%= result.minion_name %></h4>
+                                    <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"><%= result.college %></div>
                                     <div class="collage"><%= result.major %></div>
                                     <div class="social-link">
@@ -48,7 +48,10 @@
                                     <div class="social-link">
                                        <%= result.user_email %>
                                     </div>
-									
+					<a href="#fakelink" class="btn btn-primary invite-btn">
+												   <i class="icon-ok"></i>
+												 Invite Minion
+												   </a>				
                                     <div class="tags">
                                      <% var sk=result.skills.split(',');
                                      if(result.skills.length > 0){ %>
