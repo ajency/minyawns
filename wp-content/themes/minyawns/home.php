@@ -241,7 +241,7 @@ Backed by University of Washington students and designed for business profession
 
 <div class="customer">
    <div class="bg-title-gray">
-      <h3 class="heading-title">Meet the <span class="highlight">500 Minions</span>  that signed up last week. </h3>
+      <h3 class="heading-title">Meet the <span class="highlight">500 Minions</span>   </h3>
       <p class="excerpt">The minions are thoroughly vetted University of Washington students.</p>
    </div>
   <br><br><br>
@@ -590,7 +590,7 @@ Enviormental Engineering </div>
   </div>
   <div id="down-green"></div>-->
   <div class="">
-      <h3 class="heading-title">97% of customers recommend Minyawns</h3>
+      <h3 class="heading-title"> Here's our customers who recommend Minyawns"</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
    </div>
  <div class="slider1">

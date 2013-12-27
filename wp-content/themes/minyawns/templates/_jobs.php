@@ -330,8 +330,12 @@ $key_job = sha1($salt . uniqid(time(), true));
 
 <script type="text/templates" id="no-result">
     <div class="alert alert-info myjobs no-job ">
-    <b style="text-align: center">No Jobs Available ! </b>&nbsp;
-    There doesn't seem to be anything here.
+    <b style="text-align: center">Create your first job now </b>&nbsp; <a href="<?php echo site_url()  ?>/add-job" class="btn btn-primary btn-large  mll" id="add-job-button">
+                                <i class="icon-plus-sign"></i>
+                                &nbsp;Add a Job
+
+                            </a>
+    
     </div>
 </script>
 
