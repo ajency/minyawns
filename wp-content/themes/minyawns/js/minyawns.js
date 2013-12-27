@@ -3,9 +3,14 @@
 
 
 
-
+jQuery("#signinlink").click(function(){
+jQuery('#myModal').modal('hide')
+jQuery('#mylogin').modal('show')
+});
 
 jQuery(document).ready(function($) {
+
+
     if ($(window).width() < 800) {
 
         (function($) {

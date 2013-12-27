@@ -257,7 +257,7 @@ function popup_usersignup() {
               $response = array('success' => true,'user'=>$user_->user_login.$pd_pass );
               wp_send_json($response);
               $success = true; */
-            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.</div>";
+            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.<a href='#mylogin'  class='signin-text' id='sign-in-link' data-dismiss='modal' aria-hidden='true'  data-toggle='modal'> Sign in here</a></div>";
 
             $wpdb->update($wpdb->users, array('user_activation_key' => $user_activation_key), array('user_login' => $userdata_['user_email']));
             $wpdb->update($wpdb->users, array('user_status' => 0), array('user_login' => $userdata_['user_email']));

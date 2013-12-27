@@ -1236,6 +1236,10 @@ right: 0%!important;
 
 
 }
+.signin-text{
+	color: #000;
+font-size: 16px;
+}
 .popover-box{
     position: absolute;
   bottom: 92px;
