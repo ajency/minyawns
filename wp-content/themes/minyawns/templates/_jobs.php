@@ -299,11 +299,18 @@ $key_job = sha1($salt . uniqid(time(), true));
     </div>
 
     </div>
-	<div class="dwn-btn review_popover">
+<!--	<div class="dwn-btn review_popover">
 
     <%= ratings_button %>
     <%  if(result.comment !== 0){ %>   <div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <div><%= result.comment %></div></div><% } %>
-    </div>
+    
+    </div>-->
+    <div class="dwn-btn review_popover">
+
+   <%= ratings_button %>
+<!--   <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <div><%= result.comment %></div></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <div><%= result.comment %></div></div> <%}%>-->
+   </div>
+
     <%= select_button %>
     <!--<div class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>

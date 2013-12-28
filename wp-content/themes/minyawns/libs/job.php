@@ -306,6 +306,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $final_count = 0;
                 }
 
+                
+                
+                
                 /*
                  *  1 ->running
                  *  2->locked ,if one applicant also hired then locked

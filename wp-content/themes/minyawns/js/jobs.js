@@ -1433,19 +1433,19 @@ function ratings_button(jobmodel, model)
         {
             if (model.toJSON().user_to_job_rating_dislike > 0)
             {
-                var rate_message = "Terrible";
-                var class_name = 'btn btn-small btn-block  btn-danger terrible';
+                var rate_message = model.toJSON().comment;
+                var class_name = 'icon-thumbs-down terrible';
 
             }
             else if (model.toJSON().user_to_job_rating_like > 0)
             {
-                var rate_message = "Well Done";
-                var class_name = "btn btn-small btn-block  btn-success well-done";
+                var rate_message = model.toJSON().comment;
+                var class_name = "icon-thumbs-up weldone";
             }
 
             if (jobmodel.toJSON().todays_date_time > jobmodel.toJSON().job_end_date_time_check && jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'hired' && (model.toJSON().user_to_job_rating_like > '0' || model.toJSON().user_to_job_rating_dislike > '0'))
             {
-                selectButton = "<a id='vote-upuserid' class='" + class_name + "' href='#like' is_rated='0' employer-vote='1'  action='vote-up' >" + rate_message + "</a>"
+                selectButton = "<div  class='comment-box'> <i class='" + class_name + "' ></i> <div>" + rate_message + "</div></div>"
 
             }
         }
