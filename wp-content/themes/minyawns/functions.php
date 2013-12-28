@@ -192,7 +192,7 @@ function popup_userlogin() {
             "logged_in" => true
         );
 
-        $response = array("success" => true, 'user' => $user_->user_login, 'userdata' => $user_data);
+        $response = array("success" => true, 'user' => $user_->user_login, 'userdata' => $user_data,'user_role'=>$user->roles);
         wp_send_json($response);
     }
 }
