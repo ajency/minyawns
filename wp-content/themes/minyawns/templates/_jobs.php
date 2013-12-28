@@ -338,7 +338,12 @@ $key_job = sha1($salt . uniqid(time(), true));
     
     </div>
 </script>
-
+<script type="text/templates" id="no-result-minion">
+    <div class="alert alert-info myjobs no-job ">
+    <b style="text-align: center">No jobs available! </b>&nbsp;               
+          </a>
+</div>
+</script>
 <script type="text/templates" id="comment-popover">
     <div class='tabbable tabs-below'><ul class='nav nav-tabs'><li class='active'>
     <a href='#A' data-toggle='tab'>Well done</a></li><li class='teriblecomments'><a href='#B' data-toggle='tab'>Terrible job</a></li></ul><a class="close"  href="#">&times;</a>

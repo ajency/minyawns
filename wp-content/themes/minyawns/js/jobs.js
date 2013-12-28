@@ -221,7 +221,12 @@ function load_browse_jobs(id, _action, category_ids) {
 
             if (collection.length === 0) {
                 jQuery("#accordion24").empty();
+                
+                 if(role === 'Employer')
                 var template = _.template(jQuery("#no-result").html());
+                else
+                var template = _.template(jQuery("#no-result-minion").html()); 
+                
                 jQuery("#accordion24").append(template);
                 jQuery("#load-more").hide();
                 jQuery("#loader").hide();
@@ -403,11 +408,17 @@ function fetch_my_jobs(id)
         success: function(collection, response) {
             //jQuery(".load_ajax1_myjobs").hide();
             if (collection.length === 0) {
+               
+                if(role === 'Employer')
                 var template = _.template(jQuery("#no-result").html());
+                else
+                var template = _.template(jQuery("#no-result-minion").html());    
+                
+                
                 jQuery("#loader").hide();
                 jQuery("#load-more-my-jobs,.load_more_profile").hide();
                 jQuery(".previous-jobs").hide();
-                jQuery("#accordion24").html(jQuery("#no-result").html());
+                jQuery("#accordion24").html(template);
             } else {
                 // jQuery("#load-more-my-jobs").hide();
                 jQuery("#list-my-jobs").show();
