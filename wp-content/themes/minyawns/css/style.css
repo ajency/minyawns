@@ -16,7 +16,25 @@
 	right: 0;
 	top: -1px;
 }
+.minaywns-sel{
+	width: 140px;
+height: 140px;
+background: rgba(136, 216, 23, 0.7);
+position: absolute;
+border-radius: 100%;
+margin: auto;
 
+top: 5%;
+text-align: center;
+color: #FFF;
+}
+.minaywns-sel i{
+display:block;
+font-size:30px;
+text-align: center;
+margin-top: 38px;
+color: #FFF;
+}
 .Minyawnverified{
 	background-color: #52CF16;
 	color:#fff;

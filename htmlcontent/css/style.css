@@ -683,3 +683,23 @@ ul.holder li.bit-box-focus a.closebutton, ul.holder li.bit-box-focus a.closebutt
 
 #demo ul.holder li.bit-input input { padding: 2px 0 1px; border: 1px solid #999; }
 .ie6fix {height:1px;width:1px; position:absolute;top:0px;left:0px;z-index:1;}
+
+.minaywns-sel{
+	width: 140px;
+height: 140px;
+background: rgba(136, 216, 23, 0.7);
+position: absolute;
+border-radius: 100%;
+margin: auto;
+
+top: 5%;
+text-align: center;
+color: #FFF;
+}
+.minaywns-sel i{
+display:block;
+font-size:30px;
+text-align: center;
+margin-top: 38px;
+color: #FFF;
+}
