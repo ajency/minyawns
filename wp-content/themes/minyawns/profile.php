@@ -228,7 +228,7 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
 								   Location : <b>    <?php echo user_location(); ?></b>
 								   </li>
 								   <li class="website">
-								   Company Website : <b>  <a href="<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
+								   Company Website : <b>  <a href="http://<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
 								   </li>
 								   </ul>
 								
