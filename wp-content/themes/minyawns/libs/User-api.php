@@ -512,7 +512,7 @@ function send_mail_employer_apply_job($job_id, $action) {
 
     $mail_message = "Hi,<br/><br/>Looks like " .
             $current_user->display_name . " has " . $action . " for the job '" . get_the_title($job_id) . "'
-                The next step is to confirm, pay and hire. Please log back on to minyawns <a href='".site_url()."/job/".get_the_title($job_id)."' target='_blank'>'".get_the_title($job_id)."'</a>  and finish the process.<br/><br/>
+                The next step is to confirm, pay and hire. Please log back on to minyawns  <a href='".site_url()."/job/".replaceAll(get_the_title($job_id))."' target='_blank'>'".get_the_title($job_id)."'</a>  and finish the process.<br/><br/>
                     Don't fret, we wont charge you until the job is done. We also offer 100% satisfaction guarantee or your money back!
                 		<br/><br/><h3>Minyawn Details</h3>
                 		<br/><b>Username : " . $current_user->user_login . "</b>
@@ -538,6 +538,15 @@ function send_mail_employer_apply_job($job_id, $action) {
     $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
     wp_mail($employer_data->user_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
 }
+
+function replaceAll($text) { 
+    $text = strtolower(htmlentities($text)); 
+    $text = str_replace(get_html_translation_table(), "-", $text);
+    $text = str_replace(" ", "-", $text);
+    $text = preg_replace("/[-]+/i", "-", $text);
+    return $text;
+}
+
 
 function minyawn_job_apply() {
 
@@ -783,3 +792,22 @@ function minyawns_applied_to_jobs($jobID,$employer_id)
     
     
 }
+
+function minyawns_hired_to_jobs($userID,$jobID)
+{
+    global $wpdb;
+       $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.status  FROM {$wpdb->prefix}userjobs,{$wpdb->prefix}posts,{$wpdb->prefix}postmeta
+                              WHERE {$wpdb->prefix}userjobs.user_id =$userID AND {$wpdb->prefix}userjobs.job_id=$jobID AND {$wpdb->prefix}userjobs.status='hired'
+                              GROUP BY {$wpdb->prefix}userjobs.user_id", $_POST['user_id'], $_POST['job_id']);
+
+            $row= $wpdb->get_row($sql);
+    
+            if($row > 0)
+              $is_hired=true;
+            else
+              $is_hired=false;
+            
+    return $is_hired;
+    
+}
+

@@ -687,8 +687,9 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
                         'comment' => isset($comment) > 0 ? $comment : 0,
-                        'is_verified' => isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] : ''
-                    );
+                        'is_verified' => isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] : '',
+                        'is_hired'=>minyawns_hired_to_jobs($minion_ids[$i],$_GET['job_id'])
+                        );
                 }
             }
             else
