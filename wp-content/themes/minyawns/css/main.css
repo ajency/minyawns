@@ -54,6 +54,41 @@ a:hover {
   padding: 7px 0px;
   background: #F8F8F8;
 }
+.author-info {
+  color: #666;
+}
+.author-info h4 {
+  color: #666;
+  font-size: 18px;
+}
+.author-data {
+  font-size: 12px;
+  color: #fcfcfc !important;
+  padding-bottom: 0px !important;
+}
+.author-data img {
+  width: 83%;
+}
+.author-data .author-info {
+  color: #9C9B9B;
+}
+.author-data .span9 {
+  border-left: 1px solid #ccc;
+  padding-left: 7px;
+}
+.author-data h4 {
+  margin-bottom: 8px;
+  color: #8ed030;
+  font-weight: 600;
+}
+.author-data hr {
+  margin: 11px 0;
+}
+.author-data i {
+  width: 10px;
+  float: left;
+  margin-right: 6px;
+}
 #frm_signup .control-group {
   position: initial;
 }

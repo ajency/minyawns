@@ -73,7 +73,21 @@ $key_job = sha1($salt . uniqid(time(), true));
         </br></br></br></br><span id="div_confirmhire"></span>
 </div>
 <div class="span3">
-                   
+                  <div class="alert alert-success alert-sidebar author-data">
+                      
+					  
+					  <div class="row-fluid">
+					  <div class="span3">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/bitly_logo.png" />
+					  </div>
+						<div class="span9 author-info">
+							<a href="#"><h4>Richard Peerd</h4></a>
+							<i class="icon-map-marker"></i> Shipped from Salem, Mass. USA.
+						</div>
+					  </div>
+						
+                        <br>
+                    </div>
                  
               <% if(result.job_owner_id === logged_in_user_id && result.user_to_job_status.indexOf('hired') == -1){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
