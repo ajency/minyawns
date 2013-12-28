@@ -132,6 +132,7 @@ $(".inline li").removeClass("selected");
                             </div>
                     </div>-->
             <div class="row-fluid">
+                
                 <div class="span3" >
 <!--                    <div class="alert alert-success alert-sidebar">
                         <h3>Skills / Major </h3><hr>
@@ -291,7 +292,7 @@ $(".inline li").removeClass("selected");
             </div>
             <dic class="row-fluid">
                 
-           
+         
                 <div class="span12">
             <div id="jobs-list">
                 <ul id="add-job-view" class="unstyled job-view-list"></ul>
@@ -299,7 +300,7 @@ $(".inline li").removeClass("selected");
                    <div id="add-job-form" >
                         <div class="row-fluid">
                               <?php
-                                if (is_user_logged_in()) {
+                                if (is_user_logged_in() && get_user_role() === 'employer') {
                                     ?>
                             <div class="span8">                              
                                     <div class="alert alert-success alert-box " id="job-success" style="display:none;">  <button data-dismiss="alert" class="close" type="button">×</button>You have successfully add a job.</div>
@@ -465,7 +466,7 @@ $(".inline li").removeClass("selected");
                             <div class="span3"><br><img src="<?php echo get_template_directory_uri(); ?>/images/404error.png"/></div>
 				<div class="span9">	<h4 >No Access</h4>
 		<hr>
-		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
+		Sorry, you aren\'t allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we\'ll get back to you as soon as possible. 
 		<br>
 		<a href="#mylogin" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
 		<div class="clear"></div></div>
