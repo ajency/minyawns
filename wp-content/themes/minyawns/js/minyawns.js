@@ -918,14 +918,23 @@ jQuery(document).ready(function($) {
                 pdpass: jQuery("#txt_pass").val(),
             },
                     function(response) {
-                        console.log(response);
+                       
                         if (response.success == true)
                         {
-                            if (jQuery("#noaccess_redirect_url").length > 0)
+                            if (jQuery("#noaccess_redirect_url").length > 0){
                                 window.location.href = jQuery("#noaccess_redirect_url").val();
-                            else
-                                window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#my-jobs';
-                        }
+                            }else{
+                                  
+                            if(response.user_role == 'employer'){
+                                alert("here");
+                                    window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#my-jobs';
+                            
+                                }else{
+                                
+                                window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#browse';
+                            }
+                                }
+                            }
                         else
                         {
                             jQuery("#div_loginmsg").html(response.msg);
