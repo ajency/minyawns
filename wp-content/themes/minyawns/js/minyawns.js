@@ -926,7 +926,7 @@ jQuery(document).ready(function($) {
                             }else{
                                   
                             if(response.user_role == 'employer'){
-                                alert("here");
+                                
                                     window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#my-jobs';
                             
                                 }else{
