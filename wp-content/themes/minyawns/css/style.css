@@ -1281,3 +1281,14 @@ body .minyawns-grid1 .thumbspan {
     min-height: 365px !important;
     width: 30%;
 }
+.minaywns-sel {
+    background: none repeat scroll 0 0 rgba(136, 216, 23, 0.7);
+    border-radius: 100%;
+    color: #FFFFFF;
+    height: 141px;
+    margin: auto;
+    position: absolute;
+    text-align: center;
+    top: 4%;
+    width: 140px;
+}
