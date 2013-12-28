@@ -306,7 +306,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $final_count = 0;
                 }
 
-                
+                $company_details=get_user_meta(get_the_author_meta('ID', $pagepost->post_author));
                 
                 
                 /*
@@ -336,6 +336,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     //'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('first_name', $pagepost->post_author) . ' ' . get_the_author_meta('last_name', $pagepost->post_author),
                     'job_author_id' => get_the_author_meta('ID', $pagepost->post_author),
+                    'job_company'=>$company_details['company_name'][0],
+                    'job_company_location'=>$company_details['location'][0],
                     'job_author_logo' => $logo,
                     'job_status' => $job_status,
                     'user_to_job_status' => $user_job_status,

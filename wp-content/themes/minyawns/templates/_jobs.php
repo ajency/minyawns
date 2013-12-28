@@ -81,8 +81,8 @@ $key_job = sha1($salt . uniqid(time(), true));
 						<%= result.job_author_logo %>
 					  </div>
 						<div class="span9 author-info">
-                                                <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_author%></h4></a>
-							<i class="icon-map-marker"></i> <%= result.job_location%>
+                                                <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
+							<i class="icon-map-marker"></i> <%= result.job_company_location%>
 						</div>
 					  </div>
 						
