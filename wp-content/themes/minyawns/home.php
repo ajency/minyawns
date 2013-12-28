@@ -590,7 +590,7 @@ Enviormental Engineering </div>
   </div>
   <div id="down-green"></div>-->
   <div class="">
-      <h3 class="heading-title"> Here's our customers who recommend Minyawns"</h3>
+      <h3 class="heading-title"> Here's our customers</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
    </div>
  <div class="slider1">
