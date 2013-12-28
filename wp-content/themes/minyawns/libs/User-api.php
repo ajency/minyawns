@@ -222,7 +222,8 @@ function user_company_website() {
 
 function get_user_company_website() {
     global $current_user_new;
-    return $current_user_new->data->company_website;
+   // return $current_user_new->data->company_website;
+    return preg_replace('#^https?://#', '', rtrim($current_user_new->data->company_website,'/'));
 }
 
 //User location
@@ -243,7 +244,8 @@ function user_profile_linkedin() {
 function get_user_profile_linkedin() {
     global $current_user_new;
 
-    return $current_user_new->data->linkedin;
+    //return $current_user_new->data->linkedin;
+    return preg_replace('#^http?://#', '', rtrim($current_user_new->data->linkedin,'/'));
     ;
 }
 

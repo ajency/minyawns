@@ -15,7 +15,7 @@
                                     <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"> <%= result.college %></div>
                                     <div class="social-link">
-                                   <a href='http://<%= result.linkedin %>' target='_blank'><%= result.linkedin %></a>
+                                   <a href='http://<%= result.linkedin.replace(/^http?:\/\//,'') %>' target='_blank'><%= result.linkedin %></a>
                                     </div>
                                     <div class="rating">
                                        <a href="#fakelink" id="thumbs_up_10">
@@ -44,7 +44,7 @@
                                     <div class="collage"><%= result.college %></div>
                                     <div class="collage"><%= result.major %></div>
                                     <div class="social-link">
-                                     <a href='http://<%= result.linkedin %>' target='_blank'><%= result.linkedin %></a>
+                                     <a href='http://<%= result.linkedin.replace(/^http?:\/\//,'') %>' target='_blank'><%= result.linkedin %></a>
                                     </div>
                                     <div class="social-link">
                                        <%= result.user_email %>

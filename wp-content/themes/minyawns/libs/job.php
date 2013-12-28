@@ -684,7 +684,7 @@ $app->get('/jobminions/', function() use ($app) {
                         'college' => isset($all_meta_for_user['college']) ? $all_meta_for_user['college'] : '',
                         'major' => isset($all_meta_for_user['major']) ? $all_meta_for_user['major'] : '',
                         'user_skills' => isset($all_meta_for_user['user_skills']) ? $all_meta_for_user['user_skills'] : '',
-                        'linkedin' => isset($all_meta_for_user['linkedin']) ? $all_meta_for_user['linkedin'] : '',
+                        'linkedin' => isset($all_meta_for_user['linkedin']) ? preg_replace('#^http?://#', '', rtrim($all_meta_for_user['linkedin'],'/')) : '',
                         'user_email' => isset($all_meta_for_user['nickname']) ? $all_meta_for_user['nickname'] : '', /* nick name temp fix */
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
