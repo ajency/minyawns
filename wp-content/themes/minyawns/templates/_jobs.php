@@ -219,6 +219,12 @@ $key_job = sha1($salt . uniqid(time(), true));
     <div id="a" class="m1">
     <div class="caption" >
     <div class="minyawns-img">
+    <% if(result.is_hired === true){%>
+    <div class="minaywns-sel">
+	<i class="icon-ok"></i>
+	SELECTED
+	</div>
+    <% } %>
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>'><%= result.user_image%></a>
     </div>
     <% if(result.is_verified === 'Y'){%>
