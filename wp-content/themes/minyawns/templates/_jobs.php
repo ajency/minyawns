@@ -18,6 +18,7 @@
                                           <p> <%= result.job_details %></p>
                                        </div>
                                     </div>
+									<div class="job-author"><i class="icon-briefcase"></i> Job Owner:  <a href="#"> Richard Preed</a></div>
                                     <div class="additional-info">
                                        <div class="row-fluid">
                                           <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
