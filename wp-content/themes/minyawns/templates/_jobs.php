@@ -18,7 +18,7 @@
                                           <p> <%= result.job_details %></p>
                                        </div>
                                     </div>
-									<div class="job-author"><i class="icon-briefcase"></i> Job Owner:  <a href="#"> Richard Preed</a></div>
+									<div class="job-author"><i class="icon-briefcase"></i> Job Owner:  <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></div>
                                     <div class="additional-info">
                                        <div class="row-fluid">
                                           <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
@@ -78,11 +78,11 @@ $key_job = sha1($salt . uniqid(time(), true));
 					  
 					  <div class="row-fluid">
 					  <div class="span3">
-						<img src="<?php echo get_template_directory_uri(); ?>/images/bitly_logo.png" />
+						<%= result.job_author_logo %>
 					  </div>
 						<div class="span9 author-info">
-							<a href="#"><h4>Richard Peerd</h4></a>
-							<i class="icon-map-marker"></i> Shipped from Salem, Mass. USA.
+                                                <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_author%></h4></a>
+							<i class="icon-map-marker"></i> <%= result.job_location%>
 						</div>
 					  </div>
 						
