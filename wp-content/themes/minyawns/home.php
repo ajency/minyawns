@@ -32,12 +32,12 @@ Backed by University of Washington students and designed for business profession
   <div class="tab-pane " id="students">
 	<p><a href="#video1"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png" align="right"/></a>  
   Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.</p>
-	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-info" id="link_minyawnregister" onclick="return true">Minyawns for students</a>
+	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-info" id="link_minyawnregister" onclick="return true">Sign up as a Minion</a>
 	
   </div>
   <div class="tab-pane active" id="businesses">
   <p><a href="#video2"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png" align="right"/></a>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</p>
-	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Minyawns for businesses</a>
+	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Sign up as a business</a>
 
   
   </div>

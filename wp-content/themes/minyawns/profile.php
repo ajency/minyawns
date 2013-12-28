@@ -178,7 +178,10 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                     </div>
                     <div class="span10">
 					  <?php if (get_user_role() === 'minyawn'): ?>
-					<div class="social-link profile-social-link"> <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
+					<div class="social-link profile-social-link"> 
+				
+					
+					<a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
     <?php endif; ?>		                      
 					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
@@ -188,14 +191,15 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit"><i class="icon-edit"></i> Edit</a><?php } ?>
 
-								
-
-							<?php
+								<?php
                                                       
-                                                         if(is_user_verified()=== 'Y'){ ?>	
-                                                        <span class="label Minyawnverified"><i class="icon-ok-sign"></i> Minyawn verified </span>
+                                                            if(is_user_verified()=== 'Y'){ ?>	
+                                                        <span class="minyawnverified"><img src="<?php echo get_template_directory_uri(); ?>/images/verify.png"  style="margin-top: -7px;"/> Minyawn verified </span> 
+                                                       
                                                         <i class="icon-question-sign verfied-help"  id="example"></i> 
                                                          <?php }?>
+
+							
 
 								</h4> 
 								 <?php if (get_user_role() === 'employer'): ?>
