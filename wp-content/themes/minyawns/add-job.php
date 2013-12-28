@@ -300,7 +300,8 @@ $(".inline li").removeClass("selected");
                    <div id="add-job-form" >
                         <div class="row-fluid">
                               <?php
-                                if (is_user_logged_in() && get_user_role() === 'employer') {
+                            
+                                if (is_user_logged_in() && get_logged_in_role() === 'Employer') {
                                     ?>
                             <div class="span8">                              
                                     <div class="alert alert-success alert-box " id="job-success" style="display:none;">  <button data-dismiss="alert" class="close" type="button">×</button>You have successfully add a job.</div>
