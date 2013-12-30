@@ -1715,12 +1715,16 @@ jQuery(document).ready(function($) {
     $('.well-done,.terrible').live('click', function(evt) {
 
 
-        if (evt.target.id === 'vote-up') {
+        if (evt.target.id === 'vote-up'+$(this).attr('user_id')) {
+           $("#vote-up"+$(this).attr('user_id')).css("opacity","1");
+            $("#vote-down"+$(this).attr('user_id')).css("opacity","0.4");
             $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
             $("#review" + $(this).attr('user_id')).attr("vote", "1");
             //$("#review-text" + $(this).attr('user_id')).removeClass();
             // $("#review-text" + $(this).attr('user_id')).addClass("welldone-textarea");
         } else {
+           $("#vote-down"+$(this).attr('user_id')).css("opacity","1");
+            $("#vote-up"+$(this).attr('user_id')).css("opacity","0.4");
             $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
             $("#review" + $(this).attr('user_id')).attr("vote", "-1");
             // $("#review-text" + $(this).attr('user_id')).removeClass();
