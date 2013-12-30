@@ -1008,7 +1008,7 @@ function job_collapse_b(model) {
                     job_button = "<a class='st-green-link' href='#'>Find Similar Jobs</a>";
                 }
 
-            } else if (model.toJSON().count_rated == 1 || model.toJSON().count_rated == 0)//RATINGS DONE FOR ALL
+            } else if (model.toJSON().count_rated == 1)//RATINGS DONE FOR ALL
             {
                 if (logged_in_user_id) {
                     if (role === 'Employer')//ROLE EMPLOYER
@@ -1042,7 +1042,7 @@ function job_collapse_b(model) {
                 if (logged_in_user_id) {
                     if (role === 'Employer')//ROLE EMPLOYER
                     {
-
+   job_button = "<a class='st-green-link' href='" + siteurl + '/jobs/' + model.toJSON().post_slug + "' target='_blank'>Give ratings to minions</a>";
 
                     } else //ROLE MINION
                     {

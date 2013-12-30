@@ -669,16 +669,21 @@ $app->get('/jobminions/', function() use ($app) {
                     $user_to_job_rating = get_user_job_rating_data($minion_ids[$i], $_GET['job_id']);
 
                     $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 0;
-                    if ($user_to_job_rating->positive > 0)
+                    if ($user_to_job_rating->positive > 0){
                         $rating = 'Well Done';
-                    else
+                    
+                        $count_rated = $count_rated + 1;
+                    }else{
                         $rating = 0;
-
-                    if ($user_to_job_rating->negative < 0)
+                    }
+                    if ($user_to_job_rating->negative < 0){
                         $rating = 'Terrible';
-                    else
+                    
+                        $count_rated = $count_rated + 1;
+                    }else{
                         $rating = 0;
-
+                    }
+                    
 
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
@@ -695,7 +700,8 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
                         'comment' => isset($comment) > 0 ? $comment : 0,
                         'is_verified' => isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] : '',
-                        'is_hired'=>minyawns_hired_to_jobs($minion_ids[$i],$_GET['job_id'])
+                        'is_hired'=>minyawns_hired_to_jobs($minion_ids[$i],$_GET['job_id']),
+                        'count_rated'=>$count_rated
                         );
                 }
             }
@@ -792,7 +798,7 @@ $app->get('/invitejobs', function () use ($app) {
             //first we find jobs which are not expired
             $tables = "$wpdb->posts, $wpdb->postmeta";
             $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
-                            AND $wpdb->postmeta.meta_value < '" . current_time('timestamp') . "'";
+                            AND $wpdb->postmeta.meta_value > '" . current_time('timestamp') . "'";
             $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
 
