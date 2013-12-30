@@ -792,7 +792,7 @@ $app->get('/invitejobs', function () use ($app) {
             //first we find jobs which are not expired
             $tables = "$wpdb->posts, $wpdb->postmeta";
             $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
-                            AND $wpdb->postmeta.meta_value < '" . current_time('timestamp') . "'";
+                            AND $wpdb->postmeta.meta_value > '" . current_time('timestamp') . "'";
             $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
 
