@@ -325,10 +325,7 @@ background-color: rgba(0, 0, 0, 0.33);
 	display:none;
 }
 @media (max-width: 767px) {
-.home .features .tab-content{
-	background:none !important;
-	min-height: 100%;
-}
+
 .logged-out{
 	.pull-right{
 		display:none;
@@ -3219,7 +3216,7 @@ display: block;
 			}
 @media only screen and (min-width: 1420px){
 		.bg-overflow{
-		overflow: hidden;
+		overflow: visible!important;
 height: 100%;
 img{
 position: relative !important;
@@ -3693,6 +3690,22 @@ line-height: 16px;
 
 /* mobile resonsive */
 @media (max-width: 767px) {
+.load_ajax_large {
+float: none !important;
+margin: auto!important;
+
+}
+.minion-dir{
+	width: 100%!important;
+	left: 0!important;
+	.modal-body {
+	height: 430px!important;
+		table{
+			display:block!important;
+		}
+	}
+	
+}
 .features {
 	.tab-content{
 		min-height: 100%;
@@ -6136,5 +6149,23 @@ margin-top: -46px;
 	}
 }
 .mobile-menu-table{
+	display:none;
+}
+.home .features .tab-content{
+	background:none !important;
+	min-height: 100%;
+}
+.scrollup{
+    width:40px;
+    height:40px;
+    opacity:0.3;
+    position:fixed;
+    bottom:50px;
+    right:100px;
+    display:none;
+    text-indent:-9999px;
+    background: url('../images/icon_top.png') no-repeat;
+}
+.minion-dir{
 	display:none;
 }

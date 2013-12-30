@@ -395,4 +395,58 @@
 
         </div>
 
- 
+ <div id="myModal" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
+   <div class="modal-header">
+      <button type="button" id="signup_popup_close" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
+      <span id="div_signupheader"><h4 id="myModalLabel">Sign Up to Minyawns </h4></span>
+   </div>
+   <div class="modal-body">
+  
+      <div id="div_signupmsg" ></div>
+      <div class="row-fluid">
+         <div class="span5">
+            <form name="frm_signup"  id="frm_signup" action="" autocomplete="off">
+               <input type="hidden" name="signup_role" id="signup_role" value="" />
+               <h6 class="align-center" style=" margin-bottom: 0px; ">
+                  Create an Account
+               </h6>
+               <p class="align-center">Fill out the required information Below</p>
+               <div class="control-group ">
+                  <input type="text" value="" name="signup_email"  id="signup_email"  placeholder="Email Address" class="span3">
+               </div>
+               <div class="control-group ">
+                  <input type="password" value="" name="signup_password"  id="signup_password" onblur="this.placeholder = 'Password'"  onfocus="this.placeholder = ''"
+							autocomplete="off"  placeholder="Password" class="span3">
+               </div>
+             
+               <div class="control-group span6 " style=" margin-left: 0px; ">
+                  <input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="First Name" class="span3">
+               </div>
+               <div class="control-group span6 ">
+                  <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Last Name" class="span3">
+               </div>
+                 <div class="control-group ">
+                  <input type="text" value="" name="signup_company"  id="signup_company"  placeholder="Company Name" class="span3">
+               </div>
+               <div class="clear"></div>
+               <button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup"  type="button">Sign Up</button>
+            </form>
+         </div>
+		  <div class="span1">
+			<b class="or">or</b>
+		  </div>
+         <div class="span6">
+            <h6 class="align-center" style=" margin-bottom: 0px; ">
+               Sign Up Using Facebook
+            </h6>
+            <p class="align-center">Get using Minions, faster !</p>
+            <br><br><br>
+            <?php 	
+               jfb_output_facebook_btn(); ?>
+            <br><br>
+            <p class="align-center"><span id="div_alreadyregister">Already registered at Minyawns?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
+         </div>
+      </div>
+	   <span id="div_signup_subheader"></span>
+   </div>
+</div>
