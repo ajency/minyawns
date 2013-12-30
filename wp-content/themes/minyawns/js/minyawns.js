@@ -616,7 +616,8 @@ jQuery(document).ready(function($) {
 ////                $(_this).html('Cancel');
 ////                $("#load-more-my-jobs").hide();
 ////
-////            }
+////            }////            }
+
 ////        });
 ////        $("#add-job-form").find('input:text').val('');
 ////        $("#job_task").val('');

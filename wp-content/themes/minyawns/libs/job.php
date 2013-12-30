@@ -818,14 +818,21 @@ $app->get('/invitejobs', function () use ($app) {
             //using these ids we will get the status invited/applied/hired
 
             foreach ($jobids as $jobid) {
+                $min_job = new Minyawn_Job($jobid->ID);
+                $job_status = $min_job->check_minyawn_job_status($jobid->ID, $min['user_id']);
+                
+                if($job_status == 0)
+                 $job_status   =get_current_job_status($jobid->ID, $json_a['user_id']);
+                
+                
                 $post_meta = get_post_meta($jobid->ID);
 
                 $data[] = array(
                     'job_title' => $jobid->post_title,
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
-                    'job_status' => get_current_job_status($jobid->ID, $json_a['user_id']),
+                    'job_status' => $job_status,
                     'job_id'=>$jobid->ID,
-                    'minyawn_id'=>$json_a['user_id']
+                    'minyawn_id'=>$json_a['employer_id']
                 );
             }
             $app->response()->header("Content-Type", "application/json");
