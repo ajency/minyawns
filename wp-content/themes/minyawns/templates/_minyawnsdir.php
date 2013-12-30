@@ -32,6 +32,9 @@
                                     <div class="minyawns-img">
 <%= result.user_avatar %>
                                     </div>
+                            <% if(result.user_verified === 'Y'){%>
+        <div class="verfied-txt">Verified Minion</div>
+    <% } %> 
                                     <div class="rating">
                                        <a href="#fakelink" id="thumbs_up_10">
                                        <i class="icon-thumbs-up"></i> <%= result.rating_positive %>
