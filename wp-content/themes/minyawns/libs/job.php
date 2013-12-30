@@ -64,11 +64,13 @@ $app->post('/addjob', function() use ($app) {
                     update_post_meta($post_id, $key, strtotime($value));
 
                     update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y", strtotime(str_replace(',', ' ', $start))) . $value));
-                } elseif (strstr($key, 'category')) {
-                    $categories[] = $value;
                 } elseif ($key !== 'job_details' && $key !== "job_end_date") {
                     update_post_meta($post_id, $key, $value);
                 }
+                
+                if (strstr($key, 'category')) {
+                    $categories[] = $value;
+                } 
             }
             wp_set_post_categories($post_id, $categories);
 
