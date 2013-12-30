@@ -185,9 +185,19 @@
 							<a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a>
 						</div>
 						</div>
+					
 							<div class="clear"></div>
 					</div>
-				
+					<table class="mobile-menu-table">
+							<tr>
+								<td><a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup Minion </a> </td>
+								<td><a  href="#myModal" data-toggle="modal" id="link_employerregister" onclick="return true"><i class="icon-signin"></i> Signup Business </a> </td>
+							</tr>
+							<tr>
+								<td><a href="#mylogin" data-toggle="modal" ><i class="icon-unlock-alt"></i> Login </a></td>
+								<td><a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a></td>
+							</tr>
+						</table>
 				
 				
 					

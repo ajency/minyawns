@@ -2163,7 +2163,7 @@ body .jobs_table .data-title .profile-job {
   body .top-menu {
     padding: 0px;
     margin: 0px;
-    margin-bottom: 28px;
+    /*margin-bottom: 28px;*/
   }
   body .list-jobs .expand .minyawansgrid .minyawns-job {
     padding: 11px 0;
@@ -2251,7 +2251,7 @@ body .jobs_table .data-title .profile-job {
   .home .bottom-menu {
     margin-left: 0px;
     margin-right: 0px;
-    padding: 11px;
+    /*padding: 11px;*/
     height: 72px;
   }
   .home .bottom-menu #logged-in img {
@@ -2730,6 +2730,7 @@ body .jobs_table .data-title .profile-job {
   .bg-overflow img {
     position: relative !important;
     width: 100% ;
+    height: 120%;
   }
 }
 @media (max-width: 400px) {
@@ -5002,7 +5003,7 @@ div.tooltip1:after {
     margin-bottom: -4px;
   }
   .home #innermainimage .banner-content .nav-tabs li a {
-    font-size: 12px;
+    font-size: 11px;
     border-radius: 0px;
     color: #FFF;
     border: 2px solid #FFF;
@@ -5011,7 +5012,7 @@ div.tooltip1:after {
     margin-bottom: 2px;
   }
   .home #innermainimage .banner-content li.active a {
-    font-size: 12px;
+    font-size: 11px;
     border-radius: 0px;
     border: 0px;
     padding: 10px !important;
@@ -5201,4 +5202,18 @@ div.tooltip1:after {
 }
 .home .features .tab-content {
   background: none !important;
+  min-height: 100%;
+}
+.home .pull-right {
+  display: none;
+}
+.home .mobile-menu-table {
+  width: 100%;
+}
+.home .mobile-menu-table td {
+  border: 1px solid #D8D8D8;
+  padding: 9px;
+}
+.home .mobile-menu-table td a {
+  font-size: 14px;
 }
