@@ -307,18 +307,18 @@ body .jobs_table .data-title .profile-job {
     background: none !important;
     min-height: 100%;
   }
-  .home .pull-right {
+  .logged-out .pull-right {
     display: none;
   }
-  .home .mobile-menu-table {
+  .logged-out .mobile-menu-table {
     width: 100%;
     display: block!important;
   }
-  .home .mobile-menu-table td {
+  .logged-out .mobile-menu-table td {
     border: 1px solid #D8D8D8;
     padding: 9px;
   }
-  .home .mobile-menu-table td a {
+  .logged-out .mobile-menu-table td a {
     font-size: 14px;
   }
   .mobile-menu {
