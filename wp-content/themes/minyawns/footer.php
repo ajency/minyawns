@@ -1,4 +1,4 @@
-
+<a href="#" class="scrollup">Scroll</a>
 
 <script type="text/javascript">
 var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>"
@@ -23,6 +23,19 @@ jQuery(document).ready(function($) {
  jQuery('.carousel').carousel({
 	interval: 2000
 		})
+		
+		  $(window).scroll(function(){
+            if ($(this).scrollTop() > 100) {
+                $('.scrollup').fadeIn();
+            } else {
+                $('.scrollup').fadeOut();
+            }
+        }); 
+ 
+        $('.scrollup').click(function(){
+            $("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
+        });
 		  });
 </script>
 <?php } ?>

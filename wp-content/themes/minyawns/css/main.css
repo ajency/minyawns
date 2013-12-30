@@ -303,10 +303,6 @@ body .jobs_table .data-title .profile-job {
   display: none;
 }
 @media (max-width: 767px) {
-  .home .features .tab-content {
-    background: none !important;
-    min-height: 100%;
-  }
   .logged-out .pull-right {
     display: none;
   }
@@ -2742,7 +2738,7 @@ body .jobs_table .data-title .profile-job {
 }
 @media only screen and (min-width: 1420px) {
   .bg-overflow {
-    overflow: hidden;
+    overflow: visible!important;
     height: 100%;
   }
   .bg-overflow img {
@@ -5220,4 +5216,19 @@ div.tooltip1:after {
 }
 .mobile-menu-table {
   display: none;
+}
+.home .features .tab-content {
+  background: none !important;
+  min-height: 100%;
+}
+.scrollup {
+  width: 40px;
+  height: 40px;
+  opacity: 0.3;
+  position: fixed;
+  bottom: 50px;
+  right: 100px;
+  display: none;
+  text-indent: -9999px;
+  background: url('../images/icon_top.png') no-repeat;
 }
