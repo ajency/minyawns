@@ -261,7 +261,7 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 0px;
   margin-left: 40px;
   font-weight: 100;
-  font-size: 15px;
+  font-size: 14px;
 }
 .top-menu .bottom-menu-inverse .notify {
   width: 50%;
@@ -2725,7 +2725,7 @@ body .jobs_table .data-title .profile-job {
 @media only screen and (min-width: 1420px) {
   .bg-overflow {
     overflow: hidden;
-    height: 499px;
+    height: 100%;
   }
   .bg-overflow img {
     position: relative !important;
@@ -5198,4 +5198,7 @@ div.tooltip1:after {
   width: 56%;
   font-weight: 600;
   font-size: 14px;
+}
+.home .features .tab-content {
+  background: none !important;
 }

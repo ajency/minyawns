@@ -172,9 +172,11 @@
 					
 					<div class=" notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
 					<div class="pull-right">
-					
 						<div class="data-link">
-							<a href="#myModal"  data-toggle="modal"><i class="icon-signin"></i> Sign Up </a> 
+							<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup as Minion </a> 
+						</div>
+						<div class="data-link">
+							<a  href="#myModal" data-toggle="modal" id="link_employerregister" onclick="return true"><i class="icon-signin"></i> Signup as a Business </a> 
 						</div>
 							<div class="data-link">
 							<a href="#mylogin" data-toggle="modal" id="btn__login"><i class="icon-unlock-alt"></i> Login </a>
