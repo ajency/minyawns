@@ -2159,7 +2159,7 @@ body .jobs_table .data-title .profile-job {
     width: 255px!important;
   }
   body div.profile-wrapper {
-    height: 100% !important;
+    height: auto !important;
   }
   body div.profile-wrapper .row-fluid {
     width: 98%;
