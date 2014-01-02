@@ -805,7 +805,7 @@ $app->post('/inviteminions', function() use($app) {
           // $user_meta = get_user_meta($_POST['user_id']);
             //print_r($user_meta);exit();
             $emailid=get_user_meta($_POST['user_id'],'nickname',true);
-           
+          
             $data_mail=array(
                 'content'=>  get_the_content($_POST['job_id']),
                 'wages'=>get_post_meta($_POST['job_id'],'job_wages',true),

@@ -219,7 +219,7 @@ $key_job = sha1($salt . uniqid(time(), true));
     <div id="a" class="m1">
     <div class="caption" >
     <% if(result.is_invited == 4){%>
-     <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion is Invited</div> 
+     <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div> 
      <%}%>
          
     <div class="minyawns-img">
