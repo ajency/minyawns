@@ -802,16 +802,18 @@ $app->post('/inviteminions', function() use($app) {
 
             $data=  get_activejobs(1);
             
-           
-            
+          // $user_meta = get_user_meta($_POST['user_id']);
+            //print_r($user_meta);exit();
             $emailid=get_user_meta($_POST['user_id'],'nickname',true);
+           
             $data_mail=array(
                 'content'=>  get_the_content($_POST['job_id']),
-                'wages'=>get_user_meta($_POST['user_id'],'job_wages',true),
-                'time' =>date('g:i',get_user_meta($_POST['user_id'],'job_start_time',true)),
-                'date'=>date('d M Y',get_user_meta($_POST['user_id'],'job_start_date',true)),
+                'wages'=>get_post_meta($_POST['job_id'],'job_wages',true),
+                'time' =>date('g:i',get_post_meta($_POST['job_id'],'job_start_time',true)),
+                'date'=>date('d M Y',get_post_meta($_POST['job_id'],'job_start_date',true)),
                 'slug'=>preg_replace('/[[:space:]]+/', '-',get_the_title($_POST['job_id']))
             );
+        
             //date('g:i', $post_meta['job_start_time'][0]),
             $mail=email_template($emailid, $data_mail,'invite_minion');
             wp_mail($emailid,$mail['subject'],$mail['hhtml'].$mail['message'].$mail['fhtml']);
