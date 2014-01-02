@@ -805,7 +805,7 @@ $app->post('/inviteminions', function() use($app) {
            
             
             $emailid=get_user_meta($_POST['user_id'],'nickname',true);
-            $data=array(
+            $data_mail=array(
                 'content'=>  get_the_content($_POST['job_id']),
                 'wages'=>get_user_meta($_POST['user_id'],'job_wages',true),
                 'time' =>date('g:i',get_user_meta($_POST['user_id'],'job_start_time',true)),
@@ -813,7 +813,8 @@ $app->post('/inviteminions', function() use($app) {
                 'slug'=>preg_replace('/[[:space:]]+/', '-',get_the_title($_POST['job_id']))
             );
             //date('g:i', $post_meta['job_start_time'][0]),
-            email_template($emailid, $data, $type);
+            $mail=email_template($emailid, $data_mail,'invite_minion');
+            wp_mail($emailid,$mail['subject'],$mail['hhtml'].$mail['message'].$mail['fhtml']);
             
             $requestBody = $app->request()->getBody();  // <- getBody() of http reques
             $json_a = json_decode($requestBody, true);

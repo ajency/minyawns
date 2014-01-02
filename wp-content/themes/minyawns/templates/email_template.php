@@ -267,7 +267,7 @@ Wages: ".$data['wages']."
 Report for duty at ".$data['time']." on ".$data['date']."<br/>
 You are at an advantage over other minions as you are invited by the employer after going over your profile and checking if you meet the criteria for the job.
 Sounds good? Go ahead.<br/> 
-<a href=".  site_url()."/job/".$data['slug']."></a><br/><br/>Once you apply you will receive a mail confirming your application.<br/><br/>You will be notified by email when you are selected for the job. Get, set and go! 
+<a href='".  site_url()."/job/".$data['slug']."'></a><br/><br/>Once you apply you will receive a mail confirming your application.<br/><br/>You will be notified by email when you are selected for the job. Get, set and go! 
 <br/><br/>
 If you are facing difficulties applying for the job feel free to email us on <a href='mailto:support@minyawns.com'>support@minyawns.com</a>.
  ";
