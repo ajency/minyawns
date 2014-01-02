@@ -1973,7 +1973,7 @@ jQuery("#invite-minion").live("click", function() {
             } else
             {
 
-                jQuery("#invite_to").append("No jobs here! Please add a job");
+                jQuery("#invite_to").append("Please login as an employer to invite Minions");
 
             }
         }

@@ -133,12 +133,12 @@ get_header();
       <div class="modal-body">
        <table class="table">
         <thead  id="invite_to">
-          <tr >
+<!--          <tr >
             <th>Job Title</th>
             <th>Date</th>
             <th>Status</th>
            
-          </tr>
+          </tr>-->
         </thead>
         <tbody>
           
