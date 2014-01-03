@@ -1991,7 +1991,7 @@ function button_for_invite(model){
     if(model.toJSON().job_user_status == '4'){
         var button_string="<a href='#' class='btn btn-primary invite-btn on-pop' job-id="+model.toJSON().job_id+" minyawn-id="+ model.toJSON().minyawn_id+" ><i class='icon-ok'></i>Resend Invite</a>";
     }else if(model.toJSON().job_user_status == '1'){
-        var button_string="<span class='applied'>applied</span>";
+        var button_string="<span class='applied'>Already Applied</span>";
     }else {
          var button_string="<a href='#' class='btn btn-primary invite-btn on-pop' job-id="+model.toJSON().job_id+" minyawn-id="+ model.toJSON().minyawn_id+" ><i class='icon-ok'></i>Invite</a>";
     }

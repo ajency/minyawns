@@ -912,6 +912,7 @@ function get_activejobs($flag){
 
                 $post_meta = get_post_meta($jobid->ID);
 
+                if($job_status == 0 || $job_status == 1 || $job_status == 4){
                 $data[] = array(
                     'job_title' => $jobid->post_title,
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
@@ -919,6 +920,7 @@ function get_activejobs($flag){
                     'job_id' => $jobid->ID,
                     'minyawn_id' => $user_id
                 );
+                }
             }
             
             return $data;

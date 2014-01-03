@@ -386,9 +386,9 @@ $(".on-pop").live("click", function(event) {
             jQuery("#loader" + $(this).attr('job-id')).hide();
             var invites = _.template(jQuery("#active_invites").html());
             jQuery("#miniondir").modal('show');
+            jQuery("#invite_to").find(".alert-box").remove();
             if (collection.length > 0) {
-
-
+                $("#invite_to").append('<div class="alert alert-success alert-box"><b>Invite</b>&nbsp;Sent!<button type="button" class="close fui-cross" data-dismiss="alert"></button></div>');
                 _.each(collection.models, function(model) {
                     jQuery("#row-" + model.toJSON().job_id).remove();
                     var user_button = button_for_invite(model);
