@@ -118,9 +118,7 @@ get_header();
         </div>
     </div>
 </div>
- <div id="back-top"><!-- scroll top button -->
-    <a href="#top"><span></span>Back to Top</a>
-  </div>
+
 
 
 <div class="modal fade minion-dir" id="miniondir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
