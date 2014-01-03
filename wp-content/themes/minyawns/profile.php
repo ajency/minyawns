@@ -180,9 +180,14 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
 					  <?php if (get_user_role() === 'minyawn'): ?>
 					<div class="social-link profile-social-link"> 
 				
-					
+					<?php if(strlen(user_profile_linkedin()) > 0){ ?>
 					<a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
-    <?php endif; ?>		                      
+                                        <?php }else {?>
+                                        <a href='#'><i class="icon-linkedin"></i></a></div>
+                                            <?php }?>
+                                            
+                                            
+                                            <?php endif; ?>		                      
 					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
