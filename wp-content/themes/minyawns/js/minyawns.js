@@ -1972,9 +1972,12 @@ jQuery("#invite-minion").live("click", function() {
                 });
 
 
-            } else
+            } else 
             {
 
+               if(logged_in_role === 'Employer')
+               jQuery("#invite_to").append("You do not have any open jobs to invite the minion to");
+                else    
                 jQuery("#invite_to").append("Please login as an employer to invite Minions");
 
             }
