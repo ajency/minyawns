@@ -1943,8 +1943,9 @@ function paypal_form_values(no_of_minyawns) {
 
 
 jQuery("#invite-minion").live("click", function() {
-
+jQuery("#invite_to").empty();
  jQuery("#miniondir").modal('show');
+   
     var Fetchuserinvites = Backbone.Collection.extend({
         url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/invitejobs'
     });
@@ -1955,7 +1956,7 @@ jQuery("#invite-minion").live("click", function() {
             employer_id: $(this).attr("employer-id")
         },
         success: function(collection, response) {
-            jQuery("#invite_to").empty();
+          
             var invites = _.template(jQuery("#active_invites").html());
            
             if (collection.length > 0) {
