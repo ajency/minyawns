@@ -675,7 +675,7 @@ $app->get('/jobminions/', function() use ($app) {
                         $rating = 0;
                     }
 
-$is_invited=get_current_job_status($_GET['job_id'],$minion_ids[$i]);
+                    $is_invited = get_current_job_status($_GET['job_id'], $minion_ids[$i]);
 
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
@@ -694,7 +694,7 @@ $is_invited=get_current_job_status($_GET['job_id'],$minion_ids[$i]);
                         'is_verified' => isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] : '',
                         'is_hired' => minyawns_hired_to_jobs($minion_ids[$i], $_GET['job_id']),
                         'count_rated' => $count_rated,
-                        'is_invited'=>$is_invited
+                        'is_invited' => $is_invited
                     );
                 }
             }
@@ -789,8 +789,8 @@ $app->get('/invitejobs', function () use ($app) {
 
             //PLEASE CHANGE THE < TO  >
             //first we find jobs which are not expired
-           $data=get_activejobs(0);
-           
+            $data = get_activejobs(0);
+
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
         });
@@ -800,31 +800,31 @@ $app->post('/inviteminions', function() use($app) {
 
             $status = send_invite($_POST['job_id'], $_POST['user_id']);
 
-            $data=  get_activejobs(1);
-            
-          // $user_meta = get_user_meta($_POST['user_id']);
+            $data = get_activejobs(1);
+
+            // $user_meta = get_user_meta($_POST['user_id']);
             //print_r($user_meta);exit();
-            $emailid=get_user_meta($_POST['user_id'],'nickname',true);
-          
-            $data_mail=array(
-                'content'=>  get_the_content($_POST['job_id']),
-                'wages'=>get_post_meta($_POST['job_id'],'job_wages',true),
-                'time' =>date('g:i',get_post_meta($_POST['job_id'],'job_start_time',true)),
-                'date'=>date('d M Y',get_post_meta($_POST['job_id'],'job_start_date',true)),
-                'slug'=>preg_replace('/[[:space:]]+/', '-',get_the_title($_POST['job_id']))
+            $emailid = get_user_meta($_POST['user_id'], 'nickname', true);
+
+            $data_mail = array(
+                'content' => get_the_content($_POST['job_id']),
+                'wages' => get_post_meta($_POST['job_id'], 'job_wages', true),
+                'time' => date('g:i', get_post_meta($_POST['job_id'], 'job_start_time', true)),
+                'date' => date('d M Y', get_post_meta($_POST['job_id'], 'job_start_date', true)),
+                'slug' => preg_replace('/[[:space:]]+/', '-', get_the_title($_POST['job_id']))
             );
-        
+
             //date('g:i', $post_meta['job_start_time'][0]),
-            $mail=email_template($emailid, $data_mail,'invite_minion');
+            $mail = email_template($emailid, $data_mail, 'invite_minion');
             $headers = 'From: support@minyawns.com' . "\r\n";
-            $headers= "MIME-Version: 1.0\n" .
-        "From:From: support@minyawns.com\n" .
-        "Content-Type: text/html; charset=\"" . "\"\n";
-            wp_mail($emailid,$mail['subject'],$mail['hhtml'].$mail['message'].$mail['fhtml'],$headers);
-            
+            $headers = "MIME-Version: 1.0\n" .
+                    "From:From: support@minyawns.com\n" .
+                    "Content-Type: text/html; charset=\"" . "\"\n";
+            wp_mail($emailid, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
+
             $requestBody = $app->request()->getBody();  // <- getBody() of http reques
             $json_a = json_decode($requestBody, true);
-            
+
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
         });
@@ -836,7 +836,7 @@ function send_invite($jobid, $userid) {
     global $wpdb;
 
     $myrows = $wpdb->get_results("SELECT * FROM userinvites where user_id={$userid} AND job_id={$jobid}");
-   
+
     if (count($myrows) == '0') {
         $table = 'userinvites';
         $data = array(
@@ -855,7 +855,7 @@ function send_invite($jobid, $userid) {
     return $status;
 }
 
-function get_current_job_status($job_id,$user_id) {
+function get_current_job_status($job_id, $user_id) {
 
     global $wpdb;
 
@@ -871,27 +871,27 @@ function get_current_job_status($job_id,$user_id) {
     }
 }
 
-function get_activejobs($flag){
+function get_activejobs($flag) {
     global $wpdb;
-    
-    $user_id=strlen($_GET['user_id'])>0 ? $_GET['user_id']:$_POST['user_id'];
-    
-    
-     $tables = "$wpdb->posts, $wpdb->postmeta";
-     
-     if($flag == 1)
-         $fromFilter="AND $wpdb->posts.ID='" . $_POST['job_id'] . "'";
-     else 
-         $fromFilter="AND $wpdb->posts.post_author='" . $_GET['employer_id'] . "'";
-         
-     
-            $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
-                            AND $wpdb->postmeta.meta_value > '" . current_time('timestamp') . "' ".$fromFilter."";
-            $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
+
+    $user_id = strlen($_GET['user_id']) > 0 ? $_GET['user_id'] : $_POST['user_id'];
+
+
+    $tables = "$wpdb->posts, $wpdb->postmeta";
+
+    if ($flag == 1)
+        $fromFilter = "AND $wpdb->posts.ID='" . $_POST['job_id'] . "'";
+    else
+        $fromFilter = "AND $wpdb->posts.post_author='" . $_GET['employer_id'] . "'";
+
+
+    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
+                            AND $wpdb->postmeta.meta_value > '" . current_time('timestamp') . "' " . $fromFilter . "";
+    $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
 
 
-            $querystr = "
+    $querystr = "
                             SELECT DISTINCT $wpdb->posts.* 
                             FROM $tables" . "$filtertables
                             $my_jobs_filter
@@ -902,21 +902,27 @@ function get_activejobs($flag){
                            
                          ";
 
-            $jobids = $wpdb->get_results($querystr, OBJECT);
-            //using these ids we will get the status invited/applied/hired
+    $jobids = $wpdb->get_results($querystr, OBJECT);
+    //using these ids we will get the status invited/applied/hired
 
-            foreach ($jobids as $jobid) {
-
-                $min_job = new Minyawn_Job($jobid->ID);
-                $job_status = $min_job->check_minyawn_job_status_invite($jobid->ID, $user_id);
-
-                if ($job_status == 0)
-                    $job_status = get_current_job_status($jobid->ID, $user_id);
+    foreach ($jobids as $jobid) {
 
 
-                $post_meta = get_post_meta($jobid->ID);
 
-                if($job_status == 0 || $job_status == 1 || $job_status == 4){
+        $min_job = new Minyawn_Job($jobid->ID);
+        $is_job_available =$min_job->check_minyawn_job_status($jobid->ID);
+
+        if ($is_job_available === 1) {
+
+            $job_status = $min_job->check_minyawn_job_status_invite($jobid->ID, $user_id);
+
+            if ($job_status == 0)
+                $job_status = get_current_job_status($jobid->ID, $user_id);
+
+
+            $post_meta = get_post_meta($jobid->ID);
+
+            if ($job_status == 0 || $job_status == 1 || $job_status == 4) {
                 $data[] = array(
                     'job_title' => $jobid->post_title,
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
@@ -924,10 +930,9 @@ function get_activejobs($flag){
                     'job_id' => $jobid->ID,
                     'minyawn_id' => $user_id
                 );
-                }
             }
-            
-            return $data;
-    
-    
+        }
+    }
+
+    return $data;
 }
