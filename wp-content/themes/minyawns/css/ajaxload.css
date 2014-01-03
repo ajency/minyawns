@@ -67,13 +67,17 @@ display: block;
 }
 .load_ajax {
 
-    background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
+    background: url("../images/ajax-loader.gif") no-repeat scroll 0 0 transparent;
     float: left;
-    height: 21px;
+   height: 21px;
     position: inherit;
-    width: 20px;
-    margin: auto;
-
+   /*  width: 20px;
+    margin: auto;*/
+width: 20px;
+margin: auto;
+background-size: 20px;
+margin-left: -17px;
+margin-top: 6px;
 
 }
 .load_ajax_profile_comments {
@@ -87,6 +91,7 @@ display: block;
 
 
 }
+
 
 
 .load-ajax-browse {
