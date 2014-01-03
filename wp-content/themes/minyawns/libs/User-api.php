@@ -238,15 +238,17 @@ function get_user_location() {
 
 //User profile linkedin
 function user_profile_linkedin() {
-    echo get_user_profile_linkedin();
+    return get_user_profile_linkedin();
 }
 
 function get_user_profile_linkedin() {
     global $current_user_new;
 
     //return $current_user_new->data->linkedin;
+    
+  
     return preg_replace('#^http(s)?://#', '', rtrim($current_user_new->data->linkedin,'/'));
-    ;
+   
 }
 
 // user role
