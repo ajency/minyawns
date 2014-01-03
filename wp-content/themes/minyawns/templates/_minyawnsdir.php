@@ -51,7 +51,7 @@
                                      <a href='http://<%= result.linkedin.replace(/^http?:\/\//,'') %>' target='_blank'><%= result.linkedin %></a>
                                        <%}else{%>
                                       <a href='#'><%= result.linkedin %></a>
-                                      <%}%>
+    <%}%>
                                       </div>
                                     <div class="social-link">
                                        <%= result.user_email %>
