@@ -1783,24 +1783,26 @@ jQuery(document).ready(function($) {
         function(response) {
 
             $(".rating").find('a').prop('disabled', false);
-            if (response.action === "vote-up") {
+            if (response.action === "vote-up"+ _user_id) {
                 $("#thumbs_up_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
-
+               
+//$("#"+ _user_id).empty();
               //  $("#thumbs_up_" + _user_id).append(response.rating);
                // $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
                 // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
+               $("#"+_user_id).find(".dwn-btn").remove();
                 $("#"+ _user_id).append("<div class='up-btn review_popover'><div class='comment-box'> <i class='icon-thumbs-down terrible'></i>"+_desc+"<div></div>");
             
             }
-            if (response.action === "vote-down") {
+            if (response.action === "vote-down"+ _user_id) {
 
                 $("#thumbs_down_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
-
-
+//$("#"+ _user_id).empty();
+               $("#"+_user_id).find(".dwn-btn").remove();
                // $("#thumbs_down_" + _user_id).append(response.rating);
                // $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='1'>Terrible</a>");
                 // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
