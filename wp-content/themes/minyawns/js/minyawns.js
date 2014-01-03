@@ -3,9 +3,9 @@
 
 
 
-jQuery("#signinlink").click(function(){
-jQuery('#myModal').modal('hide')
-jQuery('#mylogin').modal('show')
+jQuery("#signinlink").click(function() {
+    jQuery('#myModal').modal('hide')
+    jQuery('#mylogin').modal('show')
 });
 
 jQuery(document).ready(function($) {
@@ -616,7 +616,8 @@ jQuery(document).ready(function($) {
 ////                $(_this).html('Cancel');
 ////                $("#load-more-my-jobs").hide();
 ////
-////            }
+////            }////            }
+
 ////        });
 ////        $("#add-job-form").find('input:text').val('');
 ////        $("#job_task").val('');
@@ -918,23 +919,23 @@ jQuery(document).ready(function($) {
                 pdpass: jQuery("#txt_pass").val(),
             },
                     function(response) {
-                       
+
                         if (response.success == true)
                         {
-                            if (jQuery("#noaccess_redirect_url").length > 0){
+                            if (jQuery("#noaccess_redirect_url").length > 0) {
                                 window.location.href = jQuery("#noaccess_redirect_url").val();
-                            }else{
-                                  
-                            if(response.user_role == 'employer'){
-                                
+                            } else {
+
+                                if (response.user_role == 'employer') {
+
                                     window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#my-jobs';
-                            
-                                }else{
-                                
-                                window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#browse';
-                            }
+
+                                } else {
+
+                                    window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#browse';
                                 }
                             }
+                        }
                         else
                         {
                             jQuery("#div_loginmsg").html(response.msg);
@@ -1263,7 +1264,7 @@ jQuery(document).ready(function($) {
         $(this).append(' <img src="' + siteurl + '/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
         $(".load_ajax1").show();
         $(".load_ajax3").show();
-     
+
         $.post(ajaxurl,
                 {
                     action: 'minyawn_job_' + _action,
@@ -1271,9 +1272,9 @@ jQuery(document).ready(function($) {
                 },
         function(response) {
 
-           if(window.page === '1') //single job page reload to get new minion data
-               window.location.reload();
-           
+            if (window.page === '1') //single job page reload to get new minion data
+                window.location.reload();
+
 
             load_browse_jobs(_job_id, 'single_json');/*appends a single row to the table*/
             $(".load_ajax1").hide();
@@ -1715,12 +1716,16 @@ jQuery(document).ready(function($) {
     $('.well-done,.terrible').live('click', function(evt) {
 
 
-        if (evt.target.id === 'vote-up') {
+        if (evt.target.id === 'vote-up' + $(this).attr('user_id')) {
+            $("#vote-up" + $(this).attr('user_id')).css("opacity", "1");
+            $("#vote-down" + $(this).attr('user_id')).css("opacity", "0.4");
             $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
             $("#review" + $(this).attr('user_id')).attr("vote", "1");
             //$("#review-text" + $(this).attr('user_id')).removeClass();
             // $("#review-text" + $(this).attr('user_id')).addClass("welldone-textarea");
         } else {
+            $("#vote-down" + $(this).attr('user_id')).css("opacity", "1");
+            $("#vote-up" + $(this).attr('user_id')).css("opacity", "0.4");
             $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
             $("#review" + $(this).attr('user_id')).attr("vote", "-1");
             // $("#review-text" + $(this).attr('user_id')).removeClass();
@@ -1778,27 +1783,30 @@ jQuery(document).ready(function($) {
         function(response) {
 
             $(".rating").find('a').prop('disabled', false);
-            if (response.action === "vote-up") {
+            if (response.action === "vote-up"+ _user_id) {
                 $("#thumbs_up_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
-
-                $("#thumbs_up_" + _user_id).append(response.rating);
-                $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
+               
+//$("#"+ _user_id).empty();
+              //  $("#thumbs_up_" + _user_id).append(response.rating);
+               // $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
                 // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
-                $("#rating_container" + _user_id).append("<div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'>" + _desc + "</div></div>");
+               $("#"+_user_id).find(".dwn-btn").remove();
+                $("#"+ _user_id).append("<div class='up-btn review_popover'><div class='comment-box'> <i class='icon-thumbs-down terrible'></i>"+_desc+"<div></div>");
+            
             }
-            if (response.action === "vote-down") {
+            if (response.action === "vote-down"+ _user_id) {
 
                 $("#thumbs_down_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
-
-
-                $("#thumbs_down_" + _user_id).append(response.rating);
-                $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='1'>Terrible</a>");
+//$("#"+ _user_id).empty();
+               $("#"+_user_id).find(".dwn-btn").remove();
+               // $("#thumbs_down_" + _user_id).append(response.rating);
+               // $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='1'>Terrible</a>");
                 // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
-                $("#rating_container" + _user_id).append("<div class='popover fade bottom in' style='top: 30px; left: -88.0625px; display: block;'><div class='arrow'></div><div class='popover-content'>" + _desc + "</div></div>");
+                 $("#"+ _user_id).append("<div class='dwn-btn review_popover'><div class='comment-box'> <i class='icon-thumbs-down terrible'></i>"+_desc+"<div></div>");
 
             }
             //$("#thumbnail-" + _user_id).css("height", '480px');
@@ -1934,71 +1942,63 @@ function paypal_form_values(no_of_minyawns) {
 }
 
 
-jQuery("#invite-minion").live("click",function(){
-    
-      
-        var Fetchuserinvites= Backbone.Collection.extend({
-       
+jQuery("#invite-minion").live("click", function() {
+
+ jQuery("#miniondir").modal('show');
+    var Fetchuserinvites = Backbone.Collection.extend({
         url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/invitejobs'
     });
-      window.fetchi= new Fetchuserinvites;
+    window.fetchi = new Fetchuserinvites;
     window.fetchi.fetch({
         data: {
-            user_id: jQuery("#invite-minion").attr("minion-id"),
-                employer_id:jQuery("#invite-minion").attr("employer-id")       
+            user_id: $(this).attr("minion-id"),
+            employer_id: $(this).attr("employer-id")
         },
         success: function(collection, response) {
+            jQuery("#invite_to").empty();
+            var invites = _.template(jQuery("#active_invites").html());
            
-var invites = _.template(jQuery("#active_invites").html());  
-jQuery("#miniondir").modal('show');
             if (collection.length > 0) {
-                
-               
-                _.each(collection.models, function(model) {
-                 
-//                    if (is_job_owner(jobmodel.toJSON().job_owner_id) || is_admin === '1')
-//                        var select_button = is_minion_selected(jobmodel, model);
 
-               
-//jQuery("#invite_to").append();
-                    var html = invites({result: model.toJSON()});
-                    
+
+                _.each(collection.models, function(model) {
+
+                  var user_button=button_for_invite(model);
+
+                var html = invites({result: model.toJSON(),button:user_button});
+
 
                     jQuery("#invite_to").append(html);
                 });
-               
+
 
             } else 
             {
-               
-               alert("no jobs");
+
+               if(logged_in_role === 'Employer')
+               jQuery("#invite_to").append("You do not have any open jobs to invite the minion to");
+                else    
+                jQuery("#invite_to").append("Please login as an employer to invite Minions");
 
             }
         }
     });
-
-    
-    
-    
-    
-//    $.get(SITEURL + '/wp-content/themes/minyawns/libs/job.php/invitejobs',
-//            {
-//                user_id: jQuery("#invite-minion").attr("minion-id"),
-//                employer_id:jQuery("#invite-minion").attr("employer-id")       
-//    },
-//            function(response) {
-//               
-//               
-//               
-//               
-//               
-//            });
-   
-   
-   
-    
 });
 
+
+function button_for_invite(model){
+    
+    if(model.toJSON().job_user_status == '4'){
+        var button_string="<a href='#' class='btn btn-primary invite-btn on-pop' job-id="+model.toJSON().job_id+" minyawn-id="+ model.toJSON().minyawn_id+" ><i class='icon-ok'></i>Resend Invite</a>";
+    }else if(model.toJSON().job_user_status == '1'){
+        var button_string="<span class='applied'>Already Applied</span>";
+    }else {
+         var button_string="<a href='#' class='btn btn-primary invite-btn on-pop' job-id="+model.toJSON().job_id+" minyawn-id="+ model.toJSON().minyawn_id+" ><i class='icon-ok'></i>Invite</a>";
+    }
+    
+    return button_string;
+    
+}
 
 
 //jQuery(document).ready(function() {

@@ -132,13 +132,13 @@ require 'templates/_jobs.php';
             <div class="span12" id="profile-view">
                 	<?php
                                                                    
-                 if (get_user_role() == 'minyawn') {
+                 if (get_logged_in_role() == 'Minion') {
 				   echo '<div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href="#" id="edit-user-profile" class="edit-user-profile" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 				 }
                     ?>
 				<?php
                                                                    
-                    if (get_user_role() == 'employer') {
+                    if (get_logged_in_role() == 'Employer') {
 					
 			 echo '<div class="alert alert-msg"> Complete your profile 
 and get more applications from eager minions. Simply <a href="#" id="edit-user-profile" class="edit-user-profile" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
@@ -180,9 +180,14 @@ and get more applications from eager minions. Simply <a href="#" id="edit-user-p
 					  <?php if (get_user_role() === 'minyawn'): ?>
 					<div class="social-link profile-social-link"> 
 				
-					
+					<?php  if(strlen(user_profile_linkedin()) >0 ){ ?>
 					<a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
-    <?php endif; ?>		                      
+                                        <?php }else {?>
+                                        <a href='#'><i class="icon-linkedin"></i></a></div>
+                                            <?php }?>
+                                            
+                                            
+                                            <?php endif; ?>		                      
 					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();

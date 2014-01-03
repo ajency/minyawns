@@ -218,6 +218,10 @@ $key_job = sha1($salt . uniqid(time(), true));
     <div class="layer">
     <div id="a" class="m1">
     <div class="caption" >
+    <% if(result.is_invited == 4){%>
+     <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div> 
+     <%}%>
+         
     <div class="minyawns-img">
     <% if(result.is_hired === true){%>
     <div class="minaywns-sel">
@@ -277,8 +281,12 @@ $key_job = sha1($salt . uniqid(time(), true));
     <%= result.user_email %>
     </div>
     <div class="social-link">
+    <% if (result.linkedin.length > 0 ){%>
     <a href='http://<%= result.linkedin %>' target='_blank'><%= result.linkedin %></a>
-    </div>
+    <%}else{%>
+    <a href='#'><%= result.linkedin %></a>
+    <%}%>
+            </div>
     </div>
 
 

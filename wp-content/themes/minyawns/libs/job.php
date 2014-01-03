@@ -67,10 +67,10 @@ $app->post('/addjob', function() use ($app) {
                 } elseif ($key !== 'job_details' && $key !== "job_end_date") {
                     update_post_meta($post_id, $key, $value);
                 }
-                
+
                 if (strstr($key, 'category')) {
                     $categories[] = $value;
-                } 
+                }
             }
             wp_set_post_categories($post_id, $categories);
 
@@ -308,9 +308,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $final_count = 0;
                 }
 
-                $company_details=get_user_meta(get_the_author_meta('ID', $pagepost->post_author));
-                
-                
+                $company_details = get_user_meta(get_the_author_meta('ID', $pagepost->post_author));
+
+
                 /*
                  *  1 ->running
                  *  2->locked ,if one applicant also hired then locked
@@ -338,8 +338,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                     //'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('first_name', $pagepost->post_author) . ' ' . get_the_author_meta('last_name', $pagepost->post_author),
                     'job_author_id' => get_the_author_meta('ID', $pagepost->post_author),
-                    'job_company'=>$company_details['company_name'][0],
-                    'job_company_location'=>$company_details['location'][0],
+                    'job_company' => $company_details['company_name'][0],
+                    'job_company_location' => $company_details['location'][0],
                     'job_author_logo' => $logo,
                     'job_status' => $job_status,
                     'user_to_job_status' => $user_job_status,
@@ -644,15 +644,6 @@ $app->get('/jobminions/', function() use ($app) {
                     if (!wp_get_attachment_thumb_url($all_meta_for_user['avatar_attachment']))
                         $user['image'] = get_avatar($all_meta_for_user['user_email']);
 
-//                elseif (!isset($user['image']))
-//                    $user['image'] =get_avatar($all_meta_for_user['user_email'], 168);
-//                    if ($key == 'facebook_uid')
-//                        $fb_uid = $value;
-//               
-//
-//                //set image
-//                if ($fb_uid !== false)
-//                    $user['image'] = 'https://graph.facebook.com/' . $fb_uid . '/picture?width=200&height=200';
 
                     $object_id = get_object_id($minion_ids[$i], $_GET['job_id']);
 //                    print_r($object_id);exit();
@@ -669,21 +660,22 @@ $app->get('/jobminions/', function() use ($app) {
                     $user_to_job_rating = get_user_job_rating_data($minion_ids[$i], $_GET['job_id']);
 
                     $rating = ($user_to_job_rating->positive) > 0 ? 'Well Done' : 0;
-                    if ($user_to_job_rating->positive > 0){
+                    if ($user_to_job_rating->positive > 0) {
                         $rating = 'Well Done';
-                    
+
                         $count_rated = $count_rated + 1;
-                    }else{
+                    } else {
                         $rating = 0;
                     }
-                    if ($user_to_job_rating->negative < 0){
+                    if ($user_to_job_rating->negative < 0) {
                         $rating = 'Terrible';
-                    
+
                         $count_rated = $count_rated + 1;
-                    }else{
+                    } else {
                         $rating = 0;
                     }
-                    
+
+$is_invited=get_current_job_status($_GET['job_id'],$minion_ids[$i]);
 
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
@@ -691,7 +683,7 @@ $app->get('/jobminions/', function() use ($app) {
                         'college' => isset($all_meta_for_user['college']) ? $all_meta_for_user['college'] : '',
                         'major' => isset($all_meta_for_user['major']) ? $all_meta_for_user['major'] : '',
                         'user_skills' => isset($all_meta_for_user['user_skills']) ? $all_meta_for_user['user_skills'] : '',
-                        'linkedin' => isset($all_meta_for_user['linkedin']) ? preg_replace('#^http?://#', '', rtrim($all_meta_for_user['linkedin'],'/')) : '',
+                        'linkedin' => isset($all_meta_for_user['linkedin']) ? preg_replace('#^http?://#', '', rtrim($all_meta_for_user['linkedin'], '/')) : '',
                         'user_email' => isset($all_meta_for_user['nickname']) ? $all_meta_for_user['nickname'] : '', /* nick name temp fix */
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
@@ -700,9 +692,10 @@ $app->get('/jobminions/', function() use ($app) {
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
                         'comment' => isset($comment) > 0 ? $comment : 0,
                         'is_verified' => isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] : '',
-                        'is_hired'=>minyawns_hired_to_jobs($minion_ids[$i],$_GET['job_id']),
-                        'count_rated'=>$count_rated
-                        );
+                        'is_hired' => minyawns_hired_to_jobs($minion_ids[$i], $_GET['job_id']),
+                        'count_rated' => $count_rated,
+                        'is_invited'=>$is_invited
+                    );
                 }
             }
             else
@@ -796,9 +789,104 @@ $app->get('/invitejobs', function () use ($app) {
 
             //PLEASE CHANGE THE < TO  >
             //first we find jobs which are not expired
-            $tables = "$wpdb->posts, $wpdb->postmeta";
+           $data=get_activejobs(0);
+           
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode($data);
+        });
+
+$app->post('/inviteminions', function() use($app) {
+            global $wpdb;
+
+            $status = send_invite($_POST['job_id'], $_POST['user_id']);
+
+            $data=  get_activejobs(1);
+            
+          // $user_meta = get_user_meta($_POST['user_id']);
+            //print_r($user_meta);exit();
+            $emailid=get_user_meta($_POST['user_id'],'nickname',true);
+          
+            $data_mail=array(
+                'content'=>  get_the_content($_POST['job_id']),
+                'wages'=>get_post_meta($_POST['job_id'],'job_wages',true),
+                'time' =>date('g:i',get_post_meta($_POST['job_id'],'job_start_time',true)),
+                'date'=>date('d M Y',get_post_meta($_POST['job_id'],'job_start_date',true)),
+                'slug'=>preg_replace('/[[:space:]]+/', '-',get_the_title($_POST['job_id']))
+            );
+        
+            //date('g:i', $post_meta['job_start_time'][0]),
+            $mail=email_template($emailid, $data_mail,'invite_minion');
+            $headers = 'From: support@minyawns.com' . "\r\n";
+            $headers= "MIME-Version: 1.0\n" .
+        "From:From: support@minyawns.com\n" .
+        "Content-Type: text/html; charset=\"" . "\"\n";
+            wp_mail($emailid,$mail['subject'],$mail['hhtml'].$mail['message'].$mail['fhtml'],$headers);
+            
+            $requestBody = $app->request()->getBody();  // <- getBody() of http reques
+            $json_a = json_decode($requestBody, true);
+            
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode($data);
+        });
+
+
+$app->run();
+
+function send_invite($jobid, $userid) {
+    global $wpdb;
+
+    $myrows = $wpdb->get_results("SELECT * FROM userinvites where user_id={$userid} AND job_id={$jobid}");
+   
+    if (count($myrows) == '0') {
+        $table = 'userinvites';
+        $data = array(
+            'user_id' => $userid,
+            'job_id' => $jobid
+        );
+
+
+        $wpdb->replace($table, $data);
+
+        $status = true;
+    } else {
+        $status = false;
+    }
+
+    return $status;
+}
+
+function get_current_job_status($job_id,$user_id) {
+
+    global $wpdb;
+
+    $applied_sql = "select * from userinvites where job_id='" . $job_id . "' AND user_id='" . $user_id . "'";
+
+    $jobids = $wpdb->get_results($applied_sql, OBJECT);
+
+    if (count($jobids) > 0) {
+
+        return 4; //invited
+    } else {
+        return 0;
+    }
+}
+
+function get_activejobs($flag){
+    global $wpdb;
+    
+    $user_id=strlen($_GET['user_id'])>0 ? $_GET['user_id']:$_POST['user_id'];
+    
+    
+     $tables = "$wpdb->posts, $wpdb->postmeta";
+     
+     if($flag == 1)
+         $fromFilter="AND $wpdb->posts.ID='" . $_POST['job_id'] . "'";
+     else 
+         $fromFilter="AND $wpdb->posts.post_author='" . $_GET['employer_id'] . "'";
+         
+     
             $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
-                            AND $wpdb->postmeta.meta_value > '" . current_time('timestamp') . "'";
+                            AND $wpdb->postmeta.meta_value > '" . current_time('timestamp') . "' ".$fromFilter."";
             $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
                             ORDER BY $wpdb->postmeta.meta_value ASC";
 
@@ -818,35 +906,28 @@ $app->get('/invitejobs', function () use ($app) {
             //using these ids we will get the status invited/applied/hired
 
             foreach ($jobids as $jobid) {
+
+                $min_job = new Minyawn_Job($jobid->ID);
+                $job_status = $min_job->check_minyawn_job_status_invite($jobid->ID, $user_id);
+
+                if ($job_status == 0)
+                    $job_status = get_current_job_status($jobid->ID, $user_id);
+
+
                 $post_meta = get_post_meta($jobid->ID);
 
+                if($job_status == 0 || $job_status == 1 || $job_status == 4){
                 $data[] = array(
                     'job_title' => $jobid->post_title,
                     'job_start_date' => date('d M Y', $post_meta['job_start_date'][0]),
-                    'job_status' => get_current_job_status($jobid->ID, $json_a['user_id']),
-                    'job_id'=>$jobid->ID,
-                    'minyawn_id'=>$json_a['user_id']
+                    'job_user_status' => $job_status,
+                    'job_id' => $jobid->ID,
+                    'minyawn_id' => $user_id
                 );
+                }
             }
-            $app->response()->header("Content-Type", "application/json");
-            echo json_encode($data);
-        });
-
-
-$app->run();
-
-function get_current_job_status($job_id) {
-
-    global $wpdb;
-
-    $applied_sql = "select * from userinvites where job_id='" . $job_id . "' AND user_id='" . $user_id . "'";
-
-    $jobids = $wpdb->get_results($applied_sql, OBJECT);
-
-    if (count($jobids) > 0) {
-
-        return 1; //invited
-    } else {
-        return 0;
-    }
+            
+            return $data;
+    
+    
 }

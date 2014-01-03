@@ -61,7 +61,7 @@ jQuery(document).ready(function($) {
             if (window.error !== 404) {
 //                var no_result = _.template($("#loader-image").html());
 //                jQuery(".minyawns-grid1").append(no_result);
-$(".load_ajax_large").show();
+                $(".load_ajax_large").show();
                 load_more();
             }
         }
@@ -140,7 +140,7 @@ function fetch_minyawns_list() {
             if (response.error !== '404') {
                 var template = _.template(jQuery("#minyawn-directory-card").html());
 
-$(".load_ajax_large").show();
+                $(".load_ajax_large").show();
 
                 _.each(collection.models, function(model) {
 
@@ -228,7 +228,7 @@ function formSubmit()
 
 
 function load_more() {
-   
+
 //    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
 //    jQuery(".minyawns-grid1").append(filter_loader_template);
     var first = getUrlVars()["filter"];
@@ -251,11 +251,11 @@ function load_more() {
         success: function(collection, response) {
 
             if (response.error !== '404') { //if no results returned
-               
-                $(".minyawnslist").empty();    
+
+                $(".minyawnslist").empty();
                 var template = _.template(jQuery("#minyawn-directory-card").html());
 
-                
+
                 _.each(collection.models, function(model) {
                     console.log(collection.models);
                     var html = template({result: model.toJSON()});
@@ -347,7 +347,7 @@ $(".checkbox").live('click', function() {
         window.is_verified = 'Y';
         jQuery(".minyawnslist").empty();
         jQuery(".load_ajax_large").show();
-        
+
         fetch_minyawns_list();
 
 
@@ -355,7 +355,7 @@ $(".checkbox").live('click', function() {
     else
     {
 
-jQuery(".minyawnslist").empty();
+        jQuery(".minyawnslist").empty();
         jQuery(".load_ajax_large").show();
         delete  window.is_verified;
         fetch_minyawns_list();
@@ -367,4 +367,45 @@ jQuery(".minyawnslist").empty();
 
 
 
+});
+
+$(".on-pop").live("click", function(event) {
+
+    jQuery("#loader" + $(this).attr('job-id')).show();
+    var Fetchuserinvites = Backbone.Collection.extend({
+        url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/inviteminions'
+    });
+    window.postinvites = new Fetchuserinvites;
+    window.postinvites.fetch({
+        type: 'POST',
+        data: {
+            user_id: $(this).attr('minyawn-id'),
+            job_id: $(this).attr('job-id')
+        },
+        success: function(collection, response) {
+            jQuery("#loader" + $(this).attr('job-id')).hide();
+            var invites = _.template(jQuery("#active_invites").html());
+            jQuery("#miniondir").modal('show');
+            jQuery("#invite_to").find(".alert-box").remove();
+            if (collection.length > 0) {
+                $("#invite_to").append('<div class="alert alert-success alert-box"><b>Invite</b>&nbsp;Sent!<button type="button" class="close fui-cross" data-dismiss="alert"></button></div>');
+                _.each(collection.models, function(model) {
+                    jQuery("#row-" + model.toJSON().job_id).remove();
+                    var user_button = button_for_invite(model);
+
+                    var html = invites({result: model.toJSON(), button: user_button});
+
+
+                    jQuery("#invite_to").prepend(html);
+                });
+
+
+            } else
+            {
+
+                jQuery("#invite_to").append("No jobs here! Please add a job");
+
+            }
+        }
+    });
 });

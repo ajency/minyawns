@@ -45,6 +45,15 @@ function email_template($emailid, $data, $type) {
                 'message' => get_email_msg($type, $data, $emailid)
             );
             break;
+        
+          case 'invite_minion':
+            $template = array(
+                'hhtml' => email_template_header(),
+                'fhtml' => email_template_footer(),
+                'subject' => get_email_subject($type, $data),
+                'message' => get_email_msg($type, $data, $emailid)
+            );
+            break;
 
         default:
             $template = array(
@@ -145,6 +154,9 @@ function get_email_subject($type, $data) {
             return $email_sub;
 
         case 'employer_jobcompletion_reminder' : $email_sub = "Task Completed!";
+            return $email_sub;
+            
+        case 'invite_minion':$email_sub="Congratulations! You have been invited to apply for a job.";
             return $email_sub;
     }//end switch($type)
 }
@@ -247,7 +259,20 @@ function get_email_msg($type, $data, $emailid) {
 				
 		
 		";
-            return $email_msg;
+             return $email_msg;
+             
+        case 'invite_minion':$email_msg="Hi,<br/><br/> Well done! Your profile has caught the attention of an employer. You are one of the handpicked minions invited to apply for the job.<br/><br/>
+<b>Job details</b><br/>Job description:".$data['decription']."<br/>
+Wages: ".$data['wages']."<br/>
+Report for duty at ".$data['time']." on ".$data['date']."<br/>
+You are at an advantage over other minions as you are invited by the employer after going over your profile and checking if you meet the criteria for the job.
+Sounds good? Go ahead.
+<a href='".  site_url()."/job/".$data['slug']."'>Apply now</a><br/><br/>Once you apply you will receive a mail confirming your application.<br/><br/>You will be notified by email when you are selected for the job. Get, set and go! 
+<br/><br/>
+If you are facing difficulties applying for the job feel free to email us on <a href='mailto:support@minyawns.com'>support@minyawns.com</a>.
+ ";
+            
+          return $email_msg;  
     }//end switch($type)
 }
 

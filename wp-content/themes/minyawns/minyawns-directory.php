@@ -129,14 +129,14 @@ get_header();
         <h4 class="modal-title" id="myModalLabel">Invite minion to...</h4>
       </div>
       <div class="modal-body">
-       <table class="table" id="invite_to">
-        <thead>
-          <tr>
+       <table class="table">
+        <thead  id="invite_to">
+<!--          <tr >
             <th>Job Title</th>
             <th>Date</th>
             <th>Status</th>
            
-          </tr>
+          </tr>-->
         </thead>
         <tbody>
           

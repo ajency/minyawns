@@ -47,8 +47,12 @@
                                     <div class="collage"><%= result.college %></div>
                                     <div class="collage"><%= result.major %></div>
                                     <div class="social-link">
+                                     <% if (result.linkedin.length > 0 ){%>
                                      <a href='http://<%= result.linkedin.replace(/^http?:\/\//,'') %>' target='_blank'><%= result.linkedin %></a>
-                                    </div>
+                                       <%}else{%>
+                                      <a href='#'><%= result.linkedin %></a>
+                                      <%}%>
+                                      </div>
                                     <div class="social-link">
                                        <%= result.user_email %>
                                     </div>
@@ -109,14 +113,12 @@
 </script>
 
 <script type="text/templates" id="active_invites">
-    <tr class="active">
+    <tr class="active" id="row-<%= result.job_id%>">
             <td class="td-job-title"><%= result.job_title%></td>
             <td class="sm-font"><%= result.job_start_date%></td>
             <td>
-			<a href="#" class="btn btn-primary invite-btn" job-id=<%= result.job_id%> minyawn-id=<% result.minyawn_id %>>
-			 <i class="icon-ok"></i> invite
-			</a>
-			
+			<%= button %>
+			<span id="loader<%= result.job_id%>" class="load_ajax" style="display:none"></span>
 			</td>
           </tr>
     </script>
