@@ -253,7 +253,7 @@ body .jobs_table .data-title  .profile-job{
 	border:1px solid #ccc;
 	padding: 23px 23px 23px;
 }
-.page, .error404, .single {
+.page, .error404, .single , .category {
 	background:url(../images/pattern-bg.png)repeat;
 	
 }
@@ -325,7 +325,24 @@ background-color: rgba(0, 0, 0, 0.33);
 	display:none;
 }
 @media (max-width: 767px) {
-
+body .blog-container{
+	.blog-data{
+		border:0px;
+		padding:0px;
+	}
+.ssba_tooptip{
+display:none;
+}
+	.post-info {
+		.post-title{
+			font-size: 25px;
+		}
+		.post-meta {
+		font-style: normal;
+		font-size: 1.0em;
+		}
+	}
+}
 .logged-out{
 	.pull-right{
 		display:none;
@@ -6168,4 +6185,203 @@ margin-top: -46px;
 }
 .minion-dir{
 	display:none;
+}
+
+/* blog*/
+.blog-container{
+.blog-data{
+	padding-right:60px;
+	border-right: 1px solid #ccc;
+}
+.post-item{
+border-bottom: 1px solid #ccc;
+padding-bottom: 22px;
+margin-bottom: 22px;
+}
+	.post-info{
+	.post-title{
+		font-weight: 600;
+		font-size: 40px;
+		margin-bottom: 10px;
+		}
+		.post-meta{
+		font-style: normal;
+		font-size: 1.308em;
+		font-weight: 400;
+		color: #8F8F8F;
+		margin-bottom: 15px;
+		display: block;
+		
+		}
+		
+	}
+	.post-content{
+			img{
+				width:100%;
+				margin-bottom:10px;
+			
+			}
+			p {
+			color: #8F8F8F;
+			font-size: 17px;
+			line-height: 1.7;
+			margin: 25px 0;
+			}
+			.readmore{
+				font-size: 17px;
+			}
+		}
+		.comments-area{
+			.comments-title{
+				font-weight: 100;
+				font-size: 2.5em;
+				margin-bottom:10px;
+			}
+			.comment-list{
+			list-style: none;
+			margin: 0;
+			position: relative;
+				li{	
+					.comment-body{
+					.comment-meta{
+						background:none;
+					}
+						.comment-author{
+							img{
+								border-radius:100%;
+								-moz-border-radius:100%;
+								-webkit-border-radius:100%;
+								width:80px;
+								height:80px;
+								float:left;
+								margin-right: 10px;
+							}
+							b.fn{
+								font-size: 1.8em;
+								margin-top: 12px;
+								display: inline-block;
+							}
+						}
+						.comment-metadata{
+							font-weight: normal;
+							font-size: 13px;
+							font-style: italic;
+							padding: 5px 0 0 !important;
+						}
+						.comment-content {
+							border: 1px solid #d2d2d2;
+							padding: 10px 20px 25px;
+							margin: 20px 0 0;
+							clear: both;
+							margin-bottom:10px;
+							}
+					.reply {
+							right: 1px;
+							position: absolute;
+							margin-top: -41px;
+							background: #eee;
+							padding: 5px 10px;
+							}
+					}
+				
+				}
+			}
+			ol{
+				list-style: none;
+			margin: 0;
+			position: relative;
+			}
+			.form-allowed-tags code{
+				display:none;
+			}
+			
+			.comment-respond{
+				.comment-notes{
+					margin:0px;
+				}
+				p{
+					margin:10px;
+				}
+				.form-allowed-tags{
+				display:none;
+				}
+			
+				.comment-reply-title{
+					font-weight: 500;
+					font-size: 2.5em;
+					margin-top: 40px;
+				}
+				
+					input{
+						height: auto !important;
+						width: 48%!important;
+					
+				}
+				input#submit{
+					border: none;
+				background: @green;
+				color: #ffffff;
+				padding: 9px 12px 10px;
+				line-height: 22px;
+				text-decoration: none;
+				text-shadow: none;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+				width: 21% !important;
+				font-size: 15px;
+				font-weight: 600;
+				}
+			}
+		}
+}
+.blog-sidebar{
+	.sidebar-container{
+		
+		.widget {
+		border-bottom:1px solid #ccc;
+		margin-bottom:20px;
+		.widget-title{
+			font-size: 1.5em;
+			margin-bottom: 14px;
+		}
+		ul{
+			list-style: none;
+			margin: 0;
+			li{
+				margin-bottom:20px;
+				a{
+					font-size:1.2em
+				}
+			}
+		}
+		}
+	}
+
+}
+.blog-bg{
+	background:url(../images/slide4.jpg)no-repeat;
+	height:300px;
+	margin-top: -23px;
+	h3{
+		text-align: center;
+		padding-top: 87px;
+		color: #fff;
+		font-weight: 800;
+		margin-bottom: 10px;
+		font-size:40px;
+		img{
+			width: 275px;
+			margin-top: -9px;
+			
+		}
+	}
+	
+}
+#crumbs{
+	font-size: 24px;
+	text-align: center;
+	color: #fff;
+	font-weight: 500;
+	
 }
