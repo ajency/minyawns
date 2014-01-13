@@ -9,9 +9,7 @@ get_header(); ?>
 		<div class="row-fluid blog-container">
 				<div class="span1"></div>
 				<div class="span8 blog-data">
-<h3 >
-				<?php printf( __( 'Category Archives: %s', 'twentythirteen' ), single_cat_title( '', false ) ); ?></h3>
-				<hr>
+
 		<?php if ( have_posts() ) : ?>
 		
 		
@@ -42,8 +40,8 @@ if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned
 			<?php endwhile; ?>
 
   
-
-			<?php twentythirteen_paging_nav(); ?>
+	<?php twentythirteen_paging_nav(); ?>
+	
 
 		<?php else : ?>
 			<?php get_template_part( 'content', 'none' ); ?>

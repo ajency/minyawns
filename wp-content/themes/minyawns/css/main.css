@@ -5265,6 +5265,15 @@ div.tooltip1:after {
   display: none;
 }
 /* blog*/
+.blog-container .prev {
+  width: 50%;
+  float: left;
+}
+.blog-container .next {
+  width: 50%;
+  float: right;
+  text-align: right;
+}
 .blog-container .blog-data {
   padding-right: 60px;
   border-right: 1px solid #ccc;
@@ -5408,7 +5417,7 @@ div.tooltip1:after {
 }
 .blog-bg {
   background: url(../images/slide4.jpg) no-repeat;
-  height: 300px;
+  height: 250px;
   margin-top: -23px;
 }
 .blog-bg h3 {

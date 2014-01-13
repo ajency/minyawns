@@ -129,7 +129,7 @@
 				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
                                 <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
 				<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
-				<li id="directory"><a href="<?php echo site_url() ?>/category/blog/">Blog</a></li>
+				<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
 				<li class="green-btn-top"   >
 				 <?php if (get_logged_in_role() === 'Minion'): ?>
 				<i class="icon-edit"></i>&nbsp;<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
@@ -151,7 +151,7 @@
 				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
                                 <li id="myjobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
 				<li id="directory" ><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
-				<li id="directory"><a href="<?php echo site_url() ?>/category/blog/">Blog</a></li>
+				<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
 				<li >
 				 <?php if (get_user_role() === 'minyawn'): ?>
 				<a href="#"> Update Your Profile</a>
@@ -219,7 +219,7 @@
 				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
 <!--                                <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>-->
 				<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
-				<li id="directory"><a href="<?php echo site_url() ?>/category/blog/">Blog</a></li>
+				<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
 				<li class="green-btn-top"   >
 				 
 				   

@@ -13,9 +13,10 @@ get_header();
 		<div class="row-fluid blog-container">
 				<div class="span1"></div>
 				<div class="span8 blog-data">
-				<?php $myposts = get_posts('');
-foreach($myposts as $post) :
-setup_postdata($post); ?>
+			<?php // Display blog posts on any page @ http://m0n.co/l
+		$temp = $wp_query; $wp_query= null;
+		$wp_query = new WP_Query(); $wp_query->query('showposts=5' . '&paged='.$paged);
+		while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
 				  <div class="post-item">
     <div class="post-info">
       <h2 class="post-title">
@@ -36,10 +37,23 @@ if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned
 <a class="readmore" href="<?php the_permalink(); ?>">Read More</a>
     </div>
   </div>
-<div class="navigation"><p><?php posts_nav_link('&#8734;','&laquo;&laquo; Go Forward 
-In Time','Go Back in Time &raquo;&raquo;'); ?></p></div>
-<?php endforeach; wp_reset_postdata(); ?>
-				
+
+	<?php endwhile; ?>
+	<?php if ($paged > 1) { ?>
+
+		<nav id="nav-posts">
+			<div class="prev"><?php next_posts_link('&laquo; Previous Posts'); ?></div>
+			<div class="next"><?php previous_posts_link('Newer Posts &raquo;'); ?></div>
+		</nav>
+
+		<?php } else { ?>
+
+		<nav id="nav-posts">
+			<div class="prev"><?php next_posts_link('&laquo; Previous Posts'); ?></div>
+		</nav>
+
+		<?php } ?>
+		
 				</div>
 				<div class="span3 blog-sidebar"><?php get_sidebar(); ?></div>
 				
