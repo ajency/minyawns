@@ -150,8 +150,8 @@ function load_add_job_form(event) {
 function load_browse_jobs(id, _action, category_ids) {
 
 
-$("#sidebar-content").show();
-$("#my-jobs-emp-min").hide();
+    $("#sidebar-content").show();
+    $("#my-jobs-emp-min").hide();
 
 
     //jQuery("#accordion24").empty();
@@ -365,8 +365,8 @@ function fetch_my_jobs(id)
 
     var profile_page = 0;
 
-$("#sidebar-content").hide();
-$("#my-jobs-emp-min").show();
+    $("#sidebar-content").hide();
+    $("#my-jobs-emp-min").show();
 
     jQuery("#accordion24").empty();
     jQuery("#loader").show();
@@ -391,8 +391,12 @@ $("#my-jobs-emp-min").show();
     $(".inline li").removeClass("selected");
 
     $("#my_jobs").addClass('selected');
+    var filter = 0;
+    if (window.location.href.indexOf("profile") > -1)
+        var profile_page = 1;
 
-
+    if (profile_page == 1)
+        filter = 1;
 
 
     var Fetchjobs = Backbone.Collection.extend({
@@ -404,16 +408,17 @@ $("#my-jobs-emp-min").show();
     window.fetchj.fetch({
         data: {
             'my_jobs': 1,
-            'offset': 0
+            'offset': 0,
+            'filter': filter
 
         },
         success: function(collection, response) {
             //jQuery(".load_ajax1_myjobs").hide();
-                   
-            if(logged_in_role === 'Employer')
-             $("#my-jobs-emp-min").html($("#employer-sidebar").html()); 
+
+            if (logged_in_role === 'Employer')
+                $("#my-jobs-emp-min").html($("#employer-sidebar").html());
             else
-             $("#my-jobs-emp-min").html($("#minion-sidebar").html());   
+                $("#my-jobs-emp-min").html($("#minion-sidebar").html());
 
 
             if (collection.length === 0) {
@@ -432,7 +437,7 @@ $("#my-jobs-emp-min").show();
                 // jQuery("#load-more-my-jobs").hide();
                 jQuery("#list-my-jobs").show();
                 jQuery(".no-result").hide()
-                jQuery("#accordion24").empty();
+                //jQuery("#accordion24").empty();
                 var template = _.template(jQuery("#jobs-table").html());
                 var samplejobs = _.template(jQuery("#sample-jobs-template").html());
                 var profiletemp = _.template(jQuery("#profile-table").html());
@@ -461,13 +466,18 @@ $("#my-jobs-emp-min").show();
                             jQuery("#load-more-my-jobs,.load_more_profile").hide();
 
 
+
                         if (window.location.href.indexOf("profile") > -1)
                             var profile_page = 1;
 
 
-                        if (profile_page == 1) {
 
+
+                        if (profile_page == 1) {
+//alert("profile");
+                            var profiletemp = _.template(jQuery("#profile-table").html());
                             var html = profiletemp({result: model.toJSON(), review: review, job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
+                           
                             jQuery("#accordion24").prepend(html);
                             jQuery("#selection").hide();
 
@@ -489,14 +499,23 @@ $("#my-jobs-emp-min").show();
 
                     } else
                     {
-                        // jQuery(".load_more").hide();
+                        // TO VIEW PROFILES VIA A LINK
+                        var profiletemp = _.template(jQuery("#profile-table").html());
+                        if (window.location.href.indexOf("profile") > 1) {
 
-var template = _.template(jQuery("#no-result").html());
-                        jQuery("#accordion24").html(jQuery("#no-result").html());
+                            var html = profiletemp({result: model.toJSON(), review: review, job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
-                        if (logged_in_role == 'Minion' && role == 'Employer')
-                            $(".myjobs").hide();
+                            jQuery(".job-view-list").prepend(html);
+                            //  jQuery("#selection").hide();
 
+                        } else {
+                            var template = _.template(jQuery("#no-result").html());
+                            jQuery("#accordion24").html(jQuery("#no-result").html());
+
+                            if (logged_in_role == 'Minion' && role == 'Employer')
+                                $(".myjobs").hide();
+
+                        }
                     }
                 });
                 jQuery(".load_ajax").hide();

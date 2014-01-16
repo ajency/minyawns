@@ -101,17 +101,20 @@ $app->get('/fetchjobs/', function() use ($app) {
 
 
             if (isset($_GET['my_jobs'])) {
+                 $url=$_SERVER['HTTP_REFERER'];
+                 $user_id=is_numeric(basename($url)) === true ? basename($url) : get_current_user_id(); //via a link or direct view profile
+                 $user = new WP_User($user_id);
 
-                if (get_user_role() == 'minyawn') {
+                if ($user->roles[0] == 'minyawn') {
                     $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
-                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . get_current_user_id() . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID ";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . $user_id . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID AND status='hired'";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value DESC";
                 } else {
                     //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
                     $tables = "$wpdb->posts,$wpdb->postmeta";
-                    $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . get_current_user_id() . "' AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' ";
+                    $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . $user_id . "' AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' ";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value DESC";

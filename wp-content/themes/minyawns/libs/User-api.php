@@ -182,6 +182,7 @@ function user_profile_first_name() {
 }
 
 function user_profile_company_name() {
+  
     global $current_user_new;
 
     return $current_user_new->data->company_name;
