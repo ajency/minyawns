@@ -150,7 +150,8 @@ function load_add_job_form(event) {
 function load_browse_jobs(id, _action, category_ids) {
 
 
-
+$("#sidebar-content").show();
+$("#my-jobs-emp-min").hide();
 
 
     //jQuery("#accordion24").empty();
@@ -364,7 +365,8 @@ function fetch_my_jobs(id)
 
     var profile_page = 0;
 
-
+$("#sidebar-content").hide();
+$("#my-jobs-emp-min").show();
 
     jQuery("#accordion24").empty();
     jQuery("#loader").show();
@@ -407,6 +409,12 @@ function fetch_my_jobs(id)
         },
         success: function(collection, response) {
             //jQuery(".load_ajax1_myjobs").hide();
+                   
+            if(logged_in_role === 'Employer')
+             $("#my-jobs-emp-min").html($("#employer-sidebar").html()); 
+            else
+             $("#my-jobs-emp-min").html($("#minion-sidebar").html());   
+
 
             if (collection.length === 0) {
 

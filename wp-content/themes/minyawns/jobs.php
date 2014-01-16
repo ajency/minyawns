@@ -273,7 +273,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
             <dic class="row-fluid">
                 
             <div class="span3" id="sidebar_categories">
-             <div class="alert alert-success alert-sidebar">
+             <div class="alert alert-success alert-sidebar" id="sidebar-content">
                         <h3> Job Categories</h3><hr>
 						<ul class="unstyled nav nav-list categories">
 						<?php foreach($category as $cats){
@@ -284,6 +284,10 @@ $all_categories = get_categories(array('hide_empty' => 0));
 						
 						<?php } ?>
                                                 </ul>
+                        <br>
+                    </div>
+                <div  id="my-jobs-emp-min">
+                        
                         <br>
                     </div>
                 </div>

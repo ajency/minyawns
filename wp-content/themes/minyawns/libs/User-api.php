@@ -512,7 +512,7 @@ function send_mail_employer_apply_job($job_id, $action) {
     $employer_data = get_userdata($employer_id);
 
     //Send mail to Emplyer
-    $mail_subject = "Minyawns - " . $current_user->display_name . " have " . $action . " for " . get_the_title($job_id);
+    $mail_subject = "Minyawns - " . $current_user->display_name . " has " . $action . " for " . get_the_title($job_id);
 
     $mail_message = "Hi,<br/><br/>Looks like " .
             $current_user->display_name . " has " . $action . " for the job '" . get_the_title($job_id) . "'

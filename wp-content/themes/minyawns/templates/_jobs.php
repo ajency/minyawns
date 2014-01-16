@@ -454,3 +454,29 @@ $key_job = sha1($salt . uniqid(time(), true));
 		</div>
     
 </script>
+
+<script type="text/templates" id="employer-sidebar">
+<div class="alert alert-success alert-sidebar">
+<h3> Stuff that's good to know</h3><hr>
+						<ul class="unstyled nav nav-list categories" id="display_text">
+						<li><b>Make sure you set the right wage for the job,as the minions are hardworking and always deliver - so keep them happy</b></li>
+                    <li><b>Be as clear as you can about the nature of the job. A surprised minion is not always a good thing</b></li>                                     
+            <li><b>Be sure to rate your minion once the job is completed. A pat on the back or a light reproach will help the minion do better</b></li>
+            </ul>
+</div>
+
+</script>
+
+<script type="text/templates" id="minion-sidebar">
+<div class="alert alert-success alert-sidebar">
+<h3>Stuff every good minion must know</h3><hr>
+						<ul class="unstyled nav nav-list categories" id="display_text">
+						<li><b>Make sure your overall ratings are good.Most employers select minions with higher ratings</b></li>
+            <li><b>Show up for jobs assigned and accepted by you. You will be paid only once the job has been successfully completed</b></li>
+            <li><b>Do every job with a smile. Nobody likes a cranky minion</b></li>
+           
+            </ul>
+</div>
+        
+</script>
+
