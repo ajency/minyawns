@@ -820,7 +820,7 @@ $app->post('/inviteminions', function() use($app) {
             $headers = "MIME-Version: 1.0\n" .
                     "From:From: support@minyawns.com\n" .
                     "Content-Type: text/html; charset=\"" . "\"\n";
-            print_r($headers.$mail['hhtml'].$mail['subject'].$mail['message'].$mail['fhtml']);exit();
+           
             wp_mail($emailid, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http reques
