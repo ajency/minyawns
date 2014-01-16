@@ -117,8 +117,9 @@
             <td class="td-job-title"><%= result.job_title%></td>
             <td class="sm-font"><%= result.job_start_date%></td>
             <td>
-			<%= button %>
 			<span id="loader<%= result.job_id%>" class="load_ajax" style="display:none"></span>
+			<%= button %>
+			
 			</td>
           </tr>
     </script>
