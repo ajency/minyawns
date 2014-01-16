@@ -62,7 +62,7 @@ function minyawns_scripts_styles() {
             break;
         case 'DEVELOPMENT':
         default:
-            if (is_page('Home')) {
+            if (is_page('Home') || is_home()) {
                 wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
                 wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array(), null);
                 wp_enqueue_style('flat-ui', get_template_directory_uri() . '/css/flat-ui.css', array(), null);
