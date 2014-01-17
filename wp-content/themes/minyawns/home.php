@@ -8,6 +8,29 @@
    
    
    ?>
+<script type="text/javascript">
+    $(function(){
+    $('#powtoon-frame').load(function(){
+        $(this).show();
+      
+    });
+
+    $('#click').on('click', function(){
+      
+        $('#powtoon-frame').attr('src', 'http://www.powtoon.com/embed/gbbkC7yIduS/');    
+    });
+    
+     $('#powtoon-frame1').load(function(){
+        $(this).show();
+      
+    });
+
+    $('#click1').on('click', function(){
+      
+        $('#powtoon-frame1').attr('src', 'http://www.powtoon.com/embed/gdPRX5igKP7/');    
+    });
+});
+    </script>
 <div id="innermainimage">
    <div class="row-fluid banner-content">
     <div class="span1">
@@ -623,18 +646,20 @@ Enviormental Engineering </div>
       <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture9.png"></div>
    </div><br><br>
 </div>
-  	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
    		  <div class="modal-body">
-   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gbbkC7yIduS/" frameborder="0" allowfullscreen></iframe></p>
+   			<p><iframe id="powtoon-frame" width="530" height="351" src="" frameborder="0" allowfullscreen></iframe></p>
    		  </div>
    		  <div class="modal-footer">
    			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
    		</div>
+            <button id="click">Play this</button>
    	</div>
-	  	 <div id="video2" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  	 <div id="video2" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">>
    		  <div class="modal-body">
-   			<p><iframe width="530" height="351" src="http://www.powtoon.com/embed/gdPRX5igKP7/" frameborder="0" allowfullscreen></iframe></p>
+   			<p><iframe id="powtoon-frame1" width="530" height="351" src="" frameborder="0" allowfullscreen></iframe></p>
    		  </div>
+                      <button id="click1">Play this</button>
    		  <div class="modal-footer">
    			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
    		</div>
