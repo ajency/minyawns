@@ -5416,17 +5416,18 @@ div.tooltip1:after {
   font-size: 1.2em;
 }
 .blog-bg {
-  background: url(../images/slide4.jpg) no-repeat;
+  background: url(../images/bg-4.jpg) bottom no-repeat;
   height: 250px;
   margin-top: -23px;
 }
 .blog-bg h3 {
   text-align: center;
   padding-top: 87px;
-  color: #fff;
+  color: #9e9e9e;
   font-weight: 800;
   margin-bottom: 10px;
   font-size: 40px;
+  font-family: arial;
 }
 .blog-bg h3 img {
   width: 275px;
