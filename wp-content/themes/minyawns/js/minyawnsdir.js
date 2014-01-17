@@ -167,6 +167,7 @@ function fetch_minyawns_list() {
             {
 
                 var no_result = _.template($("#no-result-minyawn-dir").html());
+                jQuery(".no-job").remove();
                 jQuery(".minyawnslist").append(no_result);
 
             }
