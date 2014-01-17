@@ -44,9 +44,9 @@ $app->post('/change-avatar', function() use($app) {
 
             if ($files['name']) {
                 $file = array(
-                    'name' => $files['name'],
+                    'name' => preg_replace('/\s+/', '_',$files['name']),
                     'type' => $files['type'],
-                    'tmp_name' => $files['tmp_name'],
+                    'tmp_name' => preg_replace('/\s+/', '_',$files['tmp_name']),
                     'error' => $files['error'],
                     'size' => $files['size']
                 );
@@ -90,9 +90,9 @@ $app->post('/resize-user-avatar', function() use($app) {
             else
                 $new_name = "minyawn" . $user_ID . ".jpg";*/
             if (get_user_role() == 'employer')
-            	$new_name = "employer". $user_ID."_". $image_name  ;
+            	$new_name = "employer". $user_ID."_".$image_name;
             else
-            	$new_name = "minyawn". $user_ID."_".$image_name  ;
+            	$new_name = "minyawn". $user_ID."_".$image_name;
             
 
             $for_user_meta = "user-avatars/" . $user_ID . "/" . $new_name;
