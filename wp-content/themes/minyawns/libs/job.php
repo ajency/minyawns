@@ -105,9 +105,11 @@ $app->get('/fetchjobs/', function() use ($app) {
                  $user_id=is_numeric(basename($url)) === true ? basename($url) : get_current_user_id(); //via a link or direct view profile
                  $user = new WP_User($user_id);
 
+                 $additional_filter=is_numeric(basename($url)) === true ? "AND status='hired'" : '';
+                
                 if ($user->roles[0] == 'minyawn') {
                     $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
-                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . $user_id . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID AND status='hired'";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . $user_id . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID '".$additional_filter."'";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value DESC";
@@ -147,7 +149,6 @@ $app->get('/fetchjobs/', function() use ($app) {
                             $order_by
                             $limit
                          ";
-
 
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
