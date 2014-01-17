@@ -17,7 +17,7 @@
 
     $('#click').on('click', function(){
       
-        $('#powtoon-frame').attr('src', 'http://www.powtoon.com/embed/gbbkC7yIduS/');    
+        $('#powtoon-frame').attr('src', 'http://www.powtoon.com/embed/gbbkC7yIduS?autoplay=1');    
     });
     
      $('#powtoon-frame1').load(function(){
@@ -27,7 +27,7 @@
 
     $('#click1').on('click', function(){
       
-        $('#powtoon-frame1').attr('src', 'http://www.powtoon.com/embed/gdPRX5igKP7/');    
+        $('#powtoon-frame1').attr('src', 'http://www.powtoon.com/embed/gdPRX5igKP7?autoplay=1');    
     });
 });
     </script>
@@ -58,7 +58,7 @@ Backed by University of Washington students and designed for business profession
 		<p>   Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.</p>
 		</div>
 		<div class="span6">
-		<a href="#video1"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png" align="right"/></a>  
+		<a id="click1" href="#video1"  data-toggle="modal"><div id="click1" ><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png" align="right"/></div></a>  
 		</div>
 	
 	</div>
@@ -73,7 +73,7 @@ Backed by University of Washington students and designed for business profession
 		<p>  Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</p>
 		</div>
 		<div class="span6">
-		<a href="#video2"  data-toggle="modal"><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png" align="right"/></a>
+		<a id="click"  href="#video2"  data-toggle="modal"><div id="click" ><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png" align="right"/></div></a>
 		</div>
 	
 	</div>
@@ -653,13 +653,13 @@ Enviormental Engineering </div>
    		  <div class="modal-footer">
    			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
    		</div>
-            <button id="click">Play this</button>
+           
    	</div>
-	  	 <div id="video2" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">>
+	  	 <div id="video2" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
    		  <div class="modal-body">
    			<p><iframe id="powtoon-frame1" width="530" height="351" src="" frameborder="0" allowfullscreen></iframe></p>
    		  </div>
-                      <button id="click1">Play this</button>
+                     
    		  <div class="modal-footer">
    			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
    		</div>
