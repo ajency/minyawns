@@ -98,8 +98,8 @@ $key_job = sha1($salt . uniqid(time(), true));
                         <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br>
 							<div class="msg-info">
 							<span>Please Note</span>
-							If the minions don't show up, we will make it right. You will get a full refund to ensure your satisfaction.
-<br>Our transactions are handled through PayPal but you don't need a PayPal account. Any credit or debit card will do!</div>
+							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
+And you don't need a PayPal account to pay us.<br> Any credit or debit card will do!</div>
                         <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
                      <span id="selection_message"></span>
                                     </div>
@@ -201,8 +201,8 @@ $key_job = sha1($salt . uniqid(time(), true));
     <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br>
 <div class="msg-info">
 							<span>Please Note</span>
-							If the minions don't show up, we will make it right. You will get a full refund to ensure your satisfaction.
-<br>Our transactions are handled through PayPal but you don't need a PayPal account. Any credit or debit card will do!</div>
+							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
+And you don't need a PayPal account to pay us. <br>Any credit or debit card will do!</div>
     <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
     <span id="selection_message"></span>
     </div>
