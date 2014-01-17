@@ -272,7 +272,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     $show_load = 0;
 
 
-                if (isset($_GET['single_job'])) /* pagination issue */
+                if (strlen($_GET['single_job']) > 0) /* pagination issue */
                     $show_load = 1;
 
                 if (get_user_company_logo($pagepost->post_author) == false)

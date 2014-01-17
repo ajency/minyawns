@@ -326,6 +326,7 @@ function load_browse_jobs(id, _action, category_ids) {
 
                     } else {
                         jQuery(".load_more").show();
+                       
                         if (model.toJSON().load_more === 1)
                             jQuery(".load_more").hide();
 
@@ -340,7 +341,7 @@ function load_browse_jobs(id, _action, category_ids) {
 
                     }
                 });
-                jQuery(".load_more").hide();
+                jQuery(".load_ajax").hide();
                 jQuery("#loader").hide();
             }
 
