@@ -409,7 +409,7 @@ function fetch_my_jobs(id)
         data: {
             'my_jobs': 1,
             'offset': 0,
-            'filter': filter
+            'filter_my': filter
 
         },
         success: function(collection, response) {
@@ -423,7 +423,7 @@ function fetch_my_jobs(id)
 
             if (collection.length === 0) {
 
-                if (logged_in_role === 'Employer')
+                if (role === 'Employer')
                     var template = _.template(jQuery("#no-result").html());
                 else
                     var template = _.template(jQuery("#no-result-minion").html());
