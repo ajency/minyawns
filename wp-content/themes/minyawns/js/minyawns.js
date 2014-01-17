@@ -786,7 +786,7 @@ jQuery(document).ready(function($) {
                     }
                     else {
 
-                        $("#accordion2").append(html);
+                        $("#accordion24").append(html);
                     }
 
                 });
