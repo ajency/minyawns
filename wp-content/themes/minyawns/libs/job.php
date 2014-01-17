@@ -109,7 +109,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 
                 if ($user->roles[0] == 'minyawn') {
                     $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
-                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . $user_id . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID '".$additional_filter."'";
+                    $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . $user_id . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID ".$additional_filter."";
                     $limit = "LIMIT " . $_GET['offset'] . ",5";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value DESC";
