@@ -656,17 +656,37 @@ function create_post_type() {
         ),
         'public' => true,
         'has_archive' => true,
-        'taxonomies' => array('category')
+        //'taxonomies' => array('category')
             )
     );
+//      register_taxonomy(
+//            'job_category', 'job'
+//    );
+      //register_taxonomy_for_object_type( 'category', 'job' );
 }
 
 add_action('init', 'create_post_type');
+add_action( 'init', 'build_taxonomies', 0 );
 
+function build_taxonomies() {
+    register_taxonomy( 'category', 'job', array( 'hierarchical' => true, 'label' => 'Job Categories', 'query_var' => true, 'rewrite' => true ) );
+}
 function register_jobs_taxonomy() {
     register_taxonomy(
             'job_tags', 'job'
     );
+   
+    
+  
+    
+    
+//     register_taxonomy( 'job_tags',array('job'), array(
+//'hierarchical' => true,
+//'show_ui' => true,
+//'query_var' => true,
+//'rewrite' => array( 'slug' => 'job_tags'),
+//));
+
 }
 
 add_action('init', 'register_jobs_taxonomy');
