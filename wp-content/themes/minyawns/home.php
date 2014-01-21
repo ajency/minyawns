@@ -15,7 +15,7 @@
       
     });
 
-    $('#click').on('click', function(){
+    $('#click1').on('click', function(){
       
         $('#powtoon-frame').attr('src', 'http://www.powtoon.com/embed/gbbkC7yIduS?autoplay=1');    
     });
@@ -25,7 +25,7 @@
       
     });
 
-    $('#click1').on('click', function(){
+    $('#click').on('click', function(){
       
         $('#powtoon-frame1').attr('src', 'http://www.powtoon.com/embed/gdPRX5igKP7?autoplay=1');    
     });
