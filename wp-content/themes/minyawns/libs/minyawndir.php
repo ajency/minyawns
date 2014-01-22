@@ -82,8 +82,11 @@ $app->get('/allminyawns', function() use ($app) {
 
             if (count($usersData) > 0) {
                 foreach ($usersData as $userData) {
+                    $user = new WP_User($userData->ID);
 
-                    $data[] = get_minyawn_profile($userData, $total);
+                    if ($user->roles[0] != 'employer') {
+                        $data[] = get_minyawn_profile($userData, $total);
+                    }
                 }
             } else {
 
@@ -91,6 +94,10 @@ $app->get('/allminyawns', function() use ($app) {
                     'error' => '404'
                 );
             }
+
+           if(sizeof($data) === 0)
+               $data=array('blank'=>'1');
+
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
         });

@@ -142,7 +142,7 @@ function fetch_minyawns_list() {
         reset: true,
         success: function(collection, response) {
 
-            if (response.error !== '404') {
+            if (response.error !== '404' && response.blank != '1') {
                 var template = _.template(jQuery("#minyawn-directory-card").html());
 
                 $(".load_ajax_large").show();
