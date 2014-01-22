@@ -129,7 +129,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
 	          'show_count' => 0,
         	  'pad_counts' => 0,
 	          'hierarchical' => 1,
-        	 // 'taxonomy' => $tax,
+        	 'taxonomy' => 'job_category',
         	  'title_li' => ''
         	);
 
@@ -404,13 +404,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                                         <div class="control-group small">
                                             <label class="control-label" for="inputtask">Job Category</label>
                                             <div class="controls ">
-                                                <?php
-                                                foreach ($all_categories as $category) {
-                                                    ?>
-                                                    <input class="category_label" type="checkbox"  value="<?php echo $category->cat_ID ?>" name="category-<?php echo $category->cat_ID ?>" id="category-<?php echo $category->cat_ID ?>"/><span class="category_name"><?php echo $category->name ?></span>
-                                                    <?php
-                                                }
-                                                ?>
+                                              
                                             </div>
                                         </div>
                                         <div class="control-group small">

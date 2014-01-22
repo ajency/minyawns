@@ -669,7 +669,7 @@ add_action('init', 'create_post_type');
 add_action( 'init', 'build_taxonomies', 0 );
 
 function build_taxonomies() {
-    register_taxonomy( 'category', 'job', array( 'hierarchical' => true, 'label' => 'Job Categories', 'query_var' => true, 'rewrite' => true ) );
+    register_taxonomy( 'job_category', 'job', array( 'hierarchical' => true, 'label' => 'Job Categories', 'query_var' => true, 'rewrite' => true ) );
 }
 function register_jobs_taxonomy() {
     register_taxonomy(
