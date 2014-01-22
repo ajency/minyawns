@@ -57,11 +57,16 @@ jQuery(document).ready(function($) {
 //      alert(document.body.scrollHeight);
 //      alert(document.body.scrollTop);
 //       alert(window.Height);
-        if (document.body.scrollHeight == (document.body.scrollTop + window.innerHeight)) {
+        if (document.body.scrollHeight === (document.body.scrollTop + window.innerHeight)) {
             if (window.error !== 404) {
+             
 //                var no_result = _.template($("#loader-image").html());
 //                jQuery(".minyawns-grid1").append(no_result);
                 $(".load_ajax_large").show();
+                
+               
+                
+               
                 load_more();
             }
         }
@@ -232,6 +237,12 @@ function load_more() {
 
 //    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
 //    jQuery(".minyawns-grid1").append(filter_loader_template);
+    
+    if(window.flag == true)
+             return;
+         
+    window.flag=true;
+
     var first = getUrlVars()["filter"];
 
     var _data = {
@@ -258,7 +269,7 @@ function load_more() {
 
 
                 _.each(collection.models, function(model) {
-                    console.log(collection.models);
+                    
                     var html = template({result: model.toJSON()});
 
                     jQuery(".minyawnslist").append(html);
@@ -274,7 +285,7 @@ function load_more() {
 
                     //shwo the load more
                 }
-
+ window.flag=false;
 
             } else
             {
@@ -287,7 +298,8 @@ function load_more() {
         }
 
     });
-
+   
+   
     setTimeout(function() {
         jQuery(".minyawns-grid1").find('#filters-loader').remove()
     }, 1000); //remove loader after load more completes
