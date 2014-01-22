@@ -821,17 +821,17 @@ $app->post('/inviteminions', function() use($app) {
             //date('g:i', $post_meta['job_start_time'][0]),
             $mail = email_template($emailid, $data_mail, 'invite_minion');
             $headers = 'From: support@minyawns.com' . "\r\n";
-            $headers = "MIME-Version: 1.0\n" .
+            $headers .= "MIME-Version: 1.0\n" .
                     "From:From: support@minyawns.com\n" .
                     "Content-Type: text/html; charset=\"" . "\"\n";
            
-            wp_mail($emailid, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
+           $data1= wp_mail($emailid, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http reques
             $json_a = json_decode($requestBody, true);
 
             $app->response()->header("Content-Type", "application/json");
-            echo json_encode($data);
+            echo json_encode($data1);
         });
 
 
