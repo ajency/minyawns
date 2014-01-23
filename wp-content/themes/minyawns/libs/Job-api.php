@@ -107,8 +107,22 @@ class Minyawn_Job {
         $this->required_minyawns = trim($job_meta['job_required_minyawns'][0]);
 
         $this->categories = get_the_category($this->ID);
+$args = array(
+	'type'                     => 'job',
+	'child_of'                 => 0,
+	'parent'                   => '',
+	'orderby'                  => 'name',
+	'order'                    => 'ASC',
+	'hide_empty'               => 0,
+	'hierarchical'             => 1,
+	'exclude'                  => '',
+	'include'                  => '',
+	'number'                   => '',
+	'taxonomy'                 => 'job_category',
+	'pad_counts'               => false 
 
-        $this->all_categories = get_categories();
+); 
+        $this->all_categories = get_categories($args);
 
 
         $job_tags = wp_get_post_terms($this->ID, 'job_tags', array("fields" => "names"));
