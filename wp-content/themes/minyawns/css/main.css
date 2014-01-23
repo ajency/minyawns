@@ -27,6 +27,11 @@ a:hover {
 .bdr-gray {
   border-bottom: 1px solid #EBEBEB;
 }
+.btn-normal {
+  font-size: 18PX !important;
+  font-weight: 100;
+  font-family: "Lato", sans-serif;
+}
 .invite-btn {
   margin-bottom: 10px;
 }
@@ -303,6 +308,48 @@ body .jobs_table .data-title .profile-job {
 .mobile-menu {
   display: none;
 }
+.minyawn-category {
+  margin-top: 35px;
+}
+.minyawn-category li {
+  background: rgba(255, 255, 255, 0.83);
+  width: 42%;
+  display: inline-block;
+  margin: 5px;
+  padding: 20px;
+  border: 1px solid #83C034;
+  cursor: pointer;
+}
+.minyawn-category li .icon-data {
+  width: 33%;
+  display: block;
+  float: left;
+  text-align: center;
+}
+.minyawn-category li .icon-data i {
+  font-size: 70px;
+  color: #a3d55c;
+}
+.minyawn-category li .icon-data span {
+  font-size: 15px;
+  text-transform: uppercase;
+  font-family: "Lato", sans-serif;
+  color: #a3d55c;
+}
+.minyawn-category li .data-info {
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: "Lato", sans-serif;
+  color: #90918f;
+  line-height: 18px;
+  font-weight: 100;
+  float: left;
+  width: 59%;
+  margin-left: 25px;
+}
+.minyawn-category li:hover {
+  background: #fff;
+}
 @media (max-width: 767px) {
   body .blog-container .blog-data {
     border: 0px;
@@ -318,6 +365,43 @@ body .jobs_table .data-title .profile-job {
     font-style: normal;
     font-size: 1.0em;
   }
+  .logged-out .minyawns-grid1 .thumbspan .thumbnail .m2 .caption .tags {
+    height: 79px;
+  }
+  .logged-in .pull-right {
+    display: block !important;
+  }
+  .logged-in .pull-right .data-link:last-child {
+    border: 0px !important;
+  }
+  body .minyawn-category li {
+    width: 83%;
+  }
+  body .minyawn-category li .data-info {
+    width: 56%;
+  }
+  body .minyawn-category li .icon-data span {
+    font-size: 14px;
+  }
+  body .btn-normal {
+    font-size: 18PX !important;
+    font-weight: 100;
+    font-family: "Lato", sans-serif;
+    width: 274px;
+    margin: 10px auto !important;
+  }
+  .home .how-does-it-work {
+    margin-bottom: -20px;
+  }
+  .banner-content .nav-tabs {
+    display: none !important;
+  }
+  .banner-content .tab-content {
+    display: none !important;
+  }
+  .learn-more {
+    display: none !important;
+  }
   .logged-out .pull-right {
     display: none;
   }
@@ -328,9 +412,12 @@ body .jobs_table .data-title .profile-job {
   .logged-out .mobile-menu-table td {
     border: 1px solid #D8D8D8;
     padding: 9px;
+    width: 18%;
+    display: table-cell;
   }
   .logged-out .mobile-menu-table td a {
     font-size: 14px;
+    display: block;
   }
   .mobile-menu {
     display: block !important;
@@ -1193,13 +1280,16 @@ body .jobs_table .data-title .profile-job {
     position: relative;
   }
   body #innermainimage .banner-content .banner-title {
-    font-size: 28px;
+    font-size: 19px;
     margin-bottom: 10px;
-    margin-top: -30px;
+    margin-top: 50px;
     text-align: center;
+    color: #fff;
   }
   body #innermainimage .banner-content .banner-desc {
-    text-align: center;
+    font-size: 12px;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.47);
   }
   body #innermainimage .banner-content .tab-content .tab-pane {
     height: 100%;
@@ -1557,9 +1647,11 @@ body .jobs_table .data-title .profile-job {
 }
 .bg-overflow {
   height: 100%;
+  background: url(../images/banner2.jpg);
+  background-size: cover;
 }
 #innermainimage {
-  height: 580px;
+  height: 640px;
   margin: 0 auto;
   width: 100%;
   max-width: 1920px;
@@ -1578,12 +1670,12 @@ body .jobs_table .data-title .profile-job {
   margin-top: 120px;
 }
 #innermainimage .banner-content .banner-title {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 900;
-  color: #fff;
-  font-size: 35px;
-  margin-bottom: 20px;
-  margin-top: 50px;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.39);
+  font-size: 45px;
+  margin-bottom: 12px;
+  margin-top: 5px;
+  text-align: center;
 }
 #innermainimage .banner-content img {
   display: block;
@@ -1647,13 +1739,14 @@ body .jobs_table .data-title .profile-job {
   border-top: 0px;
 }
 #innermainimage .banner-content .btn-huge {
-  font-size: 17px;
+  font-size: 20px;
   line-height: 26px;
-  font-weight: bold;
+  font-weight: 100;
   border-bottom: 4px solid rgba(255, 255, 255, 0.36);
-  width: 48%;
-  margin: 17px auto;
-  padding: 9px;
+  width: 226px;
+  margin: 2px auto;
+  padding: 12px;
+  border: 0px;
 }
 /* Home Page */
 .home {
@@ -2302,19 +2395,22 @@ body .jobs_table .data-title .profile-job {
     margin-top: 2%;
     background: #535353;
     padding-top: 110px;
+    height: 195px;
+    margin-bottom: 16px;
   }
   .home #innermainimage .banner-content .log-img {
     width: 22%;
   }
   .home #innermainimage .banner-content .btn-huge {
     width: 64%;
-    font-size: 13px;
+    font-size: 21px;
     margin: auto;
     margin-bottom: 7px;
   }
   .home #innermainimage .banner-content .banner-desc {
-    font-size: 16px;
-    padding: 16px;
+    font-size: 12px;
+    padding: 6px;
+    margin-bottom: 10px;
   }
   .single-jobs .minyawns-grid {
     width: 98%;
