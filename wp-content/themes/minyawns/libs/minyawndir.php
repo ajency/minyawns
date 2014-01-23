@@ -58,7 +58,7 @@ $app->get('/allminyawns', function() use ($app) {
 //                }
 
                 $querystr = "SELECT DISTINCT * FROM " . $where . " LIMIT 9 OFFSET " . $_GET['offset'] . "";
-
+print_r($querystr);exit();
                 $usersData = $wpdb->get_results($querystr, OBJECT);
 
                 $total = count($usersData);
