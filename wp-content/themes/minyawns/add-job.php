@@ -161,7 +161,7 @@ $(".inline li").removeClass("selected");
 	          'show_count' => 0,
         	  'pad_counts' => 0,
 	          'hierarchical' => 1,
-        	 // 'taxonomy' => $tax,
+        	  'taxonomy' => 'job_category',
         	  'title_li' => ''
         	);
 
