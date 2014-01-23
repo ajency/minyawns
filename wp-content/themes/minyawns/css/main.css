@@ -4421,7 +4421,7 @@ div.tooltip1:after {
   font-weight: 200;
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .minyawn-category li {
+  body .minyawn-category li {
     background: rgba(255, 255, 255, 0.83);
     width: 40%;
     display: inline-block;
@@ -4431,20 +4431,20 @@ div.tooltip1:after {
     cursor: pointer;
     height: 80px;
   }
-  .minyawn-category li icon-data {
+  body .minyawn-category li .icon-data {
     width: 30%;
     display: block;
     float: left;
     text-align: center;
   }
-  .minyawn-category li icon-data i {
+  body .minyawn-category li .icon-data i {
     font-size: 67px;
     color: #a3d55c;
   }
-  .minyawn-category li icon-data span {
+  body .minyawn-category li .icon-data span {
     font-size: 11px;
   }
-  .minyawn-category li data-info {
+  body .minyawn-category li .data-info {
     font-size: 10px;
     text-transform: uppercase;
     font-family: "Lato", sans-serif;
