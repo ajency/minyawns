@@ -57,7 +57,7 @@ $app->get('/allminyawns', function() use ($app) {
 //                 $where = "{$wpdb->prefix}users.ID={$wpdb->prefix}users.user_id AND {$wpdb->prefix}userjobs='status' AND({$wpdb->prefix}usermeta.meta_key = 'user_skills' AND {$wpdb->prefix}usermeta.meta_value LIKE '" . $filter_key . ",%' OR {$wpdb->prefix}usermeta.meta_value LIKE '" . $filter_key . "%' OR  {$wpdb->prefix}usermeta.meta_value LIKE '%," . $filter_key . ",%'  OR {$wpdb->prefix}usermeta.meta_value LIKE '%," . $filter_key . "' OR {$wpdb->prefix}usermeta.meta_key = 'major' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'college' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'first_name' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'last_name' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%') AND ({$wpdb->prefix}usermeta.meta_key = 'user_verified' AND {$wpdb->prefix}usermeta.meta_value LIKE '" . $verified . "')";   
 //                }
 
-                $querystr = "SELECT * FROM " . $where . " LIMIT 9 OFFSET " . $_GET['offset'] . "";
+                $querystr = "SELECT DISTINCT * FROM " . $where . " LIMIT 9 OFFSET " . $_GET['offset'] . "";
 
                 $usersData = $wpdb->get_results($querystr, OBJECT);
 
@@ -82,8 +82,11 @@ $app->get('/allminyawns', function() use ($app) {
 
             if (count($usersData) > 0) {
                 foreach ($usersData as $userData) {
+                    $user = new WP_User($userData->ID);
 
-                    $data[] = get_minyawn_profile($userData, $total);
+                    if ($user->roles[0] != 'employer') {
+                        $data[] = get_minyawn_profile($userData, $total);
+                    }
                 }
             } else {
 
@@ -91,6 +94,10 @@ $app->get('/allminyawns', function() use ($app) {
                     'error' => '404'
                 );
             }
+
+           if(sizeof($data) === 0)
+               $data=array('blank'=>'1');
+
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
         });

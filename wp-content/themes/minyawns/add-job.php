@@ -30,10 +30,10 @@ $args = array(
     'exclude' => '',
     'include' => '',
     'number' => '',
-    'taxonomy' => 'category',
+    'taxonomy' => 'job_category',
     'pad_counts' => false
 );
-$all_categories = get_categories(array('hide_empty' => 0));
+$all_categories = get_categories(array('hide_empty' => 0,'taxonomy' => 'job_category'));
 //print_r($all_categories);
 
 $new_array=array();

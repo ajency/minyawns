@@ -1910,15 +1910,29 @@ $('.collapse').live('hide', function() {
     $(this).parent().find('.data-title').removeClass('open'); //remove active state to button on close
 });
 
-jQuery("#delete_job").live("click", function() {
-    $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/delete-job',
+jQuery("#delete_jobs_link").live("click", function() {
+    
+    $("#myModal1").show();
+    
+//    $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/delete-job',
+//            {
+//                job_id: jQuery("#delete_job").attr("job-id"),
+//            },
+//            function(response) {
+//                window.location.href = siteurl + '/jobs';
+//            });
+
+});
+
+jQuery("#delete_job").live("click",function(){
+       $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/delete-job',
             {
                 job_id: jQuery("#delete_job").attr("job-id"),
             },
             function(response) {
                 window.location.href = siteurl + '/jobs';
-            });
-
+            }); 
+    
 });
 
 function paypal_form_values(no_of_minyawns) {

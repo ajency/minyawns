@@ -764,7 +764,7 @@ function get_minyawn_profile($userData,$total)
                     } else {
                         $user_pic_img_src = get_avatar($userData->ID);
                     }
-
+             
                     $data = array(
                         'user_id' => $userData->ID,
                         'user_email' => isset($userData->user_email) ? $userData->user_email : '',
@@ -781,8 +781,13 @@ function get_minyawn_profile($userData,$total)
                         'minion_name' => isset($user_meta['first_name'][0]) > 0 ? substr($user_meta['first_name'][0] . $user_meta['last_name'][0],0,20) :'',
                         'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N'     
                     );
+  
                     
-                    return $data;
+   
+   
+  
+   
+   return $data;
 }
 
 function minyawns_applied_to_jobs($jobID,$employer_id)

@@ -156,7 +156,7 @@ You need to confirm the minion selection by making the payment,if you leave this
 					</li>
 				 <?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0 && job_selection_status(get_the_ID()) === 0): ?> 	<li>
                
-                    <a href="#myModal"  data-toggle="modal"  id="delete_jobs_link" class="delte-job "  job-id="<?php echo get_the_ID() ?>" style="display:none"><i class="icon-trash"></i> Delete</a>
+                    <a href="#myModal1"  data-toggle="modal"  id="delete_jobs_link" class="delte-job "  job-id="<?php echo get_the_ID() ?>" style="display:none"><i class="icon-trash"></i> Delete</a>
               
 				</li>  <?php endif; ?>
 				</ul>
@@ -165,7 +165,7 @@ You need to confirm the minion selection by making the payment,if you leave this
                 </p> 
 
                 <!--Delete Pop uP-->				
-                <div id="myModal" class="modal hide fade delte-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div id="myModal1" class="modal hide fade delte-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <div class="modal-body">
                         Are you sure you want to delete this job?
