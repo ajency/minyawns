@@ -4422,7 +4422,6 @@ div.tooltip1:after {
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
   body .minyawn-category li {
-    background: rgba(255, 255, 255, 0.83);
     width: 40%;
     display: inline-block;
     margin: 5px;
@@ -4432,28 +4431,28 @@ div.tooltip1:after {
     height: 80px;
   }
   body .minyawn-category li .icon-data {
-    width: 30%;
+    width: 30%!important;
     display: block;
     float: left;
     text-align: center;
   }
   body .minyawn-category li .icon-data i {
-    font-size: 67px;
+    font-size: 50px !important;
     color: #a3d55c;
   }
   body .minyawn-category li .icon-data span {
-    font-size: 11px;
+    font-size: 10px!important;
   }
   body .minyawn-category li .data-info {
-    font-size: 10px;
+    font-size: 10px!important;
     text-transform: uppercase;
     font-family: "Lato", sans-serif;
     color: #90918f;
     line-height: 18px;
     font-weight: 100;
     float: left;
-    width: 58%;
-    margin-left: 21px;
+    width: 58%!important;
+    margin-left: 21px!important;
   }
   #innermainimage .banner-content .nav-tabs li.active a {
     font-size: 14px;
