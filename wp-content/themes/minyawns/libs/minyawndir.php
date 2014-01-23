@@ -57,7 +57,7 @@ $app->get('/allminyawns', function() use ($app) {
 //                 $where = "{$wpdb->prefix}users.ID={$wpdb->prefix}users.user_id AND {$wpdb->prefix}userjobs='status' AND({$wpdb->prefix}usermeta.meta_key = 'user_skills' AND {$wpdb->prefix}usermeta.meta_value LIKE '" . $filter_key . ",%' OR {$wpdb->prefix}usermeta.meta_value LIKE '" . $filter_key . "%' OR  {$wpdb->prefix}usermeta.meta_value LIKE '%," . $filter_key . ",%'  OR {$wpdb->prefix}usermeta.meta_value LIKE '%," . $filter_key . "' OR {$wpdb->prefix}usermeta.meta_key = 'major' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'college' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'first_name' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%' OR {$wpdb->prefix}usermeta.meta_key = 'last_name' AND {$wpdb->prefix}usermeta.meta_value like '" . $filter_key . "%') AND ({$wpdb->prefix}usermeta.meta_key = 'user_verified' AND {$wpdb->prefix}usermeta.meta_value LIKE '" . $verified . "')";   
 //                }
 
-                $querystr = "SELECT DISTINCT * FROM " . $where . " LIMIT 9 OFFSET " . $_GET['offset'] . "";
+                $querystr = "SELECT DISTINCT * FROM " . $where . " GROUP BY user_login LIMIT 9 OFFSET " . $_GET['offset'] . "";
 
                 $usersData = $wpdb->get_results($querystr, OBJECT);
 
