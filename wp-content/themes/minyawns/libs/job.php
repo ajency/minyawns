@@ -827,10 +827,10 @@ $app->post('/inviteminions', function() use($app) {
           add_filter( 'wp_mail_from_name', 'custom_wp_mail_from_name' );
 function custom_wp_mail_from_name()
 {
-	return 'WordPress Email System';
+	return 'Minyawns';
 }
 
-            wp_mail('ansley@ajency.in', $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
+            wp_mail($emailid, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http reques
             $json_a = json_decode($requestBody, true);
