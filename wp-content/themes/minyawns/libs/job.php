@@ -824,7 +824,12 @@ $app->post('/inviteminions', function() use($app) {
             $headers .= "MIME-Version: 1.0\n" .
                     "From: Minyawns support@minyawns.com\n" .
                     "Content-Type: text/html; charset=\"" . "\"\n";
-          
+          add_filter( 'wp_mail_from_name', 'custom_wp_mail_from_name' );
+function custom_wp_mail_from_name()
+{
+	return 'WordPress Email System';
+}
+
             wp_mail('ansley@ajency.in', $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http reques
