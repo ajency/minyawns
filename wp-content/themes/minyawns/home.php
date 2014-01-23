@@ -41,7 +41,7 @@
 				<div class="span12">
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
 					<div class="banner-desc">Reliable help on your short term project</div>
-					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_minyawnregister" onclick="return true">Get Your Minyawn</a>
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Get Your Minyawn</a>
 				</div>
 			
 		 </div>
