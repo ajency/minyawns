@@ -33,75 +33,31 @@
     </script>
 <div id="innermainimage">
    <div class="row-fluid banner-content">
-    <div class="span1">
-	</div>
-      <div class="span5"><br>
-         <h3 class="banner-title">Why do you need minions?</h3>
-         <div class="banner-desc">
+    
+     
 
-            Minyawns is an easy to use, on-demand, reliable way to find work or help fast.
-Backed by University of Washington students and designed for business professionals.
-         </div>
-		 </div>
-         <div class="span5">
-			<ul class="nav nav-tabs" id="myTab">
-				
-				<li class="active"><a href="#businesses">Minyawns for businesses</a></li>
-				<li ><a href="#students">Minyawns for students</a></li>
-
-			</ul>
- 
-<div class="tab-content">
-  <div class="tab-pane " id="students">
-	<div class="row-fluid">
-		<div class="span6">
-		<p>   Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.</p>
-		</div>
-		<div class="span6">
-		<a id="click1" href="#video1"  data-toggle="modal"><div id="click1" ><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-students.png" align="right"/></div></a>  
-		</div>
-	
-	</div>
-	
-
-	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-info" id="link_minyawnregister" onclick="return true">Sign up as a Minion</a>
-	
-  </div>
-  <div class="tab-pane active" id="businesses">
-  	<div class="row-fluid">
-		<div class="span6">
-		<p>  Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.</p>
-		</div>
-		<div class="span6">
-		<a id="click"  href="#video2"  data-toggle="modal"><div id="click" ><img src="<?php echo get_template_directory_uri() ?>/images/minyawns-bussiness.png" align="right"/></div></a>
-		</div>
-	
-	</div>
-
-	<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Sign up as a business</a>
-
-  
-  </div>
-
-</div>
-		 
-	  </div>
-      <div class="span1">
-	  </div>
+   
 		 <div class="row-fluid">
-				<div class="span12 learn-more">
-					<a  href="#pliip" class="jumper"> Learn More
-					<br> 
-					<i class="icon-chevron-down"></i>
-					</a>
-					
+				<div class="span12">
+					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
+					<div class="banner-desc">Reliable help on your short term project</div>
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_minyawnregister" onclick="return true">Get Your Minyawn</a>
 				</div>
+			
 		 </div>
+		
       </div>
 	
-  
+   	<div class="row-fluid learn-more-btn">
+				<div class="span12 learn-more">
+				<a href="#pliip" class="jumper"> Learn More
+				<br>
+				<i class="icon-chevron-down"></i>
+				</a>
+				</div>
+				</div>
    <div class="bg-overflow">
-      <img class="bg-background" src="<?php echo get_template_directory_uri() ?>/images/banner1.jpg"/>
+		
    </div>
 </div>
 <div id="pliip" class="how-does-it-work">
@@ -131,6 +87,22 @@ Backed by University of Washington students and designed for business profession
       <br>
 	 
    </div>
+  <h4 class="video-title"> Go from being burdened with menial jobs to doing more awesome stuff.</h4>
+   <div class="row-fluid">
+			<div class="span3"></div>
+			
+			<div class="span3">
+			<a id="click1" href="#video1"  data-toggle="modal" class="btn btn-normal btn-huge btn-block btn-primary" ><i class="icon-youtube-play"></i> &nbsp; Minyawns For Student</a>
+			</div>
+			<div class="span3">
+			
+			<a id="click"  href="#video2"  data-toggle="modal" class="btn btn-normal btn-huge btn-block btn-info" ><i class="icon-youtube-play"></i> &nbsp; Minyawns For Businesses</a>
+			</div>
+			<div class="span3">
+			
+			</div>
+			
+   </div>
    
 </div>
 <div class="what-we-can-do">
@@ -144,7 +116,66 @@ Backed by University of Washington students and designed for business profession
       <div class="row-fluid">
          <div class="span8">
             <br>
-           <div id="myCarousel" class="carousel slide">
+			<div class="row-fluid">
+				<div class="span12">
+					<ul class="unstyled minyawn-category">
+						<li>
+							<div class="icon-data"><i class="icon-briefcase"></i> <span>Office Work</span>
+							</div>	
+							<div class="data-info">
+								
+							Data Entry<br>
+							Newsletter<br>
+							Email Organization<br>
+							Mailing Calenders<br>
+							Personal Assistance
+							
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li>
+							<div class="icon-data"><i class="icon-wrench"></i><span>	LABOUR</span></div>	
+							<div class="data-info">
+								
+							Moving<br>
+							Yardwork<br>
+							Regoranization<br>
+							extra hand
+							
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li>
+							<div class="icon-data"><i class="icon-group"></i><span>MARKETING	</span></div>	
+							<div class="data-info">
+							AD FLYER HANDOUT<br>
+							IN PERSON PROMOTION<br>
+							BOTH SALES<br>
+							TWITTER MARKETING
+							
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li>
+							<div class="icon-data"><i class="icon-flag-checkered"></i> <span>Event	</span></div>	
+							<div class="data-info">
+								
+							 HANDYMAN/WOMEN<br>
+							EVENT STUFF<br>
+							SERVER/HOSTESS<br>
+							BOUNCER / SECURITY GUARD<br>
+							BABY SITTER
+
+							
+							</div>
+							<div class="clear"></div>
+						</li>
+					</ul>
+				
+				</div>
+				
+			</div>
+     <!--      <div id="myCarousel" class="carousel slide">
                <ol class="carousel-indicators">
                   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                   <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -175,7 +206,7 @@ Backed by University of Washington students and designed for business profession
                      </div>
                   </div>
                </div>
-            </div>
+            </div>-->
 		</div>
 		<div class="span4">
 			<div class="back-satisfication">
@@ -285,7 +316,7 @@ Backed by University of Washington students and designed for business profession
       <h3 class="heading-title">Meet the <span class="highlight">500 Minions</span>   </h3>
       <p class="excerpt">The minions are thoroughly vetted University of Washington students.</p>
    </div>
-  <br><br><br>
+
  <div class="container">
    <div class="row-fluid minyawns-grid1">
       <ul class="thumbnails" style="left: 100px;">
@@ -516,7 +547,7 @@ Enviormental Engineering </div>
       </ul>
    </div>
 </div>
-	<br><br><br></div> <div id="down-gray"></div>
+</div> <div id="down-gray"></div>
 <!--	<div class="customer_bg"><br>
 	 <div class="">
       <h3 class="heading-title">Have a look at some of the tasks posted</h3>

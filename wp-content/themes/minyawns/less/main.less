@@ -34,6 +34,11 @@ a:hover{text-decoration:none !important;}
 .bdr-gray{
 	border-bottom: 1px solid #EBEBEB;
 }
+.btn-normal{
+	font-size: 18PX !important;
+font-weight: 100;
+font-family: "Lato", sans-serif;
+}
 .invite-btn{
 	margin-bottom:10px;
 }
@@ -324,6 +329,51 @@ background-color: rgba(0, 0, 0, 0.33);
 .mobile-menu{
 	display:none;
 }
+.minyawn-category{
+	margin-top: 35px;
+	li{
+		background: rgba(255, 255, 255, 0.83);
+		width: 42%;
+		display: inline-block;
+		margin: 5px;
+		padding: 20px;
+		border: 1px solid #83C034;
+		cursor:pointer;
+		.icon-data{
+			width: 33%;
+			display: block;
+			float: left;
+			text-align: center;
+			i{
+				font-size: 70px;
+				color: #a3d55c;
+			}
+			span{
+				font-size:14px;
+				text-transform:uppercase;
+				font-family: "Lato", sans-serif;
+				color: #a3d55c;
+			}
+		}
+		.data-info{
+			font-size: 13px;
+			text-transform: uppercase;
+			font-family: "Lato", sans-serif;
+			color: #90918f;
+			line-height: 18px;
+			font-weight: 100;
+			float: left;
+			width: 59%;
+			margin-left: 25px;
+		}
+	&:hover{
+		background:#fff;
+	
+	}
+		
+	}
+	
+}
 @media (max-width: 767px) {
 body .blog-container{
 	.blog-data{
@@ -343,6 +393,47 @@ display:none;
 		}
 	}
 }
+.logged-out .minyawns-grid1 .thumbspan .thumbnail .m2 .caption .tags {
+	height:79px;
+}
+.logged-in{
+	.pull-right{
+		display:block !important;
+	.data-link:last-child {
+			border:0px !important;
+		}
+	}
+}
+body .minyawn-category li {
+width: 83%;
+		.data-info{
+			width:56%;
+		}
+		.icon-data span {
+		font-size: 14px;
+}
+}
+body .btn-normal {
+font-size: 18PX !important;
+font-weight: 100;
+font-family: "Lato", sans-serif;
+width: 274px;
+margin: 10px auto !important;
+}
+.home .how-does-it-work {
+margin-bottom: -20px;
+}
+.banner-content {
+.nav-tabs{
+	display:none !important;
+}
+.tab-content{
+	display:none !important;
+}
+}
+.learn-more{
+	display:none !important;
+}
 .logged-out{
 	.pull-right{
 		display:none;
@@ -353,8 +444,11 @@ display:none;
 		td{
 		border: 1px solid #D8D8D8;
 padding: 9px;
+width: 18%;
+display: table-cell;
 			a{
-			font-size: 14px
+			font-size: 14px;
+			display: block;
 			}
 		}
 	}
@@ -1359,13 +1453,16 @@ body #innermainimage {
 	.banner-content {
 	position: relative;
 		.banner-title {
-			font-size: 28px;
+			font-size: 19px;
 			margin-bottom: 10px;
-			margin-top: -30px;
+			margin-top: 50px;
 			text-align: center;
+			color: #fff;
 			}
 			.banner-desc {
-				text-align: center;
+				font-size: 12px;
+				padding: 10px;
+				color: rgba(255, 255, 255, 0.47);
 			}
 		
 			.tab-content .tab-pane {
@@ -1794,9 +1891,11 @@ background: url(../images/up.png)no-repeat right 39px !important;
 }
 .bg-overflow{
 height:100%;
+background:url(../images/banner2.jpg);
+background-size: cover;
 }
 #innermainimage {
-	height: 580px;
+	height: 640px;
 	margin: 0 auto;
 	width: 100%;
 	max-width: 1920px;
@@ -1814,12 +1913,12 @@ height:100%;
 		z-index: 999;
 		margin-top:120px;
 		.banner-title{
-			font-family: 'Open Sans', sans-serif;
-			font-weight:900;
-			color:#fff;
-			font-size: 35px;
-			margin-bottom: 20px;
-			margin-top: 50px;
+		font-weight: 800;
+color: rgba(0, 0, 0, 0.39);
+font-size: 45px;
+margin-bottom: 12px;
+margin-top: 5px;
+text-align: center;
 
 		}
 		img{
@@ -1889,13 +1988,14 @@ text-align: center;
 			border-top: 0px;
 		}
 		.btn-huge{
-			font-size: 17px;
+			font-size: 20px;
 			line-height: 26px;
-			font-weight: bold;
+			font-weight: 100;
 			border-bottom: 4px solid rgba(255, 255, 255, 0.36);
-			width: 48%;
-			margin: 17px auto;
-			padding: 9px;
+			width: 226px;
+			margin: 2px auto;
+			padding: 12px;
+			border: 0px;
 			&:hover{
 				
 			}
@@ -2655,20 +2755,23 @@ background-position: 60px 1050px;
 					margin-top: 2%;
 					background: #535353;
 					padding-top: 110px;
+					height: 195px;
+					margin-bottom: 16px;
 					.log-img{
 						width:22%;
 					}
 					.btn-huge {
 								width: 64%;
-							font-size: 13px;
+							font-size: 21px;
 							margin: auto;
 							margin-bottom: 7px;
 			
 						}
 				
 				.banner-desc {
-					font-size: 16px;
-					padding: 16px;
+					font-size: 12px;
+padding: 6px;
+margin-bottom: 10px;
 					
 					
 				}
