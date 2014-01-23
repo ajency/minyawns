@@ -817,9 +817,11 @@ $app->post('/inviteminions', function() use($app) {
                 'date' => date('d M Y', get_post_meta($_POST['job_id'], 'job_start_date', true)),
                 'slug' => preg_replace('/[[:space:]]+/', '-', get_the_title($_POST['job_id']))
             );
-
+print_r($emailid);
+$emailid='ansley@ajency.in';
             //date('g:i', $post_meta['job_start_time'][0]),
             $mail = email_template($emailid, $data_mail, 'invite_minion');
+           print_r($mail);exit();
             $headers = 'From: Minyawns support@minyawns.com' . "\r\n";
             $headers .= "MIME-Version: 1.0\n" .
                     "From: Minyawns support@minyawns.com\n" .
