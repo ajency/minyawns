@@ -325,7 +325,6 @@ body .jobs_table .data-title .profile-job {
   margin: 5px;
   padding: 20px;
   border: 1px solid #83C034;
-  cursor: pointer;
 }
 .minyawn-category li .icon-data {
   width: 33%;
@@ -1649,7 +1648,7 @@ body .jobs_table .data-title .profile-job {
 }
 @-moz-document url-prefix() {
   .bg-overflow {
-    height: 95% !important;
+    height: 100% !important;
   }
 }
 .bg-overflow {
@@ -1678,10 +1677,10 @@ body .jobs_table .data-title .profile-job {
 }
 #innermainimage .banner-content .banner-title {
   font-weight: 800;
-  color: rgba(0, 0, 0, 0.39);
+  color: #000;
   font-size: 45px;
   margin-bottom: 12px;
-  margin-top: 5px;
+  margin-top: 0px;
   text-align: center;
 }
 #innermainimage .banner-content img {
@@ -4427,7 +4426,6 @@ div.tooltip1:after {
     margin: 5px;
     padding: 20px;
     border: 1px solid #83C034;
-    cursor: pointer;
     height: 80px;
   }
   body .minyawn-category li .icon-data {

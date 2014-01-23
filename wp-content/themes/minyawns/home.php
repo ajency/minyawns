@@ -139,7 +139,7 @@
 								
 							Moving<br>
 							Yardwork<br>
-							Regoranization<br>
+							reorganization <br>
 							extra hand
 							
 							</div>
@@ -150,7 +150,7 @@
 							<div class="data-info">
 							AD FLYER HANDOUT<br>
 							IN PERSON PROMOTION<br>
-							BOTH SALES<br>
+							 Booth sales<br>
 							TWITTER MARKETING
 							
 							</div>
