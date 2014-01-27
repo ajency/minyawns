@@ -35,6 +35,111 @@ a:hover {
   font-weight: 100;
   font-family: "Lato", sans-serif;
 }
+.slider1 .cus_1 {
+  background: url(../images/sprite.jpg) -1px -247px no-repeat;
+  width: 141px!important;
+  height: 79px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_1:hover {
+  -webkit-filter: grayscale(0%);
+}
+.slider1 .cus_2 {
+  background: url(../images/sprite.jpg) -143px -247px no-repeat;
+  width: 141px!important;
+  height: 79px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_2:hover {
+  -webkit-filter: grayscale(0%);
+}
+.slider1 .cus_3 {
+  background: url(../images/sprite.jpg) -307px -247px no-repeat;
+  width: 141px!important;
+  height: 79px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_3:hover {
+  -webkit-filter: grayscale(0%);
+}
+.slider1 .cus_4 {
+  background: url(../images/sprite.jpg) -466px -247px no-repeat;
+  width: 191px!important;
+  height: 83px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_4:hover {
+  -webkit-filter: grayscale(0%);
+}
+.slider1 .cus_5 {
+  background: url(../images/sprite.jpg) -677px -247px no-repeat;
+  width: 152px!important;
+  height: 79px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_5:hover {
+  -webkit-filter: grayscale(0%);
+}
+.slider1 .cus_6 {
+  background: url(../images/sprite.jpg) -836px -247px no-repeat;
+  width: 168px!important;
+  height: 95px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_6:hover {
+  -webkit-filter: grayscale(0%);
+}
+.slider1 .cus_7 {
+  background: url(../images/sprite.jpg) -836px -247px no-repeat;
+  width: 168px!important;
+  height: 95px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_7:hover {
+  -webkit-filter: grayscale(0%);
+}
+.slider1 .cus_7 {
+  background: url(../images/sprite.jpg) -10px -347px no-repeat;
+  width: 168px!important;
+  height: 95px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_7:hover {
+  -webkit-filter: grayscale(0%);
+}
+.slider1 .cus_8 {
+  background: url(../images/sprite.jpg) -188px -347px no-repeat;
+  width: 168px!important;
+  height: 95px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_9 {
+  background: url(../images/sprite.jpg) -378px -347px no-repeat;
+  width: 182px!important;
+  height: 95px;
+  -webkit-filter: grayscale(80%);
+}
+.slider1 .cus_9:hover {
+  -webkit-filter: grayscale(0%);
+}
+.step1-1 {
+  background: url(../images/sprite.jpg) 0px 0px no-repeat;
+  width: 282px!important;
+  height: 205px;
+  margin: auto;
+}
+.step2-2 {
+  background: url(../images/sprite.jpg) -290px 0px no-repeat;
+  width: 282px!important;
+  height: 205px;
+  margin: auto;
+}
+.step3-3 {
+  background: url(../images/sprite.jpg) -572px 0px no-repeat;
+  width: 282px!important;
+  height: 205px;
+  margin: auto;
+}
 .invite-btn {
   margin-bottom: 10px;
 }
@@ -2325,6 +2430,20 @@ body .jobs_table .data-title .profile-job {
   visibility: hidden;
 }
 @media (max-width: 767px) {
+  body .blog-bg {
+    margin-top: -2px;
+    height: 170px;
+  }
+  body .blog-bg h3 {
+    padding-top: 48px;
+    font-size: 25px;
+  }
+  body .blog-bg h3 img {
+    width: 159px;
+  }
+  body .blog-container .span1 {
+    display: none;
+  }
   .top-menu-header {
     display: none;
   }
@@ -2354,6 +2473,13 @@ body .jobs_table .data-title .profile-job {
   body .load_ajaxconfirm {
     background-position: -1px;
     margin-bottom: -52px;
+  }
+  body .control-group {
+    margin-bottom: 11px;
+  }
+  body #frm_login #btn_forgotpass {
+    text-align: center;
+    display: block;
   }
   body .video-pop iframe {
     width: 100%;
@@ -2494,7 +2620,12 @@ body .jobs_table .data-title .profile-job {
     width: 100%;
   }
   .modal-body {
-    overflow-y: scroll;
+    overflow-y: hidden;
+    max-height: 100% !important;
+  }
+  .modal-body .btn.btn-block {
+    margin: auto;
+    width: 115px;
   }
   .signup {
     width: 90% !important;

@@ -69,17 +69,18 @@
    <div class="container steps-3">
       <div class="row-fluid">
          <div class="span4">
-            <img src="<?php echo get_template_directory_uri() ?>/images/responsivescreen.jpg"/>
+		 	 <div class="step1-1"></div>
+            
             <h4><span class="badge badge2">1</span> Post gigs</h4>
             <p>Describe what you need to get done, when you want help, and how much you are willing to pay.</p>
          </div>
          <div class="span4">
-            <img src="<?php echo get_template_directory_uri() ?>/images/magnefine-glass.jpg"/>
+           <div class="step2-2"></div>
             <h4> <span class="badge badge2">2</span> Pick your minion</h4>
             <p>We're talking about professional, reliable, competent, clean and sociable young college students looking for work.</p>
          </div>
          <div class="span4">
-            <img src="<?php echo get_template_directory_uri() ?>/images/reachout.jpg"/>
+               <div class="step3-3"></div>
             <h4> <span class="badge badge2">3</span> Get work done</h4>
             <p>Get productive and end your to-do list, 100% satisfaction guaranteed.</p>
          </div>
@@ -266,7 +267,7 @@
 						</div>
 						
 					</div>
-                  <img src="<?php echo get_template_directory_uri() ?>/images/laptop-screen.jpg" class="img-center"/>
+                  <img src="<?php echo get_template_directory_uri() ?>/images/laptop-screen_min.jpg" class="img-center"/>
                </div>
                <div class="tab-pane" id="profile"><br><br><br>
 				 <div class="row-fluid">
@@ -671,15 +672,16 @@ Enviormental Engineering </div>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
    </div>
  <div class="slider1">
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture1.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture2.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture3.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture4.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture5.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture6.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture7.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture8.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture9.png"></div>
+      <div class="slide cus_1"></div>
+	  <div class="slide cus_2"></div>
+	  <div class="slide cus_3"></div>
+	  <div class="slide cus_4"></div>
+	  <div class="slide cus_5"></div>
+	  <div class="slide cus_6"></div>
+	  <div class="slide cus_7"></div>
+	  <div class="slide cus_8"></div>
+	  <div class="slide cus_9"></div>
+   
    </div><br><br>
 </div>
   	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
