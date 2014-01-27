@@ -330,7 +330,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_wages' => $wages,
                     //'job_progress' => 'available',
                     'job_start_day' => date('d', $post_meta['job_start_date'][0]),
-                    'job_start_month' => date('F', $post_meta['job_start_date'][0]),
+                    'job_start_month' => substr(date('F', $post_meta['job_start_date'][0]),0,3),
                     'job_start_year' => date('Y', $post_meta['job_start_date'][0]),
                     'job_start_meridiem' => date('a', $post_meta['job_start_time'][0]),
                     'job_end_meridiem' => date('a', $post_meta['job_end_time'][0]),

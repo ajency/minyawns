@@ -6,8 +6,8 @@
 							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
                                       <div class="span1">
 									  <div class="job-date">
-										<b>15</b>
-										FEB
+										<b><%= result.job_start_day %></b>
+										<%= result.job_start_month %>
 									  </div>
 									  
 									  </div>
@@ -187,8 +187,8 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
 							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
                                       <div class="span1">
 									  <div class="job-date">
-										<b>15</b>
-										FEB
+										<b><%= result.job_start_day %></b>
+										<%= result.job_start_month %>
 									  </div>
 									  
 									  </div>
