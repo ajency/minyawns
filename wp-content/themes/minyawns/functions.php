@@ -108,6 +108,8 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
 
+		
+
             //if(is_page('profile'))
 
             wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
@@ -132,7 +134,8 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
             wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
             wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('jquery'), null);
-
+			 wp_enqueue_script('menu-pack', get_template_directory_uri() . '/js/jquery.mmenu.min.all.js', array('jquery'), null);
+	
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
              wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery'), null);

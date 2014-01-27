@@ -475,7 +475,10 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         <!--<div class="row-fluid " id="accordion24" >
 
                         </div>-->
+						
                         <ul class="unstyled job-view-list" id="accordion24">
+
+
 
                         </ul>
 

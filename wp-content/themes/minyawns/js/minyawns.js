@@ -9,7 +9,45 @@ jQuery("#signinlink").click(function() {
 });
 
 jQuery(document).ready(function($) {
+//	The menu on the left
+			jQuery(function() {
+				jQuery('#menuleft').mmenu();
+			});
 
+
+			//	The menu on the right
+			jQuery('#menuright').mmenu({
+position: "right"
+});
+/*$('body').on('click', '[data-toggle=collapse-next]', function (e) {
+    // Try to close all of the collapse areas first
+    var parent_id = $(this).data('parent');*/
+    
+	/*$.each($(parent_id + ' .accordion-body'),function(){
+		
+		if($(this).hasClass('in'))
+			$(this).collapse('hide');
+	
+	});*/
+    // ...then open just the one we want
+   /* var $target = $(this).closest('.panel').find('.accordion-body');
+    
+	if(!$target.hasClass('in'))
+		$(this).text('Hide Information');
+	else	
+		$(this).text('Show Information');
+	
+	$target.collapse('toggle');
+});	*/
+	$('body').on('click', '[data-toggle=collapse-next]', function (e) {
+    // Try to close all of the collapse areas first
+    var parent_id = $(this).data('parent');
+    $(parent_id+' .accordion-body').collapse('hide');
+
+    // ...then open just the one we want
+    var $target = $(this).parents('.panel').find('.accordion-body');
+    $target.collapse('toggle');
+});	
 
     if ($(window).width() < 800) {
 
@@ -26,6 +64,16 @@ jQuery(document).ready(function($) {
         })(jQuery);
 
 // do stuff
+
+$('body').on('click', '[data-toggle=collapse-next]', function (e) {
+    // Try to close all of the collapse areas first
+    var parent_id = $(this).data('parent');
+    $(parent_id+' .accordion-body').collapse('hide');
+
+    // ...then open just the one we want
+    var $target = $(this).parents('.panel').find('.accordion-body');
+    $target.collapse('toggle');
+});	
     }
 
     $("#select3").fcbkcomplete({

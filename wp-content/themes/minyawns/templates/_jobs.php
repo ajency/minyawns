@@ -1,25 +1,52 @@
 <script type="text/template" id="jobs-table"> 
-      <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%>">
+      <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%> panel">
       
-                              <div class="row-fluid">
-                                 <div class="span9 ">
-                                    <div class="row-fluid bdr-gray">
-                                      <div class="span12 job-details">
+							 <div class="row-fluid mobile-hide" >
+							  <div class="span9 ">
+							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
+                                      <div class="span1">
+									  <div class="job-date">
+										<b>15</b>
+										FEB
+									  </div>
+									  
+									  </div>
+									  <div class="span11 border-right job-details">
                                           <div class="job-title">
                                              <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
                                           </div>
                                           <div class="job-meta">
                                              <ul class="inline">
-                                                <li><i class="icon-calendar"></i><%= result.job_start_day %> <%= result.job_start_month %>, <%= result.job_start_year %></li>
-                                                <li><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
-                                                <li class="no-bdr"><i class="icon-map-marker"></i> <%= result.job_location %></li>
+                                               
+                                                <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
+                                                      <li class="no-bdr"><i class="icon-map-marker"></i> <%= result.job_location %></li>
                                              </ul>
                                           </div>
-                                          <p> <%= result.job_details %></p>
+                                         
                                        </div>
                                     </div>
-									<div class="job-author"><i class="icon-briefcase"></i> Job Owner:  <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></div>
-                                    <div class="additional-info">
+							  </div>
+							  <div class="span3 status">
+							    <div class="st-moile-span1">
+
+                                          <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
+										  <a class="accordion-toggle" data-toggle="collapse-next" data-parent="#accordion24" >
+     Show More Information
+      </a>
+                                       </div>
+							  </div>
+							 </div>
+	  
+	  <div id="collapseOne" class="accordion-body collapse ">
+      <div class="accordion-inner">
+                              <div class="row-fluid mobile-detail">
+                                 <div class="span9 ">
+                                    <div class="row-fluid ">
+                                      <div class="span12 job-details">
+                                         <p> <%= result.job_details %> <em>job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></em> </p>
+                                       </div>
+                                    </div>
+									 <div class="additional-info">
                                        <div class="row-fluid">
                                           <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
                                           <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
@@ -27,10 +54,9 @@
                                     </div>
                                  </div>
                                  <div class="span3 status">
+								    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
                                     <div class="st-fluid">
-                                       <div class="st-moile-span1">
-                                          <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
-                                       </div>
+                                     
                                        <div class="st-moile-span2">
                                            <%= job_progress %>                                          
                                        </div>
@@ -42,7 +68,9 @@
                                       
                                     </div>
                                  </div>
-                              </div>        
+                              </div>   
+</div>
+</div>							  
                            </li>  
 <?php
 $salt_job = wp_generate_password(20);
@@ -66,13 +94,48 @@ $key_job = sha1($salt . uniqid(time(), true));
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
              <div class="row-fluid minyawns-grid1">
+			 <div class="span3 mobile-alert-box">
+                  <div class="alert alert-success alert-sidebar author-data">
+                      
+					  
+					  <div class="row-fluid">
+					  <div class="span3">
+						<%= result.job_author_logo %>
+					  </div>
+						<div class="span9 author-info">
+                                                <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
+							<i class="icon-map-marker"></i> <%= result.job_company_location%>
+						</div>
+					  </div>
+						
+                        <br>
+                    </div>
+                 
+              <% if(result.job_owner_id === logged_in_user_id && result.user_to_job_status.indexOf('hired') == -1){%>
+                     <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
+                        <h3>Your selection</h3>
+                        <hr>
+                        <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
+                        <b> Wages per Minion:<span id="wages_per_minyawns">0</span><span>$</span></b>
+                        <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br>
+							<div class="msg-info">
+							<span>Please Note</span>
+							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
+And you don't need a PayPal account to pay us.<br> Any credit or debit card will do!</div>
+                        <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
+                     <span id="selection_message"></span>
+                                    </div>
+                            <%}%>
+                 
+					   
+</div>
         <div class="span9">
     <ul class="thumbnails">
     <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
         </br></br></br></br><span id="div_confirmhire"></span>
 </div>
-<div class="span3">
+<div class="span3 mobile-alert-box-hidden">
                   <div class="alert alert-success alert-sidebar author-data">
                       
 					  
@@ -118,47 +181,78 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
 
     <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%>">
     <%= review %>
-    <div class="row-fluid">
-    <div class="span9 ">
-    <div class="row-fluid bdr-gray">
-    <div class="span12 job-details">
-    <div class="job-title">
-    <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
-    </div>
-    <div class="job-meta">
-    <ul class="inline">
-    <li><i class="icon-calendar"></i><%= result.job_start_day %> <%= result.job_start_month %>, <%= result.job_start_year %></li>
-    <li><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
-    <li class="no-bdr"><i class="icon-map-marker"></i> <%= result.job_location %></li>
-    </ul>
-    </div>
-    <p> <%= result.job_details %></p>
-    </div>
-    </div>
-    <div class="additional-info">
-    <div class="row-fluid">
-    <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
-    <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
-    </div>
-    </div>
-    </div>
-    <div class="span3 status">
-    <div class="st-fluid">
-    <div class="st-moile-span1">
-    <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
-    </div>
-    <div class="st-moile-span2">
-    <%= job_progress %>                                          
-    </div>
-    <div class="clear"></div>
-    </div>
-    <div class="st-footer">                                       
 
-    <%= job_collapse_button %>
+							 <div class="row-fluid mobile-hide" >
+							  <div class="span9 ">
+							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
+                                      <div class="span1">
+									  <div class="job-date">
+										<b>15</b>
+										FEB
+									  </div>
+									  
+									  </div>
+									  <div class="span11 border-right job-details">
+                                          <div class="job-title">
+                                             <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
+                                          </div>
+                                          <div class="job-meta">
+                                             <ul class="inline">
+                                               
+                                                <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
+                                                      <li class="no-bdr"><i class="icon-map-marker"></i> <%= result.job_location %></li>
+                                             </ul>
+                                          </div>
+                                         
+                                       </div>
+                                    </div>
+							  </div>
+							  <div class="span3 status">
+							    <div class="st-moile-span1">
 
-    </div>
-    </div>
-    </div>        
+                                          <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
+										  <a class="accordion-toggle" data-toggle="collapse-next" data-parent="#accordion24" >
+     Show More Information
+      </a>
+                                       </div>
+							  </div>
+							 </div> 
+	  
+	  <div id="collapseOne" class="accordion-body collapse ">
+      <div class="accordion-inner">
+                              <div class="row-fluid mobile-detail">
+                                 <div class="span9 ">
+                                    <div class="row-fluid ">
+                                      <div class="span12 job-details">
+                                         <p> <%= result.job_details %> <em>job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></em> </p>
+                                       </div>
+                                    </div>
+									 <div class="additional-info">
+                                       <div class="row-fluid">
+                                          <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
+                                          <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="span3 status">
+								    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
+                                    <div class="st-fluid">
+                                     
+                                       <div class="st-moile-span2">
+                                           <%= job_progress %>                                          
+                                       </div>
+                                       <div class="clear"></div>
+                                    </div>
+                                    <div class="st-footer">                                       
+                                        
+                                       <%= job_collapse_button %>
+                                      
+                                    </div>
+                                 </div>
+                              </div>   
+</div>
+</div>	
+							 
     </li>  
     <?php
     $salt_job = wp_generate_password(20);

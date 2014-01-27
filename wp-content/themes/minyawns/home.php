@@ -120,6 +120,7 @@
 				<div class="span12">
 					<ul class="unstyled minyawn-category">
 						<li>
+						<div class="list-data">
 							<div class="icon-data"><i class="icon-briefcase"></i> <span>Office Work</span>
 							</div>	
 							<div class="data-info">
@@ -132,8 +133,10 @@
 							
 							</div>
 							<div class="clear"></div>
+							</div>
 						</li>
 						<li>
+						<div class="list-data">
 							<div class="icon-data"><i class="icon-wrench"></i><span>	LABOUR</span></div>	
 							<div class="data-info">
 								
@@ -143,9 +146,10 @@
 							extra hand
 							
 							</div>
-							<div class="clear"></div>
+							<div class="clear"></div></div>
 						</li>
 						<li>
+						<div class="list-data">
 							<div class="icon-data"><i class="icon-group"></i><span>MARKETING	</span></div>	
 							<div class="data-info">
 							AD FLYER HANDOUT<br>
@@ -154,9 +158,10 @@
 							TWITTER MARKETING
 							
 							</div>
-							<div class="clear"></div>
+							<div class="clear"></div></div>
 						</li>
 						<li>
+						<div class="list-data">
 							<div class="icon-data"><i class="icon-flag-checkered"></i> <span>Event	</span></div>	
 							<div class="data-info">
 								
@@ -168,7 +173,7 @@
 
 							
 							</div>
-							<div class="clear"></div>
+							<div class="clear"></div></div>
 						</li>
 					</ul>
 				

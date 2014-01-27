@@ -16,7 +16,7 @@
 	
 	<title><?php wp_title('|', true, 'right'); ?></title>
 	
-	
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
 		 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -55,6 +55,79 @@
             </script>
 
 <body <?php body_class('logged-out'); ?> >
+	
+	<div class="mobile-menu-demo"> 
+	<div id="header">
+				<a href="#menuleft"></a>
+				
+		<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="" width="150px" /> 
+		
+				<a href="#menuright" class="friends right"></a>
+			</div>
+
+			<nav id="menuleft">
+				<ul>
+				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
+<!--                                <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>-->
+				<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
+				<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
+								<li id="directory"><?php if (get_logged_in_role() === 'Minion'): ?>
+				<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
+				   <?php endif; ?>	
+				    <?php if (get_logged_in_role() === 'Employer'): ?>
+				<a href="<?php echo site_url() ?>/add-job/">Create a job</a>
+				   <?php endif; ?>
+				 </li>
+					
+				</ul>
+			</nav>
+					<nav id="menuright">
+					<?php	if (is_user_logged_in() == TRUE) {
+                            ?>
+									<ul>
+									<li class="img Collapsed">
+								<a href="#">
+									 <?php 
+									if(get_user_avatar() !== false)
+										echo get_user_avatar() ;
+									else
+										echo get_avatar(get_user_id(), 168 ) ?>
+									<?php echo get_logged_in_email(); ?><br />
+									<small>Role :<?php echo get_logged_in_role(); ?></small>
+								</a>
+							</li>
+									
+				<li id="browse"><a class="" href="<?php echo site_url() ?>/profile"><i class="icon-user"></i> View Profile</a></li>
+                	<li id="browse">	<a class="" href="<?php  echo wp_logout_url(''); ?>"><i class="icon-unlock"></i> Logout</a></li>            
+				<li id="browse">	<a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a></li>
+					
+				</ul>
+							<?php }else{ ?>
+									<ul>
+					<li>
+						<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup Minion </a>
+					
+					</li>
+					<li>
+						<a  href="#myModal" data-toggle="modal" id="link_employerregister" onclick="return true"><i class="icon-signin"></i> Signup Business </a>
+					
+					</li>
+				<li>
+					<a href="#mylogin" data-toggle="modal" ><i class="icon-unlock-alt"></i> Login </a>
+					
+					</li>
+<li>
+						<a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a>
+					
+					</li>
+		
+				</ul>
+					<?php } ?>
+					
+					
+			
+			</nav>
+			</div>
 	<div class=" pbl mtn top-menu">
 	<?php
 
@@ -144,24 +217,7 @@
 
 
 		</div>
-		<div class="dropdown mobile-menu">
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse Menu <i class="icon-reorder"></i></a>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-  
-				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
-                                <li id="myjobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
-				<li id="directory" ><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
-				<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
-				<li >
-				 <?php if (get_user_role() === 'minyawn'): ?>
-				<a href="#"> Update Your Profile</a>
-				   <?php endif; ?>	
-				    <?php if (get_user_role() === 'employer'): ?>
-					<a href="#"> Create a job</a>
-				   <?php endif; ?>
-				   </li>
-  </ul>
-</div>
+
 		<div class="clear"></div>
 	</div>
 			<?php } else { ?>
@@ -191,16 +247,7 @@
 					
 							<div class="clear"></div>
 					</div>
-					<table class="mobile-menu-table">
-							<tr>
-								<td><a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup Minion </a> </td>
-								<td><a  href="#myModal" data-toggle="modal" id="link_employerregister" onclick="return true"><i class="icon-signin"></i> Signup Business </a> </td>
-							</tr>
-							<tr>
-								<td><a href="#mylogin" data-toggle="modal" ><i class="icon-unlock-alt"></i> Login </a></td>
-								<td><a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a></td>
-							</tr>
-						</table>
+			
 				
 				
 					
@@ -232,23 +279,7 @@
 
 
 		</div>
-		<div class="dropdown mobile-menu">
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse Menu <i class="icon-reorder"></i></a>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-  
-				<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
-                                <li id="myjobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
-				<li id="directory" ><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
-				<li >
-				 <?php if (get_user_role() === 'minyawn'): ?>
-				<a href="#"> Update Your Profile</a>
-				   <?php endif; ?>	
-				    <?php if (get_user_role() === 'employer'): ?>
-					<a href="#"> Create a job</a>
-				   <?php endif; ?>
-				   </li>
-  </ul>
-</div>
+
 		<div class="clear"></div>
 	</div>
 			
