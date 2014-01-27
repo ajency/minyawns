@@ -2433,6 +2433,29 @@ body .jobs_table .data-title .profile-job {
   visibility: hidden;
 }
 @media (max-width: 767px) {
+  body .alert {
+    padding: 10px;
+  }
+  body .dwn-btn .btn.btn-block {
+    margin: 9px 0 18px;
+    width: 70%;
+    margin: auto;
+  }
+  body .minaywns-sel {
+    color: #fff;
+    height: 80px;
+    margin: auto;
+    position: absolute;
+    text-align: center;
+    top: 2%;
+    width: 80px;
+  }
+  body .minaywns-sel i {
+    display: block;
+    font-size: 19px;
+    text-align: center;
+    margin-top: 21px;
+  }
   body .blog-bg {
     margin-top: -2px;
     height: 170px;
@@ -2467,7 +2490,7 @@ body .jobs_table .data-title .profile-job {
   }
   #edit-job-form {
     width: 80% !important;
-    margin-left: 45px !important;
+    margin-left: 35px !important;
   }
   body {
     padding-right: 0px;
@@ -3106,7 +3129,7 @@ body .jobs_table .data-title .profile-job {
 }
 .cropimage .modal-body {
   max-height: 100% !important;
-  overflow: hidden;
+  overflow: hidden!important;
   /**/
 }
 .cropimage .modal-body .help-block {
@@ -3362,9 +3385,9 @@ body .jobs_table .data-title .profile-job {
   color: #8ed030;
 }
 .job-view-list ._li .status .st-footer {
-  position: absolute;
-  bottom: 6px;
-  width: 23%;
+  position: relative;
+  bottom: 0px;
+  width: 100%;
 }
 .job-view-list ._li .status .st-footer .btn-primary:hover {
   background: #72af1c;
@@ -3553,8 +3576,17 @@ body .jobs_table .data-title .profile-job {
   background-color: #F5F5F5;
   cursor: pointer;
 }
+.m1-invite {
+  display: none;
+}
 /* mobile resonsive */
 @media (max-width: 767px) {
+  .m1-invite {
+    display: block !important;
+  }
+  .m1-invite .btn {
+    padding: 4px!important;
+  }
   .breadcrumb-text p {
     border: 0px;
     font-size: 12px;
@@ -3579,15 +3611,23 @@ body .jobs_table .data-title .profile-job {
     float: none !important;
     margin: auto!important;
   }
-  .minion-dir {
-    width: 100%!important;
+  body .minion-dir {
+    width: 90%!important;
+    margin: auto;
     left: 0!important;
   }
-  .minion-dir .modal-body {
+  body .minion-dir .modal-body {
     height: 430px!important;
+    padding: 0px;
   }
-  .minion-dir .modal-body table {
+  body .minion-dir .modal-body table {
     display: block!important;
+  }
+  body .minion-dir .modal-body table .td-job-title {
+    width: 44%;
+  }
+  body .minion-dir .modal-body table .sm-font {
+    font-size: 11px;
   }
   .features .tab-content {
     min-height: 100%;
