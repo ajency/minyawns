@@ -3107,6 +3107,7 @@ body .jobs_table .data-title .profile-job {
 .cropimage .modal-body {
   max-height: 100% !important;
   overflow: hidden;
+  /**/
 }
 .cropimage .modal-body .help-block {
   margin-left: 128px;
