@@ -1486,6 +1486,9 @@ body .jobs_table .data-title .profile-job {
   }
   html body .minyawns-grid1 .thumbspan .m1 .rating {
     width: 100% !important;
+    left: 0px!important;
+    right: 0px!important;
+    padding: 0px!important;
   }
   html body .minyawns-grid1 .thumbspan.card {
     width: 48% !important;
@@ -3138,11 +3141,11 @@ body .jobs_table .data-title .profile-job {
   }
   .bg-overflow {
     height: 100%;
-    background: url(../images/banner2.jpg) 0px -140px;
+    background: url(../images/banner2.jpg) 0px 0px no-repeat;
     background-size: cover;
   }
   #innermainimage {
-    height: 690px;
+    height: 850px;
   }
 }
 @media (max-width: 400px) {
