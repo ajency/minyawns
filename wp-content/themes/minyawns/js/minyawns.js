@@ -47,6 +47,7 @@ position: "right"
     // ...then open just the one we want
     var $target = $(this).parents('.panel').find('.accordion-body');
     $target.collapse('toggle');
+    $(e.target).find(".accordion-toggle").text("hide");
 });	
 
     if ($(window).width() < 800) {
