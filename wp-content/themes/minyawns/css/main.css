@@ -479,7 +479,7 @@ body .jobs_table .data-title .profile-job {
     overflow-y: hidden!important;
   }
   body.single-job .tab-content #edit-job-form {
-    height: 1080px!important;
+    height: 1210px!important;
     margin-top: -111px !important;
     position: relative!important;
     display: none;
@@ -609,10 +609,6 @@ body .jobs_table .data-title .profile-job {
   }
   .single-edit {
     font-size: 15px !important;
-  }
-  .single-job-action {
-    width: auto !important;
-    margin-top: -43px !important;
   }
   .delte-job {
     font-size: 15px !important;
@@ -2451,21 +2447,63 @@ body .jobs_table .data-title .profile-job {
   visibility: hidden;
 }
 @media (max-width: 767px) {
+  body .tab-content {
+    background: #fff !important;
+  }
+  body .tab-content .breadcrumb-text {
+    margin-bottom: 20px;
+    background: #ECECEC;
+    padding: 7px;
+  }
+  body .tab-content .breadcrumb-text p {
+    width: 100%!important;
+    clear: both!important;
+  }
+  body .tab-content .breadcrumb-text .single-job-action {
+    float: left!important;
+    margin-top: -10px !important;
+  }
+  body .delte-popup .modal-footer .action-btn {
+    width: 46% !important;
+    margin: auto;
+  }
+  body .mobile-category {
+    overflow-y: scroll;
+    height: 114px;
+  }
+  body .mobile-category .form-horizontal .controls input {
+    height: 31px;
+    margin: 1px 0;
+    float: left;
+    width: 7%;
+    clear: both;
+  }
+  body .mobile-category .form-horizontal .controls .category_name {
+    display: block!important;
+    margin-right: 5px!important;
+    padding-top: 8px!important;
+    float: left;
+    width: 87%;
+    font-size: 11px;
+  }
+  body .page-template-edit-profile-php .breadcrumb-text p {
+    width: 100%;
+  }
   body .alert-info .btn {
     margin: 15px !important;
   }
   body .review_popover {
-    position: relative;
-    width: 96%;
+    position: relative!important;
+    width: 96%!important;
   }
   body .review_popover .comment-box {
     font-size: 11px;
     line-height: 15px;
   }
   body .review_popover .comment-box i {
-    font-size: 21px;
-    float: none;
-    padding: 5px;
+    font-size: 21px!important;
+    float: none!important;
+    padding: 5px!important;
     display: block;
   }
   body .alert {
@@ -2611,6 +2649,7 @@ body .jobs_table .data-title .profile-job {
   body div.profile-wrapper #profile-edit {
     top: 0px;
     height: 100% !important;
+    position: relative!important;
   }
   body .div-box-block {
     position: relative;
