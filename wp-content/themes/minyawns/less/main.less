@@ -496,11 +496,31 @@ background-color: rgba(0, 0, 0, 0.33);
 	
 }
 @media (max-width: 767px) {
+body .bg-white {
+	padding:10px;
+}
+.reuse-job li .span2{
+	display:none;
+}
+body.single-job{
+	.tab-content{
+	min-height: 100% !important;
+	overflow-y: hidden!important;
+		#edit-job-form {
+		height: 1080px!important;
+		margin-top: -111px !important;
+		position: relative!important;
+		display: none;
+		}
+		
+	}
+}
 body .employer-image {
 overflow: hidden;
 width: 100%;
 height: 54px;
-border: 2px solid #8ed030;
+border: 1px solid #8ed030;
+font-size: 10px;
 }
 body.single-job .job-view-list ._li .job-details .job-title h5 a {
 width: 100%;
@@ -2008,7 +2028,8 @@ background: url(../images/up.png)no-repeat right 39px !important;
 .footer_menu{
 	list-style: none;
 	margin: auto;
-	width: 100%;
+	width: 79%;
+text-align: center;
 	
 	li{
 			display:inline-block;
@@ -4220,9 +4241,14 @@ body .minion-dir{
 			display:block!important;
 			.td-job-title {
 				width: 44%;
+				line-height: 15px;
 			}
 			.sm-font {
 			font-size: 11px;
+			}
+			.btn{
+				font-size: 11px;
+				padding: 0px;
 			}
 		}
 	}

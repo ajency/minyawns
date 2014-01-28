@@ -60,7 +60,7 @@
 	<div id="header">
 				<a href="#menuleft"></a>
 				
-		<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="" width="150px" /> 
+		<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="" width="150px" onclick="location.href='<?php echo site_url()?>';" style="cursor:pointer;"/> 
 		
 				<a href="#menuright" class="friends right"></a>
 			</div>

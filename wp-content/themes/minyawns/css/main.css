@@ -468,11 +468,28 @@ body .jobs_table .data-title .profile-job {
   background: #fff;
 }
 @media (max-width: 767px) {
+  body .bg-white {
+    padding: 10px;
+  }
+  .reuse-job li .span2 {
+    display: none;
+  }
+  body.single-job .tab-content {
+    min-height: 100% !important;
+    overflow-y: hidden!important;
+  }
+  body.single-job .tab-content #edit-job-form {
+    height: 1080px!important;
+    margin-top: -111px !important;
+    position: relative!important;
+    display: none;
+  }
   body .employer-image {
     overflow: hidden;
     width: 100%;
     height: 54px;
-    border: 2px solid #8ed030;
+    border: 1px solid #8ed030;
+    font-size: 10px;
   }
   body.single-job .job-view-list ._li .job-details .job-title h5 a {
     width: 100%;
@@ -1771,7 +1788,8 @@ body .jobs_table .data-title .profile-job {
   .footer_menu {
     list-style: none;
     margin: auto;
-    width: 100%;
+    width: 79%;
+    text-align: center;
   }
   .footer_menu li {
     display: inline-block;
@@ -3625,9 +3643,14 @@ body .jobs_table .data-title .profile-job {
   }
   body .minion-dir .modal-body table .td-job-title {
     width: 44%;
+    line-height: 15px;
   }
   body .minion-dir .modal-body table .sm-font {
     font-size: 11px;
+  }
+  body .minion-dir .modal-body table .btn {
+    font-size: 11px;
+    padding: 0px;
   }
   .features .tab-content {
     min-height: 100%;
