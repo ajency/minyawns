@@ -2463,6 +2463,10 @@ body .jobs_table .data-title .profile-job {
     float: left!important;
     margin-top: -10px !important;
   }
+  body .tab-content .alert {
+    border-radius: 6px!important;
+    margin-bottom: 8px!important;
+  }
   body .delte-popup .modal-footer .action-btn {
     width: 46% !important;
     margin: auto;
@@ -2471,14 +2475,14 @@ body .jobs_table .data-title .profile-job {
     overflow-y: scroll;
     height: 114px;
   }
-  body .mobile-category .form-horizontal .controls input {
+  body .mobile-category .controls input {
     height: 31px;
     margin: 1px 0;
     float: left;
     width: 7%;
     clear: both;
   }
-  body .mobile-category .form-horizontal .controls .category_name {
+  body .mobile-category .controls .category_name {
     display: block!important;
     margin-right: 5px!important;
     padding-top: 8px!important;
@@ -2564,7 +2568,7 @@ body .jobs_table .data-title .profile-job {
   }
   #edit-job-form {
     width: 80% !important;
-    margin-left: 35px !important;
+    margin-left: 26px !important;
   }
   body {
     padding-right: 0px;
