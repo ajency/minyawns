@@ -2451,6 +2451,23 @@ body .jobs_table .data-title .profile-job {
   visibility: hidden;
 }
 @media (max-width: 767px) {
+  body .alert-info .btn {
+    margin: 15px !important;
+  }
+  body .review_popover {
+    position: relative;
+    width: 96%;
+  }
+  body .review_popover .comment-box {
+    font-size: 11px;
+    line-height: 15px;
+  }
+  body .review_popover .comment-box i {
+    font-size: 21px;
+    float: none;
+    padding: 5px;
+    display: block;
+  }
   body .alert {
     padding: 10px;
   }
@@ -2458,6 +2475,7 @@ body .jobs_table .data-title .profile-job {
     margin: 9px 0 18px;
     width: 70%;
     margin: auto;
+    font-size: 11px;
   }
   body .minaywns-sel {
     color: #fff;
@@ -2589,6 +2607,10 @@ body .jobs_table .data-title .profile-job {
   }
   body div.profile-wrapper .row-fluid {
     width: 98%;
+  }
+  body div.profile-wrapper #profile-edit {
+    top: 0px;
+    height: 100% !important;
   }
   body .div-box-block {
     position: relative;
@@ -3366,6 +3388,7 @@ body .jobs_table .data-title .profile-job {
 .job-view-list ._li .status {
   text-align: center;
   height: 100%;
+  margin-top: 6px;
 }
 .job-view-list ._li .status .st-wages {
   text-transform: uppercase;

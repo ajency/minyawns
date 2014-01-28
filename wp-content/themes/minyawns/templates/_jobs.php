@@ -412,13 +412,13 @@ And you don't need a PayPal account to pay us. <br>Any credit or debit card will
 <!--	<div class="dwn-btn review_popover">
 
     <%= ratings_button %>
-    <%  if(result.comment !== 0){ %>   <div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <div><%= result.comment %></div></div><% } %>
+    <%  if(result.comment !== 0){ %>   <div  class="comment-box"> <i class="icon-thumbs-up weldone"></i><%= result.comment %></div><% } %>
     
     </div>-->
     <div class="dwn-btn review_popover">
 
    <%= ratings_button %>
-<!--   <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <div><%= result.comment %></div></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <div><%= result.comment %></div></div> <%}%>-->
+<!--   <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <%= result.comment %></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <%= result.comment %></div><%}%>-->
    </div>
 
     <%= select_button %>
