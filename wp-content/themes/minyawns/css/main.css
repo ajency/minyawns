@@ -2447,6 +2447,26 @@ body .jobs_table .data-title .profile-job {
   visibility: hidden;
 }
 @media (max-width: 767px) {
+  body .alert-msg .close {
+    position: absolute;
+    top: 12px !important;
+  }
+  body .main-content {
+    background: #fff;
+  }
+  body .breadcrumb-text {
+    margin-bottom: 20px;
+    background: #ECECEC;
+    padding: 7px;
+  }
+  body .breadcrumb-text p {
+    width: 100%!important;
+    clear: both!important;
+  }
+  body .breadcrumb-text .single-job-action {
+    float: left!important;
+    margin-top: -10px !important;
+  }
   body .tab-content {
     background: #fff !important;
   }
@@ -2464,8 +2484,8 @@ body .jobs_table .data-title .profile-job {
     margin-top: -10px !important;
   }
   body .tab-content .alert {
-    border-radius: 6px!important;
-    margin-bottom: 8px!important;
+    margin-bottom: 5px!important;
+    font-size: 11px!important;
   }
   body .delte-popup .modal-footer .action-btn {
     width: 46% !important;
