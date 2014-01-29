@@ -947,11 +947,11 @@ background: #F8F8F8!important;
 }
 .avtar-btn{
 				position: absolute;
-		background: rgba(255, 255, 255, 0.62);
-		width: 100%;
-		padding-top: 15px;
-		padding-bottom: 15px;
-		margin-top: -47px;
+		background: rgba(255, 255, 255, 0.9);
+width: 100%;
+padding-top: 15px;
+padding-bottom: 15px;
+margin-top: -45px;
 		
 		}
 .min_profile{
@@ -2763,14 +2763,18 @@ body  .minyawns-grid1 .thumbspan .thumbnail:hover .m2{
 .mobile-menu-demo{
 	display:none;
 }
-#menuright{
-	visibility:hidden;
-}
-#menuleft{
-	visibility:hidden;
+.previous-jobs-mobile{
+	display:none;
 }
 @media (max-width: 767px){
+
 body {
+.previous-jobs-mobile{
+	display:block !important;
+}
+.previous-jobs{
+	display:none ;
+}
 .alert-msg .close {
 position: absolute;
 top: 12px !important;
@@ -2919,12 +2923,7 @@ display:none;
 .mobile-menu-demo{
 	display:block !important;
 }
-body #menuright{
-	visibility:visible;
-}
-body #menuleft{
-	visibility:visible;
-}
+
 
 .job-view-list {
 	.accordion-inner {
@@ -3213,7 +3212,7 @@ background-position: 60px 1050px;
 					}
 					.btn-huge {
 								width: 64%;
-							font-size: 21px;
+							font-size: 18px;
 							margin: auto;
 							margin-bottom: 7px;
 			
@@ -6650,7 +6649,8 @@ padding-bottom: 3px;
 	}
 }
 .social-link {
-float: none;
+float: right;
+margin-right:-4px;
 }
 .recent-jobs li {
 	height: auto;
@@ -6732,7 +6732,19 @@ height: auto;
 		float:left;
 		width:70%;
 		.name {
-		font-size: 16px;
+		font-size: 15px !important; 
+		
+		}
+		.minyawnverified{
+			font-size:13px !important;
+			display:block;
+			margin-top:6px;
+			img{
+				width:20px;
+			}
+		}
+		.icon-question-sign{
+			display:none;
 		}
 		.profiledata .college-data {
 		font-size: 12px;

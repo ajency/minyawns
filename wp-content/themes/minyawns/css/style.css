@@ -2634,8 +2634,20 @@ html.mm-opened.mm-black .mm-page {
 			{
 				font-size: 12px;
 			}
-	  
-	  #header,
+
+pre
+{
+	font-size: 12px;
+	width: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+nav
+{
+	display: none;
+}
+
+#header,
 .header,
 #footer
 {

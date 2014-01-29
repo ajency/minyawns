@@ -860,11 +860,11 @@ body .jobs_table .data-title .profile-job {
 }
 .avtar-btn {
   position: absolute;
-  background: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.9);
   width: 100%;
   padding-top: 15px;
   padding-bottom: 15px;
-  margin-top: -47px;
+  margin-top: -45px;
 }
 .min_profile {
   border: 1px solid #ccc;
@@ -2440,13 +2440,16 @@ body .jobs_table .data-title .profile-job {
 .mobile-menu-demo {
   display: none;
 }
-#menuright {
-  visibility: hidden;
-}
-#menuleft {
-  visibility: hidden;
+.previous-jobs-mobile {
+  display: none;
 }
 @media (max-width: 767px) {
+  body .previous-jobs-mobile {
+    display: block !important;
+  }
+  body .previous-jobs {
+    display: none ;
+  }
   body .alert-msg .close {
     position: absolute;
     top: 12px !important;
@@ -2573,12 +2576,6 @@ body .jobs_table .data-title .profile-job {
   }
   .mobile-menu-demo {
     display: block !important;
-  }
-  body #menuright {
-    visibility: visible;
-  }
-  body #menuleft {
-    visibility: visible;
   }
   .job-view-list .accordion-inner {
     padding: 3px !important;
@@ -2811,7 +2808,7 @@ body .jobs_table .data-title .profile-job {
   }
   .home #innermainimage .banner-content .btn-huge {
     width: 64%;
-    font-size: 21px;
+    font-size: 18px;
     margin: auto;
     margin-bottom: 7px;
   }
@@ -5691,7 +5688,8 @@ div.tooltip1:after {
     width: 53% !important;
   }
   .social-link {
-    float: none;
+    float: right;
+    margin-right: -4px;
   }
   .recent-jobs li {
     height: auto;
@@ -5765,7 +5763,18 @@ div.tooltip1:after {
     width: 70%;
   }
   .min_profile .span10 .name {
-    font-size: 16px;
+    font-size: 15px !important;
+  }
+  .min_profile .span10 .minyawnverified {
+    font-size: 13px !important;
+    display: block;
+    margin-top: 6px;
+  }
+  .min_profile .span10 .minyawnverified img {
+    width: 20px;
+  }
+  .min_profile .span10 .icon-question-sign {
+    display: none;
   }
   .min_profile .span10 .profiledata .college-data {
     font-size: 12px;

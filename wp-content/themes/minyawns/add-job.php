@@ -303,7 +303,20 @@ $(".inline li").removeClass("selected");
                             
                                 if (is_user_logged_in() && get_logged_in_role() === 'Employer') {
                                     ?>
-                            <div class="span8">                              
+                            <div class="span8"> 
+      <div class="alert alert-info job-sidebar previous-jobs previous-jobs-mobile">                          
+                                        <h5>
+                                            Job Templates
+                                            <span class="experts">Reuse your previous jobs</span>
+                                        </h5>
+                                        <hr>
+                                        <ul class="unstyled reuse-job">
+                                            
+                                            
+                                        </ul> 
+                                      
+
+                                    </div>							
                                     <div class="alert alert-success alert-box " id="job-success" style="display:none;">  <button data-dismiss="alert" class="close" type="button">×</button>You have successfully add a job.</div>
                                     <!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
                                     <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
