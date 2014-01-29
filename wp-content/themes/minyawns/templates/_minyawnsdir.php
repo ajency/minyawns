@@ -17,6 +17,12 @@
                                     <div class="social-link">
                                    <a href='http://<%= result.linkedin.replace(/^http?:\/\//,'') %>' target='_blank'><%= result.linkedin %></a>
                                     </div>
+									<div class="m1-invite">
+									<a class="btn btn-primary invite-btn" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
+												   <i class="icon-ok"></i>
+												 Invite Minion
+												   </a>	
+									</div>
                                     <div class="rating">
                                        <a href="#fakelink" id="thumbs_up_10">
                                        <i class="icon-thumbs-up"></i><%= result.rating_positive %>

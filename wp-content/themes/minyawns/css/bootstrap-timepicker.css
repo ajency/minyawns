@@ -129,12 +129,12 @@ height: 16px;
 	margin-left: 0px!important;
 	margin-bottom: 13px !important;
   }
- .bootstrap-timepicker .add-on {
+.bootstrap-timepicker .add-on {
 min-width: 23px;
-padding: 5px 2px;
+padding: 5px 0px;
 font-size: 14.99px;
-line-height: 0px;
-height: 17px;
+line-height: 27px;
+height: 25px;
 }
   .bootstrap-timepicker .dropdown-menu {
     width: 100%;

@@ -1231,6 +1231,7 @@ color: #FFF;
     position: relative;
 width: 100%;
 background: #FAF4B4;
+
 }
 .single-view .review_popover .comment-box i {
 font-size: 30px;
@@ -1241,10 +1242,9 @@ padding: 5px;
 padding-top:5px;
 padding-bottom:5px;
 border: 1px solid #DFDF72;
-}.single-view .review_popover .comment-box div{
 overflow: hidden;
-height: 43px;
-overflow-y: scroll;
+height: 73px;
+overflow-y: auto;
 }
 .comment-box .weldone{
 color: #38A324;
@@ -1313,9 +1313,7 @@ body .minyawns-grid1 .thumbspan {
 /*
 	jQuery.mmenu CSS
 */
-/*
-	jQuery.mmenu CSS
-*/
+
 html.mm-opened .mm-page,
 html.mm-opened #mm-blocker,
 html.mm-opened .mm-fixed-top,
