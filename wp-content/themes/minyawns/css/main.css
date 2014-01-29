@@ -2443,7 +2443,17 @@ body .jobs_table .data-title .profile-job {
 .previous-jobs-mobile {
   display: none;
 }
+#edit-job-form .bootstrap-timepicker .add-on {
+  padding: 8px 2px;
+}
 @media (max-width: 767px) {
+  body .ui-spinner {
+    height: 37px !important;
+  }
+  body .hasDatepicker,
+  body #job_end_date {
+    width: 56px !important;
+  }
   body .row-fluid input.hasDatepicker {
     width: 54px !important;
     min-height: 34px !important;
