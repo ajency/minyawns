@@ -138,13 +138,14 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
 </div>
 <div class="span3 mobile-alert-box-hidden">
                   <div class="alert alert-success alert-sidebar author-data">
-                      
+                      <b style="color:#000;">Employer Details</b>
 					  
 					  <div class="row-fluid">
 					  <div class="span3">
 						<%= result.job_author_logo %>
 					  </div>
 						<div class="span9 author-info">
+						
                                                 <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
 							<i class="icon-map-marker"></i> <%= result.job_company_location%>
 						</div>

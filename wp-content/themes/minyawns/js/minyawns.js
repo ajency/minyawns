@@ -9,9 +9,12 @@ jQuery("#signinlink").click(function() {
 });
 
 jQuery(document).ready(function($) {
+
+
 //	The menu on the left
 			jQuery(function() {
 				jQuery('#menuleft').mmenu();
+				
 			});
 
 

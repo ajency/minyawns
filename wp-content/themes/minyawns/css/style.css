@@ -957,7 +957,7 @@ background: url(../images/up.png)no-repeat right  !important;
 font-weight: bold;
 }	
 .row-fluid [class*="span"] {
-	min-height: 36px !important;
+	min-height: 34px !important;
 }
 .sm-input{
 
@@ -2634,8 +2634,20 @@ html.mm-opened.mm-black .mm-page {
 			{
 				font-size: 12px;
 			}
-	  
-	  #header,
+
+pre
+{
+	font-size: 12px;
+	width: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+nav
+{
+	display: none;
+}
+
+#header,
 .header,
 #footer
 {
