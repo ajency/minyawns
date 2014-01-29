@@ -957,7 +957,7 @@ background: url(../images/up.png)no-repeat right  !important;
 font-weight: bold;
 }	
 .row-fluid [class*="span"] {
-	min-height: 36px !important;
+	min-height: 34px !important;
 }
 .sm-input{
 

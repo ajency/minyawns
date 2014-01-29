@@ -2444,6 +2444,20 @@ body .jobs_table .data-title .profile-job {
   display: none;
 }
 @media (max-width: 767px) {
+  body .row-fluid input.hasDatepicker {
+    width: 54px !important;
+    min-height: 34px !important;
+  }
+  body .row-fluid input.timepicker-default {
+    width: 65%!important;
+  }
+  body .bootstrap-timepicker {
+    margin-top: 22px;
+    margin-left: 13px !important;
+  }
+  body .bootstrap-timepicker-widget {
+    left: -71%;
+  }
   body .previous-jobs-mobile {
     display: block !important;
   }
@@ -2732,9 +2746,6 @@ body .jobs_table .data-title .profile-job {
     margin: auto!important;
     height: 100%!important;
     width: 100%!important;
-  }
-  .form-horizontal .float-left {
-    float: none;
   }
   .tab_content_login {
     margin-top: 40px;
