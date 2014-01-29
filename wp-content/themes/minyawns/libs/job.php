@@ -337,7 +337,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'job_start_time' => date('g:i', $post_meta['job_start_time'][0]),
                     'job_end_time' => date('g:i', $post_meta['job_end_time'][0]),
                     'job_location' => $post_meta['job_location'][0],
-                    'job_details' => $post_content,
+                    'job_details' => strlen($post_content) >0 ? $post_content:'Details of the Employer not available',
                     'tags' => $tags,
                     //'tags_count' => sizeof($tags),
                     'job_author' => get_the_author_meta('first_name', $pagepost->post_author) . ' ' . get_the_author_meta('last_name', $pagepost->post_author),
