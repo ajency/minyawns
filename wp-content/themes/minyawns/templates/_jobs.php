@@ -20,6 +20,7 @@
                                                
                                                 <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
                                                       <li class="no-bdr"><i class="icon-map-marker"></i> <%= result.job_location %></li>
+                                                      <li class="no-bdr"> Minyawns required:<%= result.required_minyawns %></li>
                                              </ul>
                                           </div>
                                          
@@ -43,7 +44,7 @@
                                  <div class="span9 ">
                                     <div class="row-fluid ">
                                       <div class="span12 job-details">
-                                         <p> <%= result.job_details %> <em>job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></em> </p>
+                                         <p> <%=  result.job_details %> <em>job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_company %></a></em> </p>
                                        </div>
                                     </div>
 									 <div class="additional-info">
