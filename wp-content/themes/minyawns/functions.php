@@ -51,6 +51,9 @@ function mn_template_directory_uri($template_dir_uri, $template, $theme_root_uri
 add_filter('template_directory_uri', 'mn_template_directory_uri', 100, 3);
 
 function minyawns_scripts_styles() {
+    
+    wp_enqueue_style('minyawns-landing-css', get_template_directory_uri() . '/css/landing-pages.css', array(), null);
+    
     switch (ENVIRONMENT) {
         case 'TESTING':
             wp_enqueue_style('minyawns-testing-css', get_template_directory_uri() . '/css/minyawns-testing.css', array(), null);
