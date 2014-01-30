@@ -681,6 +681,7 @@ $app->get('/jobminions/', function() use ($app) {
 
                     $is_invited = get_current_job_status($_GET['job_id'], $minion_ids[$i]);
 
+$user_email=get_userdata($minion_ids[$i]);
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
                         'name' => $all_meta_for_user['first_name'] . ' ' . $all_meta_for_user['last_name'],
@@ -688,7 +689,7 @@ $app->get('/jobminions/', function() use ($app) {
                         'major' => isset($all_meta_for_user['major']) ? $all_meta_for_user['major'] : '',
                         'user_skills' => isset($all_meta_for_user['user_skills']) ? $all_meta_for_user['user_skills'] : '',
                         'linkedin' => isset($all_meta_for_user['linkedin']) ? preg_replace('#^http?://#', '', rtrim($all_meta_for_user['linkedin'], '/')) : '',
-                        'user_email' => isset($all_meta_for_user['nickname']) ? $all_meta_for_user['nickname'] : '', /* nick name temp fix */
+                        'user_email' =>$user_email->user_email, /* nick name temp fix */
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
                         'user_image' => $user['image'],
