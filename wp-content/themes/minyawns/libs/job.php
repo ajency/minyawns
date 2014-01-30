@@ -810,7 +810,7 @@ $app->post('/inviteminions', function() use($app) {
             // $user_meta = get_user_meta($_POST['user_id']);
             //print_r($user_meta);exit();
             $email = get_userdata($_POST['user_id']);
-          $emailid=$email->data->user_login;
+          $emailid=$email->user_email;
             $data_mail = array(
                 'content' => get_the_content($_POST['job_id']),
                 'wages' => get_post_meta($_POST['job_id'], 'job_wages', true),
@@ -826,11 +826,7 @@ $app->post('/inviteminions', function() use($app) {
             $headers .= "MIME-Version: 1.0\n" .
                     "From: Minyawns support@minyawns.com\n" .
                     "Content-Type: text/html; charset=\"" . "\"\n";
-          add_filter( 'wp_mail_from_name', 'custom_wp_mail_from_name' );
-function custom_wp_mail_from_name()
-{
-	return 'Minyawns';
-}
+
 
             wp_mail($emailid, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
 
