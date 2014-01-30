@@ -2447,6 +2447,12 @@ body .jobs_table .data-title .profile-job {
   padding: 8px 2px;
 }
 @media (max-width: 767px) {
+  body #crumbs {
+    font-size: 14px;
+  }
+  body .blog-container .comments-area .comment-respond input#submit {
+    width: 55%!important;
+  }
   body .ui-spinner {
     height: 37px !important;
   }
@@ -3755,6 +3761,7 @@ body .jobs_table .data-title .profile-job {
   body .minion-dir .modal-body table .btn {
     font-size: 11px;
     padding: 0px;
+    width: 100% !important;
   }
   .features .tab-content {
     min-height: 100%;
