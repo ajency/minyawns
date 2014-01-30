@@ -2629,6 +2629,7 @@ html.mm-opened.mm-black .mm-page {
 			{
 				float: left;
 				margin: -5px 10px -5px 0;
+				width:51px;
 			}
 			.mm-menu li.img a small
 			{

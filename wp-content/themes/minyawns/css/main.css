@@ -2468,7 +2468,7 @@ body .jobs_table .data-title .profile-job {
     width: 65%!important;
   }
   body .bootstrap-timepicker {
-    margin-top: 22px;
+    margin-top: 24px;
     margin-left: 13px !important;
   }
   body .bootstrap-timepicker-widget {
@@ -5716,7 +5716,6 @@ div.tooltip1:after {
     width: 53% !important;
   }
   .social-link {
-    float: right;
     margin-right: -4px;
   }
   .recent-jobs li {
