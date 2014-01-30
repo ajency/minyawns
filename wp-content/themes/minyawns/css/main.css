@@ -2447,6 +2447,10 @@ body .jobs_table .data-title .profile-job {
   padding: 8px 2px;
 }
 @media (max-width: 767px) {
+  body #signup_subheader {
+    margin-bottom: 7px;
+    margin-top: 33px;
+  }
   body #crumbs {
     font-size: 14px;
   }
