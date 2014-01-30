@@ -95,7 +95,9 @@ $key_job = sha1($salt . uniqid(time(), true));
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
              <div class="row-fluid minyawns-grid1">
-			 <div class="span3 mobile-alert-box">
+		  <%  if ($(window).width() < 800) {%>
+			
+			<div class="span3 mobile-alert-box">
                   <div class="alert alert-success alert-sidebar author-data">
                       
 					  
@@ -130,12 +132,14 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                  
 					   
 </div>
+ <%}%>
         <div class="span9">
     <ul class="thumbnails">
     <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
         </br></br></br></br><span id="div_confirmhire"></span>
 </div>
+
 <div class="span3 mobile-alert-box-hidden">
                   <div class="alert alert-success alert-sidebar author-data">
                       <b style="color:#000;">Employer Details</b>
@@ -172,7 +176,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                  
 					   
 </div>
-
+ 
                        
                      </div>
                   </div>
