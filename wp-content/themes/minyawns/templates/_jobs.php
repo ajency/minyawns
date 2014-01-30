@@ -22,6 +22,7 @@
                                                       <li class=""><i class="icon-map-marker"></i> <%= result.job_location %></li>
                                                       <li class="no-bdr"> Minyawns required:<%= result.required_minyawns %></li>
                                              </ul>
+											 			
                                           </div>
                                          
                                        </div>

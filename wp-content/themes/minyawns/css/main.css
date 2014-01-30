@@ -1407,8 +1407,14 @@ body .jobs_table .data-title .profile-job {
   width: 60%;
   margin-bottom: 1px;
 }
+.mobile-toggle-show {
+  display: none;
+}
 /* mobile resonsive */
 @media (max-width: 767px) {
+  .mobile-toggle-show {
+    display: block !important;
+  }
   .comment-form .required {
     display: none;
   }
@@ -3936,6 +3942,13 @@ body .jobs_table .data-title .profile-job {
     margin: 0px;
   }
   body .job-view-list ._li .mobile-hide .status {
+    background: #E9E9E9;
+    height: 35px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    margin-top: 0px;
+  }
+  body .job-view-list ._li .mobile-hide .status .st-wages {
     display: none;
   }
   body .job-view-list ._li .additional-info {
