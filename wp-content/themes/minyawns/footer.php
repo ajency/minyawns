@@ -49,15 +49,15 @@ jQuery(document).ready(function($) {
 		<li><a href="<?php echo site_url(); ?>/careers/">Careers</a></li>
 		<li><a href="<?php echo site_url(); ?>/contact/">Contact</a></li>
 	</ul>
-	<?php /* commented  on 4sep2013 
+	
 	<div class="social-icon">
-		<a href="#"><img
+		<a href="https://twitter.com/Minyawns"><img
 			src="<?php echo get_template_directory_uri() ?>/images/twiiter.png" />
-		</a>&nbsp;&nbsp;<a href="#"><img
+		</a>&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn"><img
 			src="<?php echo get_template_directory_uri() ?>/images/facebook.png" />
 		</a>
 	</div>
-	*/?>
+	
 	<div class="site_link">All rights reserved 2013 @ Minyawns</div>
 </footer>
 
