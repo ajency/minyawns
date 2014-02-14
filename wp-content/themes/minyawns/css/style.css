@@ -2690,3 +2690,9 @@ nav
 {
 	padding: 20px;
 }
+
+.job-view-list ._li .job-details p em{
+    display: block;
+color: #000;
+    
+}
