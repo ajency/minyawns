@@ -133,7 +133,7 @@ require 'templates/_jobs.php';
                 	<?php
                                                                    
                  if (get_logged_in_role() == 'Minion') {
-				   echo '<div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href=""'.site_url().'/edit-profile""  class="" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
+				   echo '<div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href="'.site_url().'/edit-profile"  class="" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 				 }
                     ?>
 				<?php
