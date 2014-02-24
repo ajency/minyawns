@@ -1011,6 +1011,52 @@ function verified_minyawns_save($user_id) {
 
     update_user_meta($user_id, 'user_verified', $value);
 }
+
+/*
+ *  GOW
+ * 
+ * 
+ */
+//add_action( 'init', 'create_dealer_locator' );
+//function create_dealer_locator() {
+//    register_post_type( 'dealer_locator',
+//        array(
+//            'labels' => array(
+//                'name' => 'Dealer Locator',
+//                'singular_name' => 'List of Dealer Locators',
+//                'add_new' => 'Add New',
+//                'add_new_item' => 'Add New Dealer Locator',
+//                'edit' => 'Edit',
+//                'edit_item' => 'Edit Dealer Locator',
+//                'new_item' => 'New Dealer Locator',
+//                'view' => 'View',
+//                'view_item' => 'View Dealer Locator',
+//                'search_items' => 'Search Dealer Locators',
+//                'not_found' => 'No Movie Dealer Locator',
+//                'not_found_in_trash' => 'No Dealer Locator found in Trash',
+//                'parent' => 'Parent Dealer Locator'
+//            ),
+// 
+//            'public' => true,
+//            'menu_position' => 15,
+//            'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
+//             //'taxonomies' => array('category', 'post_tag'),
+//            //'menu_icon' => plugins_url( 'images/image.png', __FILE__ ),
+//            'has_archive' => true
+//        )
+//    );
+//}
+//    add_action( 'init', 'build_taxonomies_dealer', 0 );
+//
+//function build_taxonomies_dealer() {
+//    register_taxonomy( 'dealer_category', 'dealer_locator', array( 'hierarchical' => true, 'label' => 'Dealer Categories', 'query_var' => true, 'rewrite' => true ) );
+//}
+//function register_dealer_taxonomy() {
+//    register_taxonomy(
+//            'dealer_tags', 'dealer_locator'
+//    );
+//}
+//add_action('init', 'register_dealer_taxonomy');
 ?>
 <?php
 function qt_custom_breadcrumbs() {

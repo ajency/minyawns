@@ -517,7 +517,7 @@ function send_mail_employer_apply_job($job_id, $action) {
 
     $mail_message = "Hi,<br/><br/>Looks like " .
             $current_user->display_name . " has " . $action . " for the job '" . get_the_title($job_id) . "'
-                The next step is to confirm, pay and hire. Please log back on to minyawns  <a href='".site_url()."/job/".replaceAll(get_the_title($job_id))."' target='_blank'>'".get_the_title($job_id)."'</a>  and finish the process.<br/><br/>
+                The next step is to confirm, pay and hire. Please log back on to minyawns  <a href='".  get_permalink($job_id)."' target='_blank'>'".get_the_title($job_id)."'</a>  and finish the process.<br/><br/>
                     Don't fret, we wont charge you until the job is done. We also offer 100% satisfaction guarantee or your money back!
                 		<br/><br/><h3>Minyawn Details</h3>
                 		<br/><b>Username : " . $current_user->user_login . "</b>

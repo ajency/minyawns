@@ -113,7 +113,7 @@
 					
 					</li>
 				<li>
-					<a href="#mylogin" data-toggle="modal" ><i class="icon-unlock-alt"></i> Login </a>
+					<a href="#mylogin" data-toggle="modal" ><i class="icon-unlock-alt"></i> Login</a>
 					
 					</li>
 <li>
