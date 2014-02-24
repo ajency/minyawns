@@ -48,14 +48,16 @@ position: "right"
     $(parent_id+' .accordion-body').collapse('hide');
 
     // ...then open just the one we want
-    var $target = $(this).parents('.panel').find('.accordion-body');
-    $target.collapse('toggle');
+    var $target = $(this).parents('._li').find('.accordion-body');
+   
     var texthtml;
+   // alert("toggle");
    if($(e.target).closest('.status').find('.accordion-toggle').html() === 'Hide Information')
        texthtml='Show More Information';
    else
        texthtml="Hide Information";
    
+    $target.collapse('toggle');
     $(e.target).closest('.status').find('.accordion-toggle').text(texthtml);
 });	
 
@@ -75,15 +77,15 @@ position: "right"
 
 // do stuff
 
-$('body').on('click', '[data-toggle=collapse-next]', function (e) {
-    // Try to close all of the collapse areas first
-    var parent_id = $(this).data('parent');
-    $(parent_id+' .accordion-body').collapse('hide');
-
-    // ...then open just the one we want
-    var $target = $(this).parents('.panel').find('.accordion-body');
-    $target.collapse('toggle');
-});	
+//$('body').on('click', '[data-toggle=collapse-next]', function (e) {
+//    // Try to close all of the collapse areas first
+//    var parent_id = $(this).data('parent');
+//    $(parent_id+' .accordion-body').collapse('hide');
+//
+//    // ...then open just the one we want
+//    var $target = $(this).parents('.panel').find('.accordion-body');
+//    $target.collapse('toggle');
+//});	
     }
 
     $("#select3").fcbkcomplete({
