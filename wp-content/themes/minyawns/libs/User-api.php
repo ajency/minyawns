@@ -629,7 +629,7 @@ function minyawn_job_unapply() {
         'job_id' => $job_id
     ));
     // send mail to employer who created job
-    send_mail_employer_apply_job($job_id, 'unapplied');
+   // send_mail_employer_apply_job($job_id, 'unapplied');
 
     echo json_encode(array('success' => 1, 'new_action' => 'apply'));
 
