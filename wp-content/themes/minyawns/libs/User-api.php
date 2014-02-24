@@ -532,7 +532,7 @@ function send_mail_employer_apply_job($job_id, $action) {
                 		<br/><b>End Date : </b>" . date('d M Y', get_post_meta($_POST['job_id'], 'job_end_date', true)) . "
 					    <br/><b>end Time : </b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_end_time', true)) . "
                 		<br/><b>Location : </b>" . get_post_meta($_POST['job_id'], 'job_location', true) . "
-						<br/><b>Wages : </b>" . get_post_meta($_POST['job_id'], 'job_wages', true) . "
+						<br/><b>Wages : </b>$" . get_post_meta($_POST['job_id'], 'job_wages', true) . "
                 		<br/><b>details : </b>" . $job_data->post_content . "
 	
                 		<br/><br/>
