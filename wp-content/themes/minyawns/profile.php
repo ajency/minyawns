@@ -133,7 +133,7 @@ require 'templates/_jobs.php';
                 	<?php
                                                                    
                  if (get_logged_in_role() == 'Minion') {
-				   echo '<div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href=""'.site_url().'/edit-profile""  class="edit-user-profile" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
+				   echo '<div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href=""'.site_url().'/edit-profile""  class="" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 				 }
                     ?>
 				<?php
@@ -141,7 +141,7 @@ require 'templates/_jobs.php';
                     if (get_logged_in_role() == 'Employer') {
 					
 			 echo '<div class="alert alert-msg"> Complete your profile 
-and get more applications from eager minions. Simply <a href="'.site_url().'/edit-profile"  class="edit-user-profile" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
+and get more applications from eager minions. Simply <a href="'.site_url().'/edit-profile"  class="" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 
  }
                     ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
