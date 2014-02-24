@@ -217,7 +217,7 @@
 		<div class="span4">
 			<div class="back-satisfication">
 				<div class="text">
-					We are so sure that Minyawns We will be the best decision you have ever made. If you are not satisfied for any 
+					We are so sure that Minyawns will be the best decision you have ever made. If you are not satisfied for any 
 					reason <img src="<?php echo get_template_directory_uri() ?>/images/satisfication.png" align="right"/>at all we will fully refund every cent you spent, 
 					no questions asked.<br><br>
 					<h4>Sign up and we'll demolish your to-do list today.</h4>
