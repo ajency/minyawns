@@ -988,7 +988,7 @@ var image_name=$("#image_name").val();
                                 window.location.href = jQuery("#noaccess_redirect_url").val();
                             } else {
 
-                                if (response.user_role == 'employer') {
+//                                if (response.user_role == 'employer') {
 
                                    if(location.href.match("#my-jobs") == null){
                                     
@@ -997,10 +997,10 @@ var image_name=$("#image_name").val();
                                     window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#my-jobs';
                                    }
                                     
-                                } else {
-
-                                    window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#browse';
-                                }
+//                                } else {
+//
+//                                    window.location = jQuery("#hdn_siteurl").val() + '/jobs/#browse';
+//                                }
                                 
                             }
                         }
