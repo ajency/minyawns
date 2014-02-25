@@ -38,7 +38,7 @@
 	
 	<!-- wordpress head functions -->
 	<?php wp_head(); 
-        require 'essential-scripts.php';
+        //require 'essential-scripts.php';
         ?>
       
 
@@ -52,6 +52,7 @@
             var logged_in_user_id='<?php echo get_user_id(); ?>'
             var is_logged_in='<?php echo is_user_logged_in();?>';
             var is_admin='<?php echo current_user_can( 'administrator' ); ?>';
+            var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
             </script>
 
 <body <?php body_class('logged-out'); ?> >
