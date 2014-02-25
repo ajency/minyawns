@@ -45,7 +45,7 @@ position: "right"
 	$('body').on('click', '[data-toggle=collapse-next]', function (e) {
     // Try to close all of the collapse areas first
     var parent_id = $(this).data('parent');
-    $(parent_id+' .accordion-body').collapse('hide');
+   // $(parent_id+' .accordion-body').collapse('hide');
 
     // ...then open just the one we want
     var $target = $(this).parents('._li').find('.accordion-body');
