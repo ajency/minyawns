@@ -38,7 +38,7 @@
 	
 	<!-- wordpress head functions -->
 	<?php wp_head(); 
-        //require 'essential-scripts.php';
+        require 'essential-scripts.php';
         ?>
       
 
