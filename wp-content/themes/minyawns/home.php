@@ -138,7 +138,7 @@
 						</li>
 						<li>
 						<div class="list-data">
-							<div class="icon-data"><i class="icon-wrench"></i><span>	LABOUR</span></div>	
+							<div class="icon-data"><i class="icon-wrench"></i><span>	LABOR</span></div>	
 							<div class="data-info">
 								
 							Moving<br>
