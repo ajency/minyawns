@@ -954,6 +954,7 @@ var image_name=$("#image_name").val();
     //user login form validation and user login
     jQuery("#btn_login").live("click", function() {
         jQuery('#frm_login').submit();
+        
     })
 
 
@@ -989,12 +990,18 @@ var image_name=$("#image_name").val();
 
                                 if (response.user_role == 'employer') {
 
+                                   if(location.href.match("#my-jobs") == null){
+                                    
+                                        window.location =jQuery("#hdn_siteurl").val() + '/jobs/';
+                                   }else{ 
                                     window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#my-jobs';
-
+                                   }
+                                    
                                 } else {
 
                                     window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#browse';
                                 }
+                                
                             }
                         }
                         else
