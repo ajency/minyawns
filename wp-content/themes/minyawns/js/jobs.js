@@ -157,7 +157,7 @@ function load_browse_jobs(id, _action, category_ids) {
 
     //jQuery("#accordion24").empty();
     $(".load_ajax_large_jobs").show();
-$("#accordion24").empty();
+//$("#accordion24").empty();
     $(".dialog-success").hide();//hiding add job button
     //jQuery("#browse-jobs-table").append("<button id='load-more' class='btn load_more'> <div><span style='display: none;' class='load_ajax'></span> <b>Load more</b></div></button>");
     jQuery("#tab_identifier").val('0');
@@ -362,12 +362,16 @@ $("#accordion24").empty();
 
 function fetch_my_jobs(id)
 {
+
+
+
     var profile_page = 0;
 
     $("#sidebar-content").hide();
     $("#my-jobs-emp-min").show();
 
     jQuery("#accordion24").empty();
+    //jQuery(".job-view-list").empty();
     jQuery("#loader").show();
     //jQuery("#add-job-form").show();
     jQuery("#parent_item").html("My Jobs");
