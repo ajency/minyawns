@@ -17,26 +17,27 @@ jQuery(document).ready(function($) {
         /* function on page load*/
         $(window).on('hashchange', function() {
 
-            if (window.location.hash === '#my-jobs')
-                fetch_my_jobs(logged_in_user_id);//moved to jobs.js
-            else if (window.location.hash === '#browse')
+            //if (window.location.hash === '#my-jobs')
+              //fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+             if (window.location.hash === '#browse')
                 load_browse_jobs();
             else if (window.location.hash === 'add-job')
                 load_add_job_form();
-            else
-                fetch_my_jobs(logged_in_user_id);//moved to jobs.js
+           // else
+               // fetch_my_jobs(logged_in_user_id);//moved to jobs.js
 
 
             return false;
         });
         if (window.location.hash === '#my-jobs') {
+          //  alert(logged_in_user_id);
             fetch_my_jobs(logged_in_user_id);//moved to jobs.js
         } else if (window.location.hash === '#browse') {
             load_browse_jobs();
         } else if (window.location.hash === '#add-job') {
             load_add_job_form();
         } else {
-            if (logged_in_user_id.length > 0)
+            if (logged_in_user_id.length < 0)
                 fetch_my_jobs(logged_in_user_id);//moved to jobs.js
             else
                 load_browse_jobs();
@@ -155,8 +156,8 @@ function load_browse_jobs(id, _action, category_ids) {
 
 
     //jQuery("#accordion24").empty();
-    $("#loader").show();
-
+    $(".load_ajax_large_jobs").show();
+$("#accordion24").empty();
     $(".dialog-success").hide();//hiding add job button
     //jQuery("#browse-jobs-table").append("<button id='load-more' class='btn load_more'> <div><span style='display: none;' class='load_ajax'></span> <b>Load more</b></div></button>");
     jQuery("#tab_identifier").val('0');
@@ -361,9 +362,6 @@ function load_browse_jobs(id, _action, category_ids) {
 
 function fetch_my_jobs(id)
 {
-
-
-
     var profile_page = 0;
 
     $("#sidebar-content").hide();
