@@ -73,7 +73,7 @@ $app->post('/change-avatar', function() use($app) {
             }
 
             $app->response()->header("Content-Type", "application/json");
-            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => $files['name'], 'image_height' => $image_height, 'image_width' => $image_width));
+            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => strtolower($files['name']), 'image_height' => $image_height, 'image_width' => $image_width));
         });
 
 $app->post('/resize-user-avatar', function() use($app) {

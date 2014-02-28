@@ -460,7 +460,7 @@ var image_name=$("#image_name").val();
             $('#myprofilepic').modal('hide')
 //            $('#change-avatar-span').find('img').attr('src', img_link);
 //            $('#logged-in').find('img').attr('src', img_link);
-            location.reload();
+           // location.reload();
             $(".load_ajax-crop-upload").hide();
             $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
 
