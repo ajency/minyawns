@@ -297,8 +297,7 @@ function load_browse_jobs(id, _action, category_ids) {
 //                            var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 //                            jQuery("#accordion24").append(html);
 
-                            var sample = samplejobs({result: model.toJSON()});
-                            jQuery(".reuse-job").append(sample);
+                           
 
 
                         } else {
@@ -327,7 +326,10 @@ function load_browse_jobs(id, _action, category_ids) {
 
                     } else {
                         jQuery(".load_more").show();
-                       
+                        var sample = samplejobs({result: model.toJSON()});
+                        
+                            jQuery(".reuse-job").append(sample);
+                            
                         if (model.toJSON().load_more === 1)
                             jQuery(".load_more").hide();
 
