@@ -70,6 +70,25 @@ $app->post('/change-avatar', function() use($app) {
                     $attachment_data = wp_get_attachment_image_src($attach_id,400,400);
                     $attachment_url =  $attachment_data[0];
                 }
+                $post_data = array(
+                'post_author' => get_user_id(),
+                'post_content' => '',
+                'post_date' => date('Y-m-d H:i:s'),
+                'post_date_gmt' => date('Y-m-d H:i:s'),
+                'post_excerpt' => '',
+                'post_name' => $filename,
+                'post_parent' => 0,
+                'post_status' => 'inherit',
+                'post_title' => $filename,
+                'post_type' => 'attachment',
+                'post_mime_type' => 'image/jpeg',
+                'guid' => $attachment_url,
+            );
+            $atach_post_id = wp_insert_post($post_data);
+            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $attachment_url);
+            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
+                
+                
             }
 
             $app->response()->header("Content-Type", "application/json");
@@ -97,16 +116,7 @@ $app->post('/resize-user-avatar', function() use($app) {
 
             $for_user_meta = "user-avatars/" . $user_ID . "/" . $new_name;
 
-			
-			 
-           
-            
-            
-            
-            
-            
-            
-			if(asp_ratio=="1:1")
+			if($asp_ratio=="1:1")
 			{
             	$t_width = 100; // Maximum thumbnail width
             	$t_height =100; // Maximum thumbnail height
@@ -146,10 +156,10 @@ $app->post('/resize-user-avatar', function() use($app) {
             $new_width = round(($orig__width /$fin_asp_ratio),3);
             $new_height = round(($orig__height/$fin_asp_ratio),3);
             
-            $image_p = imagecreatetruecolor($new_width, $new_height);
-            $image = imagecreatefromjpeg($targetFolder . $image_name);
-            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $orig__width, $orig__height);
-            
+//            $image_p = imagecreatetruecolor($new_width, $new_height);
+//            $image = imagecreatefromjpeg($targetFolder . $image_name);
+//            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $orig__width, $orig__height);
+//            
             
             
              
@@ -217,9 +227,9 @@ $app->post('/resize-user-avatar', function() use($app) {
                 'post_mime_type' => 'image/jpeg',
                 'guid' => site_url() . "/wp-content/uploads/user-avatars/" . $user_ID . "/" . $new_name,
             );
-            $atach_post_id = wp_insert_post($post_data);
-            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
-            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
+            //$atach_post_id = wp_insert_post($post_data);
+            //$attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
+           // update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
            
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(get_user_company_logo($user_ID));
