@@ -201,7 +201,7 @@
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider2.png" data-interval="500" data-slide-to="1" />
                      <div class="carousel-caption">
                         <h4>Make you feel in charge!</h4>
-                        <p>Our Minions are equipped with the valuable skills from top universities. Its like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
+                        <p>Our Minions are equipped with the valuable skills from top universities. It's like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
                      </div>
                   </div>
                   <div class="item">
@@ -250,7 +250,7 @@
             <div class="tab-content">
                <div class="tab-pane active" id="home">
                   <h3>Don't procrastinate, give those annoying tasks to the minion.</h3>
-                  <p class="excerpt">Its really simple</p>
+                  <p class="excerpt">It's really simple</p>
 				  <div class="tooltip-left">
 						<div class="data">
 						<h4>Your eye catching job title</h4>
