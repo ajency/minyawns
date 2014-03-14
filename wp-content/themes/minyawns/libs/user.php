@@ -44,14 +44,14 @@ $app->post('/change-avatar', function() use($app) {
 
             if ($files['name']) {
                 $file = array(
-                    'name' => preg_replace('/\s+/', '_',$files['name']),
-                    'type' => $files['type'],
-                    'tmp_name' => preg_replace('/\s+/', '_',$files['tmp_name']),
+                    'name' => preg_replace('/\s+/', '_',  strtolower($files['name'])),
+                    'type' => strtolower($files['type']),
+                    'tmp_name' => preg_replace('/\s+/', '_',  strtolower($files['tmp_name'])),
                     'error' => $files['error'],
                     'size' => $files['size']
                 );
                 if (isset($_FILES['files'])) {
-                    $filename = $_FILES['files']['tmp_name'];
+                    $filename = strtolower($_FILES['files']['tmp_name']);
                     list($width, $height) = getimagesize($filename);
                     $image_width = $width;
                     $image_height = $height;
@@ -70,23 +70,23 @@ $app->post('/change-avatar', function() use($app) {
                     $attachment_data = wp_get_attachment_image_src($attach_id,400,400);
                     $attachment_url =  $attachment_data[0];
                 }
-                $post_data = array(
-                'post_author' => get_user_id(),
-                'post_content' => '',
-                'post_date' => date('Y-m-d H:i:s'),
-                'post_date_gmt' => date('Y-m-d H:i:s'),
-                'post_excerpt' => '',
-                'post_name' => $filename,
-                'post_parent' => 0,
-                'post_status' => 'inherit',
-                'post_title' => $filename,
-                'post_type' => 'attachment',
-                'post_mime_type' => 'image/jpeg',
-                'guid' => $attachment_url,
-            );
-            $atach_post_id = wp_insert_post($post_data);
-            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $attachment_url);
-            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
+//                $post_data = array(
+//                'post_author' => get_user_id(),
+//                'post_content' => '',
+//                'post_date' => date('Y-m-d H:i:s'),
+//                'post_date_gmt' => date('Y-m-d H:i:s'),
+//                'post_excerpt' => '',
+//                'post_name' => $filename,
+//                'post_parent' => 0,
+//                'post_status' => 'inherit',
+//                'post_title' => $filename,
+//                'post_type' => 'attachment',
+//                'post_mime_type' => 'image/jpeg',
+//                'guid' => $attachment_url,
+//            );
+//            $atach_post_id = wp_insert_post($post_data);
+//            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $attachment_url);
+//            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
                 
                 
             }
@@ -227,9 +227,9 @@ $app->post('/resize-user-avatar', function() use($app) {
                 'post_mime_type' => 'image/jpeg',
                 'guid' => site_url() . "/wp-content/uploads/user-avatars/" . $user_ID . "/" . $new_name,
             );
-            //$atach_post_id = wp_insert_post($post_data);
-            //$attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
-           // update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
+            $atach_post_id = wp_insert_post($post_data);
+            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
+            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
            
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(get_user_company_logo($user_ID));
