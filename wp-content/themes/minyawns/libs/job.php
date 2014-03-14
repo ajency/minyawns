@@ -298,7 +298,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $post_categories =  wp_get_object_terms($pagepost->ID,'job_category');
                 foreach ($post_categories as $job_categories) {
                     array_push($categories, $job_categories->name);
-                    array_push($category_ids, $job_categories->ID);
+                    array_push($category_ids, $job_categories->term_id);
                     array_push($category_slug, $job_categories->slug);
                 }
 

@@ -1555,7 +1555,7 @@ function filter_categories(id, cat_name)
 
 function remove_cat()
 {
-    window.location = siteurl + '/jobs/';
+    window.location = siteurl + '/jobs/#browse';
 
 }
 
