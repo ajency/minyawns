@@ -69,10 +69,11 @@ $app->post('/addjob', function() use ($app) {
                 }
 
                 if (strstr($key, 'category')) {
-                    $categories[] = $value;
+                    $categories[] = intval($value);
                 }
             }
-            wp_set_post_categories($post_id, $categories);
+
+            wp_set_object_terms($post_id, $categories,'job_category');
 
 
             $app->response()->header("Content-Type", "application/json");
@@ -294,10 +295,10 @@ $app->get('/fetchjobs/', function() use ($app) {
                 }
                 $categories = array();
                 $category_ids = array();
-                $post_categories = get_the_category($pagepost->ID);
+                $post_categories =  wp_get_object_terms($pagepost->ID,'job_category');
                 foreach ($post_categories as $job_categories) {
                     array_push($categories, $job_categories->name);
-                    array_push($category_ids, $job_categories->cat_ID);
+                    array_push($category_ids, $job_categories->ID);
                     array_push($category_slug, $job_categories->slug);
                 }
 

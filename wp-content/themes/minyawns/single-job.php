@@ -317,12 +317,14 @@ You need to confirm the minion selection by making the payment,if you leave this
                             <?php
                             foreach ($minyawn_job->categories as $job_categories) {
 
-                                $job_cats[] = $job_categories->name;
+                                $job_cats[] = $job_categories->term_id;
+                            
+                             
                             }
-
+                       
                             foreach ($minyawn_job->all_categories as $category) {
                                 ?>
-                                <input class="category_label" type="checkbox" value="<?php echo $category->cat_ID ?>" name="category-<?php echo $category->cat_ID ?>" id="category" <?php if (in_array($category->name, $job_cats)) { ?> checked <?php } ?>/> <span class="category_name"><?php echo $category->name ?> </span>
+                                <input class="category_label" type="checkbox" value="<?php echo $category->term_id ?>" name="category-<?php echo $category->term_id ?>" id="category" <?php if (in_array($category->term_id, $job_cats)) { ?> checked <?php } ?>/> <span class="category_name"><?php echo $category->name ?> </span>
                                 <?php
                             }
                             ?>

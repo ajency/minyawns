@@ -106,7 +106,7 @@ class Minyawn_Job {
 
         $this->required_minyawns = trim($job_meta['job_required_minyawns'][0]);
 
-        $this->categories = get_the_category($this->ID);
+       $this->categories = wp_get_object_terms($this->ID,'job_category');
 $args = array(
 	'type'                     => 'job',
 	'child_of'                 => 0,
