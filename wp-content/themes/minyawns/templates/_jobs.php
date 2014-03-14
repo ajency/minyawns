@@ -45,7 +45,7 @@
                                  <div class="span9 ">
                                     <div class="row-fluid ">
                                       <div class="span12 job-details">
-                                         <p> <%=  result.job_details %> <em>Job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_company %></a></em> </p>
+                                         <p><% var details=result.job_details %> <%= _(details).truncate(300) %><em>Job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_company %></a></em> </p>
                                        </div>
                                     </div>
 									 <div class="additional-info">

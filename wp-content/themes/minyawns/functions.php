@@ -139,7 +139,7 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
              wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery'), null);
-
+wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.strings.js', array('jquery'), null);
 //            // wp_dequeue_script('jquery');
 //            if (is_page('jobs') || is_page('jobs-2')) {
 //
