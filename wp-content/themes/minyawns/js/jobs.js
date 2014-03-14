@@ -39,8 +39,8 @@ jQuery(document).ready(function($) {
         } else {
             if (logged_in_user_id.length < 0)
                 fetch_my_jobs(logged_in_user_id);//moved to jobs.js
-            else
-                load_browse_jobs();
+           // else
+                //load_browse_jobs();
 
 
         }

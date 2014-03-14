@@ -17,7 +17,7 @@ require 'templates/_jobs.php';
         jQuery("#tab_identifier").val('1');
         
         $(".inline li").removeClass("selected");
-        
+         fetch_my_jobs(logged_in_user_id);
         $("#example_right").live('click', function() {
 
             $(".load_ajax_profile_comments").show();
