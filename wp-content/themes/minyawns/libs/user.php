@@ -51,7 +51,7 @@ $app->post('/change-avatar', function() use($app) {
                     'size' => $files['size']
                 );
                 if (isset($_FILES['files'])) {
-                    $filename = strtolower($_FILES['files']['tmp_name']);
+                    $filename = $_FILES['files']['tmp_name'];
                     list($width, $height) = getimagesize($filename);
                     $image_width = $width;
                     $image_height = $height;
