@@ -992,7 +992,7 @@ var image_name=$("#image_name").val();
 
                                    if(location.href.match("#my-jobs") == null){
                                     
-                                        window.location =jQuery("#hdn_siteurl").val() + '/jobs/';
+                                        window.location =jQuery("#hdn_siteurl").val() + '/jobs/#browse';
                                    }else{ 
                                     window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#my-jobs';
                                    }
