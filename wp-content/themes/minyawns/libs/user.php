@@ -70,23 +70,23 @@ $app->post('/change-avatar', function() use($app) {
                     $attachment_data = wp_get_attachment_image_src($attach_id,400,400);
                     $attachment_url =  $attachment_data[0];
                 }
-//                $post_data = array(
-//                'post_author' => get_user_id(),
-//                'post_content' => '',
-//                'post_date' => date('Y-m-d H:i:s'),
-//                'post_date_gmt' => date('Y-m-d H:i:s'),
-//                'post_excerpt' => '',
-//                'post_name' => $filename,
-//                'post_parent' => 0,
-//                'post_status' => 'inherit',
-//                'post_title' => $filename,
-//                'post_type' => 'attachment',
-//                'post_mime_type' => 'image/jpeg',
-//                'guid' => $attachment_url,
-//            );
-//            $atach_post_id = wp_insert_post($post_data);
-//            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $attachment_url);
-//            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
+                $post_data = array(
+                'post_author' => get_user_id(),
+                'post_content' => '',
+                'post_date' => date('Y-m-d H:i:s'),
+                'post_date_gmt' => date('Y-m-d H:i:s'),
+                'post_excerpt' => '',
+                'post_name' => $filename,
+                'post_parent' => 0,
+                'post_status' => 'inherit',
+                'post_title' => $filename,
+                'post_type' => 'attachment',
+                'post_mime_type' => 'image/jpeg',
+                'guid' => $attachment_url,
+            );
+            $atach_post_id = wp_insert_post($post_data);
+            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $attachment_url);
+            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
                 
                 
             }

@@ -79,7 +79,7 @@ $array=in_array($job_categories[0],$all_categories);
     jQuery(document).ready(function($) {
     
 $(".inline li").removeClass("selected");
- 
+ fetch_my_jobs(logged_in_user_id);
 //$("#add-job-form").find('input:text').val('');
 
 });

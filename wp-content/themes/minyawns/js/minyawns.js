@@ -304,9 +304,9 @@ position: "right"
              $("#uploaded-image").css('height', 'auto');
              
              if (data.result.image_width > 500)
-             $("#uploaded-image").css('width', 'auto');
-             
-             // window.location.reload();*/
+             $("#uploaded-image").css('width', 'auto');*/
+             $("#myprofilepic").remove();
+             window.location.reload();
             $(".load_ajax-crop-upload").hide();
             //$('#change-avatar-span').find('img').attr('src', data.result.image);
             $('#change-avatar').removeAttr("disabled");
@@ -329,7 +329,7 @@ position: "right"
             img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
             img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
 
-            $("#uploaded-image").attr('src', data.result.image);
+           // $("#uploaded-image").attr('src', data.result.image); remove this to show tool
             $("#image_name").val(data.result.image_name);
             $("#uploaded-image").css('width', img_width);
             $("#uploaded-image").css('height', img_height);
@@ -460,7 +460,7 @@ var image_name=$("#image_name").val();
             $('#myprofilepic').modal('hide')
 //            $('#change-avatar-span').find('img').attr('src', img_link);
 //            $('#logged-in').find('img').attr('src', img_link);
-            location.reload();
+            //location.reload();
             $(".load_ajax-crop-upload").hide();
             $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
 
