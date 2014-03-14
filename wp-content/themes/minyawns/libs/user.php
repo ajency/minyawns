@@ -46,7 +46,7 @@ $app->post('/change-avatar', function() use($app) {
                 $file = array(
                     'name' => preg_replace('/\s+/', '_',  strtolower($files['name'])),
                     'type' => strtolower($files['type']),
-                    'tmp_name' => preg_replace('/\s+/', '_',  strtolower($files['tmp_name'])),
+                    'tmp_name' => preg_replace('/\s+/', '_',  $files['tmp_name']),
                     'error' => $files['error'],
                     'size' => $files['size']
                 );
@@ -58,7 +58,7 @@ $app->post('/change-avatar', function() use($app) {
                 }
 
                 $_FILES = array("upload_attachment" => $file);
-
+//print_r($_FILES);exit();
 
                 $attach_data = array();
 
