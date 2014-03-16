@@ -33,7 +33,7 @@ show_admin_bar(false);
 
 
 //add image for profile
-add_image_size('minyawn', 168, 300, false);
+add_image_size('minyawn', 168, 300, true);
 
 add_image_size('employer', 168, 0, FALSE);
 

@@ -294,7 +294,7 @@ position: "right"
         done: function(e, data) {
             /*console.log(data);
              $(".load_ajax-crop-upload").hide();
-             //$('#change-avatar-span').find('img').attr('src', data.result.image);
+             $('#change-avatar-span').find('img').attr('src', data.result.image);
              alert(data.result.image);
              $('#change-avatar').removeAttr("disabled");
              $("#uploaded-image").attr('src', data.result.image);
@@ -305,10 +305,11 @@ position: "right"
              
              if (data.result.image_width > 500)
              $("#uploaded-image").css('width', 'auto');*/
-             $("#myprofilepic").remove();
-             window.location.reload();
+            // $("#myprofilepic").remove();
+          window.location.reload(true);
             $(".load_ajax-crop-upload").hide();
-            //$('#change-avatar-span').find('img').attr('src', data.result.image);
+           // $('#change-avatar-span').find('img').attr('src', data.result.image);
+//            $("#image_name").attr('src', data.result.image);
             $('#change-avatar').removeAttr("disabled");
 
 

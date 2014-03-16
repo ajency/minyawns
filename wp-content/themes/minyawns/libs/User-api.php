@@ -143,7 +143,9 @@ function get_mn_user_avatar() {
     global $current_user_new;
    
     if ($current_user_new->data->avatar !== false) {
-        $url=wp_get_attachment_image_src($current_user_new->data->avatar,array(200,100));
+       
+        $url=wp_get_attachment_image_src($current_user_new->data->avatar);
+        
     return $url[0];
         
     } else {

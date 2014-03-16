@@ -2,8 +2,9 @@
 /**
   Template Name: Minyawn Directory
  */
-require 'templates/_minyawnsdir.php';
+
 get_header();
+require 'templates/_minyawnsdir.php';
 ?>
 <!--  <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion is Invited</div> 
 <a href="#fakelink" class="btn btn-primary invite-btn">
