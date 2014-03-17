@@ -18,6 +18,8 @@ require 'templates/_jobs.php';
 
       window.page='1';
       $("#show-single-job").show();
+       $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
+        $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
 
     });
 </script>
