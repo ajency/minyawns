@@ -291,7 +291,8 @@ position: "right"
     $('#photoimg').fileupload({
         url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
         dataType: 'json',
-        done: function(e, data) {
+        done: function(data) {
+          
             /*console.log(data);
              $(".load_ajax-crop-upload").hide();
              $('#change-avatar-span').find('img').attr('src', data.result.image);
@@ -701,6 +702,7 @@ var image_name=$("#image_name").val();
         $('#job-form').find('span.form-error').remove();
         //attach it to global window so we can use it later to update the main profile view
         window.job = new Job();
+       
         window.job.bind('invalid', function(model, error, options) {
 
             _.each(error, function(ele, index) {

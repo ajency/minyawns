@@ -91,9 +91,11 @@ $app->post('/change-avatar', function() use($app) {
                 
             }
 
-            $app->response()->header("Content-Type", "application/json");
-            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => strtolower($files['name']), 'image_height' => $image_height, 'image_width' => $image_width));
-        });
+//            $app->response()->header("Content-Type", "application/json");
+//            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => strtolower($files['name']), 'image_height' => $image_height, 'image_width' => $image_width));
+ echo 1;       
+            
+                });
 
 $app->post('/resize-user-avatar', function() use($app) {
 

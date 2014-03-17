@@ -544,47 +544,48 @@ var Job = Backbone.Model.extend({
     },
     validate: function(attr) {
 
+console.log(attr);
 
         var errors = [];
-        if (attr.job_start_date !== '' && attr.job_end_Date !== '') {
+        if (document.getElementById("job_start_date").value !== '' && document.getElementById("job_end_date").value !== '') {
             if (Date.parse(attr.job_start_date) > Date.parse(attr.job_end_date))
             {
                 errors.push({field: 'job_end_date', msg: 'End date cannot be less than start date.'});
             }
         }
-        if (attr.job_start_date == '')
+        if (document.getElementById("job_start_date").value === '')
         {
             errors.push({field: 'job_start_date', msg: 'Please fill the start date field.'});
         }
 
-        if (attr.job_end_date == '')
+        if (document.getElementById("job_end_date").value === '')
         {
             errors.push({field: 'job_end_date', msg: 'Please fill the  end date field.'});
         }
 
-        if (attr.job_end_time == '') {
+        if (document.getElementById("job_end_time").value === '') {
 
             errors.push({field: 'job_end_time', msg: 'Please fill the  end time.'});
         }
 
-        if (attr.job_start_time == '') {
+        if (document.getElementById("job_start_time").value === '') {
             errors.push({field: 'job_start_time', msg: 'Please fill the  start time.'});
         }
 
-        if (!attr.job_wages) {
+        if (!document.getElementById("job_wages").value) {
             errors.push({field: 'job_wages', msg: 'Please fill wages field.'});
         }
-        if (!attr.job_required_minyawns)
+        if (!document.getElementById("job_required_minyawns").value)
             //errors.push({field: 'job_required_minyawns', msg: 'Please enter required field'});
-            if (!attr.job_location)
+            if (!document.getElementById("job_location").value)
                 errors.push({field: 'job_location', msg: 'Please enter location'});
 //            if (!attr.job_tags)
 //                errors.push({field: 'job_tags', msg: 'Please enter tags'});
-        if (attr.job_required_minyawns == 0)
+        if (document.getElementById("job_required_minyawns").value === 0)
             errors.push({field: 'job_required_minyawns', msg: 'Please select more than one'});
-        if (!attr.job_details)
+        if (!document.getElementById("job_details").value)
             errors.push({field: 'job_details', msg: 'Please enter job details'});
-        if (!attr.job_task)
+        if (!document.getElementById("job_task").value)
             errors.push({field: 'job_task', msg: 'Please enter ' + 'tasks'});
         if (errors.length > 0)
             return errors;
