@@ -256,7 +256,7 @@ You need to confirm the minion selection by making the payment,if you leave this
                         </div>
                     </div>
                     <div class="input-append bootstrap-timepicker">
-                        <input id="job_start_time1" type="text" value="<?php echo $minyawn_job->get_start_time_eform() ?>" class="timepicker-default input-small" name="job_start_time"><?php echo $minyawn_job->get_job_start_time();?></input>
+                        <input id="job_start_time1" type="text" class="timepicker-default input-small" name="job_start_time"/>
                         <span class="add-on">
                             <i class="icon-time"></i>
                         </span>
