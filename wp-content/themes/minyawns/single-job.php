@@ -386,7 +386,13 @@ You need to confirm the minion selection by making the payment,if you leave this
 </div>
 <script>
     jQuery(document).ready(function($) {
-        
+         $('#job_start_time').timepicker({
+            minuteStep: 1,
+            template: 'modal',
+            showSeconds: false,
+            showMeridian: true,
+            defaultTime:'<?php echo $minyawn_job->get_start_time_eform() ?>'
+        });
        $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
         $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
 
