@@ -384,5 +384,13 @@ You need to confirm the minion selection by making the payment,if you leave this
         Please Select at-least one Minion
     </div>
 </div>
+<script>
+    jQuery(document).ready(function($) {
+        
+       $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
+        $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
+
+    });
+</script>
 <?php
 get_footer();
