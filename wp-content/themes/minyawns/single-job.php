@@ -256,7 +256,7 @@ You need to confirm the minion selection by making the payment,if you leave this
                         </div>
                     </div>
                     <div class="input-append bootstrap-timepicker">
-                        <input id="job_start_time" type="text" value="<?php echo $minyawn_job->get_start_time_eform() ?>" class="timepicker-default input-small" name="job_start_time"><?php echo $minyawn_job->get_job_start_time();?></input>
+                        <input id="job_start_time1" type="text" value="<?php echo $minyawn_job->get_start_time_eform() ?>" class="timepicker-default input-small" name="job_start_time"><?php echo $minyawn_job->get_job_start_time();?></input>
                         <span class="add-on">
                             <i class="icon-time"></i>
                         </span>
@@ -386,14 +386,14 @@ You need to confirm the minion selection by making the payment,if you leave this
 </div>
 <script>
     jQuery(document).ready(function($) {
-         $('#job_start_time').timepicker({
+         $('#job_start_time1').timepicker({
             minuteStep: 1,
             template: 'modal',
             showSeconds: false,
             showMeridian: true,
             defaultTime:'<?php echo $minyawn_job->get_start_time_eform() ?>'
         });
-       $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
+       $('#job_start_time1').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
         $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
 
     });
