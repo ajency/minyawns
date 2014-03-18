@@ -238,7 +238,7 @@ You need to confirm the minion selection by making the payment,if you leave this
                         </div>
                     </div>
                     <div class="input-append bootstrap-timepicker">
-                        <input id="job_start_time1" type="text" class="timepicker-default input-small" name="job_start_time"/>
+                        <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time"/>
                         <span class="add-on">
                             <i class="icon-time"></i>
                         </span>
@@ -380,7 +380,7 @@ You need to confirm the minion selection by making the payment,if you leave this
 
       window.page='1';
       $("#show-single-job").show();
-       $('#job_start_time1').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
+       $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
         $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
 
     });
