@@ -4,7 +4,25 @@ get_header();
 global $minyawn_job;
 require 'templates/_jobs.php';
 ?>
+<script>
+    jQuery(document).ready(function($) {
+        jQuery("#single-job-page").show();
+        load_browse_jobs('<?php the_ID() ?>', 'single_job');
+        jQuery("#single-job-page").hide();
 
+       $(window).bind('beforeunload', function(){
+       if($("#no_of_minyawns").html() > 0)
+      return 'Are you sure you want to leave?';
+      
+      });
+
+      window.page='1';
+      $("#show-single-job").show();
+       $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
+        $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
+
+    });
+</script>
 <!-- Minions have not been selected.  
 You need to confirm the minion selection by making the payment,if you leave this page the selections will be lost.-->
 <style type="text/css">
@@ -366,24 +384,6 @@ You need to confirm the minion selection by making the payment,if you leave this
         Please Select at-least one Minion
     </div>
 </div>
-<script>
-    jQuery(document).ready(function($) {
-        jQuery("#single-job-page").show();
-        load_browse_jobs('<?php the_ID() ?>', 'single_job');
-        jQuery("#single-job-page").hide();
 
-       $(window).bind('beforeunload', function(){
-       if($("#no_of_minyawns").html() > 0)
-      return 'Are you sure you want to leave?';
-      
-      });
-
-      window.page='1';
-      $("#show-single-job").show();
-       $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
-        $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
-
-    });
-</script>
 <?php
 get_footer();

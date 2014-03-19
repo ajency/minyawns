@@ -67,7 +67,7 @@ $app->post('/change-avatar', function() use($app) {
                     $attach_id = upload_attachment($file, $user_ID);
                     $attachment_id = $attach_id;
                    // $attachment_url = wp_get_attachment_link($attach_id);
-                    $attachment_data = wp_get_attachment_image_src($attach_id,150,150);
+                    $attachment_data = wp_get_attachment_image_src($attach_id,'medium');
                     $attachment_url =  $attachment_data[0];
                 }
                 $post_data = array(
