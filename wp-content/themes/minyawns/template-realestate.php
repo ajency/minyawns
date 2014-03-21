@@ -2,9 +2,8 @@
     <?php get_header(); ?>
     <div class="realestate-landing">
         <div class="container">
-            <div class="tab-content">
-                <h4> <?php the_title(); ?>
-                </h4>
+          
+             
                 <br>
             <?php if (have_posts()): while (have_posts()) : the_post(); ?>
                 <!-- article -->
@@ -25,7 +24,7 @@
                 <a href="/">More Info &raquo;</a>
             </div>
             <br style="clear:both;">
-        </div>
+       
             </div>
         <br style="clear:both;">
     </div>
