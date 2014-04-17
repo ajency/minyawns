@@ -40,7 +40,7 @@
 		 <div class="row-fluid">
 				<div class="span12">
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
-					<div class="banner-desc">Reliable help on your short term project</div>
+					<div class="banner-desc">Reliable help on your short term project by local college students</div>
 					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Get Your Minyawn</a>
 				</div>
 			
@@ -234,7 +234,7 @@
 <div class="features">
 <div class="">
             <h3 class="heading-title">Features</h3>
-            <p class="excerpt">Check out what you have access to once you sign up.</p>
+            <p class="excerpt">Check out what you have access to once you sign up. Access to hire local college students</p>
 			</div>
 			
    <div class="container">
@@ -332,7 +332,7 @@
                <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg" >
+                        <img alt="an example college student that can be hired" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg" >
                      </div>
                      <h4> Ketfa Inthathirath</h4>
                      <div class="collage">University of Washington</div>
@@ -353,7 +353,7 @@
                <div class="m2">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg">
+                        <img alt="another girl example college student that can be hired" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg">
                      </div>
                      <div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
@@ -389,7 +389,7 @@ Enviormental Engineering </div>
                <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg" >
+                        <img alt="male college student that can be hired profile" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg" >
                      </div>
                      <h4> Jonathan Hodge</h4>
                      <div class="collage"> University of Washington</div>
