@@ -116,6 +116,9 @@ a:hover {
   height: 95px;
   -webkit-filter: grayscale(80%);
 }
+.slider1 .cus_8:hover {
+  -webkit-filter: grayscale(0%);
+}
 .slider1 .cus_9 {
   background: url(../images/sprite.jpg) -378px -347px no-repeat;
   width: 182px!important;
