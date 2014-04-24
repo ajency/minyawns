@@ -106,6 +106,32 @@
    </div>
    
 </div>
+
+<div class="customers">
+    <div>
+      <h3 class="heading-title"> Here's our customers</h3>
+      <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
+   </div>
+ <div class="slider1">
+      <div class="slide cus_1"></div>
+    <div class="slide cus_2"></div>
+    <div class="slide cus_3"></div>
+    <div class="slide cus_4"></div>
+    <div class="slide cus_5"></div>
+    <div class="slide cus_6"></div>
+    <div class="slide cus_7"></div>
+    <div class="slide cus_8"></div>
+    <div class="slide cus_9"></div>
+    <div class="slide cus_10"></div>
+    <div class="slide cus_11"></div>
+    <div class="slide cus_12"></div>
+    <div class="slide cus_13"></div>
+    <div class="slide cus_14"></div>
+    <div class="slide cus_15"></div>
+   
+   </div><br><br>
+</div>
+
 <div class="what-we-can-do">
      <div id="down"></div>
    <div class="">
@@ -230,7 +256,7 @@
 
  
 </div>
-<div id="down-green"></div><br>
+<div id="down-green"></div>
 <div class="features">
 <div class="">
             <h3 class="heading-title">Features</h3>
@@ -667,28 +693,7 @@ Enviormental Engineering </div>
   
   </div>
   <div id="down-green"></div>-->
-  <div class="">
-      <h3 class="heading-title"> Here's our customers</h3>
-      <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
-   </div>
- <div class="slider1">
-      <div class="slide cus_1"></div>
-	  <div class="slide cus_2"></div>
-	  <div class="slide cus_3"></div>
-	  <div class="slide cus_4"></div>
-	  <div class="slide cus_5"></div>
-	  <div class="slide cus_6"></div>
-	  <div class="slide cus_7"></div>
-	  <div class="slide cus_8"></div>
-    <div class="slide cus_9"></div>
-    <div class="slide cus_10"></div>
-    <div class="slide cus_11"></div>
-    <div class="slide cus_12"></div>
-    <div class="slide cus_13"></div>
-    <div class="slide cus_14"></div>
-	  <div class="slide cus_15"></div>
-   
-   </div><br><br>
+  
 </div>
   	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
    		  <div class="modal-body">

@@ -2136,6 +2136,10 @@ body .jobs_table .data-title .profile-job {
   font-size: 17px;
   line-height: 26px;
 }
+.home .customers {
+  background: #f3f3f3;
+  padding-bottom: 20px;
+}
 .home .what-we-can-do {
   background: url(../images/what-we-can-do-bg.jpg);
   padding-bottom: 50px;
