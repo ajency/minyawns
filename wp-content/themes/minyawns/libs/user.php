@@ -7,7 +7,7 @@ $app = new \Slim\Slim(array('debug' => true));
 require '../../../../wp-load.php';
 
 /** Update the profile data */
-$app->map('/user/', function() use ($app) {
+$app->map('/user/', function() use ($app) { 
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http request
             $json_a = json_decode($requestBody, true);

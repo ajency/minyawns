@@ -80,7 +80,7 @@ $app->map('/addjob/', function() use ($app) {
             echo json_encode(array('post_slug' => get_permalink($post_id)));
         })->via('GET', 'POST', 'PUT', 'DELETE'); 
 
-
+ 
 
 $app->get('/fetchjobs/', function() use ($app) {
 
