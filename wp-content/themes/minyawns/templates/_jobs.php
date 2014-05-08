@@ -78,20 +78,77 @@
 $salt_job = wp_generate_password(20);
 $key_job = sha1($salt . uniqid(time(), true));
 ?>
-   <form class="paypal" action="<?php echo site_url() . '/paypal-payments/'; ?>" method="post" id="paypal_form" target="_blank">
+   <form class="paypal" action="<?php echo site_url() . '/payments/'; ?>" method="post" id="paypal_form" target="_blank">
     <input type="hidden" name="cmd" value="_xclick">
                 <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
                 <input type="hidden" name="lc" value="UK" />
-                            
-                            <input type="hidden" name="no_note" value="1" />
+                <input type="hidden" name="no_note" value="1" />
                 <input type="hidden" name="custom" value="<?php echo $key_job ?>" />
-                            <input type="hidden" name="amount" id="amount"  />
-                                        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" /> 
-                                                    <input type="hidden" name="first_name" value="Customer  First Name"  />
-                            <input type="hidden" name="last_name" value="Customer  Last Name"  />
-                                        <input type="hidden" name="item_number" id="item_number"  / >
-                                                    <input type="hidden" name="minyawn_id" id="minyawn_id" />
-                                                    <input type="hidden" name="item_name" value="<?php get_the_title($_POST['job_id']) ?>" / >
+                <input type="hidden" name="amount" id="amount"  />
+                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" /> 
+                <input type="hidden" name="first_name" value="Customer  First Name"  />
+                <input type="hidden" name="last_name" value="Customer  Last Name"  />
+                <input type="hidden" name="item_number" id="item_number"  / >
+                <input type="hidden" name="minyawn_id" id="minyawn_id" />
+                <input type="hidden" name="item_name" value="<?php get_the_title($_POST['job_id']) ?>" / >
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="paymentform" class="modal signup  hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  >
+  <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<%=SITEURL%>/wp-content/themes/minyawns/images/delete.png"/></button>
+    <h4 id="myModalLabel">Job Payment<img src="<%=SITEURL%>/wp-content/themes/minyawns/images/logo.png"/> </h4>
+  </div>
+  <div class="modal-body">
+    <div class="row-fluid">
+		<div class="span6"> 
+	
+		<div class="control-group ">
+            <input type="text" value="" placeholder="Card Number" autocomplete="off" data-encrypted-name="number"  class="span3">
+        </div>
+		<div class="control-group ">
+            <input type="text" value="" placeholder="CVV" class="span3"  autocomplete="off" data-encrypted-name="cvv" >
+        </div>
+		<div class="control-group ">
+            <input type="text" size="2" placeholder="MM" class="span3" name="month" /> / <input type="text" size="4" placeholder="YYYY" class="span3" name="year" />
+        </div>
+		<div class="row-fluid">
+			<div class="span4">
+				<input type="submit" id="submit" />
+			<!--	<a href="#fakelink" class="btn btn-large btn-block btn-inverse " >Submit</a> -->
+		</div> 
+			
+		 </div> 
+		  </div>
+		<div class="span6">
+			<h6 class="align-center" style=" margin-bottom: 0px; "></h6>
+			<p class="align-center">Please enter the following details</p><br>
+ 
+		</div>
+		
+	</div>
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
                                                     <% if(result.job_owner_id === logged_in_user_id){%>
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
@@ -126,7 +183,7 @@ $key_job = sha1($salt . uniqid(time(), true));
 							<span>Please Note</span>
 							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
 And you don't need a PayPal account to pay us.<br> Any credit or debit card will do!</div>
-                        <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
+                        <span id="paypal_pay" style="display:none"><a href="#paymentform"  data-toggle="modal"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></a></span>
                      <span id="selection_message"></span>
                                     </div>
                             <%}%>
@@ -170,7 +227,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
 							<span>Please Note</span>
 							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
 And you don't need a PayPal account to pay us.<br> Any credit or debit card will do!</div>
-                        <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
+                        <span id="paypal_pay" style="display:none"><a href="#paymentform"  data-toggle="modal"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></a></span>
                      <span id="selection_message"></span>
                                     </div>
                             <%}%>
@@ -304,7 +361,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
 							<span>Please Note</span>
 							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
 And you don't need a PayPal account to pay us. <br>Any credit or debit card will do!</div>
-    <span id="paypal_pay" style="display:none"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
+    <span id="paypal_pay" style="display:none"> <a href="#paymentform"  data-toggle="modal">Pay Now3</a> <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
     <span id="selection_message"></span>
     </div>
     <%}%>

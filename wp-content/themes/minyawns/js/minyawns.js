@@ -10,6 +10,68 @@ jQuery("#signinlink").click(function() {
 
 jQuery(document).ready(function($) {
 
+	
+	
+	
+	
+	
+//Braintree payment form
+	
+$('#paypal_pay').live("click",function(){
+	 
+	if($('#paypal_form').length>0){
+		 
+		var ajax_submit = function (e) {
+			alert('ajax submit')
+		      form = $('#paypal_form');
+		      e.preventDefault();
+		      $("#submit").attr("disabled", "disabled");
+		    /*  $.post('braintree_payments', form.serialize(), function (data) {
+		        form.parent().replaceWith(data);
+		      });
+		      
+		      */
+		      var target_ = $(e.target);
+
+		      $.post(ajaxurl, {
+	            action: 'braintree_payments',
+	            data: form.serializeArray(),
+	             
+	        },
+	                function(response) {
+
+	        	 		//form.parent().replaceWith(data);
+	        			
+	        				target_.find('.row-fluid').html(response.msg);
+	        				/*if(response.error == false){
+	        					
+	        				}*/
+	        	 		console.log(target_);
+	        	 		console.log('response');
+	        	 		console.log(response)
+	        	 					
+	                     
+	                })
+
+
+		      
+		    }
+		    var braintree = Braintree.create('MIIBCgKCAQEAyL76cIAt5S6/q8WIhJUXwVnjoQWeYk+KmGF/GM0xJdZD+XeZNoeqUSSz0J0D77lQN6uOhCOSI9IRpmWL+Z4OVNz6KxuyHWxm8z04JvrGutNpNKTHg06KhiVoINt70gzgOjTqk9RqNnrmGo8BMZ4bY52o4rMzaCXhkT/syn4ZDQ8jZT5eQ+WZsbRa4e+q864VJwrOWQrdFNHH5RvyVe5Mq7yy+T1NmCHAfaKGmBXKB8Lf9htwUKB+R2oniUjDUK27+eY8M+g4EeqNCi3aOOcttiT1Pvpa2HOJQbmXZsjXSqEd7P7cwAMxhbWGXukIlgRE7Oc/GGO+fo356rNB4ihlgQIDAQAB');
+		    braintree.onSubmitEncryptForm('paypal_form', ajax_submit);	
+			
+	}
+	
+})	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 
 //	The menu on the left
 			jQuery(function() {

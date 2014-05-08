@@ -164,6 +164,15 @@ wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.str
                 //wp_enqueue_script('autocomp', get_template_directory_uri() . '/js/jquery.fcbkcomplete.js', array('jquery'), null);
                 
             }
+            
+            
+            $current_post_id = get_the_ID();
+            $post_data = get_post($current_post_id);
+           
+    		if($post_data->post_type=='job'){
+                
+    			wp_enqueue_script('braintree', get_template_directory_uri() . '/braintree_lib/braintree.js', array('jquery'), null);
+           }
 
 
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
@@ -909,6 +918,10 @@ function update_paypal_payment($data, $curl_result) {
       } */
 }
 
+ 
+
+
+
 add_action('admin_menu', 'job_rating');
 
 function job_rating() {
@@ -1200,4 +1213,497 @@ function twentythirteen_paging_nav() {
 endif;
 
 
-?>
+
+
+function braintree_payments(){
+	
+	 /* echo ".........";
+	  var_dump($_POST);
+	  */
+	 global $wpdb;
+	 foreach($_POST['data'] as $val){
+	 $data[$val['name']] = $val['value'];
+	 
+	 }
+ /*echo "data";
+ var_dump($data);	*/ 
+//echo ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
+require_once ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
+
+
+Braintree_Configuration::environment('sandbox');
+Braintree_Configuration::merchantId('m5j78m5tpkbqjz9r');
+Braintree_Configuration::publicKey('hpsfvwz3qwstzwqy');
+Braintree_Configuration::privateKey('7821082eb89ed086c1a0d1b7e08a9362');
+
+
+ 
+
+$result = Braintree_Transaction::sale(array(
+    										"amount" => $data["amount"],
+    										"creditCard" => array(
+        									"number" => $data["number"],
+       										"cvv" => $data["cvv"],
+        									"expirationMonth" => $data["month"],
+       	 									"expirationYear" => $data["year"]
+										    ),
+										    "options" => array(
+										        "submitForSettlement" => true,
+										    	
+										    ),
+										     
+											));
+											
+											/*
+											 * 'abc' => array('minyawns_selected' =>$data["minyawn_id"],
+										    						'custom'			=> $data["custom"],
+										    						'item_number'		=> $data["item_number"],
+											 */
+											
+											
+											
+$paypal_payment = array('minyawn_txn_id' => $data['custom'], 'paypal_txn_id' => '', 'status' => '', 'minyawns_selected' =>$data['minyawn_id']);
+
+ //var_dump($paypal_payment);
+
+update_post_meta($data['item_number'], 'paypal_payment', $paypal_payment);
+          
+          
+         
+
+//var_dump($result);
+
+$item__number = $data["item_number"];
+
+$admin_email = get_option( 'admin_email' );
+
+$current_userdata = get_userdata($user_ID);
+
+
+
+if ($result->success) {
+    //echo("Success! Transaction ID: " . $result->transaction->id);
+    
+    
+    			$data['txn_id'] = $result->transaction->id;
+    
+    
+				$mail_data = "\n\nPaypal Verified OK";							
+				
+				$job_data = get_post($item__number);
+				
+				$data['item_name'] = $job_data->post_title;
+				
+				$data['payment_status'] = 'Completed';
+				update_braintree_payment($data,'Completed');
+				
+				$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
+				
+				
+				/*echo 'paypal_payment_meta';
+				var_dump($paypal_payment_meta);
+				exit();*/
+				$meta_sel_minyawns=array();
+				foreach($paypal_payment_meta as $k_meta_pay=>$v_meta_pay )
+				{
+					if($k_meta_pay=='minyawns_selected')
+					{
+						$meta_sel_minyawns = explode(",",$v_meta_pay);
+						//get user details
+						foreach($meta_sel_minyawns as $k=>$v)
+						{
+							if($v!="")
+							{
+								$minyawn_data[] = get_userdata($v);
+									
+							}
+						}
+							
+					}
+				}
+				
+				/*echo 'minyawns data';
+				var_dump($minyawn_data);
+				*/ 
+				
+				/*if(($data['payment_status']=="Completed") )
+				{*/
+					  
+					
+					  	 
+					/*add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );*/
+					 
+					$receiver_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
+					
+					$receiver_message.="Hi,<br/><br/>
+							
+							Payment for '".$data['item_name']."' successfully transferred .
+							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
+							<br/><b>Job    			:</b> ".$data['item_name']."
+							<br/><b>Total Amount 			:</b> ".$data['amount']."
+					
+					<br/><b>selected Minyawns	:</b> ";
+					
+					
+					//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
+					$cnt_sel_minyawns  = 1;
+					$wages_minyawns = get_post_meta($data['item_number'] , 'job_wages', true) - ( (get_post_meta($data['item_number'] , 'job_wages', true) *13)/100 );
+					
+                    foreach($minyawn_data as $key=>$value)
+					{
+						//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+					
+						$receiver_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+						
+						
+						
+						//update selected minyawns status to hired
+						//echo "UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'";
+						$wpdb->get_results("UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'");
+						update_post_meta($data['item_number'],'job_status','completed');
+						//send mail to hired minyawns						
+						$job_data = get_post($data['item_number']);						
+						//$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
+						$minyawns_subject = "Minyawns - You have been hired! ";
+               			$minyawns_message = "Hi,<br/><br/>
+                		Congratulations, You have been hired for the job '" . get_the_title($data['item_number'] ) . "'<br/><br/>
+                		<h3>Job: " . get_the_title($data['item_number'] ) . "</h3>                
+                		<br/><b>Start date: </b>" . date('d M Y', get_post_meta($data['item_number'] , 'job_start_date', true)) . "
+                		<br/><b>Start Time: </b>" . date('g:i a', get_post_meta($data['item_number'] , 'job_start_time', true)) . "                		 
+					    <br/><b>End Time: </b>" . date('g:i a', get_post_meta($data['item_number'] , 'job_end_time', true)) . "	
+                		<br/><b>Location: </b>" . get_post_meta($data['item_number'] , 'job_location', true) . "
+						<br/><b>Wages: </b> $" . $wages_minyawns . "
+                		<br/><b>Details: </b>" . $job_data->post_content . "
+                
+                		<br/><br/>
+               
+                		";
+		                add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+		                $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+		                wp_mail($value->user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
+		                
+		                
+		                
+		               /* wp_mail('paragredkar@gmail.com', $minyawns_subject.'minyawns mail'.$value->user_email, email_header() . $minyawns_message . email_signature(), $headers);
+								
+		                
+		                echo "\n minyawn mail to ".$value->user_email;
+		                */
+						
+						
+						
+
+					$cnt_sel_minyawns++;
+					}
+							 
+									
+					$receiver_message.= "
+
+	                		<br/><b>Job Date : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
+	                		<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."	                		
+						    <br/><b>End Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."
+	                		<br/><b>Location : </b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages : </b> $".get_post_meta($item__number,'job_wages',true)."
+	                		<br/><b>Details : </b>".$job_data->post_content."
+									
+									
+							<br/><br/><br/>
+							";
+					
+					
+					
+					
+					
+					add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+					$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+					//wp_mail($data['receiver_email'], $receiver_subject, email_header() . $receiver_message . email_signature(), $headers);
+					wp_mail($admin_email, $receiver_subject, email_header() . $receiver_message . email_signature(), $headers);
+					
+					/*echo 'admin mail'.$admin_email;
+					wp_mail('paragredkar@gmail.com', $receiver_subject.' receiver mail '.$admin_email, email_header() . $receiver_message . email_signature(), $headers);
+					*/
+					
+					
+					$sender_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
+					$sender_message.="Hi,<br/><br/>
+				
+							Your Payment for '".$data['item_name']."' successfully Completed .
+							<br/><b>Transaction ID : </b> ".$data['txn_id']."
+							<br/><b>Total Amount 			: </b> ".$data['amount']."
+									
+									
+							<br/><b>Selected Minyawns	: </b> ";					
+					
+							//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
+							$cnt_sel_minyawns  = 1;
+							foreach($minyawn_data as $key=>$value)
+							{
+								//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+							
+								$sender_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+		
+							$cnt_sel_minyawns++;
+							}
+							 
+									
+					$sender_message.= "		
+							<br/><b>Job    		   :</b> ".$data['item_name']."
+							<br/><b>Job Date : </b>". date('d M Y',get_post_meta($item__number,'job_start_date',true))."
+							<br/><b>Start Time : </b>". date('g:i a',get_post_meta($item__number,'job_start_time',true))."							
+							<br/><b>End Time : </b>". date('g:i a',get_post_meta($item__number,'job_end_time',true))."							 
+							<br/><b>Location : </b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages : </b>".get_post_meta($item__number,'job_wages',true)."
+							<br/><b>Details : </b>".$job_data->post_content."		
+					
+							<br/><br/><br/>
+							";
+						
+					add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+					$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+					//wp_mail($data['payer_email'], $sender_subject, email_header() . $sender_message . email_signature(), $headers);
+					wp_mail($current_userdata->user_email, $sender_subject, email_header() . $sender_message . email_signature(), $headers);
+					
+					/*echo 'current_userdata->user_email'.$current_userdata->user_email;
+					wp_mail('paragredkar@gmail.com', $sender_subject.' payer email '. $current_userdata->user_email, email_header() . $sender_message . email_signature(), $headers);
+					*/	
+				//}
+    
+    
+    
+    
+    $response_payment = array("success"			=> true, 
+    						  'transaction_id'	=> $result->transaction->id,
+    						  'msg'				=> 'Transaction successful.',
+    						  'data'			=> $data,
+    						  'error'			=> ''
+   							  );
+    wp_send_json($response_payment);
+    
+    
+    
+} else if ($result->transaction) {
+   /* echo("Error: " . $result->message);
+    echo("<br/>");
+    echo("Code: " . $result->transaction->processorResponseCode);*/
+    
+  
+    
+    			$data['payment_status'] = 'Failed';
+    
+    			update_braintree_payment($data);
+			 
+				
+				update_post_meta($data['item_number'],'job_status','failed');
+				
+				
+				$receiver_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
+				$receiver_message.="Hi,<br/><br/>
+				
+							Payment failed for '".$data['item_name']."'.
+							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."
+							<br/><b>Total Amount 		: </b> ".$data['amount']."	
+						
+							<br/><b>Selected Minyawns	: </b> ";
+					
+					
+							//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
+							$cnt_sel_minyawns  = 1;
+							foreach($minyawn_data as $key=>$value)
+							{
+								//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+							
+								$receiver_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+		
+							$cnt_sel_minyawns++;
+							}
+								 
+									
+					$receiver_message.= "			
+									
+									
+							<br/><b>Job    	  : </b> ".$data['item_name']."							
+							<br/><b>Job Date  : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
+							<br/><b>Start Time: </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."							
+							<br/><b>End Time  : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
+							<br/><b>Location  : </b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages 	  : </b>".get_post_meta($item__number,'job_wages',true)."
+							<br/><b>details   : </b>".$job_data->post_content."		
+					
+							<br/><br/><br/>
+							";
+					
+				add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+				$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+				//wp_mail($data['receiver_email'], $subject, email_header() . $receiver_message . email_signature(), $headers);
+
+				wp_mail($admin_email, $subject, email_header() . $receiver_message . email_signature(), $headers);
+				
+				// wp_mail('paragredkar@gmail.com', $subject.' receiver error '.$admin_email, email_header() . $receiver_message . email_signature(), $headers);
+
+				
+				
+					
+				$sender_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
+				$sender_message.="Hi,<br/><br/>
+				
+							Your Payment failed for '".$data['item_name']."'.
+							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."
+							<br/><b>Job    				: </b> ".$data['item_name']."
+							<br/><b>Amount 				: </b> ".$data['amount']."
+			
+							<br/><b>selected Minyawns	: </b> ";
+					
+					
+							//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
+							$cnt_sel_minyawns  = 1;
+							foreach($minyawn_data as $key=>$value)
+							{
+								//$receiver_message.= "<br/><br/>###".print_r($key,true)."  --- ".print_r($value,true);
+							
+								$sender_message.= "<br/>".$cnt_sel_minyawns.". ".$value->display_name."  ".$value->user_email;
+		
+							$cnt_sel_minyawns++;
+							}
+								 
+									
+					$sender_message.= "			
+									
+									
+							<br/><b>Job    			:</b> ".$data['item_name']."							
+							<br/><b>Job Date : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
+							<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."						 
+							<br/><b>End Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
+							<br/><b>Location : </b>". get_post_meta($item__number,'job_location',true)."
+							<br/><b>Wages : </b>".get_post_meta($item__number,'job_wages',true)."
+							<br/><b>details : </b>".$job_data->post_content."		
+					
+							<br/><br/><br/>
+							";
+				
+				add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+				$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+				//wp_mail($data['payer_email'], $sender_subject, email_header() . $sender_message . email_signature(), $headers);
+
+				
+				wp_mail($current_userdata->user_email, $sender_subject, email_header() . $sender_message . email_signature(), $headers);
+					
+				
+				//wp_mail('paragredkar@gmail.com', $sender_subject.' payer error '.$current_userdata->user_email, email_header() . $sender_message . email_signature(), $headers);
+					
+				
+				$response_payment = array("success"			=> false, 
+										  'transaction_id'	=> '', 
+    						  			  'error'			=> $result->transaction->processorResponseCode, 
+    						  			  'msg'				=> $result->message,
+										  'data'			=> $data
+										 );
+				 
+   				wp_send_json($response_payment);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+} else {
+    echo("Validation errors:<br/>");
+    foreach (($result->errors->deepAll()) as $error) {
+        //echo("- " . $error->message . "<br/>");
+        $error_message = "- " . $error->message . "<br/>";
+        
+    }
+    
+    
+    $response_payment = array("success"			=> false, 
+    						  'transaction_id'	=> '', 
+    						  'error'			=> '', 
+    						  'msg'				=> $error_message,
+    						  'data'			=> $data	
+    						 );
+    
+    
+    
+    wp_send_json($response_payment);
+}
+	
+	
+}
+add_action('wp_ajax_braintree_payments', 'braintree_payments');
+add_action('wp_ajax_nopriv_braintree_payments', 'braintree_payments');
+
+
+
+
+
+
+
+
+function update_braintree_payment($data) {
+    global $wpdb;
+   
+   
+    $transaction_id = $data['txn_id'];
+    $minyawns_tx_id = $data['custom'];
+    $status = $data['payment_status'];
+    
+    $jobid = $data['item_number'];
+
+
+    $paypal_tx = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='" . $jobid . "' AND meta_value like '%" . $minyawns_tx_id . "%'  ");
+
+    foreach ($paypal_tx as $res) {
+        $paypal_payment = unserialize($res->paypal_payment);
+    }
+    $new_paypal_payment = array();
+    foreach ($paypal_payment as $key_pp => $payment_tx) {
+        switch ($key_pp) {
+            case 'minyawn_txn_id':
+                $new_paypal_payment['minyawn_txn_id'] = $payment_tx;
+                break;
+            case 'paypal_txn_id':
+                $new_paypal_payment['paypal_txn_id'] = $transaction_id;
+                break;
+            case 'status' :
+                $new_paypal_payment['status'] = $status;
+                break;
+            case 'minyawns_selected' :
+                $new_paypal_payment['minyawns_selected'] = $payment_tx;
+                break;
+        }//end switch($key_pp)
+    }//end foreach($paypal_payment as $key_pp => $payment_tx)
+
+    $new_paypal_payment['date_time'] = strtotime(date('D-M-Y G:i:s'));
+    $new_paypal_payment['paypal_date'] = strtotime(date('D-M-Y G:i:s'));
+    //update postmeta for the job with transaction id
+    $new_updated_paypal_payment = serialize($new_paypal_payment);
+    $wpdb->get_results("update {$wpdb->prefix}postmeta  set meta_value = '" . $new_updated_paypal_payment . "' WHERE post_id = " . $jobid . " and meta_key ='paypal_payment'  AND    meta_value like '%" . $minyawns_tx_id . "%'");
+
+    //echo "update {$wpdb->prefix}postmeta  set meta_value = '".$new_updated_paypal_payment."' WHERE post_id = ".$jobid." and meta_key ='paypal_payment'  AND    meta_value like '%".$minyawns_tx_id."%'";
+//wp_mail('parag@ajency.in','paypalll',$new_paypal_payment."update {$wpdb->prefix}postmeta  set meta_value = '" . $new_updated_paypal_payment . "' WHERE post_id = " . $jobid . " and meta_key ='paypal_payment'  AND    meta_value like '%" . $minyawns_tx_id . "%'");
+
+    if ($status == "Failed") {
+        $split_user = explode(",", $new_paypal_payment['minyawns_selected']);
+        for ($i = 0; $i < sizeof($split_user); $i++) {
+            //$split_status = explode(",", $split_user[$i]);
+            // for ($j = 0; $j < sizeof($split_status); $j++) {
+
+            $wpdb->get_results("
+					UPDATE {$wpdb->prefix}userjobs 
+					SET status = 'applied'
+					WHERE user_id = '" . $split_user[$i] . "' 
+					AND job_id = '" . $_POST['job_id'] . "'
+					"
+            );
+            //wp_mail('parag@ajency.in','job table check',"UPDATE {$wpdb->prefix}userjobs
+				//	SET status = 'applied'	WHERE user_id = '" . $split_user[$i] . "'	AND job_id = '" . $_POST['job_id'] . "'
+				//	");
+        }//end for ($i = 0; $i < sizeof($split_user); $i++) 
+    }//end if($status=="Failed")
+     
+}
