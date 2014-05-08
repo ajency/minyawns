@@ -8,7 +8,7 @@ require '../../../../wp-load.php';
 
 
 /** Update the profile data */
-$app->post('/addjob', function() use ($app) {
+$app->map('/addjob/', function() use ($app) {
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http request
             $json_a = json_decode($requestBody, true);
@@ -78,7 +78,7 @@ $app->post('/addjob', function() use ($app) {
 
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(array('post_slug' => get_permalink($post_id)));
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE'); 
 
 
 
@@ -387,7 +387,7 @@ $app->get('/fetchjobs/', function() use ($app) {
             echo json_encode($data);
         });
 
-$app->post('/fetchjobscalendar/', function() use ($app) {
+$app->map('/fetchjobscalendar/', function() use ($app) {
             global $post, $wpdb;
             $prefix = $wpdb->prefix;
 // AND $wpdb->postmeta.meta_key = 'job_start_date' 
@@ -466,9 +466,9 @@ $app->post('/fetchjobscalendar/', function() use ($app) {
             }
             //$app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');
 
-$app->post('/confirm', function() use ($app) {
+$app->map('/confirm', function() use ($app) {
 
             global $wpdb;
             $paypal_minyawns_hired = "";
@@ -522,10 +522,10 @@ $app->post('/confirm', function() use ($app) {
             echo json_encode(array('user_ids' => $_POST['user_id'], 'content' => $html, 'inc' => $inc));
 
             /* end added on 1sep2013 */
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');;
 
 
-$app->post('/user-vote', function() use ($app) {
+$app->map('/user-vote', function() use ($app) {
             $time = current_time('timestamp');
             global $wpdb;
 //            print_r($_POST);
@@ -626,7 +626,7 @@ $app->post('/user-vote', function() use ($app) {
 
 
             echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id'], 'review' => $_POST['review']));
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');;
 
 $app->get('/jobminions/', function() use ($app) {
             global $post, $wpdb;
@@ -764,7 +764,7 @@ $app->get('/getcomments/', function() use ($app) {
             echo json_encode($data);
         });
 
-$app->post('/delete-job/', function() use($app) {
+$app->map('/delete-job/', function() use($app) {
 
             global $wpdb;
 
@@ -780,13 +780,13 @@ $app->post('/delete-job/', function() use($app) {
 
 
             echo "deleted";
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');;
 
-$app->post('/reloadtags', function() use($app) {
+$app->map('/reloadtags', function() use($app) {
 
 
             echo '<input  name="job_tags" id="job_tags" value="asdasd,asdssssasd,asdasd,asdasdddd" placeholder="Tags here" class="tm-input tagsinput_jobs">';
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');;
 
 
 $app->get('/invitejobs', function () use ($app) {
@@ -804,7 +804,7 @@ $app->get('/invitejobs', function () use ($app) {
             echo json_encode($data);
         });
 
-$app->post('/inviteminions', function() use($app) {
+$app->map('/inviteminions', function() use($app) {
             global $wpdb;
 
             $status = send_invite($_POST['job_id'], $_POST['user_id']);
@@ -839,7 +839,7 @@ $app->post('/inviteminions', function() use($app) {
 
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');
 
 
 $app->run();
