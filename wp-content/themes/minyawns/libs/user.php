@@ -7,7 +7,7 @@ $app = new \Slim\Slim(array('debug' => true));
 require '../../../../wp-load.php';
 
 /** Update the profile data */
-$app->post('/user', function() use ($app) {
+$app->map('/user/', function() use ($app) { 
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http request
             $json_a = json_decode($requestBody, true);
@@ -27,10 +27,10 @@ $app->post('/user', function() use ($app) {
 
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(array('success' => 1));
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');;
 
 //update the user avatar
-$app->post('/change-avatar', function() use($app) {
+$app->map('/change-avatar', function() use($app) {
 
             global $user_ID;
            /* delete_user_meta($user_ID, 'facebook_avatar_thumb');
@@ -95,9 +95,9 @@ $app->post('/change-avatar', function() use($app) {
 //            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => strtolower($files['name']), 'image_height' => $image_height, 'image_width' => $image_width));
  echo 1;       
             
-                });
+                })->via('GET', 'POST', 'PUT', 'DELETE');;
 
-$app->post('/resize-user-avatar', function() use($app) {
+$app->map('/resize-user-avatar', function() use($app) {
 
             global $user_ID;
             
@@ -235,7 +235,7 @@ $app->post('/resize-user-avatar', function() use($app) {
            
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(get_user_company_logo($user_ID));
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');;
 
 $app->run();
 
