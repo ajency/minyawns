@@ -1271,9 +1271,14 @@ function braintree_payments(){
 	 
 	 }
 	 
+
+$result = array();	 
 	 
- 
-require_once ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
+if(!empty($admin_verify_decrypted)){
+	
+	
+	
+	require_once ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
 
 
 Braintree_Configuration::environment('sandbox');
@@ -1296,7 +1301,8 @@ $result = Braintree_Transaction::sale(array(
 										        "submitForSettlement" => true,
 										    	
 										    ),
-										    "Custtom_Fields"=> array("test9898"=>"test0101")
+										    "customFields"=> array("minyawn_txn_id"=>$data['custom'],
+										    						"item_number"=> $data["item_number"])
 										     
 											));
 											
@@ -1308,6 +1314,11 @@ $result = Braintree_Transaction::sale(array(
 											
 											
 											
+
+
+
+} 
+
 $paypal_payment = array('minyawn_txn_id' => $data['custom'], 'paypal_txn_id' => '', 'status' => '', 'minyawns_selected' =>$data['minyawn_id']);
 
  //var_dump($paypal_payment);
@@ -1324,6 +1335,8 @@ $item__number = $data["item_number"];
 $admin_email = get_option( 'admin_email' );
 
 $current_userdata = get_userdata($user_ID);
+
+
  
 
 if( ($result->success) || ($admin_verify_decrypted==get_option('admin_email')) ) {
