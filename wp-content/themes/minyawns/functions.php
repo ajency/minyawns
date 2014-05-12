@@ -1215,19 +1215,64 @@ endif;
 
 
 
+
+
+ 
+
+function encrypt_decrypt($action, $string) {
+    $output = false;
+
+    $encrypt_method = "AES-256-CBC";
+    $secret_key = 'This is my secret key';
+    $secret_iv = 'This is my secret iv';
+
+    // hash
+    $key = hash('sha256', $secret_key);
+    
+    // iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
+    $iv = substr(hash('sha256', $secret_iv), 0, 16);
+
+    if( $action == 'encrypt' ) {
+        $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
+        $output = base64_encode($output);
+    }
+    else if( $action == 'decrypt' ){
+        $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+    }
+
+    return $output;
+}
+
+ 
+
+
+
+
+
 function braintree_payments(){
 	
 	 /* echo ".........";
 	  var_dump($_POST);
 	  */
+	$admin_verify_decrypted = "";
+	 
 	 global $wpdb;
 	 foreach($_POST['data'] as $val){
 	 $data[$val['name']] = $val['value'];
 	 
 	 }
- /*echo "data";
- var_dump($data);	*/ 
-//echo ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
+	 
+	 
+	 if(isset($data['adminverify'])){
+	 	
+	 	$admin_verify_encrypted = $data['adminverify']; 
+	 	
+	 	$admin_verify_decrypted =  encrypt_decrypt('decrypt', $admin_verify_encrypted); 
+	 
+	 }
+	 
+	 
+ 
 require_once ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
 
 
@@ -1251,6 +1296,7 @@ $result = Braintree_Transaction::sale(array(
 										        "submitForSettlement" => true,
 										    	
 										    ),
+										    "Custtom_Fields"=> array("test9898"=>"test0101")
 										     
 											));
 											
@@ -1278,23 +1324,28 @@ $item__number = $data["item_number"];
 $admin_email = get_option( 'admin_email' );
 
 $current_userdata = get_userdata($user_ID);
+ 
 
-
-
-if ($result->success) {
+if( ($result->success) || ($admin_verify_decrypted==get_option('admin_email')) ) {
     //echo("Success! Transaction ID: " . $result->transaction->id);
     
     
-    			$data['txn_id'] = $result->transaction->id;
+				if($result->success){
+					$data['txn_id'] = $result->transaction->id;
+				}
+	
+    			if($admin_verify_decrypted==get_option('admin_email')){
+    				
+    				$data['txn_id'] = "AdminMarked_".$data['custom'];
+    			}
     
-    
-				$mail_data = "\n\nPaypal Verified OK";							
-				
+      			 	
 				$job_data = get_post($item__number);
 				
 				$data['item_name'] = $job_data->post_title;
 				
 				$data['payment_status'] = 'Completed';
+				
 				update_braintree_payment($data,'Completed');
 				
 				$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
@@ -1471,9 +1522,13 @@ if ($result->success) {
     
     
     
+    $data['cvv'] = '';
+    $data['number'] = '';
+    $data['year'] = '';  
+    $data['month'] = ''; 
     
     $response_payment = array("success"			=> true, 
-    						  'transaction_id'	=> $result->transaction->id,
+    						  'transaction_id'	=> $data['txn_id'],
     						  'msg'				=> 'Transaction successful.',
     						  'data'			=> $data,
     						  'error'			=> ''
@@ -1591,7 +1646,11 @@ if ($result->success) {
 				
 				//wp_mail('paragredkar@gmail.com', $sender_subject.' payer error '.$current_userdata->user_email, email_header() . $sender_message . email_signature(), $headers);
 					
-				
+				$data['cvv'] = '';
+			    $data['number'] = '';
+			    $data['year'] = '';  
+			    $data['month'] = ''; 
+    
 				$response_payment = array("success"			=> false, 
 										  'transaction_id'	=> '', 
     						  			  'error'			=> $result->transaction->processorResponseCode, 
@@ -1612,13 +1671,17 @@ if ($result->success) {
     
     
 } else {
-    echo("Validation errors:<br/>");
+    $error_message = "Validation errors:<br/>";
     foreach (($result->errors->deepAll()) as $error) {
         //echo("- " . $error->message . "<br/>");
-        $error_message = "- " . $error->message . "<br/>";
+        $error_message.= "- " . $error->message . "<br/>";
         
     }
     
+    $data['cvv'] = '';
+    $data['number'] = '';
+    $data['year'] = '';  
+    $data['month'] = ''; 
     
     $response_payment = array("success"			=> false, 
     						  'transaction_id'	=> '', 

@@ -705,7 +705,16 @@ function get_logged_in_role()
 {
     global $current_user;
    $user_role=$current_user->roles[0];
-   if ($user_role == "minyawn"){ return 'Minion';} else  return 'Employer' ; 
+   
+   
+   switch($user_role){
+   
+   	case "minyawn"  	: return 'Minion';
+   	case 'employer' 	: return 'Employer';
+   	case 'administrator': return 'Administrator';	
+   	default 			: return ucwords($user_role);
+   }
+   //if ($user_role == "minyawn"){ return 'Minion';} else  if('')return 'Employer' ; 
     
 }
 

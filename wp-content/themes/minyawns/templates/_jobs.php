@@ -119,7 +119,7 @@ $key_job = sha1($salt . uniqid(time(), true));
             <input type="text" value="" placeholder="CVV" class="span3"  autocomplete="off" data-encrypted-name="cvv" >
         </div>
 		<div class="control-group ">
-            <input type="text" size="2" placeholder="MM" class="span3" name="month" /> / <input type="text" size="4" placeholder="YYYY" class="span3" name="year" />
+            <input type="text" size="2" placeholder="MM" class="span3" name="month" autocomplete="off"  /> / <input type="text" size="4" placeholder="YYYY" class="span3" name="year" autocomplete="off"  />
         </div>
 		<div class="row-fluid">
 			<div class="span4">
@@ -127,7 +127,28 @@ $key_job = sha1($salt . uniqid(time(), true));
 			<!--	<a href="#fakelink" class="btn btn-large btn-block btn-inverse " >Submit</a> -->
 		</div> 
 			
-		 </div> 
+		 </div>
+<?php 
+
+  if (current_user_can( 'manage_options' )) {
+  	
+  	define("ENCRYPTION_KEY", "!@#$%^&*");
+	$string = get_option('admin_email');
+	$encrypted_data =  encrypt_decrypt('encrypt', $string); 
+  	
+  	?>
+		<div class="row-fluid">
+			<div class="span4">
+				<input type="hidden" name ="adminverify" id="adminverify" value="<?php echo $encrypted_data; ?>" />
+				<input type="submit" id="admin_submit" name="admin_submit"  value="Mark as paid" />
+			 
+			</div> 
+			
+		 </div>
+<?php }
+?>
+
+ 
 		  </div>
 		<div class="span6">
 			<h6 class="align-center" style=" margin-bottom: 0px; "></h6>
@@ -172,7 +193,7 @@ $key_job = sha1($salt . uniqid(time(), true));
                         <br>
                     </div>
                  
-              <% if(result.job_owner_id === logged_in_user_id && result.user_to_job_status.indexOf('hired') == -1){%>
+              <% if(  ((is_admin==true) || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>
                         <hr>
@@ -216,7 +237,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                         <br>
                     </div>
                  
-              <% if(result.job_owner_id === logged_in_user_id && result.user_to_job_status.indexOf('hired') == -1){%>
+              <% if( ( (is_admin==true)  || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>
                         <hr>
