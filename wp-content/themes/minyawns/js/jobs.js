@@ -413,7 +413,8 @@ function fetch_my_jobs(id)
         data: {
             'my_jobs': 1,
             'offset': 0,
-            'filter_my': filter
+            'filter_my': filter,
+            'logged_in_user_id':logged_in_user_id
 
         },
         success: function(collection, response) {

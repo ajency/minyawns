@@ -91,6 +91,8 @@ $app->get('/fetchjobs/', function() use ($app) {
             $category_filter = "";
             $filtertables = "";
             /* Category filter */
+            
+            $logged_in_user_id = $_GET['logged_in_user_id'];
 
             if (isset($_GET['filter'])) {
                 $category_filter = "AND $wpdb->posts.ID = $wpdb->term_relationships.object_id
@@ -153,7 +155,16 @@ $app->get('/fetchjobs/', function() use ($app) {
                             $order_by
                             $limit
                          ";
-
+				/*$querystr = "
+                            SELECT DISTINCT $wpdb->posts.* 
+                            FROM $tables" . "$filtertables
+                            $my_jobs_filter
+                            $category_filter
+                            AND $wpdb->posts.post_status = 'publish' 
+                            AND $wpdb->posts.post_type = 'job'
+                            $order_by
+                             
+                         ";*/
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
             $total = get_total_jobs();
@@ -197,9 +208,9 @@ $app->get('/fetchjobs/', function() use ($app) {
                 $count_applied = 0;
                 $count_rated = 0;
 
-                $object_id = get_object_id(get_current_user_id(), $pagepost->ID);
-
-
+                //commented on 13may2014 $object_id = get_object_id(get_current_user_id(), $pagepost->ID);
+                $object_id = get_object_id($logged_in_user_id, $pagepost->ID);
+       
                 foreach ($object_id as $object_post_id) {
 
                     $defaults = array(
@@ -207,7 +218,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     );
                 }
                 $all_comment = get_comments($defaults);
-
+              
                 $comment = $all_comment[0]->comment_content;
 
 
@@ -381,7 +392,6 @@ $app->get('/fetchjobs/', function() use ($app) {
                     'comment' => strlen($comment) > 0 ? $comment : '',
                 );
             }
-
 
             $app->response()->header("Content-Type", "application/json");
             echo json_encode($data);
