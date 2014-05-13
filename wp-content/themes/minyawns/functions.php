@@ -1274,7 +1274,7 @@ function braintree_payments(){
 
 $result = array();	 
 	 
-if(!empty($admin_verify_decrypted)){
+if(empty($admin_verify_decrypted)){
 	
 	
 	
@@ -1301,8 +1301,10 @@ $result = Braintree_Transaction::sale(array(
 										        "submitForSettlement" => true,
 										    	
 										    ),
-										    "customFields"=> array("minyawn_txn_id"=>$data['custom'],
-										    						"item_number"=> $data["item_number"])
+										    "customFields"=> array("minyawn_txn_id"		=> $data['custom'],
+										    						"item_number"		=> $data["item_number"],
+										    						'minyawns_selected' => $data['minyawn_id'] 
+										    					   )
 										     
 											));
 											
