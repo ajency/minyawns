@@ -502,7 +502,7 @@ function fetch_my_jobs(id)
                             $(".load_more").show();
 
 
-
+                        $('.jobs-rating').hide('');
 
                     } else
                     {

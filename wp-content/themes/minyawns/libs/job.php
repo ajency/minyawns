@@ -145,7 +145,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 }
             }
 
-            $querystr = "
+            /*$querystr = "
                             SELECT DISTINCT $wpdb->posts.* 
                             FROM $tables" . "$filtertables
                             $my_jobs_filter
@@ -154,8 +154,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->posts.post_type = 'job'
                             $order_by
                             $limit
-                         ";
-				/*$querystr = "
+                         ";*/
+				$querystr = "
                             SELECT DISTINCT $wpdb->posts.* 
                             FROM $tables" . "$filtertables
                             $my_jobs_filter
@@ -164,7 +164,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->posts.post_type = 'job'
                             $order_by
                              
-                         ";*/
+                         ";
             $pageposts = $wpdb->get_results($querystr, OBJECT);
 
             $total = get_total_jobs();

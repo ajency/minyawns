@@ -1262,7 +1262,7 @@ function braintree_payments(){
 	 
 	 }
 	 
-	 
+	 //var_dump($data);
 	 if(isset($data['adminverify'])){
 	 	
 	 	$admin_verify_encrypted = $data['adminverify']; 
@@ -1270,6 +1270,12 @@ function braintree_payments(){
 	 	$admin_verify_decrypted =  encrypt_decrypt('decrypt', $admin_verify_encrypted); 
 	 
 	 }
+	 if(isset($data['hdn_markaspaid'])){
+	 	
+	 	$admin_markaspaid = $data['hdn_markaspaid'];  
+	 
+	 }
+	 
 	 
 
 $result = array();	 
@@ -1339,9 +1345,13 @@ $admin_email = get_option( 'admin_email' );
 $current_userdata = get_userdata($user_ID);
 
 
- 
 
-if( ($result->success) || ($admin_verify_decrypted==get_option('admin_email')) ) {
+
+/*echo "\n\n\ admin_markaspaid".$admin_markaspaid;
+ echo "\n\n admin_verify_decrypted".$admin_verify_decrypted;
+ echo "\n\n admin email ".get_option('admin_email');*/
+
+if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&& ($admin_markaspaid=='1') )  ) {
     //echo("Success! Transaction ID: " . $result->transaction->id);
     
     

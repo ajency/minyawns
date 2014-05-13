@@ -97,66 +97,76 @@ $key_job = sha1($salt . uniqid(time(), true));
 
 
 
+ 
 
 
 
-
-
-
-<div id="paymentform" class="modal signup  hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  >
+<div   id="paymentform" class="modal signup  hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<%=SITEURL%>/wp-content/themes/minyawns/images/delete.png"/></button>
-    <h4 id="myModalLabel">Job Payment<img src="<%=SITEURL%>/wp-content/themes/minyawns/images/logo.png"/> </h4>
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo site_url();?>/wp-content/themes/minyawns/images/delete.png"></button>
+       <img class="payment_image" width="96" height="96" src="<?php echo site_url()?>/wp-content/themes/minyawns/images/avatar2.jpg">
+    <h4 id="myModalLabel">Job Payment<!--<img src="Test%20job%2000003%20%7C%20Minyawns_files/logo.png">--> </h4>
   </div>
   <div class="modal-body">
-    <div class="row-fluid">
-		<div class="span6"> 
-	
+	<div class="row-fluid" >
+		<p class="payment_msg payment_success"style="display:none"><i class="icon-ok"></i> &nbsp; Transaction successful.</p>
+	<div>
+
+    <div class="row-fluid payformdiv" >
+		<div class="span12"> 
+	       <p class="align-center">Please enter the following details</p>
 		<div class="control-group ">
-            <input type="text" value="" placeholder="Card Number" autocomplete="off" data-encrypted-name="number"  class="span3">
+
+			<input type="text" value="" placeholder="Card Number" autocomplete="off" data-encrypted-name="number"  class="span3">
+
         </div>
 		<div class="control-group ">
-            <input type="text" value="" placeholder="CVV" class="span3"  autocomplete="off" data-encrypted-name="cvv" >
+            <input placeholder="CVV" class="span3" autocomplete="off" data-encrypted-name="cvv" type="text">
         </div>
 		<div class="control-group ">
-            <input type="text" size="2" placeholder="MM" class="span3" name="month" autocomplete="off"  /> / <input type="text" size="4" placeholder="YYYY" class="span3" name="year" autocomplete="off"  />
+            <div class="row-fluid">
+            	<div class="span6">
+               		<input type="text" size="2" placeholder="MM" class="span3" name="month" autocomplete="off"  />
+            	</div>
+            	<div class="span6">
+               	 	<input size="4" placeholder="YYYY" class="span3" name="year" type="text" autocomplete="off" >
+            	</div>
+            </div>
         </div>
-		<div class="row-fluid">
-			<div class="span4">
-				<input type="submit" id="submit" />
-			<!--	<a href="#fakelink" class="btn btn-large btn-block btn-inverse " >Submit</a> -->
-		</div> 
-			
-		 </div>
+        
 <?php 
 
   if (current_user_can( 'manage_options' )) {
   	
-  	define("ENCRYPTION_KEY", "!@#$%^&*");
-	$string = get_option('admin_email');
-	$encrypted_data =  encrypt_decrypt('encrypt', $string); 
+	  	define("ENCRYPTION_KEY", "!@#$%^&*");
+		$string = get_option('admin_email');
+		$encrypted_data =  encrypt_decrypt('encrypt', $string); 
   	
   	?>
-		<div class="row-fluid">
-			<div class="span4">
+		<div class="control-group ">
 				<input type="hidden" name ="adminverify" id="adminverify" value="<?php echo $encrypted_data; ?>" />
-				<input type="submit" id="admin_submit" name="admin_submit"  value="Mark as paid" />
-			 
-			</div> 
-			
-		 </div>
+				<input type="hidden" name ="hdn_markaspaid" id="hdn_markaspaid" value="0" />
+				 
+                <a id="admin_submit"  name="admin_submit"  href="#" class="">Mark as paid</a>
+        </div> 
 <?php }
 ?>
-
- 
-		  </div>
-		<div class="span6">
-			<h6 class="align-center" style=" margin-bottom: 0px; "></h6>
-			<p class="align-center">Please enter the following details</p><br>
- 
+        <div class="control-group ">
+                <button id="submit" class="btn btn-primary btn-block">Submit</button>
+        </div> 
+<img class="submit_loader" style="display:none;"  src="<?php echo site_url()?>/wp-content/themes/minyawns/images/2.gif">
 		</div>
+
+
 		
 	</div>
+  </div>
+  
+</div>
+
+
+ 	
+	 
   </div>
   
 </div>

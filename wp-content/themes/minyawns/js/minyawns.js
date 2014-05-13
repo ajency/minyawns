@@ -18,11 +18,30 @@ jQuery(document).ready(function($) {
 //Braintree payment form
 	
 $('#paypal_pay').live("click",function(){
+	
+	
+	$('.payment_msg').html('').hide();
+	 $("#submit").removeAttr("disabled");
+	 $('.payformdiv').find('input:text').val('');    
+	 //$('.payformdiv').find('input:hidden').val('');  
+	 
 	 
 	if($('#paypal_form').length>0){
+		
+		$('#admin_submit').click(function(){
+			//alert('admion save');
+			 $('#hdn_markaspaid').val('1');
+			 $('#paypal_form').submit();
+			
+			
+		})
+			
+			
+		
 		 
 		var ajax_submit = function (e) {
-			alert('ajax submit')
+			//alert('ajax submit')
+			
 		      form = $('#paypal_form');
 		      e.preventDefault();
 		      $("#submit").attr("disabled", "disabled");
@@ -32,17 +51,29 @@ $('#paypal_pay').live("click",function(){
 		      
 		      */
 		      var target_ = $(e.target);
-
+		      $(".submit_loader").show();
 		      $.post(ajaxurl, {
 	            action: 'braintree_payments',
 	            data: form.serializeArray(),
 	             
 	        },
 	                function(response) {
-
+	        			$(".submit_loader").hide();
 	        	 		//form.parent().replaceWith(data);
-	        			
-	        				target_.find('.row-fluid').html(response.msg);
+	        				
+	        				target_.find('.row-fluid').find('.payment_msg').show().html('');
+	        				
+	        				if(response.success==true){
+	        					target_.find('.row-fluid').find('.payment_msg').html('<i class="icon-ok"></i> &nbsp; ');
+	        					
+	        					target_.find('.payformdiv').html('');
+	        				}
+	        				
+	        				target_.find('.row-fluid').find('.payment_msg').append(response.msg)
+	        			    
+	        				if(response.success==true){
+	        					setTimeout(function(){ location.reload();}, 3000);
+	        			    }
 	        				/*if(response.error == false){
 	        					
 	        				}*/
@@ -114,10 +145,16 @@ position: "right"
    
     var texthtml;
    // alert("toggle");
-   if($(e.target).closest('.status').find('.accordion-toggle').html() === 'Hide Information')
-       texthtml='Show More Information';
-   else
+    
+    
+   if($(e.target).closest('.status').find('.accordion-toggle').html() === 'Hide Information'){
+	   texthtml='Show More Information';
+	   $(e.target).parent().closest('.job-closed').find('.jobs-rating').hide('350') ;
+   }       
+   else{
        texthtml="Hide Information";
+       $(e.target).parent().closest('.job-closed').find('.jobs-rating').show('350') ;
+   }
    
     $target.collapse('toggle');
     $(e.target).closest('.status').find('.accordion-toggle').text(texthtml);

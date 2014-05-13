@@ -6374,3 +6374,35 @@ div.tooltip1:after {
     border-right: 0px !important;
   }
 }
+
+
+
+/* Payment modal styles*/
+.payment_image{
+    border-radius: 50%;
+    height: 70px;
+    left: 37%;
+    position: absolute;
+    top: -10%;
+    width: 70px;
+}
+
+.payment_success {
+    background-color: #DFF0D8;
+    color: #468847;
+    padding: 5px;
+    text-align: center;
+    margin: 5px;
+}
+
+.paypal .signup {
+    left: 60%;
+    width: 302px;
+}
+.signup .control-group{
+    position: inherit;
+}
+#myModalLabel {
+    margin-top: 12%;
+}
+/*Payment modal style End*/
