@@ -277,7 +277,18 @@ function popup_usersignup() {
 
 
             $subject = "You have successfully registered on Minyawns";
-            $message = "Hi, <br/><br/>You have successfully registered on <a href='" . site_url() . "' >Minyawns</a>.<br/><br/>";
+            
+            if ($_REQUEST['pdrole_'] == "employer"){
+            	$message = "Hi, <br/><br/>You have successfully registered on <a href='" . site_url() . "' >Minyawns</a>.<br/><br/>";
+            	
+            }
+            else {
+            	$message = "<img src='".site_url()."/wp-content/themes/minyawns/images/first_minyawn_job.jpg' />";
+            	
+            }
+            
+            echo $_REQUEST['pdrole_']."\n\n".$message;
+            
             //To verify your account visit the following address";
             //$message.=" <a href='" . site_url() . "/newuser-verification/?action=ver&key=" . $user_activation_key . "&email=" . $userdata_['user_email'] . "'>" . site_url() . "/newuser-verification/?action=ver&key=" . $user_activation_key . "&email=" . $userdata_['user_email'] . "</a>\r\n";
             //$message.= '<' . network_site_url("activate/?action=ver&key=$user_activation_key&email=" . $userdata_['user_email']) . ">\r\n";
@@ -1424,7 +1435,7 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 					
 					//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
 					$cnt_sel_minyawns  = 1;
-					$wages_minyawns = get_post_meta($data['item_number'] , 'job_wages', true) - ( (get_post_meta($data['item_number'] , 'job_wages', true) *13)/100 );
+					$wages_minyawns = get_post_meta($data['item_number'] , 'job_wages', true) - ( (get_post_meta($data['item_number'] , 'job_wages', true) *10)/100 );
 					
                     foreach($minyawn_data as $key=>$value)
 					{
