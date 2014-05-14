@@ -16,7 +16,9 @@
 	right: 0;
 	top: -1px;
 }
-
+.social-icon {
+	width: 228px!important;
+}
 .minaywns-sel{
 	width: 140px;
 height: 140px;
