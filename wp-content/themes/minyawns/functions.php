@@ -287,7 +287,7 @@ function popup_usersignup() {
             	
             }
             
-            echo $_REQUEST['pdrole_']."\n\n".$message;
+             
             
             //To verify your account visit the following address";
             //$message.=" <a href='" . site_url() . "/newuser-verification/?action=ver&key=" . $user_activation_key . "&email=" . $userdata_['user_email'] . "'>" . site_url() . "/newuser-verification/?action=ver&key=" . $user_activation_key . "&email=" . $userdata_['user_email'] . "</a>\r\n";
