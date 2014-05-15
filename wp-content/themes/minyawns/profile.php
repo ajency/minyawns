@@ -309,7 +309,7 @@ and get more applications from eager minions. Simply <a href="'.site_url().'/edi
 				<h4><i class="icon-briefcase"></i> &nbsp; Job List</h4>
 				<p>All your Jobs are listed below</p>
 				<div class="row-fluid accordion">
-					<div class="span9">
+					<div class="span12">
 						<ul class="unstyled job-view-list" id="accordion24">
 						<dl class="accordion">
                             <dt class="avial">
