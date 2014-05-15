@@ -184,7 +184,7 @@ You need to confirm the minion selection by making the payment,if you leave this
 			<div class="row-fluid">
 			<div class="span12">
             <span class='load_ajaxsingle_job' style="display:block"></span>
-              <ul class="unstyled job-view-list " id="single-job-accordion" >
+              <ul class="unstyled job-view-list" id="single-job-accordion" >
             
 
                 <span  id='single-job-page'style="display:none"></span>
