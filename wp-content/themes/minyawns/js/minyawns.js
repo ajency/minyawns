@@ -78,7 +78,7 @@ $('#paypal_pay').live("click",function(){
 	        					
 	        					target_.find('.row-fluid').find('.payment_msg')
 								.removeClass("payment_success").addClass("alert")
-								.addClass("alert-danger");
+								.addClass("payment_error");
 	        					
 	        					 
 	        					target_.find('.row-fluid').find('.payment_msg').append(response.msg)
