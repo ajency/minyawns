@@ -275,10 +275,10 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
 
 
     <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%>">
-    <%= review %>
+    
 
 							 <div class="row-fluid mobile-hide" >
-							  <div class="span9 ">
+							  <div class="span6 ">
 							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
                                       <div class="span1">
 									  <div class="job-date">
@@ -302,7 +302,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                                        </div>
                                     </div>
 							  </div>
-							  <div class="span3 status">
+							  <div class="span4 status">
 							    <div class="st-moile-span1">
 
                                           <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
@@ -311,12 +311,25 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
       </a>
                                        </div>
 							  </div>
+
+                 <div class="span2">
+
+                  <div class="st-moile-span1">
+
+                                          <div class=""> <div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div></div>
+                      <a class="accordion-toggle" data-toggle="collapse-next" data-parent="#accordion24" >
+     Show More Information
+      </a>
+                                       </div>
+
+                  <%= review %></div> 
 							 </div> 
+               <div class="clearfix"></div>
 	  
 	  <div id="collapseOne" class="accordion-body collapse ">
       <div class="accordion-inner">
                               <div class="row-fluid mobile-detail">
-                                 <div class="span9 ">
+                                 <div class="span6 ">
                                     <div class="row-fluid ">
                                       <div class="span12 job-details">
                                          <p> <%= result.job_details %> <em>job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></em> </p>
@@ -329,7 +342,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="span3 status">
+                                 <div class="span4 status">
 								    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
                                     <div class="st-fluid">
                                      
@@ -344,6 +357,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                                       
                                     </div>
                                  </div>
+                                 <div class="span2"></div>
                               </div>   
 </div>
 </div>	
