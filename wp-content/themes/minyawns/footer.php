@@ -51,8 +51,8 @@ jQuery(document).ready(function($) {
 	</ul>
 	
 	<div class="social-icon">
-		<a href="https://twitter.com/Minyawns" class="btn btn-info"><i class="icon-twitter" ></i> <span> &nbsp;Follow Us</span></a>
-		&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" class="btn btn-danger"><i class="icon-facebook" ></i> &nbsp;<span> Follow Us</span></a>
+		<a href="https://twitter.com/Minyawns" class="btn btn-info" target="_blank"><i class="icon-twitter" ></i> <span> &nbsp;Follow Us</span></a>
+		&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" class="btn btn-danger"  target="_blank"><i class="icon-facebook" ></i> &nbsp;<span> Follow Us</span></a>
 
 </div>
 

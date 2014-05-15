@@ -272,13 +272,15 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
     </form>
 </script>
 <script type="text/template" id="profile-table">   
-
-
+<% console.log('check..................')%>
+<% console.log(result) %>
+<% console.log('currentpage_user_role') %>
+<% console.log(currentpage_user_role)%>
     <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%>">
     
 
 							 <div class="row-fluid mobile-hide" >
-							  <div class="span6 ">
+							  <div class="<% if(currentpage_user_role=="employer"){%>span9<%} else{ %>span6<%} %> ">
 							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
                                       <div class="span1">
 									  <div class="job-date">
@@ -302,7 +304,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                                        </div>
                                     </div>
 							  </div>
-							  <div class="span4 status">
+							  <div class="<% if(currentpage_user_role=="employer"){%>span3<%} else{ %>span4<% } %> status">
 							    <div class="st-moile-span1">
 
                                           <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
@@ -311,17 +313,17 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
       </a>
                                        </div>
 							  </div>
-
+				<% if(currentpage_user_role!="employer"){%>
                  <div class="span2">
 
-                  <div class="st-moile-span1">
-
-                      <%= review.status1 %>
-                      
-                                       </div>
+                  		<div class="st-moile-span1">
+                     			 <%= review.status1 %>
+                         </div>
 
                   </div> 
-							 </div> 
+				<% }%>
+
+			   </div> 
                </div>
                <div class="clearfix"></div>
 	  

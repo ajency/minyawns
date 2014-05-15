@@ -61,6 +61,14 @@
             var logged_in_role='<?php echo get_logged_in_role() ?>';
             var logged_in_user_id='<?php echo get_user_id(); ?>'
             var is_logged_in='<?php echo is_user_logged_in();?>';
+
+			<?php $user = new WP_User( get_user_id() );
+					if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
+						foreach ( $user->roles as $role )
+							$currentpage_user_role =  $role;
+					} 
+			?>
+             var currentpage_user_role = '<?php echo $currentpage_user_role; ?>'
             var is_admin='<?php echo current_user_can( 'administrator' ); ?>';
             var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
             </script>
