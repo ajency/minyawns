@@ -6374,35 +6374,45 @@ div.tooltip1:after {
     border-right: 0px !important;
   }
 }
-
-
-
-/* Payment modal styles*/
-.payment_image{
-    border-radius: 50%;
-    height: 70px;
-    left: 37%;
-    position: absolute;
-    top: -10%;
-    width: 70px;
+.well-done i {
+  font-size: 46px;
+  float: left;
+  margin-right: 5px;
+  color: #8ed030;
 }
-
-.payment_success {
-    background-color: #DFF0D8;
-    color: #468847;
-    padding: 5px;
-    text-align: center;
-    margin: 5px;
+.well-done b {
+  font-size: 19px;
+  color: #8ed030;
 }
-
-.paypal .signup {
-    left: 60%;
-    width: 302px;
+.terrible i {
+  font-size: 46px;
+  float: left;
+  margin-right: 5px;
+  color: #F65151;
 }
-.signup .control-group{
-    position: inherit;
+.terrible b {
+  font-size: 19px;
+  color: #F65151;
 }
-#myModalLabel {
-    margin-top: 12%;
+.not-rated {
+  text-align: center;
 }
-/*Payment modal style End*/
+.not-rated .msg {
+  font-size: 18px;
+  color: #969292;
+  margin-bottom: 13px;
+}
+.not-rated i {
+  font-size: 46px;
+  color: #CCC;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.not-rated p {
+  margin-top: 10px;
+}
+.rating_span {
+  text-align: right;
+  display: block;
+  color: #8ed030;
+}

@@ -322,6 +322,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
 
                   </div> 
 							 </div> 
+               </div>
                <div class="clearfix"></div>
 	  
 	  <div id="collapseOne" class="accordion-body collapse ">
@@ -333,15 +334,15 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                                          <p> <%= result.job_details %> <em>job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></em> </p>
                                        </div>
                                     </div>
-									 <div class="additional-info">
+									                   <div class="additional-info">
                                        <div class="row-fluid">
                                           <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
                                           <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
                                        </div>
-                                    </div>
+                                 </div>
                                  </div>
                                  <div class="span4 status">
-								    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
+								                    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
                                     <div class="st-fluid">
                                      
                                        <div class="st-moile-span2">
