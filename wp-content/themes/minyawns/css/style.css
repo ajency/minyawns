@@ -400,7 +400,7 @@ z-index: 2;
 	
 }
 .modal-body {
-	max-height: 250px;
+	/*max-height: 250px;*/
 }
 .modal-body  hr {
 border-top: 1px solid #DAD7D7;
