@@ -64,16 +64,31 @@ $('#paypal_pay').live("click",function(){
 	        				target_.find('.row-fluid').find('.payment_msg').show().html('');
 	        				
 	        				if(response.success==true){
+	        					target_.find('.row-fluid').find('.payment_msg')
+	        										.addClass("payment_success").removeClass("alert")
+	        										.removeClass("alert-danger");
+	        					
 	        					target_.find('.row-fluid').find('.payment_msg').html('<i class="icon-ok"></i> &nbsp; ');
 	        					
 	        					target_.find('.payformdiv').html('');
+	        					target_.find('.row-fluid').find('.payment_msg').append(response.msg)
+	        					setTimeout(function(){ location.reload();}, 3000);
+	        				}
+	        				else{
+	        					
+	        					target_.find('.row-fluid').find('.payment_msg')
+								.removeClass("payment_success").addClass("alert")
+								.addClass("alert-danger");
+	        					
+	        					 
+	        					target_.find('.row-fluid').find('.payment_msg').append(response.msg)
+	        					
+	        					
 	        				}
 	        				
-	        				target_.find('.row-fluid').find('.payment_msg').append(response.msg)
+	        				
 	        			    
-	        				if(response.success==true){
-	        					setTimeout(function(){ location.reload();}, 3000);
-	        			    }
+	        				 
 	        				/*if(response.error == false){
 	        					
 	        				}*/
