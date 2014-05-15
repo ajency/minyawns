@@ -278,12 +278,17 @@ function popup_usersignup() {
 
             $subject = "You have successfully registered on Minyawns";
             
+            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+            
             if ($_REQUEST['pdrole_'] == "employer"){
             	$message = "Hi, <br/><br/>You have successfully registered on <a href='" . site_url() . "' >Minyawns</a>.<br/><br/>";
+            	wp_mail($userdata_['user_email'], $subject, email_header() . $message . email_signature(), $headers);
             	
             }
             else {
             	$message = "<img src='".site_url()."/wp-content/themes/minyawns/images/first_minyawn_job.jpg' />";
+            	wp_mail($userdata_['user_email'], $subject, $message, $headers);
             	
             }
             
@@ -295,9 +300,8 @@ function popup_usersignup() {
             /* $message.="<br/><br/> Regards,
               <br/>Minyawns Team<br/> ";
              */
-            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-            wp_mail($userdata_['user_email'], $subject, email_header() . $message . email_signature(), $headers);
+            
+            
 
             wp_new_user_notification($user_id, $userdata_['user_pass']);
 
