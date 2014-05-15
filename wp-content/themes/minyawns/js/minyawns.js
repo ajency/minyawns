@@ -66,7 +66,7 @@ $('#paypal_pay').live("click",function(){
 	        				if(response.success==true){
 	        					target_.find('.row-fluid').find('.payment_msg')
 	        										.addClass("payment_success").removeClass("alert")
-	        										.removeClass("alert-danger");
+	        										.removeClass("payment_error");
 	        					
 	        					target_.find('.row-fluid').find('.payment_msg').html('<i class="icon-ok"></i> &nbsp; ');
 	        					
