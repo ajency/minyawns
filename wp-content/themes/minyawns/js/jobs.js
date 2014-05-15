@@ -758,19 +758,27 @@ function profile_review(model) {
                         if (model.toJSON().user_to_job_rating[i] === 'Well Done') {
 
                             if (model.toJSON().comment.length > 0){
-                            	return_status = "<div class='jobs-rating'><div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div><br><p>" + model.toJSON().comment + "</p><span> - " + model.toJSON().job_author + "</span></div></div>";
-                            	
+                            	//return_status = "<div class='jobs-rating'><div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div><br><p>" + model.toJSON().comment + "</p><span> - " + model.toJSON().job_author + "</span></div></div>";
+                            	return_status = { 'status1' : "<div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div><div>  <a class='accordion-toggle' data-toggle='collapse-next' data-parent='#accordion24' > Show More Information  </a>",
+                  					  			  'status2' : " <br><p>" + model.toJSON().comment + "</p><span> - " + model.toJSON().job_author + "</span>  " 
+                  								}
                             }
                                 
                             else{
-                            	return_status = "<div class='jobs-rating'><div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div><br><p></span></div></div>";
+                            	//return_status = "<div class='jobs-rating'><div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div><br><p></span></div></div>";
+                            	return_status = {'status1': "<div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div><br><p></span></div>",
+                            					 'status2': ""
+                            				    }
                             }
                                 
 
 
                         } 
                         else{
-                            return_status = "<div class='jobs-rating'><div class='terrible'><i class='icon-thumbs-down'></i>You Have Been Rated <br><b>Terrible</b><div class='clear'></div><br>" + model.toJSON().comment + "</p><span> - " + model.toJSON().job_author + "</span></div></div>"
+                            //return_status = "<div class='jobs-rating'><div class='terrible'><i class='icon-thumbs-down'></i>You Have Been Rated <br><b>Terrible</b><div class='clear'></div><br>" + model.toJSON().comment + "</p><span> - " + model.toJSON().job_author + "</span></div></div>"
+                        	return_status = {'status1' : "<div class='terrible'><i class='icon-thumbs-down'></i>You Have Been Rated <br><b>Terrible</b><div class='clear'></div></div> <a class='accordion-toggle' data-toggle='collapse-next' data-parent='#accordion24' > Show More Information  </a>",
+                        					 'status2' : '<br>" + model.toJSON().comment + "</p><span> - " + model.toJSON().job_author + "</span>'
+                        	}
                         }
 
 
@@ -778,7 +786,12 @@ function profile_review(model) {
                         break;
                     } 
                     else {
-                        return_status = "<div class='jobs-rating'><div class='not-rated'><div class='msg'>You have been <br>not yet rated</div><i class='icon-thumbs-up'></i><i class='icon-thumbs-down'></i><p> </p>	</div></div>";
+                        //return_status = "<div class='jobs-rating'><div class='not-rated'><div class='msg'>You have been <br>not yet rated</div><i class='icon-thumbs-up'></i><i class='icon-thumbs-down'></i><p> </p>	</div></div>";
+                    	return_status = { 'status1' : "<div class='not-rated'><div class='msg'>You have been <br>not yet rated</div><i class='icon-thumbs-up'></i><i class='icon-thumbs-down'></i><p> </p>	</div>",
+                    					'status2'	:''
+                    	
+                    			
+                    	}
                     }
                 }//end for (var i = 0; i < model.toJSON().user_to_job_status.length; i++)
 

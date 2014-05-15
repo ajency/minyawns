@@ -316,13 +316,11 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
 
                   <div class="st-moile-span1">
 
-                                          <div class=""> <div class='well-done'><i class='icon-thumbs-up'></i>You Have Been Rated <br><b>Well Done</b><div class='clear'></div></div>
-                      <a class="accordion-toggle" data-toggle="collapse-next" data-parent="#accordion24" >
-     Show More Information
-      </a>
+                      <%= review.status1 %>
+                      
                                        </div>
 
-                  <%= review %></div> 
+                  </div> 
 							 </div> 
                <div class="clearfix"></div>
 	  
@@ -357,7 +355,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                                       
                                     </div>
                                  </div>
-                                 <div class="span2"></div>
+                                 <div class="span2"> <%= review.status2 %></div>
                               </div>   
 </div>
 </div>	
