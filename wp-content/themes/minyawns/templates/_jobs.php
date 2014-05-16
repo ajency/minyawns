@@ -272,13 +272,15 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
     </form>
 </script>
 <script type="text/template" id="profile-table">   
-
-
+<% console.log('check..................')%>
+<% console.log(result) %>
+<% console.log('currentpage_user_role') %>
+<% console.log(currentpage_user_role)%>
     <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%>">
-    <%= review %>
+    
 
 							 <div class="row-fluid mobile-hide" >
-							  <div class="span9 ">
+							  <div class="<% /*if(currentpage_user_role=="employer"){ span9 } else{ */ %>span6<% /* } */  %> ">
 							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
                                       <div class="span1">
 									  <div class="job-date">
@@ -302,7 +304,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                                        </div>
                                     </div>
 							  </div>
-							  <div class="span3 status">
+							  <div class="<% /* if(currentpage_user_role=="employer"){ span3< else{ */ %>span4<% /* } */ %> status">
 							    <div class="st-moile-span1">
 
                                           <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
@@ -311,26 +313,38 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
       </a>
                                        </div>
 							  </div>
-							 </div> 
+				<% /*if(currentpage_user_role!="employer"){ */ %>
+                 <div class="span2">
+
+                  		<div class="st-moile-span1">
+                     			 <%= review.status1 %>
+                         </div>
+
+                  </div> 
+				<% /*} */ %>
+
+			   </div> 
+               </div>
+               <div class="clearfix"></div>
 	  
 	  <div id="collapseOne" class="accordion-body collapse ">
       <div class="accordion-inner">
                               <div class="row-fluid mobile-detail">
-                                 <div class="span9 ">
+                                 <div class="span6 ">
                                     <div class="row-fluid ">
                                       <div class="span12 job-details">
                                          <p> <%= result.job_details %> <em>job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></em> </p>
                                        </div>
                                     </div>
-									 <div class="additional-info">
+									                   <div class="additional-info">
                                        <div class="row-fluid">
                                           <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
                                           <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
                                        </div>
-                                    </div>
                                  </div>
-                                 <div class="span3 status">
-								    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
+                                 </div>
+                                 <div class="span4 status">
+								                    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
                                     <div class="st-fluid">
                                      
                                        <div class="st-moile-span2">
@@ -344,6 +358,7 @@ And you don't need a PayPal account to pay us.<br> Any credit or debit card will
                                       
                                     </div>
                                  </div>
+                                 <div class="span2"> <%= review.status2 %></div>
                               </div>   
 </div>
 </div>	

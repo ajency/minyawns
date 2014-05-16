@@ -207,7 +207,7 @@ else
 					
 					//$receiver_message.= "<br/><br/>***".print_r($minyawn_data,true)."<br/><br/>";
 					$cnt_sel_minyawns  = 1;
-					$wages_minyawns = get_post_meta($data['item_number'] , 'job_wages', true) - ( (get_post_meta($data['item_number'] , 'job_wages', true) *13)/100 );
+					$wages_minyawns = get_post_meta($data['item_number'] , 'job_wages', true) - ( (get_post_meta($data['item_number'] , 'job_wages', true) *10)/100 );
 					
                                         foreach($minyawn_data as $key=>$value)
 					{
