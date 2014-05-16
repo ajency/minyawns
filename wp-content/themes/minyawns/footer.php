@@ -51,9 +51,11 @@ jQuery(document).ready(function($) {
 	</ul>
 	
 	<div class="social-icon">
-	<a href="https://twitter.com/Minyawns"  class="btn btn-info"><i class="icon-twitter" ></i> <span> &nbsp;Follow Us</span></a>
-	&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" class="btn btn-danger"><i class="icon-facebook" ></i> &nbsp;<span> Follow Us</span></a>
-	
+		<a href="https://twitter.com/Minyawns"><img
+			src="<?php echo get_template_directory_uri() ?>/images/twiiter.png" />
+		</a>&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn"><img
+			src="<?php echo get_template_directory_uri() ?>/images/facebook.png" />
+		</a>
 	</div>
 	
 	<div class="site_link">All rights reserved 2013 @ Minyawns</div>
