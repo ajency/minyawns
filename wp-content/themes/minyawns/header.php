@@ -215,6 +215,7 @@
 		<a href="<?php echo site_url(); ?>">
 		<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt=""  class="minions-logo"/> 
 		</a>
+		&nbsp;<b style="color:#fff;">Follow us</b>&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" target="_blank"> <img src="<?php echo get_template_directory_uri(); ?>/images/social-fb.png" alt="" /></a>  &nbsp;<a href="https://twitter.com/Minyawns"  target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/images/social-twitter.png" alt="" /> </a>
 		<div class="main-menu">
 		<ul class="inline">
 				<li><b>Browse:</b></li>
@@ -279,6 +280,7 @@
 		<a href="<?php echo site_url(); ?>">
 		<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt=""  class="minions-logo"/> 
 		</a>
+		&nbsp;<b style="color:#fff;">Follow us</b>&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" target="_blank"> <img src="<?php echo get_template_directory_uri(); ?>/images/social-fb.png" alt="" /></a>  &nbsp;<a href="https://twitter.com/Minyawns"  target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/images/social-twitter.png" alt="" /> </a>
 		<div class="main-menu">
 		<ul class="inline">
 				<li><b>Browse:</b></li>
