@@ -2114,7 +2114,7 @@ jQuery("#delete_job").live("click",function(){
                 job_id: jQuery("#delete_job").attr("job-id"),
             },
             function(response) {
-                window.location.href = siteurl + '/jobs';
+                window.location.href = siteurl + '/jobs/#browse';
             }); 
     
 });
