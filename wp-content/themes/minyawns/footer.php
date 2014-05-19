@@ -49,12 +49,11 @@ jQuery(document).ready(function($) {
 		<li><a href="<?php echo site_url(); ?>/careers/">Careers</a></li>
 		<li><a href="<?php echo site_url(); ?>/contact/">Contact</a></li>
 	</ul>
-	
-	<div class="social-icon">
-		<a href="https://twitter.com/Minyawns" class="btn btn-info" target="_blank"><i class="icon-twitter" ></i> <span> &nbsp;Follow Us</span></a>
-		&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" class="btn btn-danger"  target="_blank"><i class="icon-facebook" ></i> &nbsp;<span> Follow Us</span></a>
+	<br>
+	<b class="social-icon">
+&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" target="_blank"> <img src="<?php echo get_template_directory_uri(); ?>/images/social-fb.png" alt="" /></a>  &nbsp;<a href="https://twitter.com/Minyawns"  target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/images/social-twitter.png" alt="" /> </a>
 
-</div>
+</b>
 
 	
 	<div class="site_link">All rights reserved 2013 @ Minyawns</div>

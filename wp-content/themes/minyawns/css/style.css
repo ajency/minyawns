@@ -16,7 +16,14 @@
 	right: 0;
 	top: -1px;
 }
-
+.social-icon{
+	display:none;
+}
+@media (max-width: 767px) {
+	.social-icon{
+		display:block !important;
+	}
+}
 .minaywns-sel{
 	width: 140px;
 height: 140px;
@@ -2698,6 +2705,6 @@ color: #000;
 }
 
 .social-icon {
-width: 220px!important;
+width: 80px!important;
 }
 
