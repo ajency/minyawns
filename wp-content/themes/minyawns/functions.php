@@ -1271,7 +1271,7 @@ function braintree_payments(){
 	  */
 	$admin_verify_decrypted = "";
 	 
-	 global $wpdb;
+	 global $wpdb,$user_ID;
 	 foreach($_POST['data'] as $val){
 	 $data[$val['name']] = $val['value'];
 	 
