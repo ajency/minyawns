@@ -1302,11 +1302,11 @@ if(empty($admin_verify_decrypted)){
 	require_once ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
 
 //Sandbox mode
-/*Braintree_Configuration::environment('sandbox');
+ Braintree_Configuration::environment('sandbox');
 Braintree_Configuration::merchantId('m5j78m5tpkbqjz9r');
 Braintree_Configuration::publicKey('hpsfvwz3qwstzwqy');
 Braintree_Configuration::privateKey('7821082eb89ed086c1a0d1b7e08a9362');
-*/
+ 
 
 /*Braintree_Configuration::environment('production');
 Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
@@ -1315,10 +1315,10 @@ Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
 */ 
 
 //Production mode
-Braintree_Configuration::environment('production');
+/*Braintree_Configuration::environment('production');
 Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
 Braintree_Configuration::publicKey('wps9xdqgpy453srw');
-Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
+Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');*/
 
 	
 	
@@ -1686,12 +1686,12 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 				
 				
 					
-				$sender_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
+				$sender_subject = "Minyawns - Payment Failed for ".$job_data->post_title." job";
 				$sender_message.="Hi,<br/><br/>
 				
-							Your Payment failed for '".$data['item_name']."'.
+							Your Payment failed for '".$job_data->post_title."'.
 							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."
-							<br/><b>Job    				: </b> ".$data['item_name']."
+							<br/><b>Job    				: </b> ".$job_data->post_title."
 							<br/><b>Amount 				: </b> ".$data['amount']."
 			
 							<br/><b>selected Minyawns	: </b> ";
@@ -1712,7 +1712,7 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 					$sender_message.= "			
 									
 									
-							<br/><b>Job    			:</b> ".$data['item_name']."							
+							<br/><b>Job    			:</b> ".$job_data->post_title."							
 							<br/><b>Job Date : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
 							<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."						 
 							<br/><b>End Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
