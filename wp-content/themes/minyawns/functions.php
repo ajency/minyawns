@@ -1642,7 +1642,7 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 				$receiver_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
 				$receiver_message.="Hi,<br/><br/>
 				
-							Payment failed for '".$data['item_name']."'.
+							Payment failed for '".$job_data->post_title."'.
 							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."
 							<br/><b>Total Amount 		: </b> ".$data['amount']."	
 						
