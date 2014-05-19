@@ -1301,25 +1301,27 @@ if(empty($admin_verify_decrypted)){
 	
 	require_once ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
 
-/*
+//Sandbox mode
 Braintree_Configuration::environment('sandbox');
 Braintree_Configuration::merchantId('m5j78m5tpkbqjz9r');
 Braintree_Configuration::publicKey('hpsfvwz3qwstzwqy');
 Braintree_Configuration::privateKey('7821082eb89ed086c1a0d1b7e08a9362');
 
 
-Braintree_Configuration::environment('production');
+/*Braintree_Configuration::environment('production');
 Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
 Braintree_Configuration::publicKey('wps9xdqgpy453srw');
 Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
 */ 
 
-
+/* //Production mode
 Braintree_Configuration::environment('production');
 Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
 Braintree_Configuration::publicKey('wps9xdqgpy453srw');
 Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
-
+*/
+	
+	
 $result = Braintree_Transaction::sale(array(
     										"amount" => $data["amount"],
     										"creditCard" => array(
@@ -1588,12 +1590,15 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
     
     
 } else if ($result->transaction) {
-   /* echo("Error: " . $result->message);
+     /*echo("Error: " . $result->message);
     echo("<br/>");
-    echo("Code: " . $result->transaction->processorResponseCode);*/
+    echo("Code: " . $result->transaction->processorResponseCode);
+    print_r($result); 
     
-  
+  echo "\n Transaction ID".$result->transaction->id;*/
     
+  				$data['txn_id'] = $result->transaction->id; 
+  				
     			$data['payment_status'] = 'Failed';
     
     			update_braintree_payment($data);
@@ -1601,10 +1606,10 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 				
 				update_post_meta($data['item_number'],'job_status','failed');
 				
+				$job_data = get_post($data['item_number']);	
 				
 				
-				
-$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
+				$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
 				
 				
 				/*echo 'paypal_payment_meta';
