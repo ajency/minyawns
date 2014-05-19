@@ -1301,14 +1301,24 @@ if(empty($admin_verify_decrypted)){
 	
 	require_once ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
 
-
+/*
 Braintree_Configuration::environment('sandbox');
 Braintree_Configuration::merchantId('m5j78m5tpkbqjz9r');
 Braintree_Configuration::publicKey('hpsfvwz3qwstzwqy');
 Braintree_Configuration::privateKey('7821082eb89ed086c1a0d1b7e08a9362');
 
 
- 
+Braintree_Configuration::environment('production');
+Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
+Braintree_Configuration::publicKey('wps9xdqgpy453srw');
+Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
+*/ 
+
+
+Braintree_Configuration::environment('the_env');
+Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
+Braintree_Configuration::publicKey('wps9xdqgpy453srw');
+Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
 
 $result = Braintree_Transaction::sale(array(
     										"amount" => $data["amount"],
