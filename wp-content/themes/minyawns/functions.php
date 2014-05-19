@@ -1315,7 +1315,7 @@ Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
 */ 
 
 
-Braintree_Configuration::environment('the_env');
+Braintree_Configuration::environment('production');
 Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
 Braintree_Configuration::publicKey('wps9xdqgpy453srw');
 Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
@@ -1600,6 +1600,38 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 			 
 				
 				update_post_meta($data['item_number'],'job_status','failed');
+				
+				
+				
+				
+$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
+				
+				
+				/*echo 'paypal_payment_meta';
+				var_dump($paypal_payment_meta);
+				exit();*/
+				$meta_sel_minyawns=array();
+				foreach($paypal_payment_meta as $k_meta_pay=>$v_meta_pay )
+				{
+					if($k_meta_pay=='minyawns_selected')
+					{
+						$meta_sel_minyawns = explode(",",$v_meta_pay);
+						//get user details
+						foreach($meta_sel_minyawns as $k=>$v)
+						{
+							if($v!="")
+							{
+								$minyawn_data[] = get_userdata($v);
+									
+							}
+						}
+							
+					}
+				}
+				
+				
+				
+				
 				
 				
 				$receiver_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
