@@ -1690,8 +1690,7 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 				$sender_message.="Hi,<br/><br/>
 				
 							Your Payment failed for '".$job_data->post_title."'.
-							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."
-							<br/><b>Job    				: </b> ".$job_data->post_title."
+							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."							
 							<br/><b>Amount 				: </b> ".$data['amount']."
 			
 							<br/><b>selected Minyawns	: </b> ";
