@@ -1664,7 +1664,7 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 					$receiver_message.= "			
 									
 									
-							<br/><b>Job    	  : </b> ".$data['item_name']."							
+							<br/><b>Job    	  : </b> ".$job_data->post_title."							
 							<br/><b>Job Date  : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
 							<br/><b>Start Time: </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."							
 							<br/><b>End Time  : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
