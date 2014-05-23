@@ -135,8 +135,13 @@ $key_job = sha1($salt . uniqid(time(), true));
         </div>
         
 <?php 
+global $current_user;
+$user_roles = $current_user->roles;
+$user_role = array_shift($user_roles);
+$current_user_role =  trim($user_role);
 
-  if (current_user_can( 'manage_options' )) {
+ // if (current_user_can( 'manage_options' )) {
+ if($current_user_role =="administrator"){
   	
 	  	define("ENCRYPTION_KEY", "!@#$%^&*");
 		$string = get_option('admin_email');
