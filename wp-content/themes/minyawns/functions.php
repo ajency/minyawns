@@ -1269,6 +1269,15 @@ function braintree_payments(){
 	 /* echo ".........";
 	  var_dump($_POST);
 	  */
+	
+	global $current_user;
+$user_roles = $current_user->roles;
+$user_role = array_shift($user_roles);
+$current_user_role =  trim($user_role);
+
+
+
+
 	$admin_verify_decrypted = "";
 	 
 	 global $wpdb,$user_ID;
@@ -1278,24 +1287,24 @@ function braintree_payments(){
 	 }
 	 
 	 //var_dump($data);
-	 if(isset($data['adminverify'])){
+	 /*if(isset($data['adminverify'])){
 	 	
 	 	$admin_verify_encrypted = $data['adminverify']; 
 	 	
 	 	$admin_verify_decrypted =  encrypt_decrypt('decrypt', $admin_verify_encrypted); 
 	 
-	 }
-	 if(isset($data['hdn_markaspaid'])){
+	 }*/
+	 /*if(isset($data['hdn_markaspaid'])){
 	 	
 	 	$admin_markaspaid = $data['hdn_markaspaid'];  
 	 
-	 }
+	 }*/
 	 
 	 
 
 $result = array();	 
 	 
-if(empty($admin_verify_decrypted)){
+if($current_user_role!="administrator"){
 	
 	
 	
@@ -1392,7 +1401,7 @@ $current_userdata = get_userdata($user_ID);
  echo "\n\n admin_verify_decrypted".$admin_verify_decrypted;
  echo "\n\n admin email ".get_option('admin_email');*/
 
-if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&& ($admin_markaspaid=='1') )  ) {
+if( ($result->success) || ($current_user_role==="administrator" )  ) {
     //echo("Success! Transaction ID: " . $result->transaction->id);
     
     
@@ -1400,7 +1409,7 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 					$data['txn_id'] = $result->transaction->id;
 				}
 	
-    			if($admin_verify_decrypted==get_option('admin_email')){
+    			if($current_user_role==="administrator"){
     				
     				$data['txn_id'] = "AdminMarked_".$data['custom'];
     			}
