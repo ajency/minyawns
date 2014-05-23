@@ -1271,7 +1271,7 @@ function braintree_payments(){
 	  */
 	$admin_verify_decrypted = "";
 	 
-	 global $wpdb;
+	 global $wpdb,$user_ID;
 	 foreach($_POST['data'] as $val){
 	 $data[$val['name']] = $val['value'];
 	 
@@ -1301,15 +1301,41 @@ if(empty($admin_verify_decrypted)){
 	
 	require_once ABSPATH.'wp-content/themes/minyawns/braintree_lib/Braintree.php';
 
-
-Braintree_Configuration::environment('sandbox');
+//Sandbox mode
+/*Braintree_Configuration::environment('sandbox');
 Braintree_Configuration::merchantId('m5j78m5tpkbqjz9r');
 Braintree_Configuration::publicKey('hpsfvwz3qwstzwqy');
 Braintree_Configuration::privateKey('7821082eb89ed086c1a0d1b7e08a9362');
+*/ 
+
+/*Braintree_Configuration::environment('production');
+Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
+Braintree_Configuration::publicKey('wps9xdqgpy453srw');
+Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
+*/ 
+
+//Production mode
+/*Braintree_Configuration::environment('production');
+Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
+Braintree_Configuration::publicKey('wps9xdqgpy453srw');
+Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
+*/
 
 
- 
-
+if(BRAINTREE_PAYMENT_MODE=="sandbox"){
+	Braintree_Configuration::environment('sandbox');
+	Braintree_Configuration::merchantId('m5j78m5tpkbqjz9r');
+	Braintree_Configuration::publicKey('hpsfvwz3qwstzwqy');
+	Braintree_Configuration::privateKey('7821082eb89ed086c1a0d1b7e08a9362');
+}
+else if(BRAINTREE_PAYMENT_MODE=="production"){
+//Production mode
+	Braintree_Configuration::environment('production');
+	Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
+	Braintree_Configuration::publicKey('wps9xdqgpy453srw');
+	Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
+}
+	
 $result = Braintree_Transaction::sale(array(
     										"amount" => $data["amount"],
     										"creditCard" => array(
@@ -1578,12 +1604,15 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
     
     
 } else if ($result->transaction) {
-   /* echo("Error: " . $result->message);
+     /*echo("Error: " . $result->message);
     echo("<br/>");
-    echo("Code: " . $result->transaction->processorResponseCode);*/
+    echo("Code: " . $result->transaction->processorResponseCode);
+    print_r($result); 
     
-  
+  echo "\n Transaction ID".$result->transaction->id;*/
     
+  				$data['txn_id'] = $result->transaction->id; 
+  				
     			$data['payment_status'] = 'Failed';
     
     			update_braintree_payment($data);
@@ -1591,11 +1620,43 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 				
 				update_post_meta($data['item_number'],'job_status','failed');
 				
+				$job_data = get_post($data['item_number']);	
 				
-				$receiver_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
+				
+				$paypal_payment_meta = get_paypal_payment_meta($data['txn_id'],$data['custom'],$data['item_number']);
+				
+				
+				/*echo 'paypal_payment_meta';
+				var_dump($paypal_payment_meta);
+				exit();*/
+				$meta_sel_minyawns=array();
+				foreach($paypal_payment_meta as $k_meta_pay=>$v_meta_pay )
+				{
+					if($k_meta_pay=='minyawns_selected')
+					{
+						$meta_sel_minyawns = explode(",",$v_meta_pay);
+						//get user details
+						foreach($meta_sel_minyawns as $k=>$v)
+						{
+							if($v!="")
+							{
+								$minyawn_data[] = get_userdata($v);
+									
+							}
+						}
+							
+					}
+				}
+				
+				
+				
+				
+				
+				
+				$receiver_subject = "Minyawns - Payment Failed for ".$job_data->post_title." job";
 				$receiver_message.="Hi,<br/><br/>
 				
-							Payment failed for '".$data['item_name']."'.
+							Payment failed for '".$job_data->post_title."'.
 							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."
 							<br/><b>Total Amount 		: </b> ".$data['amount']."	
 						
@@ -1617,7 +1678,7 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 					$receiver_message.= "			
 									
 									
-							<br/><b>Job    	  : </b> ".$data['item_name']."							
+							<br/><b>Job    	  : </b> ".$job_data->post_title."							
 							<br/><b>Job Date  : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
 							<br/><b>Start Time: </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."							
 							<br/><b>End Time  : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 
@@ -1639,12 +1700,11 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 				
 				
 					
-				$sender_subject = "Minyawns - Payment Failed for ".$data['item_name']." job";
+				$sender_subject = "Minyawns - Payment Failed for ".$job_data->post_title." job";
 				$sender_message.="Hi,<br/><br/>
 				
-							Your Payment failed for '".$data['item_name']."'.
-							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."
-							<br/><b>Job    				: </b> ".$data['item_name']."
+							Your Payment failed for '".$job_data->post_title."'.
+							<br/><b>Transaction ID  	: </b> ".$data['txn_id']."							
 							<br/><b>Amount 				: </b> ".$data['amount']."
 			
 							<br/><b>selected Minyawns	: </b> ";
@@ -1665,7 +1725,7 @@ if( ($result->success) || (($admin_verify_decrypted==get_option('admin_email'))&
 					$sender_message.= "			
 									
 									
-							<br/><b>Job    			:</b> ".$data['item_name']."							
+							<br/><b>Job    			:</b> ".$job_data->post_title."							
 							<br/><b>Job Date : </b>". date('d M Y',   get_post_meta($item__number,'job_start_date',true))."
 							<br/><b>Start Time : </b>". date('g:i a',  get_post_meta($item__number,'job_start_time',true))."						 
 							<br/><b>End Time : </b>". date('g:i a',  get_post_meta($item__number,'job_end_time',true))."							 

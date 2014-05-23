@@ -145,7 +145,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                 }
             }
 
-            /*$querystr = "
+           $querystr = "
                             SELECT DISTINCT $wpdb->posts.* 
                             FROM $tables" . "$filtertables
                             $my_jobs_filter
@@ -154,28 +154,28 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->posts.post_type = 'job'
                             $order_by
                             $limit
-                         ";*/
-				$querystr = "
-                            SELECT DISTINCT $wpdb->posts.* 
-                            FROM $tables" . "$filtertables
-                            $my_jobs_filter
-                            $category_filter
-                            AND $wpdb->posts.post_status = 'publish' 
-                            AND $wpdb->posts.post_type = 'job'
-                            $order_by
-                             
                          ";
-            $pageposts = $wpdb->get_results($querystr, OBJECT);
+        /*$querystr = "
+               SELECT DISTINCT $wpdb->posts.*
+               FROM $tables" . "$filtertables
+               $my_jobs_filter
+               $category_filter
+               AND $wpdb->posts.post_status = 'publish'
+               AND $wpdb->posts.post_type = 'job'
+               $order_by
 
-            $total = get_total_jobs();
+            ";*/
+$pageposts = $wpdb->get_results($querystr, OBJECT);
 
-            $no_of_pages = ceil($total / 5);
+$total = get_total_jobs();
 
-            $has_more_results = 0;
+$no_of_pages = ceil($total / 5);
 
-            foreach ($pageposts as $pagepost) {
+$has_more_results = 0;
 
-                $owner_id = is_job_owner(get_user_id(), $pagepost->ID); /* returns the job owner id if set else 0 */
+foreach ($pageposts as $pagepost) {
+
+   $owner_id = is_job_owner(get_user_id(), $pagepost->ID); /* returns the job owner id if set else 0 */
 
                 $tags = wp_get_post_terms($pagepost->ID, 'job_tags', array("fields" => "names"));
 

@@ -400,8 +400,27 @@ $all_categories = get_categories(array('hide_empty' => 0));
 
 					      
 					    }
-					    var braintree = Braintree.create('MIIBCgKCAQEAyL76cIAt5S6/q8WIhJUXwVnjoQWeYk+KmGF/GM0xJdZD+XeZNoeqUSSz0J0D77lQN6uOhCOSI9IRpmWL+Z4OVNz6KxuyHWxm8z04JvrGutNpNKTHg06KhiVoINt70gzgOjTqk9RqNnrmGo8BMZ4bY52o4rMzaCXhkT/syn4ZDQ8jZT5eQ+WZsbRa4e+q864VJwrOWQrdFNHH5RvyVe5Mq7yy+T1NmCHAfaKGmBXKB8Lf9htwUKB+R2oniUjDUK27+eY8M+g4EeqNCi3aOOcttiT1Pvpa2HOJQbmXZsjXSqEd7P7cwAMxhbWGXukIlgRE7Oc/GGO+fo356rNB4ihlgQIDAQAB');
-					    braintree.onSubmitEncryptForm('braintree-payment-form', ajax_submit);
+					    //sandbox mode
+					    //var braintree = Braintree.create('MIIBCgKCAQEAyL76cIAt5S6/q8WIhJUXwVnjoQWeYk+KmGF/GM0xJdZD+XeZNoeqUSSz0J0D77lQN6uOhCOSI9IRpmWL+Z4OVNz6KxuyHWxm8z04JvrGutNpNKTHg06KhiVoINt70gzgOjTqk9RqNnrmGo8BMZ4bY52o4rMzaCXhkT/syn4ZDQ8jZT5eQ+WZsbRa4e+q864VJwrOWQrdFNHH5RvyVe5Mq7yy+T1NmCHAfaKGmBXKB8Lf9htwUKB+R2oniUjDUK27+eY8M+g4EeqNCi3aOOcttiT1Pvpa2HOJQbmXZsjXSqEd7P7cwAMxhbWGXukIlgRE7Oc/GGO+fo356rNB4ihlgQIDAQAB');
+					   //Production Mode
+					  // var braintree = Braintree.create('MIIBCgKCAQEA7cnFispR+EZURzyxPTKSyAMa6NXElWV8z9yC8iSZ2x5nKnkzYF2h/Z23ZXdVCWs0qK/cFStqOavqi3YRGlhgwjpSjR+f4LlyV2b2m2h1LXGPi/vDzqQxP13hJwxNuiaCmsUXort9aQM9BnImVn7/Zvxfy0wVwwmWw2f/G6I6fsW60YbRm18xeSphKLH8ISrKoIzMfVhib2vYTmoT2DYEh4jChrMC+K7jVvtaYpBjw2iiQvbbDjhPd9XDYRW9gQdO9ekZD+K6S9r5FnAH7n4/1rYvOqaBWlAH1DJ5cvuwQXOoT/hfvGdc3BCenD9dmyP4dACClQYoDs1LS4bM4aFeVQIDAQAB');
+					  
+					  
+					  <?php
+					  if(BRAINTREE_PAYMENT_MODE=="sandbox"){
+					  	?>
+					  	var braintree = Braintree.create('MIIBCgKCAQEAyL76cIAt5S6/q8WIhJUXwVnjoQWeYk+KmGF/GM0xJdZD+XeZNoeqUSSz0J0D77lQN6uOhCOSI9IRpmWL+Z4OVNz6KxuyHWxm8z04JvrGutNpNKTHg06KhiVoINt70gzgOjTqk9RqNnrmGo8BMZ4bY52o4rMzaCXhkT/syn4ZDQ8jZT5eQ+WZsbRa4e+q864VJwrOWQrdFNHH5RvyVe5Mq7yy+T1NmCHAfaKGmBXKB8Lf9htwUKB+R2oniUjDUK27+eY8M+g4EeqNCi3aOOcttiT1Pvpa2HOJQbmXZsjXSqEd7P7cwAMxhbWGXukIlgRE7Oc/GGO+fo356rNB4ihlgQIDAQAB');
+					  	<?php 
+					  }
+					  else if(BRAINTREE_PAYMENT_MODE=="production"){
+					  ?>
+					  	var braintree = Braintree.create('MIIBCgKCAQEA7cnFispR+EZURzyxPTKSyAMa6NXElWV8z9yC8iSZ2x5nKnkzYF2h/Z23ZXdVCWs0qK/cFStqOavqi3YRGlhgwjpSjR+f4LlyV2b2m2h1LXGPi/vDzqQxP13hJwxNuiaCmsUXort9aQM9BnImVn7/Zvxfy0wVwwmWw2f/G6I6fsW60YbRm18xeSphKLH8ISrKoIzMfVhib2vYTmoT2DYEh4jChrMC+K7jVvtaYpBjw2iiQvbbDjhPd9XDYRW9gQdO9ekZD+K6S9r5FnAH7n4/1rYvOqaBWlAH1DJ5cvuwQXOoT/hfvGdc3BCenD9dmyP4dACClQYoDs1LS4bM4aFeVQIDAQAB');
+					  <?php 	
+					  }  
+					  ?>
+					  
+					   
+					   braintree.onSubmitEncryptForm('braintree-payment-form', ajax_submit);
 					  })
    
   				</script>
