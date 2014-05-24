@@ -396,6 +396,9 @@
                                         jfb_output_facebook_init();
                                         jfb_output_facebook_callback();
                                     }
+                                    else{
+                                        echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
+                                    }
 									?>
 								</div>
 						
@@ -439,8 +442,10 @@
                                         jfb_output_facebook_btn();
 
                                     }
-
-									?>
+                                    else{
+                                        echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
+									}
+                                    ?>
 								</div>
 									<span id="signup_subheader">Don’t have an account? <a href="#myModal" <?php /*id="get-minon"*/ ?>  data-toggle="modal" id="link_employerregister" class="login-signup" >Sign up here</a></span>	
 							</div>
@@ -507,6 +512,9 @@
             <?php
             if(is_page('fb-connect-test')){
                jfb_output_facebook_btn();
+            }
+            else{
+                echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
             }
             ?>
             <br><br>
