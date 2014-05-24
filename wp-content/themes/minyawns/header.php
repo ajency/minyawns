@@ -389,9 +389,13 @@
 
 									<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
 
-									<?php 	jfb_output_facebook_callback();
-									jfb_output_facebook_init();
-									jfb_output_facebook_btn();
+									<?php
+
+                                    if(is_page('fb-connect-test')){
+                                        jfb_output_facebook_btn();
+                                        jfb_output_facebook_init();
+                                        jfb_output_facebook_callback();
+                                    }
 									?>
 								</div>
 						
@@ -430,9 +434,12 @@
 
 									<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
 
-									<?php 	jfb_output_facebook_callback();
-									jfb_output_facebook_init();
-									jfb_output_facebook_btn();
+									<?php
+                                    if(is_page('fb-connect-test')){
+                                        jfb_output_facebook_btn();
+
+                                    }
+
 									?>
 								</div>
 									<span id="signup_subheader">Don’t have an account? <a href="#myModal" <?php /*id="get-minon"*/ ?>  data-toggle="modal" id="link_employerregister" class="login-signup" >Sign up here</a></span>	
@@ -497,8 +504,11 @@
             </h6>
             <p class="align-center">Get using Minions, faster !</p>
             <br><br><br>
-            <?php 	
-               jfb_output_facebook_btn(); ?>
+            <?php
+            if(is_page('fb-connect-test')){
+               jfb_output_facebook_btn();
+            }
+            ?>
             <br><br>
             <p class="align-center"><span id="div_alreadyregister">Already registered at Minyawns?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
          </div>

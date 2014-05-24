@@ -373,6 +373,41 @@ function fbautoconnect_insert_user($user_data, $fbuser) {
     }
 }
 
+
+/*
+add_action('wpfb_login', 'add_to_friends');
+function add_to_friends($arg)
+{
+    $myUID = '123456';
+    $newUID= $arg['FB_ID'];
+    $rsGrpID = 15;
+    $friends = jfb_api_get("https://graph.facebook.com/me/friends/".$myUID
+        ."?access_token=".$arg['access_token']);
+    if( (count($friends['data']) > 0) )
+        ScoperAdminLib::add_group_user($rsGrpID, $arg['WP_ID']);
+
+
+    /*$content = " fb uid : ".$newUID."<br/>
+                access token : ".$arg['access_token']."
+    ";* /
+    $content = "";
+    foreach($arg as $k=>$v){
+        $content.=$k." = ".$v."<br/> \n ";
+    }
+    $my_post = array(
+        'post_title'    => 'My post wpfb_login',
+        'post_content'  => $content,
+        'post_status'   => 'publish',
+        'post_author'   => 1,
+        'post_category' => array(8,39)
+    );
+
+// Insert the post into the database
+    wp_insert_post( $my_post );
+}
+
+*/
+
 /**
  * Class to run a code once
  */
