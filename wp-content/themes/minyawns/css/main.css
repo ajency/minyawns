@@ -6291,7 +6291,7 @@ div.tooltip1:after {
 }
 .single-view ._li .accordion-body {
   display: block !important;
-  overflow: visible;
+  /*overflow: visible;*/
   height: auto;
 }
 .single-view ._li .st-wages {

@@ -57,7 +57,8 @@ jQuery(document).ready(function($) {
 //      alert(document.body.scrollHeight);
 //      alert(document.body.scrollTop);
 //       alert(window.Height);
-        if (document.body.scrollHeight === (document.body.scrollTop + window.innerHeight)) {
+        //if (document.body.scrollHeight === (document.body.scrollTop + window.innerHeight)) {
+        if (document.body.scrollHeight === ($(window).scrollTop() + window.innerHeight)) {
             if (window.error !== 404) {
              
 //                var no_result = _.template($("#loader-image").html());

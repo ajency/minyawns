@@ -128,7 +128,7 @@ You need to confirm the minion selection by making the payment,if you leave this
         cursor: auto!important;
     }
     .category_label{
-        margin-right: 5px !important; 
+        margin-right: 5px !important;
         margin-top: -2px !important;
     }
     .category_name{
@@ -143,7 +143,7 @@ You need to confirm the minion selection by making the payment,if you leave this
     <div class="tab-content" style="min-height:928px;">
 
         
-        <div class="tab-pane jobs_table active single-job-1 single-view" id="tab2">
+        <div class="tab-pane jobs_table active single-job-1 rr single-view" id="tab2">
 		
           
             <div class="breadcrumb-text">

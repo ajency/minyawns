@@ -15,7 +15,8 @@
                                     <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"> <%= result.college %></div>
                                     <div class="social-link">
-                                   <a href='http://<%= result.linkedin.replace(/^http?:\/\//,'') %>' target='_blank'><%= result.linkedin %></a>
+                                   <!-- <a href='http://<% /*= result.linkedin.replace(/^http?:\/\//,'')*/ %>' target='_blank'><% /*= result.linkedin */ %></a> -->
+                                        <a href='http://<%= result.linkedin %>' target='_blank'><%= result.linkedin %></a>
                                     </div>
 									<div class="m1-invite">
 									<a class="btn btn-primary invite-btn" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
