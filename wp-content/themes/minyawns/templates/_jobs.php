@@ -219,7 +219,7 @@ $current_user_role =  trim($user_role);
 							<span>Please Note</span>
 							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
 <br> Any credit or debit card will do!</div>
-                        <span id="paypal_pay" style="display:none"><a href="#paymentform"  data-toggle="modal"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></a></span>
+                        <span id="paypal_pay" style="display:none"><a href="#paymentform"  data-toggle="modal"><input type="image"  width="160" height="40"  src="<?php echo site_url()."/wp-content/themes/minyawns/images/pay-btn.png"; ?>" value="Pay with PayPal" class="center-image"/></a></span>
                      <span id="selection_message"></span>
                                     </div>
                             <%}%>
@@ -263,7 +263,7 @@ $current_user_role =  trim($user_role);
 							<span>Please Note</span>
 							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
 <br> Any credit or debit card will do!</div>
-                        <span id="paypal_pay" style="display:none"><a href="#paymentform"  data-toggle="modal"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></a></span>
+                        <span id="paypal_pay" style="display:none"><a href="#paymentform"  data-toggle="modal"><input type="image" width="160" height="40" src="<?php echo site_url()."/wp-content/themes/minyawns/images/pay-btn.png"; ?>" value="Pay with PayPal" class="center-image"/></a></span>
                      <span id="selection_message"></span>
                                     </div>
                             <%}%>
@@ -412,7 +412,7 @@ $current_user_role =  trim($user_role);
 							<span>Please Note</span>
 							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
  <br>Any credit or debit card will do!</div>
-    <span id="paypal_pay" style="display:none"> <a href="#paymentform"  data-toggle="modal">Pay Now3</a> <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/></span>
+    <span id="paypal_pay" style="display:none"> <a href="#paymentform"  data-toggle="modal">Pay Now3</a> <input type="image"  width="160" height="40"  src="<?php echo site_url()."/wp-content/themes/minyawns/images/pay-btn.png"; ?>" value="Pay with PayPal" class="center-image"/></span>
     <span id="selection_message"></span>
     </div>
     <%}%>

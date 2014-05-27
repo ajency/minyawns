@@ -1335,7 +1335,7 @@ $current_user_role =  trim($user_role);
 	 
 	 }*/
 	 
-	 
+
 
 $result = array();	 
 	 
@@ -1367,6 +1367,8 @@ Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
 
 
 if(BRAINTREE_PAYMENT_MODE=="sandbox"){
+
+
 	Braintree_Configuration::environment('sandbox');
 	Braintree_Configuration::merchantId('m5j78m5tpkbqjz9r');
 	Braintree_Configuration::publicKey('hpsfvwz3qwstzwqy');
@@ -1374,11 +1376,15 @@ if(BRAINTREE_PAYMENT_MODE=="sandbox"){
 }
 else if(BRAINTREE_PAYMENT_MODE=="production"){
 //Production mode
+
+
 	Braintree_Configuration::environment('production');
 	Braintree_Configuration::merchantId('s5f7jrwq9qdr4prr');
 	Braintree_Configuration::publicKey('wps9xdqgpy453srw');
 	Braintree_Configuration::privateKey('44d5720ea98a377f84ef20cf23776dd2');
 }
+
+
 	
 $result = Braintree_Transaction::sale(array(
     										"amount" => $data["amount"],
@@ -1436,7 +1442,7 @@ $current_userdata = get_userdata($user_ID);
  echo "\n\n admin_verify_decrypted".$admin_verify_decrypted;
  echo "\n\n admin email ".get_option('admin_email');*/
 
-if( ($result->success) || ($current_user_role==="administrator" )  ) {
+ if( ($result->success) || ($current_user_role==="administrator" )  ) {
     //echo("Success! Transaction ID: " . $result->transaction->id);
     
     
@@ -1914,3 +1920,4 @@ function update_braintree_payment($data) {
     }//end if($status=="Failed")
      
 }
+

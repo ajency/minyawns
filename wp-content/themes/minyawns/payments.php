@@ -418,7 +418,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
 					  <?php 	
 					  }  
 					  ?>
-					  
+
 					   
 					   braintree.onSubmitEncryptForm('braintree-payment-form', ajax_submit);
 					  })
