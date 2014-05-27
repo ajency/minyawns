@@ -217,7 +217,7 @@
 			</a>
 			&nbsp;<b style="color:#fff;">Follow us</b>&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" target="_blank"> <img src="<?php echo get_template_directory_uri(); ?>/images/social-fb.png" alt="" /></a>  &nbsp;<a href="https://twitter.com/Minyawns"  target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/images/social-twitter.png" alt="" /> </a>
 			<!-- city -name-->
-			&nbsp;&nbsp;<b class="text-warning">City : <abbr >Seattle</abbr></b>
+			&nbsp;&nbsp;<b class="text-warning">City : <abbr ><?php echo get_option('Minyawn_city');?></abbr></b>
 			<!-- city -name-->
 			<div class="main-menu">
 			<ul class="inline">
@@ -285,7 +285,7 @@
 			</a>
 			&nbsp;<b style="color:#fff;">Follow us</b>&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" target="_blank"> <img src="<?php echo get_template_directory_uri(); ?>/images/social-fb.png" alt="" /></a>  &nbsp;<a href="https://twitter.com/Minyawns"  target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/images/social-twitter.png" alt="" /> </a>
 			<!-- city -name-->
-	&nbsp;<b class="text-warning">City :&nbsp;<a data-toggle="modal" data-target="#chossecity">Seattle</a></b>
+	&nbsp;<b class="text-warning">City :&nbsp;<a data-toggle="modal" <?php /*data-target="#chossecity" */ ?> class="showcity"><?php echo get_option('minyawn_city'); ?></a></b>
 			<!-- city -name-->
 			<div class="main-menu">
 			<ul class="inline">
@@ -533,17 +533,17 @@
 
 	
 	<!--- chosse city-->
-	 <div id="chossecity" class="modal signup hide fade bb" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
+	 <div id="chossecity" data-backdrop="static"  data-keyboard="false"  class="modal signup hide fade bb" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
 	   <div class="modal-header">
 		
 		  <span id="div_signupheader"><h4 id="myModalLabel">Choose your City </h4></span>
 	   </div>
 	   <div class="modal-body ">
-	 <a href="#"> <div class="alert alert-block ">
+      <a href="javascript:void()" class="select__city" city ="seattle" > <div class="alert alert-block ">
 	  <img src="<?php echo get_template_directory_uri();?>/images/seatle.png"/>
 	  <b> SEATTLE</b>
 	  </div></a>
-	   <a href="#"> 
+           <a href="javascript:void()" class="select__city" city ="frensco" >
  <div class="alert alert-block ">
   <img src="<?php echo get_template_directory_uri();?>/images/frensco.png"/>
    <b> FRESNO</b>

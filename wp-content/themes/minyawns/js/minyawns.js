@@ -10,9 +10,73 @@ jQuery("#signinlink").click(function() {
 
 jQuery(document).ready(function($) {
 
-	
-	
-	
+
+
+    /*   Functions to set and get cookies */
+
+    function setCookie(cname,cvalue,exdays){
+        var d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        document.cookie = cname+"="+cvalue+"; "+expires;
+    }
+
+    function getCookie(cname){
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+
+
+
+    /*function to check & set cookie minyawns_city */
+    function checkCookie(selected_city){
+        var city =getCookie("minyawns_visitor_city");
+
+            if((typeof city === 'undefined')|| (city==="") ){
+                  setTimeout(function(){
+
+                    $('#chossecity').modal('show');
+
+                }, 1000);
+
+
+        }
+
+    }
+    checkCookie() ;  //check and set minyawns_visitor_city cookie
+
+
+
+
+
+
+    $('.select__city').live('click',function(){
+
+        var selected_city = $(this).attr('city')
+
+        expiry_days = 365 * 10 ; //set to 10 years
+
+        setCookie("minyawns_visitor_city",selected_city,expiry_days);
+
+        if(selected_city=="seattle"){
+            var redirect_to = "http://www.minyawns.com";
+        }
+        else{
+            var redirect_to = "http://www.fresno.minyawns.com";
+        }
+
+        window.location.assign(redirect_to);
+
+    })
+
+
+
 	
 	
 //Braintree payment form
@@ -2211,3 +2275,7 @@ function button_for_invite(model){
 //				}
 //			);
 //		});
+
+
+
+

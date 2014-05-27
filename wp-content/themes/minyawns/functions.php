@@ -1921,3 +1921,19 @@ function update_braintree_payment($data) {
      
 }
 
+
+
+
+/* Function to provide option to set city in admin side dashboard  */
+
+function my_general_settings_register_fields(){
+    register_setting('general', 'minyawn_city', 'esc_attr');
+    add_settings_field('minyawn_city', '<label for="minyawn_city">'.__('City' , 'minyawn_city' ).'</label>' , 'my_general_settings_fields_html', 'general');
+}
+add_filter('admin_init', 'my_general_settings_register_fields');
+
+function my_general_settings_fields_html(){
+    $value = get_option( 'minyawn_city', '' );
+    echo '<input type="text" id="minyawn_city" name="minyawn_city" value="' . $value . '" />';
+}
+
