@@ -47,12 +47,28 @@ jQuery(document).ready(function($) {
 
 
         }
+        else{
+
+                redirect_visitor_based_on_city_select(city) ;
+
+         }
 
     }
     checkCookie() ;  //check and set minyawns_visitor_city cookie
 
 
+    function redirect_visitor_based_on_city_select(selected_city){
 
+        if(selected_city=="seattle"){
+            var redirect_to = "http://www.minyawns.com";
+        }
+        else{
+            var redirect_to = "http://www.fresno.minyawns.com";
+        }
+
+        window.location.assign(redirect_to);
+
+    }
 
 
 
@@ -64,14 +80,9 @@ jQuery(document).ready(function($) {
 
         setCookie("minyawns_visitor_city",selected_city,expiry_days);
 
-        if(selected_city=="seattle"){
-            var redirect_to = "http://www.minyawns.com";
-        }
-        else{
-            var redirect_to = "http://www.fresno.minyawns.com";
-        }
+        redirect_visitor_based_on_city_select(selected_city)
 
-        window.location.assign(redirect_to);
+
 
     })
 
