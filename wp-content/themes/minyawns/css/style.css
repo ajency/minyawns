@@ -1,3 +1,31 @@
+
+.bb  .modal-body{
+	text-align:center !important;
+}
+.bb  .modal-body .alert{
+	width: 17%!important;
+	display: inline-table!important;
+	margin: auto 5px!important;
+	padding: 16px 30px 16px 30px;
+	background: #9CC972;
+}
+.bb  .modal-body .alert:hover{
+	background:#90C55F;
+}
+.chs-city{
+	color:#ccc;
+	padding: 10px 0px 0px 0px;
+}
+
+.bb  .modal-body .alert b{
+color: #FFF;
+font-weight: 800;
+}
+.bb  .modal-body .alert img{
+display:block;
+margin:auto;
+}
+
 .page_bg{
 	background:url(../images/pattern-bg.png);
 }	
@@ -100,7 +128,6 @@ height: 22px;
 	margin-top: -5px;
 	
 }
-
 
 .caret {
 	display: inline-block;

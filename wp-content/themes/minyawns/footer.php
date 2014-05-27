@@ -41,6 +41,7 @@ jQuery(document).ready(function($) {
 <?php } ?>
 <footer>
 <span class="footer-top"></span>
+<div class="text-center chs-city">Chosse following city :<a href="#"> Seattle</a>&nbsp; &nbsp;<a href="#">  Fresno</a></div>
 	<ul class="footer_menu">
 		<li><a href="<?php echo site_url(); ?>/about/">About</a></li>
 		<li><a href="<?php echo site_url(); ?>/terms-of-service/">Terms</a></li>
