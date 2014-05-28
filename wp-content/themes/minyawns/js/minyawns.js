@@ -105,7 +105,7 @@ jQuery(document).ready(function($) {
                     var site_host = "fresno."+site_host;
                 }
                 else{
-                    var site_host = site_host.replace("www", "www.fresno.");
+                    var site_host = site_host.replace("www.", "www.fresno.");
                 }
 
 
@@ -136,7 +136,7 @@ jQuery(document).ready(function($) {
 
         var modal_loaded = true ;
         redirect_visitor_based_on_city_select(selected_city,modal_loaded);
- 
+
 
     })
 
