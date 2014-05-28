@@ -54,6 +54,8 @@ function employer_jobcompletion_reminder() {
     			$data['job_id'] = $job_completion->post_id;
     			
     			$data['job_name'] = $job_completion->post_title;
+
+                $data['job_slug']= basename( get_permalink($job_completion->post_id) );
     			    			
     			/* generate email template in a variable */
    				$mail = email_template($emailid, $data, 'employer_jobcompletion_reminder');
