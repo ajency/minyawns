@@ -251,8 +251,8 @@ function get_email_msg($type, $data, $emailid) {
 //'" . $data['job_name'] . "'
         case 'employer_jobcompletion_reminder' : $email_msg = "Hi,<br/><br/>
 
-														Congratulations, your task  has been completed! It's time to rate and write a review for 
-														the minion who executed your task. To rate your minion go to <a href='".site_url()."/job/".$data['job_slug']."'>".$data['job_name']."</a>, simply click on the thumbs up or thumbs down icon on the bottom left corner
+														Congratulations, <br/> your task  has been completed! It's time to rate and write a review for
+														the minion who executed your task. <br/><br/>To rate your minion go to <a href='".site_url()."/job/".$data['job_slug']."'>".$data['job_name']."</a>, simply click on the thumbs up or thumbs down icon on the bottom left corner
 														of your job description.<br/><br/>
 
 														If you have any questions or issues, please feel free to email us at <a href='mailto:support@minyawns.com'>support@minyawns.com</a><br/><br/>
