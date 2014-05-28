@@ -539,11 +539,11 @@
 		  <span id="div_signupheader"><h4 id="myModalLabel">Choose your City </h4></span>
 	   </div>
 	   <div class="modal-body ">
-      <a href="javascript:void()" class="select__city" city ="seattle" > <div class="alert alert-block ">
+      <a href="javascript:void(0)" class="select__city" city ="seattle" > <div class="alert alert-block ">
 	  <img src="<?php echo get_template_directory_uri();?>/images/seatle.png"/>
 	  <b> SEATTLE</b>
 	  </div></a>
-           <a href="javascript:void()" class="select__city" city ="frensco" >
+           <a href="javascript:void(0)" class="select__city" city ="frensco" >
  <div class="alert alert-block ">
   <img src="<?php echo get_template_directory_uri();?>/images/frensco.png"/>
    <b> FRESNO</b>

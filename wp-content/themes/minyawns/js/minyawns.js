@@ -35,10 +35,13 @@ jQuery(document).ready(function($) {
 
 
     /*function to check & set cookie minyawns_city */
-    function checkCookie(selected_city){
+    function checkCookie(){
+
+
+        modal_loaded = false;
         var city =getCookie("minyawns_visitor_city");
 
-            if((typeof city === 'undefined')|| (city==="") ){
+        if((typeof city === 'undefined')|| (city==="") ){
                   setTimeout(function(){
 
                     $('#chossecity').modal('show');
@@ -48,25 +51,73 @@ jQuery(document).ready(function($) {
 
         }
         else{
-
-                redirect_visitor_based_on_city_select(city) ;
+            redirect_visitor_based_on_city_select(city,modal_loaded)
 
          }
 
     }
-    checkCookie() ;  //check and set minyawns_visitor_city cookie
 
 
-    function redirect_visitor_based_on_city_select(selected_city){
+   checkCookie() ;  //check and set minyawns_visitor_city cookie
 
-        if(selected_city=="seattle"){
-            var redirect_to = "http://www.minyawns.com";
+
+    function redirect_visitor_based_on_city_select(city,modal_loaded){
+
+        var site_protocol = window.location.protocol;
+        var site_host =  window.location.host;
+        var site_pathname = window.location.pathname;
+
+
+
+        console.log(window.location.protocol)
+        console.log(window.location.host)
+        console.log(window.location.pathname)
+
+        if(city == "seattle"){
+
+            if(modal_loaded == true){
+                $('#chossecity').modal('hide');
+            }
+
+            //site_host = "fresno.localhost";
+
+            if(site_host.indexOf("fresno") > -1){
+
+                var site_host = site_host.replace("fresno.", "");
+
+                redirect_url= site_protocol+"//"+site_host+site_pathname;
+
+                window.location = redirect_url;
+            }
+
+
         }
         else{
-            var redirect_to = "http://www.fresno.minyawns.com";
-        }
 
-        window.location.assign(redirect_to);
+
+            if(modal_loaded == true){
+                $('#chossecity').modal('hide');
+            }
+
+            //alert(cur_site_url.indexOf("fresno"))
+            if(site_host.indexOf("fresno") <= -1){
+                if(site_host.indexOf("www") <= -1){
+                    var site_host = "fresno."+site_host;
+                }
+                else{
+                    var site_host = site_host.replace("www", "www.fresno.");
+                }
+
+
+                redirect_url= site_protocol+"//"+site_host+site_pathname;
+
+
+                window.location = redirect_url;
+
+
+            }
+
+        }
 
     }
 
@@ -74,15 +125,18 @@ jQuery(document).ready(function($) {
 
     $('.select__city').live('click',function(){
 
+        var cur_site_url = document.URL ;
+
         var selected_city = $(this).attr('city')
 
         expiry_days = 365 * 10 ; //set to 10 years
 
         setCookie("minyawns_visitor_city",selected_city,expiry_days);
 
-        redirect_visitor_based_on_city_select(selected_city)
 
-
+        var modal_loaded = true ;
+        redirect_visitor_based_on_city_select(selected_city,modal_loaded);
+ 
 
     })
 
