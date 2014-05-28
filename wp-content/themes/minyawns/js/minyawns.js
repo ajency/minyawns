@@ -98,7 +98,7 @@ jQuery(document).ready(function($) {
             if(modal_loaded == true){
                 $('#chossecity').modal('hide');
             }
-
+           // site_host = "www.minyawns.ajency.in";
             //alert(cur_site_url.indexOf("fresno"))
             if(site_host.indexOf("fresno") <= -1){
                 if(site_host.indexOf("www") <= -1){
@@ -129,7 +129,7 @@ jQuery(document).ready(function($) {
 
         var selected_city = $(this).attr('city')
 
-        expiry_days = 365 * 10 ; //set to 10 years
+        expiry_days = 365 * 2  ; //set to 10 years
 
         setCookie("minyawns_visitor_city",selected_city,expiry_days);
 
