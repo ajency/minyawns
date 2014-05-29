@@ -16,7 +16,14 @@
                                     <div class="collage"> <%= result.college %></div>
                                     <div class="social-link">
                                    <!-- <a href='http://<% /*= result.linkedin.replace(/^http?:\/\//,'')*/ %>' target='_blank'><% /*= result.linkedin */ %></a> -->
-                                        <a href='http://<%= result.linkedin %>' target='_blank'><%= result.linkedin %></a>
+                                        <% if(result.linkedin.length.indexOf("http://") <= -1){
+                                            var linkedinUrl = "http://"+result.linkedin;
+                                        }
+                                        else{
+                                            var linkedinUrl = result.linkedin;
+                                        }
+                                        %>
+                                        <a href='<%= linkedinUrl %>' target='_blank'><%= result.linkedin %></a>
                                     </div>
 									<div class="m1-invite">
 									<a class="btn btn-primary invite-btn" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
@@ -56,7 +63,14 @@
                                     <div class="social-link">
                                      <% if (result.linkedin.length > 0 ){%>
                                    <!--  <a href='http://<% /*= result.linkedin.replace(/^http?:\/\//,'') */ %>' target='_blank'><% /*= result.linkedin  */%></a> -->
-                                        <a href='<%= result.linkedin   %>' target='_blank'><%= result.linkedin   %></a>
+                                        <% if(result.linkedin.length.indexOf("http://") <= -1){
+                                            var linkedinUrl = "http://"+result.linkedin;
+                                        }
+                                        else{
+                                            var linkedinUrl = result.linkedin;
+                                        }
+                                        %>
+                                        <a href='<%= linkedinUrl   %>' target='_blank'><%= result.linkedin   %></a>
                                        <%}else{%>
                                       <a href='#'><%= result.linkedin %></a>
     <%}%>
