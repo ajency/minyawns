@@ -499,7 +499,7 @@ $current_user_role =  trim($user_role);
     </div>
     <div class="social-link">
     <% if (result.linkedin.length > 0 ){%>
-    <a href='http://<%= result.linkedin %>' target='_blank'><%= result.linkedin %></a>
+    <a href='<%= result.linkedin %>' target='_blank'><%= result.linkedin %></a>
     <%}else{%>
     <a href='#'><%= result.linkedin %></a>
     <%}%>
