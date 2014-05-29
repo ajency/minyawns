@@ -16,7 +16,7 @@
                                     <div class="collage"> <%= result.college %></div>
                                     <div class="social-link">
                                    <!-- <a href='http://<% /*= result.linkedin.replace(/^http?:\/\//,'')*/ %>' target='_blank'><% /*= result.linkedin */ %></a> -->
-                                        <% if(result.linkedin.indexOf("http://") <= -1){
+                                        <% if((result.linkedin.indexOf("http://") <= -1) && (result.linkedin.indexOf("https://") <= -1) ){
                                             var linkedinUrl = "http://"+result.linkedin;
                                         }
                                         else{
@@ -63,7 +63,7 @@
                                     <div class="social-link">
                                      <% if (result.linkedin.length > 0 ){%>
                                    <!--  <a href='http://<% /*= result.linkedin.replace(/^http?:\/\//,'') */ %>' target='_blank'><% /*= result.linkedin  */%></a> -->
-                                        <% if(result.linkedin.indexOf("http://") <= -1){
+                                        <% if(  (result.linkedin.indexOf("https://") <= -1) &&   (result.linkedin.indexOf("http://") <= -1) ) {
                                             var linkedinUrl = "http://"+result.linkedin;
                                         }
                                         else{

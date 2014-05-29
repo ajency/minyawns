@@ -499,7 +499,7 @@ $current_user_role =  trim($user_role);
     </div>
     <div class="social-link">
     <% if (result.linkedin.length > 0 ){%>
-    <% if(result.linkedin.indexOf("http://") <= -1){
+    <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
         var linkedinUrl = "http://"+result.linkedin;
     }
     else{
