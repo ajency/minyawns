@@ -129,7 +129,7 @@ jQuery(document).ready(function($) {
 
         var selected_city = $(this).attr('city')
 
-        expiry_days = 365 * 2  ; //set to 10 years
+        expiry_days =  365  ; //set to 1 years
 
         setCookie("minyawns_visitor_city",selected_city,expiry_days);
 

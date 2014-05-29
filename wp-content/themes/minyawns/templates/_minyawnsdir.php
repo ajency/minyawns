@@ -55,7 +55,8 @@
                                     <div class="collage"><%= result.major %></div>
                                     <div class="social-link">
                                      <% if (result.linkedin.length > 0 ){%>
-                                     <a href='http://<%= result.linkedin.replace(/^http?:\/\//,'') %>' target='_blank'><%= result.linkedin %></a>
+                                   <!--  <a href='http://<% /*= result.linkedin.replace(/^http?:\/\//,'') */ %>' target='_blank'><% /*= result.linkedin  */%></a> -->
+                                        <a href='<%= result.linkedin   %>' target='_blank'><%= result.linkedin   %></a>
                                        <%}else{%>
                                       <a href='#'><%= result.linkedin %></a>
     <%}%>
