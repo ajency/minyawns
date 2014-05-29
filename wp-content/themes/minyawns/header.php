@@ -285,7 +285,7 @@
 			</a>
 			&nbsp;<b style="color:#fff;">Follow us</b>&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" target="_blank"> <img src="<?php echo get_template_directory_uri(); ?>/images/social-fb.png" alt="" /></a>  &nbsp;<a href="https://twitter.com/Minyawns"  target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/images/social-twitter.png" alt="" /> </a>
 			<!-- city -name-->
-	&nbsp;<b class="text-primary">City :&nbsp;<a data-toggle="modal" <?php /*data-target="#chossecity" */ ?> class="showcity"><?php echo get_option('minyawn_city'); ?></a></b>
+	<?php /*&nbsp;<b class="text-primary">City :&nbsp;<a data-toggle="modal" <?php /*data-target="#chossecity" * / ?> class="showcity"><?php echo get_option('minyawn_city'); ?></a></b> */ ?>
 			<!-- city -name-->
 			<div class="main-menu">
 			<ul class="inline">
