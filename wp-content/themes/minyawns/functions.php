@@ -1934,6 +1934,16 @@ add_filter('admin_init', 'my_general_settings_register_fields');
 
 function my_general_settings_fields_html(){
     $value = get_option( 'minyawn_city', '' );
-    echo '<input type="text" id="minyawn_city" name="minyawn_city" value="' . $value . '" />';
+    //echo '<input type="text" id="minyawn_city" name="minyawn_city" value="' . $value . '" />';
+
+
+
+    echo '<select id="minyawn_city" name="minyawn_city">
+                <option value="Seattle"'.($value==="Seattle"?" selected ": " " ).'>Seattle</option>
+                <option value="Fresno" '.($value==="Fresno"?" selected ": " " ).' >Fresno</option>
+          </select>';
+
+
+
 }
 

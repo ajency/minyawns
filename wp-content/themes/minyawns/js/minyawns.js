@@ -12,6 +12,26 @@ jQuery(document).ready(function($) {
 
 
 
+    $("#lst_sitecity").live("change",function(){
+
+        if($("#lst_sitecity").val() =="Seattle"){
+
+            if(siteurl.indexOf("fresno") > -1)
+                window.location = seattle_url;
+        }
+        else{
+
+            if(siteurl.indexOf("fresno") <= -1)
+                window.location = fresno_url ;
+        }
+
+        var redirect_urls = get_fresno_seattle_urls();
+
+        console.log('redirect urls');
+        console.log(redirect_urls);
+
+    })
+
     /*   Functions to set and get cookies */
 
     function setCookie(cname,cvalue,exdays){
@@ -58,8 +78,53 @@ jQuery(document).ready(function($) {
 
     }
 
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+    }
 
-   checkCookie() ;  //check and set minyawns_visitor_city cookie
+    var citychk = getURLParameter('citychk');
+    var newUrlCity = getURLParameter('city');
+
+      if(  (typeof variable_here === 'null') || (parseInt(citychk) !=0) ) {
+        checkCookie() ;  //check and set minyawns_visitor_city cookie
+     }else{
+
+          expiry_days =  365  ; //set to 1 years
+
+          setCookie("minyawns_visitor_city",newUrlCity,expiry_days);
+      }
+
+
+
+    function get_fresno_seattle_urls(){
+
+        var site_protocol = window.location.protocol;
+        var site_host =  window.location.host;
+        var site_pathname = window.location.pathname;
+
+        if(site_host.indexOf("fresno") > -1){
+            var fresno_host =  site_host;
+            var seattle_host = site_host.replace("fresno.", "");
+
+        }
+
+        else if(site_host.indexOf("fresno") <= -1){
+            if(site_host.indexOf("www") <= -1){
+                var fresno_host = "fresno."+site_host;
+                var seattle_host = site_host;
+            }
+            else{
+                var fresno_host = site_host.replace("www.", "www.fresno.");
+                var seattle_host = site_host ;
+            }
+        }
+        var site_url = new Array();
+
+        site_url['seattle_url'] = site_protocol+"//"+seattle_host+site_pathname;
+        site_url['fresno_url'] = site_protocol+"//"+fresno_host+site_pathname;
+
+        return site_url;
+    }
 
 
     function redirect_visitor_based_on_city_select(city,modal_loaded){

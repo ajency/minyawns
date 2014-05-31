@@ -15,7 +15,61 @@ var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>"
 	}
 }
 		
-?>	
+?>
+
+
+<?php
+
+$protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https')=== FALSE ? 'http' : 'https';
+$host     = $_SERVER['HTTP_HOST'];
+
+$plain_host = str_replace('fresno.','',$host);
+if(strpos($plain_host,'fresno.')!==false){
+   $fresno_host = $plain_host;
+   $seattle_host = str_replace("fresno.","",$plain_host);
+}
+else {
+
+   if(strpos($plain_host,'www.')!==false){
+       $seattle_host = $plain_host ;
+       $plain_host = str_replace("www.","",$plain_host);
+       $fresno_host = "www.fresno.".$plain_host ;
+
+
+   }
+   else{
+       $seattle_host = $plain_host ;
+       $fresno_host = "fresno.".$plain_host ;
+   }
+
+}
+
+$script   = $_SERVER['SCRIPT_NAME'];
+$params   = $_SERVER['QUERY_STRING'];
+
+/* echo "<br/>protocol : ". $protocol;
+echo "<br/>host : ". $host;
+echo "<br/>script : ". $script;
+echo "<br/>params : ". $params;*/
+
+echo "<br/>params : ". $params."++";
+/*$seattle_url =   $protocol . '://' . $seattle_host . $script . '?' . ($params==""?"citychk=0&city=seattle":"&citychk=0&city=seattle");
+
+$fresno_url =   $protocol . '://' . $fresno_host . $script . '?' . ($params==""?"citychk=0&city=fresno":"&citychk=0&city=fresno");
+*/
+
+$seattle_url =   $protocol . '://' . $seattle_host . $script . '?' . 'citychk=0&city=seattle';
+
+$fresno_url =   $protocol . '://' . $fresno_host . $script . '?' . 'citychk=0&city=fresno';
+
+
+
+/*  echo " <br/><br/> Seattle url : ".$seattle_url;
+echo " <br/><br/> fresno url : ".$fresno_url;*/
+echo "var fresno_url = '".$fresno_url."' ;  \n";
+echo "var seattle_url = '".$seattle_url."' ; \n";
+
+?>
 </script>
 <?php if(is_page('home')){ ?>
 <script type="text/javascript">
@@ -41,7 +95,8 @@ jQuery(document).ready(function($) {
 <?php } ?>
 <footer>
 <span class="footer-top"></span>
-<?php /*<div class="text-center chs-city">City :<a href="#"> Seattle</a>&nbsp; &nbsp;<a href="#">  Fresno</a></div>*/ ?>
+
+<div class="text-center chs-city">City :<a href="<?php echo $seattle_url; ?>"> Seattle</a>&nbsp; &nbsp;<a href="<?php echo $fresno_url; ?>">  Fresno</a></div>
 	<ul class="footer_menu">
 		<li><a href="<?php echo site_url(); ?>/about/">About</a></li>
 		<li><a href="<?php echo site_url(); ?>/terms-of-service/">Terms</a></li>
