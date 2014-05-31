@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
     var citychk = getURLParameter('citychk');
     var newUrlCity = getURLParameter('city');
 
-      if(  (typeof variable_here === 'null') || (parseInt(citychk) !=0) ) {
+      if(  (typeof citychk === 'null') ||  (typeof newUrlCity === 'null')|| (parseInt(citychk) !=0) || (newUrlCity=="") ) {
         checkCookie() ;  //check and set minyawns_visitor_city cookie
      }else{
 
