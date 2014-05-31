@@ -52,7 +52,7 @@ echo "<br/>host : ". $host;
 echo "<br/>script : ". $script;
 echo "<br/>params : ". $params;*/
 
-echo "<br/>params : ". $params."++";
+//echo "<br/>params : ". $params."++";
 /*$seattle_url =   $protocol . '://' . $seattle_host . $script . '?' . ($params==""?"citychk=0&city=seattle":"&citychk=0&city=seattle");
 
 $fresno_url =   $protocol . '://' . $fresno_host . $script . '?' . ($params==""?"citychk=0&city=fresno":"&citychk=0&city=fresno");
