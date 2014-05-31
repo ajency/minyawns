@@ -46,7 +46,7 @@ require 'templates/_jobs.php';
 
                         $(".load_ajax_profile_comments").hide();
                         $("#example_right").popover({placement: 'left', trigger: 'click', content: html}).popover('show');
-                        ;
+
 
 
                     }

@@ -59,8 +59,8 @@ jQuery(document).ready(function($) {
     }
 
 
-   /*checkCookie() ;  //check and set minyawns_visitor_city cookie
-    */
+   checkCookie() ;  //check and set minyawns_visitor_city cookie
+
 
     function redirect_visitor_based_on_city_select(city,modal_loaded){
 
