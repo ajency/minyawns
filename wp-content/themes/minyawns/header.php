@@ -294,8 +294,8 @@
 			<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt=""  class="minions-logo"/> 
 			</a>
 			&nbsp;<b style="color:#fff;">Follow us</b>&nbsp;&nbsp;<a href="https://www.facebook.com/minyawn" target="_blank"> <img src="<?php echo get_template_directory_uri(); ?>/images/social-fb.png" alt="" /></a>  &nbsp;<a href="https://twitter.com/Minyawns"  target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/images/social-twitter.png" alt="" /> </a>
-<?php /*	commented on 2june2014		<!-- city -name-->
-	   &nbsp;<b class="text-primary">City :&nbsp;<?php /*<a data-toggle="modal" data-target="#chossecity"  class="showcity">* / ?>
+<!-- city -name-->
+	   &nbsp;<b class="text-primary">City :&nbsp;<?php /*<a data-toggle="modal" data-target="#chossecity"  class="showcity">*/ ?>
                                 <?php $admin_city =  get_option('minyawn_city'); ?>
 
                                 <select name="lst_sitecity" id="lst_sitecity" >
@@ -303,8 +303,8 @@
                                     <option value="Fresno" <?php if($admin_city == "Fresno") echo " selected "; ?> >Fresno</option>
                                 </select>
 
-                                <?php /*</a>* / ?></b>
-			<!-- city -name--> */ ?>
+                                <?php /*</a>*/ ?></b>
+			<!-- city -name--> 
 			<div class="main-menu">
 			<ul class="inline">
 					<li><b>Browse:</b></li>
