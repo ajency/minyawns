@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
     var citychk = getURLParameter('citychk');
     var newUrlCity = getURLParameter('city');
 
-
+/* commented popup 2june2014 
       if(  (citychk === null) ||  (newUrlCity === null) || (parseInt(citychk) !=0) || (newUrlCity==="") ) {
         checkCookie() ;  //check and set minyawns_visitor_city cookie
      }else{
@@ -95,7 +95,7 @@ jQuery(document).ready(function($) {
           setCookie("minyawns_visitor_city",newUrlCity,expiry_days);
       }
 
-
+*/
 
     function get_fresno_seattle_urls(){
 
