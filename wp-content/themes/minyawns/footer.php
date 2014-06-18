@@ -96,7 +96,7 @@ jQuery(document).ready(function($) {
 <footer>
 <span class="footer-top"></span>
 
-<div class="text-center chs-city">City :<a href="<?php echo $seattle_url; ?>"> Seattle</a>&nbsp; &nbsp;<a href="<?php echo $fresno_url; ?>">  Fresno</a></div> 
+<?php /*<div class="text-center chs-city">City :<a href="<?php echo $seattle_url; ?>"> Seattle</a>&nbsp; &nbsp;<a href="<?php echo $fresno_url; ?>">  Fresno</a></div>  */ ?>
 	<ul class="footer_menu">
 		<li><a href="<?php echo site_url(); ?>/about/">About</a></li>
 		<li><a href="<?php echo site_url(); ?>/terms-of-service/">Terms</a></li>
