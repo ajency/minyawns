@@ -79,7 +79,7 @@ if($pd_action=="ver")
 					</div>
 				</div>
 
-				"
+				";
 				
 				
 				$subject = "Your registration is approved on Minyawns";
