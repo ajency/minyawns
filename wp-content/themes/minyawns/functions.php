@@ -1955,7 +1955,9 @@ function my_login_logo() { ?>
 	}
         body.login div#login h1 a {
             background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
-            padding-bottom: 30px;
+            /* padding-bottom: 30px; */
+            background-size: 274px 63px;
+            width: 326px;
         }
 
 		body.login #nav a, body.login #backtoblog a  {
