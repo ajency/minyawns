@@ -1957,13 +1957,12 @@ function my_login_logo() { ?>
             background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
             padding-bottom: 30px;
         }
-		p{
-			text-align:center;
-		}
+
 		body.login #nav a, body.login #backtoblog a  {
 			color:#fff !important;
 			text-shadow:none;
 			font-size:15px;
+            text-align:center;
 		}
     </style>
 <?php }
