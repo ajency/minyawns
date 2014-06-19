@@ -1948,3 +1948,23 @@ function my_general_settings_fields_html(){
 
 }
 
+function my_login_logo() { ?>
+    <style type="text/css">
+	body{
+	 background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/what-we-can-do-bg.jpg) !important;
+	}
+        body.login div#login h1 a {
+            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
+            padding-bottom: 30px;
+        }
+		p{
+			text-align:center;
+		}
+		body.login #nav a, body.login #backtoblog a  {
+			color:#fff !important;
+			text-shadow:none;
+			font-size:15px;
+		}
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
