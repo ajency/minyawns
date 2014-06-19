@@ -672,7 +672,7 @@ $current_user_role =  trim($user_role);
 		<hr>
 		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
 		<br>
-		<a href="#mylogin" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
+		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="<?php echo site_url(); ?>/wp-login.php" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
 		<div class="clear"></div></div>
 			</div>
 		</div>

@@ -4,8 +4,10 @@
 
 
 jQuery("#signinlink").click(function() {
-    jQuery('#myModal').modal('hide')
+   /* commented on 19jun2014 jQuery('#myModal').modal('hide')
     jQuery('#mylogin').modal('show')
+    */
+    window.location = siteurl+"/wp-login.php";
 });
 
 jQuery(document).ready(function($) {
@@ -1332,8 +1334,10 @@ var image_name=$("#image_name").val();
 
     /*sign in here link*/
     jQuery("#lnk_signin").live("click", function() {
-        jQuery("#signup_popup_close").click();
+       /* commented on 19june2014 jQuery("#signup_popup_close").click();
         jQuery("#btn__login").click();
+        */
+        window.location = siteurl+"/wp-login.php";
     })
     jQuery(".login-signup").live("click", function() {
         $('#mylogin').modal('hide')

@@ -270,7 +270,8 @@ function popup_usersignup() {
               $response = array('success' => true,'user'=>$user_->user_login.$pd_pass );
               wp_send_json($response);
               $success = true; */
-            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.<a href='#mylogin'  class='signin-text' id='sign-in-link' data-dismiss='modal' aria-hidden='true'  data-toggle='modal'> Sign in here</a></div>";
+           // commented on 19june2014  $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.<a href='#mylogin'  class='signin-text' id='sign-in-link' data-dismiss='modal' aria-hidden='true'  data-toggle='modal'> Sign in here</a></div>";
+            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.<a href='".site_url()."/wp-login.php'  class='signin-text' id='sign-in-link' data-dismiss='modal' aria-hidden='true'  data-toggle='modal'> Sign in here</a></div>";
 
             $wpdb->update($wpdb->users, array('user_activation_key' => $user_activation_key), array('user_login' => $userdata_['user_email']));
             $wpdb->update($wpdb->users, array('user_status' => 0), array('user_login' => $userdata_['user_email']));
@@ -328,7 +329,7 @@ function minyawns_initial_checks() {
     minyawns_prevent_dashboard_access();
 }
 
-add_action('init', 'minyawns_initial_checks');
+//add_action('init', 'minyawns_initial_checks');
 
 //add_action('init', 'user_incomplete_profile_reminder');
 //add_action('init', 'users_notactivated_reminder');

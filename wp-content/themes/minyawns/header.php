@@ -142,7 +142,7 @@
 						
 						</li>
 					<li>
-						<a href="#mylogin" data-toggle="modal" ><i class="icon-unlock-alt"></i> Login</a>
+						<a <?php /*  commented on 19june2014  href="#mylogin" */ ?> <?php if(is_page('fb-connect-test')){ ?>  href="#mylogin"   <?php } else { ?>  href="<?php echo site_url()?>/wp-login.php"  <?php } ?> data-toggle="modal" ><i class="icon-unlock-alt"></i> Login</a>
 						
 						</li>
 	<li>
@@ -271,7 +271,7 @@
 								<a  href="#myModal" data-toggle="modal" id="link_employerregister" onclick="return true"><i class="icon-signin"></i> Signup as a Business </a> 
 							</div>
 								<div class="data-link">
-								<a href="#mylogin" data-toggle="modal" id="btn__login"><i class="icon-unlock-alt"></i> Login </a>
+								<a <?php /*  commented on 19june2014 href="#mylogin" */ ?> <?php if(is_page('fb-connect-test')){ ?>  href="#mylogin"   <?php } else { ?>  href="<?php echo site_url()?>/wp-login.php"  <?php } ?>  data-toggle="modal" id="btn__login"><i class="icon-unlock-alt"></i> Login </a>
 							</div>
 								<div class="data-link">
 								<a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a>

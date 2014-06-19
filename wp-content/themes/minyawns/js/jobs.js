@@ -925,8 +925,8 @@ function job_collapse_b(model) {
 
             } else
             {
-                job_button = job_button = "<a id='btn__login_pop' data-toggle='modal' class='st-green-link' href='#mylogin'><i class='icon-location-arrow'></i>Sign In to apply</a>";
-
+                /* commented on 19june2014  job_button = job_button = "<a id='btn__login_pop' data-toggle='modal' class='st-green-link' href='#mylogin'><i class='icon-location-arrow'></i>Sign In to apply</a>"; */
+                job_button = job_button = "<a id='btn__login_pop' data-toggle='modal' class='st-green-link' href='"+siteurl+"/wp-login.php'><i class='icon-location-arrow'></i>Sign In to apply</a>";
             }
 
             break;
