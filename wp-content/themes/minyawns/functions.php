@@ -277,7 +277,9 @@ function popup_usersignup() {
             $wpdb->update($wpdb->users, array('user_status' => 0), array('user_login' => $userdata_['user_email']));
 
 
-            $subject = "You have successfully registered on Minyawns";
+            send_register_welcome_email($userdata_);
+
+          /*  $subject = "You have successfully registered on Minyawns";
             
             add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
             $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
@@ -292,7 +294,7 @@ function popup_usersignup() {
             	wp_mail($userdata_['user_email'], $subject, $message, $headers);
             	
             }
-            
+           */
              
             
             //To verify your account visit the following address";
@@ -385,6 +387,46 @@ function fbautoconnect_insert_user($user_data, $fbuser) {
 
     }
 }
+
+/** function to send welcome mail on user sign up
+ * @param $data
+ */
+function send_register_welcome_email($data){
+
+    $email = $data['user_email'];
+    $role = $data['role'];
+
+
+    $subject = "You have successfully registered on Minyawns";
+
+    add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+    $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+
+    if ($role == "employer"){
+        $message = "Hi, <br/><br/>You have successfully registered on <a href='" . site_url() . "' >Minyawns</a>.<br/><br/>";
+        wp_mail($email, $subject, email_header() . $message . email_signature(), $headers);
+
+    }
+    else {
+        $message = "<img src='".site_url()."/wp-content/themes/minyawns/images/first_minyawn_job.jpg' />";
+        wp_mail($email, $subject, $message, $headers);
+
+    }
+
+
+}
+
+
+//Function to send welcome mail on registering user using wp-fb-autoconnect plugin
+function sendfb_user_register_mail($arg){
+
+    send_register_welcome_email($arg);
+    wp_new_user_notification($arg['WP_ID'], $arg['user_pass']);
+
+    return ;
+
+}
+add_action('wpfb_inserted_user', 'sendfb_user_register_mail',2,1);
 
 
 /*
@@ -2017,3 +2059,11 @@ add_filter('option_users_can_register', function($value) {
 
     return $value;
 });
+
+/*
+function hide_login_nav(){
+    ?><style>#nav,#backtoblog{display:none}</style><?php
+}
+add_action( 'login_head', 'hide_login_nav' );
+
+*/
