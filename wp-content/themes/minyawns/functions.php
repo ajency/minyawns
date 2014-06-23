@@ -365,12 +365,24 @@ add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user', 11, 2);
 function fbautoconnect_insert_user($user_data, $fbuser) {
     global $_POST, $_REQUEST, $redirectTo;
     //echo "<script>    returnToPreviousPage(); alert('test" . $_POST['fb_chk_usersigninform'] . "'); </script>";
-    if ($_POST['fb_chk_usersigninform'] == "loginfrm") {
+
+    if(!isset($_REQUEST['fb_chk_usersigninform'])) {
+
+        if(!isset($_POST['usr_role'])){
+            wp_redirect(wp_login_url() . "/?action=invalid_login");
+        }
+        else{
+            $user_data['role'] = $_POST['usr_role'];
+            return($user_data);
+        }
+
+
+    }
+    else if ($_POST['fb_chk_usersigninform'] == "loginfrm") {
         //echo "<script> jQuery('#btn__login').click(); ";
-        wp_redirect(site_url() . "/?action=invalid_login");
-    } else {
-        $user_data['role'] = $_POST['usr_role'];
-        return($user_data);
+        //wp_redirect(site_url() . "/?action=invalid_login");
+        wp_redirect(wp_login_url() . "/?action=invalid_login");
+
     }
 }
 
