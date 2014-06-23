@@ -1981,3 +1981,39 @@ function my_login_logo() { ?>
     </style>
 <?php }
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
+
+
+
+function my_login_logo_url() {
+    return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+
+    $blog_title = get_bloginfo('name');
+    return $blog_title;
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+
+function remove_lostpassword_text ( $text ) {
+    if ($text == 'Lost your password?'){$text = '';}
+    return $text;
+}
+add_filter( 'gettext', 'remove_lostpassword_text' );
+
+
+/**
+ * remove the register link from the wp-login.php script
+ */
+add_filter('option_users_can_register', function($value) {
+    $script = basename(parse_url($_SERVER['SCRIPT_NAME'], PHP_URL_PATH));
+
+    if ($script == 'wp-login.php') {
+        $value = false;
+    }
+
+    return $value;
+});
