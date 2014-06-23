@@ -420,7 +420,11 @@ function send_register_welcome_email($data){
 //Function to send welcome mail on registering user using wp-fb-autoconnect plugin
 function sendfb_user_register_mail($arg){
 
+    global $wpdb;
+
     send_register_welcome_email($arg['WP_UserData']);
+
+
     wp_new_user_notification($arg['WP_ID'], $arg['WP_UserData']['user_pass']);
 
     return ;
