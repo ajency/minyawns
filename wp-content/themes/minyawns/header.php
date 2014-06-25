@@ -415,14 +415,14 @@
 
 										<?php
 
-										if(is_page('fb-connect-test')){
+										//if(is_page('fb-connect-test')){
 											jfb_output_facebook_btn();
 											jfb_output_facebook_init();
 											jfb_output_facebook_callback();
-										}
+										/*}
 										else{
 											echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
-										}
+										}*/
 										?>
 									</div>
 							
@@ -534,12 +534,12 @@
 				<p class="align-center">Get using Minions, faster !</p>
 				<br><br><br>
 				<?php
-				if(is_page('fb-connect-test')){
+				//if(is_page('fb-connect-test')){
 				   jfb_output_facebook_btn();
-				}
+				/*}
 				else{
 					echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
-				}
+				}*/
 				?>
 				<br><br>
 				<p class="align-center"><span id="div_alreadyregister">Already registered at Minyawns?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
