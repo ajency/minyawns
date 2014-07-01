@@ -2099,19 +2099,21 @@ var image_name=$("#image_name").val();
 
 
     $('.well-done,.terrible').live('click', function(evt) {
-
+//alert('.well-done,.terrible')
 
         if (evt.target.id === 'vote-up' + $(this).attr('user_id')) {
             $("#vote-up" + $(this).attr('user_id')).css("opacity", "1");
             $("#vote-down" + $(this).attr('user_id')).css("opacity", "0.4");
-            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+           // $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("action", $(evt.target).attr('action'));
             $("#review" + $(this).attr('user_id')).attr("vote", "1");
             //$("#review-text" + $(this).attr('user_id')).removeClass();
             // $("#review-text" + $(this).attr('user_id')).addClass("welldone-textarea");
         } else {
             $("#vote-down" + $(this).attr('user_id')).css("opacity", "1");
             $("#vote-up" + $(this).attr('user_id')).css("opacity", "0.4");
-            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            //$("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("action", $(evt.target).attr('action'));
             $("#review" + $(this).attr('user_id')).attr("vote", "-1");
             // $("#review-text" + $(this).attr('user_id')).removeClass();
             // $("#review-text" + $(this).attr('user_id')).addClass("terrible-textarea");
@@ -2136,6 +2138,9 @@ var image_name=$("#image_name").val();
 
     $(".rate-button").live('click', function() {
 
+
+      //  alert('rate button')
+
         var action = $(".rate-button").attr("action");
 
 //
@@ -2153,7 +2158,6 @@ var image_name=$("#image_name").val();
 
 
 
-
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
                 {
                     rating: _rating,
@@ -2168,7 +2172,9 @@ var image_name=$("#image_name").val();
         function(response) {
 
             $(".rating").find('a').prop('disabled', false);
-            if (response.action === "vote-up"+ _user_id) {
+           // if (response.action === "vote-up"+ _user_id) {
+            if (response.action === "vote-up") {
+
                 $("#thumbs_up_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
@@ -2181,7 +2187,8 @@ var image_name=$("#image_name").val();
                 $("#"+ _user_id).append("<div class='up-btn review_popover'><div class='comment-box'> <i class='icon-thumbs-up weldone'></i>"+_desc+"<div></div>");
             
             }
-            if (response.action === "vote-down"+ _user_id) {
+            //if (response.action === "vote-down"+ _user_id) {
+            if (response.action === "vote-down") {
 
                 $("#thumbs_down_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;

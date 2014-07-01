@@ -824,7 +824,7 @@ function profile_review(model) {
 
 function job_collapse_b(model) {
 
-	
+
     var job_time = '';
 
     var job_button = '';
