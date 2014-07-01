@@ -2155,9 +2155,8 @@ var image_name=$("#image_name").val();
         var _action = $(this).attr('action');
         var _emp_id = $(this).attr('emp_id');
         var _desc = $("#review-text" + _user_id).val();
-
-
-
+       // $('#thumbnail-22').find('.rating').find("#thumbs_up_22").contents(':not(".icon-thumbs-up")').remove()
+ 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
                 {
                     rating: _rating,
@@ -2173,6 +2172,20 @@ var image_name=$("#image_name").val();
 
             $(".rating").find('a').prop('disabled', false);
            // if (response.action === "vote-up"+ _user_id) {
+
+
+
+            $('#thumbnail-'+response.user_id).find('.rating').find("#thumbs_up_"+response.user_id).find('.thumbs_up_counts').html(response.rating);
+
+            $('#thumbnail-'+response.user_id).find('.rating').find("#thumbs_down_"+response.user_id).find('.thumbs_down_counts').html(response.rating_negative);
+
+            //$('.item').contents(':not(img)').remove();
+         //     $('#thumbnail-'+response.user_id).find('.rating').find("#thumbs_up_"+response.user_id).contents(':not(".icon-thumbs-up")').remove();
+            /*  $('#thumbnail-22').find('.rating').find("#thumbs_up_22").contents().filter(function(){
+             return (this.nodeType == 3);
+             }).remove();
+             */
+
             if (response.action === "vote-up") {
 
                 $("#thumbs_up_" + _user_id).contents().filter(function() {

@@ -635,7 +635,7 @@ $app->map('/user-vote', function() use ($app) {
 
 
 
-            echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'user_id' => $_POST['user_id'], 'review' => $_POST['review']));
+            echo json_encode(array('action' => $_POST['action'], 'rating' => $like_count, 'rating_negative'=>$user_dislike,  'user_id' => $_POST['user_id'], 'review' => $_POST['review']));
         })->via('GET', 'POST', 'PUT', 'DELETE');;
 
 $app->get('/jobminions/', function() use ($app) {

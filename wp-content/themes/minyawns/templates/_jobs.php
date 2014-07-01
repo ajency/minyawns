@@ -436,9 +436,9 @@ $current_user_role =  trim($user_role);
     <div id="a" class="m1">
     <div class="caption" >
     <% if(result.is_invited == 4){%>
-     <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div> 
+     <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
      <%}%>
-         
+
     <div class="minyawns-img">
     <% if(result.is_hired === true){%>
     <div class="minaywns-sel">
@@ -451,7 +451,7 @@ $current_user_role =  trim($user_role);
     <% if(result.is_verified === 'Y'){%>
     <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
     <div class="verfied-txt">Verified Minion</div>
-    <% } %> 
+    <% } %>
     <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
     <div class="collage"> <%= result.college%> </div>
     <div class="collage"> <%= result.major%> </div>
@@ -464,10 +464,10 @@ $current_user_role =  trim($user_role);
 
     <div class="rating">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
-    <i class="icon-thumbs-up" ></i> <%= result.rating_positive %>
+    <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
     </a>
     <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
-    <i class="icon-thumbs-down" "></i> <%= result.rating_negative %>
+    <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
     </a>
     </div>
 
@@ -485,10 +485,10 @@ $current_user_role =  trim($user_role);
     </div>
     <div class="rating">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
-    <i class="icon-thumbs-up" ></i> <%= result.rating_positive %>
+    <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
     </a>
     <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
-    <i class="icon-thumbs-down" "></i> <%= result.rating_negative %>
+    <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
     </a>
     </div>
     <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
@@ -514,7 +514,7 @@ $current_user_role =  trim($user_role);
     </div>
 
 
-    
+
     <div class="tags">
     Tags:<br>
     <%
@@ -535,7 +535,7 @@ $current_user_role =  trim($user_role);
 
     <%= ratings_button %>
     <%  if(result.comment !== 0){ %>   <div  class="comment-box"> <i class="icon-thumbs-up weldone"></i><%= result.comment %></div><% } %>
-    
+
     </div>-->
     <div class="dwn-btn review_popover">
 
