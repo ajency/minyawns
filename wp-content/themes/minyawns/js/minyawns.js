@@ -87,7 +87,7 @@ jQuery(document).ready(function($) {
     var citychk = getURLParameter('citychk');
     var newUrlCity = getURLParameter('city');
 
- /* minyawns city selection pop up
+ /* minyawns city selection pop up*/
       if(  (citychk === null) ||  (newUrlCity === null) || (parseInt(citychk) !=0) || (newUrlCity==="") ) {
         checkCookie() ;  //check and set minyawns_visitor_city cookie
      }else{
@@ -97,7 +97,9 @@ jQuery(document).ready(function($) {
           setCookie("minyawns_visitor_city",newUrlCity,expiry_days);
       }
 
- */
+
+
+
 
     function get_fresno_seattle_urls(){
 
@@ -2156,7 +2158,7 @@ var image_name=$("#image_name").val();
         var _emp_id = $(this).attr('emp_id');
         var _desc = $("#review-text" + _user_id).val();
        // $('#thumbnail-22').find('.rating').find("#thumbs_up_22").contents(':not(".icon-thumbs-up")').remove()
- 
+
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
                 {
                     rating: _rating,
