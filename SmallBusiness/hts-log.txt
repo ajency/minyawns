@@ -1,0 +1,15 @@
+HTTrack3.48-13+htsswf+htsjava launched on Tue, 17 Jun 2014 14:24:34 at http://try.minyawns.com/business +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://try.minyawns.com/business -O1 "C:\My Web Sites\SmallBusiness" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+14:26:34	Warning: 	Moved Permanently for try.minyawns.com/business/clkn/http/www.minyawns.com/
+14:26:34	Warning: 	File has moved from try.minyawns.com/business/clkn/http/www.minyawns.com/ to http://www.minyawns.com/
+14:26:34	Error: 	"Forbidden" (403) at link d9hhrg4mnvzow.cloudfront.net/images/icons/close.png (from d9hhrg4mnvzow.cloudfront.net/try.minyawns.com/business/page_defaults-4c9db0d0b46ddf4baece4f0b99da6dcd.css)
+14:26:34	Error: 	"Forbidden" (403) at link d9hhrg4mnvzow.cloudfront.net/images/transparent.gif (from d9hhrg4mnvzow.cloudfront.net/try.minyawns.com/business/page_defaults-4c9db0d0b46ddf4baece4f0b99da6dcd.css)
+
+HTTrack Website Copier/3.48-13 mirror complete in 2 minutes 1 seconds : 26 links scanned, 22 files written (3016230 bytes overall) [2978959 bytes received at 24619 bytes/sec], 72710 bytes transferred using HTTP compression in 3 files, ratio 31%, 2.4 requests per connection
+(2 errors, 2 warnings, 0 messages)

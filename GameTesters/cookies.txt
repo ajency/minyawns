@@ -1,0 +1,6 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+try.minyawns.com	TRUE	/game-testers/	FALSE	1999999999	ubpv	a%2Cba9a2226-c74c-11e3-b5a3-12314000b04c
+minyawns.com	TRUE	/	FALSE	1999999999	ubvt	173.166.227.861403122162572807
+try.minyawns.com	TRUE	/	FALSE	1999999999	ubvs	173.166.227.861403122162572807
+
