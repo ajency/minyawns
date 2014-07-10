@@ -168,8 +168,9 @@ wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.str
             
             $current_post_id = get_the_ID();
             $post_data = get_post($current_post_id);
+            $payment_type = (get_option('payment_type')==''?'braintree':get_option('payment_type')) ;
            
-    		if($post_data->post_type=='job'){
+    		if( ($post_data->post_type=='job') && ($payment_type=="braintree") ) {
                 
     			wp_enqueue_script('braintree', get_template_directory_uri() . '/braintree_lib/braintree.js', array('jquery'), null);
            }
@@ -2000,6 +2001,31 @@ function my_general_settings_fields_html(){
     echo '<select id="minyawn_city" name="minyawn_city">
                 <option value="Seattle"'.($value==="Seattle"?" selected ": " " ).'>Seattle</option>
                 <option value="Fresno" '.($value==="Fresno"?" selected ": " " ).' >Fresno</option>
+          </select>';
+
+
+
+}
+
+
+
+
+
+function my_general_settings_register_payment_fields(){
+    register_setting('general', 'payment_type', 'esc_attr');
+    add_settings_field('payment_type', '<label for="payment_type">'.__('Payment Type' , 'payment_type' ).'</label>' , 'my_general_payment_settings_fields_html', 'general');
+}
+add_filter('admin_init', 'my_general_settings_register_payment_fields');
+
+function my_general_payment_settings_fields_html(){
+    $value = get_option( 'payment_type', '' );
+    //echo '<input type="text" id="minyawn_city" name="minyawn_city" value="' . $value . '" />';
+
+
+
+    echo '<select id="payment_type" name="payment_type">
+                <option value="braintree"'.($value==="braintree"?" selected ": " " ).'>Braintree</option>
+                <option value="paypal" '.($value==="paypal"?" selected ": " " ).' >Paypal</option>
           </select>';
 
 

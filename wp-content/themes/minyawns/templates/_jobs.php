@@ -77,8 +77,23 @@
 <?php
 $salt_job = wp_generate_password(20);
 $key_job = sha1($salt . uniqid(time(), true));
+
+$payment_type = (get_option('payment_type')==''?'braintree':get_option('payment_type')) ;
+
+
+
+if($payment_type=='braintree'){
+    $form_submit_page = 'payments';
+    $payment_button = '<a href="#paymentform"  data-toggle="modal"><input type="image"  width="160" height="40"  src="'.site_url().'/wp-content/themes/minyawns/images/pay-btn.png" value="Pay with PayPal" class="center-image"/></a>';
+
+}
+else {
+    $form_submit_page = 'paypal-payments';
+    $payment_button = '<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/>';
+}
+
 ?>
-   <form class="paypal" action="<?php echo site_url() . '/payments/'; ?>" method="post" id="paypal_form" target="_blank">
+   <form class="paypal" action="<?php echo site_url() . '/'.$form_submit_page.'/'; ?>" method="post" id="paypal_form" target="_blank">
     <input type="hidden" name="cmd" value="_xclick">
                 <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
                 <input type="hidden" name="lc" value="UK" />
@@ -100,7 +115,8 @@ $key_job = sha1($salt . uniqid(time(), true));
  
 
 
-
+<?php if($payment_type=="braintree") {
+ ?>
 <div   id="paymentform" class="modal signup  hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo site_url();?>/wp-content/themes/minyawns/images/delete.png"></button>
@@ -175,7 +191,9 @@ $current_user_role =  trim($user_role);
   </div>
   
 </div>
-
+<?php
+}
+?>
 
 
 
@@ -219,7 +237,7 @@ $current_user_role =  trim($user_role);
 							<span>Please Note</span>
 							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
 <br> Any credit or debit card will do!</div>
-                        <span id="paypal_pay" style="display:none"><a href="#paymentform"  data-toggle="modal"><input type="image"  width="160" height="40"  src="<?php echo site_url()."/wp-content/themes/minyawns/images/pay-btn.png"; ?>" value="Pay with PayPal" class="center-image"/></a></span>
+                        <span id="paypal_pay" style="display:none"><?php echo $payment_button; ?></span>
                      <span id="selection_message"></span>
                                     </div>
                             <%}%>
@@ -263,7 +281,7 @@ $current_user_role =  trim($user_role);
 							<span>Please Note</span>
 							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
 <br> Any credit or debit card will do!</div>
-                        <span id="paypal_pay" style="display:none"><a href="#paymentform"  data-toggle="modal"><input type="image" width="160" height="40" src="<?php echo site_url()."/wp-content/themes/minyawns/images/pay-btn.png"; ?>" value="Pay with PayPal" class="center-image"/></a></span>
+                        <span id="paypal_pay" style="display:none"><?php echo $payment_button; ?></span>
                      <span id="selection_message"></span>
                                     </div>
                             <%}%>
@@ -412,7 +430,7 @@ $current_user_role =  trim($user_role);
 							<span>Please Note</span>
 							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
  <br>Any credit or debit card will do!</div>
-    <span id="paypal_pay" style="display:none"> <a href="#paymentform"  data-toggle="modal">Pay Now3</a> <input type="image"  width="160" height="40"  src="<?php echo site_url()."/wp-content/themes/minyawns/images/pay-btn.png"; ?>" value="Pay with PayPal" class="center-image"/></span>
+    <span id="paypal_pay" style="display:none"> <?php echo $payment_button; ?></span>
     <span id="selection_message"></span>
     </div>
     <%}%>
