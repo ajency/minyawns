@@ -192,14 +192,14 @@ else
 					  	 
 					/*add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );*/
-					 
+
 					$receiver_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
 					
 					$receiver_message.="Hi,<br/><br/>
 							
-							Payment for '".$data['item_name']."' successfully transferred .
+							Payment for '".get_the_title($data['item_number'] )."' successfully transferred .
 							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
-							<br/><b>Job    			:</b> ".$data['item_name']."
+							<br/><b>Job    			:</b> ".get_the_title($data['item_number'] )."
 							<br/><b>Total Amount 			:</b> ".$data['total_amount']."
 					
 					<br/><b>selected Minyawns	:</b> ";
@@ -221,7 +221,7 @@ else
 						$wpdb->get_results("UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'");
 						update_post_meta($data['item_number'],'job_status','completed');
 						//send mail to hired minyawns						
-						$job_data = get_post($data['item_number']);						
+						$job_data = get_post($data['item_number']);
 						//$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
 						$minyawns_subject = "Minyawns - You have been hired! ";
                			$minyawns_message = "Hi,<br/><br/>

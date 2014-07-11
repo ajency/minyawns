@@ -1565,9 +1565,9 @@ $current_userdata = get_userdata($user_ID);
 					
 					$receiver_message.="Hi,<br/><br/>
 							
-							Payment for '".$data['item_name']."' successfully transferred .
+							Payment for '".get_the_title($data['item_number'] )."' successfully transferred .
 							<br/><b>Transaction ID  :</b> ".$data['txn_id']."
-							<br/><b>Job    			:</b> ".$data['item_name']."
+							<br/><b>Job    			:</b> ".get_the_title($data['item_number'] )."
 							<br/><b>Total Amount 			:</b> ".$data['amount']."
 					
 					<br/><b>selected Minyawns	:</b> ";
