@@ -40,7 +40,7 @@
 		 <div class="row-fluid">
 				<div class="span12">
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
-					<div class="banner-desc">Reliable help on your short term project by local college students</div>
+					<div class="banner-desc">1-day assistants for your 1-day tasks</div>
 					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Get Your Minyawn</a>
 				</div>
 			
