@@ -1971,7 +1971,7 @@ body .jobs_table .data-title .profile-job {
 }
 .bg-overflow {
   height: 100%;
-  background: url(../../../uploads/site_images/banner2.jpg);
+  background: url(../images/banner2.jpg);
   background-size: cover;
 }
 #innermainimage {
@@ -3393,7 +3393,7 @@ body .jobs_table .data-title .profile-job {
   }
   .bg-overflow {
     height: 100%;
-    background: url(../../../uploads/site_images/banner2.jpg) 0px 0px no-repeat;
+    background: url(../images/banner2.jpg) 0px 0px no-repeat;
     background-size: cover;
   }
   #innermainimage {
