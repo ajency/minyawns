@@ -27,7 +27,7 @@
 
     $('#click').on('click', function(){
       
-        $('#powtoon-frame1').attr('src', 'http://www.powtoon.com/embed/gdPRX5igKP7?autoplay=1');    
+        $('#powtoon-frame1').attr('src', '//www.youtube.com/embed/niu4tNbD6IY?autoplay=1');    
     });
 });
     </script>
