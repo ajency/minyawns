@@ -535,7 +535,7 @@
 				<br><br><br>
 				<?php
 				//if(is_page('fb-connect-test')){
-				   jfb_output_facebook_btn();
+				  //jfb_output_facebook_btn(); This is commented out on purpose - email Billy for details
 				/*}
 				else{
 					echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
