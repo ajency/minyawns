@@ -112,7 +112,7 @@ jQuery(document).ready(function($) {
 </b>
 
 	
-	<div class="site_link">All rights reserved 2013 @ Minyawns</div>
+	<div class="site_link">All rights reserved 2014 @ Minyawns</div>
 </footer>
 
 </body>
