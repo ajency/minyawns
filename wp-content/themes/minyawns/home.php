@@ -313,7 +313,7 @@
 
 <div class="customer">
    <div class="bg-title-gray">
-      <h3 class="heading-title">Meet the <span class="highlight">500 Minions</span>   </h3>
+      <h3 class="heading-title">Meet the <span class="highlight">500 Minyawns</span>   </h3>
       <p class="excerpt">The minions are thoroughly vetted University of Washington students.</p>
    </div>
 
