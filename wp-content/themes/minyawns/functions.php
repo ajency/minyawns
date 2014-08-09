@@ -1595,6 +1595,16 @@ $current_userdata = get_userdata($user_ID);
 						$minyawns_subject = "Minyawns - You have been hired! ";
                			$minyawns_message = "Hi,<br/><br/>
                 		Congratulations, You have been hired for the job '" . get_the_title($data['item_number'] ) . "'<br/><br/>
+                		Please take note of the following: <br/>
+                		1) Be on time to your job. You are getting paid to do your best work – you want to represent
+				yourself, the University of Washington, and Minyawns well! <br/>
+				2) If you are not contacted by the job poster, then they trust you to show up. Please show up 
+				regardless of the situation – you will be paid once the job is complete.<br/>
+				3) Wear appropriate attire to the event - whether it is formal, business-casual, or casual. <br/>
+				4) You will be paid within 24 hours of the job either through Venmo or PayPal. Please specify which
+				method of payment you would like by emailing support@minyawns.com. If we do not receive 
+				an email, we will send the money via PayPal by default. <br/><br/>
+				Best of luck & have fun! <br/>
                 		<h3>Job: " . get_the_title($data['item_number'] ) . "</h3>                
                 		<br/><b>Start date: </b>" . date('d M Y', get_post_meta($data['item_number'] , 'job_start_date', true)) . "
                 		<br/><b>Start Time: </b>" . date('g:i a', get_post_meta($data['item_number'] , 'job_start_time', true)) . "                		 
