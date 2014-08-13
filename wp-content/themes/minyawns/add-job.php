@@ -15,8 +15,8 @@ $segment=is_numeric($segments[$count-1]) ? $segments[$count-1] : "";
 
  
 $minyawn_job= New Minyawn_Job($segment);
-
-
+ 
+ 
 require 'templates/_jobs.php';
 
 $args = array(
@@ -79,7 +79,7 @@ $array=in_array($job_categories[0],$all_categories);
     jQuery(document).ready(function($) {
     
 $(".inline li").removeClass("selected");
- 
+ fetch_my_jobs(logged_in_user_id);
 //$("#add-job-form").find('input:text').val('');
 
 });
@@ -303,7 +303,20 @@ $(".inline li").removeClass("selected");
                             
                                 if (is_user_logged_in() && get_logged_in_role() === 'Employer') {
                                     ?>
-                            <div class="span8">                              
+                            <div class="span8"> 
+      <div class="alert alert-info job-sidebar previous-jobs previous-jobs-mobile">                          
+                                        <h5>
+                                            Job Templates
+                                            <span class="experts">Reuse your previous jobs</span>
+                                        </h5>
+                                        <hr>
+                                        <ul class="unstyled reuse-job">
+                                            
+                                            
+                                        </ul> 
+                                      
+
+                                    </div>							
                                     <div class="alert alert-success alert-box " id="job-success" style="display:none;">  <button data-dismiss="alert" class="close" type="button">×</button>You have successfully add a job.</div>
                                     <!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
                                     <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
@@ -388,7 +401,7 @@ $(".inline li").removeClass("selected");
                                             <label class="control-label" for="inputtask">Tags</label>
                                             <div class="controls tagsclass ">
                                                 <input  name="job_tags" id="job_tags" value="<?php echo $minyawn_job->get_job_tags(); ?>" placeholder="Tags here" class="tm-input tagsinput_jobs">
-                                                <span class="help-block">Eg: washing.</span>
+                                                <span class="help-block">Eg: Washing.</span>
                                             </div>
                                         </div>
                                         <div class="control-group small">
@@ -410,7 +423,7 @@ $(".inline li").removeClass("selected");
                                         <div class="control-group small">
                                             <label class="control-label" for="inputtask">Job Description</label>
                                             <div class="controls ">
-                                                <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder ="example I need my blue corvette cleaned I need someone who knows how to use the car buffer and has cleaned classic cars before" style="height:70px;"><?php  echo $minyawn_job->get_job_details();?></textarea>
+                                                <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" style="height:70px;"><?php  echo $minyawn_job->get_job_details();?></textarea>
                                                 <span class="help-block">Eg: I need my blue corvette cleaned. I need someone who knows how to use the car buffer and has cleaned classic cars before.</span>
                                             </div>
                                         </div>
@@ -469,7 +482,7 @@ $(".inline li").removeClass("selected");
 		<hr>
 		Sorry, you aren\'t allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we\'ll get back to you as soon as possible. 
 		<br>
-		<a href="#mylogin" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
+		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="<?php echo site_url()?>/wp-login.php"   data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
 		<div class="clear"></div></div>
 			</div>
 		</div>
