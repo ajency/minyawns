@@ -6,8 +6,8 @@
     */
    get_header(); 
    
-   
    ?>
+
 <script type="text/javascript">
     $(function(){
     $('#powtoon-frame').load(function(){
@@ -27,7 +27,7 @@
 
     $('#click').on('click', function(){
       
-        $('#powtoon-frame1').attr('src', '//www.youtube.com/embed/niu4tNbD6IY?autoplay=1');    
+        $('#powtoon-frame1').attr('src', 'http://www.powtoon.com/embed/gdPRX5igKP7?autoplay=1');    
     });
 });
     </script>
@@ -40,7 +40,7 @@
 		 <div class="row-fluid">
 				<div class="span12">
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
-					<div class="banner-desc">Reliable help on your short term project</div>
+					<div class="banner-desc">1-day assistants for your 1-day tasks</div>
 					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Get Your Minyawn</a>
 				</div>
 			
@@ -69,17 +69,18 @@
    <div class="container steps-3">
       <div class="row-fluid">
          <div class="span4">
-            <img src="<?php echo get_template_directory_uri() ?>/images/responsivescreen.jpg"/>
+		 	 <div class="step1-1"></div>
+            
             <h4><span class="badge badge2">1</span> Post gigs</h4>
             <p>Describe what you need to get done, when you want help, and how much you are willing to pay.</p>
          </div>
          <div class="span4">
-            <img src="<?php echo get_template_directory_uri() ?>/images/magnefine-glass.jpg"/>
-            <h4> <span class="badge badge2">2</span> Pick your minion</h4>
+           <div class="step2-2"></div>
+            <h4> <span class="badge badge2">2</span> Pick your minyawm</h4>
             <p>We're talking about professional, reliable, competent, clean and sociable young college students looking for work.</p>
          </div>
          <div class="span4">
-            <img src="<?php echo get_template_directory_uri() ?>/images/reachout.jpg"/>
+               <div class="step3-3"></div>
             <h4> <span class="badge badge2">3</span> Get work done</h4>
             <p>Get productive and end your to-do list, 100% satisfaction guaranteed.</p>
          </div>
@@ -105,11 +106,37 @@
    </div>
    
 </div>
+
+<div class="customers">
+    <div>
+      <h3 class="heading-title"> Here's our customers</h3>
+      <p class="excerpt">Simply and effectively bridging the gap between businesses and minyawns.</p>
+   </div>
+ <div class="slider1">
+      <div class="slide cus_1"></div>
+    <div class="slide cus_2"></div>
+    <div class="slide cus_3"></div>
+    <div class="slide cus_4"></div>
+    <div class="slide cus_5"></div>
+    <div class="slide cus_6"></div>
+    <div class="slide cus_7"></div>
+    <div class="slide cus_8"></div>
+    <div class="slide cus_9"></div>
+    <div class="slide cus_10"></div>
+    <div class="slide cus_11"></div>
+    <div class="slide cus_12"></div>
+    <div class="slide cus_13"></div>
+    <div class="slide cus_14"></div>
+    <div class="slide cus_15"></div>
+   
+   </div><br><br>
+</div>
+
 <div class="what-we-can-do">
      <div id="down"></div>
    <div class="">
       <h3 class="heading-title">What can we do?</h3>
-      <p class="excerpt">The minions have superpowers, find out what they are.</p>
+      <p class="excerpt">The minyawns have superpowers, find out what they are.</p>
    </div>
  
    <div class="container">
@@ -120,6 +147,7 @@
 				<div class="span12">
 					<ul class="unstyled minyawn-category">
 						<li>
+						<div class="list-data">
 							<div class="icon-data"><i class="icon-briefcase"></i> <span>Office Work</span>
 							</div>	
 							<div class="data-info">
@@ -132,9 +160,11 @@
 							
 							</div>
 							<div class="clear"></div>
+							</div>
 						</li>
 						<li>
-							<div class="icon-data"><i class="icon-wrench"></i><span>	LABOUR</span></div>	
+						<div class="list-data">
+							<div class="icon-data"><i class="icon-wrench"></i><span>	LABOR</span></div>	
 							<div class="data-info">
 								
 							Moving<br>
@@ -143,9 +173,10 @@
 							extra hand
 							
 							</div>
-							<div class="clear"></div>
+							<div class="clear"></div></div>
 						</li>
 						<li>
+						<div class="list-data">
 							<div class="icon-data"><i class="icon-group"></i><span>MARKETING	</span></div>	
 							<div class="data-info">
 							AD FLYER HANDOUT<br>
@@ -154,9 +185,10 @@
 							TWITTER MARKETING
 							
 							</div>
-							<div class="clear"></div>
+							<div class="clear"></div></div>
 						</li>
 						<li>
+						<div class="list-data">
 							<div class="icon-data"><i class="icon-flag-checkered"></i> <span>Event	</span></div>	
 							<div class="data-info">
 								
@@ -168,7 +200,7 @@
 
 							
 							</div>
-							<div class="clear"></div>
+							<div class="clear"></div></div>
 						</li>
 					</ul>
 				
@@ -195,7 +227,7 @@
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider2.png" data-interval="500" data-slide-to="1" />
                      <div class="carousel-caption">
                         <h4>Make you feel in charge!</h4>
-                        <p>Our Minions are equipped with the valuable skills from top universities. Its like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
+                        <p>Our Minions are equipped with the valuable skills from top universities. It's like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
                      </div>
                   </div>
                   <div class="item">
@@ -211,7 +243,7 @@
 		<div class="span4">
 			<div class="back-satisfication">
 				<div class="text">
-					We are so sure that Minyawns We will be the best decision you have ever made. If you are not satisfied for any 
+					We are so sure that Minyawns will be the best decision you have ever made. If you are not satisfied for any 
 					reason <img src="<?php echo get_template_directory_uri() ?>/images/satisfication.png" align="right"/>at all we will fully refund every cent you spent, 
 					no questions asked.<br><br>
 					<h4>Sign up and we'll demolish your to-do list today.</h4>
@@ -224,11 +256,11 @@
 
  
 </div>
-<div id="down-green"></div><br>
+<div id="down-green"></div>
 <div class="features">
 <div class="">
             <h3 class="heading-title">Features</h3>
-            <p class="excerpt">Check out what you have access to once you sign up.</p>
+            <p class="excerpt">Check out what you have access to once you sign up. Access to hire local college students</p>
 			</div>
 			
    <div class="container">
@@ -237,18 +269,18 @@
 		 
             <ul class="nav nav-tabs" id="myTab">
                <li class="active"><a href="#home">Add a job</a></li>
-               <li><a href="#profile"> Select your minion</a></li>
+               <li><a href="#profile"> Select your minyawn</a></li>
                <li><a href="#messages"> Secure payment</a></li>
                <li><a href="#settings">Mobile compatible</a></li>
             </ul>
             <div class="tab-content">
                <div class="tab-pane active" id="home">
-                  <h3>Don't procrastinate, give those annoying tasks to the minion.</h3>
-                  <p class="excerpt">Its really simple</p>
+                  <h3>Don't procrastinate, give those annoying tasks to the minyawns.</h3>
+                  <p class="excerpt">It's really simple</p>
 				  <div class="tooltip-left">
 						<div class="data">
 						<h4>Your eye catching job title</h4>
-						Grab the attention of relevant minions with an awesome job title
+						Grab the attention of relevant minyawns with an awesome job title
 						</div>
 						<img src="<?php echo get_template_directory_uri() ?>/images/tooltip.png"/>
 					</div>
@@ -257,11 +289,11 @@
 					<img src="<?php echo get_template_directory_uri() ?>/images/tooltip-right.png"/>
 						<div class="data">
 						<h4>Pick 'em here</h4>
-						Select the minions you feel are most suitable for your job.
+						Select the minyawns you feel are most suitable for your job.
 						</div>
 						
 					</div>
-                  <img src="<?php echo get_template_directory_uri() ?>/images/laptop-screen.jpg" class="img-center"/>
+                  <img src="<?php echo get_template_directory_uri() ?>/images/laptop-screen_min.jpg" class="img-center"/>
                </div>
                <div class="tab-pane" id="profile"><br><br><br>
 				 <div class="row-fluid">
@@ -271,7 +303,7 @@
 						</div>
 						<div class="span4">
 						<br><br><br><br>
-						<h3 class="a-left">Hire minions with skills required for the job.</h3><br>
+						<h3 class="a-left">Hire minyawnss with skills required for the job.</h3><br>
 						<p align="left" style="font-size: 15px;">Get assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. </p>
 						</div>
 						<div class="span1">
@@ -314,7 +346,7 @@
 <div class="customer">
    <div class="bg-title-gray">
       <h3 class="heading-title">Meet the <span class="highlight">500 Minyawns</span>   </h3>
-      <p class="excerpt">The minions are thoroughly vetted University of Washington students.</p>
+      <p class="excerpt">The minyawns are thoroughly vetted University of Washington students.</p>
    </div>
 
  <div class="container">
@@ -326,7 +358,7 @@
                <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg" >
+                        <img alt="an example college student that can be hired" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg" >
                      </div>
                      <h4> Ketfa Inthathirath</h4>
                      <div class="collage">University of Washington</div>
@@ -347,7 +379,7 @@
                <div class="m2">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg">
+                        <img alt="another girl example college student that can be hired" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg">
                      </div>
                      <div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
@@ -383,7 +415,7 @@ Enviormental Engineering </div>
                <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg" >
+                        <img alt="male college student that can be hired profile" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg" >
                      </div>
                      <h4> Jonathan Hodge</h4>
                      <div class="collage"> University of Washington</div>
@@ -661,21 +693,7 @@ Enviormental Engineering </div>
   
   </div>
   <div id="down-green"></div>-->
-  <div class="">
-      <h3 class="heading-title"> Here's our customers</h3>
-      <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
-   </div>
- <div class="slider1">
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture1.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture2.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture3.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture4.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture5.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture6.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture7.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture8.png"></div>
-      <div class="slide"><img src="<?php echo get_template_directory_uri(); ?>/images/Picture9.png"></div>
-   </div><br><br>
+  
 </div>
   	<div id="video1" class="modal hide fade video-pop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
    		  <div class="modal-body">
@@ -811,10 +829,10 @@ Enviormental Engineering </div>
 <div id="getminion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h5 id="myModalLabel">Why do you need minions?</h5>
+    <h5 id="myModalLabel">Why do you need minyawns?</h5>
   </div>
   <div class="modal-body">
-    <p>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.
+    <p>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minyawn.
 </p>
   </div>
   <div class="modal-footer">
@@ -826,10 +844,10 @@ Enviormental Engineering </div>
 <div id="becomeminion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h5 id="myModalLabel">Perks of being a minion.</h5>
+    <h5 id="myModalLabel">Perks of being a minyawn.</h5>
   </div>
   <div class="modal-body">
-    <p>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
+    <p>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minyawn, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
 </p>
   </div>
   <div class="modal-footer">
