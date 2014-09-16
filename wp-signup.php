@@ -87,8 +87,8 @@ do_action( 'before_signup_form' );
  * @param string $blog_title The new site title
  * @param array $errors
  */
-function show_blog_form($blogname = '', $blog_title = '', $errors = '') {
-	global $current_site;
+function show_blog_form( $blogname = '', $blog_title = '', $errors = '' ) {
+	$current_site = get_current_site();
 	// Blog name
 	if ( !is_subdomain_install() )
 		echo '<label for="blogname">' . __('Site Name:') . '</label>';
@@ -188,7 +188,7 @@ function show_user_form($user_name = '', $user_email = '', $errors = '') {
 	<?php if ( $errmsg = $errors->get_error_message('user_email') ) { ?>
 		<p class="error"><?php echo $errmsg ?></p>
 	<?php } ?>
-	<input name="user_email" type="text" id="user_email" value="<?php  echo esc_attr($user_email) ?>" maxlength="200" /><br /><?php _e('We send your registration email to this address. (Double-check your email address before continuing.)') ?>
+	<input name="user_email" type="email" id="user_email" value="<?php  echo esc_attr($user_email) ?>" maxlength="200" /><br /><?php _e('We send your registration email to this address. (Double-check your email address before continuing.)') ?>
 	<?php
 	if ( $errmsg = $errors->get_error_message('generic') ) {
 		echo '<p class="error">' . $errmsg . '</p>';
@@ -225,8 +225,7 @@ function validate_user_form() {
  * @param string $blog_title The new blog title
  * @param array $errors
  */
-function signup_another_blog($blogname = '', $blog_title = '', $errors = '') {
-	global $current_site;
+function signup_another_blog( $blogname = '', $blog_title = '', $errors = '' ) {
 	$current_user = wp_get_current_user();
 
 	if ( ! is_wp_error($errors) ) {
@@ -258,7 +257,7 @@ function signup_another_blog($blogname = '', $blog_title = '', $errors = '') {
 	$blog_title = $filtered_results['blog_title'];
 	$errors = $filtered_results['errors'];
 
-	echo '<h2>' . sprintf( __( 'Get <em>another</em> %s site in seconds' ), $current_site->site_name ) . '</h2>';
+	echo '<h2>' . sprintf( __( 'Get <em>another</em> %s site in seconds' ), get_current_site()->site_name ) . '</h2>';
 
 	if ( $errors->get_error_code() ) {
 		echo '<p>' . __( 'There was a problem, please correct the form below and try again.' ) . '</p>';
@@ -316,7 +315,13 @@ function validate_another_blog_signup() {
 		die();
 
 	$result = validate_blog_form();
-	extract($result);
+
+	// Extracted values set/overwrite globals.
+	$domain = $result['domain'];
+	$path = $result['path'];
+	$blogname = $result['blogname'];
+	$blog_title = $result['blog_title'];
+	$errors = $result['errors'];
 
 	if ( $errors->get_error_code() ) {
 		signup_another_blog($blogname, $blog_title, $errors);
@@ -338,7 +343,7 @@ function validate_another_blog_signup() {
 	 *
 	 * @param array $blog_meta_defaults An array of default blog meta variables.
 	 */
-	$meta = apply_filters( 'signup_create_blog_meta', $blog_meta_defaults );
+	$meta_defaults = apply_filters( 'signup_create_blog_meta', $blog_meta_defaults );
 	/**
 	 * Filter the new default site meta variables.
 	 *
@@ -351,7 +356,7 @@ function validate_another_blog_signup() {
 	 *     @type int $blog_public Whether search engines should be discouraged from indexing the site. 1 for true, 0 for false.
 	 * }
 	 */
-	$meta = apply_filters( 'add_signup_meta', $meta );
+	$meta = apply_filters( 'add_signup_meta', $meta_defaults );
 
 	wpmu_create_blog( $domain, $path, $blog_title, $current_user->ID, $meta, $wpdb->siteid );
 	confirm_another_blog_signup($domain, $path, $blog_title, $current_user->user_login, $current_user->user_email, $meta);
@@ -395,8 +400,8 @@ function confirm_another_blog_signup( $domain, $path, $blog_title, $user_name, $
  * @param string $user_email The user's email
  * @param array $errors
  */
-function signup_user($user_name = '', $user_email = '', $errors = '') {
-	global $current_site, $active_signup;
+function signup_user( $user_name = '', $user_email = '', $errors = '' ) {
+	global $active_signup;
 
 	if ( !is_wp_error($errors) )
 		$errors = new WP_Error();
@@ -429,8 +434,8 @@ function signup_user($user_name = '', $user_email = '', $errors = '') {
 
 	?>
 
-	<h2><?php printf( __( 'Get your own %s account in seconds' ), $current_site->site_name ) ?></h2>
-	<form id="setupform" method="post" action="wp-signup.php">
+	<h2><?php printf( __( 'Get your own %s account in seconds' ), get_current_site()->site_name ) ?></h2>
+	<form id="setupform" method="post" action="wp-signup.php" novalidate="novalidate">
 		<input type="hidden" name="stage" value="validate-user-signup" />
 		<?php
 		/** This action is documented in wp-signup.php */
@@ -469,7 +474,9 @@ function signup_user($user_name = '', $user_email = '', $errors = '') {
  */
 function validate_user_signup() {
 	$result = validate_user_form();
-	extract($result);
+	$user_name = $result['user_name'];
+	$user_email = $result['user_email'];
+	$errors = $result['errors'];
 
 	if ( $errors->get_error_code() ) {
 		signup_user($user_name, $user_email, $errors);
@@ -586,16 +593,22 @@ function signup_blog($user_name = '', $user_email = '', $blogname = '', $blog_ti
  */
 function validate_blog_signup() {
 	// Re-validate user info.
-	$result = wpmu_validate_user_signup($_POST['user_name'], $_POST['user_email']);
-	extract($result);
+	$user_result = wpmu_validate_user_signup( $_POST['user_name'], $_POST['user_email'] );
+	$user_name = $user_result['user_name'];
+	$user_email = $user_result['user_email'];
+	$user_errors = $user_result['errors'];
 
-	if ( $errors->get_error_code() ) {
-		signup_user($user_name, $user_email, $errors);
+	if ( $user_errors->get_error_code() ) {
+		signup_user( $user_name, $user_email, $user_errors );
 		return false;
 	}
 
-	$result = wpmu_validate_blog_signup($_POST['blogname'], $_POST['blog_title']);
-	extract($result);
+	$result = wpmu_validate_blog_signup( $_POST['blogname'], $_POST['blog_title'] );
+	$domain = $result['domain'];
+	$path = $result['path'];
+	$blogname = $result['blogname'];
+	$blog_title = $result['blog_title'];
+	$errors = $result['errors'];
 
 	if ( $errors->get_error_code() ) {
 		signup_blog($user_name, $user_email, $blogname, $blog_title, $errors);
@@ -603,10 +616,10 @@ function validate_blog_signup() {
 	}
 
 	$public = (int) $_POST['blog_public'];
-	$meta = array ('lang_id' => 1, 'public' => $public);
+	$signup_meta = array ('lang_id' => 1, 'public' => $public);
 
 	/** This filter is documented in wp-signup.php */
-	$meta = apply_filters( 'add_signup_meta', $meta );
+	$meta = apply_filters( 'add_signup_meta', $signup_meta );
 
 	wpmu_signup_blog($domain, $path, $blog_title, $user_name, $user_email, $meta);
 	confirm_blog_signup($domain, $path, $blog_title, $user_name, $user_email, $meta);
