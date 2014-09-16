@@ -1483,6 +1483,7 @@ var image_name=$("#image_name").val();
                     jQuery("#signup_password").val("");
                     jQuery("#signup_fname").val("");
                     jQuery("#signup_lname").val("");
+                    window.location.href = SITEURL+'/profile/';
                 }
                 else
                 {
