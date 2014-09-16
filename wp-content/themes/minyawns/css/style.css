@@ -2735,3 +2735,7 @@ color: #000;
 width: 80px!important;
 }
 
+#apply-job-popup .modal-body{
+	max-height: 505px !important;
+}
+

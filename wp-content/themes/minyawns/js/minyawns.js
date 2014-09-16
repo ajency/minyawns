@@ -1642,11 +1642,23 @@ var image_name=$("#image_name").val();
     /** Apply/UnApply code */
     $('#apply-job-browse,#unapply-job').live('click', function(evt) {
 
-
-        evt.preventDefault();
         var _this = $(this);
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
+ 
+        if(_action == "apply"){
+            
+            if($("#apply-job-popup").length==0){
+
+                 $( "body" ).append(appy_job_popup_content())
+
+            }
+           
+            $("#apply-job-popup").modal('show'); 
+        }
+
+        evt.preventDefault();
+       
 
         $(this).append(' <img src="' + siteurl + '/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
         $(".load_ajax1").show();
@@ -1681,6 +1693,20 @@ var image_name=$("#image_name").val();
 
         }, 'json');
     });
+
+    function appy_job_popup_content(){
+
+        html  = '<div id="apply-job-popup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+      
+        html += '<div class="modal-body"><img src="'+THEMEURL+'/images/minyawns-job-warning.jpg">'
+         
+        html += '</div>'
+      
+        html += '</div>';
+
+        return html;
+    }
+
 
     function onload_calendar()
     {

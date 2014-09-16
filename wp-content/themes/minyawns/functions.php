@@ -177,6 +177,7 @@ wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.str
 
 
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
+            wp_localize_script('jquery-ui', 'THEMEURL', get_template_directory_uri());
             break;
     }
 }
