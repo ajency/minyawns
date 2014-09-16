@@ -3,9 +3,9 @@
       
 							 <div class="row-fluid mobile-hide" >
 							  <div class="span9 ">
-							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
+							       <div class="row-fluid "  >
                                       <div class="span1">
-									  <div class="job-date">
+									  <div class="job-date" data-toggle="collapse-next" data-parent="#accordion24">
 										<b><%= result.job_start_day %></b>
 										<%= result.job_start_month %>
 									  </div>
@@ -13,9 +13,9 @@
 									  </div>
 									  <div class="span11 border-right job-details">
                                           <div class="job-title">
-                                             <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
+                                             <h5><a  class='prevent_default'  href=<?php echo site_url() ?>/job/<%= result.post_slug %>><%= result.post_title %></a></h5>
                                           </div>
-                                          <div class="job-meta">
+                                          <div class="job-meta"  data-toggle="collapse-next" data-parent="#accordion24">
                                              <ul class="inline">
                                                
                                                 <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
