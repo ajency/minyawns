@@ -30,17 +30,7 @@
         $('#powtoon-frame1').attr('src', '//www.youtube.com/embed/niu4tNbD6IY?autoplay=1');    
     });
 });
-
-
-
-
-
     </script>
-    
-
-  
-
-
 <div id="innermainimage">
    <div class="row-fluid banner-content">
     
@@ -361,7 +351,7 @@
 
  <div class="container">
    <div class="row-fluid minyawns-grid1">
-      <ul class="thumbnails owl-carousel owl-theme" style="left: 100px;" id="owl-demo"  >
+      <ul class="thumbnails" style="left: 100px;">
        <?php
         $homepage_users = get_users_for_homepage_footer();
         foreach($homepage_users as $homepage_user){
@@ -371,7 +361,7 @@
            
 
           ?>
-         <li class="span3 thumbspan item" id="10"  onclick="window.open('http://www.minyawns.com/profile/<?php echo $homepage_user_data["ID"];?>/')">
+         <li class="span3 thumbspan" id="10"  onclick="window.open('http://www.minyawns.com/profile/<?php echo $homepage_user_data["ID"];?>/')">
 		
             <div class="thumbnail " id="thumbnail-10">
                <div class="m1" onClick="return true">
@@ -710,20 +700,8 @@
    </div>
 </div>
 
+
  
- <script>
-     jQuery(document).ready(function ($) {
-     
-  
-     
-    $("#owl-demo").owlCarousel({
-    autoPlay : 3000,
-    
-     
-    });
-     
-    });
- </script>
 
 <?php
 get_footer();
