@@ -180,7 +180,7 @@ function get_user_profile_name() {
 
 //User profile first name
 function user_profile_first_name() {
-    echo get_user_profile_first_name();
+    return get_user_profile_first_name();
 }
 
 function user_profile_company_name() {
@@ -198,7 +198,7 @@ function get_user_profile_first_name() {
 
 //User profile last name
 function user_profile_last_name() {
-    echo get_user_profile_last_name();
+    return get_user_profile_last_name();
 }
 
 function get_user_profile_last_name() {
@@ -789,7 +789,7 @@ function get_minyawn_profile($userData,$total)
                         'rating_negative' => isset($user_dislike) ? $user_dislike : 0,
                         'user_avatar' => $user_pic_img_src,
                         'total' => $total,
-                        'minion_name' => isset($user_meta['first_name'][0]) > 0 ? substr($user_meta['first_name'][0] . $user_meta['last_name'][0],0,20) :'',
+                        'minion_name' => isset($user_meta['first_name'][0]) > 0 ? substr($user_meta['first_name'][0] ." ". $user_meta['last_name'][0],0,20) :'',
                         'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N'     
                     );
   

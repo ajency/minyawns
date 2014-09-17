@@ -192,7 +192,7 @@ and get more applications from eager minions. Simply <a href="'.site_url().'/edi
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
                             } else {
-                                user_profile_first_name() . " " . user_profile_last_name();
+                                echo user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit"><i class="icon-edit"></i> Edit</a><?php } ?>
 

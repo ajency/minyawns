@@ -102,7 +102,7 @@ require 'templates/_jobs.php';
                             <div class="control-group">
                                 <label class="control-label" for="inputFirst">First Name</label>
                                 <div class="controls">
-                                    <input type="text" id="first_name" name="first_name" placeholder="" value="<?php user_profile_first_name() ?>" class="input">
+                                    <input type="text" id="first_name" name="first_name" placeholder="" value="<?php echo user_profile_first_name() ?>" class="input">
                                 </div>
                             </div>
                             <div class="control-group">
