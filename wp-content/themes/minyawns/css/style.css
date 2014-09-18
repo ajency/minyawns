@@ -2735,3 +2735,16 @@ color: #000;
 width: 80px!important;
 }
 
+.minyawns-grid1 .thumbspan .thumbnail .m1 .caption .social-link{
+height:30px !important; 
+}
+.minyawns-grid1 .thumbspan .thumbnail .m1 .caption .profile-social-link{
+ 
+float:none !important;
+}
+
+.minyawns-grid1 .thumbspan .thumbnail .m2 .caption .profile-social-link{
+ 
+float:none !important;
+}
+
