@@ -189,7 +189,7 @@ and get more applications from eager minions. Simply <a href="'.site_url().'/edi
                     <?php  if(strlen(user_profile_facebook()) >0 ){ ?>
                     <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
                                         <?php }else {?>
-                                        <a href='#'><i class="icon-facebook"></i></a>
+                                        <a href='#'><i class="icon-facebook"  class="icon-facebook-a"></i></a>
                                             <?php }?>                        
                                             <?php endif; ?> 
                     </div>	                      
