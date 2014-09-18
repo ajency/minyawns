@@ -23,6 +23,14 @@
                                         }
                                         %>
                                         <a href='<%= linkedinUrl   %>' target='_blank' class="edit"><i class="icon-linkedin"></i></a>
+                                         <% if((result.facebook_link.indexOf("http://") <= -1) && (result.facebook_link.indexOf("https://") <= -1) ){
+                                            var facebook_linkUrl = "http://"+result.facebook_link;
+                                        }
+                                        else{
+                                            var facebook_linkUrl = result.facebook_link;
+                                        }
+                                        %>
+                                        <a href='<%= facebook_linkUrl   %>' target='_blank' class="edit icon-facebook-a"><i class="icon-facebook"></i></a>
                                         
                                     </div>
 									<div class="m1-invite">

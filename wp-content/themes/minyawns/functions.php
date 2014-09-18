@@ -363,9 +363,9 @@ add_filter('wp_authenticate_user', 'authenticate_active_user', 10, 2);
 
 
 //added on 6aug2013 to add a custom role for the fb user, overrides plugin's default user role
-add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user', 11, 2);
+add_filter('wpfb_inserting_user', 'fbautoconnect_inserting_user', 11, 2);
 
-function fbautoconnect_insert_user($user_data, $fbuser) {
+function fbautoconnect_inserting_user($user_data, $fbuser) {
     global $_POST, $_REQUEST, $redirectTo;
     //echo "<script>    returnToPreviousPage(); alert('test" . $_POST['fb_chk_usersigninform'] . "'); </script>";
 
@@ -388,6 +388,20 @@ function fbautoconnect_insert_user($user_data, $fbuser) {
 
     }
 }
+
+
+//set global fbuser for accessing after inserting user
+function fbautoconnect_insert_user($user_data, $fbuser ){
+
+    global $temp_fbuser;
+
+    $temp_fbuser = $fbuser;
+
+    return $user_data;
+
+}
+add_filter('wpfb_insert_user','fbautoconnect_insert_user', 10,2);
+
 
 /** function to send welcome mail on user sign up
  * @param $data
@@ -422,6 +436,13 @@ function send_register_welcome_email($data){
 function sendfb_user_register_mail($arg){
 
     global $wpdb;
+
+    //update user meta
+
+    global $temp_fbuser;
+    update_user_meta($arg['WP_ID'],'facebook_link',$temp_fbuser['link']);
+  
+
 
     send_register_welcome_email($arg['WP_UserData']);
 

@@ -2734,7 +2734,7 @@ color: #000;
 .social-icon {
 width: 80px!important;
 }
-
+ 
 .minyawns-grid1 .thumbspan .thumbnail .m1 .caption .social-link{
 height:30px !important; 
 }
@@ -2748,3 +2748,11 @@ float:none !important;
 float:none !important;
 }
 
+ 
+ .icon-facebook-a{
+	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
+}
+
+.icon-facebook{
+	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
+} 
