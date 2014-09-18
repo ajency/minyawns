@@ -70,7 +70,6 @@
                                     <div class="collage"><%= result.major %></div>
                                     <div class="social-link  profile-social-link">
                                      <% if (result.linkedin.length > 0 ){%>
-                                   <!--  <a href='http://<% /*= result.linkedin.replace(/^http?:\/\//,'') */ %>' target='_blank'><% /*= result.linkedin  */%></a> -->
                                         <% if(  (result.linkedin.indexOf("https://") <= -1) &&   (result.linkedin.indexOf("http://") <= -1) ) {
                                             var linkedinUrl = "http://"+result.linkedin;
                                         }
@@ -81,7 +80,19 @@
                                         <a href='<%= linkedinUrl   %>' target='_blank' class="edit"><i class="icon-linkedin"></i></a> 
                                        <%}else{%>
                                       <a href='#'><i class="icon-linkedin"></i></a>
-    <%}%>
+                                      <%}%>
+                                      <% if (result.facebook_link.length > 0 ){%>
+                                        <% if(  (result.facebook_link.indexOf("https://") <= -1) &&   (result.facebook_link.indexOf("http://") <= -1) ) {
+                                            var facebook_linkUrl = "http://"+result.facebook_link;
+                                        }
+                                        else{
+                                            var facebook_linkUrl = result.facebook_link;
+                                        }
+                                        %>
+                                        <a href='<%= facebook_linkUrl   %>' target='_blank' class="edit icon-facebook-a"><i class="icon-facebook"></i></a> 
+                                       <%}else{%>
+                                      <a href='#' class="edit icon-facebook-a"><i class="icon-facebook"></i></a>
+                                      <%}%>
                                       </div>
                                     <div class="social-link">
                                        <%= result.user_email %>

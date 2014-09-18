@@ -799,6 +799,7 @@ function get_minyawn_profile($userData,$total)
                         'major' => isset($user_meta['major'][0]) ? substr($user_meta['major'][0],0,20) : '',
                         'college' => isset($user_meta['college'][0]) ? substr($user_meta['college'][0],0,20) : '',
                         'linkedin' => isset($user_meta['linkedin'][0]) ? $user_meta['linkedin'][0] : '',
+                        'facebook_link' => isset($user_meta['facebook_link'][0]) ? $user_meta['facebook_link'][0] : '',
                         'rating_positive' => isset($user_rating) ? $user_rating : 0,
                         'rating_negative' => isset($user_dislike) ? $user_dislike : 0,
                         'user_avatar' => $user_pic_img_src,
