@@ -68,7 +68,9 @@ function setup_user_profile_data() {
     //set profile profile linked in
     $current_user_new->data->linkedin = isset($user_meta['linkedin']) ? trim($user_meta['linkedin'][0]) : '';
 
-    //set profile profile linked in
+ //set profile profile facebook
+    $current_user_new->data->facebook_link = isset($user_meta['facebook_link']) ? trim($user_meta['facebook_link'][0]) : '';
+     
     $current_user_new->data->company_website = isset($user_meta['company_website']) ? trim($user_meta['company_website'][0]) : '';
 
     $current_user_new->data->company_name = isset($user_meta['company_name']) ? trim($user_meta['company_name'][0]) : '';
@@ -254,6 +256,18 @@ function get_user_profile_linkedin() {
    
 }
 
+//user profile facebook
+function user_profile_facebook() {
+    return get_user_profile_facebook();
+}
+
+function get_user_profile_facebook() {
+    global $current_user_new;
+  
+    return preg_replace('#^http(s)?://#', '', rtrim($current_user_new->data->facebook_link,'/'));
+   
+}
+
 // user role
 function get_user_role() {
     global $current_user_new;
@@ -368,7 +382,7 @@ class MN_User_Jobs {
         'job_required_minyawns',
         'job_wages',
         'job_location');
-    public $include_user_meta = array('college', 'major', 'linkedin', 'user_skills');
+    public $include_user_meta = array('college', 'major', 'linkedin','facebook_link', 'user_skills');
 
     function __construct($args = null) {
         if (!empty($args)) {

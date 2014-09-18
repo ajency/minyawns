@@ -137,9 +137,15 @@ require 'templates/_jobs.php';
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="LinkedIn">LinkedIn url</label>
+                                <label class="control-label" for="LinkedIn">LinkedIn Link</label>
                                 <div class="controls">
                                     <input type="text" id="linkedin"  name="linkedin" placeholder="www.linkedin.com/username" value="<?php echo user_profile_linkedin(); ?>" class="input">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="facebook_link">Facebook Link</label>
+                                <div class="controls">
+                                    <input type="text" id="facebook_link"  name="facebook_link" placeholder="www.facebook.com/username" value="<?php echo user_profile_facebook(); ?>" class="input">
                                 </div>
                             </div>
                         <?php else : ?>
