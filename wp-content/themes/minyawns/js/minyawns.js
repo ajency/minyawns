@@ -2422,6 +2422,15 @@ function button_for_invite(model){
     
 }
 
+ 
+ $('.minyawns-block').live('click',function(e){
+    if($(e.target).attr('href') || $(e.target).parent().attr('href')  ) {
+
+        return ;
+    }
+       window.open('http://www.minyawns.com/profile/'+$(e.target).closest( "li").attr('user-id')+'/','_target') 
+    
+});
 
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
