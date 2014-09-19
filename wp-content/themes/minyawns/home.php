@@ -361,7 +361,7 @@
            
 
           ?>
-         <li class="span3 thumbspan minyawns-block"   user-id="<?php echo $homepage_user_data["user_id"];?>">
+         <li class="span3 thumbspan show-minyawn"   item-id="<?php echo $homepage_user_data["user_id"];?>">
 		
             <div class="thumbnail " id="thumbnail-10">
                <div class="m1" onClick="return true">
