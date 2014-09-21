@@ -476,9 +476,33 @@ $current_user_role =  trim($user_role);
     <div class="social-link">
     <%= result.user_email %>
     </div>
-    <div class="social-link">
-    <%= result.linkedin %>
-    </div>
+    <div class="social-link profile-social-link">
+    <% if (result.linkedin.length > 0 ){%>
+    <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
+        var linkedinUrl = "http://"+result.linkedin;
+    }
+    else{
+        var linkedinUrl = result.linkedin;
+    }
+    %>
+    <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
+    <%}else{%> 
+    <a href='#' target='_blank'><i class='icon-linkedin'></i></a>
+    
+    <%}%>
+     <% if (result.facebook_link.length > 0 ){%>
+    <% if( (result.facebook_link.indexOf("https://") <= -1) && (result.facebook_link.indexOf("http://") <= -1) ){
+        var facebook_linkUrl = "http://"+result.facebook_link;
+    }
+    else{
+        var facebook_linkUrl = result.facebook_link;
+    }
+    %>
+    <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+    <%}else{%> 
+    <a href='#' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+    
+    <%}%></div>
 
     <div class="rating">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
@@ -515,7 +539,7 @@ $current_user_role =  trim($user_role);
     <div class="social-link">
     <%= result.user_email %>
     </div>
-    <div class="social-link">
+    <div class="social-link   profile-social-link">
     <% if (result.linkedin.length > 0 ){%>
     <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
         var linkedinUrl = "http://"+result.linkedin;
@@ -524,9 +548,23 @@ $current_user_role =  trim($user_role);
         var linkedinUrl = result.linkedin;
     }
     %>
-    <a href='<%=linkedinUrl  %>' target='_blank'><%= result.linkedin %></a>
-    <%}else{%>
-    <a href='#'><%= result.linkedin %></a>
+    <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
+    <%}else{%> 
+    <a href='#' target='_blank'><i class='icon-linkedin'></i></a>
+    
+    <%}%>
+     <% if (result.facebook_link.length > 0 ){%>
+    <% if( (result.facebook_link.indexOf("https://") <= -1) && (result.facebook_link.indexOf("http://") <= -1) ){
+        var facebook_linkUrl = "http://"+result.facebook_link;
+    }
+    else{
+        var facebook_linkUrl = result.facebook_link;
+    }
+    %>
+    <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+    <%}else{%> 
+    <a href='#' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+    
     <%}%>
             </div>
     </div>

@@ -178,21 +178,26 @@ and get more applications from eager minions. Simply <a href="'.site_url().'/edi
                     </div>
                     <div class="span10">
 					  <?php if (get_user_role() === 'minyawn'): ?>
-					<div class="social-link profile-social-link"> 
-				
-					<?php  if(strlen(user_profile_linkedin()) >0 ){ ?>
-					<a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
+				<div class="social-link profile-social-link"> 
+                
+                    <?php  if(strlen(user_profile_linkedin()) >0 ){ ?>
+                    <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a> 
                                         <?php }else {?>
-                                        <a href='#'><i class="icon-linkedin"></i></a></div>
+                                        <a href='#'><i class="icon-linkedin"></i></a> 
                                             <?php }?>
                                             
-                                            
-                                            <?php endif; ?>		                      
+                    <?php  if(strlen(user_profile_facebook()) >0 ){ ?>
+                    <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
+                                        <?php }else {?>
+                                        <a href='#'  class="icon-facebook-a"><i class="icon-facebook" ></i></a>
+                                            <?php }?>                        
+                                            <?php endif; ?> 
+                    </div>	                      
 					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
                             } else {
-                                user_profile_first_name() . " " . user_profile_last_name();
+                                echo user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit"><i class="icon-edit"></i> Edit</a><?php } ?>
 

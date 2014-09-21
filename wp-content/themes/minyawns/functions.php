@@ -70,6 +70,8 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('style', get_template_directory_uri() . '/css/style.css', array(), null);
                 wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome.css', array(), null);
                 wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
+                wp_enqueue_style('owl-carousel-css', get_template_directory_uri() . '/css/owl.carousel.css', array(), null);
+
             } else {
                 wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
                 wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array(), null);
@@ -108,7 +110,8 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
-
+            wp_enqueue_script('owl-carousel-js', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), null);
+               
 		
 
             //if(is_page('profile'))
@@ -376,9 +379,9 @@ add_filter('wp_authenticate_user', 'authenticate_active_user', 10, 2);
 
 
 //added on 6aug2013 to add a custom role for the fb user, overrides plugin's default user role
-add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user', 11, 2);
+add_filter('wpfb_inserting_user', 'fbautoconnect_inserting_user', 11, 2);
 
-function fbautoconnect_insert_user($user_data, $fbuser) {
+function fbautoconnect_inserting_user($user_data, $fbuser) {
     global $_POST, $_REQUEST, $redirectTo;
     //echo "<script>    returnToPreviousPage(); alert('test" . $_POST['fb_chk_usersigninform'] . "'); </script>";
 
@@ -401,6 +404,20 @@ function fbautoconnect_insert_user($user_data, $fbuser) {
 
     }
 }
+
+
+//set global fbuser for accessing after inserting user
+function fbautoconnect_insert_user($user_data, $fbuser ){
+
+    global $temp_fbuser;
+
+    $temp_fbuser = $fbuser;
+
+    return $user_data;
+
+}
+add_filter('wpfb_insert_user','fbautoconnect_insert_user', 10,2);
+
 
 /** function to send welcome mail on user sign up
  * @param $data
@@ -435,6 +452,13 @@ function send_register_welcome_email($data){
 function sendfb_user_register_mail($arg){
 
     global $wpdb;
+
+    //update user meta
+
+    global $temp_fbuser;
+    update_user_meta($arg['WP_ID'],'facebook_link',$temp_fbuser['link']);
+  
+
 
     send_register_welcome_email($arg['WP_UserData']);
 
@@ -2120,3 +2144,80 @@ function hide_login_nav(){
 add_action( 'login_head', 'hide_login_nav' );
 
 */
+
+ //additonal field to user profile to 
+//display user in home page footer
+function my_show_extra_profile_fields( $user=array() ) { ?>
+ 
+<h3>Extra profile information</h3>
+ 
+<table class="form-table">
+    <tr>
+        <th><label for="twitter">Display on homepage footer </label></th>
+        <td>
+            <input type="checkbox" value = "1" name="display_on_homepage_footer" 
+
+id="display_on_homepage_footer"  <?php if($user->display_on_homepage_footer==1){ echo "checked"; } 
+
+?>    /><br />
+             
+        </td>
+    </tr>
+</table>
+<?php }
+
+
+add_action( 'edit_user_profile', 'my_show_extra_profile_fields' ,10,1);
+add_action( 'user_new_form', 'my_show_extra_profile_fields' ,10,1);
+
+
+//save addtional suer profile fields
+ 
+function my_save_extra_profile_fields( $user_id ) {
+    if ( !current_user_can( 'edit_user', $user_id ) )
+        return false;
+    if(isset($_POST['display_on_homepage_footer'])){
+        update_user_meta( $user_id, 'display_on_homepage_footer', $_POST['display_on_homepage_footer'] );
+    }
+    
+}
+
+
+add_action( 'personal_options_update', 'my_save_extra_profile_fields' );
+add_action( 'edit_user_profile_update', 'my_save_extra_profile_fields' );
+add_action( 'user_register', 'my_save_extra_profile_fields' );
+
+
+function get_users_for_homepage_footer(){
+
+
+    $args = array( 
+                'role'         => 'minyawn',
+                'meta_key'     => 'display_on_homepage_footer',
+                'meta_value'   => '1',
+                'meta_compare' => '=' 
+            );
+    $homepage_users = get_users($args);
+
+    return $homepage_users;
+}
+
+
+function get_user_avatar_by_id($id){
+
+    $avatar_attachment = get_user_meta($id,'avatar_attachment');
+
+    $user_profile_pic =  isset($avatar_attachment['avatar_attachment']) ? trim($avatar_attachment['avatar_attachment'][0]) : false;
+
+    if ($user_profile_pic !== false) {
+
+        $user_pic_img_src =  wp_get_attachment_image($user_profile_pic);
+
+    } else {
+
+        $user_pic_img_src = get_avatar($id);
+
+    }
+echo $user_pic_img_src;
+    return $user_pic_img_src;
+}

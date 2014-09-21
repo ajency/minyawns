@@ -429,7 +429,7 @@
                     BuildMonthView(showday, events, config);
                     break;
                 default:
-                    alert(i18n.xgcalendar.no_implement);
+                    //alert(i18n.xgcalendar.no_implement);
                     break;
             }
             initevents(option.view);
@@ -492,7 +492,7 @@
             var html = [];
             html.push(cc);
             //build header
-            html.push("<div id=\"mvcontainer\" class=\"mv-container\">");
+            html.push("<div id=\"mvcontainer\" class=\"mv-container\"><span class='loader_ajax_calendar' style='display:block'></span>");
             html.push("<table id=\"mvweek\" class=\"mv-daynames-table\" cellSpacing=\"0\" cellPadding=\"0\"><tbody><tr>");
             for (var i = config.weekstartday, j = 0; j < 7; i++, j++) {
                 if (i > 6)
@@ -836,7 +836,7 @@
             return ret.join("");
         }
         function BuildDayEvent(theme, e, index) {
-            alert(theme);
+            //alert(theme);
             var p = {bdcolor: theme[0], bgcolor2: theme[0], bgcolor1: theme[2], width: "70%", icon: "", title: "", data: ""};
             p.starttime = pZero(e.st.hour) + ":" + pZero(e.st.minute);
             p.endtime = pZero(e.et.hour) + ":" + pZero(e.et.minute);
@@ -1074,7 +1074,7 @@
                             y[j + m]++;
                         }
                     }
-                }
+                } 
             }
             //var htr=[];
             var tdtemp = "<td class='${cssclass}' axis='${axis}' ch='${ch}' abbr='${abbr}' title='${title}' ${otherAttr}>${html}</td>";
@@ -1150,7 +1150,7 @@
 
             var p = {color: theme[2], title: "", extendClass: "", extendHTML: "", data: ""};
 
-            p.title = getTitle(e.event);
+           // p.title = getTitle(e.event);
             p.id = "bbit_cal_event_" + e.event[0];
             if (option.enableDrag && e.event[8] == 1) {
                 p.eclass = "drag";
@@ -1259,7 +1259,7 @@
                             if (option.onRequestDataError) {
                                 option.onRequestDataError(1, data);
                             } else {
-                                alert(i18n.xgcalendar.get_data_exception);
+                               // alert(i18n.xgcalendar.get_data_exception);
                             }
                             if (option.onAfterRequestData && $.isFunction(option.onAfterRequestData)) {
                                 option.onAfterRequestData(1);
@@ -1271,7 +1271,7 @@
                 });
             }
             else {
-                alert("url" + i18n.xgcalendar.i_undefined);
+              //  alert("url" + i18n.xgcalendar.i_undefined);
             }
         }
         function responseData(data, start, end) {
@@ -1534,9 +1534,11 @@
                 height: h - 4,
                 i: "-1",
                 drag: "drag-chip",
-                redisplay: resize ? "block" : "none"
+                redisplay: resize ? "block" : "none",
+                display:'block'
             });
-            return newtemp;
+            // return newtemp; original
+            return false;
         }
 
         function getdata(chip) {
@@ -1550,7 +1552,17 @@
         function parseED(data) {
             if (data.length > 6) {
                 var e = [];
-                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10], data[11], data[12], data[13],data[14]);
+                e.push(data[0], data[1], new Date(data[2]), new Date(data[3]), parseInt(data[4]), parseInt(data[5]), parseInt(data[6]), data[7] != undefined ? parseInt(data[7]) : -1, data[8] != undefined ? parseInt(data[8]) : 0, data[9], data[10], data[11], data[12], data[13],data[14],data[15],data[16]);
+                
+                if(data[16] === '1')
+                $(".container").append("<input type='hidden' id='"+data[0]+"' value='1' >"); 
+            
+            if(data[16] === '3')
+                 $(".container").append("<input type='hidden' id='"+data[0]+"' value='3' >");
+             
+             if(data[16] === '2')
+                 $(".container").append("<input type='hidden' id='"+data[0]+"' value='2' >");
+                
                 return e;
             }
             return null;
@@ -1581,7 +1593,7 @@
         }
         function getbuddlepos(x, y) {
             var tleft = x - 110;
-            var ttop = y - 217;
+            var ttop = y - 320;
             var maxLeft = document.documentElement.clientWidth;
             var maxTop = document.documentElement.clientHeight;
             var ishide = false;
@@ -1608,7 +1620,7 @@
                 if (data != null) {
 
                     var csbuddle = '<div id="bbit-cs-buddle" style="z-index: 180; width: 400px;visibility:hidden;" class="bubble"><table class="bubble-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="bubble-cell-side"><div id="tl1" class="bubble-corner"><div class="bubble-sprite bubble-tl"></div></div><td class="bubble-cell-main"><div class="bubble-top"></div><td class="bubble-cell-side"><div id="tr1" class="bubble-corner"><div class="bubble-sprite bubble-tr"></div></div> <tr id="bbit-logo"><td class=cb-value><div id="bbit-cs-buddle-logo"></div></td></tr> <tr><td class="bubble-mid" colSpan="3"><div style="overflow: hidden" id="bubbleContent1"><div><div></div><div class="cb-root"><table class="cb-table" cellSpacing="0" cellPadding="0"><tbody><tr><td class="cb-value"><div class="textbox-fill-wrapper"><div class="textbox-fill-mid"><div id="bbit-cs-what" style="font-weight:bold;" title="'
-                            + i18n.xgcalendar.click_to_detail + '" ></div></div></div></td></tr><tr><td class=cb-value><b>When</b><div id="bbit-cs-buddle-timeshow"></div></td></tr><tr id="bbit-location" ><td class=cb-value><b>Where</b><div id="bbit-cs-buddle-location"></div></td></tr><tr id="bbit-tags"><td class=cb-value><b>Tags</b><div id="bbit-cs-buddle-tags"></div></td></tr><tr id="bbit-details"><td class=cb-value><b>Details</b><div id="bbit-cs-buddle-details"></div></td></tr><tr id="bbit-wages"><td class=cb-value><b>Wages</b><div id="bbit-cs-buddle-wages"></div></td></tr><tr id="bbit-apply"><td class=cb-value><b>Apply</b><div id="bbit-cs-buddle-apply"></div></td></tr></tbody></table><StrONG></StrONG></SPAN></div></div></div></div><tr><td><div id="bl1" class="bubble-corner"><div class="bubble-sprite bubble-bl"></div></div><td><div class="bubble-bottom"></div><td><div id="br1" class="bubble-corner"><div class="bubble-sprite bubble-br"></div></div></tr></tbody></table><div id="bubbleClose2" class="bubble-closebutton"></div><div id="prong1" class="prong"><div class=bubble-sprite></div></div></div>';
+                            + i18n.xgcalendar.click_to_detail + '" ></div></div></div></td></tr><tr><td class=cb-value><b>When</b><div id="bbit-cs-buddle-timeshow"></div></td></tr><tr id="bbit-location" ><td class=cb-value><b>Where</b><div id="bbit-cs-buddle-location"></div></td></tr><tr id="bbit-tags"><td class=cb-value><b>Tags</b><div id="bbit-cs-buddle-tags"></div></td></tr><tr id="bbit-details"><td class=cb-value><b>Details</b><div id="bbit-cs-buddle-details"></div></td></tr><tr id="bbit-wages"><td class=cb-value><b>Wages</b><div id="bbit-cs-buddle-wages"></div></td></tr><tr id="bbit-apply"><td class=cb-value><b></b><div id="bbit-cs-buddle-apply"></div></td></tr></tbody></table><StrONG></StrONG></SPAN></div></div></div></div><tr><td><div id="bl1" class="bubble-corner"><div class="bubble-sprite bubble-bl"></div></div><td><div class="bubble-bottom"></div><td><div id="br1" class="bubble-corner"><div class="bubble-sprite bubble-br"></div></div></tr></tbody></table><div id="bubbleClose2" class="bubble-closebutton"></div><div id="prong1" class="prong"><div class=bubble-sprite></div></div></div>';
                     var bud = $("#bbit-cs-buddle");
                     if (bud.length == 0) {
                         bud = $(csbuddle).appendTo(document.body);
@@ -1654,7 +1666,7 @@
 //                        });
                         lbtn.click(function(e) {
                             if (!option.EditCmdhandler) {
-                                alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
+                               // alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
                             }
                             else {
                                 if (option.EditCmdhandler && $.isFunction(option.EditCmdhandler)) {
@@ -1705,7 +1717,9 @@
                     }
                     else {
                         var html = "";
+
                         html = "<div id='user_tags'>" + data[10] + "</div>";
+
                         $("#bbit-cs-buddle-tags").html(html);
                     }
 
@@ -1728,16 +1742,40 @@
                         $("#bbit-cs-buddle-wages").html(html);
                     }
                     
-                    if (data[13] != "true")
+                    if (data[13] != "true" || data[15] === "employer")
                     {
                         $("#bbit-apply").hide();
                     } else
                     {
-                        var html = "";
-                        html = "<div id='apply'><input type='button' value='Apply'></input></div>";
+                       
+                                  var html = "";
+                                 
+                        
+                        if($("#"+data[0]).val() === "1")
+                       html="<button href='#' style=' width: 40%; margin-top: 13px; '  id='unapply-job' class='btn btn-medium btn-block btn-danger red-btn' data-action='unapply' data-job-id='"+data[0]+"'>Unapply</button>"; 
+                        
+                       else if($("#"+data[0]).val() === "3") 
+                        html="<a href='#' class='required'>You are hired!</a>";    
+                        
+                        else if($("#"+data[0]).val() === "2")
+                            html="<a href='#' class='required'>Requirement Complete</a>";
+                        
+                        else
+                            html = "<div id='apply'><button href='#'  style=' width: 40%; margin-top: 13px; ' id='apply-job' class='btn btn-medium btn-block btn-primary  btn-success' data-action='apply' data-job-id='"+data[0]+"'>Apply</button></div>";
+                            
+                        
+                        
+                        if( $("#"+data[0]).length == 0)
+                        html = "<div id='apply'><a type='button' style=' width: 40%; margin-top: 13px; ' href='#' id='apply-job' class='btn btn-medium btn-block btn-primary' data-action='apply' data-job-id='"+data[0]+"' onClick='apply_job(event)'>Apply</a></div>";
+                            
+                            
+                            
                         $("#bbit-cs-buddle-apply").html(html);
+                                
+//                            }
+                      
                     }
-                    
+                   
                     if(data[14].length == "0" )
                         {
                             $("#bbit-logo").hide();
@@ -1750,14 +1788,14 @@
                     bud.data("cdata", data);
                     bud.css({"visibility": "visible", left: pos.left, top: pos.top});
 
-                    $(document).one("click", function() {
-                        $("#bbit-cs-buddle").css("visibility", "hidden");
-                    });
+//                    $(document).one("click", function() {
+//                        $("#bbit-cs-buddle").css("visibility", "hidden");
+//                    });
                     $("#bbit-cs-buddle").show();
                 }
                 else {
                     if (!option.ViewCmdhandler) {
-                        alert("ViewCmdhandler" + i18n.xgcalendar.i_undefined);
+                       // alert("ViewCmdhandler" + i18n.xgcalendar.i_undefined);
                     }
                     else {
                         if (option.ViewCmdhandler && $.isFunction(option.ViewCmdhandler)) {
@@ -1767,7 +1805,7 @@
                 }
             }
             else {
-                alert(i18n.xgcalendar.data_format_error);
+                //alert(i18n.xgcalendar.data_format_error);
             }
             return false;
         }
@@ -1881,7 +1919,8 @@
         }
         function quickadd(start, end, isallday, pos) {
 
-            return; //to disable quick add new event
+
+            return false; //to disable quick add new event
 
             if ((!option.quickAddHandler && option.quickAddUrl == "") || option.readonly) {
                 return;
@@ -1980,7 +2019,7 @@
                 });
                 lbtn.click(function(e) {
                     if (!option.EditCmdhandler) {
-                        alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
+                       // alert("EditCmdhandler" + i18n.xgcalendar.i_undefined);
                     }
                     else {
                         if (option.EditCmdhandler && $.isFunction(option.EditCmdhandler)) {
@@ -2110,7 +2149,7 @@
                 var $dvwkcontaienr = $("#dvwkcontaienr");
                 var $dvtec = $("#dvtec");
                 if ($dvwkcontaienr.length == 0 || $dvtec.length == 0) {
-                    alert(i18n.xgcalendar.view_no_ready);
+                   // alert(i18n.xgcalendar.view_no_ready);
                     return;
                 }
                 var dvwkH = $dvwkcontaienr.height() + 2;
@@ -2974,13 +3013,61 @@
             return this[0].bcal.so(p);
         }
     };
+    
+    
 
 })(jQuery);
 
-$('.collapse').live('show', function() {
-    $(this).parent().find('a').addClass('open'); //add active state to button on open
-});
 
-$('.collapse').live('hide', function() {
-    $(this).parent().find('a').removeClass('open'); //remove active state to button on close
-});
+
+function apply_job(event) {
+      
+        event.preventDefault();
+        var _this = $(event.target);
+        var _action = $(event.target).attr('data-action');
+        var _job_id = $(event.target).attr('data-job-id');
+        $(".load_ajax1").show();
+        $.post(ajaxurl,
+                {
+                    action: 'minyawn_job_' + _action,
+                    job_id: parseInt(_job_id)
+                },
+        function(response) {
+            
+            $(".load_ajax1").hide();
+            if (response.success == 1)
+            {
+
+                $("#job-list" + _job_id).hide('slow', function() {
+                    $("#job-list" + _job_id).remove();
+                });
+                if (response.new_action == 'apply')
+                {
+                    $(_this).removeClass('btn-danger red-btn').addClass('green-btn btn-success').attr('id', 'apply-job').text('Apply');
+                    $(_this).attr('data-action', 'apply');
+                }
+                if (response.new_action == 'unapply')
+                {
+                    $(_this).addClass('green-btn btn-success').removeClass('green-btn btn-success').attr('id', 'unapply-job').text('Unapply');
+                    $(_this).attr('data-action', 'unapply');
+                    
+                    $(".cb-table").append("<input type='hidden' id='"+_job_id+"' value='1' >");               }
+
+            } else if (response.success == 2)
+            {
+                $(_this).addClass('btn-danger red-btn').removeClass('green-btn btn-success').attr('id', 'req-complete').text('Requirement Complete');
+                $(_this).attr('data-action', 'req_complete');
+            }
+
+        }, 'json');
+    }
+
+//$('.collapse').live('show', function() {
+//    $(this).parent().find('a').addClass('open'); //add active state to button on open
+//});
+//
+//$('.collapse').live('hide', function() {
+//    $(this).parent().find('a').removeClass('open'); //remove active state to button on close
+//});
+
+   
