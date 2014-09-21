@@ -1433,8 +1433,19 @@ var image_name=$("#image_name").val();
 
     })
 
+//on enter key press trigger form submission
+$('#myModal').live('keyup', function(e){
+  if (e.keyCode == 13) {
+    $("#btn_signup").trigger('click')
+  }
+});
 
-
+//on enter key press trigger form submission
+$('#mylogin').live('keyup', function(e){
+  if (e.keyCode == 13) { 
+    $("#btn_login").trigger('click')
+  }
+});
 
     jQuery("#btn_signup").live("click", function() {
         jQuery('#frm_signup').submit();
