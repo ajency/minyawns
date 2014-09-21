@@ -273,7 +273,7 @@ function popup_usersignup() {
               wp_send_json($response);
               $success = true; */
            // commented on 19june2014  $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.<a href='#mylogin'  class='signin-text' id='sign-in-link' data-dismiss='modal' aria-hidden='true'  data-toggle='modal'> Sign in here</a></div>";
-            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.<a href='".site_url()."/wp-login.php'  class='signin-text' id='sign-in-link' aria-hidden='true'  ".(is_page('fb-connect-test')?"  data-dismiss='modal' data-toggle='modal' ": " " )."> Sign in here</a></div>";
+            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered. Redirecting to your profile....</div>";
 
             $wpdb->update($wpdb->users, array('user_activation_key' => $user_activation_key), array('user_login' => $userdata_['user_email']));
             $wpdb->update($wpdb->users, array('user_status' => 0), array('user_login' => $userdata_['user_email']));
@@ -309,6 +309,18 @@ function popup_usersignup() {
             
 
             wp_new_user_notification($user_id, $userdata_['user_pass']);
+             //auto login the user
+            $creds['user_login'] =  $userdata_['user_login'];
+
+            $creds['user_password'] =  $userdata_['user_pass'];
+
+            $creds['remember'] = false;
+
+            $user = wp_signon( $creds, false ); 
+
+            wp_set_current_user( $user_id, $user->data->user_login );
+
+            wp_set_auth_cookie( $user_id );
 
             $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
             wp_send_json($response);
