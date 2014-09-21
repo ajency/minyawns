@@ -2459,15 +2459,18 @@ function button_for_invite(model){
     return button_string;
     
 }
-
+ 
+ 
+ $('.show-minyawn').live('click',function(e){
+    if($(e.target).attr('href') || $(e.target).parent().attr('href')  ) {
+ 
 //make whole minyawn box clickable
 
 
-jQuery(".show-minyawn").live("click", function() {
-
-    window.open(SITEURL+'/profile/'+$(this).attr("item-id"),'_blank');
-
-});
+jQuery(".show-minyawn").live("click", function() { 
+       window.open(SITEURL+'/profile/'+$(e.target).closest( "li").attr('item-id')+'/','_target') 
+    
+}); 
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
 //				{
