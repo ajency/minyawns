@@ -224,6 +224,12 @@ and get more applications from eager minions. Simply <a href="'.site_url().'/edi
 								   <li class="major_data">
 								   Major : <b>  <?php echo user_college_major(); ?></b>
 								   </li>
+                                   <li class="major_data">
+                                   Email :  <b>  <a href="mailto:<?php user_profile_email();?>" target="_top">
+                                                    <?php user_profile_email(); ?>
+                                                </a>
+                                            </b>
+                                   </li>
 								   </ul>
                      <?php
                             else :
