@@ -1,6 +1,6 @@
 
 <script type="text/template" id="minyawn-directory-card">
-    <li class="span3 thumbspan" id="minyawn<%= result.user_id %>">
+    <li class="span3 thumbspan show-minyawn" id="minyawn<%= result.user_id %>" item-id="<%= result.user_id %>">
                            <div class="thumbnail" id="thumbnail-10">
                               <div class="m1" onclick="return true">
                                  <div class="caption">

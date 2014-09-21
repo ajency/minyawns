@@ -2460,7 +2460,14 @@ function button_for_invite(model){
     
 }
 
+//make whole minyawn box clickable
 
+
+jQuery(".show-minyawn").live("click", function() {
+
+    window.open(SITEURL+'/profile/'+$(this).attr("item-id"),'_blank');
+
+});
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
 //				{
