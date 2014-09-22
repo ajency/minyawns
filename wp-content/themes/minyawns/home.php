@@ -707,7 +707,7 @@
 <script>
 jQuery(document).ready(function($) {
 	$("#owl-example").owlCarousel({
-   autoPlay: 300000, //Set AutoPlay to 3 seconds
+   autoPlay: 3000, //Set AutoPlay to 3 seconds
       
 	  
       items : 4,
