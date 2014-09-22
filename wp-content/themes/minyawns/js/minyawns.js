@@ -2463,11 +2463,8 @@ function button_for_invite(model){
  
  $('.show-minyawn').live('click',function(e){
     if($(e.target).attr('href') || $(e.target).parent().attr('href')  ) {
- 
-//make whole minyawn box clickable
-
-
-jQuery(".show-minyawn").live("click", function() { 
+    return;
+  }
        window.open(SITEURL+'/profile/'+$(e.target).closest( "li").attr('item-id')+'/','_target') 
     
 }); 
