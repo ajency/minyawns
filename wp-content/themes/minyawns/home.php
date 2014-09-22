@@ -351,7 +351,8 @@
 
  <div class="container">
    <div class="row-fluid minyawns-grid1">
-      <ul class="thumbnails" style="left: 100px;">
+   
+      <ul class="thumbnails owl-carousel"  id="owl-example">
        <?php
         $homepage_users = get_users_for_homepage_footer();
         foreach($homepage_users as $homepage_user){
@@ -422,6 +423,7 @@
          }?>
          <span class="load_ajaxsingle_job_minions" style="display: none;"></span>
       </ul>
+   
    </div>
 </div>
 </div> <div id="down-gray"></div>
@@ -702,6 +704,18 @@
 
 
  
-
+<script>
+jQuery(document).ready(function($) {
+	$("#owl-example").owlCarousel({
+   autoPlay: 300000, //Set AutoPlay to 3 seconds
+      
+	  
+      items : 4,
+	  itemsDesktop : [1199,4],
+	   itemsDesktopSmall : [980,3]
+      
+  });
+});
+</script>
 <?php
-get_footer();
+get_footer(); 
