@@ -29,7 +29,7 @@
     }
 </style>
 <div class="divbox">
-    <h3>These Minions haven't received ratings yet, please rate them.</h3>
+    <h3>These Minyawns haven't received ratings yet, please rate them.</h3>
     <hr>
     <div class="insidebox">
         <?php

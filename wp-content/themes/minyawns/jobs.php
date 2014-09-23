@@ -443,7 +443,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                                         <hr>
                                         <ul>
                                             <li> Need help, I am moving out, require some extra hands.</li>
-                                            <li>Need a minion to clean my house</li>
+                                            <li>Need a minyawn to clean my house</li>
                                             <li>Need more likes for my Facebook page</li>
                                         </ul>
                                         <br>
@@ -536,7 +536,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="inputPassword">Total Price Per Minion:</label>
+                    <label class="control-label" for="inputPassword">Total Price Per Minyawn:</label>
                     <div class="controls">
                         $12.10
                     </div>

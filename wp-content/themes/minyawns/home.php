@@ -1,4 +1,4 @@
-<?php
+﻿<?php
    if(is_user_logged_in())
    	wp_redirect(site_url()."/profile/");
    /**
@@ -6,8 +6,8 @@
     */
    get_header(); 
    
-   
    ?>
+
 <script type="text/javascript">
     $(function(){
     $('#powtoon-frame').load(function(){
@@ -27,7 +27,7 @@
 
     $('#click').on('click', function(){
       
-        $('#powtoon-frame1').attr('src', '//www.youtube.com/embed/niu4tNbD6IY?autoplay=1');    
+        $('#powtoon-frame1').attr('src', 'http://www.powtoon.com/embed/gdPRX5igKP7?autoplay=1');    
     });
 });
     </script>
@@ -41,7 +41,7 @@
 				<div class="span12">
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
 					<div class="banner-desc">1-day assistants for your 1-day tasks</div>
-					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Get Your Minyawn</a>
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister1" onclick="return true">Sign Up and Get Your Minyawns Today</a>
 				</div>
 			
 		 </div>
@@ -76,7 +76,7 @@
          </div>
          <div class="span4">
            <div class="step2-2"></div>
-            <h4> <span class="badge badge2">2</span> Pick your minion</h4>
+            <h4> <span class="badge badge2">2</span> Pick your minyawn</h4>
             <p>We're talking about professional, reliable, competent, clean and sociable young college students looking for work.</p>
          </div>
          <div class="span4">
@@ -109,8 +109,8 @@
 
 <div class="customers">
     <div>
-      <h3 class="heading-title"> Here's our customers</h3>
-      <p class="excerpt">Simply and effectively bridging the gap between businesses and minions.</p>
+      <h3 class="heading-title">Our Customers</h3>
+      <p class="excerpt">Simply and effectively bridging the gap between businesses and minyawns.</p>
    </div>
  <div class="slider1">
       <div class="slide cus_1"></div>
@@ -136,7 +136,7 @@
      <div id="down"></div>
    <div class="">
       <h3 class="heading-title">What can we do?</h3>
-      <p class="excerpt">The minions have superpowers, find out what they are.</p>
+      <p class="excerpt">The minyawns have superpowers, find out what they are.</p>
    </div>
  
    <div class="container">
@@ -219,7 +219,7 @@
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider1.png" data-interval="500" data-slide-to="0" />
                      <div class="carousel-caption">
                         <h4>Almost anything !</h4>
-                        <p>From simple tasks like office work, labor jobs, and event set-up to ones that need more specialty, our minions can do it all. You may just need an extra hand, our minions are capable of learning quickly on the job.
+                        <p>From simple tasks like office work, labor jobs, and event set-up to ones that need more specialty, our minyawns can do it all. You may just need an extra hand, our minyawns are capable of learning quickly on the job.
                         </p>
                      </div>
                   </div>
@@ -227,7 +227,7 @@
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider2.png" data-interval="500" data-slide-to="1" />
                      <div class="carousel-caption">
                         <h4>Make you feel in charge!</h4>
-                        <p>Our Minions are equipped with the valuable skills from top universities. It's like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
+                        <p>Our Minyawns are equipped with the valuable skills from top universities. It's like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
                      </div>
                   </div>
                   <div class="item">
@@ -269,18 +269,18 @@
 		 
             <ul class="nav nav-tabs" id="myTab">
                <li class="active"><a href="#home">Add a job</a></li>
-               <li><a href="#profile"> Select your minion</a></li>
+               <li><a href="#profile"> Select your minyawn</a></li>
                <li><a href="#messages"> Secure payment</a></li>
                <li><a href="#settings">Mobile compatible</a></li>
             </ul>
             <div class="tab-content">
                <div class="tab-pane active" id="home">
-                  <h3>Don't procrastinate, give those annoying tasks to the minion.</h3>
+                  <h3>Don't procrastinate, give those annoying tasks to the minyawns.</h3>
                   <p class="excerpt">It's really simple</p>
 				  <div class="tooltip-left">
 						<div class="data">
 						<h4>Your eye catching job title</h4>
-						Grab the attention of relevant minions with an awesome job title
+						Grab the attention of relevant minyawns with an awesome job title
 						</div>
 						<img src="<?php echo get_template_directory_uri() ?>/images/tooltip.png"/>
 					</div>
@@ -289,7 +289,7 @@
 					<img src="<?php echo get_template_directory_uri() ?>/images/tooltip-right.png"/>
 						<div class="data">
 						<h4>Pick 'em here</h4>
-						Select the minions you feel are most suitable for your job.
+						Select the minyawns you feel are most suitable for your job.
 						</div>
 						
 					</div>
@@ -303,7 +303,7 @@
 						</div>
 						<div class="span4">
 						<br><br><br><br>
-						<h3 class="a-left">Hire minions with skills required for the job.</h3><br>
+						<h3 class="a-left">Hire minyawnss with skills required for the job.</h3><br>
 						<p align="left" style="font-size: 15px;">Get assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. </p>
 						</div>
 						<div class="span1">
@@ -345,8 +345,8 @@
 
 <div class="customer">
    <div class="bg-title-gray">
-      <h3 class="heading-title">Meet the <span class="highlight">500 Minions</span>   </h3>
-      <p class="excerpt">The minions are thoroughly vetted University of Washington students.</p>
+      <h3 class="heading-title">Meet the <span class="highlight">500 Minyawns</span>   </h3>
+      <p class="excerpt">The minyawns are thoroughly vetted University of Washington students.</p>
    </div>
 
  <div class="container">
@@ -647,7 +647,7 @@
                     <div class="workflow1">
                         <i class="icon-calendar-empty i-cal"></i>
                     </div>
-                    <h3 class="small-header">Request a Minion</h3>
+                    <h3 class="small-header">Request a Minyawn</h3>
                     <p class="small-desc">Pick a time, place, price and <br>describe your task.</p>
                 </div>
                 <div class="span2">
@@ -655,7 +655,7 @@
                         <i class="icon-heart i-money"></i>
                     </div>
                     <h3 class="small-header">Pick your favorite</h3>
-                    <p class="small-desc">Put your minion to work when they arrive.</p>
+                    <p class="small-desc">Put your minyawn to work when they arrive.</p>
                     </div>
                 <div class="span3">
                   <div class="workflow">
@@ -672,7 +672,7 @@
             <div class="row-fluid">
                 <div class="span12">
                     <h3 class="big-heading-title">The power and resources of an elite billion-dollar institution, awaiting your command. </h3>
-                    <p class="big-heading-desc">Minyawns - minions so good you can yawn- is an online service that is revolutionizing traditional staffing temp agencies through on-demand short time minions. 
+                    <p class="big-heading-desc">Minyawns - minions so good you can yawn- is an online service that is revolutionizing traditional staffing temp agencies through on-demand short time minyawns. 
    Businesses and Individual Professionals can post tasks and immediately receive assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. Additionally Minyawns provides a marketplace for students to strengthen resumes and gain experience, while business can help mold the future generation.</p>
                 </div>
             </div>
@@ -722,14 +722,14 @@
 
 
 
-<!-- learn more Get a Minion  -->
+<!-- learn more Get a Minyawn  -->
 <div id="getminion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h5 id="myModalLabel">Why do you need minions?</h5>
+    <h5 id="myModalLabel">Why do you need minyawns?</h5>
   </div>
   <div class="modal-body">
-    <p>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minion.
+    <p>Clearly university students have some sort of skill after tens of thousands of dollars, and multiple millennia’s of sitting in lecture halls. We believe that whatever job you need to get right now, don’t procrastinate, hire a minyawn.
 </p>
   </div>
   <div class="modal-footer">
@@ -737,14 +737,14 @@
    </div>
 </div>
 
-<!-- learn more Become a minion  -->
+<!-- learn more Become a minyawn  -->
 <div id="becomeminion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h5 id="myModalLabel">Perks of being a minion.</h5>
+    <h5 id="myModalLabel">Perks of being a minyawn.</h5>
   </div>
   <div class="modal-body">
-    <p>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minion, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
+    <p>Get extra spending cash without having to commit to a part-time job. No need for countless hours of browsing, newspaper classifieds, google searches, and responding to human experiments; Simply sign up as a minyawn, browse jobs, select the one you like, show up, complete the job and get paid. Its that simple.
 </p>
   </div>
   <div class="modal-footer">
@@ -767,5 +767,5 @@ jQuery(document).ready(function($) {
   });
 });
 </script>
-<?php
+<?php 
 get_footer(); 
