@@ -126,8 +126,11 @@ require 'templates/_jobs.php';
 		  
         <div class="row-fluid profile-wrapper">
             <?php
-            //if(check_access()===true)
+            //if(0check_access()===true)
             //{
+ 
+            if (is_user_logged_in()   ||  get_user_id() !="" ) {
+                                   
             ?>
             <div class="span12" id="profile-view">
                 	<?php
@@ -350,7 +353,21 @@ and get more applications from eager minions. Simply <a href="'.site_url().'/edi
           
             <div class="clear"></div>
             <?php
-//} 
+ }else{
+    ?>
+<div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
+            <div class="row-fluid">
+                            <div class="span3"><br><img src="<?php echo get_template_directory_uri(); ?>/images/404error.png"/></div>
+                <div class="span9"> <h4 >No Access</h4>
+        <hr>
+        Sorry, you aren't allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we\'ll get back to you as soon as possible. 
+        <br>
+        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="btn__login_oaccess" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
+        <div class="clear"></div></div>
+            </div>
+        </div>
+    <?php
+ } 
             ?>
         </div>
     </div>

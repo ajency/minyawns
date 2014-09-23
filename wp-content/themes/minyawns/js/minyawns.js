@@ -1252,8 +1252,10 @@ var image_name=$("#image_name").val();
     });
     /* end reset pasword validation */
 
-
-
+    /*trigger login lick on no acess login option click*/
+ jQuery("#btn__login_oaccess").live("click", function() {
+        jQuery("#btn__login").trigger('click');
+   });
     /* POPUP LOGIN */
 
     //hide forget password section on login pop up link click
