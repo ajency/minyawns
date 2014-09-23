@@ -1,4 +1,3 @@
-
 <?php
 /**
   Template Name: Profile Page
@@ -66,7 +65,7 @@ require 'templates/_jobs.php';
 					placement : 'bottom',
 					html : true,
 					trigger : 'hover',
-					content : '<div id="profile-data" class="verfied-content">We personally verify Minion profiles to help you be sure that they are who they claim to be and they are safe to do business with. Minions with out Verified status have yet to go through the personal verification process</div>',
+					content : '<div id="profile-data" class="verfied-content">We personally verify Minyawn profiles to help you be sure that they are who they claim to be and they are safe to do business with. Minyawns with out Verified status have yet to go through the personal verification process</div>',
 				}
 			);
 
@@ -141,7 +140,7 @@ require 'templates/_jobs.php';
                     if (get_logged_in_role() == 'Employer') {
 					
 			 echo '<div class="alert alert-msg"> Complete your profile 
-and get more applications from eager minions. Simply <a href="'.site_url().'/edit-profile"  class="" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
+and get more applications from eager minyawns. Simply <a href="'.site_url().'/edit-profile"  class="" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 
  }
                     ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>

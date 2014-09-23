@@ -23,8 +23,8 @@ require 'templates/_jobs.php';
 
     });
 </script>
-<!-- Minions have not been selected.  
-You need to confirm the minion selection by making the payment,if you leave this page the selections will be lost.-->
+<!-- Minyawns have not been selected.  
+You need to confirm the minyawn selection by making the payment,if you leave this page the selections will be lost.-->
 <style type="text/css">
     /* ROUNDED TWO */
     .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn {
@@ -381,7 +381,7 @@ You need to confirm the minion selection by making the payment,if you leave this
 <div id="requiredminyawnerror" class="modal hide fade in papypalform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
     <div class="modal-body">
-        Please Select at-least one Minion
+        Please Select at-least one Minyawn
     </div>
 </div>
 

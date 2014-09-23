@@ -61,13 +61,24 @@
 		type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 		</script>
 		<!--End of Zopim Live Chat Script-->
+		
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43096826-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
 		</head>
 			<script>
 				var siteurl='<?php echo site_url(); ?>';
 				var logouturl='<?php echo wp_logout_url('');?>';
 				var email='<?php  echo get_user_profile_email() ?>';
-				var role='<?php if (get_user_role() == "minyawn"){ echo 'Minion';} else echo 'Employer' ; ?>';
+				var role='<?php if (get_user_role() == "minyawn"){ echo 'Minyawn';} else echo 'Employer' ; ?>';
 				var logged_in_role='<?php echo get_logged_in_role() ?>';
 				var logged_in_user_id='<?php echo get_user_id(); ?>'
 				var is_logged_in='<?php echo is_user_logged_in();?>';
@@ -84,7 +95,7 @@
 				</script>
 
 	<body <?php body_class('logged-out'); ?> >
-		
+
 		<div class="mobile-menu-demo"> 
 		<div id="header">
 					<a href="#menuleft"></a>
@@ -98,9 +109,9 @@
 					<ul>
 					<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
 	<!--                                <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>-->
-					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
+					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
-									<li id="directory"><?php if (get_logged_in_role() === 'Minion'): ?>
+									<li id="directory"><?php if (get_logged_in_role() === 'Minyawn'): ?>
 					<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
 					   <?php endif; ?>	
 						<?php if (get_logged_in_role() === 'Employer'): ?>
@@ -134,7 +145,7 @@
 								<?php }else{ ?>
 										<ul>
 						<li>
-							<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup Minion </a>
+							<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup Minyawn </a>
 						
 						</li>
 						<li>
@@ -234,10 +245,10 @@
 					<li><b>Browse:</b></li>
 					<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
 									<li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
-					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
+					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
 					<li class="green-btn-top"   >
-					 <?php if (get_logged_in_role() === 'Minion'): ?>
+					 <?php if (get_logged_in_role() === 'Minyawn'): ?>
 					<i class="icon-edit"></i>&nbsp;<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
 					   <?php endif; ?>	
 						<?php if (get_logged_in_role() === 'Employer'): ?>
@@ -265,7 +276,7 @@
 						<div class=" notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
 						<div class="pull-right">
 							<div class="data-link">
-								<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup as Minion </a> 
+								<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup as a Student </a> 
 							</div>
 							<div class="data-link">
 								<a  href="#myModal" data-toggle="modal" id="link_employerregister" onclick="return true"><i class="icon-signin"></i> Signup as a Business </a> 
@@ -298,9 +309,9 @@
 	   &nbsp;<b class="text-primary">City :&nbsp; <?php /*<a data-toggle="modal" data-target="#chossecity"  class="showcity"> */ ?>
                                 <?php $admin_city =  get_option('minyawn_city'); ?>
 
-                                <select name="lst_sitecity" id="lst_sitecity" >
-                                    <option value="Seattle" <?php if($admin_city == "Seattle") echo " selected "; ?> >Seattle</option>
-                                    <option value="Fresno" <?php if($admin_city == "Fresno") echo " selected "; ?> >Fresno</option>
+                                <select name="lst_sitecity" id="lst_sitecity" > 
+	<option value="Seattle" <?php if($admin_city == "Seattle") echo " selected "; ?> >Seattle</option>
+	<option value="Fresno" <?php if($admin_city == "Fresno") echo " selected "; ?> >Fresno</option>
                                 </select>
 
                                 <?php /*</a> */ ?> </b>
@@ -310,7 +321,7 @@
 					<li><b>Browse:</b></li>
 					<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
 	<!--                                <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>-->
-					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minions Directory</a></li>
+					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
 					<li class="green-btn-top"   >
 					 
@@ -408,7 +419,7 @@
 									<div class="span5 fb-login fb-deskstop">
 										<h6 class="align-center" style="margin-bottom: 0px;">Login
 											Using Facebook</h6>
-										<p class="align-center">Get using Minions, faster !</p>
+										<p class="align-center">Get using Minyawns, faster !</p>
 										<br>
 
 										<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
@@ -456,7 +467,7 @@
 										<div class="span6 fb-login fb-mobile">
 										<h6 class="align-center" style="margin-bottom: 0px;">Login
 											Using Facebook</h6>
-										<p class="align-center">Get using Minions, faster !</p>
+										<p class="align-center">Get using Minyawns, faster !</p>
 										<br>
 
 										<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
@@ -490,7 +501,7 @@
 	 <div id="myModal" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
 	   <div class="modal-header">
 		  <button type="button" id="signup_popup_close" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
-		  <span id="div_signupheader"><h4 id="myModalLabel">Sign Up to Minyawns </h4></span>
+		  <span id="div_signupheader"><h4 id="myModalLabel">Sign Up as a Minyawn</h4></span>
 	   </div>
 	   <div class="modal-body">
 	  
@@ -531,11 +542,11 @@
 				<h6 class="align-center" style=" margin-bottom: 0px; ">
 				   Sign Up Using Facebook
 				</h6>
-				<p class="align-center">Get using Minions, faster !</p>
+				<p class="align-center">Get using Minyawns, faster !</p>
 				<br><br><br>
 				<?php
 				//if(is_page('fb-connect-test')){
-				  //jfb_output_facebook_btn(); This is commented out on purpose - email Billy for details
+				   jfb_output_facebook_btn();
 				/*}
 				else{
 					echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";

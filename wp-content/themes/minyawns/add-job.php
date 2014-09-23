@@ -401,7 +401,7 @@ $(".inline li").removeClass("selected");
                                             <label class="control-label" for="inputtask">Tags</label>
                                             <div class="controls tagsclass ">
                                                 <input  name="job_tags" id="job_tags" value="<?php echo $minyawn_job->get_job_tags(); ?>" placeholder="Tags here" class="tm-input tagsinput_jobs">
-                                                <span class="help-block">Eg: washing.</span>
+                                                <span class="help-block">Eg: Washing.</span>
                                             </div>
                                         </div>
                                         <div class="control-group small">
@@ -423,7 +423,7 @@ $(".inline li").removeClass("selected");
                                         <div class="control-group small">
                                             <label class="control-label" for="inputtask">Job Description</label>
                                             <div class="controls ">
-                                                <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" placeholder ="example I need my blue corvette cleaned I need someone who knows how to use the car buffer and has cleaned classic cars before" style="height:70px;"><?php  echo $minyawn_job->get_job_details();?></textarea>
+                                                <textarea class="span6" name="job_details" rows="10" id="job_details" cols="4" style="height:70px;"><?php  echo $minyawn_job->get_job_details();?></textarea>
                                                 <span class="help-block">Eg: I need my blue corvette cleaned. I need someone who knows how to use the car buffer and has cleaned classic cars before.</span>
                                             </div>
                                         </div>
@@ -454,7 +454,7 @@ $(".inline li").removeClass("selected");
                                         <hr>
                                         <ul>
                                             <li> Need help, I am moving out, require some extra hands.</li>
-                                            <li>Need a minion to clean my house</li>
+                                            <li>Need a minyawn to clean my house</li>
                                             <li>Need more likes for my Facebook page</li>
                                         </ul>
                                         <br>
@@ -544,7 +544,7 @@ $(".inline li").removeClass("selected");
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="inputPassword">Total Price Per Minion:</label>
+                    <label class="control-label" for="inputPassword">Total Price Per Minyawn:</label>
                     <div class="controls">
                         $12.10
                     </div>
