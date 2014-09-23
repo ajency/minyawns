@@ -350,7 +350,7 @@
    </div>
 
  <div class="container">
-   <div class="row-fluid minyawns-grid1">
+   <div class="row-fluid minyawns-grid1 minyawns-gridhome">
    
       <ul class="thumbnails owl-carousel"  id="owl-example">
        <?php
