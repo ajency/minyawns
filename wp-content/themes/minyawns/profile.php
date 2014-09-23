@@ -343,7 +343,6 @@ and get more applications from eager minions. Simply <a href="'.site_url().'/edi
             <div class="clear"></div>
             <?php
  }else{
-
     ?>
 <div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
             <div class="row-fluid">
