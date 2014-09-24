@@ -111,7 +111,7 @@
 	<!--                                <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>-->
 					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
-									<li id="directory"><?php if (get_logged_in_role() === 'Minyawn'): ?>
+									<li id="directory"><?php if (get_logged_in_role() === 'Minion'): ?>
 					<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
 					   <?php endif; ?>	
 						<?php if (get_logged_in_role() === 'Employer'): ?>
@@ -248,7 +248,7 @@
 					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
 					<li class="green-btn-top"   >
-					 <?php if (get_logged_in_role() === 'Minyawn'): ?>
+					 <?php if (get_logged_in_role() === 'Minion'): ?>
 					<i class="icon-edit"></i>&nbsp;<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
 					   <?php endif; ?>	
 						<?php if (get_logged_in_role() === 'Employer'): ?>
