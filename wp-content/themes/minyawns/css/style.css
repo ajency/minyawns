@@ -2734,4 +2734,30 @@ color: #000;
 .social-icon {
 width: 80px!important;
 }
+ 
+.minyawns-grid1 .thumbspan .thumbnail .m1 .caption .social-link{
+height:30px !important; 
+}
+.minyawns-grid1 .thumbspan .thumbnail .m1 .caption .profile-social-link{
+ 
+float:none !important;
+}
 
+.minyawns-grid1 .thumbspan .thumbnail .m2 .caption .profile-social-link{
+ 
+float:none !important;
+}
+
+ 
+ .icon-facebook-a{
+	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
+}
+ 
+#apply-job-popup .modal-body{
+	max-height: 505px !important;
+}
+ 
+.icon-facebook{
+	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
+} 
+  

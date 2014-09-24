@@ -1433,8 +1433,19 @@ var image_name=$("#image_name").val();
 
     })
 
+//on enter key press trigger form submission
+$('#myModal').live('keyup', function(e){
+  if (e.keyCode == 13) {
+    $("#btn_signup").trigger('click')
+  }
+});
 
-
+//on enter key press trigger form submission
+$('#mylogin').live('keyup', function(e){
+  if (e.keyCode == 13) { 
+    $("#btn_login").trigger('click')
+  }
+});
 
     jQuery("#btn_signup").live("click", function() {
         jQuery('#frm_signup').submit();
@@ -1483,6 +1494,7 @@ var image_name=$("#image_name").val();
                     jQuery("#signup_password").val("");
                     jQuery("#signup_fname").val("");
                     jQuery("#signup_lname").val("");
+                    window.location.href = SITEURL+'/profile/';
                 }
                 else
                 {
@@ -1642,11 +1654,23 @@ var image_name=$("#image_name").val();
     /** Apply/UnApply code */
     $('#apply-job-browse,#unapply-job').live('click', function(evt) {
 
-
-        evt.preventDefault();
         var _this = $(this);
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
+ 
+        if(_action == "apply"){
+            
+            if($("#apply-job-popup").length==0){
+
+                 $( "body" ).append(appy_job_popup_content())
+
+            }
+           
+            $("#apply-job-popup").modal('show'); 
+        }
+
+        evt.preventDefault();
+       
 
         $(this).append(' <img src="' + siteurl + '/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
         $(".load_ajax1").show();
@@ -1681,6 +1705,20 @@ var image_name=$("#image_name").val();
 
         }, 'json');
     });
+
+    function appy_job_popup_content(){
+
+        html  = '<div id="apply-job-popup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+      
+        html += '<div class="modal-body"><img src="'+THEMEURL+'/images/minyawns-job-warning.jpg">'
+         
+        html += '</div>'
+      
+        html += '</div>';
+
+        return html;
+    }
+
 
     function onload_calendar()
     {
@@ -2421,8 +2459,15 @@ function button_for_invite(model){
     return button_string;
     
 }
-
-
+ 
+ 
+ $('.show-minyawn').live('click',function(e){
+    if($(e.target).attr('href') || $(e.target).parent().attr('href')  ) {
+    return;
+  }
+       window.open(SITEURL+'/profile/'+$(e.target).closest( "li").attr('item-id')+'/','_target') 
+    
+}); 
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
 //				{
