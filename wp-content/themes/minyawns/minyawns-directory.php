@@ -29,7 +29,7 @@ require 'templates/_minyawnsdir.php';
             <div class="row-fluild">
                 <div class="span3">
                     <div class="alert alert-success alert-sidebar">
-                        <h3>Skills / Major </h3>
+                        <h3>Name / Skills / Major </h3>
                         <hr>
                         <form  method="GET" accept-charset="utf-8">
 <!--                           <select name="select3[]" id="select3" multiple="multiple" class=" hidden">
@@ -38,7 +38,7 @@ require 'templates/_minyawnsdir.php';
 
                             <ul class="holder" style="width: 600px;">
                                 <!--                              <li class="bit-box" rel="sleep" id="pt_EwU91S1atqiGQn8EbiIHAG4JulxfDChW">sleep<a class="closebutton" href="#"></a></li>-->
-                                <li class="bit-input" id="select3_annoninput"><input placeholder="Enter Major or Skills" name="filter" type="text" class="maininput" size="0" autocomplete="off"></li>
+                                <li class="bit-input" id="select3_annoninput"><input placeholder="Enter Name, Skill or Major" name="filter" type="text" class="maininput" size="0" autocomplete="off"></li>
                             </ul>
                             <div class="facebook-auto" style="width: 600px;">
                                 <ul id="select3_feed" style="width: 600px; display: none;"></ul>
