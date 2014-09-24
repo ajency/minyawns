@@ -1029,7 +1029,7 @@ background: #FFFFFF;
 padding: 7px;
 margin-top: 2px;width: auto;}
 ul.holder li.bit-box-focus { border-color: #598BEC; background: #598BEC; color: #fff; }
-ul.holder li.bit-input input { width: 138px !important;background: none;overflow:visible; margin: 0; border: 0px; outline: 0; padding: 9px 0px 2px;
+ul.holder li.bit-input input { width: 170px !important;background: none;overflow:visible; margin: 0; border: 0px; outline: 0; padding: 9px 0px 2px;
 font-size: 12px;} /* no left/right padding here please */
 ul.holder li.bit-input input.smallinput { width: 20px; }
 
@@ -2743,10 +2743,7 @@ height:30px !important;
 float:none !important;
 }
 
-.minyawns-grid1 .thumbspan .thumbnail .m2 .caption .profile-social-link{
  
-float:none !important;
-}
 
  
  .icon-facebook-a{
@@ -2761,3 +2758,4 @@ float:none !important;
 	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
 } 
   
+ 
