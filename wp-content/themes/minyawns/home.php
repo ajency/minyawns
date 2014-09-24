@@ -41,7 +41,10 @@
 				<div class="span12">
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
 					<div class="banner-desc">1-day assistants for your 1-day tasks</div>
-					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister1" onclick="return true">Sign Up and Get Your Minyawns Today</a>
+					<div class="text-center">
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_employerregister" onclick="return true">Sign Up and Get Your Minyawns Today</a>
+          <a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_minyawnregister" onclick="return true">Minyawn Signup and Apply for Jobs Now</a>
+		  </div>
 				</div>
 			
 		 </div>
