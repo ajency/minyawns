@@ -6259,9 +6259,10 @@ div.tooltip1:after {
   font-size: 1.2em;
 }
 .blog-bg {
-  background: url(../images/bg-4.jpg) bottom no-repeat;
+  background: url(../images/bg-4.png) bottom no-repeat;
   height: 250px;
   margin-top: -23px;
+  margin-left: -100px;
 }
 .blog-bg h3 {
   text-align: center;
@@ -6281,6 +6282,8 @@ div.tooltip1:after {
   text-align: center;
   color: #fff;
   font-weight: 500;
+  margin-left: 150px;
+  padding-top: 180px;
 }
 .msg-info {
   padding: 10px;
