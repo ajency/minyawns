@@ -343,6 +343,31 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
                     <div class="clear"></div>
                 </form>
             </div>
+
+
+
+
+
+<div class="upload-cont" style="margin-bottom:20px;">
+<form name="upload-form" id="upload-form" action="<?php echo get_site_url(); ?>/wp-json/photos/upload" method="POST" enctype="multipart/form-data">
+<input type="file" id="photofile" name="photo" />
+<input type="hidden" name="jobid" value="<?php echo get_the_ID(); ?>" />
+<input type="hidden" name="userid" value="<?php echo get_current_user_id(); ?>" />
+<input type="submit" id="uploadphoto" value="Upload Photo" />
+</form>
+</div>
+
+<div id="photo-container">
+
+
+</div>
+
+
+
+
+
+
+
         </div>
     </div>
 </div>
@@ -384,6 +409,113 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
         Please Select at-least one Minyawn
     </div>
 </div>
+
+
+
+
+
+<script type="text/javascript">
+$(function() {
+
+var currentUser = '<?php echo get_current_user_id(); ?>';
+var currentJob = '<?php echo get_the_ID(); ?>';
+var siteUrl = '<?php echo get_site_url(); ?>';
+
+
+<?php if ( is_user_logged_in() ) { ?>
+get_photos();
+<?php } ?> 
+
+
+function get_photos(){
+    $.get(siteUrl+"/wp-json/photos/job/"+currentJob+"/user/"+currentUser, function(data,status) { 
+     display_photos(data);
+ });
+}
+
+  
+
+function display_photos(photos){
+$.each(photos, function(index, data) {
+ $('#photo-container').append('<div style="margin:05px;float:left;"><img src="'+data.url+'"><div id="'+data.id+'" style=" text-align: center;background: black;display: block;cursor: pointer;color: white;padding: 05px">Delete</div></div>');
+ 
+$('#' + data.id).click(function() {
+  delete_photo(data.id);
+ });
+
+ });
+
+
+
+}
+
+
+
+
+
+
+
+function delete_photo(photoid){
+
+$.ajax({
+    url: siteUrl+"/wp-json/photos/delete/"+photoid,
+    type: 'DELETE',
+    success: function(response) {
+        /*if(response.status==true){
+            //alert("Photo Deleted")
+            $('#photo-container').html('');
+                get_photos();
+        }*/
+
+        //console.log(response);
+
+        $('#photo-container').html('');
+                get_photos();
+        
+    }
+  });
+
+}
+
+
+
+
+    $("#upload-form").submit(function(e)
+    {
+
+        var formObj = $(this);
+        var formURL = formObj.attr("action");
+        var formData = new FormData(this);
+        $.ajax({
+            url: formURL,
+            type: 'POST',
+            data:  formData,
+            mimeType:"multipart/form-data",
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(data, textStatus, jqXHR)
+            {
+                //alert(data);
+                 $('#photo-container').html('');
+                get_photos();
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+                alert('failed');
+            }          
+        });
+        e.preventDefault();
+        e.unbind();
+    }); 
+
+    
+});
+
+</script>
+
+
+
 
 <?php
 get_footer();

@@ -252,6 +252,14 @@ $current_user_role =  trim($user_role);
         </br></br></br></br><span id="div_confirmhire"></span>
 </div>
 
+
+
+
+
+
+
+
+
 <div class="span3 mobile-alert-box-hidden">
                   <div class="alert alert-success alert-sidebar author-data">
                       <b style="color:#000;">Employer Details</b>
@@ -293,7 +301,14 @@ $current_user_role =  trim($user_role);
                      </div>
                   </div>
     </form>
+
+
+
 </script>
+
+
+
+
 <script type="text/template" id="profile-table">   
 <% console.log('check..................')%>
 <% console.log(result) %>

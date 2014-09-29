@@ -2221,3 +2221,191 @@ function get_user_avatar_by_id($id){
 echo $user_pic_img_src;
     return $user_pic_img_src;
 }
+
+
+
+
+
+
+
+
+
+
+
+/****************Photos API****************/
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+if(is_plugin_active('json-rest-api/plugin.php')){
+
+function photo_api_init() {
+    global $photo_api;
+
+    $photo_api = new PhotoAPI();
+    add_filter( 'json_endpoints', array( $photo_api, 'register_routes' ) );
+}
+add_action( 'wp_json_server_before_serve', 'photo_api_init' );
+
+
+require_once('class.photo.php');
+
+class PhotoAPI {
+
+   /*Initialize the photo model variable*/
+   public $photo_model;
+   
+
+   /*Instantiate Photo object in construct*/
+    public function __construct() {
+        $this->photo_model = new PhotoModel();
+    }
+
+    /*Register Routes*/
+    public function register_routes( $routes ) {
+
+      //Upload route
+       $routes['/photos/upload'] = array(
+            array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
+       //Delete route
+       $routes['/photos/delete/(?P<photoid>\d+)'] = array(
+            array( array( $this, 'delete_photos'), WP_JSON_Server::DELETABLE ),
+            );
+
+       //Route to get photos either by job id or user id or both
+        $routes['/photos/job/(?P<jobid>\d+)/user/(?P<userid>\d+)'] = array(
+            array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
+            );
+
+        $routes['/photos/job/(?P<jobid>\d+)'] = array(
+            array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
+            );
+
+        $routes['/photos/user/(?P<userid>\d+)'] = array(
+            array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
+            );
+
+        $routes['/login/username/(?P<username>\w+)/password/(?P<password>\w+)'] = array(
+            array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
+            );
+
+         return $routes;
+    }
+
+
+
+    //Upload photos and get response
+    public function upload_photos(){
+     if($this->photo_model->upload_photos()){
+        $resp = 'true';
+    }else{
+        $resp = 'false';
+    }
+
+    $response = array('status' => $resp);
+
+    $response = json_encode( $response );
+
+    //$response = json_encode( $this->photo_model->upload_photos() );
+
+
+
+    header( "Content-Type: application/json" );
+
+    echo $response;
+
+    exit;
+
+}
+
+    //Delete photos and get response
+    public function delete_photos($photoid){
+        if($this->photo_model->delete_photos($photoid)){
+        $resp = 'true';
+    }else{
+        $resp = 'false';
+    }
+
+    $response = array('status' => $resp);
+
+    $response = json_encode( $response );
+
+    header( "Content-Type: application/json" );
+
+    echo $response;
+
+    exit;
+    }
+
+    //Get photos
+    public function get_photos($jobid='',$userid=''){
+        
+     $response = $this->photo_model->get_photos($jobid, $userid);
+     $response = json_encode( $response );
+
+     header( "Content-Type: application/json" );
+
+     echo $response;
+
+     exit;
+ }
+
+
+//User Authentication
+ public function get_login_status($username,$password){
+    global $wp, $wp_rewrite, $wp_the_query, $wp_query;
+
+
+    if(empty($username) || empty($password)){
+
+        return false;
+
+    } else {
+
+        $status = false;
+
+        $auth = wp_authenticate($username, $password );
+
+        if( is_wp_error($auth) ) { 
+            wp_logout();     
+            $status = false;
+        } else {
+
+            /*$user_login = $username;
+            $user = get_userdatabylogin($user_login);
+            $user_id = $user->ID;
+            wp_set_current_user($user_id, $user_login);
+            wp_set_auth_cookie($user_id);
+            do_action('wp_login', $user_login);*/
+
+
+            $creds = array();
+            $creds['user_login'] = $username;
+            $creds['user_password'] = $password;
+            $creds['remember'] = ($remember_me === "true") ? true : false;
+
+            $user = wp_signon( $creds, true );
+
+            $status = true;
+
+           // $status = wp_parse_auth_cookie(LOGGED_IN_COOKIE);
+        }
+
+        $response = array('status'=>$status);
+        $response = json_encode( $response );
+
+        header( "Content-Type: application/json" );
+
+        echo $response;
+
+        exit;
+
+    }   
+}
+
+
+  
+}
+
+
+}
+
