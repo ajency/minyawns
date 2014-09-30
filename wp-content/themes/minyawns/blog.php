@@ -6,8 +6,8 @@ get_header();
 
 ?>
 <div class="blog-bg">
-<h3><img src="<?php echo get_template_directory_uri(); ?>/images/big-minyawns.png"/> Blog</h3>
-<?php if (function_exists('qt_custom_breadcrumbs')) qt_custom_breadcrumbs(); ?>
+<!-- <h3><img src="<?php echo get_template_directory_uri(); ?>/images/big-minyawns.png"/> Blog</h3> 
+<?php if (function_exists('qt_custom_breadcrumbs')) qt_custom_breadcrumbs(); ?>-->
 </div>
 <div class="container bg-white ">
 		<div class="row-fluid blog-container">
