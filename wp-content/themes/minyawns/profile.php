@@ -146,7 +146,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
                 <div class="row-fluid min_profile  <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">
 
-                    <div class="span2 ">
+                    <div class="span4 ">
 					<div id="change-avt" class="<?php
                                                                    
                     if (get_user_role() == 'employer') {
@@ -175,7 +175,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                                                   <input id="change-avatar" type="file" name="files" style="display:none;">
                             <?php }?>
                     </div>
-                    <div class="span10">
+                    <div class="span8">
 					  <?php if (get_user_role() === 'minyawn'): ?>
 					<div class="social-link profile-social-link"> 
 				
@@ -250,7 +250,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 <div class="clear"></div><br>
  <?php if (get_user_role() === 'minyawn'): ?>
 				<div class="row-fluid">
-					<div class="span2">
+					<div class="span4">
 						<div class="right-wideget-bar">
 							<h3>Ratings</h3>
 							<?php if (get_user_role() === 'minyawn'): ?>
@@ -288,7 +288,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 						</div>
 					
 					</div>
-					<div class="span10">
+					<div class="span8">
 						<div class="list-box">
 							<h3>Skills</h3>
 							 <?php
@@ -308,7 +308,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 				<h4><i class="icon-briefcase"></i> &nbsp; Job List</h4>
 				<p>All your Jobs are listed below</p>
 				<div class="row-fluid accordion">
-					<div class="span12">
+					<div class="span9">
 						<ul class="unstyled job-view-list" id="accordion24">
 						<dl class="accordion">
                              
@@ -317,6 +317,20 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 						   </ul>
 					</div>
 					<div class="span3">
+					<div id="masonry">	
+					<div class="grid-sizer"></div>
+						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
+						<div class="item"><img src="http://33.media.tumblr.com/3a6b875cda37ad3905fbc6446ff5e9a3/tumblr_nbrwr32aSI1qzmdqso1_500.jpg" border="0"></div>
+						<div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
+						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
+						<div class="item"><img src="http://33.media.tumblr.com/3a6b875cda37ad3905fbc6446ff5e9a3/tumblr_nbrwr32aSI1qzmdqso1_500.jpg" border="0"></div>
+						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
+						<div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
+						<div class="item"><img src="http://33.media.tumblr.com/3a6b875cda37ad3905fbc6446ff5e9a3/tumblr_nbrwr32aSI1qzmdqso1_500.jpg" border="0"></div>
+						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/maxi-zoo.jpg" alt="Maxi zoo" width="229"></div>
+						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
+						<div class="item"><img src="http://lorempixum.com/200/200/food/1" alt=""></div>
+					</div>
 					</div>
 				</div>
 
@@ -343,5 +357,14 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+var container = document.querySelector('#masonry');
+		var msnry = new Masonry( container, {
+  columnWidth: 50,
+  itemSelector: '.item'
+	});
+	});
+</script>
 <?php
 get_footer();

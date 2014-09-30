@@ -345,6 +345,22 @@ function load_browse_jobs(id, _action, category_ids) {
                 });
                 jQuery(".load_ajax").hide();
                 jQuery("#loader").hide();
+				
+				
+				
+				
+				
+				//masonry script
+				  
+	var container = document.querySelector('#masonry');
+		var msnry = new Masonry( container, {
+  /*columnWidth: 10,*/
+  columnWidth:'.grid-sizer',	
+  itemSelector: '.item'
+	});
+	
+	
+	//////////////
             }
 
 
@@ -444,6 +460,7 @@ function fetch_my_jobs(id)
                 jQuery(".no-result").hide()
                 //jQuery("#accordion24").empty();
                 var template = _.template(jQuery("#jobs-table").html());
+				
                 var samplejobs = _.template(jQuery("#sample-jobs-template").html());
                 var profiletemp = _.template(jQuery("#profile-table").html());
 

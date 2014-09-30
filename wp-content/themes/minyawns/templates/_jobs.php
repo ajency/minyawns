@@ -1,3 +1,4 @@
+
 <script type="text/template" id="jobs-table"> 
       <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%> panel">
       
@@ -285,8 +286,22 @@ $current_user_role =  trim($user_role);
                      <span id="selection_message"></span>
                                     </div>
                             <%}%>
-                 
-					   
+           
+		<div class="row-fluid">
+			<div class="span12 align-left">
+			
+				<div id="masonry">
+					<div class="item"></div>
+					<div class="item thumbnail"></div>
+					<div class="item medium"></div>
+					<div class="item large"></div>
+					<div class="item"></div>
+					<div class="item thumbnail"></div>
+					<div class="item small"></div>
+				</div>
+				
+			</div>
+		</div>
 </div>
  
                        
@@ -305,14 +320,14 @@ $current_user_role =  trim($user_role);
 							 <div class="row-fluid mobile-hide" >
 							  <div class="<% /*if(currentpage_user_role=="employer"){ span9 } else{ */ %>span6<% /* } */  %> ">
 							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
-                                      <div class="span1">
+                                      <div class="span2">
 									  <div class="job-date">
 										<b><%= result.job_start_day %></b>
 										<%= result.job_start_month %>
 									  </div>
 									  
 									  </div>
-									  <div class="span11 border-right job-details">
+									  <div class="span10 border-right job-details">
                                           <div class="job-title">
                                              <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
                                           </div>
@@ -327,7 +342,7 @@ $current_user_role =  trim($user_role);
                                        </div>
                                     </div>
 							  </div>
-							  <div class="<% /* if(currentpage_user_role=="employer"){ span3< else{ */ %>span4<% /* } */ %> status">
+							  <div class="<% /* if(currentpage_user_role=="employer"){ span3< else{ */ %>span3<% /* } */ %> status">
 							    <div class="st-moile-span1">
 
                                           <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
@@ -337,7 +352,7 @@ $current_user_role =  trim($user_role);
                                        </div>
 							  </div>
 				<% /*if(currentpage_user_role!="employer"){ */ %>
-                 <div class="span2">
+                 <div class="span3">
 
                   		<div class="st-moile-span1">
                      			 <%= review.status1 %>
@@ -366,7 +381,7 @@ $current_user_role =  trim($user_role);
                                        </div>
                                  </div>
                                  </div>
-                                 <div class="span4 status">
+                                 <div class="span3 status">
 								                    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
                                     <div class="st-fluid">
                                      
@@ -721,4 +736,5 @@ $current_user_role =  trim($user_role);
 </div>
         
 </script>
+
 
