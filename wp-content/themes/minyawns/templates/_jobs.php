@@ -276,8 +276,38 @@ $current_user_role =  trim($user_role);
 					  </div>
 						
                         <br>
+                    </div> 
+            <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>" / >
+
+            <%  if(check_capability("apply_for_jobs")!=false){%>
+            <div class="alert alert-success alert-sidebar author-data" id="upload">
+             
+                  <div class="row-fluid">
+                  <div class="span12">
+                    <div id="drop">
+                      Drop Your Job Photos Here 
+                      <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                      <input type="file" name="photo" multiple />
                     </div>
-                 
+
+                    <ul>
+                      <!-- The file uploads will be shown here -->
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            <% } %>
+            <div class="alert alert-success alert-sidebar author-data" >
+              
+                  <div class="row-fluid">
+                  <div class="span12">
+                    
+                    <ul id="photo-grid">
+                      
+                    </ul>
+                  </div>
+                </div>
+            </div>
               <% if( ( (is_admin==true)  || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>

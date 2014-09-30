@@ -1,4 +1,10 @@
+
+/*
+photo upload scripts
+*/
+ 
 jQuery(document).ready(function($) {
+ 
 
 //if(!logged_in_user_id){
 //load_browse_jobs();
@@ -342,12 +348,19 @@ function load_browse_jobs(id, _action, category_ids) {
                         jQuery(".dialog-success").hide(); // hides the ADD JOB FORM ON BROWSE JOBS
 
                     }
+
                 });
                 jQuery(".load_ajax").hide();
                 jQuery("#loader").hide();
             }
 
+            //option to upload job photos
+         
+            photoUpload(); 
+            
 
+            //display jb photos
+            getJobPhotos();
 
         },
         error: function(err) {
@@ -357,10 +370,149 @@ function load_browse_jobs(id, _action, category_ids) {
     });
 
 }
+//photo upload scripts starts here
+
+function getJobPhotos(){
+
+ $.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
+                console.log('collection')
+                  _.each(collection, function(model) {
+                      appendToGrid(model)
+                  });
+            });
 
 
+ }
+
+function photoUpload(){ 
+ 
+ 
+    if(check_capability('apply_for_jobs')!=false){
+
+        var ul = jQuery('#upload ul');
+
+        jQuery('#drop a').click(function(){
+            // Simulate a click on the file input button
+            // to show the file browser dialog
+            jQuery(this).parent().find('input').click();
+        });
+
+        // Initialize the jQuery File Upload plugin
+        jQuery('#upload').fileupload({
+
+            // This element will accept file drag/drop uploading
+            dropZone: jQuery('#drop'),
 
 
+            url: SITEURL + '/api/photos/upload',
+
+            dataType: 'json',
+
+            // This function is called when a file is added to the queue;
+            // either via the browse button, or via drag/drop:
+            add: function (e, data) {
+
+                var tpl = jQuery('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
+                    ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
+
+                // Append the file name and file size
+                tpl.find('p').text(data.files[0].name)
+                             .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+
+                // Add the HTML to the UL element
+                data.context = tpl.appendTo(ul);
+
+                // Initialize the knob plugin
+                tpl.find('input').knob();
+
+                // Listen for clicks on the cancel icon
+                tpl.find('span').click(function(){
+
+                    if(tpl.hasClass('working')){
+                        jqXHR.abort();
+                    }
+
+                    tpl.fadeOut(function(){
+                        tpl.remove();
+                    });
+
+                });
+
+                // Automatically upload the file once it is added to the queue
+                var jqXHR = data.submit();
+            },
+
+            progress: function(e, data){
+
+                // Calculate the completion percentage of the upload
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+
+                // Update the hidden input field and trigger a change
+                // so that the jQuery knob plugin knows to update the dial
+                data.context.find('input').val(progress).change();
+
+                if(progress == 100){
+                    data.context.removeClass('working');
+                    setTimeout(function(){data.context.find('span').trigger('click')}, 1000);
+              
+                }
+            },
+            done: function(e, data) { 
+     
+                    if(data.result.status=="true"){
+                        appendToGrid();
+                    }else
+                    {
+                        photoUpLoadError();
+                    }
+                     
+                   
+     
+                }, 
+            fail:function(e, data){
+                // Something has gone wrong!
+                data.context.addClass('error');
+            }
+
+        });
+
+
+        // Prevent the default action when a file is dropped on the window
+        jQuery(document).on('drop dragover', function (e) {
+            e.preventDefault();
+        });
+    }
+}
+
+ function photoUpLoadError(){
+    alert("Photo upload error")
+ }
+ function appendToGrid(model){
+ 
+    alert("Append To Grid") 
+      jQuery("#photo-grid").append('<li><img src="'+model.url+'"></li>')
+ }
+
+ function display_job_photo_option(){
+    
+ }
+    // Helper function that formats the file sizes
+    function formatFileSize(bytes) {
+        if (typeof bytes !== 'number') {
+            return '';
+        }
+
+        if (bytes >= 1000000000) {
+            return (bytes / 1000000000).toFixed(2) + ' GB';
+        }
+
+        if (bytes >= 1000000) {
+            return (bytes / 1000000).toFixed(2) + ' MB';
+        }
+
+        return (bytes / 1000).toFixed(2) + ' KB';
+    }
+//photo upload scripts ends here
 function fetch_my_jobs(id)
 {
 
@@ -1695,3 +1847,4 @@ $(".tag a").live('click', function() {
 
     $(this).parent().remove();
 });
+

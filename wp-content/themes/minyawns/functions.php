@@ -27,6 +27,8 @@ require_once 'cron_functions.php';
 
 require_once 'templates/email_template.php';
 
+//load the functions related to users
+require_once '/functions/users.php';
 
 //remove admin bar from front end
 show_admin_bar(false);
@@ -87,6 +89,7 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('imgareaselect-default', get_template_directory_uri() . '/css/imgareaselect-default.css', array(), null);
                 wp_enqueue_style('imgareaselect-deprecated', get_template_directory_uri() . '/css/imgareaselect-deprecated.css', array(), null);
                 wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
+                wp_enqueue_style('photo-upload', get_template_directory_uri() . '/css/photo-upload.css', array(), null);
 //            wp_enqueue_style('bootstrap-lightbox', get_template_directory_uri() . '/css/bootstrap-lightbox.min.css', array(), null);
                 //wp_enqueue_style('data_grids_main', get_template_directory_uri() . '/css/data_grids_main.css', array(), null);
                 //     wp_enqueue_style('data_grids_main_01', get_template_directory_uri() . '/css/data_grids_style_01.css', array(), null);
@@ -117,7 +120,10 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
             //if(is_page('profile'))
 
             wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
-
+            wp_enqueue_script('jquery-knob', get_template_directory_uri() . '/js/jquery.knob.js', array('jquery'), null);
+            wp_enqueue_script('ui-widget', get_template_directory_uri() . '/js/jquery.ui.widget.js', array('jquery'), null);
+            wp_enqueue_script('iframe-transport', get_template_directory_uri() . '/js/jquery.iframe-transport.js', array('jquery'), null);
+            
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery', 'jquery-ui'), null);
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
             wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/modernizr.custom.14550.js', array('jquery'), null);
@@ -178,9 +184,10 @@ wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.str
     			wp_enqueue_script('braintree', get_template_directory_uri() . '/braintree_lib/braintree.js', array('jquery'), null);
            }
 
-
+            wp_localize_script('jquery-ui', 'AJAXURL', admin_url( "admin-ajax.php" ) );
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
             wp_localize_script('jquery-ui', 'THEMEURL', get_template_directory_uri());
+            wp_localize_script( 'jquery-ui', 'USER', get_miny_current_user() );
             break;
     }
 }
@@ -2235,6 +2242,20 @@ echo $user_pic_img_src;
 /****************Photos API****************/
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
 if(is_plugin_active('json-rest-api/plugin.php')){
+/**
+     * Change the json rest api plugin prefix from wp-json to api
+     *
+     * @since ajency-activity-and-notifications (0.1)
+     *
+     * @uses json rest api plugin filter hook json_url_prefix
+     */
+function change_json_rest_api_prefix($prefix){
+
+    return "api";
+
+}
+add_filter( 'json_url_prefix', 'change_json_rest_api_prefix',10,1);
+
 
 function photo_api_init() {
     global $photo_api;
