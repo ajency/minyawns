@@ -2221,3 +2221,221 @@ function get_user_avatar_by_id($id){
 echo $user_pic_img_src;
     return $user_pic_img_src;
 }
+
+
+
+
+
+
+/****************Photos API****************/
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+if(is_plugin_active('json-rest-api/plugin.php')){
+
+function photo_api_init() {
+    global $photo_api;
+
+    $photo_api = new PhotoAPI();
+    add_filter( 'json_endpoints', array( $photo_api, 'register_routes' ) );
+}
+add_action( 'wp_json_server_before_serve', 'photo_api_init' );
+
+
+require_once('class.photo.php');
+
+class PhotoAPI {
+
+   /*Initialize the photo model variable*/
+   public $photo_model;
+   
+
+   /*Instantiate Photo object in construct*/
+    public function __construct() {
+        $this->photo_model = new PhotoModel();
+    }
+
+    /*Register Routes*/
+    public function register_routes( $routes ) {
+
+      //Upload route
+       $routes['/photos/upload'] = array(
+            array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
+       //Delete route
+       $routes['/photos/delete/(?P<photoid>\d+)'] = array(
+            array( array( $this, 'delete_photos'), WP_JSON_Server::DELETABLE ),
+            );
+
+       //Route to get photos either by job id or user id or both
+        $routes['/photos/job/(?P<jobid>\d+)/user/(?P<userid>\d+)'] = array(
+            array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
+            );
+
+        $routes['/photos/job/(?P<jobid>\d+)'] = array(
+            array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
+            );
+
+        $routes['/photos/user/(?P<userid>\d+)'] = array(
+            array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
+            );
+
+        //Route to login
+        $routes['/login/username/(?P<username>\w+)/password/(?P<password>\w+)'] = array(
+            array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
+            );
+
+         return $routes;
+    }
+
+
+
+    //Upload photos and get response
+    public function upload_photos(){
+     if($this->photo_model->upload_photos()){
+        $resp = 'true';
+    }else{
+        $resp = 'false';
+    }
+
+    $response = array('status' => $resp);
+
+    $response = json_encode( $response );
+
+    //$response = json_encode( $this->photo_model->upload_photos() );
+
+
+
+    header( "Content-Type: application/json" );
+
+    echo $response;
+
+    exit;
+
+}
+
+    //Delete photos and get response
+    public function delete_photos($photoid){
+        if($this->photo_model->delete_photos($photoid)){
+        $resp = 'true';
+    }else{
+        $resp = 'false';
+    }
+
+    $response = array('status' => $resp);
+
+    $response = json_encode( $response );
+
+    header( "Content-Type: application/json" );
+
+    echo $response;
+
+    exit;
+    }
+
+    //Get photos
+    public function get_photos($jobid='',$userid=''){
+        
+     $response = $this->photo_model->get_photos($jobid, $userid);
+     $response = json_encode( $response );
+
+     header( "Content-Type: application/json" );
+
+     echo $response;
+
+     exit;
+ }
+
+
+//User Authentication and set cookie
+ public function get_login_status($username,$password){
+
+    //Check for empty username or password
+    if(empty($username) || empty($password)){
+        return false;
+    } else {
+        //Login using username and password 
+        $auth = wp_authenticate($username, $password );
+
+       // Check for any error 
+        if( is_wp_error($auth) ) { 
+            wp_logout();
+            wp_clear_auth_cookie();     
+            $response = array('status'=>false);
+        } else {
+            //get the user id
+            $user_id = $auth->data->ID;
+
+            //Set expiration time
+            $expiration = time() + apply_filters( 'auth_cookie_expiration', 14 * DAY_IN_SECONDS, $user_id, strtotime( '+14 days' ) );
+
+            //Needed for the login grace period in wp_validate_auth_cookie().
+            $expire = $expiration + ( 12 * HOUR_IN_SECONDS );
+
+
+            if ( '' === $secure ) {
+                $secure = is_ssl();
+            }
+
+            // Frontend cookie is secure when the auth cookie is secure and the site's home URL is forced HTTPS.
+            $secure_logged_in_cookie = $secure && 'https' === parse_url( get_option( 'home' ), PHP_URL_SCHEME );
+
+            //Filter whether the connection is secure.
+            $secure = apply_filters( 'secure_auth_cookie', $secure, $user_id );
+
+            //Filter whether to use a secure cookie when logged-in.
+            $secure_logged_in_cookie = apply_filters( 'secure_logged_in_cookie', $secure_logged_in_cookie, $user_id, $secure );
+
+            if ( $secure ) {
+                $auth_cookie_name = SECURE_AUTH_COOKIE;
+                $scheme = 'secure_auth';
+            } else {
+                $auth_cookie_name = AUTH_COOKIE;
+                $scheme = 'auth';
+            }
+
+            //Generate token
+            $manager = WP_Session_Tokens::get_instance( $user_id );
+            $token = $manager->create( $expiration );
+
+            //Generate logged-in and auth cookie
+            $auth_cookie = wp_generate_auth_cookie( $user_id, $expiration, $scheme, $token );
+            $logged_in_cookie = wp_generate_auth_cookie( $user_id, $expiration, 'logged_in', $token );
+
+            //Fires immediately before the authentication cookie is set.
+            do_action( 'set_auth_cookie', $auth_cookie, $expire, $expiration, $user_id, $scheme );
+
+            //Fires immediately before the secure authentication cookie is set.
+            do_action( 'set_logged_in_cookie', $logged_in_cookie, $expire, $expiration, $user_id, 'logged_in' );
+
+            setcookie($auth_cookie_name, $auth_cookie, $expire, PLUGINS_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie($auth_cookie_name, $auth_cookie, $expire, ADMIN_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, COOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+            if ( COOKIEPATH != SITECOOKIEPATH )
+                setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, SITECOOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+
+            
+            $response = array('status'=> 'true',
+                'logged_in' => $logged_in_cookie,
+                'authentication' =>  $auth_cookie
+                );
+        }
+
+        $response = json_encode( $response );
+
+        header( "Content-Type: application/json" );
+
+        echo $response;
+
+        exit;
+
+    }   
+}
+
+
+  
+}
+
+
+}
+
+
