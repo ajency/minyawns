@@ -352,6 +352,19 @@ function load_browse_jobs(id, _action, category_ids) {
                 });
                 jQuery(".load_ajax").hide();
                 jQuery("#loader").hide();
+				
+				
+				
+				
+				
+				//masonry script
+				  
+
+	
+	
+
+	
+	//////////////
             }
 
             //option to upload job photos
@@ -590,12 +603,21 @@ function fetch_my_jobs(id)
                 jQuery("#load-more-my-jobs,.load_more_profile").hide();
                 jQuery(".previous-jobs").hide();
                 jQuery("#accordion24").html(template);
+				
+  jQuery('.isotope').isotope({
+    itemSelector: '.item',
+    masonry: {
+      columnWidth: '.grid-sizer'
+    }
+  });
+
             } else {
                 // jQuery("#load-more-my-jobs").hide();
                 jQuery("#list-my-jobs").show();
                 jQuery(".no-result").hide()
                 //jQuery("#accordion24").empty();
                 var template = _.template(jQuery("#jobs-table").html());
+				
                 var samplejobs = _.template(jQuery("#sample-jobs-template").html());
                 var profiletemp = _.template(jQuery("#profile-table").html());
 
@@ -638,6 +660,15 @@ function fetch_my_jobs(id)
                            
                             jQuery("#accordion24").prepend(html);
                             jQuery("#selection").hide();
+							
+							//isitope
+jQuery('.isotope').isotope({
+    itemSelector: '.item',
+    masonry: {
+      columnWidth: '.grid-sizer'
+    }
+  });
+  
 
                         } else
                         {
