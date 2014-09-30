@@ -317,20 +317,27 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 						   </ul>
 					</div>
 					<div class="span3">
-					<div id="masonry">	
-					<div class="grid-sizer"></div>
-						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
-						<div class="item"><img src="http://33.media.tumblr.com/3a6b875cda37ad3905fbc6446ff5e9a3/tumblr_nbrwr32aSI1qzmdqso1_500.jpg" border="0"></div>
-						<div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
-						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
-						<div class="item"><img src="http://33.media.tumblr.com/3a6b875cda37ad3905fbc6446ff5e9a3/tumblr_nbrwr32aSI1qzmdqso1_500.jpg" border="0"></div>
-						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
-						<div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
-						<div class="item"><img src="http://33.media.tumblr.com/3a6b875cda37ad3905fbc6446ff5e9a3/tumblr_nbrwr32aSI1qzmdqso1_500.jpg" border="0"></div>
-						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/maxi-zoo.jpg" alt="Maxi zoo" width="229"></div>
-						<div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
-						<div class="item"><img src="http://lorempixum.com/200/200/food/1" alt=""></div>
-					</div>
+					<div class="isotope">
+  <div class="grid-sizer"></div>
+  
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
+  
+ 
+  
+  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
+  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
+  
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
+  
+ 
+  
+  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
+  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
+</div>
 					</div>
 				</div>
 
@@ -357,14 +364,5 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
         </div>
     </div>
 </div>
-<script>
-$(document).ready(function(){
-var container = document.querySelector('#masonry');
-		var msnry = new Masonry( container, {
-  columnWidth: 50,
-  itemSelector: '.item'
-	});
-	});
-</script>
 <?php
 get_footer();

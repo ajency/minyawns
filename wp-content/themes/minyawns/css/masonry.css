@@ -1,75 +1,61 @@
 * {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-	
-.item{
-	/*width:  40%;*/
-	float: left;
-	/*margin:5px;*/
-}
-	
-.grid-sizer,.item{
-	width:35%;
-}	
-/*@media screen and (max-width:767px){
-	.item{
-		width:100%;
-	}
-}
-@media screen and (min-width:652px) and (max-width:767px){
-	.item{
-		width:23%;
-	}
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-@media screen and (min-width:651px){
-	.item{
-		width:22%;
-	}
-}
-
-@media screen and (min-width:322px) and (max-width:480px){
-	.item{
-		width:46.5%;
-	}
-}
-@media screen and (min-width:640px){
-	.item{
-		width:33%;
-	}
-}
-
-@media screen and (min-width:480px){
-	.item{
-		width:47.5%;
-	}
-}*/
-
-/*
-@media screen and (max-width:767px){
-	.item,.grid-sizer{
-		width:22%;
-	}
-}
+/* force scrollbar, prevents initial gap */
 
 
-@media screen and (max-width:651px){
-	.item,.grid-sizer{
-		width:30%;
-	}
+img{max-width:100%;
+height:auto;}
+
+/* ---- isotope ---- */
+
+
+
+/* clear fix */
+.isotope:after {
+  content: '';
+  display: block;
+  clear: both;
 }
+
+/* ---- .element-item ---- */
+
+/* 5 columns, percentage width */
+.item,
+.grid-sizer {
+  width: 50%;
+  border:4px solid #fff;
+}
+
+.item {
+  float: left;
+  }
+
+@media screen and (max-width:768px){
+  .item,.grid-sizer{
+      width:25%;
+  }
+ }  
+  
+@media screen and (max-width:640px){
+  .item,.grid-sizer{
+      width:30%;
+  }
+ }
+
 
 @media screen and (max-width:480px){
-	.item,.grid-sizer{
-		width:45%;
-	}
-}
+  .item,.grid-sizer{
+      width:50%;
+  }
+ }
 
 @media screen and (max-width:321px){
-	.item,.grid-sizer{
-		width:100%;
-	}
-}*/
+  .item,.grid-sizer{
+      width:100%;
+  }
+ }
 

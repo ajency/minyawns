@@ -352,13 +352,10 @@ function load_browse_jobs(id, _action, category_ids) {
 				
 				//masonry script
 				  
-	var container = document.querySelector('#masonry');
-		var msnry = new Masonry( container, {
-  /*columnWidth: 10,*/
-  columnWidth:'.grid-sizer',	
-  itemSelector: '.item'
-	});
+
 	
+	
+
 	
 	//////////////
             }
@@ -454,6 +451,14 @@ function fetch_my_jobs(id)
                 jQuery("#load-more-my-jobs,.load_more_profile").hide();
                 jQuery(".previous-jobs").hide();
                 jQuery("#accordion24").html(template);
+				
+  jQuery('.isotope').isotope({
+    itemSelector: '.item',
+    masonry: {
+      columnWidth: '.grid-sizer'
+    }
+  });
+
             } else {
                 // jQuery("#load-more-my-jobs").hide();
                 jQuery("#list-my-jobs").show();
@@ -503,6 +508,15 @@ function fetch_my_jobs(id)
                            
                             jQuery("#accordion24").prepend(html);
                             jQuery("#selection").hide();
+							
+							//isitope
+jQuery('.isotope').isotope({
+    itemSelector: '.item',
+    masonry: {
+      columnWidth: '.grid-sizer'
+    }
+  });
+  
 
                         } else
                         {
