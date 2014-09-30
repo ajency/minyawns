@@ -2261,8 +2261,13 @@ class PhotoAPI {
     /*Register Routes*/
     public function register_routes( $routes ) {
 
-      //Upload route
+      //Upload route for user pictures
        $routes['/photos/upload'] = array(
+            array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
+       //Upload route for user pictures upload to the job
+       $routes['/photos/upload/(?P<jobid>\d+)'] = array(
             array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
             );
 
@@ -2294,16 +2299,18 @@ class PhotoAPI {
 
 
     //Upload photos and get response
-    public function upload_photos(){
-     if($this->photo_model->upload_photos()){
+    public function upload_photos($jobid = 0){
+     /*if($this->photo_model->upload_photos()){
         $resp = 'true';
     }else{
         $resp = 'false';
-    }
+    }*/
 
-    $response = array('status' => $resp);
+    //$status = $this->photo_model->upload_photos();
 
-    $response = json_encode( $response );
+    //$response = array('status' => $resp);
+
+    $response = json_encode( $this->photo_model->upload_photos($jobid) );
 
     //$response = json_encode( $this->photo_model->upload_photos() );
 
@@ -2426,5 +2433,3 @@ class PhotoAPI {
 }
 
 
-
-print_r($_COOKIE);
