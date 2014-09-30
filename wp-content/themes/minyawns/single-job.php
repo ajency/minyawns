@@ -346,8 +346,24 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
 
 
 
+ 
+<?php if (is_user_logged_in()){ ?>
+<div class="upload-cont" style="margin-bottom:20px;">
+<form name="upload-form" id="upload-form" action="<?php echo get_site_url(); ?>/wp-json/photos/upload/<?php echo get_the_ID(); ?>" method="POST" enctype="multipart/form-data">
+<input type="file" id="photofile" name="photo" />
+<input type="hidden" name="jobid" value="<?php echo get_the_ID(); ?>" />
+<input type="hidden" name="userid" value="<?php echo get_current_user_id(); ?>" />
+<?php $upload_nonce = wp_create_nonce('secretstring'); ?>
+<input type="hidden" name="upload_nonce" value="<?php echo $upload_nonce; ?>" />
+<input type="submit" id="uploadphoto" value="Upload Photo" />
+</form>
+</div>
 
 
+<div id="photo-container"></div>
+
+<?php } ?>
+ 
 
 
 
@@ -395,7 +411,9 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
     <div class="modal-body">
         Please Select at-least one Minyawn
     </div>
+ 
 </div> 
+ 
 
 <?php
 get_footer();

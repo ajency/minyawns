@@ -2288,8 +2288,13 @@ class PhotoAPI {
     /*Register Routes*/
     public function register_routes( $routes ) {
 
-      //Upload route
+      //Upload route for user pictures
        $routes['/photos/upload'] = array(
+            array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
+       //Upload route for user pictures upload to the job
+       $routes['/photos/upload/(?P<jobid>\d+)'] = array(
             array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
             );
 
@@ -2321,16 +2326,18 @@ class PhotoAPI {
 
 
     //Upload photos and get response
-    public function upload_photos(){
-     if($this->photo_model->upload_photos()){
+    public function upload_photos($jobid = 0){
+     /*if($this->photo_model->upload_photos()){
         $resp = 'true';
     }else{
         $resp = 'false';
-    }
+    }*/
 
-    $response = array('status' => $resp);
+    //$status = $this->photo_model->upload_photos();
 
-    $response = json_encode( $response );
+    //$response = array('status' => $resp);
+
+    $response = json_encode( $this->photo_model->upload_photos($jobid) );
 
     //$response = json_encode( $this->photo_model->upload_photos() );
 
@@ -2388,13 +2395,13 @@ class PhotoAPI {
 
     } else {
 
-        $status = false;
+        $response = array('status'=>false);
 
         $auth = wp_authenticate($username, $password );
 
         if( is_wp_error($auth) ) { 
             wp_logout();     
-            $status = false;
+            $response = array('status'=>false);
         } else {
 
             /*$user_login = $username;
@@ -2405,19 +2412,35 @@ class PhotoAPI {
             do_action('wp_login', $user_login);*/
 
 
+            $user_login = $username;
+            $user = get_userdatabylogin($user_login);
+            $user_id = $user->ID;
+
+
             $creds = array();
             $creds['user_login'] = $username;
             $creds['user_password'] = $password;
             $creds['remember'] = ($remember_me === "true") ? true : false;
 
-            $user = wp_signon( $creds, true );
+            $user = wp_signon( $creds, false );
 
-            $status = true;
+            //$user_id = get_current_user_id();
+            //$logincookie = wp_generate_auth_cookie('1',strtotime( '+14 days' ),'logged_in','');
 
-           // $status = wp_parse_auth_cookie(LOGGED_IN_COOKIE);
+            $logincookie = wp_generate_auth_cookie( $user_id, strtotime( '+14 days' ), 'logged_in', '' );
+            setcookie(LOGGED_IN_COOKIE, $logincookie, strtotime( '+14 days' ), COOKIEPATH, COOKIE_DOMAIN, false, false);
+
+            //do_action( 'set_logged_in_cookie', LOGGED_IN_COOKIE, '43200', strtotime( '+14 days' ), '1','logged_in');
+
+           // apply_filters('auth_cookie', $cookie, $user_id, $expiration, $scheme)
+
+            $response = array('status'=> 'true',
+                            'cookie'=> LOGGED_IN_COOKIE,
+                            'value' =>  $logincookie
+                    );
         }
 
-        $response = array('status'=>$status);
+        //$response = array('status'=>$status);
         $response = json_encode( $response );
 
         header( "Content-Type: application/json" );
@@ -2435,4 +2458,5 @@ class PhotoAPI {
 
 
 }
+
 
