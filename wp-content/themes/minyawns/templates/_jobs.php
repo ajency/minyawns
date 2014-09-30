@@ -207,7 +207,7 @@ $current_user_role =  trim($user_role);
                                                     <% if(result.job_owner_id === logged_in_user_id){%>
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
-             <div class="row-fluid minyawns-grid1">
+             <div class="row-fluid minyawns-grid1" >
 		  <%  if ($(window).width() < 800) {%>
 			
 			<div class="span3 mobile-alert-box">
@@ -280,8 +280,8 @@ $current_user_role =  trim($user_role);
                     </div> 
             <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>" / >
 
-            <%  if(check_capability("apply_for_jobs")!=false){%>
-            <div class="alert alert-success alert-sidebar author-data" id="upload">
+            
+            <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">
              
                   <div class="row-fluid">
                   <div class="span12">
@@ -297,18 +297,17 @@ $current_user_role =  trim($user_role);
                   </div>
                 </div>
             </div>
-            <% } %>
-            <div class="alert alert-success alert-sidebar author-data" >
-              
-                  <div class="row-fluid">
-                  <div class="span12">
-                    
-                    <ul id="photo-grid">
-                      
-                    </ul>
-                  </div>
-                </div>
-            </div>
+           
+           <div class="row-fluid" id="photo-grid" style="display:none">
+      <div class="span12 align-left">
+      
+        <div class="isotope">
+          <div class="grid-sizer"></div>
+          
+             </div>
+        
+       </div>
+    </div>
               <% if( ( (is_admin==true)  || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>
@@ -325,21 +324,7 @@ $current_user_role =  trim($user_role);
                                     </div>
                             <%}%>
            
-		<div class="row-fluid">
-			<div class="span12 align-left">
-			
-				<div id="masonry">
-					<div class="item"></div>
-					<div class="item thumbnail"></div>
-					<div class="item medium"></div>
-					<div class="item large"></div>
-					<div class="item"></div>
-					<div class="item thumbnail"></div>
-					<div class="item small"></div>
-				</div>
-				
-			</div>
-		</div>
+		
 </div>
  
                        

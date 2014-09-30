@@ -331,27 +331,28 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 						   </ul>
 					</div>
 					<div class="span3">
+
+                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
+                     
+                          <div class="row-fluid">
+                          <div class="span12">
+                            <div id="drop">
+                              Drop Your Job Photos Here 
+                              <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                              <input type="file" name="photo" multiple />
+                            </div>
+
+                            <ul>
+                              <!-- The file uploads will be shown here -->
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
 					<div class="isotope">
-  <div class="grid-sizer"></div>
-  
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
-  
- 
-  
-  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
-  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
-  
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
-  
- 
-  
-  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
-  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
-</div>
+                          <div class="grid-sizer"></div>
+                          
+                          
+                        </div>
 					</div>
 				</div>
 

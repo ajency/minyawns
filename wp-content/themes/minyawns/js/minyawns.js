@@ -2503,6 +2503,17 @@ function toProperCase(str) {
         }); 
         return ret_val;
     }
+
+
+    //isotope
+function set_isotope(){
+      jQuery('.isotope').isotope({
+            itemSelector: '.item',
+            masonry: {
+              columnWidth: '.grid-sizer'
+            }
+          });
+}
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
 //				{

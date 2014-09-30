@@ -5,7 +5,8 @@ photo upload scripts
  
 jQuery(document).ready(function($) {
  
-
+var current_job;
+var current_job_status;
 //if(!logged_in_user_id){
 //load_browse_jobs();
 //return false;
@@ -324,7 +325,10 @@ function load_browse_jobs(id, _action, category_ids) {
                             });
                             jQuery(".load_ajaxsingle_job").hide();
                             jQuery("#collapse" + model.toJSON().post_id + "").addClass("in");
-                            load_job_minions(model);
+                            load_job_minions(model); 
+                            current_job = model
+                            console.log("current_jobmodel")
+                            console.log(current_job)
                             jQuery(".load_ajaxsingle_job_minions").hide();
 
                         }
@@ -356,24 +360,15 @@ function load_browse_jobs(id, _action, category_ids) {
 				
 				
 				
-				
-				//masonry script
-				  
+			
 
-	
-	
-
-	
-	//////////////
+	 
             }
 
-            //option to upload job photos
-         
-            photoUpload(); 
-            
+            //display photo containers
+            display_job_photo_option();
+           
 
-            //display jb photos
-            getJobPhotos();
 
         },
         error: function(err) {
@@ -392,15 +387,26 @@ function getJobPhotos(){
                   _.each(collection, function(model) {
                       appendToGrid(model)
                   });
+                    set_isotope();
             });
 
 
  }
 
+
+function getUserPhotos(user_id){
+
+     $.get(SITEURL+"/api/photos/user/"+user_id, {}, function(collection)  { 
+                console.log('collection')
+                  _.each(collection, function(model) {
+                      appendToGrid(model)
+                  });
+                    set_isotope();
+            });
+}
 function photoUpload(){ 
  
- 
-    if(check_capability('apply_for_jobs')!=false){
+  
 
         var ul = jQuery('#upload ul');
 
@@ -473,7 +479,8 @@ function photoUpload(){
             done: function(e, data) { 
      
                     if(data.result.status=="true"){
-                        appendToGrid();
+                        model  = {url:'http://localhost/minyawns/wp-content/uploads/2014/09/images.jpg'};
+                        appendToGrid(model);
                     }else
                     {
                         photoUpLoadError();
@@ -493,21 +500,74 @@ function photoUpload(){
         // Prevent the default action when a file is dropped on the window
         jQuery(document).on('drop dragover', function (e) {
             e.preventDefault();
-        });
-    }
+        }); 
 }
 
  function photoUpLoadError(){
     alert("Photo upload error")
  }
  function appendToGrid(model){
- 
-    alert("Append To Grid") 
-      jQuery("#photo-grid").append('<li><img src="'+model.url+'"></li>')
+  var  newItems = jQuery('<div class="item"><img src="'+model.url+'" alt="Tour de Yorkshire" width="229" />');
+jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
+
+      jQuery(".isotope").isotope( 'append','')
+   
+
  }
 
+
+/*function to check if the user can view or 
+ upload photos  and display the UI accordingly
+*/
  function display_job_photo_option(){
+
+ 
+        var user_minyawn = user_employer = user_admin = false;
+
+        //if minyawn and selected for the job
+         if( check_capability('apply_for_jobs') && jQuery.inArray( USER.id , current_job.toJSON().applied_user_id ) !=-1 && current_job_status=="Expired" )
+        {
+            user_minyawn = true;
+        }
+
+        //if employer and author of the job
+         if( check_capability('manage_jobs') &&    USER.id  ==  current_job.toJSON().job_author_id  && current_job_status=="Expired"  )
+        {
+            user_employer = true;
+        }
+         
+        //if adminsitartor
+        if( check_capability('manage_options') && current_job_status=="Expired"  )
+        {
+            user_employer = true;
+        }
+         
+        if(user_minyawn==true ||user_employer==true || user_admin==true ){
+            
+            jQuery("#upload").show();
+
+             //option to upload job photos
+                 
+            photoUpload(); 
+
+        }
+        if(current_job_status=="Expired"){
+
+            jQuery("#photo-grid").show();
+            //display jb photos
+            getJobPhotos();
+            
+        }
+                     
     
+ }
+
+ function display_user_photo_option(){
+
+        user_id = jQuery("#upload").attr("user-id")
+        
+        getUserPhotos(user_id);
+
  }
     // Helper function that formats the file sizes
     function formatFileSize(bytes) {
@@ -604,12 +664,9 @@ function fetch_my_jobs(id)
                 jQuery(".previous-jobs").hide();
                 jQuery("#accordion24").html(template);
 				
-  jQuery('.isotope').isotope({
-    itemSelector: '.item',
-    masonry: {
-      columnWidth: '.grid-sizer'
-    }
-  });
+                set_isotope()
+
+                display_user_photo_option();
 
             } else {
                 // jQuery("#load-more-my-jobs").hide();
@@ -662,12 +719,9 @@ function fetch_my_jobs(id)
                             jQuery("#selection").hide();
 							
 							//isitope
-jQuery('.isotope').isotope({
-    itemSelector: '.item',
-    masonry: {
-      columnWidth: '.grid-sizer'
-    }
-  });
+                            set_isotope()
+
+                            display_user_photo_option();
   
 
                         } else
@@ -801,7 +855,7 @@ function job_status_e(model) {
 
         job_status = "Expired";
     }
-
+current_job_status = job_status; 
     switch (job_status)
     {
         case 'Available': //JOB STATUS AVAILABLE
@@ -1545,8 +1599,7 @@ function job_status_li(model)
 
 
 function load_job_minions(jobmodel)
-{
-
+{ 
     jQuery(".load_ajaxsingle_job_minions").show();
     var Fetchuserprofiles = Backbone.Collection.extend({
         model: Userprofile,
