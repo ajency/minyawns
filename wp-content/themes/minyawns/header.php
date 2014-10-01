@@ -30,7 +30,7 @@
 			 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
 	   
 		<!-- media-queries.js (fallback) -->
@@ -111,7 +111,7 @@
 	<!--                                <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>-->
 					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
-									<li id="directory"><?php if (get_logged_in_role() === 'Minyawn'): ?>
+									<li id="directory"><?php if (get_logged_in_role() === 'Minion'): ?>
 					<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
 					   <?php endif; ?>	
 						<?php if (get_logged_in_role() === 'Employer'): ?>
@@ -248,7 +248,7 @@
 					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
 					<li class="green-btn-top"   >
-					 <?php if (get_logged_in_role() === 'Minyawn'): ?>
+					 <?php if (get_logged_in_role() === 'Minion'): ?>
 					<i class="icon-edit"></i>&nbsp;<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
 					   <?php endif; ?>	
 						<?php if (get_logged_in_role() === 'Employer'): ?>

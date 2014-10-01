@@ -703,6 +703,7 @@ $user_email=get_userdata($minion_ids[$i]);
                         'major' => isset($all_meta_for_user['major']) ? $all_meta_for_user['major'] : '',
                         'user_skills' => isset($all_meta_for_user['user_skills']) ? $all_meta_for_user['user_skills'] : '',
                         'linkedin' => isset($all_meta_for_user['linkedin']) ? preg_replace('#^http?://#', '', rtrim($all_meta_for_user['linkedin'], '/')) : '',
+                        'facebook_link' => isset($all_meta_for_user['facebook_link']) ? preg_replace('#^http?://#', '', rtrim($all_meta_for_user['facebook_link'], '/')) : '',
                         'user_email' =>$user_email->user_email, /* nick name temp fix */
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,

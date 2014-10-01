@@ -27,6 +27,8 @@ require_once 'cron_functions.php';
 
 require_once 'templates/email_template.php';
 
+//load the functions related to users
+require_once '/functions/users.php';
 
 //remove admin bar from front end
 show_admin_bar(false);
@@ -62,6 +64,8 @@ function minyawns_scripts_styles() {
             break;
         case 'DEVELOPMENT':
         default:
+        
+  
             if (is_page('Home') || is_home()) {
                 wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
                 wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array(), null);
@@ -70,6 +74,8 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('style', get_template_directory_uri() . '/css/style.css', array(), null);
                 wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome.css', array(), null);
                 wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
+                wp_enqueue_style('owl-carousel-css', get_template_directory_uri() . '/css/owl.carousel.css', array(), null);
+
             } else {
                 wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
                 wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array(), null);
@@ -85,6 +91,7 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('imgareaselect-default', get_template_directory_uri() . '/css/imgareaselect-default.css', array(), null);
                 wp_enqueue_style('imgareaselect-deprecated', get_template_directory_uri() . '/css/imgareaselect-deprecated.css', array(), null);
                 wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
+                wp_enqueue_style('photo-upload', get_template_directory_uri() . '/css/photo-upload.css', array(), null);
 //            wp_enqueue_style('bootstrap-lightbox', get_template_directory_uri() . '/css/bootstrap-lightbox.min.css', array(), null);
                 //wp_enqueue_style('data_grids_main', get_template_directory_uri() . '/css/data_grids_main.css', array(), null);
                 //     wp_enqueue_style('data_grids_main_01', get_template_directory_uri() . '/css/data_grids_style_01.css', array(), null);
@@ -101,26 +108,31 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
             }
 		wp_enqueue_style('real-state-landing', get_template_directory_uri() . '/css/landing-pages.css', array(), null);
 
-
+          
 
             wp_enqueue_script('bxslider', get_template_directory_uri() . '/js/jquery.bxslider.min.js', array('jquery'), null);
             //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
-			
+ 
+            wp_enqueue_script('owl-carousel-js', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), null);
+       
 			wp_enqueue_script('masonry.pkgd', get_template_directory_uri() . '/js/masonry.pkgd.js', array(), null);
 			wp_enqueue_script('holder', get_template_directory_uri() . '/js/holder.js', array(), null);
 			wp_enqueue_script('isotope', get_template_directory_uri() . '/js/isotope.pkgd.js', array(), null);
 			wp_enqueue_script('imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.js', array(), null);
 			
-
+ 
 		
 
             //if(is_page('profile'))
 
             wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
-
+            wp_enqueue_script('jquery-knob', get_template_directory_uri() . '/js/jquery.knob.js', array('jquery'), null);
+            wp_enqueue_script('ui-widget', get_template_directory_uri() . '/js/jquery.ui.widget.js', array('jquery'), null);
+            wp_enqueue_script('iframe-transport', get_template_directory_uri() . '/js/jquery.iframe-transport.js', array('jquery'), null);
+            
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery', 'jquery-ui'), null);
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
             wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/modernizr.custom.14550.js', array('jquery'), null);
@@ -181,8 +193,10 @@ wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.str
     			wp_enqueue_script('braintree', get_template_directory_uri() . '/braintree_lib/braintree.js', array('jquery'), null);
            }
 
-
+            wp_localize_script('jquery-ui', 'AJAXURL', admin_url( "admin-ajax.php" ) );
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
+            wp_localize_script('jquery-ui', 'THEMEURL', get_template_directory_uri());
+            wp_localize_script( 'jquery-ui', 'USER', get_miny_current_user() );
             break;
     }
 }
@@ -278,7 +292,7 @@ function popup_usersignup() {
               wp_send_json($response);
               $success = true; */
            // commented on 19june2014  $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.<a href='#mylogin'  class='signin-text' id='sign-in-link' data-dismiss='modal' aria-hidden='true'  data-toggle='modal'> Sign in here</a></div>";
-            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered.<a href='".site_url()."/wp-login.php'  class='signin-text' id='sign-in-link' aria-hidden='true'  ".(is_page('fb-connect-test')?"  data-dismiss='modal' data-toggle='modal' ": " " )."> Sign in here</a></div>";
+            $msg = "<div class='alert alert-success alert-box '>  <button type='button' class='close' data-dismiss='alert'>&times;</button>You have successfully registered. Redirecting to your profile....</div>";
 
             $wpdb->update($wpdb->users, array('user_activation_key' => $user_activation_key), array('user_login' => $userdata_['user_email']));
             $wpdb->update($wpdb->users, array('user_status' => 0), array('user_login' => $userdata_['user_email']));
@@ -314,6 +328,18 @@ function popup_usersignup() {
             
 
             wp_new_user_notification($user_id, $userdata_['user_pass']);
+             //auto login the user
+            $creds['user_login'] =  $userdata_['user_login'];
+
+            $creds['user_password'] =  $userdata_['user_pass'];
+
+            $creds['remember'] = false;
+
+            $user = wp_signon( $creds, false ); 
+
+            wp_set_current_user( $user_id, $user->data->user_login );
+
+            wp_set_auth_cookie( $user_id );
 
             $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
             wp_send_json($response);
@@ -369,9 +395,9 @@ add_filter('wp_authenticate_user', 'authenticate_active_user', 10, 2);
 
 
 //added on 6aug2013 to add a custom role for the fb user, overrides plugin's default user role
-add_filter('wpfb_inserting_user', 'fbautoconnect_insert_user', 11, 2);
+add_filter('wpfb_inserting_user', 'fbautoconnect_inserting_user', 11, 2);
 
-function fbautoconnect_insert_user($user_data, $fbuser) {
+function fbautoconnect_inserting_user($user_data, $fbuser) {
     global $_POST, $_REQUEST, $redirectTo;
     //echo "<script>    returnToPreviousPage(); alert('test" . $_POST['fb_chk_usersigninform'] . "'); </script>";
 
@@ -394,6 +420,20 @@ function fbautoconnect_insert_user($user_data, $fbuser) {
 
     }
 }
+
+
+//set global fbuser for accessing after inserting user
+function fbautoconnect_insert_user($user_data, $fbuser ){
+
+    global $temp_fbuser;
+
+    $temp_fbuser = $fbuser;
+
+    return $user_data;
+
+}
+add_filter('wpfb_insert_user','fbautoconnect_insert_user', 10,2);
+
 
 /** function to send welcome mail on user sign up
  * @param $data
@@ -428,6 +468,13 @@ function send_register_welcome_email($data){
 function sendfb_user_register_mail($arg){
 
     global $wpdb;
+
+    //update user meta
+
+    global $temp_fbuser;
+    update_user_meta($arg['WP_ID'],'facebook_link',$temp_fbuser['link']);
+  
+
 
     send_register_welcome_email($arg['WP_UserData']);
 
@@ -877,29 +924,29 @@ function check_access() {
 
 function no_access_page($user_role, $page_slug) {
     if ($user_role != "Not logged in")
-        echo '<div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
-			<div class="row-fluid">
-				<div class="span3"><br><img src="' . site_url() . '/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
-				<div class="span9">	<h4 >No Access</h4>
-		<hr>
-		Sorry, you aren\'t allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we\'ll get back to you as soon as possible. 
-		<br>
-		<a href="' . site_url() . '" class="btn btn-large btn-block btn-success default-btn">Go Home</a>
-		<div class="clear"></div></div>
-			</div>
-		</div><input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="' . site_url() . '/' . $page_slug . '/" />';
+        echo "<div class='alert alert-info ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
+            <div class='row-fluid'>
+                <div class='span3'><br><img src='" . site_url() . "/wp-content/themes/minyawns/images/minyaws-icon.png'/></div>
+                <div class='span9'> <h4 >No Access</h4>
+        <hr>
+        Sorry, you aren\'t allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href='mailto:support@minyawns.com'>support@minyawns.com</a> with your username and the link of the page you are trying to access and we\"ll get back to you as soon as possible. 
+        <br>
+        <a href='" . site_url() . "' class='btn btn-large btn-block btn-success default-btn'>Go Home</a>
+        <div class='clear'></div></div>
+            </div>
+        </div><input type='hidden' name='noaccess_redirect_url' id='noaccess_redirect_url' value='" . site_url() . "/" . $page_slug . "/' />";
     else
-        echo '<div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
-			<div class="row-fluid">
-				<div class="span3"><br><img src="' . site_url() . '/wp-content/themes/minyawns/images/minyaws-icon.png"/></div>
-				<div class="span9">	<h4 >No Access</h4>
-		<hr>
-		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
-		<br>
-		<a href="#fakelink" class="btn btn-large btn-block btn-success default-btn" onclick="jQuery(\'#btn__login\').click();" >Login</a>
-		<div class="clear"></div></div>
-			</div>
-		</div> <input type="hidden" name="noaccess_redirect_url" id="noaccess_redirect_url" value="' . site_url() . '/' . $page_slug . '/" />';
+        echo "<div class='alert alert-info ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
+            <div class='row-fluid'>
+                <div class='span3'><br><img src='" . site_url() . "/wp-content/themes/minyawns/images/minyaws-icon.png'/></div>
+                <div class='span9'> <h4 >No Access</h4>
+        <hr>
+        Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
+        <br>
+        <a href='#fakelink' class='btn btn-large btn-block btn-success default-btn' onclick='jQuery(\"#btn__login\").click();' >Login</a>
+        <div class='clear'></div></div>
+            </div>
+        </div> <input type='hidden' name='noaccess_redirect_url' id='noaccess_redirect_url' value='" . site_url() . "/" . $page_slug . "/' />";
     return false;
 }
 
@@ -2113,3 +2160,306 @@ function hide_login_nav(){
 add_action( 'login_head', 'hide_login_nav' );
 
 */
+
+ //additonal field to user profile to 
+//display user in home page footer
+function my_show_extra_profile_fields( $user=array() ) { ?>
+ 
+<h3>Extra profile information</h3>
+ 
+<table class="form-table">
+    <tr>
+        <th><label for="twitter">Display on homepage footer </label></th>
+        <td>
+            <input type="checkbox" value = "1" name="display_on_homepage_footer" 
+
+id="display_on_homepage_footer"  <?php if($user->display_on_homepage_footer==1){ echo "checked"; } 
+
+?>    /><br />
+             
+        </td>
+    </tr>
+</table>
+<?php }
+
+
+add_action( 'edit_user_profile', 'my_show_extra_profile_fields' ,10,1);
+add_action( 'user_new_form', 'my_show_extra_profile_fields' ,10,1);
+
+
+//save addtional suer profile fields
+ 
+function my_save_extra_profile_fields( $user_id ) {
+    if ( !current_user_can( 'edit_user', $user_id ) )
+        return false;
+    if(isset($_POST['display_on_homepage_footer'])){
+        update_user_meta( $user_id, 'display_on_homepage_footer', $_POST['display_on_homepage_footer'] );
+    }
+    
+}
+
+
+add_action( 'personal_options_update', 'my_save_extra_profile_fields' );
+add_action( 'edit_user_profile_update', 'my_save_extra_profile_fields' );
+add_action( 'user_register', 'my_save_extra_profile_fields' );
+
+
+function get_users_for_homepage_footer(){
+
+
+    $args = array( 
+                'role'         => 'minyawn',
+                'meta_key'     => 'display_on_homepage_footer',
+                'meta_value'   => '1',
+                'meta_compare' => '=' 
+            );
+    $homepage_users = get_users($args);
+
+    return $homepage_users;
+}
+
+
+function get_user_avatar_by_id($id){
+
+    $avatar_attachment = get_user_meta($id,'avatar_attachment');
+
+    $user_profile_pic =  isset($avatar_attachment['avatar_attachment']) ? trim($avatar_attachment['avatar_attachment'][0]) : false;
+
+    if ($user_profile_pic !== false) {
+
+        $user_pic_img_src =  wp_get_attachment_image($user_profile_pic);
+
+    } else {
+
+        $user_pic_img_src = get_avatar($id);
+
+    }
+echo $user_pic_img_src;
+    return $user_pic_img_src;
+}
+
+
+
+
+
+
+
+
+
+
+
+/****************Photos API****************/
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+if(is_plugin_active('json-rest-api/plugin.php')){
+/**
+     * Change the json rest api plugin prefix from wp-json to api
+     *
+     * @since ajency-activity-and-notifications (0.1)
+     *
+     * @uses json rest api plugin filter hook json_url_prefix
+     */
+function change_json_rest_api_prefix($prefix){
+
+    return "api";
+
+}
+add_filter( 'json_url_prefix', 'change_json_rest_api_prefix',10,1);
+
+
+function photo_api_init() {
+    global $photo_api;
+
+    $photo_api = new PhotoAPI();
+    add_filter( 'json_endpoints', array( $photo_api, 'register_routes' ) );
+}
+add_action( 'wp_json_server_before_serve', 'photo_api_init' );
+
+
+require_once('class.photo.php');
+
+class PhotoAPI {
+
+   /*Initialize the photo model variable*/
+   public $photo_model;
+   
+
+   /*Instantiate Photo object in construct*/
+    public function __construct() {
+        $this->photo_model = new PhotoModel();
+    }
+
+    /*Register Routes*/
+    public function register_routes( $routes ) {
+
+      //Upload route for user pictures
+       $routes['/photos/upload'] = array(
+            array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
+       //Upload route for user pictures upload to the job
+       $routes['/photos/upload/(?P<jobid>\d+)'] = array(
+            array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
+       //Delete route
+       $routes['/photos/delete/(?P<photoid>\d+)'] = array(
+            array( array( $this, 'delete_photos'), WP_JSON_Server::DELETABLE ),
+            );
+
+       //Route to get photos either by job id or user id or both
+        $routes['/photos/job/(?P<jobid>\d+)/user/(?P<userid>\d+)'] = array(
+            array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
+            );
+
+        $routes['/photos/job/(?P<jobid>\d+)'] = array(
+            array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
+            );
+
+        $routes['/photos/user/(?P<userid>\d+)'] = array(
+            array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
+            );
+
+        $routes['/login/username/(?P<username>\w+)/password/(?P<password>\w+)'] = array(
+            array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
+            );
+
+         return $routes;
+    }
+
+
+
+    //Upload photos and get response
+    public function upload_photos($jobid = 0){
+     /*if($this->photo_model->upload_photos()){
+        $resp = 'true';
+    }else{
+        $resp = 'false';
+    }*/
+
+    //$status = $this->photo_model->upload_photos();
+
+    //$response = array('status' => $resp);
+
+    $response = json_encode( $this->photo_model->upload_photos($jobid) );
+
+    //$response = json_encode( $this->photo_model->upload_photos() );
+
+
+
+    header( "Content-Type: application/json" );
+
+    echo $response;
+
+    exit;
+
+}
+
+    //Delete photos and get response
+    public function delete_photos($photoid){
+        if($this->photo_model->delete_photos($photoid)){
+        $resp = 'true';
+    }else{
+        $resp = 'false';
+    }
+
+    $response = array('status' => $resp);
+
+    $response = json_encode( $response );
+
+    header( "Content-Type: application/json" );
+
+    echo $response;
+
+    exit;
+    }
+
+    //Get photos
+    public function get_photos($jobid='',$userid=''){
+        
+     $response = $this->photo_model->get_photos($jobid, $userid);
+     $response = json_encode( $response );
+
+     header( "Content-Type: application/json" );
+
+     echo $response;
+
+     exit;
+ }
+
+
+//User Authentication
+ public function get_login_status($username,$password){
+    global $wp, $wp_rewrite, $wp_the_query, $wp_query;
+
+
+    if(empty($username) || empty($password)){
+
+        return false;
+
+    } else {
+
+        $response = array('status'=>false);
+
+        $auth = wp_authenticate($username, $password );
+
+        if( is_wp_error($auth) ) { 
+            wp_logout();     
+            $response = array('status'=>false);
+        } else {
+
+            /*$user_login = $username;
+            $user = get_userdatabylogin($user_login);
+            $user_id = $user->ID;
+            wp_set_current_user($user_id, $user_login);
+            wp_set_auth_cookie($user_id);
+            do_action('wp_login', $user_login);*/
+
+
+            $user_login = $username;
+            $user = get_userdatabylogin($user_login);
+            $user_id = $user->ID;
+
+
+            $creds = array();
+            $creds['user_login'] = $username;
+            $creds['user_password'] = $password;
+            $creds['remember'] = ($remember_me === "true") ? true : false;
+
+            $user = wp_signon( $creds, false );
+
+            //$user_id = get_current_user_id();
+            //$logincookie = wp_generate_auth_cookie('1',strtotime( '+14 days' ),'logged_in','');
+
+            $logincookie = wp_generate_auth_cookie( $user_id, strtotime( '+14 days' ), 'logged_in', '' );
+            setcookie(LOGGED_IN_COOKIE, $logincookie, strtotime( '+14 days' ), COOKIEPATH, COOKIE_DOMAIN, false, false);
+
+            //do_action( 'set_logged_in_cookie', LOGGED_IN_COOKIE, '43200', strtotime( '+14 days' ), '1','logged_in');
+
+           // apply_filters('auth_cookie', $cookie, $user_id, $expiration, $scheme)
+
+            $response = array('status'=> 'true',
+                            'cookie'=> LOGGED_IN_COOKIE,
+                            'value' =>  $logincookie
+                    );
+        }
+
+        //$response = array('status'=>$status);
+        $response = json_encode( $response );
+
+        header( "Content-Type: application/json" );
+
+        echo $response;
+
+        exit;
+
+    }   
+}
+
+
+  
+}
+
+
+}
+
+

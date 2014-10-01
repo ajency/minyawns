@@ -26,7 +26,7 @@ height:auto;}
 /* 5 columns, percentage width */
 .item,
 .grid-sizer {
-  width: 50%;
+  width: 48%;
   border:4px solid #fff;
 }
 

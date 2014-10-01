@@ -1161,10 +1161,12 @@ var image_name=$("#image_name").val();
 
                     if ($("#tab_identifier").val() === '1') {
                         $("#accordion24").append(html);
+                        alert('2')
                     }
                     else {
 
                         $("#accordion24").append(html);
+                         alert('3')
                     }
 
                 });
@@ -1252,8 +1254,10 @@ var image_name=$("#image_name").val();
     });
     /* end reset pasword validation */
 
-
-
+    /*trigger login lick on no acess login option click*/
+ jQuery("#btn__login_oaccess").live("click", function() {
+        jQuery("#btn__login").trigger('click');
+   });
     /* POPUP LOGIN */
 
     //hide forget password section on login pop up link click
@@ -1433,8 +1437,19 @@ var image_name=$("#image_name").val();
 
     })
 
+//on enter key press trigger form submission
+$('#myModal').live('keyup', function(e){
+  if (e.keyCode == 13) {
+    $("#btn_signup").trigger('click')
+  }
+});
 
-
+//on enter key press trigger form submission
+$('#mylogin').live('keyup', function(e){
+  if (e.keyCode == 13) { 
+    $("#btn_login").trigger('click')
+  }
+});
 
     jQuery("#btn_signup").live("click", function() {
         jQuery('#frm_signup').submit();
@@ -1483,6 +1498,7 @@ var image_name=$("#image_name").val();
                     jQuery("#signup_password").val("");
                     jQuery("#signup_fname").val("");
                     jQuery("#signup_lname").val("");
+                    window.location.href = SITEURL+'/profile/';
                 }
                 else
                 {
@@ -1642,11 +1658,23 @@ var image_name=$("#image_name").val();
     /** Apply/UnApply code */
     $('#apply-job-browse,#unapply-job').live('click', function(evt) {
 
-
-        evt.preventDefault();
         var _this = $(this);
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
+ 
+        if(_action == "apply"){
+            
+            if($("#apply-job-popup").length==0){
+
+                 $( "body" ).append(appy_job_popup_content())
+
+            }
+           
+            $("#apply-job-popup").modal('show'); 
+        }
+
+        evt.preventDefault();
+       
 
         $(this).append(' <img src="' + siteurl + '/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
         $(".load_ajax1").show();
@@ -1681,6 +1709,20 @@ var image_name=$("#image_name").val();
 
         }, 'json');
     });
+
+    function appy_job_popup_content(){
+
+        html  = '<div id="apply-job-popup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+      
+        html += '<div class="modal-body"><img src="'+THEMEURL+'/images/minyawns-job-warning.jpg">'
+         
+        html += '</div>'
+      
+        html += '</div>';
+
+        return html;
+    }
+
 
     function onload_calendar()
     {
@@ -2421,8 +2463,57 @@ function button_for_invite(model){
     return button_string;
     
 }
+ 
+ 
+ $('.show-minyawn').live('click',function(e){
+    if($(e.target).attr('href') || $(e.target).parent().attr('href')  ) {
+    return;
+  }
+       window.open(SITEURL+'/profile/'+$(e.target).closest( "li").attr('item-id')+'/','_target') 
+    
+}); 
+
+function toProperCase(str) { 
+        var noCaps = ['of','a','the','and','an','am','or','nor','but','is','if','then', 
+                      'else','when','at','from','by','on','off','for','in','out','to','into','with'];
+        return str.replace(/\w\S*/g, function(txt, offset){
+            if(offset != 0 && noCaps.indexOf(txt.toLowerCase()) != -1){
+                return txt.toLowerCase();    
+            }
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+ function check_capability (user_cap) { 
+ 
+        ret_val = false; 
+        jQuery.each(USER.all_caps, function(i, val) {
+             
+ 
+            if( user_cap==val)
+            {
+ 
+                capability_name =  val.replace(/_/g,' ');
+                capability_name =  toProperCase(capability_name);
+                ret_val = capability_name.replace(/Ph /g,'');
+ 
+                return false;
+
+            }
+
+        }); 
+        return ret_val;
+    }
 
 
+    //isotope
+function set_isotope(){
+      jQuery('.isotope').isotope({
+            itemSelector: '.item',
+            masonry: {
+              columnWidth: '.grid-sizer'
+            }
+          });
+}
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
 //				{

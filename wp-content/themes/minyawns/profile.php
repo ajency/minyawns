@@ -125,8 +125,11 @@ require 'templates/_jobs.php';
 		  
         <div class="row-fluid profile-wrapper">
             <?php
-            //if(check_access()===true)
+            //if(0check_access()===true)
             //{
+ 
+            if (is_user_logged_in()   ||  get_user_id() !="" ) {
+                                   
             ?>
             <div class="span12" id="profile-view">
                 	<?php
@@ -143,7 +146,7 @@ require 'templates/_jobs.php';
 and get more applications from eager minyawns. Simply <a href="'.site_url().'/edit-profile"  class="" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 
  }
-                    ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs" class=""> Click Here</a></h4>
+                    ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs/#browse" class=""> Click Here</a></h4>
                 <div class="row-fluid min_profile  <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">
 
                     <div class="span4 ">
@@ -177,21 +180,26 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     </div>
                     <div class="span8">
 					  <?php if (get_user_role() === 'minyawn'): ?>
-					<div class="social-link profile-social-link"> 
-				
-					<?php  if(strlen(user_profile_linkedin()) >0 ){ ?>
-					<a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a></div>
+				<div class="social-link profile-social-link"> 
+                
+                    <?php  if(strlen(user_profile_linkedin()) >0 ){ ?>
+                    <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a> 
                                         <?php }else {?>
-                                        <a href='#'><i class="icon-linkedin"></i></a></div>
+                                        <a href='#'><i class="icon-linkedin"></i></a> 
                                             <?php }?>
                                             
-                                            
-                                            <?php endif; ?>		                      
+                    <?php  if(strlen(user_profile_facebook()) >0 ){ ?>
+                    <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
+                                        <?php }else {?>
+                                        <a href='#'  class="icon-facebook-a"><i class="icon-facebook" ></i></a>
+                                            <?php }?>                        
+                                            <?php endif; ?> 
+                    </div>	                      
 					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
                             } else {
-                                user_profile_first_name() . " " . user_profile_last_name();
+                                echo user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit"><i class="icon-edit"></i> Edit</a><?php } ?>
 
@@ -223,6 +231,12 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 								   <li class="major_data">
 								   Major : <b>  <?php echo user_college_major(); ?></b>
 								   </li>
+                                   <li class="major_data">
+                                   Email :  <b>  <a href="mailto:<?php user_profile_email();?>" target="_top">
+                                                    <?php user_profile_email(); ?>
+                                                </a>
+                                            </b>
+                                   </li>
 								   </ul>
                      <?php
                             else :
@@ -317,27 +331,30 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 						   </ul>
 					</div>
 					<div class="span3">
+                    
+                    <form><input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
+                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
+                     
+                          <div class="row-fluid">
+                          <div class="span12">
+                            <div id="drop">
+                              Drop Your Job Photos Here 
+                              <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                              <input type="file" name="photo" multiple />
+                            </div>
+
+                            <ul>
+                              <!-- The file uploads will be shown here -->
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
+                    </form>
 					<div class="isotope">
-  <div class="grid-sizer"></div>
-  
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
-  
- 
-  
-  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
-  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
-  
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
-  
- 
-  
-  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
-  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
-</div>
+                          <div class="grid-sizer"></div>
+                          
+                          
+                        </div>
 					</div>
 				</div>
 
@@ -359,7 +376,21 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
           
             <div class="clear"></div>
             <?php
-//} 
+ }else{
+    ?>
+<div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
+            <div class="row-fluid">
+                            <div class="span3"><br><img src="<?php echo get_template_directory_uri(); ?>/images/403error.jpg"/></div>
+                <div class="span9"> <h4 >No Access</h4>
+        <hr>
+        Sorry, you aren't allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we'll get back to you as soon as possible. 
+        <br>
+        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="btn__login_oaccess" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
+        <div class="clear"></div></div>
+            </div>
+        </div>
+    <?php
+ } 
             ?>
         </div>
     </div>

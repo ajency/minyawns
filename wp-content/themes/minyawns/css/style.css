@@ -543,7 +543,7 @@ div.profile-wrapper{
 	overflow: hidden;
 	width: 100%;
 	height: auto !important;
-	min-height: 600px;
+	min-height: 650px;
 }
 .single-job-1 .data-title {
 width: 1124px;
@@ -1029,7 +1029,7 @@ background: #FFFFFF;
 padding: 7px;
 margin-top: 2px;width: auto;}
 ul.holder li.bit-box-focus { border-color: #598BEC; background: #598BEC; color: #fff; }
-ul.holder li.bit-input input { width: 138px !important;background: none;overflow:visible; margin: 0; border: 0px; outline: 0; padding: 9px 0px 2px;
+ul.holder li.bit-input input { width: 170px !important;background: none;overflow:visible; margin: 0; border: 0px; outline: 0; padding: 9px 0px 2px;
 font-size: 12px;} /* no left/right padding here please */
 ul.holder li.bit-input input.smallinput { width: 20px; }
 
@@ -2734,4 +2734,33 @@ color: #000;
 .social-icon {
 width: 80px!important;
 }
+ 
+.minyawns-grid1 .thumbspan .thumbnail .m1 .caption .social-link{
+height:30px !important; 
+}
+.minyawns-grid1 .thumbspan .thumbnail .m1 .caption .profile-social-link{
+ 
+float:none !important;
+}
 
+.minyawns-grid1 .thumbspan .thumbnail .m2 .caption .profile-social-link{
+ 
+float:none !important;
+} 
+ 
+ .icon-facebook-a{
+	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
+}
+ 
+#apply-job-popup .modal-body{
+	max-height: 505px !important;
+}
+ 
+.icon-facebook{
+	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
+} 
+   
+.search-minyawn{
+	width: 170px !important;
+}
+ 

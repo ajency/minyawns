@@ -4,9 +4,9 @@
       
 							 <div class="row-fluid mobile-hide" >
 							  <div class="span9 ">
-							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
+							       <div class="row-fluid "  >
                                       <div class="span1">
-									  <div class="job-date">
+									  <div class="job-date" data-toggle="collapse-next" data-parent="#accordion24">
 										<b><%= result.job_start_day %></b>
 										<%= result.job_start_month %>
 									  </div>
@@ -14,9 +14,9 @@
 									  </div>
 									  <div class="span11 border-right job-details">
                                           <div class="job-title">
-                                             <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
+                                             <h5><a  class='prevent_default'  href=<?php echo site_url() ?>/job/<%= result.post_slug %>><%= result.post_title %></a></h5>
                                           </div>
-                                          <div class="job-meta">
+                                          <div class="job-meta"  data-toggle="collapse-next" data-parent="#accordion24">
                                              <ul class="inline">
                                                
                                                 <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
@@ -207,7 +207,7 @@ $current_user_role =  trim($user_role);
                                                     <% if(result.job_owner_id === logged_in_user_id){%>
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
-             <div class="row-fluid minyawns-grid1">
+             <div class="row-fluid minyawns-grid1" >
 		  <%  if ($(window).width() < 800) {%>
 			
 			<div class="span3 mobile-alert-box">
@@ -253,6 +253,14 @@ $current_user_role =  trim($user_role);
         </br></br></br></br><span id="div_confirmhire"></span>
 </div>
 
+
+
+
+
+
+
+
+
 <div class="span3 mobile-alert-box-hidden">
                   <div class="alert alert-success alert-sidebar author-data">
                       <b style="color:#000;">Employer Details</b>
@@ -269,8 +277,38 @@ $current_user_role =  trim($user_role);
 					  </div>
 						
                         <br>
+                    </div> 
+            <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>" / >
+            <input type="hidden" name="userid" value="<%= USER.id%>" />
+
+            
+            <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">
+             
+                  <div class="row-fluid">
+                  <div class="span12">
+                    <div id="drop">
+                      Drop Your Job Photos Here 
+                      <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                      <input type="file" name="photo" multiple />
                     </div>
-                 
+
+                    <ul>
+                      <!-- The file uploads will be shown here -->
+                    </ul>
+                  </div>
+                </div>
+            </div>
+           
+           <div class="row-fluid" id="photo-grid" style="display:none">
+      <div class="span12 align-left">
+      
+        <div class="isotope">
+          <div class="grid-sizer"></div>
+          
+             </div>
+        
+       </div>
+    </div>
               <% if( ( (is_admin==true)  || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>
@@ -287,28 +325,21 @@ $current_user_role =  trim($user_role);
                                     </div>
                             <%}%>
            
-		<div class="row-fluid">
-			<div class="span12 align-left">
-			
-				<div id="masonry">
-					<div class="item"></div>
-					<div class="item thumbnail"></div>
-					<div class="item medium"></div>
-					<div class="item large"></div>
-					<div class="item"></div>
-					<div class="item thumbnail"></div>
-					<div class="item small"></div>
-				</div>
-				
-			</div>
-		</div>
+		
 </div>
  
                        
                      </div>
                   </div>
     </form>
+
+
+
 </script>
+
+
+
+
 <script type="text/template" id="profile-table">   
 <% console.log('check..................')%>
 <% console.log(result) %>
@@ -491,9 +522,33 @@ $current_user_role =  trim($user_role);
     <div class="social-link">
     <%= result.user_email %>
     </div>
-    <div class="social-link">
-    <%= result.linkedin %>
-    </div>
+    <div class="social-link profile-social-link">
+    <% if (result.linkedin.length > 0 ){%>
+    <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
+        var linkedinUrl = "http://"+result.linkedin;
+    }
+    else{
+        var linkedinUrl = result.linkedin;
+    }
+    %>
+    <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
+    <%}else{%> 
+    <a href='#' target='_blank'><i class='icon-linkedin'></i></a>
+    
+    <%}%>
+     <% if (result.facebook_link.length > 0 ){%>
+    <% if( (result.facebook_link.indexOf("https://") <= -1) && (result.facebook_link.indexOf("http://") <= -1) ){
+        var facebook_linkUrl = "http://"+result.facebook_link;
+    }
+    else{
+        var facebook_linkUrl = result.facebook_link;
+    }
+    %>
+    <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+    <%}else{%> 
+    <a href='#' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+    
+    <%}%></div>
 
     <div class="rating">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
@@ -530,7 +585,7 @@ $current_user_role =  trim($user_role);
     <div class="social-link">
     <%= result.user_email %>
     </div>
-    <div class="social-link">
+    <div class="social-link   profile-social-link">
     <% if (result.linkedin.length > 0 ){%>
     <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
         var linkedinUrl = "http://"+result.linkedin;
@@ -539,9 +594,23 @@ $current_user_role =  trim($user_role);
         var linkedinUrl = result.linkedin;
     }
     %>
-    <a href='<%=linkedinUrl  %>' target='_blank'><%= result.linkedin %></a>
-    <%}else{%>
-    <a href='#'><%= result.linkedin %></a>
+    <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
+    <%}else{%> 
+    <a href='#' target='_blank'><i class='icon-linkedin'></i></a>
+    
+    <%}%>
+     <% if (result.facebook_link.length > 0 ){%>
+    <% if( (result.facebook_link.indexOf("https://") <= -1) && (result.facebook_link.indexOf("http://") <= -1) ){
+        var facebook_linkUrl = "http://"+result.facebook_link;
+    }
+    else{
+        var facebook_linkUrl = result.facebook_link;
+    }
+    %>
+    <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+    <%}else{%> 
+    <a href='#' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+    
     <%}%>
             </div>
     </div>
