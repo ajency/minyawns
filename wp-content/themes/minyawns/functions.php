@@ -2239,9 +2239,13 @@ echo $user_pic_img_src;
 
 
 
-
-
-
+/*function photocontrol() {
+require_once('class.photo.php');
+global $photo_model;
+$photo_model = new PhotoModel();
+$photo_model->init();
+}
+add_action('init', 'photocontrol', '1');*/
 
 
 
@@ -2276,6 +2280,12 @@ add_action( 'wp_json_server_before_serve', 'photo_api_init' );
 
 require_once('class.photo.php');
 
+
+
+
+
+
+
 class PhotoAPI {
 
    /*Initialize the photo model variable*/
@@ -2285,6 +2295,7 @@ class PhotoAPI {
    /*Instantiate Photo object in construct*/
     public function __construct() {
         $this->photo_model = new PhotoModel();
+        $this->photo_model->init();
     }
 
     /*Register Routes*/
@@ -2322,6 +2333,11 @@ class PhotoAPI {
             array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
             );
 
+
+        $routes['/testroute'] = array(
+            array( array( $this, 'testdata'), WP_JSON_Server::READABLE ),
+            );
+
          return $routes;
     }
 
@@ -2329,29 +2345,11 @@ class PhotoAPI {
 
     //Upload photos and get response
     public function upload_photos($jobid = 0){
-     /*if($this->photo_model->upload_photos()){
-        $resp = 'true';
-    }else{
-        $resp = 'false';
-    }*/
-
-    //$status = $this->photo_model->upload_photos();
-
-    //$response = array('status' => $resp);
-
-    $response = json_encode( $this->photo_model->upload_photos($jobid) );
-
-    //$response = json_encode( $this->photo_model->upload_photos() );
-
-
-
-    header( "Content-Type: application/json" );
-
-    echo $response;
-
-    exit;
-
-}
+        $response = json_encode( $this->photo_model->upload_photos($jobid) );
+        header( "Content-Type: application/json" );
+        echo $response;
+        exit;
+    }
 
     //Delete photos and get response
     public function delete_photos($photoid){
@@ -2455,10 +2453,15 @@ class PhotoAPI {
 }
 
 
+
+public function testdata(){
+     echo $this->photo_model->testcall();
+}
+
+
   
 }
 
 
 }
-
 
