@@ -399,8 +399,9 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
     <div class="modal-body">
         Please Select at-least one Minyawn
     </div>
- 
+  
 </div> 
+ 
  
 
 <?php

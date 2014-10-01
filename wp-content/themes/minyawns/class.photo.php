@@ -10,6 +10,10 @@ public $upload_nonce = false;
 public $delete_nonce = false;
 public $admin = false;
 
+public $is_employer = false;
+public $is_minyawn = false;
+
+
 
 function init(){
     $this->user_id = get_current_user_id();
@@ -20,8 +24,19 @@ function init(){
 
     if(is_user_logged_in()){
     	$this->logged_in = true;
+    } 
+ 
+
+    if (current_user_can('apply_for_jobs') ) {
+    	$this->is_minyawn = true;
     }
-   	if (current_user_can('upload_photos') ) {
+
+    if (current_user_can('manage_jobs') ) {
+    	$this->is_employer = true;
+    }
+
+    if (current_user_can('add_photos') ) {
+ 
     	$this->can_upload = true;
     }
     if (current_user_can('delete_photos') ) {
@@ -31,7 +46,27 @@ function init(){
     	$this->upload_nonce = true;
     }
 
+
+
+    //get raw data and and retrieve the nonce
+    $data = file_get_contents('php://input');
+    $tempvalues = explode('&',$data);
+    $values = array();
+    foreach($tempvalues as $value)
+    {
+    	$value = explode('=',$value);
+    	$values[$value[0]] = $value[1];
+    }
+   
+
+    if(!empty( $values["delete_nonce"] ) && wp_verify_nonce( $values["delete_nonce"], 'secretstring' )) {
+    	$this->delete_nonce = true;
+    }
+
   }
+
+
+
 
 public function __construct() {
         //$this->user = get_current_user_id();
@@ -116,6 +151,7 @@ return $response;
 
 public function delete_photos($photoid){ 
 
+
 if (!$this->user_can_delete($photoid)){
 return false;
 exit;
@@ -126,6 +162,7 @@ if(wp_delete_post($photoid)){
 }else{
 	return false; 
 }
+
 }
 
 
@@ -190,12 +227,28 @@ return false;
 
 //Check if job id was set
 }else if($jobid>0){
-//Check if user was hired for the job
-if(!$this->is_user_hired_job($jobid)){
+
+
+if($this->is_minyawn){
+//Check if minyawn was hired for the job
+if(!$this->is_minyawn_hired_for_job($jobid)){
 return false;
 }else{
 return true;
 }
+}
+
+if($this->is_employer){
+//Check if employer added the job
+if(!$this->is_employer_added_job($jobid)){
+return false;
+}else{
+return true;
+}
+}
+
+
+
 }else{
 
  return true;
@@ -251,7 +304,7 @@ return false;
 
 
 
-public function is_user_hired_job($jobid){
+public function is_minyawn_hired_for_job($jobid){
 
 global $wpdb;
 $userid = $this->user_id;
@@ -267,12 +320,24 @@ return false;
 
 
 
-public function testcall(){
-if ( $this->admin ) {
-  echo "admin";
+public function is_employer_added_job($jobid){
+
+$userid = $this->user_id;
+$args = array();
+$args["ID"] = $jobid;
+$args["author"] = $userid;
+$args['post_type'] = 'job';
+$results= get_posts( $args );
+
+if(!$results){
+return false;
+}else{
+ return true;
 }
 
 }
+
+
 
 
 

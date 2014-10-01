@@ -2337,10 +2337,7 @@ class PhotoAPI {
             );
 
 
-        $routes['/testroute'] = array(
-            array( array( $this, 'testdata'), WP_JSON_Server::READABLE ),
-            );
-
+        
          return $routes;
     }
 
@@ -2356,7 +2353,7 @@ class PhotoAPI {
 
     //Delete photos and get response
     public function delete_photos($photoid){
-        if($this->photo_model->delete_photos($photoid)){
+        if($this->photo_model->delete_photos($photoid,$nonce)){
         $resp = 'true';
     }else{
         $resp = 'false';
@@ -2456,15 +2453,11 @@ class PhotoAPI {
 }
 
 
-
-public function testdata(){
-     echo $this->photo_model->testcall();
-}
-
-
   
 }
 
 
 }
+
+
 
