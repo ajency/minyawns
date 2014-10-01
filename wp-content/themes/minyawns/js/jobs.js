@@ -365,7 +365,6 @@ function load_browse_jobs(id, _action, category_ids) {
 
 	 
             }
-
             //display photo containers
             display_job_photo_option();
            
@@ -433,7 +432,7 @@ function photoUpload(){
             add: function (e, data) {
 
                 var tpl = jQuery('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
-                    ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
+                    ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p></li>');
 
                 // Append the file name and file size
                 tpl.find('p').text(data.files[0].name)
@@ -443,7 +442,7 @@ function photoUpload(){
                 data.context = tpl.appendTo(ul);
 
                 // Initialize the knob plugin
-                tpl.find('input').knob();
+                tpl.find('input').knob({'fgColor': '#8ED030',});
 
                 // Listen for clicks on the cancel icon
                 tpl.find('span').click(function(){
@@ -472,7 +471,7 @@ function photoUpload(){
                 data.context.find('input').val(progress).change();
 
                 if(progress == 100){
-                    data.context.removeClass('working');
+                  //  data.context.removeClass('working');
                    // setTimeout(function(){data.context.find('span').trigger('click')}, 1000);
               
                 }
@@ -544,6 +543,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
             user_employer = true;
         }
          
+ 
         if(user_minyawn==true ||user_employer==true || user_admin==true ){
             
             jQuery("#upload").show();
@@ -551,6 +551,11 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
              //option to upload job photos
                  
             photoUpload(); 
+ 
+            if(jQuery("#upload_nonce").val()==""){
+
+                jQuery("#upload_nonce").val(jQuery("#upload_nonce_").val())
+            }
 
         } 
         if(current_job_status=="Expired"){

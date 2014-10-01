@@ -332,7 +332,10 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 					</div>
 					<div class="span3">
                     
-                    <form><input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
+                    <form>
+                    <?php $upload_nonce = wp_create_nonce(get_current_user_id()); ?>
+                    <input type="text" id="upload_nonce" name="upload_nonce" value="<?php echo $upload_nonce; ?>" />
+                    <input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
                     <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
                      
                           <div class="row-fluid">

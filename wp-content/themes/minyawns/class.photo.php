@@ -21,10 +21,10 @@ function init(){
     if(is_user_logged_in()){
     	$this->logged_in = true;
     }
-    if (current_user_can('upload_files') ) {
+   	if (current_user_can('upload_photos') ) {
     	$this->can_upload = true;
     }
-    if (current_user_can('delete_files') ) {
+    if (current_user_can('delete_photos') ) {
     	$this->can_delete = true;
     }
     if(isset( $_POST['upload_nonce'] ) && wp_verify_nonce( $_POST['upload_nonce'], $this->user_id )) {
@@ -170,6 +170,8 @@ foreach($results as $result){
 
 
 public function user_can_upload($jobid) {
+
+	return false;
 
 if($this->admin){
 	return true;
