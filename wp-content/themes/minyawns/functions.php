@@ -121,6 +121,7 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
 			wp_enqueue_script('masonry.pkgd', get_template_directory_uri() . '/js/masonry.pkgd.js', array(), null);
 			wp_enqueue_script('holder', get_template_directory_uri() . '/js/holder.js', array(), null);
 			wp_enqueue_script('isotope', get_template_directory_uri() . '/js/isotope.pkgd.js', array(), null);
+			wp_enqueue_script('imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.js', array(), null);
 			
  
 		
