@@ -505,8 +505,13 @@ function photoUpload(){
 }
  
  function appendToGrid(model){
-   
-  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><i class="icon-remove pull-right item-remove"></i><a class="fancybox" rel="group" href="'+model.url+'" title="asd asd  dasd sad s"><img author= "'+model.author+'" src="'+model.url+'" alt="Tour de Yorkshire" width="229" /></a>');
+
+  
+  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'" title="asd asd  dasd sad s"><img author= "'+model.author+'" src="'+model.url+'" alt="Tour de Yorkshire" width="229" /></a>');
+  if(model.author==USER.id || check_capability('manage_options') ){
+    newItems.prepend('<i class="icon-remove pull-right item-remove"></i>');
+  }
+  
  set_isotope()
 jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 
@@ -514,6 +519,11 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 
  }
 
+ jQuery(".icon-remove").live('click', function(e) {
+     jQuery('.isotope').isotope( 'remove', $(e.target).parent() )
+    // layout remaining item elements
+      .isotope('layout');
+ })
 
 /*function to check if the user can view or 
  upload photos  and display the UI accordingly
