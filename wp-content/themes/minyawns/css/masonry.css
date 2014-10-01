@@ -42,7 +42,7 @@ height:auto;}
   
 @media screen and (max-width:640px){
   .item,.grid-sizer{
-      width:30%;
+      width:33.3%;
   }
  }
 
