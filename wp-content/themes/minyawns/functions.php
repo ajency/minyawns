@@ -2294,7 +2294,7 @@ class PhotoAPI {
             );
 
         //Route to login
-        $routes['/login/username/(?P<username>\w+)/password/(?P<password>\w+)'] = array(
+        $routes['/login/username/(?P<username>\S+)/password/(?P<password>\S+)'] = array(
             array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
             );
 
