@@ -2428,10 +2428,13 @@ class PhotoAPI {
                 setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, SITECOOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
 
             
-            $response = array('status'=> 'true',
+            /*$response = array('status'=> 'true',
                 'logged_in' => $logged_in_cookie,
                 'authentication' =>  $auth_cookie
-                );
+                );*/
+
+            $response = login_response($user_id,$logged_in_cookie,$auth_cookie);
+
         }
 
         $response = json_encode( $response );
@@ -2451,5 +2454,34 @@ class PhotoAPI {
 
 
 }
+
+
+
+
+
+
+
+function login_response($user_id,$logged_in_cookie,$auth_cookie){
+    global $user_ID,  $wp_roles ;
+    $user = array();
+    $user_info = get_userdata($user_id);
+    $usermeta = get_user_meta($user_id);
+    $attchid = $usermeta['avatar_attachment'][0];
+    $avatar_url = wp_get_attachment_image_src($attchid, 'large' )[0]; 
+    $user['status'] = 'true';
+    $user['logged_in_cookie'] = $logged_in_cookie;
+    $user['auth_cookie'] = $auth_cookie;
+    $user['id'] = $user_id;
+    $user['user_login'] = $user_info->data->user_login;
+    $user['user_email'] = $user_info->data->user_email;
+    $user['display_name'] = $user_info->data->display_name; 
+    $user['role'] =  key($user_info->caps) ;
+    $user['display_role'] = $wp_roles->role_names[key($user_info->caps)] ;
+    $user['avatar_url'] = $avatar_url;
+    return  $user;
+}
+
+
+
 
 
