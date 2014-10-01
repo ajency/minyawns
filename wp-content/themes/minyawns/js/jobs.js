@@ -432,10 +432,10 @@ function photoUpload(){
             add: function (e, data) {
 
                 var tpl = jQuery('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
-                    ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p></li>');
+                    ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p class="file_details"></p><span style="display:none"></span><p class="process_successmsg"></p><p class="process_errormsg"></p></li>');
 
                 // Append the file name and file size
-                tpl.find('p').text(data.files[0].name)
+                tpl.find('.file_details').text(data.files[0].name)
                              .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
 
                 // Add the HTML to the UL element
@@ -472,17 +472,19 @@ function photoUpload(){
 
                 if(progress == 100){
                   //  data.context.removeClass('working');
-                   // setTimeout(function(){data.context.find('span').trigger('click')}, 1000);
+                 setTimeout(function(){data.context.find('span').trigger('click')}, 2000);
               
                 }
             },
             done: function(e, data) { 
  
                     if(data.result.status==true){
+                          data.context.find('.process_successmsg').text("Photo Uploaded !")
                           appendToGrid(data.result.photo);
                     }else
                     {
-                        photoUpLoadError();
+                        data.context.find('.process_errormsg').text(data.result.error+" !")
+                        
                     }
                      
                    
@@ -501,11 +503,7 @@ function photoUpload(){
             e.preventDefault();
         }); 
 }
-
- function photoUpLoadError(){
-
-    alert("Photo upload error")
- }
+ 
  function appendToGrid(model){
    
   var  newItems = jQuery('<div class="item" author= "'+model.author+'"><img author= "'+model.author+'" src="'+model.url+'" alt="Tour de Yorkshire" width="229" />');

@@ -49,7 +49,7 @@
     border-top:1px solid #3d4043;
     border-bottom:1px solid #2b2e31;
     padding:15px;
-    height: 80px;
+    height: 100px;
 
     position: relative;
 }
@@ -58,18 +58,31 @@
     display: none;
 }
 
-#upload ul li p{
+#upload ul li  .file_details{
     
     overflow: hidden;
     white-space: nowrap;
     color: #EEE;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 16px; 
     position: absolute;
     top: 20px;
     left: 100px;
 }
 
+#upload ul li   .process_errormsg{
+    font-size: 12px; 
+    color: #F65151;
+    position: absolute;
+    top: 70px;
+   
+}
+#upload ul li   .process_successmsg{
+    font-size: 12px; 
+    color: #79B91E;
+    position: absolute;
+    top: 70px;
+   
+}
 #upload ul li i{
     font-weight: normal;
     font-style:normal;

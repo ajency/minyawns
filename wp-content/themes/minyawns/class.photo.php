@@ -170,8 +170,7 @@ foreach($results as $result){
 
 
 public function user_can_upload($jobid) {
-
-	return false;
+ 
 
 if($this->admin){
 	return true;
