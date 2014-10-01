@@ -2284,8 +2284,12 @@ class PhotoAPI {
             array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
             );
 
+        
          return $routes;
     }
+
+
+
 
 
 
