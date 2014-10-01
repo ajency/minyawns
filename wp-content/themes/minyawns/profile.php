@@ -192,12 +192,10 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
                                         <?php }else {?>
                                         <a href='#'  class="icon-facebook-a"><i class="icon-facebook" ></i></a>
-                                            <?php }?>                        
+                                            <?php }?>     </div>                           
                                             <?php endif; ?> 
-
-
-
-                                             <h4 class="name"> <?php
+                                      
+					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
                             } else {
@@ -205,61 +203,59 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit"><i class="icon-edit"></i> Edit</a><?php } ?>
 
-                                <?php
+								<?php
                                                       
-                                                            if(is_user_verified()=== 'Y'){ ?>   
+                                                            if(is_user_verified()=== 'Y'){ ?>	
                                                         <span class="minyawnverified"><img src="<?php echo get_template_directory_uri(); ?>/images/verify.png"  style="margin-top: -7px;"/> Minyawn verified </span> 
                                                        
                                                         <i class="icon-question-sign verfied-help"  id="example"></i> 
                                                          <?php }?>
 
-                            
+							
 
-                                </h4> 
-                                 <?php if (get_user_role() === 'employer'): ?>
-                                <div class="employer-body">
-                                
-                                 <?php echo user_profile_body(); ?>
-                                </div>
-                                <?php endif; ?> 
-                                
-                                
+								</h4> 
+								 <?php if (get_user_role() === 'employer'): ?>
+								<div class="employer-body">
+								
+								 <?php echo user_profile_body(); ?>
+								</div>
+								<?php endif; ?>	
+								
+								
                      <div class="profiledata ">
-                      <?php if (get_user_role() === 'minyawn'): ?>
+					  <?php if (get_user_role() === 'minyawn'): ?>
                                    <ul class="college-data inline">
-                                    <li class="college_data">
-                                   College : <b>  <?php echo user_college(); ?></b>
-                                   </li>
-                                   <li class="major_data">
-                                   Major : <b>  <?php echo user_college_major(); ?></b>
-                                   </li>
+									<li class="college_data">
+								   College : <b>  <?php echo user_college(); ?></b>
+								   </li>
+								   <li class="major_data">
+								   Major : <b>  <?php echo user_college_major(); ?></b>
+								   </li>
                                    <li class="major_data">
                                    Email :  <b>  <a href="mailto:<?php user_profile_email();?>" target="_top">
                                                     <?php user_profile_email(); ?>
                                                 </a>
                                             </b>
                                    </li>
-                                   </ul>
+								   </ul>
                      <?php
                             else :
-                                ?>  
-                                <ul class="college-data inline">
-                                    <li class="location">
-                                   Location : <b>    <?php echo user_location(); ?></b>
-                                   </li>
-                                   <li class="website">
-                                   Company Website : <b>  <a href="http://<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
-                                   </li>
-                                   </ul>
-                                
-                                
-                                 <?php
+                                ?>	
+								<ul class="college-data inline">
+									<li class="location">
+								   Location : <b>    <?php echo user_location(); ?></b>
+								   </li>
+								   <li class="website">
+								   Company Website : <b>  <a href="http://<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
+								   </li>
+								   </ul>
+								
+								
+								 <?php
                             endif;
                             ?>
-                     
-                     </div>
-                    </div>	                      
 					 
+					 </div>
 
                     </div>
                   
