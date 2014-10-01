@@ -279,6 +279,7 @@ $current_user_role =  trim($user_role);
                         <br>
                     </div> 
             <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>" / >
+            <input type="hidden" name="userid" value="<%= USER.id%>" />
 
             
             <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">

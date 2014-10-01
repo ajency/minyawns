@@ -347,7 +347,7 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
 
 
  
-<?php if (is_user_logged_in()){ ?>
+<? /*php if (is_user_logged_in()){ ?>
 <div class="upload-cont" style="margin-bottom:20px;">
 <form name="upload-form" id="upload-form" action="<?php echo get_site_url(); ?>/wp-json/photos/upload/<?php echo get_the_ID(); ?>" method="POST" enctype="multipart/form-data">
 <input type="file" id="photofile" name="photo" />
@@ -362,7 +362,7 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
 
 <div id="photo-container"></div>
 
-<?php } ?>
+<?php } */?>
  
 
 

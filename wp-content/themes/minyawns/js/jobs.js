@@ -2,11 +2,12 @@
 /*
 photo upload scripts
 */
- 
+ var current_job;
+var current_job_status;
+var display_user_photo_option_done = false;
 jQuery(document).ready(function($) {
  
-var current_job;
-var current_job_status;
+
 //if(!logged_in_user_id){
 //load_browse_jobs();
 //return false;
@@ -477,10 +478,9 @@ function photoUpload(){
                 }
             },
             done: function(e, data) { 
-     
-                    if(data.result.status=="true"){
-                        model  = {url:'http://localhost/minyawns/wp-content/uploads/2014/09/images.jpg'};
-                        appendToGrid(model);
+ 
+                    if(data.result.status==true){
+                          appendToGrid(data.result.photo);
                     }else
                     {
                         photoUpLoadError();
@@ -504,13 +504,15 @@ function photoUpload(){
 }
 
  function photoUpLoadError(){
+
     alert("Photo upload error")
  }
  function appendToGrid(model){
-  var  newItems = jQuery('<div class="item"><img src="'+model.url+'" alt="Tour de Yorkshire" width="229" />');
+   
+  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><img author= "'+model.author+'" src="'+model.url+'" alt="Tour de Yorkshire" width="229" />');
+ set_isotope()
 jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 
-      jQuery(".isotope").isotope( 'append','')
    
 
  }
@@ -550,23 +552,44 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
                  
             photoUpload(); 
 
-        }
+        } 
         if(current_job_status=="Expired"){
+
 
             jQuery("#photo-grid").show();
             //display jb photos
             getJobPhotos();
             
         }
-                     
+                jQuery(".item").live('click', function(e) {
+                        if( $(e.target).attr('author')==USER.id){
+                            alert("can delete")
+                            jQuery('.isotope').remove(  $(e.target) ).isotope( 'remove',  $(e.target) );
+                        } 
+        });             
     
  }
 
  function display_user_photo_option(){
-
+        display_user_photo_option_done= true
         user_id = jQuery("#upload").attr("user-id")
         
         getUserPhotos(user_id);
+ 
+        if(user_id==USER.id){
+
+             //option to upload job photos
+            
+            jQuery("#upload").show();
+
+            photoUpload(); 
+
+        }
+        jQuery(".item").live('click', function(e) {
+                        if( $(e.target).attr('author')==USER.id){
+                            alert("can delete")
+                        } 
+        });
 
  }
     // Helper function that formats the file sizes
@@ -719,9 +742,13 @@ function fetch_my_jobs(id)
                             jQuery("#selection").hide();
 							
 							//isitope
-                            set_isotope()
+                            alert(display_user_photo_option_done)
+                            if(display_user_photo_option_done==false){
+                                 set_isotope()
 
-                            display_user_photo_option();
+                                display_user_photo_option();
+                            }
+                           
   
 
                         } else

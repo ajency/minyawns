@@ -45,12 +45,12 @@ if (!$upload_file['error']) {
 		'error'		=> is_wp_error($attachment_id)
 		);
 	}
-
+	$image_url =   wp_get_attachment_image_src($attachment_id, 'large' );
 	$response = array(
 		'status'	=> true,
 		'photo'		=> array(
 			'id'	=> $attachment_id,
-			'url'	=> $wp_upload_dir['url'] . '/' . $filename,
+			'url'	=> $image_url[0],
 			'author' => $user_id,
 			'date' => get_the_date('Y-m-d H:i:s.u',$attachment_id),
 			'job_id' => $parent_post_id
@@ -95,8 +95,35 @@ if(wp_delete_post($id)){
 
 
 public function get_photos($jobid='',$userid=''){
+ 
+$args = array();
+if($jobid !=''){
+	$args["post_parent"] = $jobid;
+}
+if($userid !=''){
+	$args["author"] = $userid;
+	
+}
+$args['post_type'] = 'attachment';
+$args['posts_per_page'] =  -1;
+ 
+$results= get_posts( $args );
 
-	global $wpdb;
+foreach($results as $result){
+
+	$image_url =   wp_get_attachment_image_src($result->ID, 'large' );
+ 
+   	$image_url = ( $image_url!=false)? $image_url[0]:'' ;
+	 $data[] = array(
+					'id' => $result->ID,
+					'url' =>  $image_url,
+					'author' => $result->post_author,
+					'date' => $result->post_date,
+					'job_id' => $result->post_parent
+
+					);
+}
+	/*global $wpdb;
 
 		
 	if($jobid !='' && $userid !=''){
@@ -131,6 +158,7 @@ public function get_photos($jobid='',$userid=''){
 		}
 	}
 
+	return $data;*/
 	return $data;
 
 }
