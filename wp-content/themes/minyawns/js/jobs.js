@@ -473,7 +473,7 @@ function photoUpload(){
 
                 if(progress == 100){
                     data.context.removeClass('working');
-                    setTimeout(function(){data.context.find('span').trigger('click')}, 1000);
+                   // setTimeout(function(){data.context.find('span').trigger('click')}, 1000);
               
                 }
             },
@@ -741,8 +741,7 @@ function fetch_my_jobs(id)
                             jQuery("#accordion24").prepend(html);
                             jQuery("#selection").hide();
 							
-							//isitope
-                            alert(display_user_photo_option_done)
+							//isitope 
                             if(display_user_photo_option_done==false){
                                  set_isotope()
 
