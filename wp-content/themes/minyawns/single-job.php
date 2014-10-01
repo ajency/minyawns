@@ -461,6 +461,7 @@ function delete_photo(photoid){
 $.ajax({
     url: siteUrl+"/wp-json/photos/delete/"+photoid,
     type: 'DELETE',
+    data: {delete_nonce:'<?php echo wp_create_nonce("secretstring"); ?>'},
     success: function(response) {
         /*if(response.status==true){
             //alert("Photo Deleted")
@@ -468,7 +469,7 @@ $.ajax({
                 get_photos();
         }*/
 
-        //console.log(response);
+        console.log(response);
 
         $('#photo-container').html('');
                 get_photos();
