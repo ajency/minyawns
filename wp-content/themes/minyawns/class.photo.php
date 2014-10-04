@@ -42,7 +42,7 @@ function init(){
     if (current_user_can('delete_photos') ) {
     	$this->can_delete = true;
     }
-    if(isset( $_POST['upload_nonce'] ) && wp_verify_nonce( $_POST['upload_nonce'], "upload_nonce_".$this->user_id )) {
+    if(isset( $_POST['upload_nonce'] ) && wp_verify_nonce( $_POST['upload_nonce'], "upload_photo_".$this->user_id )) {
     	$this->upload_nonce = true;
     }
 
