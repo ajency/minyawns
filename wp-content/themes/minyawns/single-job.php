@@ -148,8 +148,8 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
           
             <div class="breadcrumb-text">
                 <p>
-                    <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
-                    <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
+                    <a href="<?php echo site_url() ?>/jobs/#browse">My Jobs</a>
+                    <?php echo get_the_title() ?>
                   				<div class="single-job-action">
 <ul class="inline">				<li >
 				<?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0): ?> 
