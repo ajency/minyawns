@@ -343,6 +343,25 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
                     <div class="clear"></div>
                 </form>
             </div>
+
+
+
+ 
+   
+<?php $upload_nonce = wp_create_nonce("upload_nonce_".get_current_user_id()); ?>
+<?php $delete_nonce = wp_create_nonce("delete_photo_".get_current_user_id()); ?>
+<div style="display:none">
+<input type="text" id="upload_nonce_" value="<?php echo $upload_nonce; ?>" >
+<input type="text" id="delete_nonce_" value="<?php echo $delete_nonce; ?>" >
+ </div>
+ 
+
+
+
+
+
+
+
         </div>
     </div>
 </div>
@@ -383,7 +402,10 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
     <div class="modal-body">
         Please Select at-least one Minyawn
     </div>
-</div>
+  
+</div> 
+ 
+ 
 
 <?php
 get_footer();

@@ -1161,10 +1161,12 @@ var image_name=$("#image_name").val();
 
                     if ($("#tab_identifier").val() === '1') {
                         $("#accordion24").append(html);
+                        alert('2')
                     }
                     else {
 
                         $("#accordion24").append(html);
+                         alert('3')
                     }
 
                 });
@@ -2470,6 +2472,50 @@ function button_for_invite(model){
        window.open(SITEURL+'/profile/'+$(e.target).closest( "li").attr('item-id')+'/','_target') 
     
 }); 
+
+function toProperCase(str) { 
+        var noCaps = ['of','a','the','and','an','am','or','nor','but','is','if','then', 
+                      'else','when','at','from','by','on','off','for','in','out','to','into','with'];
+        return str.replace(/\w\S*/g, function(txt, offset){
+            if(offset != 0 && noCaps.indexOf(txt.toLowerCase()) != -1){
+                return txt.toLowerCase();    
+            }
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+ function check_capability (user_cap) { 
+ 
+        ret_val = false; 
+        jQuery.each(USER.all_caps, function(i, val) {
+             
+ 
+            if( user_cap==val)
+            {
+ 
+                capability_name =  val.replace(/_/g,' ');
+                capability_name =  toProperCase(capability_name);
+                ret_val = capability_name.replace(/Ph /g,'');
+ 
+                return false;
+
+            }
+
+        }); 
+        return ret_val;
+    }
+
+
+    //isotope
+function set_isotope(){
+jQuery('.isotope').imagesLoaded( function(){
+      jQuery('.isotope').isotope({
+            itemSelector: '.item',
+            masonry: {
+              columnWidth: '.grid-sizer'
+            }
+          });
+		});
+}
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
 //				{
@@ -2483,4 +2529,7 @@ function button_for_invite(model){
 
 
 
-
+//fancybox
+jQuery(function($) {
+$(".fancybox").fancybox();
+});

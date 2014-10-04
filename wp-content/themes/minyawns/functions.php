@@ -27,6 +27,8 @@ require_once 'cron_functions.php';
 
 require_once 'templates/email_template.php';
 
+//load the functions related to users
+require_once '/functions/users.php';
 
 //remove admin bar from front end
 show_admin_bar(false);
@@ -62,6 +64,8 @@ function minyawns_scripts_styles() {
             break;
         case 'DEVELOPMENT':
         default:
+        
+  
             if (is_page('Home') || is_home()) {
                 wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
                 wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array(), null);
@@ -75,7 +79,8 @@ function minyawns_scripts_styles() {
             } else {
                 wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
                 wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array(), null);
-
+				wp_enqueue_style('masonry', get_template_directory_uri() . '/css/masonry.css', array(), null);
+				wp_enqueue_style('jqueryfancybox', get_template_directory_uri() . '/css/jquery.fancybox.css', array(), null);
                 wp_enqueue_style('flat-ui', get_template_directory_uri() . '/css/flat-ui.css', array(), null);
                 wp_enqueue_style('mains', get_template_directory_uri() . '/css/main.css', array(), null);
                 wp_enqueue_style('style', get_template_directory_uri() . '/css/style.css', array(), null);
@@ -87,6 +92,7 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('imgareaselect-default', get_template_directory_uri() . '/css/imgareaselect-default.css', array(), null);
                 wp_enqueue_style('imgareaselect-deprecated', get_template_directory_uri() . '/css/imgareaselect-deprecated.css', array(), null);
                 wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
+                wp_enqueue_style('photo-upload', get_template_directory_uri() . '/css/photo-upload.css', array(), null);
 //            wp_enqueue_style('bootstrap-lightbox', get_template_directory_uri() . '/css/bootstrap-lightbox.min.css', array(), null);
                 //wp_enqueue_style('data_grids_main', get_template_directory_uri() . '/css/data_grids_main.css', array(), null);
                 //     wp_enqueue_style('data_grids_main_01', get_template_directory_uri() . '/css/data_grids_style_01.css', array(), null);
@@ -103,21 +109,32 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
             }
 		wp_enqueue_style('real-state-landing', get_template_directory_uri() . '/css/landing-pages.css', array(), null);
 
-
+          
 
             wp_enqueue_script('bxslider', get_template_directory_uri() . '/js/jquery.bxslider.min.js', array('jquery'), null);
             //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
             wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
             wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
+ 
             wp_enqueue_script('owl-carousel-js', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), null);
-               
+       
+			
+			wp_enqueue_script('holder', get_template_directory_uri() . '/js/holder.js', array(), null);
+			wp_enqueue_script('isotope', get_template_directory_uri() . '/js/isotope.pkgd.js', array(), null);
+			wp_enqueue_script('imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.js', array(), null);
+			wp_enqueue_script('jqueryfancybox', get_template_directory_uri() . '/js/jquery.fancybox.js', array(), null);
+			
+ 
 		
 
             //if(is_page('profile'))
 
             wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
-
+            wp_enqueue_script('jquery-knob', get_template_directory_uri() . '/js/jquery.knob.js', array('jquery'), null);
+            wp_enqueue_script('ui-widget', get_template_directory_uri() . '/js/jquery.ui.widget.js', array('jquery'), null);
+            wp_enqueue_script('iframe-transport', get_template_directory_uri() . '/js/jquery.iframe-transport.js', array('jquery'), null);
+            
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery', 'jquery-ui'), null);
             wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
             wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/modernizr.custom.14550.js', array('jquery'), null);
@@ -178,9 +195,10 @@ wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.str
     			wp_enqueue_script('braintree', get_template_directory_uri() . '/braintree_lib/braintree.js', array('jquery'), null);
            }
 
-
+            wp_localize_script('jquery-ui', 'AJAXURL', admin_url( "admin-ajax.php" ) );
             wp_localize_script('jquery-ui', 'SITEURL', site_url());
             wp_localize_script('jquery-ui', 'THEMEURL', get_template_directory_uri());
+            wp_localize_script( 'jquery-ui', 'USER', get_miny_current_user() );
             break;
     }
 }
@@ -2224,26 +2242,52 @@ echo $user_pic_img_src;
 
 
 
+<<<<<<< HEAD
+=======
+/*function photocontrol() {
+require_once('class.photo.php');
+global $photo_model;
+$photo_model = new PhotoModel();
+$photo_model->init();
+}
+add_action('init', 'photocontrol', '1');*/
+
+
+>>>>>>> issue24
 
 
 
 /****************Photos API****************/
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
 if(is_plugin_active('json-rest-api/plugin.php')){
+<<<<<<< HEAD
 
         /**
+=======
+/**
+>>>>>>> issue24
      * Change the json rest api plugin prefix from wp-json to api
      *
      * @since ajency-activity-and-notifications (0.1)
      *
      * @uses json rest api plugin filter hook json_url_prefix
      */
+<<<<<<< HEAD
     function change_json_rest_api_prefix($prefix){
 
         return "api";
 
     }
     add_filter( 'json_url_prefix', 'change_json_rest_api_prefix',10,1);
+=======
+function change_json_rest_api_prefix($prefix){
+
+    return "api";
+
+}
+add_filter( 'json_url_prefix', 'change_json_rest_api_prefix',10,1);
+
+>>>>>>> issue24
 
 function photo_api_init() {
     global $photo_api;
@@ -2256,6 +2300,15 @@ add_action( 'wp_json_server_before_serve', 'photo_api_init' );
 
 require_once('class.photo.php');
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+>>>>>>> issue24
 class PhotoAPI {
 
    /*Initialize the photo model variable*/
@@ -2265,16 +2318,32 @@ class PhotoAPI {
    /*Instantiate Photo object in construct*/
     public function __construct() {
         $this->photo_model = new PhotoModel();
+<<<<<<< HEAD
+=======
+        $this->photo_model->init();
+>>>>>>> issue24
     }
 
     /*Register Routes*/
     public function register_routes( $routes ) {
 
+<<<<<<< HEAD
       //Upload route
+=======
+      //Upload route for user pictures
+>>>>>>> issue24
        $routes['/photos/upload'] = array(
             array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
             );
 
+<<<<<<< HEAD
+=======
+       //Upload route for user pictures upload to the job
+       $routes['/photos/upload/(?P<jobid>\d+)'] = array(
+            array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
+>>>>>>> issue24
        //Delete route
        $routes['/photos/delete/(?P<photoid>\d+)'] = array(
             array( array( $this, 'delete_photos'), WP_JSON_Server::DELETABLE ),
@@ -2293,17 +2362,27 @@ class PhotoAPI {
             array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
             );
 
+<<<<<<< HEAD
         //Route to login
         $routes['/login/username/(?P<username>\S+)/password/(?P<password>\S+)'] = array(
             array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
             );
 
+=======
+        $routes['/login/username/(?P<username>\w+)/password/(?P<password>\w+)'] = array(
+            array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
+            );
+
+
+        
+>>>>>>> issue24
          return $routes;
     }
 
 
 
     //Upload photos and get response
+<<<<<<< HEAD
     public function upload_photos(){
      if($this->photo_model->upload_photos()){
         $resp = 'true';
@@ -2330,6 +2409,18 @@ class PhotoAPI {
     //Delete photos and get response
     public function delete_photos($photoid){
         if($this->photo_model->delete_photos($photoid)){
+=======
+    public function upload_photos($jobid = 0){
+        $response = json_encode( $this->photo_model->upload_photos($jobid) );
+        header( "Content-Type: application/json" );
+        echo $response;
+        exit;
+    }
+
+    //Delete photos and get response
+    public function delete_photos($photoid){
+        if($this->photo_model->delete_photos($photoid,$nonce)){
+>>>>>>> issue24
         $resp = 'true';
     }else{
         $resp = 'false';
@@ -2360,6 +2451,7 @@ class PhotoAPI {
  }
 
 
+<<<<<<< HEAD
 //User Authentication and set cookie
  public function get_login_status($username,$password){
 
@@ -2437,6 +2529,65 @@ class PhotoAPI {
 
         }
 
+=======
+//User Authentication
+ public function get_login_status($username,$password){
+    global $wp, $wp_rewrite, $wp_the_query, $wp_query;
+
+
+    if(empty($username) || empty($password)){
+
+        return false;
+
+    } else {
+
+        $response = array('status'=>false);
+
+        $auth = wp_authenticate($username, $password );
+
+        if( is_wp_error($auth) ) { 
+            wp_logout();     
+            $response = array('status'=>false);
+        } else {
+
+            /*$user_login = $username;
+            $user = get_userdatabylogin($user_login);
+            $user_id = $user->ID;
+            wp_set_current_user($user_id, $user_login);
+            wp_set_auth_cookie($user_id);
+            do_action('wp_login', $user_login);*/
+
+
+            $user_login = $username;
+            $user = get_userdatabylogin($user_login);
+            $user_id = $user->ID;
+
+
+            $creds = array();
+            $creds['user_login'] = $username;
+            $creds['user_password'] = $password;
+            $creds['remember'] = ($remember_me === "true") ? true : false;
+
+            $user = wp_signon( $creds, false );
+
+            //$user_id = get_current_user_id();
+            //$logincookie = wp_generate_auth_cookie('1',strtotime( '+14 days' ),'logged_in','');
+
+            $logincookie = wp_generate_auth_cookie( $user_id, strtotime( '+14 days' ), 'logged_in', '' );
+            setcookie(LOGGED_IN_COOKIE, $logincookie, strtotime( '+14 days' ), COOKIEPATH, COOKIE_DOMAIN, false, false);
+
+            //do_action( 'set_logged_in_cookie', LOGGED_IN_COOKIE, '43200', strtotime( '+14 days' ), '1','logged_in');
+
+           // apply_filters('auth_cookie', $cookie, $user_id, $expiration, $scheme)
+
+            $response = array('status'=> 'true',
+                            'cookie'=> LOGGED_IN_COOKIE,
+                            'value' =>  $logincookie
+                    );
+        }
+
+        //$response = array('status'=>$status);
+>>>>>>> issue24
         $response = json_encode( $response );
 
         header( "Content-Type: application/json" );
@@ -2457,6 +2608,7 @@ class PhotoAPI {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -2485,3 +2637,5 @@ function login_response($user_id,$logged_in_cookie,$auth_cookie){
 
 
 
+=======
+>>>>>>> issue24
