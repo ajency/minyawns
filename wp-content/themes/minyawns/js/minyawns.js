@@ -1714,7 +1714,7 @@ $('#mylogin').live('keyup', function(e){
 
         html  = '<div id="apply-job-popup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
       
-        html += '<div class="modal-body"><img src="'+THEMEURL+'/images/minyawns-job-warning.jpg">'
+        html += '<div class="modal-body"><img src="'+warning_image.src +'">'
          
         html += '</div>'
       
