@@ -393,10 +393,10 @@
 
  
                       <?php if( strpos($homepage_user_data["facebook_link"] ,"https://")  == false  &&   strpos($homepage_user_data["facebook_link"] ,"http://")  == false  ){
-                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
+                          $facebook_linkUrl = "http://".$homepage_user_data["facebook_link"];
                       }
                       else{
-                          $facebook_linkUrl = "http://".$homepage_user_data["facebook_link"];
+                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
                       }
                       ?>
  
@@ -446,10 +446,10 @@
 
  
                       <?php if( strpos($homepage_user_data["facebook_link"] ,"https://")  == false  &&   strpos($homepage_user_data["facebook_link"] ,"http://")  == false  ){
-                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
+                          $facebook_linkUrl = "http://".$homepage_user_data["facebook_link"];
                       }
                       else{
-                          $facebook_linkUrl = "http://".$homepage_user_data["facebook_link"];
+                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
                       }
                       ?>
  
