@@ -15,7 +15,9 @@
                                     <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"> <%= result.college %></div>
                                     <div class="social-link   profile-social-link">
-                                        <% if((result.linkedin.indexOf("http://") <= -1) && (result.linkedin.indexOf("https://") <= -1) ){
+                                        <% 
+                                        if(result.linkedin.length > 0){
+                                        if((result.linkedin.indexOf("http://") <= -1) && (result.linkedin.indexOf("https://") <= -1) ){
                                             var linkedinUrl = "http://"+result.linkedin;
                                         }
                                         else{
@@ -23,7 +25,11 @@
                                         }
                                         %>
                                         <a href='<%= linkedinUrl   %>' target='_blank' class="edit"><i class="icon-linkedin"></i></a>
-                                         <% if((result.facebook_link.indexOf("http://") <= -1) && (result.facebook_link.indexOf("https://") <= -1) ){
+                                         <%
+                                         }
+                                          if(result.facebook_link.length > 0){
+
+                                          if((result.facebook_link.indexOf("http://") <= -1) && (result.facebook_link.indexOf("https://") <= -1) ){
                                             var facebook_linkUrl = "http://"+result.facebook_link;
                                         }
                                         else{
@@ -31,7 +37,7 @@
                                         }
                                         %>
                                         <a href='<%= facebook_linkUrl   %>' target='_blank' class="edit icon-facebook-a"><i class="icon-facebook"></i></a>
-                                        
+                                        <% } %>
                                     </div>
 									<div class="m1-invite">
 									<a class="btn btn-primary invite-btn" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
@@ -78,9 +84,7 @@
                                         }
                                         %>
                                         <a href='<%= linkedinUrl   %>' target='_blank' class="edit"><i class="icon-linkedin"></i></a> 
-                                       <%}else{%>
-                                      <a href='#'><i class="icon-linkedin"></i></a>
-                                      <%}%>
+                                       <%} %>
                                       <% if (result.facebook_link.length > 0 ){%>
                                         <% if(  (result.facebook_link.indexOf("https://") <= -1) &&   (result.facebook_link.indexOf("http://") <= -1) ) {
                                             var facebook_linkUrl = "http://"+result.facebook_link;
@@ -90,9 +94,7 @@
                                         }
                                         %>
                                         <a href='<%= facebook_linkUrl   %>' target='_blank' class="edit icon-facebook-a"><i class="icon-facebook"></i></a> 
-                                       <%}else{%>
-                                      <a href='#' class="edit icon-facebook-a"><i class="icon-facebook"></i></a>
-                                      <%}%>
+                                       <%} %>
                                       </div>
                                     <div class="social-link">
                                        <%= result.user_email %>
