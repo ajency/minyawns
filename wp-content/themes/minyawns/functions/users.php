@@ -9,7 +9,7 @@ function get_miny_current_user(){
     $user_info = wp_get_current_user(); 
 
  
-    if($user_info->ID!=0){
+      if($user_info->data->user_id!=NULL){
 
         
         $miny_current_user['id'] = $user_ID;
