@@ -509,7 +509,7 @@ function photoUpload(){
   
   var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'" title="asd asd  dasd sad s"><img author= "'+model.author+'" src="'+model.url+'" alt="Tour de Yorkshire" width="229" /></a>');
   if(model.author==USER.id || check_capability('manage_options') ){
-    newItems.prepend('<i class="icon-remove pull-right item-remove"></i>');
+    newItems.prepend('<i class="icon-remove pull-right item-remove" photo="'+model.id+'"></i>');
   }
   
  set_isotope()
@@ -520,9 +520,21 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
  }
 
  jQuery(".icon-remove").live('click', function(e) {
-     jQuery('.isotope').isotope( 'remove', $(e.target).parent() )
-    // layout remaining item elements
-      .isotope('layout');
+        var _e = e
+    
+
+
+    jQuery.ajax({
+    url: SITEURL+"/api/photos/delete/"+jQuery(e.target).attr('photo'),
+    type: 'DELETE',
+    data:{delete_nonce:$("#delete_nonce").val()},
+    success: function(result) {
+         jQuery('.isotope').isotope( 'remove', jQuery(_e.target).parent() )
+                // layout remaining item elements
+                  .isotope('layout');
+    }
+});
+  
  })
 
 /*function to check if the user can view or 
@@ -532,9 +544,11 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 
  
         var user_minyawn = user_employer = user_admin = false;
-
+ 
+        minyawnNo = current_job.toJSON().applied_user_id.indexOf(USER.id) 
+      
         //if minyawn and selected for the job
-         if( check_capability('apply_for_jobs') && jQuery.inArray( USER.id , current_job.toJSON().applied_user_id ) !=-1 && current_job_status=="Expired" )
+         if( check_capability('apply_for_jobs') && current_job.toJSON().user_to_job_status[minyawnNo] =="hired" && current_job_status=="Expired" )
         {
             user_minyawn = true;
         }
@@ -571,15 +585,17 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 
             jQuery("#photo-grid").show();
             //display jb photos
+
+            if(jQuery("#delete_nonce").val()==""){
+ 
+                jQuery("#delete_nonce").val(jQuery("#delete_nonce_").val())
+            }
+
+
             getJobPhotos();
             
         }
-                jQuery(".item").live('click', function(e) {
-                        if( $(e.target).attr('author')==USER.id){
-                            alert("can delete")
-                            jQuery('.isotope').remove(  $(e.target) ).isotope( 'remove',  $(e.target) );
-                        } 
-        });             
+                      
     
  }
 

@@ -42,7 +42,7 @@ function init(){
     if (current_user_can('delete_photos') ) {
     	$this->can_delete = true;
     }
-    if(isset( $_POST['upload_nonce'] ) && wp_verify_nonce( $_POST['upload_nonce'], $this->user_id )) {
+    if(isset( $_POST['upload_nonce'] ) && wp_verify_nonce( $_POST['upload_nonce'], "upload_nonce_".$this->user_id )) {
     	$this->upload_nonce = true;
     }
 
@@ -59,7 +59,7 @@ function init(){
     }
    
 
-    if(!empty( $values["delete_nonce"] ) && wp_verify_nonce( $values["delete_nonce"], 'secretstring' )) {
+    if(!empty( $values["delete_nonce"] ) && wp_verify_nonce( $values["delete_nonce"], "delete_photo_".$this->user_id )) {
     	$this->delete_nonce = true;
     }
 
@@ -127,6 +127,13 @@ if (!$upload_file['error']) {
 			'job_id' => $parent_post_id
 			)
 		);
+
+	//send mail if the photo was uploaded for a job
+	if($parent_post_id !=0){
+
+		$this->send_photo_upload_mail($user_id,$parent_post_id);
+	}
+ 	
 
 }else{
 	
@@ -231,7 +238,7 @@ return false;
 
 if($this->is_minyawn){
 //Check if minyawn was hired for the job
-if(!$this->is_minyawn_hired_for_job($jobid)){
+if(!$this->is_minyawn_hired_for_job($jobid)){echo "6";
 return false;
 }else{
 return true;
@@ -290,15 +297,18 @@ return true;
 
 
 public function is_user_has_photo($photoid){
-global $wpdb;
-$userid = $this->user_id;
-$query = "SELECT * FROM $wpdb->posts p where p.ID = $photoid AND where p.post_type = 'attachment' AND p.post_author = $userid AND (p.post_mime_type LIKE 'image/%')  AND (p.post_status = 'inherit')";
-$results = $wpdb->get_row($query, ARRAY_A );
-if(!$results){
-return false;
-}else{
- return true;
-}
+
+	$args["author"] = $this->user_id;
+ 
+	$args['post_type'] = 'attachment'; 
+ 
+	$results= get_posts( $args ); 
+
+	if(!$results){
+		return false;
+	}else{
+	 	return true;
+	}
 }
 
 
@@ -336,8 +346,78 @@ return false;
 }
 
 }
+ 
+public function send_photo_upload_mail($user_id,$job_id){
+ 
+    $user_data = get_user_by('id', $user_id);
 
+   	$last_uploaded = get_user_meta($user_id,'job_photo_upload',true);
 
+    $last_uploaded_date = date('Y-m-d', strtotime('-1 day', strtotime(date('Y-m-d'))));
+    
+    $found_job = false;
+
+ 	foreach($last_uploaded as $last_uploaded_item){
+
+ 		
+
+ 		if($last_uploaded_item["job_id"]==$job_id){
+
+ 			$found_job = true;
+
+ 			$last_uploaded_date = $last_uploaded_item["uploaded_date"];
+
+ 			$last_uploaded_item["uploaded_date"] = date('Y-m-d');
+
+ 		}
+ 		
+ 	}
+
+ 	if($found_job == false){
+ 			
+ 			$last_uploaded[] = array("job_id"=>$job_id,"uploaded_date"=> date('Y-m-d'));
+
+ 		}
+
+   	update_user_meta($user_id,'job_photo_upload',$last_uploaded);
+
+   	$datetime1 = new DateTime($last_uploaded_date);
+
+	$datetime2 = new DateTime(date('Y-m-d'));
+
+	$interval = $datetime1->diff($datetime2);
+
+	$days = $interval->format('%a');
+  
+    $job_data = get_post( $job_id); 
+
+    $job_author_data = get_user_by('id', $job_data->post_author);
+ 
+    $subject = $user_data->first_name." ".$user_data->last_name." has added Job images to ".$job_data->post_title;
+
+    add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+    
+    $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+ 
+    $message = "Hi, <br/><br/>".$user_data->first_name." ".$user_data->last_name." has uploaded Images to Job ".$job_data->post_title.".<br/><br/><a href='".get_post_permalink($job_id)."'>Click here</a> to view the images.<br/><br/>";
+ 
+   	//mail to the employer
+ 	///wp_mail( $job_author_data->user_email, $subject, email_header() . $message . email_signature(), $headers);
+
+   	//mail to administrator
+   	$adminsitrators = get_users( 'role=administrator' );
+
+	 
+	foreach ( $adminsitrators as $adminsitrator ) { 
+
+  		add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+   
+		//wp_mail( $adminsitrator->user_email, $subject, email_header() . $message . email_signature(), $headers);
+
+	}
+     
+ 
+} 
 
 
 
