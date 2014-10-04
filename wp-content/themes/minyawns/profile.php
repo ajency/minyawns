@@ -184,15 +184,11 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                 
                     <?php  if(strlen(user_profile_linkedin()) >0 ){ ?>
                     <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a> 
-                                        <?php }else {?>
-                                        <a href='#'><i class="icon-linkedin"></i></a> 
-                                            <?php }?>
+                                        <?php  }?>
                                             
                     <?php  if(strlen(user_profile_facebook()) >0 ){ ?>
                     <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
-                                        <?php }else {?>
-                                        <a href='#'  class="icon-facebook-a"><i class="icon-facebook" ></i></a>
-                                            <?php }?>     </div>                           
+                                        <?php } ?>     </div>                           
                                             <?php endif; ?> 
                                       
 					  <h4 class="name"> <?php
