@@ -384,6 +384,8 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
         Please Select at-least one Minyawn
     </div>
 </div>
-
+<div style="display:none">
+<img src="<?php echo get_template_directory_uri();?>/images/minyawns-job-warning.jpg">
+</div>
 <?php
 get_footer();

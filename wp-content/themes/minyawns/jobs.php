@@ -617,6 +617,9 @@ $all_categories = get_categories(array('hide_empty' => 0));
         </div>
     </div>
 </div>  </div>  </div>
+<div style="display:none">
+<img src="<?php echo get_template_directory_uri();?>/images/minyawns-job-warning.jpg">
+</div>
 <?php
 get_footer();
 ?>
