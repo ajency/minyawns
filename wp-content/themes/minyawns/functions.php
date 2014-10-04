@@ -2242,8 +2242,6 @@ echo $user_pic_img_src;
 
 
 
-<<<<<<< HEAD
-=======
 /*function photocontrol() {
 require_once('class.photo.php');
 global $photo_model;
@@ -2253,33 +2251,19 @@ $photo_model->init();
 add_action('init', 'photocontrol', '1');*/
 
 
->>>>>>> issue24
 
 
 
 /****************Photos API****************/
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
 if(is_plugin_active('json-rest-api/plugin.php')){
-<<<<<<< HEAD
-
-        /**
-=======
 /**
->>>>>>> issue24
      * Change the json rest api plugin prefix from wp-json to api
      *
      * @since ajency-activity-and-notifications (0.1)
      *
      * @uses json rest api plugin filter hook json_url_prefix
      */
-<<<<<<< HEAD
-    function change_json_rest_api_prefix($prefix){
-
-        return "api";
-
-    }
-    add_filter( 'json_url_prefix', 'change_json_rest_api_prefix',10,1);
-=======
 function change_json_rest_api_prefix($prefix){
 
     return "api";
@@ -2287,7 +2271,6 @@ function change_json_rest_api_prefix($prefix){
 }
 add_filter( 'json_url_prefix', 'change_json_rest_api_prefix',10,1);
 
->>>>>>> issue24
 
 function photo_api_init() {
     global $photo_api;
@@ -2300,15 +2283,12 @@ add_action( 'wp_json_server_before_serve', 'photo_api_init' );
 
 require_once('class.photo.php');
 
-<<<<<<< HEAD
-=======
 
 
 
 
 
 
->>>>>>> issue24
 class PhotoAPI {
 
    /*Initialize the photo model variable*/
@@ -2318,32 +2298,22 @@ class PhotoAPI {
    /*Instantiate Photo object in construct*/
     public function __construct() {
         $this->photo_model = new PhotoModel();
-<<<<<<< HEAD
-=======
         $this->photo_model->init();
->>>>>>> issue24
     }
 
     /*Register Routes*/
     public function register_routes( $routes ) {
 
-<<<<<<< HEAD
-      //Upload route
-=======
       //Upload route for user pictures
->>>>>>> issue24
        $routes['/photos/upload'] = array(
             array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
             );
 
-<<<<<<< HEAD
-=======
        //Upload route for user pictures upload to the job
        $routes['/photos/upload/(?P<jobid>\d+)'] = array(
             array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
             );
 
->>>>>>> issue24
        //Delete route
        $routes['/photos/delete/(?P<photoid>\d+)'] = array(
             array( array( $this, 'delete_photos'), WP_JSON_Server::DELETABLE ),
@@ -2362,54 +2332,18 @@ class PhotoAPI {
             array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
             );
 
-<<<<<<< HEAD
-        //Route to login
-        $routes['/login/username/(?P<username>\S+)/password/(?P<password>\S+)'] = array(
-            array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
-            );
-
-=======
         $routes['/login/username/(?P<username>\w+)/password/(?P<password>\w+)'] = array(
             array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
             );
 
 
         
->>>>>>> issue24
          return $routes;
     }
 
 
 
     //Upload photos and get response
-<<<<<<< HEAD
-    public function upload_photos(){
-     if($this->photo_model->upload_photos()){
-        $resp = 'true';
-    }else{
-        $resp = 'false';
-    }
-
-    $response = array('status' => $resp);
-
-    $response = json_encode( $response );
-
-    //$response = json_encode( $this->photo_model->upload_photos() );
-
-
-
-    header( "Content-Type: application/json" );
-
-    echo $response;
-
-    exit;
-
-}
-
-    //Delete photos and get response
-    public function delete_photos($photoid){
-        if($this->photo_model->delete_photos($photoid)){
-=======
     public function upload_photos($jobid = 0){
         $response = json_encode( $this->photo_model->upload_photos($jobid) );
         header( "Content-Type: application/json" );
@@ -2420,7 +2354,6 @@ class PhotoAPI {
     //Delete photos and get response
     public function delete_photos($photoid){
         if($this->photo_model->delete_photos($photoid,$nonce)){
->>>>>>> issue24
         $resp = 'true';
     }else{
         $resp = 'false';
@@ -2451,85 +2384,6 @@ class PhotoAPI {
  }
 
 
-<<<<<<< HEAD
-//User Authentication and set cookie
- public function get_login_status($username,$password){
-
-    //Check for empty username or password
-    if(empty($username) || empty($password)){
-        return false;
-    } else {
-        //Login using username and password 
-        $auth = wp_authenticate($username, $password );
-
-       // Check for any error 
-        if( is_wp_error($auth) ) { 
-            wp_logout();
-            wp_clear_auth_cookie();     
-            $response = array('status'=>false);
-        } else {
-            //get the user id
-            $user_id = $auth->data->ID;
-
-            //Set expiration time
-            $expiration = time() + apply_filters( 'auth_cookie_expiration', 14 * DAY_IN_SECONDS, $user_id, strtotime( '+14 days' ) );
-
-            //Needed for the login grace period in wp_validate_auth_cookie().
-            $expire = $expiration + ( 12 * HOUR_IN_SECONDS );
-
-
-            if ( '' === $secure ) {
-                $secure = is_ssl();
-            }
-
-            // Frontend cookie is secure when the auth cookie is secure and the site's home URL is forced HTTPS.
-            $secure_logged_in_cookie = $secure && 'https' === parse_url( get_option( 'home' ), PHP_URL_SCHEME );
-
-            //Filter whether the connection is secure.
-            $secure = apply_filters( 'secure_auth_cookie', $secure, $user_id );
-
-            //Filter whether to use a secure cookie when logged-in.
-            $secure_logged_in_cookie = apply_filters( 'secure_logged_in_cookie', $secure_logged_in_cookie, $user_id, $secure );
-
-            if ( $secure ) {
-                $auth_cookie_name = SECURE_AUTH_COOKIE;
-                $scheme = 'secure_auth';
-            } else {
-                $auth_cookie_name = AUTH_COOKIE;
-                $scheme = 'auth';
-            }
-
-            //Generate token
-            $manager = WP_Session_Tokens::get_instance( $user_id );
-            $token = $manager->create( $expiration );
-
-            //Generate logged-in and auth cookie
-            $auth_cookie = wp_generate_auth_cookie( $user_id, $expiration, $scheme, $token );
-            $logged_in_cookie = wp_generate_auth_cookie( $user_id, $expiration, 'logged_in', $token );
-
-            //Fires immediately before the authentication cookie is set.
-            do_action( 'set_auth_cookie', $auth_cookie, $expire, $expiration, $user_id, $scheme );
-
-            //Fires immediately before the secure authentication cookie is set.
-            do_action( 'set_logged_in_cookie', $logged_in_cookie, $expire, $expiration, $user_id, 'logged_in' );
-
-            setcookie($auth_cookie_name, $auth_cookie, $expire, PLUGINS_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
-            setcookie($auth_cookie_name, $auth_cookie, $expire, ADMIN_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
-            setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, COOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
-            if ( COOKIEPATH != SITECOOKIEPATH )
-                setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, SITECOOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
-
-            
-            /*$response = array('status'=> 'true',
-                'logged_in' => $logged_in_cookie,
-                'authentication' =>  $auth_cookie
-                );*/
-
-            $response = login_response($user_id,$logged_in_cookie,$auth_cookie);
-
-        }
-
-=======
 //User Authentication
  public function get_login_status($username,$password){
     global $wp, $wp_rewrite, $wp_the_query, $wp_query;
@@ -2587,7 +2441,6 @@ class PhotoAPI {
         }
 
         //$response = array('status'=>$status);
->>>>>>> issue24
         $response = json_encode( $response );
 
         header( "Content-Type: application/json" );
@@ -2608,34 +2461,3 @@ class PhotoAPI {
 
 
 
-<<<<<<< HEAD
-
-
-
-
-function login_response($user_id,$logged_in_cookie,$auth_cookie){
-    global $user_ID,  $wp_roles ;
-    $user = array();
-    $user_info = get_userdata($user_id);
-    $usermeta = get_user_meta($user_id);
-    $attchid = $usermeta['avatar_attachment'][0];
-    $avatar_url = wp_get_attachment_image_src($attchid, 'large' )[0]; 
-    $user['status'] = 'true';
-    $user['logged_in_cookie'] = $logged_in_cookie;
-    $user['auth_cookie'] = $auth_cookie;
-    $user['id'] = $user_id;
-    $user['user_login'] = $user_info->data->user_login;
-    $user['user_email'] = $user_info->data->user_email;
-    $user['display_name'] = $user_info->data->display_name; 
-    $user['role'] =  key($user_info->caps) ;
-    $user['display_role'] = $wp_roles->role_names[key($user_info->caps)] ;
-    $user['avatar_url'] = $avatar_url;
-    return  $user;
-}
-
-
-
-
-
-=======
->>>>>>> issue24
