@@ -333,8 +333,8 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 					<div class="span3">
                     
                     <form>
-                    <?php $upload_nonce = wp_create_nonce("upload_nonce_".get_current_user_id()); ?>
-                    <?php $delete_nonce = wp_create_nonce("delete_nonce_".get_current_user_id()); ?>
+                    <?php $upload_nonce = wp_create_nonce("upload_photo_".get_current_user_id()); ?>
+                    <?php $delete_nonce = wp_create_nonce("delete_photo_".get_current_user_id()); ?>
                     <input type="hidden" id="upload_nonce" name="upload_nonce" value="<?php echo $upload_nonce; ?>" />
                     <input type="hidden" id="delete_nonce" name="delete_nonce" value="<?php echo $delete_nonce; ?>" />
                     <input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
