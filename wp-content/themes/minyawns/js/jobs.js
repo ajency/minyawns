@@ -397,7 +397,7 @@ function getJobPhotos(){
 function getUserPhotos(user_id){
 
      $.get(SITEURL+"/api/photos/user/"+user_id, {}, function(collection)  { 
-                console.log('collection')
+                 
                   _.each(collection, function(model) {
                       appendToGrid(model)
                   });
@@ -523,17 +523,22 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
         var _e = e
     
 
+    userResponse =  confirm("Are you sure you want to delete this photo?")
+    if(userResponse==true){
+            jQuery.ajax({
+            url: SITEURL+"/api/photos/delete/"+jQuery(e.target).attr('photo'),
+            type: 'DELETE',
+            data:{delete_nonce:$("#delete_nonce").val()},
+            success: function(result) {
+                 jQuery('.isotope').isotope( 'remove', jQuery(_e.target).parent() )
+                        // layout remaining item elements
+                          .isotope('layout');
+            }
+        });
+        }else{
+            return false;
+        }
 
-    jQuery.ajax({
-    url: SITEURL+"/api/photos/delete/"+jQuery(e.target).attr('photo'),
-    type: 'DELETE',
-    data:{delete_nonce:$("#delete_nonce").val()},
-    success: function(result) {
-         jQuery('.isotope').isotope( 'remove', jQuery(_e.target).parent() )
-                // layout remaining item elements
-                  .isotope('layout');
-    }
-});
   
  })
 
