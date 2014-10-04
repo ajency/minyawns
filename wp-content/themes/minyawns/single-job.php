@@ -348,7 +348,7 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
 
  
    
-<?php $upload_nonce = wp_create_nonce("upload_nonce_".get_current_user_id()); ?>
+<?php $upload_nonce = wp_create_nonce("upload_photo_".get_current_user_id()); ?>
 <?php $delete_nonce = wp_create_nonce("delete_photo_".get_current_user_id()); ?>
 <div style="display:none">
 <input type="text" id="upload_nonce_" value="<?php echo $upload_nonce; ?>" >
