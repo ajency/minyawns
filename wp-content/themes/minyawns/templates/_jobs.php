@@ -19,8 +19,8 @@
                                              <ul class="inline">
                                                
                                                 <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
-                                                      <li class=""><i class="icon-map-marker"></i> <%= result.job_location %></li>
-                                                      <li class="no-bdr"> Minyawns required:<%= result.required_minyawns %></li>
+                                                      <li class="no-bdr"><i class="icon-map-marker"></i> <%= result.job_location %></li>
+                                                      <!--<li class="no-bdr"> Minyawns required:<%= result.required_minyawns %></li>-->
                                              </ul>
 											 			
                                           </div>
