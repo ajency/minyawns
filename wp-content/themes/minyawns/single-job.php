@@ -387,5 +387,22 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
 <div style="display:none">
 <img src="<?php echo get_template_directory_uri();?>/images/minyawns-job-warning.jpg">
 </div>
+
+<div class="hidden">
+    <script type="text/javascript">
+        <!--//--><![CDATA[//><!--
+            var images = new Array()
+            function preload() {
+                for (i = 0; i < preload.arguments.length; i++) {
+                    images[i] = new Image()
+                    images[i].src = preload.arguments[i]
+                }
+            }
+            preload(
+                "<?php echo get_template_directory_uri();?>/images/minyawns-job-warning.jpg"
+            )
+        //--><!]]>
+    </script>
+</div>
 <?php
 get_footer();
