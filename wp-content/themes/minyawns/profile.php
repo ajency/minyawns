@@ -343,7 +343,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                           <div class="row-fluid">
                           <div class="span12">
                             <div id="drop">
-                              Drop Your Photos Here 
+                              Drop Your Photos Here <br>
                               <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
                               <input type="file" name="photo" multiple />
                             </div>
