@@ -391,11 +391,11 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
 <div class="hidden">
     <script type="text/javascript">
         <!--//--><![CDATA[//><!--
-            var images = new Array()
+            var warning_image = new Array()
             function preload() {
                 for (i = 0; i < preload.arguments.length; i++) {
-                    images[i] = new Image()
-                    images[i].src = preload.arguments[i]
+                    warning_image = new Image()
+                    warning_image.src = preload.arguments[i]
                 }
             }
             preload(
