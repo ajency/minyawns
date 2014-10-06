@@ -2743,35 +2743,56 @@ height:30px !important;
 float:none !important;
 }
 
+ 
 .minyawns-grid1 .thumbspan .thumbnail .m2 .caption .profile-social-link{
  
 float:none !important;
 } 
+ 
  
  .icon-facebook-a{
 	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
 }
  
 #apply-job-popup .modal-body{
-	max-height: 505px !important;
+	max-height: 520px !important;
 }
  
 .icon-facebook{
 	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
 } 
+ 
    
 .search-minyawn{
 	width: 170px !important;
 }
  
- .load_ajax_large_minyawns {
-    background: url('../images/ajax-loader.gif') no-repeat scroll 0px 0px transparent;
-    float: left;
-    height: 101px;
-    margin-left: auto;
-    margin-right: auto;
-    position: inherit;
-    width: 94px;
-    z-index: 99999;
+ 
+.item-remove{
+	cursor:pointer;
 }
  
+.timepicker-default {
+    width: 90px !important;
+}
+ 
+ 
+ 
+ .load_ajax_large_minyawns {
+    background: url('../images/ajax-loader.gif') no-repeat scroll 0px 0px transparent;
+    float: inherit;
+    height: 101px; 
+    width: 94px;
+    margin-left: -50px;
+    z-index: 99999;
+    position:absolute;
+}
+ 
+ .load_ajax_large_minyawns_container{
+	 
+    overflow:hidden ;
+    text-align: center;
+    height: 101px; 
+  position:relative;
+ }
+
