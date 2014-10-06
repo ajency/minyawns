@@ -634,11 +634,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
             photoUpload(); 
 
         }
-        jQuery(".item").live('click', function(e) {
-                        if( $(e.target).attr('author')==USER.id){
-                            alert("can delete")
-                        } 
-        });
+     
 
  }
     // Helper function that formats the file sizes
