@@ -508,8 +508,8 @@ function photoUpload(){
 
   
   var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'" title="asd asd  dasd sad s"><img author= "'+model.author+'" src="'+model.url+'" alt="Tour de Yorkshire" width="229" /></a>');
-  if(model.author==USER.id || check_capability('manage_options') ){
-    newItems.prepend('<i class="icon-remove pull-right item-remove" photo="'+model.id+'"></i>');
+  if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
+    newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
   }
   
  set_isotope()

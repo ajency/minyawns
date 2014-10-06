@@ -117,6 +117,11 @@ if (!$upload_file['error']) {
 		);
 	}
 	$image_url =   wp_get_attachment_image_src($attachment_id, 'large' );
+	//get the author of the job
+
+	$job = get_post($parent_post_id); 
+	$job_author = $job->post_author;
+
 	$response = array(
 		'status'	=> true,
 		'photo'		=> array(
@@ -124,7 +129,8 @@ if (!$upload_file['error']) {
 			'url'	=> $image_url[0],
 			'author' => $user_id,
 			'date' => get_the_date('Y-m-d H:i:s.u',$attachment_id),
-			'job_id' => $parent_post_id
+			'job_id' => $parent_post_id,
+			'job_author'=>$job_author
 			)
 		);
 
@@ -192,6 +198,12 @@ $results= get_posts( $args );
  
 foreach($results as $result){
 
+	//get the author of the job
+
+	$job = get_post($result->post_parent); 
+
+	$job_author = $job->post_author;
+
 	$image_url =   wp_get_attachment_image_src($result->ID, 'large' );
  
    	$image_url = ( $image_url!=false)? $image_url[0]:'' ;
@@ -200,7 +212,8 @@ foreach($results as $result){
 					'url' =>  $image_url,
 					'author' => $result->post_author,
 					'date' => $result->post_date,
-					'job_id' => $result->post_parent
+					'job_id' => $result->post_parent,
+					'job_author' => $job_author 
 
 					);
 }
