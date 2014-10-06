@@ -344,7 +344,7 @@ $(".inline li").removeClass("selected");
                                             </div>
                                         </div>
                                         <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
-                                            <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" value="<?php echo $minyawn_job->get_job_start_time()  ?>">
+                                            <input id="job_start_time" type="text" readonly class="timepicker-default input-small" name="job_start_time" value="<?php echo $minyawn_job->get_job_start_time()  ?>">
                                             <span class="add-on">
                                                 <i class="icon-time"></i>
                                             </span>
@@ -361,7 +361,7 @@ $(".inline li").removeClass("selected");
 
                                         </div>
                                         <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
-                                            <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time" value="<?php echo $minyawn_job->get_job_end_time()  ?>">
+                                            <input id="job_end_time" type="text" readonly class="timepicker-default input-small" name="job_end_time" value="<?php echo $minyawn_job->get_job_end_time()  ?>">
                                             <span class="add-on">
                                                 <i class="icon-time"></i>
                                             </span>
