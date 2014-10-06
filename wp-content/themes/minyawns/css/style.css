@@ -2763,4 +2763,8 @@ float:none !important;
 .search-minyawn{
 	width: 170px !important;
 }
+
+.timepicker-default {
+    width: 90px !important;
+}
  
