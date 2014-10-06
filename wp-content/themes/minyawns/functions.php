@@ -2221,3 +2221,12 @@ function get_user_avatar_by_id($id){
 echo $user_pic_img_src;
     return $user_pic_img_src;
 }
+
+
+add_filter( 'auth_cookie_expiration', 'timeout_time' );
+
+function timeout_time ( $expirein ) {
+
+return $expirein-HOUR_IN_SECONDS;
+
+}
