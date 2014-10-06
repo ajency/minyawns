@@ -2290,7 +2290,7 @@ echo $user_pic_img_src;
     return $user_pic_img_src;
 }
 
-
+ 
 
 /*function photocontrol() {
 require_once('class.photo.php');
@@ -2550,3 +2550,11 @@ function login_response($user_id,$logged_in_cookie,$auth_cookie){
 
 
 
+=======
+add_filter( 'auth_cookie_expiration', 'timeout_time' );
+
+function timeout_time ( $expirein ) {
+
+return $expirein-HOUR_IN_SECONDS;
+
+ 
