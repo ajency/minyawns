@@ -2767,3 +2767,7 @@ float:none !important;
 	cursor:pointer;
 }
  
+
+*{
+ 	box-sizing: content-box !important;
+ 	}    
