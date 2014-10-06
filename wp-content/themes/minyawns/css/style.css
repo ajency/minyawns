@@ -2766,8 +2766,13 @@ float:none !important;
 .search-minyawn{
 	width: 170px !important;
 }
+ 
 .item-remove{
 	cursor:pointer;
+}
+ 
+.timepicker-default {
+    width: 90px !important;
 }
  
  
