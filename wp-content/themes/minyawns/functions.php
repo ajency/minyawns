@@ -2302,7 +2302,6 @@ class PhotoAPI {
     }
 
 
-
     //Upload photos and get response
     public function upload_photos(){
      if($this->photo_model->upload_photos()){
