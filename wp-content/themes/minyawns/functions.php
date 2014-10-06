@@ -2392,7 +2392,6 @@ class PhotoAPI {
     }
 
 
-
     //Upload photos and get response
     public function upload_photos($jobid = 0){
         $response = json_encode( $this->photo_model->upload_photos($jobid) );
