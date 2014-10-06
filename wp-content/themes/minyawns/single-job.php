@@ -288,12 +288,22 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
 
 
                     <div class="control-group small">
+                    <div class="control-group small float-left ">
                         <label class="control-label" for="inputtask">Wages</label>
 
                         <div class="controls small">
                             <div class="input-prepend">
                                 <span class="add-on"><i class="icon-dollar"></i></span>
                                 <input class="span2" id="job_wages" type="text" name="job_wages" value="<?php echo $minyawn_job->get_job_wages(); ?>">
+                            </div>
+                        </div>
+                    </div>
+                          <label class="control-label" for="inputtask">Actual Wages &nbsp;&nbsp;</label>
+
+                        <div class="controls small">
+                            <div class="input-prepend">
+                                <span class="add-on"><i class="icon-dollar"></i></span>
+                                <input class="span2 readonly-color" id="job_wages_actual"  readonly type="text" name="job_wages_actual" value="<?php echo $minyawn_job->get_job_wages() - ($minyawn_job->get_job_wages() *(10/100)) ?>">
                             </div>
                         </div>
 

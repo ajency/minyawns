@@ -2768,6 +2768,7 @@ float:none !important;
 }
  
  
+ 
 .item-remove{
 	cursor:pointer;
 }
@@ -2796,4 +2797,9 @@ float:none !important;
   position:relative;
  }
 
+ 
+ 
+.readonly-color{
+	color:#A59C9C !important;
+}
  
