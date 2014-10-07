@@ -2231,6 +2231,20 @@ echo $user_pic_img_src;
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
 if(is_plugin_active('json-rest-api/plugin.php')){
 
+        /**
+     * Change the json rest api plugin prefix from wp-json to api
+     *
+     * @since ajency-activity-and-notifications (0.1)
+     *
+     * @uses json rest api plugin filter hook json_url_prefix
+     */
+    function change_json_rest_api_prefix($prefix){
+
+        return "api";
+
+    }
+    add_filter( 'json_url_prefix', 'change_json_rest_api_prefix',10,1);
+
 function photo_api_init() {
     global $photo_api;
 
@@ -2280,7 +2294,7 @@ class PhotoAPI {
             );
 
         //Route to login
-        $routes['/login/username/(?P<username>\w+)/password/(?P<password>\w+)'] = array(
+        $routes['/login/username/(?P<username>\S+)/password/(?P<password>\S+)'] = array(
             array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
             );
 
