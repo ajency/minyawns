@@ -20,7 +20,27 @@
                                                
                                                 <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
                                                       <li class=""><i class="icon-map-marker"></i> <%= result.job_location %></li>
-                                                      <li class="no-bdr"> Minyawns required:<%= result.required_minyawns %></li>
+                                                      <li class=""> Minyawns required:<%= result.required_minyawns %></li>
+
+
+                                                      <li class="no-bdr">
+                                                      <i class="icon-calendar"></i>
+                                                      <a href="<?php echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent">
+                                                      Add to Calendar
+                                                      <span class="_start"><%= result.event_start %></span>
+                                                      <span class="_end"><%= result.event_end %></span>
+                                                      <span class="_zonecode">6</span>
+                                                      <span class="_summary"><%= result.post_title %></span>
+                                                      <span class="_description"><%= result.job_details %></span>
+                                                      <span class="_location"><%= result.job_location %></span>
+                                                      <span class="_organizer"><%= result.job_company %></span>
+                                                      <span class="_organizer_email"><%= result.job_author_email %></span>
+                                                      <span class="_all_day_event">false</span>
+                                                      <span class="_date_format">DD/MM/YYYY</span>
+                                                      </a>
+                                                      </li>
+
+
                                              </ul>
 											 			
                                           </div>
@@ -67,8 +87,16 @@
                                     <div class="st-footer">                                       
                                         
                                        <%= job_collapse_button %>
-                                      
+
                                     </div>
+
+<% console.log("result") %>
+<% console.log(result) %>
+
+                                   
+
+
+
                                  </div>
                               </div>   
 </div>

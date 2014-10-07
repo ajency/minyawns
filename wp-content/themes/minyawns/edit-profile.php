@@ -94,7 +94,7 @@ require 'templates/_jobs.php';
             <div class="span12" id="profile-edit" style="height:502px;">
                 <div class="row-fluid">	
                     <div class="span8">
-                    <form class="form-horizontal frm-edit" id="profile-edit-form">
+                    <form class="form-horizontal frm-edit" id="profile-edit-form" enctype="multipart/form-data">
 
 
                         <?php if (get_user_role() === 'minyawn'): ?>
@@ -147,6 +147,37 @@ require 'templates/_jobs.php';
                                     <input type="text" id="facebook_link"  name="facebook_link" placeholder="www.facebook.com/username" value="<?php echo user_profile_facebook(); ?>" class="input">
                                 </div>
                             </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label" for="upload_video">Intro Video</label>
+                                <div class="controls">
+
+                                    <div class="upload-cont" style="float:left;width:50%">
+                                        <input type="file" id="upload_video"  name="upload_video" style="visibility:hidden; width:0px;">
+                                        <!-- <a class="btn btn-small" onclick="$('#upload_video').click();">Upload Video</a> -->
+                                        <a class="btn btn-small" data-target="#uploadvideo" data-toggle="modal">Upload Video</a>
+                                        <div style="font-size:10px;margin-top: 05px;">
+                                            Upload video files of .MOV, .MPEG4,MP4,.AVI, .WMV, .MPEGPS, .FLV formats only
+                                            Maximum size of the file can be 10MB
+                                            Video should not be more than 30 seconds
+                                            Preferred width:height ratio of 4:3
+                                        </div>
+                                    </div>
+
+                                    <div class="record-cont" style="float:left;">
+                                     <a class="btn btn-small" data-target="#recordvideo" data-toggle="modal">Record from Webcam</a>
+                                     <div style="font-size:10px;margin-top: 05px;">
+                                        Recorded Video should not be more than 30 seconds
+                                    </div>
+                                </div>
+
+                                </div>
+                            </div>
+
+
+
+                           
                         <?php else : ?>
                             <div class="control-group">
                                 <label class="control-label" for="inputFirst">Company Name</label>
@@ -217,5 +248,103 @@ require 'templates/_jobs.php';
         </div>
     </div>
 </div>
+
+
+
+
+<!-- Modal for record video with webcam -->
+<div id="recordvideo" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:9999">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 id="myModalLabel">Record from Webcam</h4>
+
+    </div>
+    <input type="hidden" id="tab_identifier" value="1">
+    <div class="modal-body">
+        <div style="margin:0 auto; width:500px">
+            <div id="widget"></div>
+            <div id="player"></div>
+
+        </div>
+    </div>
+
+</div>
+<!-- yutube webcam upload modal End -->
+
+
+
+
+
+<!-- Modal for upload youtube video -->
+    
+<div id="uploadvideo" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:9999">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 id="myModalLabel">Upload Video</h4>
+
+    </div>
+    <input type="hidden" id="tab_identifier" value="1">
+    <div class="modal-body">
+        <div style="margin:0 auto; width:500px">
+           
+           <iframe width="420" height="500" src="http://ytdirectlite.appspot.com/static-min/index.html#playlist="></iframe>
+           
+        </div>
+    </div>
+
+</div>
+<!-- youtube upload modal End -->
+
+
+
+
+
+
+
+<!-- Youtube video recording with webcam and upload script -->
+<script>
+      // 2. Asynchronously load the Upload Widget and Player API code.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. Define global variables for the widget and the player.
+      // The function loads the widget after the JavaScript code has
+      // downloaded and defines event handlers for callback notifications
+      // related to the widget.
+      var widget;
+      var player;
+      function onYouTubeIframeAPIReady() {
+        widget = new YT.UploadWidget('widget', {
+          width: 500,
+          events: {
+            'onUploadSuccess': onUploadSuccess,
+            'onProcessingComplete': onProcessingComplete
+          }
+        });
+      }
+
+      // 4. This function is called when a video has been successfully uploaded.
+      function onUploadSuccess(event) {
+        alert('Video ID ' + event.data.videoId + ' was uploaded and is currently being processed.');
+      }
+
+      // 5. This function is called when a video has been successfully processed.
+      function onProcessingComplete(event) {
+        player = new YT.Player('player', {
+          height: 390,
+          width: 640,
+          videoId: event.data.videoId,
+          events: {}
+        });
+      }
+    </script>
+
+
+
+
 <?php
 get_footer();
+
+?>
