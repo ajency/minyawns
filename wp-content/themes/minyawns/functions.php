@@ -2286,10 +2286,11 @@ function get_user_avatar_by_id($id){
         $user_pic_img_src = get_avatar($id);
 
     }
-echo $user_pic_img_src;
+ 
     return $user_pic_img_src;
 }
 
+ 
 
  
 
@@ -2562,11 +2563,92 @@ function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$aut
 
 
  
-add_filter( 'auth_cookie_expiration', 'timeout_time' );
-
-function timeout_time ( $expirein ) {
-
-return $expirein-HOUR_IN_SECONDS;
-
-}
  
+ 
+ 
+function send_job_day_minyawns_reminder(){
+
+    $args = array();
+
+    $args["post_type"] = "job";
+
+    $today = date('Y-m-d');
+
+    $dayaftertomorrow = date('Y-m-d', strtotime("+2 days")); 
+
+    $args["meta_query"] = array('relation' => 'AND',
+        array(
+            'key' => 'job_start_date',
+            'value' => strtotime($today),
+            'compare' => '>',
+        ),
+        array(
+            'key' => 'job_start_date',
+            'value' => strtotime($dayaftertomorrow),
+            'compare' => '<',
+        ));
+ 
+
+
+$query = new WP_Query($args);
+ 
+$posts = $query->get_posts();
+
+foreach($posts as $post) {
+    // Do your stuff, e.g.
+    
+
+      $minyawns = (get_hired_minyawns_for_job($post->ID));
+
+      if($minyawns !=false){
+        foreach($minyawns as $minyawn){
+ 
+            $data_mail = array( 'job_title'=>$post->post_title,
+                                'job_page'=>get_permalink($post->ID),
+                                'minyawn_name'=>$minyawn->display_name); 
+            
+            $mail = email_template($minyawn->user_email, $data_mail, 'minyawn_job_reminder');
+         
+            $headers = 'From: Minyawns support@minyawns.com' . "\r\n";
+            $headers .= "MIME-Version: 1.0\n" .
+                    "From: Minyawns support@minyawns.com\n" .
+                    "Content-Type: text/html; charset=\"" . "\"\n";
+
+             wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
+        }
+       
+      }
+}
+
+
+
+         
+
+ 
+}
+add_action('init','send_job_day_minyawns_reminder');
+
+
+//to get hired minyawns for a job
+
+
+function get_hired_minyawns_for_job($job_id){
+
+    global $wpdb;
+
+    $query = "Select user_id from ".$wpdb->base_prefix ."userjobs WHERE job_id = ".$job_id." and status = 'hired'";
+ 
+    $results = $wpdb->get_results( $query,OBJECT);
+    $users = array();
+    foreach($results as $result){
+       $users[] =  $result->user_id;
+    }
+
+    if(count($users)!=0){
+        return get_users( array( 'include' => $users ) );
+    }else{
+        return false;
+    }
+    
+}
+
