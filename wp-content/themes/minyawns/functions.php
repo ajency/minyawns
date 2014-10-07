@@ -2387,12 +2387,12 @@ class PhotoAPI {
             array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
             );
 
-
+ 
         
          return $routes;
     }
 
-
+ 
     //Upload photos and get response
     public function upload_photos($jobid = 0){
         $response = json_encode( $this->photo_model->upload_photos($jobid) );
@@ -2507,7 +2507,7 @@ class PhotoAPI {
                 'authentication' =>  $auth_cookie
                 );*/
 
-            $response = login_response($user_id,$logged_in_cookie,$auth_cookie);
+            $response = login_response($user_id,LOGGED_IN_COOKIE,$logged_in_cookie,AUTH_COOKIE,$auth_cookie);
 
         }
 
@@ -2529,7 +2529,17 @@ class PhotoAPI {
 
 }
 
+<<<<<<< HEAD
 function login_response($user_id,$logged_in_cookie,$auth_cookie){
+=======
+
+
+
+
+
+
+function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$auth_cookie){
+>>>>>>> logincookie
     global $user_ID,  $wp_roles ;
     $user = array();
     $user_info = get_userdata($user_id);
@@ -2537,8 +2547,10 @@ function login_response($user_id,$logged_in_cookie,$auth_cookie){
     $attchid = $usermeta['avatar_attachment'][0];
     $avatar_url = wp_get_attachment_image_src($attchid, 'large' )[0]; 
     $user['status'] = 'true';
-    $user['logged_in_cookie'] = $logged_in_cookie;
-    $user['auth_cookie'] = $auth_cookie;
+    $user['logged_in_cookie_key'] = $logged_in_key;
+    $user['logged_in_cookie_value'] = $logged_in_cookie;
+    $user['auth_cookie_key'] = $auth_key;
+    $user['auth_cookie_value'] = $auth_cookie;
     $user['id'] = $user_id;
     $user['user_login'] = $user_info->data->user_login;
     $user['user_email'] = $user_info->data->user_email;
