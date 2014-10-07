@@ -2232,8 +2232,18 @@ function send_job_day_minyawns_reminder(){
 
     $dayaftertomorrow = date('Y-m-d', strtotime("+2 days")); 
 
-    echo "today:".date('Y-m-d', (strtotime($today)));
-    echo "<br><br>dayaftertomorrow:".date('Y-m-d', (strtotime($dayaftertomorrow)));
+    $args["meta_query"] = array('relation' => 'AND',
+        array(
+            'key' => 'job_start_date',
+            'value' => strtotime($today),
+            'compare' => '>',
+        ),
+        array(
+            'key' => 'job_start_date',
+            'value' => strtotime($dayaftertomorrow),
+            'compare' => '<',
+        ));
+ 
 
 
 $query = new WP_Query($args);
@@ -2242,30 +2252,58 @@ $posts = $query->get_posts();
 
 foreach($posts as $post) {
     // Do your stuff, e.g.
-      echo $post->post_name;
+    
+
+      $minyawns = (get_hired_minyawns_for_job($post->ID));
+
+      if($minyawns !=false){
+        foreach($minyawns as $minyawn){
+ 
+            $data_mail = array( 'job_title'=>$post->post_title,
+                                'job_page'=>get_permalink($post->ID),
+                                'minyawn_name'=>$minyawn->display_name); 
+            
+            $mail = email_template($minyawn->user_email, $data_mail, 'minyawn_job_reminder');
+         
+            $headers = 'From: Minyawns support@minyawns.com' . "\r\n";
+            $headers .= "MIME-Version: 1.0\n" .
+                    "From: Minyawns support@minyawns.com\n" .
+                    "Content-Type: text/html; charset=\"" . "\"\n";
+
+             wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
+        }
+       
+      }
 }
 
+
+
+         
+
  
-// The Loop
- 
-    $subject =  "You have a Job to do tomorrow!";
-
-    add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-    
-    $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
- 
-    $message .= "Hi, <br/><br/>Check your schedule tomorrow, make sure you are free.";
-
-    $message .= "Get ready for your Job “<Job name>” and be there on time.";
-
-    $message .= "Contact your Employer today if you need any details.";
-
-    $message .= ".<br/><br/>";
- 
-    //mail to the employer
-   // wp_mail( 'diana@ajency.in', $subject, email_header() . $message . email_signature(), $headers);
-
-    //mail 
 }
 add_action('init','send_job_day_minyawns_reminder');
 
+
+//to get hired minyawns for a job
+
+
+function get_hired_minyawns_for_job($job_id){
+
+    global $wpdb;
+
+    $query = "Select user_id from ".$wpdb->base_prefix ."userjobs WHERE job_id = ".$job_id." and status = 'hired'";
+ 
+    $results = $wpdb->get_results( $query,OBJECT);
+    $users = array();
+    foreach($results as $result){
+       $users[] =  $result->user_id;
+    }
+
+    if(count($users)!=0){
+        return get_users( array( 'include' => $users ) );
+    }else{
+        return false;
+    }
+    
+}
