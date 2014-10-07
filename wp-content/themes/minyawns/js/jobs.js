@@ -507,7 +507,7 @@ function photoUpload(){
  function appendToGrid(model){
 
   
-  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'" title="asd asd  dasd sad s"><img author= "'+model.author+'" src="'+model.url+'" alt="Tour de Yorkshire" width="229" /></a>');
+  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'"  ><img author= "'+model.author+'" src="'+model.url+'" alt="Tour de Yorkshire" width="229" /></a>');
   if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
     newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
   }
@@ -1879,7 +1879,7 @@ function remove_cat()
 function load_comments(user_id)
 {
     $("#example_right").unbind('click').popover({
-        content: "asdasda",
+        content: "",
         title: 'Dynamic response!',
         html: true,
         delay: {show: 500, hide: 100}
