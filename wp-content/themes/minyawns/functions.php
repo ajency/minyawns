@@ -2282,7 +2282,7 @@ foreach($posts as $post) {
 
  
 }
-add_action('init','send_job_day_minyawns_reminder');
+add_action('job_day_minyawns_reminder','send_job_day_minyawns_reminder');
 
 
 //to get hired minyawns for a job
