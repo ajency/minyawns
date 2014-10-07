@@ -2529,9 +2529,7 @@ class PhotoAPI {
 
 }
 
-<<<<<<< HEAD
-function login_response($user_id,$logged_in_cookie,$auth_cookie){
-=======
+ 
 
 
 
@@ -2539,7 +2537,7 @@ function login_response($user_id,$logged_in_cookie,$auth_cookie){
 
 
 function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$auth_cookie){
->>>>>>> logincookie
+ 
     global $user_ID,  $wp_roles ;
     $user = array();
     $user_info = get_userdata($user_id);
