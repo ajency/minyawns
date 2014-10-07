@@ -70,6 +70,7 @@ $app->map('/change-avatar', function() use($app) {
                     $attachment_data = wp_get_attachment_image_src($attach_id,'medium');
                     $attachment_url =  $attachment_data[0];
                 }
+                   /*Double entry commented
                 $post_data = array(
                 'post_author' => get_user_id(),
                 'post_content' => '',
@@ -85,8 +86,8 @@ $app->map('/change-avatar', function() use($app) {
                 'guid' => $attachment_url,
             );
             $atach_post_id = wp_insert_post($post_data);
-            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $attachment_url);
-            update_user_meta($user_ID, 'avatar_attachment', $atach_post_id);
+            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $attachment_url);*/
+            update_user_meta($user_ID, 'avatar_attachment', $attachment_id);
                 
                 
             }
