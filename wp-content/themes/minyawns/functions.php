@@ -2218,6 +2218,54 @@ function get_user_avatar_by_id($id){
         $user_pic_img_src = get_avatar($id);
 
     }
-echo $user_pic_img_src;
+ 
     return $user_pic_img_src;
 }
+
+function send_job_day_minyawns_reminder(){
+
+    $args = array();
+
+    $args["post_type"] = "job";
+
+    $today = date('Y-m-d');
+
+    $dayaftertomorrow = date('Y-m-d', strtotime("+2 days")); 
+
+    echo "today:".date('Y-m-d', (strtotime($today)));
+    echo "<br><br>dayaftertomorrow:".date('Y-m-d', (strtotime($dayaftertomorrow)));
+
+
+$query = new WP_Query($args);
+ 
+$posts = $query->get_posts();
+
+foreach($posts as $post) {
+    // Do your stuff, e.g.
+      echo $post->post_name;
+}
+
+ 
+// The Loop
+ 
+    $subject =  "You have a Job to do tomorrow!";
+
+    add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+    
+    $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+ 
+    $message .= "Hi, <br/><br/>Check your schedule tomorrow, make sure you are free.";
+
+    $message .= "Get ready for your Job “<Job name>” and be there on time.";
+
+    $message .= "Contact your Employer today if you need any details.";
+
+    $message .= ".<br/><br/>";
+ 
+    //mail to the employer
+   // wp_mail( 'diana@ajency.in', $subject, email_header() . $message . email_signature(), $headers);
+
+    //mail 
+}
+add_action('init','send_job_day_minyawns_reminder');
+
