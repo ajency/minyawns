@@ -94,7 +94,7 @@ require 'templates/_jobs.php';
             <div class="span12" id="profile-edit" style="height:502px;">
                 <div class="row-fluid">	
                     <div class="span8">
-                    <form class="form-horizontal frm-edit" id="profile-edit-form">
+                    <form class="form-horizontal frm-edit" id="profile-edit-form" enctype="multipart/form-data">
 
 
                         <?php if (get_user_role() === 'minyawn'): ?>
@@ -147,6 +147,10 @@ require 'templates/_jobs.php';
                                     <input type="text" id="facebook_link"  name="facebook_link" placeholder="www.facebook.com/username" value="<?php echo user_profile_facebook(); ?>" class="input">
                                 </div>
                             </div>
+
+
+                            
+                           
                         <?php else : ?>
                             <div class="control-group">
                                 <label class="control-label" for="inputFirst">Company Name</label>
@@ -217,5 +221,10 @@ require 'templates/_jobs.php';
         </div>
     </div>
 </div>
+
+
+
 <?php
 get_footer();
+
+?>

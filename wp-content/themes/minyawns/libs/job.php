@@ -335,7 +335,10 @@ foreach ($pageposts as $pagepost) {
                  *  2->locked ,if one applicant also hired then locked
                  */
                 $data[] = array(
-                    'post_name' => $pagepost->post_title,
+
+                    'event_start' => date('d-m-Y H:i:s', $post_meta['job_start_date_time'][0]),
+                    'event_end' => date('d-m-Y H:i:s', $post_meta['job_end_date_time'][0]),
+                    'job_author_email' => get_the_author_meta('user_email', $pagepost->post_author),
                     'post_date' => date('d M Y', strtotime($pagepost->post_date)),
                     'post_title' => $pagepost->post_title,
                     'post_id' => $pagepost->ID,
