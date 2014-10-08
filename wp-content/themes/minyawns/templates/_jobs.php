@@ -16,17 +16,20 @@
                                           <div class="job-title">
                                              <h5><a  class='prevent_default'  href=<?php echo site_url() ?>/job/<%= result.post_slug %>><%= result.post_title %></a></h5>
                                           </div>
-                                          <div class="job-meta"  data-toggle="collapse-next" data-parent="#accordion24">
+                                          <div class="job-meta" data-parent="#accordion24">
+                                          <div class="span9">
                                              <ul class="inline">
                                                
-                                                <li ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
  
-                                                       <li class="no-bdr"><i class="icon-map-marker"></i> <%= result.job_location %></li>
+                                                <li  data-toggle="collapse-next" ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
+ 
+                                                       <li class="no-bdr"  data-toggle="collapse-next" ><i class="icon-map-marker"></i> <%= result.job_location %></li>
                                                       <!--<li class="no-bdr"> Minyawns required:<%= result.required_minyawns %></li>-->
+ 
 
                                                       <li class="no-bdr">
                                                       <i class="icon-calendar"></i>
-                                                      <a href="<?php echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent">
+                                                      <a href="<?php echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent" >
                                                       Add to Calendar
                                                       <span class="_start"><%= result.event_start %></span>
                                                       <span class="_end"><%= result.event_end %></span>
@@ -44,7 +47,8 @@
 
  
                                              </ul>
-											 			
+											 			</div>
+                            <div class="span3" data-toggle="collapse-next" ></div>
                                           </div>
                                          
                                        </div>

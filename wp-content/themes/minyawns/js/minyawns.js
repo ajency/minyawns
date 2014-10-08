@@ -2526,6 +2526,7 @@ jQuery('.isotope').imagesLoaded( function(){
 //				}
 //			);
 //		});
+ 
 
 
 
@@ -2533,3 +2534,4 @@ jQuery('.isotope').imagesLoaded( function(){
 jQuery(function($) {
 $(".fancybox").fancybox();
 });
+ 
