@@ -2784,8 +2784,7 @@ float:none !important;
 .search-minyawn{
 	width: 170px !important;
 }
- 
- 
+  
  
 .item-remove{
 	cursor:pointer;
@@ -2820,7 +2819,8 @@ float:none !important;
 .readonly-color{
 	color:#A59C9C !important;
 }
+  
  
- 
-
- 
+ .auto-width-btn{
+ 	width: auto !important;
+ }
