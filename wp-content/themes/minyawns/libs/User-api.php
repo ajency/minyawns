@@ -295,6 +295,16 @@ function get_user_college_major() {
     return isset($current_user_new->data->major) ? $current_user_new->data->major : '';
 }
 
+
+
+//User Intro Video ID
+function get_user_intro_video_id() {
+    global $current_user_new;
+    return get_user_meta($current_user_new->data->ID, 'intro_video_id', true);
+    
+    }
+
+
 //User profile email
 function user_profile_email() {
     echo get_user_profile_email();
@@ -783,12 +793,20 @@ function get_minyawn_profile($userData,$total)
 
                     $user_profile_pic = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
+                    if(isset($user_meta['intro_video_id'][0])){
+                        $user_pic_img_src =  '<img src="http://i.ytimg.com/vi/'.$user_meta['intro_video_id'][0].'/1.jpg" />';
+                    }else{
 
-                    if ($user_profile_pic !== false) {
+                       if ($user_profile_pic !== false) {
                         $user_pic_img_src =  wp_get_attachment_image($user_profile_pic, get_user_role());
                     } else {
                         $user_pic_img_src = get_avatar($userData->ID);
                     }
+                     
+                    }
+                    
+
+                    
              
                     $data = array(
                         'user_id' => $userData->ID,
@@ -805,7 +823,8 @@ function get_minyawn_profile($userData,$total)
                         'user_avatar' => $user_pic_img_src,
                         'total' => $total,
                         'minion_name' => isset($user_meta['first_name'][0]) > 0 ? substr($user_meta['first_name'][0] ." ". $user_meta['last_name'][0],0,20) :'',
-                        'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N'     
+                        'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N',
+                        'intro_video_id'=>isset($user_meta['intro_video_id'][0]) ? $user_meta['intro_video_id'][0] :''     
                     );
   
                     

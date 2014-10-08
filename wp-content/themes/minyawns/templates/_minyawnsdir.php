@@ -7,7 +7,13 @@
 								
                                     <div class="minyawns-img">
                                       <%= result.user_avatar %>
+                                      
+                                      <% if(result.intro_video_id !=''){%>
+                                      <a class="vidbutton"><i class="icon-youtube-play"></i> &nbsp;</a>
+                                      <% } %> 
+
                                     </div>
+
                                      <% if(result.user_verified === 'Y'){%>
     <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
     <div class="verfied-txt">Verified Minion</div>
@@ -52,7 +58,12 @@
                               <div class="m2">
                                  <div class="caption">
                                     <div class="minyawns-img">
-<%= result.user_avatar %>
+                                    <%= result.user_avatar %>
+
+                                     <% if(result.intro_video_id !=''){%>
+                                      <a class="vidbutton" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a>
+                                      <% } %> 
+
                                     </div>
                             <% if(result.user_verified === 'Y'){%>
         <div class="verfied-txt">Verified Minion</div>
@@ -113,7 +124,26 @@
                                  </div>
                               </div>
                            </div>
-                        </li>   
+                        </li>
+
+
+
+
+<% if(result.intro_video_id !=''){%>
+<div id="introvideo<%= result.user_id %>" class="modal hide fade video-pop in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-body">
+            <iframe id="videowrap" frameborder="0" allowfullscreen="1" title="YouTube video player" width="530" height="350" src="https://www.youtube.com/embed/<%= result.intro_video_id %>?enablejsapi=1&origin=<?php echo $_SERVER['HTTP_HOST']; ?>"></iframe>
+            </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+           
+    </div>
+ <%}%>
+
+
+
+
 </script>    
 
 <script type="text/template" id="load-more">
