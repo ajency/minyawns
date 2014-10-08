@@ -2763,4 +2763,6 @@ float:none !important;
 .search-minyawn{
 	width: 170px !important;
 }
- 
+ .auto-width-btn{
+ 	width: auto !important;
+ }

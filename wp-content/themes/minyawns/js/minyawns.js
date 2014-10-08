@@ -1256,6 +1256,12 @@ var image_name=$("#image_name").val();
  jQuery("#btn__login_oaccess").live("click", function() {
         jQuery("#btn__login").trigger('click');
    });
+ jQuery("#link__employerregister").live("click", function() {
+        jQuery("#link_employerregister").trigger('click');
+   });
+  jQuery("#link__minyawnregister").live("click", function() {
+        jQuery("#link_minyawnregister").trigger('click');
+   });
     /* POPUP LOGIN */
 
     //hide forget password section on login pop up link click
