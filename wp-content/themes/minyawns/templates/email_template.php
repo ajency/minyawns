@@ -287,7 +287,7 @@ If you are facing difficulties applying for the job feel free to email us on <a 
           return $email_msg;  
 
           case 'minyawn_job_reminder':
-            $email_msg= "Hi,".$data['minyawn_name'].", <br/><br/>Check your schedule tomorrow, make sure you are free.<br>";
+            $email_msg= "Hi ".$data['minyawn_name'].", <br/><br/>Check your schedule tomorrow, make sure you are free.<br>";
 
             $email_msg .= 'Get ready for your Job <a href='.$data['job_page'].'>"'.$data['job_title'].'"</a> and be there on time.<br>';
 
