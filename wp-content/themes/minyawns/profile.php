@@ -222,7 +222,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 					  <?php if (get_user_role() === 'minyawn'): ?>
                                    <ul class="college-data inline">
 
-                                    <?php if(!empty(get_user_intro_video_id())){ ?>
+                                   <?php if( get_user_intro_video_id()!=""){ ?>
                                     <li class="introvideo_data">
                                    Intro Video : <b>  <a href="#introvideo" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a></b>
                                    </li>
@@ -414,7 +414,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 
 
 <!-- Intro Video Modal -->
-<?php if(!empty(get_user_intro_video_id())){ ?>
+<?php if( get_user_intro_video_id()!=""){ ?>
 <div id="introvideo" class="modal hide fade video-pop in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-body">
             <iframe id="videowrap" frameborder="0" allowfullscreen="1" title="YouTube video player" width="530" height="350" src="https://www.youtube.com/embed/<?php echo get_user_intro_video_id(); ?>?enablejsapi=1&origin=<?php echo $_SERVER['HTTP_HOST']; ?>"></iframe>
