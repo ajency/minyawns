@@ -269,7 +269,7 @@ require 'templates/_jobs.php';
     </div>
     <input type="hidden" id="tab_identifier" value="1">
     <div class="modal-body">
-        <div style="margin:0 auto; width:500px">
+        <div style="margin:0 auto; width:489px">
             <div id="widget"></div>
 
             <div id="processvideo" style="display:none">
