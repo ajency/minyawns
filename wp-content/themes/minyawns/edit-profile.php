@@ -263,10 +263,9 @@ require 'templates/_jobs.php';
 
 <!-- Modal for record video with webcam -->
 <div id="recordvideo" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:9999">
-    <div class="modal-header">
+    <div  >
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 id="myModalLabel">Record from Webcam</h4>
-
+   
     </div>
     <input type="hidden" id="tab_identifier" value="1">
     <div class="modal-body">
