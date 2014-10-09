@@ -543,8 +543,90 @@ div.profile-wrapper{
 	overflow: hidden;
 	width: 100%;
 	height: auto !important;
-	min-height: 700px;
+  
+	/*min-height: 650px;*/
+	min-height: 986px;
+ 
 }
+
+
+
+#preloadprocess{
+	z-index: 1000;
+	height:80px;  
+	background: rgba(255, 255, 255, 1) url('../images/ajax-loader.gif') 47% 50% no-repeat;
+}
+.videoprocess-text{
+	text-align: center;
+font-weight: bold;
+font-size: 20px;
+}
+
+#videoadderror{
+font-size: 16px;
+font-weight: bold;
+color: red;
+text-align: center;
+padding:10px;
+}
+
+#introprofilevidwrap{
+width:300px;
+position:relative;	
+}
+
+#introvideowrap{
+	width:300px;
+	height:200px;
+	position:relative;
+}
+
+li.introvideo_data a [class^="icon-"]{
+font-size: 20px !important;
+vertical-align: middle;	
+}
+
+#deletevideobtn{
+position:absolute;
+z-index:99;
+top:0px;
+right:0px;
+display:block;
+margin-top: 30px;
+padding: 02px 05px;
+background: #fc2e06;
+color: white;
+cursor: pointer;
+text-align: center;
+font-size: 16px;
+font-weight: bold;
+}
+
+#deletevideobtn:hover{
+background: #f65434;
+}
+
+.m1 .vidbutton{
+position: absolute;
+top: 70px;
+right: 63px;
+}
+
+.m2 .vidbutton{
+position: absolute;
+top: 39px;
+right: 104px;
+}
+
+.minyawns-img a [class^="icon-"]{
+font-size: 30px !important;
+vertical-align: middle;
+}
+
+
+
+
+
 .single-job-1 .data-title {
 width: 1124px;
 }
