@@ -11,9 +11,9 @@ jQuery("#signinlink").click(function() {
 });
 
 jQuery(document).ready(function($) {
+alert('test2')
 
-
-
+interface('#discussion_container');
     $("#lst_sitecity").live("change",function(){
 
         if($("#lst_sitecity").val() =="Seattle"){

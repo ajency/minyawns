@@ -385,5 +385,7 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
     </div>
 </div>
 
+<div id="discussion_container">Discussion</div>
+
 <?php
 get_footer();
