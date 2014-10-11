@@ -7,6 +7,7 @@ define [
 ], (App, Backbone, Marionette, WelcomeView, DesktopHeaderView) ->
   Backbone.Marionette.Controller.extend
     initialize: (options) ->
+      console.log "in controller"
       App.discussionRegion.show new WelcomeView()
       return
 
