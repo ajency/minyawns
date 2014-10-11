@@ -25,7 +25,7 @@
 
                                                       <li class="no-bdr">
                                                       <i class="icon-calendar"></i>
-                                                      <a href="<?php echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent">
+                                                      <a href="<?php echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent" style="visibility:visible;color:#949494">
                                                       Add to Calendar
                                                       <span class="_start"><%= result.event_start %></span>
                                                       <span class="_end"><%= result.event_end %></span>
