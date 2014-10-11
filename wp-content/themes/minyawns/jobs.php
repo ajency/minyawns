@@ -617,6 +617,22 @@ $all_categories = get_categories(array('hide_empty' => 0));
         </div>
     </div>
 </div>  </div>  </div>
+<div class="hidden">
+    <script type="text/javascript">
+        <!--//--><![CDATA[//><!--
+            var warning_image = new Array()
+            function preload() {
+                for (i = 0; i < preload.arguments.length; i++) {
+                    warning_image = new Image()
+                    warning_image.src = preload.arguments[i]
+                }
+            }
+            preload(
+                "<?php echo get_template_directory_uri();?>/images/minyawns-job-warning.jpg"
+            )
+        //--><!]]>
+    </script>
+</div>
 <?php
 get_footer();
 ?>
