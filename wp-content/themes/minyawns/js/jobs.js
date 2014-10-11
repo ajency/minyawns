@@ -1,5 +1,20 @@
 jQuery(document).ready(function($) {
 
+
+//actual price
+
+
+      jQuery("#job_wages").live("keyup", function() {
+                 
+                 actual_wages = "";
+                 if(jQuery("#job_wages").val()!=""){
+
+                    job_wages = parseFloat(jQuery("#job_wages").val());
+                    actual_wages = job_wages - (job_wages*(10/100));
+                    
+                 } 
+                 jQuery("#job_wages_actual").val(actual_wages)
+        });
 //if(!logged_in_user_id){
 //load_browse_jobs();
 //return false;
