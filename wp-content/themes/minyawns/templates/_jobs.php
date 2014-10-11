@@ -21,15 +21,16 @@
                                              <ul class="inline">
                                                
  
-                                                <li  data-toggle="collapse-next" ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
- 
-                                                       <li class="no-bdr"  data-toggle="collapse-next" ><i class="icon-map-marker"></i> <%= result.job_location %></li>
-                                                      <!--<li class="no-bdr"> Minyawns required:<%= result.required_minyawns %></li>-->
- 
+
+                                                <li data-toggle="collapse-next"  ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
+                                                      <li class="" data-toggle="collapse-next" ><i class="icon-map-marker"></i> <%= result.job_location %></li>
+                                                      
 
                                                       <li class="no-bdr">
                                                       <i class="icon-calendar"></i>
-                                                      <a href="<?php echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent" >
+
+                                                      <a href="<?php echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent" style="visibility:visible;color:#949494">
+
                                                       Add to Calendar
                                                       <span class="_start"><%= result.event_start %></span>
                                                       <span class="_end"><%= result.event_end %></span>

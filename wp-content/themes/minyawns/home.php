@@ -42,7 +42,7 @@
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
 					<div class="banner-desc">1-day assistants for your 1-day tasks</div>
 					<div class="text-center">
-					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_employerregister" onclick="return true">Sign Up and Get Your Minyawns Today</a>
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-info" id="link_employerregister" onclick="return true">Sign Up and Get Your Minyawns Today</a>
           <a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_minyawnregister" onclick="return true">Minyawn Signup and Apply for Jobs Now</a>
 		  </div>
 				</div>
@@ -386,8 +386,10 @@
                       }
                       ?>
  
+ 
                       <a href='<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
-                      <?php  }  ?>
+                      <?php }  ?>
+ 
  
                       <?php if ($homepage_user_data["facebook_link"] !=""  ){?>
 
@@ -401,7 +403,9 @@
                       ?>
  
                       <a href='<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+ 
                       <?php  } ?></div>
+ 
 					<div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
                         <i class="icon-thumbs-up"></i> <?php echo $homepage_user_data["rating_positive"] ;?>

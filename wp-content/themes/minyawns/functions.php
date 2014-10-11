@@ -2246,7 +2246,10 @@ function my_save_extra_profile_fields( $user_id ) {
         return false;
     if(isset($_POST['display_on_homepage_footer'])){
         update_user_meta( $user_id, 'display_on_homepage_footer', $_POST['display_on_homepage_footer'] );
+    }else{
+        update_user_meta( $user_id, 'display_on_homepage_footer',0 );
     }
+
     
 }
 

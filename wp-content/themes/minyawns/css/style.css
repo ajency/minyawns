@@ -2866,15 +2866,23 @@ float:none !important;
 .search-minyawn{
 	width: 170px !important;
 }
-  
+ 
+
+.timepicker-default {
+    width: 90px !important;
+}
+ 
+ 
+.readonly-color{
+	color:#A59C9C !important;
+}
+ 
+ 
  
 .item-remove{
 	cursor:pointer;
 }
  
-.timepicker-default {
-    width: 90px !important;
-}
  
  
  
@@ -2906,3 +2914,4 @@ float:none !important;
  .auto-width-btn{
  	width: auto !important;
  }
+ 
