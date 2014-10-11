@@ -34,7 +34,7 @@
                                         
                                     </div>
 									<div class="m1-invite">
-									<a class="btn btn-primary invite-btn" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
+									<a class="btn btn-primary invite-btn" href= "javascript:void(0)" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
 												   <i class="icon-ok"></i>
 												 Invite Minion
 												   </a>	
@@ -97,7 +97,7 @@
                                     <div class="social-link">
                                        <%= result.user_email %>
                                     </div>
-					<a class="btn btn-primary invite-btn" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
+					<a class="btn btn-primary invite-btn" id="invite-minion"  href= "javascript:void(0)" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
 												   <i class="icon-ok"></i>
 												 Invite Minion
 												   </a>				
