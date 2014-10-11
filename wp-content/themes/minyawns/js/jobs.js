@@ -1392,6 +1392,7 @@ function load_job_minions(jobmodel)
             job_id: jQuery("#job_id").val()
         },
         success: function(collection, response) {
+             jQuery(".load_ajax_large_minyawns_container").remove()
 
             var blank = _.template((jQuery("#blank-card").html()));
             if (collection.length > 0) {

@@ -276,8 +276,9 @@ $current_user_role =  trim($user_role);
 </div>
  <%}%>
         <div class="span9">
+        
+    <div class="load_ajax_large_minyawns_container span12"><span class="load_ajax_large_minyawns"  ></span></div>
     <ul class="thumbnails">
-    <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
         </br></br></br></br><span id="div_confirmhire"></span>
 </div>

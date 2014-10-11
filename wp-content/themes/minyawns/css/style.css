@@ -2761,10 +2761,12 @@ height:30px !important;
 float:none !important;
 }
 
+ 
 .minyawns-grid1 .thumbspan .thumbnail .m2 .caption .profile-social-link{
  
 float:none !important;
 } 
+ 
  
  .icon-facebook-a{
 	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
@@ -2777,6 +2779,7 @@ float:none !important;
 .icon-facebook{
 	background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"
 } 
+ 
    
 .search-minyawn{
 	width: 170px !important;
@@ -2786,6 +2789,35 @@ float:none !important;
     width: 90px !important;
 }
  
+ 
 .readonly-color{
 	color:#A59C9C !important;
 }
+ 
+ 
+.item-remove{
+	cursor:pointer;
+}
+ 
+ 
+ 
+ 
+ .load_ajax_large_minyawns {
+    background: url('../images/ajax-loader.gif') no-repeat scroll 0px 0px transparent;
+    float: inherit;
+    height: 101px; 
+    width: 94px;
+    margin-left: -50px;
+    z-index: 99999;
+    position:absolute;
+}
+ 
+ .load_ajax_large_minyawns_container{
+	 
+    overflow:hidden ;
+    text-align: center;
+    height: 101px; 
+  position:relative;
+ }
+
+ 
