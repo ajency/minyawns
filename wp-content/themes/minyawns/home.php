@@ -386,9 +386,7 @@
                       }
                       ?>
                       <a href='http://<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
-                      <?php }else{ ?> 
-                      <a href='javascript:void(0)' target='_blank'><i class='icon-linkedin'></i></a>
-                      <?php }  ?>
+                      <?php }   ?>
                       <?php if ($homepage_user_data["facebook_link"] !=""  ){?>
 
  
@@ -400,9 +398,6 @@
                       }
                       ?>
                       <a href='http://<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-                      <?php }else{ ?> 
-                      <a href='javascript:void(0)' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-                      
                       <?php } ?></div>
 					<div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
@@ -441,9 +436,7 @@
                       }
                       ?>
                       <a href='http://<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
-                      <?php }else{ ?> 
-                      <a href='javascript:void(0)' target='_blank'><i class='icon-linkedin'></i></a>
-                      <?php } ?>
+                      <?php }  ?>
                       <?php if ($homepage_user_data["facebook_link"] !=""  ){?>
 
  
@@ -455,9 +448,6 @@
                       }
                       ?>
                       <a href='http://<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-                      <?php }else{ ?> 
-                      <a href='javascript:void(0)' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-                      
                       <?php } ?></div>
                     
 					 <div class="tags">
