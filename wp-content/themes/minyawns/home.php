@@ -378,27 +378,31 @@
                       
                       <div class="social-link profile-social-link">
                       <?php if ($homepage_user_data["linkedin"] !="" ){?>
-                      <?php if( strpos($homepage_user_data["linkedin"] ,"https://") !== false  ||   strpos($homepage_user_data["linkedin"] ,"http://") !== false  ){
+                      <?php if( strpos($homepage_user_data["linkedin"] ,"https://") == false  &&   strpos($homepage_user_data["linkedin"] ,"http://")  == false  ){
                           $linkedinUrl = "http://".$homepage_user_data["linkedin"];
                       }
                       else{
                           $linkedinUrl = $homepage_user_data["linkedin"];
                       }
                       ?>
-                      <a href='http://<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
-                      <?php }   ?>
+ 
+ 
+                      <a href='<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
+                      <?php }  ?>
+ 
                       <?php if ($homepage_user_data["facebook_link"] !=""  ){?>
 
  
-                      <?php if( strpos($homepage_user_data["facebook_link"] ,"https://") !== false  ||   strpos($homepage_user_data["facebook_link"] ,"http://") !== false  ){
-                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
-                      }
-                      else{
+                      <?php if( strpos($homepage_user_data["facebook_link"] ,"https://")  == false  &&   strpos($homepage_user_data["facebook_link"] ,"http://")  == false  ){
                           $facebook_linkUrl = "http://".$homepage_user_data["facebook_link"];
                       }
+                      else{
+                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
+                      }
                       ?>
-                      <a href='http://<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-                      <?php } ?></div>
+ 
+                      <a href='<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+                      <?php }  ?></div>
 					<div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
                         <i class="icon-thumbs-up"></i> <?php echo $homepage_user_data["rating_positive"] ;?>
@@ -428,27 +432,30 @@
                      
                    <div class="social-link profile-social-link">
                       <?php if ($homepage_user_data["linkedin"] !="" ){?>
-                      <?php if( strpos($homepage_user_data["linkedin"] ,"https://") !== false  ||   strpos($homepage_user_data["linkedin"] ,"http://") !== false  ){
+                      <?php if( strpos($homepage_user_data["linkedin"] ,"https://")  == false  &&   strpos($homepage_user_data["linkedin"] ,"http://")  == false  ){
                           $linkedinUrl = "http://".$homepage_user_data["linkedin"];
                       }
                       else{
                           $linkedinUrl = $homepage_user_data["linkedin"];
                       }
                       ?>
-                      <a href='http://<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
-                      <?php }  ?>
+ 
+                      <a href='<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
+                      <?php } ?>
+ 
                       <?php if ($homepage_user_data["facebook_link"] !=""  ){?>
 
  
-                      <?php if( strpos($homepage_user_data["facebook_link"] ,"https://") !== false  ||   strpos($homepage_user_data["facebook_link"] ,"http://") !== false  ){
-                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
-                      }
-                      else{
+                      <?php if( strpos($homepage_user_data["facebook_link"] ,"https://")  == false  &&   strpos($homepage_user_data["facebook_link"] ,"http://")  == false  ){
                           $facebook_linkUrl = "http://".$homepage_user_data["facebook_link"];
                       }
+                      else{
+                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
+                      }
                       ?>
-                      <a href='http://<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-                      <?php } ?></div>
+ 
+                      <a href='<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+                      <?php }  ?></div>
                     
 					 <div class="tags">
 					 Tags:<br><?php $skills = explode(",",$homepage_user_data["skills"]) ;
