@@ -250,13 +250,13 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
                         <div class="controls">
                             <div class="input-prepend input-datepicker">
                                 <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                <input type="text" class="span1" name="job_start_date" value="<?php echo $minyawn_job->get_job_date(); ?>" id="job_start_date">
+                                <input type="text" class="span1" readonly  name="job_start_date" value="<?php echo $minyawn_job->get_job_date(); ?>" id="job_start_date">
                             </div>
 
                         </div>
                     </div>
                     <div class="input-append bootstrap-timepicker">
-                        <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time"/>
+                        <input id="job_start_time" type="text"readonly class="timepicker-default input-small" name="job_start_time"/>
                         <span class="add-on">
                             <i class="icon-time"></i>
                         </span>
@@ -267,13 +267,13 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
                         <div class="controls">
                             <div class="input-prepend input-datepicker">
                                 <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                <input type="text"  name="job_end_date" class="span1" readonly value="<?php echo $minyawn_job->get_job_end_date(); ?>" id="job_end_date">
+                                <input type="text"  name="job_end_date" class="span1 hasDatepicker" readonly value="<?php echo $minyawn_job->get_job_end_date(); ?>" id="job_end_date">
                             </div>
                         </div>
 
                     </div>
                     <div class="input-append bootstrap-timepicker">
-                        <input id="job_end_time" type="text" class="timepicker-default input-small" value="<?php echo $minyawn_job->get_end_time_eform() ?>" name="job_end_time">
+                        <input id="job_end_time" type="text" readonly class="timepicker-default input-small" value="<?php echo $minyawn_job->get_end_time_eform() ?>" name="job_end_time">
                         <span class="add-on">
                             <i class="icon-time"></i>
                         </span>
