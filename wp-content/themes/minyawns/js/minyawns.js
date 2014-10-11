@@ -2480,7 +2480,4 @@ function button_for_invite(model){
 //				}
 //			);
 //		});
-
-
-
-
+ 

@@ -73,6 +73,22 @@
 
 </script>
 
+<!-- AddThisEvent -->
+<script type="text/javascript" src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>
+<!-- AddThisEvent Settings -->
+<script type="text/javascript">
+addthisevent.settings({
+	mouse		: false,
+	css			: false,
+	outlook		: {show:true, text:"Outlook Calendar"},
+	google		: {show:true, text:"Google Calendar"},
+	yahoo		: {show:true, text:"Yahoo Calendar"},
+	ical		: {show:true, text:"iCal Calendar"},
+	hotmail		: {show:true, text:"Hotmail Calendar"},
+	facebook	: {show:false, text:"Facebook Calendar"}
+});
+</script>
+
 		</head>
 			<script>
 				var siteurl='<?php echo site_url(); ?>';
