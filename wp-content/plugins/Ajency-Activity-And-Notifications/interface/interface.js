@@ -1,15 +1,13 @@
- var discussion_container ;
- 
-    function interface(discussion_container){
- 
     
 
-     }
+    var discussion_container ;
  
-        
-    // Mobile/Desktop Detection script
-            (function(ua, w, d, undefined) {
+    function interface(container){
 
+        discussion_container = container
+    console.log(discussion_container)
+   
+  
 
 
                     filesToLoad = {
@@ -27,7 +25,7 @@
                 };
 
                 file = filesToLoad["dev-js"];
-                    var script = d.createElement("script");
+                    var script = document.createElement("script");
                                 script.type = "text/javascript";
                                 if (script.readyState) {  // IE
                                     script.onreadystatechange = function() {
@@ -53,14 +51,17 @@
                                     script.src = AJANPLUGINPATH+file;
                                 }
                           
-                                d.getElementsByTagName("head")[0].appendChild(script);
+                                document.getElementsByTagName("head")[0].appendChild(script);
                                
                                 
                  
                
+ 
 
-            })(navigator.userAgent || navigator.vendor || window.opera, window, document);
-     
-
+     }
+ 
+        
+    // Mobile/Desktop Detection script
+            
 
 
