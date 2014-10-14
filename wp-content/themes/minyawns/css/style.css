@@ -1329,7 +1329,14 @@ font-size: 16px;
 body .minyawns-grid1 .thumbspan {
     display: inline-block;
     min-height: 365px !important;
-    width: 30%;
+    /*width: 30%;*/
+	width:100%;
+}
+.full-width{
+	width:100% !important;
+}
+.align-left{
+	text-align:left !important;
 }
 .minaywns-sel {
     background: none repeat scroll 0 0 rgba(136, 216, 23, 0.7);
@@ -2763,4 +2770,4 @@ float:none !important;
 .search-minyawn{
 	width: 170px !important;
 }
- 
+

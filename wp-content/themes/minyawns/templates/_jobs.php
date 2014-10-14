@@ -246,10 +246,16 @@ $current_user_role =  trim($user_role);
 </div>
  <%}%>
         <div class="span9">
+		<div class="row-fluid">
+		<div class="span6">
+		</div>
+		<div class="span6">
     <ul class="thumbnails">
     <span class='load_ajaxsingle_job_minions' style="display:none"></span>
     </ul>
         </br></br></br></br><span id="div_confirmhire"></span>
+		</div>
+		</div>
 </div>
 
 <div class="span3 mobile-alert-box-hidden">
@@ -448,7 +454,7 @@ $current_user_role =  trim($user_role);
 
 
     <li class="span3 thumbspan" id="<%= result.user_id %>" >
-
+	
     <div class="thumbnail select-button-<%= result.user_id %>" id="thumbnail-<%= result.user_id %>">
     <div class="layer">
     <div id="a" class="m1">
@@ -457,6 +463,7 @@ $current_user_role =  trim($user_role);
      <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
      <%}%>
 
+	
     <div class="minyawns-img">
     <% if(result.is_hired === true){%>
     <div class="minaywns-sel">
@@ -466,6 +473,7 @@ $current_user_role =  trim($user_role);
     <% } %>
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>'><%= result.user_image%></a>
     </div>
+	
     <% if(result.is_verified === 'Y'){%>
     <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
     <div class="verfied-txt">Verified Minion</div>
@@ -522,10 +530,11 @@ $current_user_role =  trim($user_role);
 
     <div class="caption" >
     <div>
+	<div class="span3">
     <div class="minyawns-img" >
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
     </div>
-    <div class="rating">
+    <div class="rating full-width">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
     <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
     </a>
@@ -533,12 +542,16 @@ $current_user_role =  trim($user_role);
     <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
     </a>
     </div>
-    <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
-    <div class="collage"> <%= result.college%> </div>
-    <div class="collage"> <%= result.major%> </div>
-    <div class="social-link">
+	</div>
+	<div class="span6">
+    <h4 class="align-left"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
+    <div class="collage align-left"> <%= result.college%> </div>
+    <div class="collage align-left"> <%= result.major%> </div>
+    <div class="social-link align-left">
     <%= result.user_email %>
     </div>
+	</div>
+	<div class="span3">
     <div class="social-link   profile-social-link">
     <% if (result.linkedin.length > 0 ){%>
     <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
@@ -567,6 +580,7 @@ $current_user_role =  trim($user_role);
     
     <%}%>
             </div>
+			</div>
     </div>
 
 
