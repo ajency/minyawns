@@ -1,3 +1,4 @@
+
 <script type="text/template" id="jobs-table"> 
       <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%> panel">
       
@@ -238,7 +239,7 @@ $current_user_role =  trim($user_role);
                                                     <% if(result.job_owner_id === logged_in_user_id){%>
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
-             <div class="row-fluid minyawns-grid1">
+             <div class="row-fluid minyawns-grid1" >
 		  <%  if ($(window).width() < 800) {%>
 			
 			<div class="span3 mobile-alert-box">
@@ -285,6 +286,14 @@ $current_user_role =  trim($user_role);
         </br></br></br></br><span id="div_confirmhire"></span>
 </div>
 
+
+
+
+
+
+
+
+
 <div class="span3 mobile-alert-box-hidden">
                   <div class="alert alert-success alert-sidebar author-data">
                       <b style="color:#000;">Employer Details</b>
@@ -301,8 +310,41 @@ $current_user_role =  trim($user_role);
 					  </div>
 						
                         <br>
+                    </div> 
+            <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>">
+            <input type="hidden" name="userid" value="<%= USER.id%>">
+            
+            <input type="hidden" name="upload_nonce"  id="upload_nonce" value=""  >
+            <input type="hidden" name="delete_nonce"  id="delete_nonce" value=""  >
+           
+            
+            <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">
+             
+                  <div class="row-fluid">
+                  <div class="span12">
+                    <div id="drop">
+                      Drop Your Job Photos Here 
+                      <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                      <input type="file" name="photo" multiple />
                     </div>
-                 
+
+                    <ul>
+                      <!-- The file uploads will be shown here -->
+                    </ul>
+                  </div>
+                </div>
+            </div>
+           
+           <div class="row-fluid" id="photo-grid" style="display:none">
+      <div class="span12 align-left">
+      
+        <div class="isotope">
+          <div class="grid-sizer"></div>
+          
+             </div>
+        
+       </div>
+    </div>
               <% if( ( (is_admin==true)  || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>
@@ -318,15 +360,22 @@ $current_user_role =  trim($user_role);
                      <span id="selection_message"></span>
                                     </div>
                             <%}%>
-                 
-					   
+           
+		
 </div>
  
                        
                      </div>
                   </div>
     </form>
+
+
+
 </script>
+
+
+
+
 <script type="text/template" id="profile-table">   
 <% console.log('check..................')%>
 <% console.log(result) %>
@@ -338,14 +387,14 @@ $current_user_role =  trim($user_role);
 							 <div class="row-fluid mobile-hide" >
 							  <div class="<% /*if(currentpage_user_role=="employer"){ span9 } else{ */ %>span6<% /* } */  %> ">
 							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
-                                      <div class="span1">
+                                      <div class="span2">
 									  <div class="job-date">
 										<b><%= result.job_start_day %></b>
 										<%= result.job_start_month %>
 									  </div>
 									  
 									  </div>
-									  <div class="span11 border-right job-details">
+									  <div class="span10 border-right job-details">
                                           <div class="job-title">
                                              <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
                                           </div>
@@ -360,7 +409,7 @@ $current_user_role =  trim($user_role);
                                        </div>
                                     </div>
 							  </div>
-							  <div class="<% /* if(currentpage_user_role=="employer"){ span3< else{ */ %>span4<% /* } */ %> status">
+							  <div class="<% /* if(currentpage_user_role=="employer"){ span3< else{ */ %>span3<% /* } */ %> status">
 							    <div class="st-moile-span1">
 
                                           <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
@@ -370,7 +419,7 @@ $current_user_role =  trim($user_role);
                                        </div>
 							  </div>
 				<% /*if(currentpage_user_role!="employer"){ */ %>
-                 <div class="span2">
+                 <div class="span3">
 
                   		<div class="st-moile-span1">
                      			 <%= review.status1 %>
@@ -399,7 +448,7 @@ $current_user_role =  trim($user_role);
                                        </div>
                                  </div>
                                  </div>
-                                 <div class="span4 status">
+                                 <div class="span3 status">
 								                    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
                                     <div class="st-fluid">
                                      
@@ -780,4 +829,5 @@ $current_user_role =  trim($user_role);
 </div>
         
 </script>
+
 

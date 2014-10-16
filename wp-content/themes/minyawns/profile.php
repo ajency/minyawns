@@ -149,7 +149,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs/#browse" class=""> Click Here</a></h4>
                 <div class="row-fluid min_profile  <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">
 
-                    <div class="span2 ">
+                    <div class="span4 ">
 					<div id="change-avt" class="<?php
                                                                    
                     if (get_user_role() == 'employer') {
@@ -178,7 +178,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                                                   <input id="change-avatar" type="file" name="files" style="display:none;">
                             <?php }?>
                     </div>
-                    <div class="span10">
+                    <div class="span8">
 					  <?php if (get_user_role() === 'minyawn'): ?>
 				<div class="social-link profile-social-link"> 
                 
@@ -260,7 +260,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 <div class="clear"></div><br>
  <?php if (get_user_role() === 'minyawn'): ?>
 				<div class="row-fluid">
-					<div class="span2">
+					<div class="span4">
 						<div class="right-wideget-bar">
 							<h3>Ratings</h3>
 							<?php if (get_user_role() === 'minyawn'): ?>
@@ -298,7 +298,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 						</div>
 					
 					</div>
-					<div class="span10">
+					<div class="span8">
 						<div class="list-box">
 							<h3>Skills</h3>
 							 <?php
@@ -318,7 +318,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 				<h4><i class="icon-briefcase"></i> &nbsp; Job List</h4>
 				<p>All your Jobs are listed below</p>
 				<div class="row-fluid accordion">
-					<div class="span12">
+					<div class="span9">
 						<ul class="unstyled job-view-list" id="accordion24">
 						<dl class="accordion">
                              
@@ -327,6 +327,35 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 						   </ul>
 					</div>
 					<div class="span3">
+                    
+                    <form>
+                    <?php $upload_nonce = wp_create_nonce("upload_photo_".get_current_user_id()); ?>
+                    <?php $delete_nonce = wp_create_nonce("delete_photo_".get_current_user_id()); ?>
+                    <input type="hidden" id="upload_nonce" name="upload_nonce" value="<?php echo $upload_nonce; ?>" />
+                    <input type="hidden" id="delete_nonce" name="delete_nonce" value="<?php echo $delete_nonce; ?>" />
+                    <input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
+                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
+                     
+                          <div class="row-fluid">
+                          <div class="span12">
+                            <div id="drop">
+                              Drop Your Photos Here <br>
+                              <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                              <input type="file" name="photo" multiple />
+                            </div>
+
+                            <ul>
+                              <!-- The file uploads will be shown here -->
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
+                    </form>
+					<div class="isotope">
+                          <div class="grid-sizer"></div>
+                          
+                          
+                        </div>
 					</div>
 				</div>
 
