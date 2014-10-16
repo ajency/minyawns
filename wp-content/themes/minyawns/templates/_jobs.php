@@ -452,12 +452,12 @@ $current_user_role =  trim($user_role);
 
 <script type="text/template" id="minion-cards">
 
-
+	<div class="row-fluid">
     <li class="span3 thumbspan" id="<%= result.user_id %>" >
 	
     <div class="thumbnail select-button-<%= result.user_id %>" id="thumbnail-<%= result.user_id %>">
     <div class="layer">
-    <div id="a" class="m1">
+    <!--<div id="a" class="m1">
     <div class="caption" >
     <% if(result.is_invited == 4){%>
      <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
@@ -523,14 +523,15 @@ $current_user_role =  trim($user_role);
 
     </div>
 
-    </div>
+    </div>-->
 
 
-    <div id="b" class="m2">
+    <div id="b" class=" m3">
 
-    <div class="caption" >
+    <div class="caption m4" >
     <div>
-	<div class="span3">
+	<div class="row-fluid">
+	<div class="span4">
     <div class="minyawns-img" >
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
     </div>
@@ -543,7 +544,9 @@ $current_user_role =  trim($user_role);
     </a>
     </div>
 	</div>
-	<div class="span6">
+	<div class="span8">
+	<div class="row-fluid">
+	<div class="span8">
     <h4 class="align-left"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
     <div class="collage align-left"> <%= result.college%> </div>
     <div class="collage align-left"> <%= result.major%> </div>
@@ -551,7 +554,7 @@ $current_user_role =  trim($user_role);
     <%= result.user_email %>
     </div>
 	</div>
-	<div class="span3">
+	<div class="span4">
     <div class="social-link   profile-social-link">
     <% if (result.linkedin.length > 0 ){%>
     <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
@@ -581,12 +584,10 @@ $current_user_role =  trim($user_role);
     <%}%>
             </div>
 			</div>
-    </div>
-
-
-
-    <div class="tags">
-    Tags:<br>
+			<div class="row-fluid">
+	<div class="span12">
+    <div class="tagsa">
+    Tags:
     <%
     var split_skills=result.user_skills.split(',');
     for(var index=0;index<=split_skills.length;index++){
@@ -595,7 +596,28 @@ $current_user_role =  trim($user_role);
 
     <% } %>
     </div>
+	</div>
+	</div>	
+			</div>
+			</div>
+			</div>
     </div>
+
+
+	
+    </div>
+	<!--like-dislike-btns-->
+	    <div class="rating hide">
+	<div class="like-dis">
+    <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
+    <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
+    </a>
+    <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
+    <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
+    </a>
+	</div>
+    </div>
+	<!--like-dislike-btns-ends-->
 
     </div>
     </div>
@@ -622,6 +644,7 @@ $current_user_role =  trim($user_role);
     </label>
     </div>-->
     </li>
+	</div>
 
 </script>
 
@@ -633,6 +656,7 @@ $current_user_role =  trim($user_role);
 </script>
 
 <script type="text/template" id="blank-card">
+	<div class="row-fluid">
     <li class="span3 thumbspan card" id="91">
     <div class="thumbnail select-button-91" id="thumbnail-91">
     <div class="m1">
@@ -656,6 +680,7 @@ $current_user_role =  trim($user_role);
 
     </div>
     </li>
+	</div>
 </script>
 
 <script type="text/templates" id="no-result">
