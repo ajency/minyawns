@@ -2766,6 +2766,13 @@ float:none !important;
 .item-remove{
 	cursor:pointer;
 }
+
+.photos-title {
+    font-size: 15px; 
+    text-align: left;
+    color: #8F8F8F;
+    font-weight: 600;
+  }
  
 
  

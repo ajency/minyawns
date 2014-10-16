@@ -507,6 +507,7 @@ function photoUpload(){
  function appendToGrid(model){
 
   
+   $("#photos_title").show()
   var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'"  ><img author= "'+model.author+'" src="'+model.url+'"   width="229" /></a>');
   if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
     newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
@@ -532,7 +533,11 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
             success: function(result) {
                  jQuery('.isotope').isotope( 'remove', jQuery(_e.target).parent() )
                         // layout remaining item elements
-                          .isotope('layout');
+                          .isotope('layout'); 
+ 
+                     if(jQuery('.isotope').find('.item').length<=1){
+                        $('#photos_title').hide()
+                     }
             }
         });
         }else{

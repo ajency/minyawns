@@ -300,11 +300,13 @@ $current_user_role =  trim($user_role);
                     </ul>
                   </div>
                 </div>
-            </div>
-           
+            </div> 
+                      
+            
+             
            <div class="row-fluid" id="photo-grid" style="display:none">
       <div class="span12 align-left">
-      
+     <div align="left" id="photos_title" class="photos-title" style="display:none"> <b >Job Photos</b></div>
         <div class="isotope">
           <div class="grid-sizer"></div>
           

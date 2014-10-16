@@ -198,8 +198,11 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
+                                $display_name = user_profile_company_name();
                             } else {
                                 echo user_profile_first_name() . " " . user_profile_last_name();
+
+                                $display_name = user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit"><i class="icon-edit"></i> Edit</a><?php } ?>
 
@@ -355,6 +358,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                         </div>
                     </div>
                     </form>
+                     <div align="left" id="photos_title" class="photos-title" style="display:none"> <h7><?php if(get_current_user_id()==get_user_id()){ ?>My<?php } else{ echo $display_name."'s"; }?> Photos</h7></div>
 					<div class="isotope">
                           <div class="grid-sizer"></div>
                           
