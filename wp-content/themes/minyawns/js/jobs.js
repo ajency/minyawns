@@ -243,7 +243,7 @@ function load_browse_jobs(id, _action, category_ids) {
         data: _data,
         reset: true,
         success: function(collection, response) {
-
+review =""
             if (collection.length === 0) {
                 jQuery("#accordion24").empty();
 
@@ -822,7 +822,9 @@ function fetch_my_jobs(id)
                         // TO VIEW PROFILES VIA A LINK
                         var profiletemp = _.template(jQuery("#profile-table").html());
                         if (window.location.href.indexOf("profile") > 1) {
-                        	
+                        	   if(review==undefined){
+                                    review=""
+                                }
                             var html = profiletemp({result: model.toJSON(), review: review, job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                             jQuery(".job-view-list").prepend(html);
