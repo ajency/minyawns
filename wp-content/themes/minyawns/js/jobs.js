@@ -243,7 +243,7 @@ function load_browse_jobs(id, _action, category_ids) {
         data: _data,
         reset: true,
         success: function(collection, response) {
-
+review =""
             if (collection.length === 0) {
                 jQuery("#accordion24").empty();
 
