@@ -32,6 +32,12 @@
 });
     </script>
 <div id="innermainimage">
+
+<video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+     <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+</video>
+
+
    <div class="row-fluid banner-content">
     
      
@@ -74,24 +80,24 @@
          <div class="span4">
 		 	 <div class="step1-1"></div>
             
-            <h4><span class="badge badge2">1</span> Post gigs</h4>
+            <h4><span class="badge badge2">1</span> Post one-day jobs</h4>
             <p>Describe what you need to get done, when you want help, and how much you are willing to pay.</p>
          </div>
          <div class="span4">
            <div class="step2-2"></div>
-            <h4> <span class="badge badge2">2</span> Pick your minyawn</h4>
+            <h4> <span class="badge badge2">2</span> Select your Minyawns</h4>
             <p>We're talking about professional, reliable, competent, clean and sociable young college students looking for work.</p>
          </div>
          <div class="span4">
                <div class="step3-3"></div>
-            <h4> <span class="badge badge2">3</span> Get work done</h4>
+            <h4> <span class="badge badge2">3</span> Get the help you need.</h4>
             <p>Get productive and end your to-do list, 100% satisfaction guaranteed.</p>
          </div>
       </div>
       <br>
 	 
    </div>
-  <h4 class="video-title"> Go from being burdened with menial jobs to doing more awesome stuff.</h4>
+  <h4 class="video-title"> Revolutionize the way you get things done.</h4>
    <div class="row-fluid">
 			<div class="span3"></div>
 			
@@ -112,7 +118,7 @@
 
 <div class="customers">
     <div>
-      <h3 class="heading-title">Our Customers</h3>
+      <h3 class="heading-title">Here's Our Customers</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minyawns.</p>
    </div>
  <div class="slider1">
@@ -143,8 +149,13 @@
    </div>
  
    <div class="container">
+   <div class="row-fluid">
+   <div class="span3 offset10 stamp">
+   <!--<img src="<?php echo get_template_directory_uri() ?>/images/span4_N.png"/>-->
+   </div>
+   </div>
       <div class="row-fluid">
-         <div class="span8">
+         <!--<div class="span8">
             <br>
 			<div class="row-fluid">
 				<div class="span12">
@@ -241,9 +252,9 @@
                      </div>
                   </div>
                </div>
-            </div>-->
-		</div>
-		<div class="span4">
+            </div>
+		</div>-->
+		<!--<div class="span4">
 			<div class="back-satisfication">
 				<div class="text">
 					We are so sure that Minyawns will be the best decision you have ever made. If you are not satisfied for any 
@@ -253,7 +264,59 @@
 				</div>
 				<button href="#myModal"  data-toggle="modal" class="btn btn-large btn-info" type="button">Get started now!</button>
 			</div>
+		</div>-->
+		
+		<div class="span6">
+			<div class="row-fluid">
+			<div class="span4 wwcd-1">
+			
+			</div>
+			<div class="span8">
+		<h2 class="white">THE BIZ GURU</h2>
+		<p class="white">The Biz Guru is here to represent your business. A personable Minyawn can help you sell your business through cold-calls, data-entry, marketing and more.</p>
+			</div>
+			</div>
 		</div>
+		
+		<div class="span6">
+			<div class="row-fluid">
+			<div class="span4 wwcd-2">
+			
+			</div>
+			<div class="span8">
+			<h2 class="white">THE TESTER</h2>
+			<p class="white">Perfect for any tech company trying to test their product. Schedule a group of testers for market research and genuine feedback.</p>
+			</div>
+			</div>
+		</div>
+		
+		
+		<div class="row-fluid">
+		<div class="span6">
+			<div class="row-fluid">
+			<div class="span4 wwcd-3">
+			
+			</div>
+			<div class="span8">
+			<h2 class="white">THE TECHIE</h2>
+			<p class="white">Anything tech related -computers, phones, etc. Our techies can help you now, and teach you how to solve future problem.</p>
+			</div>
+			</div>
+		</div>
+		
+		<div class="span6">
+			<div class="row-fluid">
+			<div class="span4 wwcd-4">
+			
+			</div>
+			<div class="span8">
+			<h2 class="white">THE SERVER</h2>
+			<p class="white">Good looking, outgoing, and know how to please your guests. Use them for any fancy event you to ensure a good time.</p>
+			</div>
+			</div>
+		</div>
+		</div>
+		
       </div>
    </div>
 
@@ -276,23 +339,39 @@
                <li><a href="#messages"> Secure payment</a></li>
                <li><a href="#settings">Mobile compatible</a></li>
             </ul>
+			<!--testing-
+		<ul class="breadcrumbb">
+			<li class="active"><a href="#home">Add a job</a></li>
+            <li><a href="#profile"> Select your minyawn</a></li>
+            <li><a href="#messages"> Secure payment</a></li>
+            <li><a href="#settings">Mobile compatible</a></li>
+		</ul>
+			testing-->
             <div class="tab-content">
                <div class="tab-pane active" id="home">
                   <h3>Don't procrastinate, give those annoying tasks to the minyawns.</h3>
                   <p class="excerpt">It's really simple</p>
 				  <div class="tooltip-left">
 						<div class="data">
-						<h4>Your eye catching job title</h4>
-						Grab the attention of relevant minyawns with an awesome job title
+						<h4>Eye-catching job title</h4>
+						<p class="data-content">Grab the attention of relevant minyawns with an awesome job title</p>
 						</div>
-						<img src="<?php echo get_template_directory_uri() ?>/images/tooltip.png"/>
+						<!--<img src="<?php echo get_template_directory_uri() ?>/images/tooltip.png"/>-->
+					</div>
+					
+					<div class="tooltip-right-2">
+						<div class="data">
+						<h4>Pay what you want</h4>
+						
+						</div>
+						
 					</div>
 					
 					<div class="tooltip-right">
-					<img src="<?php echo get_template_directory_uri() ?>/images/tooltip-right.png"/>
+					<!--<img src="<?php echo get_template_directory_uri() ?>/images/tooltip-right.png"/>-->
 						<div class="data">
-						<h4>Pick 'em here</h4>
-						Select the minyawns you feel are most suitable for your job.
+						<h4>Pick 'em here
+						<p class="data-content-3">Select the minyawns you feel are most suitable for your job.</p></h4>
 						</div>
 						
 					</div>
