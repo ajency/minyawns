@@ -600,6 +600,17 @@ $current_user_role =  trim($user_role);
 	</div>	
 			</div>
 			</div>
+			<div class="row-fluid">
+			<div class="span12">
+				<div class="onoffswitch pull-right">
+				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+				<label class="onoffswitch-label" for="myonoffswitch">
+				<div class="onoffswitch-inner"></div>
+				<div class="onoffswitch-switch"></div>
+				</label>
+				</div>
+			</div>
+			</div>	
 			</div>
     </div>
 
@@ -607,7 +618,7 @@ $current_user_role =  trim($user_role);
 	
     </div>
 	<!--like-dislike-btns-->
-	    <div class="rating hide">
+	    <div class="rating hider">
 	<div class="like-dis">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
     <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
