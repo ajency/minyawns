@@ -279,7 +279,6 @@ a:hover {
 .Select-minyawns {
   /*background: rgba(209, 255, 179, 0.45);
 	border: 1px solid #3DDF4A !important;*/
-
 }
 .Select-minyawns .m1 .minyawns-img {
   border: 5px solid #8ed030 !important;
@@ -1122,7 +1121,6 @@ body .jobs_table .data-title .profile-job {
   line-height: 32px;
   line-height: 54px;
   /*color: #B4B2B2;*/
-
   margin-left: 12px;
 }
 .list-jobs .expand {
@@ -1536,8 +1534,7 @@ body .jobs_table .data-title .profile-job {
     width: 100% !important;
   }
   html body .minyawns-grid1 .thumbspan {
-    /*width: 48% !important;*/
-	width:100% !important;
+    width: 100% !important;
     min-height: 322px !important;
     float: left;
   }
@@ -1986,7 +1983,6 @@ body .jobs_table .data-title .profile-job {
 }
 #innermainimage .bg-background {
   /*position: absolute;*/
-
   z-index: 99;
   height: 100%;
 }
@@ -2097,12 +2093,10 @@ body .jobs_table .data-title .profile-job {
 			}
 		}
 	}*/
-
 }
 .home .how-does-it-work {
   margin-bottom: 40px;
   /*box-shadow: inset 0px 24px 40px 1px rgba(204, 204, 204, 0.66), inset 0px -37px 49px -10px rgba(204, 204, 203, 0.64);*/
-
   background: #fff;
   font-family: arial;
 }
@@ -2252,7 +2246,6 @@ body .jobs_table .data-title .profile-job {
 .home .features .nav-tabs li {
   background: #8ed030;
   /* Old browsers */
-
   padding: 12px;
   font-size: 18px;
   border-right: 1px solid #8CB369;
@@ -2268,28 +2261,20 @@ body .jobs_table .data-title .profile-job {
   color: #fff;
   background: #42464a;
   /* Old browsers */
-
   background: -moz-linear-gradient(top, #42464a 0%, #000000 100%);
   /* FF3.6+ */
-
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #42464a), color-stop(100%, #000000));
   /* Chrome,Safari4+ */
-
   background: -webkit-linear-gradient(top, #42464a 0%, #000000 100%);
   /* Chrome10+,Safari5.1+ */
-
   background: -o-linear-gradient(top, #42464a 0%, #000000 100%);
   /* Opera 11.10+ */
-
   background: -ms-linear-gradient(top, #42464a 0%, #000000 100%);
   /* IE10+ */
-
   background: linear-gradient(to bottom, #42464a 0%, #000000 100%);
   /* W3C */
-
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#42464a', endColorstr='#000000', GradientType=0);
   /* IE6-9 */
-
 }
 .home .features .nav-tabs li.active a {
   color: #fff;
@@ -2539,12 +2524,6 @@ body .jobs_table .data-title .profile-job {
   padding: 8px 2px;
 }
 @media (max-width: 767px) {
-  {
-    /* Job Time*/
-  
-    /* safari hack*/
-  
-  }
   body #signup_subheader {
     margin-bottom: 7px;
     margin-top: 33px;
@@ -2822,7 +2801,6 @@ body .jobs_table .data-title .profile-job {
     padding: 0px;
     margin: 0px;
     /*margin-bottom: 28px;*/
-  
   }
   body .list-jobs .expand .minyawansgrid .minyawns-job {
     padding: 11px 0;
@@ -3058,6 +3036,7 @@ body .jobs_table .data-title .profile-job {
     padding: 5px!important;
     line-height: 24px;
   }
+  /* Job Time*/
   .label,
   .badge {
     margin-top: 4px;
@@ -3227,6 +3206,7 @@ body .jobs_table .data-title .profile-job {
   .myjobs .default-btn {
     margin: 10px auto;
   }
+  /* safari hack*/
   .page-error {
     width: auto;
     margin: auto;
@@ -3359,7 +3339,6 @@ body .jobs_table .data-title .profile-job {
   max-height: 100% !important;
   overflow: hidden!important;
   /**/
-
 }
 .cropimage .modal-body .help-block {
   margin-left: 128px;
@@ -3369,7 +3348,7 @@ body .jobs_table .data-title .profile-job {
 .employer-image {
   overflow: hidden;
   width: 170px;
-  height: 80px;
+  height: 110px;
   border: 2px solid #8ed030;
 }
 .employer-image img {
@@ -3565,7 +3544,6 @@ body .jobs_table .data-title .profile-job {
   margin-bottom: 35px;
   position: relative;
   /*min-height: 195px;*/
-
 }
 .job-view-list ._li .additional-info {
   margin-top: 15px;
@@ -4233,21 +4211,19 @@ body .minyawns-grid1 .m2 .social-link {
   margin-top: 0px!important;
 }
 .minyawns-grid1 {
-  /*margin: 22px auto;*/
   padding: 0;
   list-style-type: none;
   text-align: center;
-}
-.minyawns-gridhome{
-  
-  margin-bottom:80px;
-  margin-top:-80px;
 }
 .minyawns-grid1 .span9 {
   margin-left: 0px;
 }
 .minyawns-grid1 .thumbnails:hover {
   margin-top: 39px;
+}
+.minyawns-grid1.minyawns-gridhome {
+  margin-bottom: 80px;
+  margin-top: -80px;
 }
 .minyawns-grid1 .thumbspan.card {
   background: #F5F5F5;
@@ -4288,7 +4264,6 @@ body .minyawns-grid1 .m2 .social-link {
 				float:none !important;
 				display:inline-table !important;
 				margin-left:0px !important;*/
-
   display: inline-block;
   width: 30%;
 }
@@ -4333,7 +4308,6 @@ body .minyawns-grid1 .m2 .social-link {
   font-size: 14px;
   text-overflow: ellipsis;
   /*width: 72%;*/
-
   overflow: hidden;
   margin-right: auto;
   margin-left: auto;
@@ -4384,8 +4358,6 @@ body .minyawns-grid1 .m2 .social-link {
   color: #333;
   z-index: 9999;
   position: absolute;
- /*left: -10px;
-  right: -10px;*/
   top: 0;
   z-index: 999;
   -webkit-box-shadow: 0 0 15px #ccc;
@@ -4497,8 +4469,7 @@ body .minyawns-grid1 .m2 .social-link {
 .minyawns-grid1 .thumbspan .thumbnail:hover .m2 {
   top: -51px;
   display: block !important;
-  /*width:280px;*/
-  width:100%;
+  width: 100%;
 }
 .bootstrap-timepicker-widget input {
   width: 25px !important;
@@ -4928,7 +4899,6 @@ div.tooltip1:after {
     line-height: 32px;
     line-height: 54px;
     /*color: #B4B2B2;*/
-  
     margin-left: 12px;
   }
   .list-jobs .expand {
@@ -5653,8 +5623,7 @@ div.tooltip1:after {
 }
 .home .minyawns-grid1 .thumbspan {
   display: inline-block;
-  /*width: 23.076923076923077%;*/
-  width:100%;
+  width: 100%;
 }
 /* new profile */
 .right-wideget-bar {
@@ -6261,8 +6230,7 @@ div.tooltip1:after {
 .blog-bg {
   background: url(../images/bg-4.png) bottom no-repeat;
   height: 250px;
-  margin-top: -23px;
-  margin-left: -100px;
+  margin-top: -100px;
 }
 .blog-bg h3 {
   text-align: center;
@@ -6303,7 +6271,7 @@ div.tooltip1:after {
 }
 .single-view ._li .accordion-body {
   display: block !important;
-  /*overflow: visible;*/
+  overflow: visible;
   height: auto;
 }
 .single-view ._li .st-wages {
