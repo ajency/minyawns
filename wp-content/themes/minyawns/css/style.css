@@ -541,12 +541,11 @@ top: 15%;
 div.profile-wrapper{
 	position: relative;
 	overflow: hidden;
-	width: 100%;
+	width: 100%; 
 	height: auto !important;
   
 	/*min-height: 650px;*/
-	min-height: 986px;
- 
+	min-height: 986px;  
 }
 
 
@@ -2910,6 +2909,7 @@ float:none !important;
     height: 101px; 
   position:relative;
  }
+ 
 
  
  
@@ -2921,4 +2921,11 @@ float:none !important;
  .auto-width-btn{
  	width: auto !important;
  }
+ 
+ 
+.item-remove{
+	cursor:pointer;
+} 
+
+ 
  

@@ -2535,7 +2535,7 @@ jQuery('.isotope').imagesLoaded( function(){
 //			);
 //		});
  
-
+ 
 
 
 //fancybox
