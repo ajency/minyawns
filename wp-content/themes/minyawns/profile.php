@@ -149,7 +149,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs/#browse" class=""> Click Here</a></h4>
                 <div class="row-fluid min_profile  <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">
 
-                    <div class="span4 ">
+                    <div class="span2 ">
 					<div id="change-avt" class="<?php
                                                                    
                     if (get_user_role() == 'employer') {
@@ -178,7 +178,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                                                   <input id="change-avatar" type="file" name="files" style="display:none;">
                             <?php }?>
                     </div>
-                    <div class="span8">
+                    <div class="span10">
 					  <?php if (get_user_role() === 'minyawn'): ?>
 				<div class="social-link profile-social-link"> 
                 
@@ -271,7 +271,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 <div class="clear"></div><br>
  <?php if (get_user_role() === 'minyawn'): ?>
 				<div class="row-fluid">
-					<div class="span4">
+					<div class="span2">
 						<div class="right-wideget-bar">
 							<h3>Ratings</h3>
 							<?php if (get_user_role() === 'minyawn'): ?>
@@ -309,7 +309,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 						</div>
 					
 					</div>
-					<div class="span8">
+					<div class="span10">
 						<div class="list-box">
 							<h3>Skills</h3>
 							 <?php
