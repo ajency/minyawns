@@ -600,7 +600,7 @@ $current_user_role =  trim($user_role);
 	</div>	
 			</div>
 			</div>
-			<div class="row-fluid">
+			<!--<div class="row-fluid">
 			<div class="span12">
 				<div class="onoffswitch pull-right">
 				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
@@ -610,7 +610,7 @@ $current_user_role =  trim($user_role);
 				</label>
 				</div>
 			</div>
-			</div>	
+			</div>-->
 			</div>
     </div>
 
