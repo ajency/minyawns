@@ -466,10 +466,10 @@ $current_user_role =  trim($user_role);
 	
     <div class="minyawns-img">
     <% if(result.is_hired === true){%>
-    <div class="minaywns-sel">
-	<i class="icon-ok"></i>
-	SELECTED
-	</div>
+      <div class="minaywns-sel">
+	     <i class="icon-ok"></i>
+      	SELECTED
+      </div>
     <% } %>
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>'><%= result.user_image%></a>
     </div>
@@ -533,7 +533,13 @@ $current_user_role =  trim($user_role);
 	<div class="row-fluid">
 	<div class="span4">
     <div class="minyawns-img" >
-    <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
+        <% if(result.is_hired === true){%>
+          <div class="minaywns-sel">
+           <i class="icon-ok"></i>
+            SELECTED
+          </div>
+        <% } %>
+      <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
     </div>
     <div class="rating full-width">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
@@ -600,17 +606,12 @@ $current_user_role =  trim($user_role);
 	</div>	
 			</div>
 			</div>
-			<!--<div class="row-fluid">
-			<div class="span12">
-				<div class="onoffswitch pull-right">
-				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-				<label class="onoffswitch-label" for="myonoffswitch">
-				<div class="onoffswitch-inner"></div>
-				<div class="onoffswitch-switch"></div>
-				</label>
-				</div>
+			<div>
+        <div class="pull-right">
+          <%= select_button %>
+        </div>
+        <div class="clearfix"></div>
 			</div>
-			</div>-->
 			</div>
     </div>
 
@@ -619,14 +620,14 @@ $current_user_role =  trim($user_role);
     </div>
 	<!--like-dislike-btns-->
 	    <div class="rating hider">
-	<div class="like-dis">
-    <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
-    <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
-    </a>
-    <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
-    <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
-    </a>
-	</div>
+      	<div class="like-dis">
+          <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
+            <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
+          </a>
+          <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
+            <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
+          </a>
+      	</div>
     </div>
 	<!--like-dislike-btns-ends-->
 
@@ -646,7 +647,7 @@ $current_user_role =  trim($user_role);
 <!--   <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <%= result.comment %></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <%= result.comment %></div><%}%>-->
    </div>
 
-    <%= select_button %>
+    
     <!--<div class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
     <label class="onoffswitch-label" for="myonoffswitch">
