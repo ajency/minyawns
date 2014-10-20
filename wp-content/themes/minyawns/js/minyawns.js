@@ -1162,13 +1162,11 @@ var image_name=$("#image_name").val();
                     var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                     if ($("#tab_identifier").val() === '1') {
-                        $("#accordion24").append(html);
-                        alert('2')
+                        $("#accordion24").append(html); 
                     }
                     else {
 
-                        $("#accordion24").append(html);
-                         alert('3')
+                        $("#accordion24").append(html); 
                     }
 
                 });
