@@ -86,6 +86,9 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('imgareaselect-animated', get_template_directory_uri() . '/css/imgareaselect-animated.css', array(), null);
                 wp_enqueue_style('imgareaselect-default', get_template_directory_uri() . '/css/imgareaselect-default.css', array(), null);
                 wp_enqueue_style('imgareaselect-deprecated', get_template_directory_uri() . '/css/imgareaselect-deprecated.css', array(), null);
+				
+			 wp_enqueue_style('font', get_template_directory_uri() . '/css/font.css', array(), null);
+			 wp_enqueue_style('plugin', get_template_directory_uri() . '/css/plugin.css', array(), null);
                 wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
 //            wp_enqueue_style('bootstrap-lightbox', get_template_directory_uri() . '/css/bootstrap-lightbox.min.css', array(), null);
                 //wp_enqueue_style('data_grids_main', get_template_directory_uri() . '/css/data_grids_main.css', array(), null);
@@ -104,7 +107,7 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
 		wp_enqueue_style('real-state-landing', get_template_directory_uri() . '/css/landing-pages.css', array(), null);
 
 
-
+			wp_enqueue_script('holder', get_template_directory_uri() . '/js/holder.js', array(), null);
             wp_enqueue_script('bxslider', get_template_directory_uri() . '/js/jquery.bxslider.min.js', array('jquery'), null);
             //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
             wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
@@ -115,7 +118,7 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
 		
 
             //if(is_page('profile'))
-
+			 
             wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
 
             wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery', 'jquery-ui'), null);

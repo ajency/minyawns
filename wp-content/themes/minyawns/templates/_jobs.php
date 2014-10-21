@@ -248,6 +248,180 @@ $current_user_role =  trim($user_role);
         <div class="span9">
 		<div class="row-fluid">
 		<div class="span6">
+			<!--comment starts-->
+			
+			<div class="msg-cover">
+		<p class="msg left">Enter your Message here</p>
+		<textarea class="full m-b-10" rows="3" ></textarea>
+		<div class="right m-b-10">
+		<a class="button-small blue-dark">Post Message</a>
+		<a class="button-small salmon-dark">Cancel</a>
+		</div>
+		
+
+		<div class="avatar-container">
+			<div class="avatar-box">
+				<div class="avatar left" href="#">
+					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjcuMzEyNSIgeT0iMjQiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj40OHg0ODwvdGV4dD48L2c+PC9zdmc+">
+				</div>
+				<div class="avatar-content">
+					<h5 class="avatar-heading left">Lorem ipsum dolor sit amet <small class="member-status"> Minyawn</small><small class="job-status"> Applied</small></h5>
+
+					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+
+					<div class="comment-info m-b-10">
+						<span class="comment-date left">
+							14 July 2016
+						</span>
+						<span class="left">&nbsp;|&nbsp;</span>
+						<span class="comment-time left">
+						9:30 am
+						</span>
+
+						<span class="right rep-del">
+							<a href="#" class="reply">
+								<span class="glyphicon glyphicon-share-alt"></span>
+							</a>
+							<a href="#" class="delete">
+								<span class="glyphicon glyphicon-trash" onclick="$('.alert-msg').show()"></span>
+							</a>
+
+						</span>
+					</div>
+
+				
+				</div>
+				<div class="alert-msg">
+					<div class="icon-close right">
+						<a href="#" onclick="$('.alert-msg').hide()"><span class="glyphicon glyphicon-remove"></span></a>
+					</div>
+					Successfully deleted the message
+				</div>
+			</div>
+
+			<div class="avatar-box">
+				
+				<div class="avatar left" href="#">
+					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjcuMzEyNSIgeT0iMjQiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj40OHg0ODwvdGV4dD48L2c+PC9zdmc+">
+				</div>
+				
+				
+				<div class="avatar-content">
+					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
+					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+					<div class="comment-info m-b-10">
+					<span class="comment-date left">
+					15 July 2016
+					</span>
+					<span class="left">&nbsp;|&nbsp;</span>
+					<span class="comment-time left">
+					10:45 am
+					</span>
+
+					<span class="right rep-del">
+							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
+								<span class="glyphicon glyphicon-share-alt"></span>
+							</a>
+							<a href="#" class="delete">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a>
+						</span>
+
+						<div class="reply-txt">
+				<p class="reply-msg left">Enter your Reply here</p>
+				<textarea class="full m-tb-10" rows="3"></textarea>
+				<div class="right m-b-10">
+					<a class="button-small blue-dark" onclick="$('.avatar-box-1').show();$('.reply-txt').hide();">Post Reply</a>
+					<a class="button-small salmon-dark" onclick="$('.reply-txt').hide();$('.rep-del').show();">Cancel</a>
+				</div>
+				</div>
+
+					</div>
+
+				</div>
+
+				
+
+<!--child-1-->				
+<div class="avatar-box-1">
+				
+				<div class="avatar left" href="#">
+					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ii0wLjY4NzUiIHk9IjIzLjAwNzgxMjUiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4zMngzMjwvdGV4dD48L2c+PC9zdmc+">
+				</div>
+				
+				
+				<div class="avatar-content">
+					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
+					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+					<div class="comment-info m-b-10">
+					<span class="comment-date left">
+					15 July 2016
+					</span>
+					<span class="left">&nbsp;|&nbsp;</span>
+					<span class="comment-time left">
+					10:45 am
+					</span>
+
+					<span class="right rep-del">
+							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
+								<span class="glyphicon glyphicon-share-alt"></span>
+							</a>
+							<a href="#" class="delete">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a>
+						</span>
+
+					</div>
+
+				</div>
+
+				
+
+			</div>
+			<!--child-1 ends-->
+
+<!--child-2-->				
+<div class="avatar-box-2">
+				
+				<div class="avatar left" href="#">
+					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ii0wLjY4NzUiIHk9IjIzLjAwNzgxMjUiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4zMngzMjwvdGV4dD48L2c+PC9zdmc+">
+				</div>
+				
+				
+				<div class="avatar-content">
+					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
+					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+					<div class="comment-info m-b-10">
+					<span class="comment-date left">
+					15 July 2016
+					</span>
+					<span class="left">&nbsp;|&nbsp;</span>
+					<span class="comment-time left">
+					10:45 am
+					</span>
+
+					<span class="right rep-del">
+							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
+								<span class="glyphicon glyphicon-share-alt"></span>
+							</a>
+							<a href="#" class="delete">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a>
+						</span>
+
+					</div>
+
+				</div>
+
+				
+
+			</div>
+			<!--child-2 ends-->
+			</div>
+		</div>
+	</div>
+			
+			<!--comment-ends-->
 		</div>
 		<div class="span6">
     <ul class="thumbnails">
@@ -536,7 +710,7 @@ $current_user_role =  trim($user_role);
         <% if(result.is_hired === true){%>
           <div class="minaywns-sel">
            <i class="icon-ok"></i>
-            SELECTED
+            <!--SELECTED-->
           </div>
         <% } %>
       <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
@@ -619,7 +793,7 @@ $current_user_role =  trim($user_role);
 	
     </div>
 	<!--like-dislike-btns-->
-	    <div class="rating hider">
+	    <!--<div class="rating hider">
       	<div class="like-dis">
           <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
             <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
@@ -628,7 +802,7 @@ $current_user_role =  trim($user_role);
             <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
           </a>
       	</div>
-    </div>
+    </div>-->
 	<!--like-dislike-btns-ends-->
 
     </div>

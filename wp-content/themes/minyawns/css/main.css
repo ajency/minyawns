@@ -4239,8 +4239,10 @@ body .minyawns-grid1 .m2 .social-link {
   height: 120px!important;
 }
 .minyawns-grid1 .thumbspan.card .m1 .caption .minyawns-img img {
-  width: 120px!important;
-  height: 120px!important;
+  /*width: 120px!important;
+					height: 120px!important;*/
+  width: 110px!important;
+  height: 110px!important;
 }
 .minyawns-grid1 .thumbspan.card .m1 .caption h4 {
   color: #8ed030;
