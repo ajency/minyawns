@@ -245,234 +245,206 @@ $current_user_role =  trim($user_role);
 					   
 </div>
  <%}%>
-        <div class="span9">
-		<div class="row-fluid">
+<div class="span12">
+	<div class="row-fluid">
 		<div class="span6">
 			<!--comment starts-->
-			
-			<div class="msg-cover">
-		<p class="msg left">Enter your Message here</p>
-		<textarea class="full m-b-10" rows="3" ></textarea>
-		<div class="right m-b-10">
-		<a class="button-small blue-dark">Post Message</a>
-		<a class="button-small salmon-dark">Cancel</a>
-		</div>
+  		<div class="msg-cover">
+    		<p class="msg left">Enter your Message here</p>
+    		<textarea class="full m-b-10" rows="3" ></textarea>
+    		<div class="right m-b-10">
+      		<a class="button-small blue-dark">Post Message</a>
+      		<a class="button-small salmon-dark">Cancel</a>
+    		</div>
 		
 
-		<div class="avatar-container">
-			<div class="avatar-box">
-				<div class="avatar left" href="#">
-					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjcuMzEyNSIgeT0iMjQiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj40OHg0ODwvdGV4dD48L2c+PC9zdmc+">
-				</div>
-				<div class="avatar-content">
-					<h5 class="avatar-heading left">Lorem ipsum dolor sit amet <small class="member-status"> Minyawn</small><small class="job-status"> Applied</small></h5>
+  		<div class="avatar-container">
+  			<div class="avatar-box">
+  				<div class="avatar left" href="#">
+  					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjcuMzEyNSIgeT0iMjQiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj40OHg0ODwvdGV4dD48L2c+PC9zdmc+">
+  				</div>
+  				<div class="avatar-content">
+  					<h5 class="avatar-heading left">Lorem ipsum dolor sit amet <small class="member-status"> Minyawn</small><small class="job-status"> Applied</small></h5>
 
-					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+  					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
 
-					<div class="comment-info m-b-10">
-						<span class="comment-date left">
-							14 July 2016
-						</span>
-						<span class="left">&nbsp;|&nbsp;</span>
-						<span class="comment-time left">
-						9:30 am
-						</span>
+  					<div class="comment-info m-b-10">
+  						<span class="comment-date left">
+  							14 July 2016
+  						</span>
+  						<span class="left">&nbsp;|&nbsp;</span>
+  						<span class="comment-time left">
+  						9:30 am
+  						</span>
 
-						<span class="right rep-del">
-							<a href="#" class="reply">
-								<span class="glyphicon glyphicon-share-alt"></span>
-							</a>
-							<a href="#" class="delete">
-								<span class="glyphicon glyphicon-trash" onclick="$('.alert-msg').show()"></span>
-							</a>
+  						<span class="right rep-del">
+  							<a href="#" class="reply">
+  								<span class="glyphicon glyphicon-share-alt"></span>
+  							</a>
+  							<a href="#" class="delete">
+  								<span class="glyphicon glyphicon-trash" onclick="$('.alert-msg').show()"></span>
+  							</a>
 
-						</span>
-					</div>
-
-				
-				</div>
-				<div class="alert-msg">
-					<div class="icon-close right">
-						<a href="#" onclick="$('.alert-msg').hide()"><span class="glyphicon glyphicon-remove"></span></a>
-					</div>
-					Successfully deleted the message
-				</div>
-			</div>
-
-			<div class="avatar-box">
-				
-				<div class="avatar left" href="#">
-					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjcuMzEyNSIgeT0iMjQiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj40OHg0ODwvdGV4dD48L2c+PC9zdmc+">
-				</div>
-				
-				
-				<div class="avatar-content">
-					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
-					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
-					<div class="comment-info m-b-10">
-					<span class="comment-date left">
-					15 July 2016
-					</span>
-					<span class="left">&nbsp;|&nbsp;</span>
-					<span class="comment-time left">
-					10:45 am
-					</span>
-
-					<span class="right rep-del">
-							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
-								<span class="glyphicon glyphicon-share-alt"></span>
-							</a>
-							<a href="#" class="delete">
-								<span class="glyphicon glyphicon-trash"></span>
-							</a>
-						</span>
-
-						<div class="reply-txt">
-				<p class="reply-msg left">Enter your Reply here</p>
-				<textarea class="full m-tb-10" rows="3"></textarea>
-				<div class="right m-b-10">
-					<a class="button-small blue-dark" onclick="$('.avatar-box-1').show();$('.reply-txt').hide();">Post Reply</a>
-					<a class="button-small salmon-dark" onclick="$('.reply-txt').hide();$('.rep-del').show();">Cancel</a>
-				</div>
-				</div>
-
-					</div>
-
-				</div>
+  						</span>
+  					</div>
 
 				
+    				</div>
+    				<div class="alert-msg">
+    					<div class="icon-close right">
+    						<a href="#" onclick="$('.alert-msg').hide()"><span class="glyphicon glyphicon-remove"></span></a>
+    					</div>
+    					Successfully deleted the message
+    				</div>
+    			</div>
 
-<!--child-1-->				
-<div class="avatar-box-1">
+			    <div class="avatar-box">
+    				<div class="avatar left" href="#">
+    					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjcuMzEyNSIgeT0iMjQiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj40OHg0ODwvdGV4dD48L2c+PC9zdmc+">
+    				</div>
 				
-				<div class="avatar left" href="#">
-					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ii0wLjY4NzUiIHk9IjIzLjAwNzgxMjUiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4zMngzMjwvdGV4dD48L2c+PC9zdmc+">
-				</div>
-				
-				
-				<div class="avatar-content">
-					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
-					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
-					<div class="comment-info m-b-10">
-					<span class="comment-date left">
-					15 July 2016
-					</span>
-					<span class="left">&nbsp;|&nbsp;</span>
-					<span class="comment-time left">
-					10:45 am
-					</span>
+    				<div class="avatar-content">
+    					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
+    					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+    					<div class="comment-info m-b-10">
+      					<span class="comment-date left">
+      					15 July 2016
+      					</span>
+      					<span class="left">&nbsp;|&nbsp;</span>
+      					<span class="comment-time left">
+      					10:45 am
+      					</span>
 
-					<span class="right rep-del">
-							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
-								<span class="glyphicon glyphicon-share-alt"></span>
-							</a>
-							<a href="#" class="delete">
-								<span class="glyphicon glyphicon-trash"></span>
-							</a>
-						</span>
+    					  <span class="right rep-del">
+    							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
+    								<span class="glyphicon glyphicon-share-alt"></span>
+    							</a>
+    							<a href="#" class="delete">
+    								<span class="glyphicon glyphicon-trash"></span>
+    							</a>
+    						</span>
 
-					</div>
+						    <div class="reply-txt">
+          				<p class="reply-msg left">Enter your Reply here</p>
+          				<textarea class="full m-tb-10" rows="3"></textarea>
+          				<div class="right m-b-10">
+          					<a class="button-small blue-dark" onclick="$('.avatar-box-1').show();$('.reply-txt').hide();">Post Reply</a>
+          					<a class="button-small salmon-dark" onclick="$('.reply-txt').hide();$('.rep-del').show();">Cancel</a>
+          				</div>
+				        </div>
+				  	  </div>
+				    </div>
 
-				</div>
+            <!--child-1-->				
+            <div class="avatar-box-1">
+      				<div class="avatar left" href="#">
+      					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ii0wLjY4NzUiIHk9IjIzLjAwNzgxMjUiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4zMngzMjwvdGV4dD48L2c+PC9zdmc+">
+      				</div>
+      				<div class="avatar-content">
+      					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
+					      <p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+        					<div class="comment-info m-b-10">
+          					<span class="comment-date left">
+          					15 July 2016
+          					</span>
+          					<span class="left">&nbsp;|&nbsp;</span>
+          					<span class="comment-time left">
+          					 10:45 am
+          					</span>
+          					<span class="right rep-del">
+          							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
+          								<span class="glyphicon glyphicon-share-alt"></span>
+          							</a>
+          							<a href="#" class="delete">
+          								<span class="glyphicon glyphicon-trash"></span>
+          							</a>
+          						</span>
+          					</div>
+          				</div>
+          			</div>
+          			<!--child-1 ends-->
 
-				
+                <!--child-2-->				
+                <div class="avatar-box-2">
+          				<div class="avatar left" href="#">
+          					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ii0wLjY4NzUiIHk9IjIzLjAwNzgxMjUiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4zMngzMjwvdGV4dD48L2c+PC9zdmc+">
+          				</div>
+          				<div class="avatar-content">
+          					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
+					          <p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+          					<div class="comment-info m-b-10">
+            					<span class="comment-date left">
+            					15 July 2016
+            					</span>
+            					<span class="left">&nbsp;|&nbsp;</span>
+            					<span class="comment-time left">
+            					10:45 am
+            					</span>
 
-			</div>
-			<!--child-1 ends-->
+            					<span class="right rep-del">
+            							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
+            								<span class="glyphicon glyphicon-share-alt"></span>
+            							</a>
+            							<a href="#" class="delete">
+            								<span class="glyphicon glyphicon-trash"></span>
+            							</a>
+						            </span>
+					            </div>
+				            </div>
+            			</div>
+            			<!--child-2 ends-->
+                </div>
+		          </div>
+            </div>
+			      <!--comment-ends-->
+      		</div>
+      		<div class="span6">
+            <ul class="thumbnails">
+              <span class='load_ajaxsingle_job_minions' style="display:none"></span>
+            </ul>
+            </br></br><span id="div_confirmhire"></span>
 
-<!--child-2-->				
-<div class="avatar-box-2">
-				
-				<div class="avatar left" href="#">
-					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ii0wLjY4NzUiIHk9IjIzLjAwNzgxMjUiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTJweDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4zMngzMjwvdGV4dD48L2c+PC9zdmc+">
-				</div>
-				
-				
-				<div class="avatar-content">
-					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
-					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
-					<div class="comment-info m-b-10">
-					<span class="comment-date left">
-					15 July 2016
-					</span>
-					<span class="left">&nbsp;|&nbsp;</span>
-					<span class="comment-time left">
-					10:45 am
-					</span>
-
-					<span class="right rep-del">
-							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
-								<span class="glyphicon glyphicon-share-alt"></span>
-							</a>
-							<a href="#" class="delete">
-								<span class="glyphicon glyphicon-trash"></span>
-							</a>
-						</span>
-
-					</div>
-
-				</div>
-
-				
-
-			</div>
-			<!--child-2 ends-->
-			</div>
-		</div>
-	</div>
-			
-			<!--comment-ends-->
-		</div>
-		<div class="span6">
-    <ul class="thumbnails">
-    <span class='load_ajaxsingle_job_minions' style="display:none"></span>
-    </ul>
-        </br></br></br></br><span id="div_confirmhire"></span>
-		</div>
-		</div>
-</div>
-
-<div class="span3 mobile-alert-box-hidden">
-                  <div class="alert alert-success alert-sidebar author-data">
-                      <b style="color:#000;">Employer Details</b>
-					  
-					  <div class="row-fluid">
-					  <div class="span3">
-						<%= result.job_author_logo %>
-					  </div>
-						<div class="span9 author-info">
-						
-                                                <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
-							<i class="icon-map-marker"></i> <%= result.job_company_location%>
-						</div>
-					  </div>
-						
-                        <br>
-                    </div>
-                 
-              <% if( ( (is_admin==true)  || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
-                     <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
-                        <h3>Your selection</h3>
-                        <hr>
-                        <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
-                        <b> Wages per Minion:<span id="wages_per_minyawns">0</span><span>$</span></b>
-                        <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br>
-							<div class="msg-info">
-							<span>Please Note</span>
-							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
-<br> Any credit or debit card will do!</div>
-                        <span id="paypal_pay" style="display:none"><?php echo $payment_button; ?></span>
-                     <span id="selection_message"></span>
-                                    </div>
-                            <%}%>
-                 
-					   
-</div>
- 
-                       
-                     </div>
+            <div class=" mobile-alert-box-hidden">
+              <!--<div class="alert alert-success alert-sidebar author-data">
+                <b style="color:#000;">Employer Details</b>
+                <div class="row-fluid">
+                  <div class="span3">
+                    <%= result.job_author_logo %>
                   </div>
-    </form>
+                  <div class="span9 author-info">
+                    <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
+                    <i class="icon-map-marker"></i> <%= result.job_company_location%>
+                  </div>
+                </div>
+                <br>
+              </div>-->
+                             
+              <% if( ( (is_admin==true)  || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
+                <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
+                  <h3>Your selection</h3>
+                  <hr>
+                  <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
+                  <b> Wages per Minion:<span id="wages_per_minyawns">0</span><span>$</span></b>
+                  <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br>
+                  <div class="msg-info">
+                    <span>Please Note</span> Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
+                    <br> Any credit or debit card will do!
+                  </div>
+                  <span id="paypal_pay" style="display:none"><?php echo $payment_button; ?></span>
+                  <span id="selection_message"></span>
+                </div>
+              <%}%>      
+            </div>
+
+	        </div>
+	      </div>
+      </div>
+
+        
+ 
+      </div>
+    </div>
+  </form>
 </script>
 <script type="text/template" id="profile-table">   
 <% console.log('check..................')%>
@@ -847,9 +819,9 @@ $current_user_role =  trim($user_role);
     <div class="thumbnail select-button-91" id="thumbnail-91">
     <div class="m1">
     <div class="caption">
-    <div class="minyawns-img">
+    <!--<div class="minyawns-img">
     <img src="<?php echo get_template_directory_uri(); ?>/images/avatar2.jpg" height="96" width="96"/>
-    </div>
+    </div>-->
     <h4> Why wait for Minions to apply?</h4>
     <div class="text-meta-bold">With over 500 Minions equipped with valuable skills from top universities. 
     </div>
