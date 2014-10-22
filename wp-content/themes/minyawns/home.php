@@ -33,9 +33,9 @@
     </script>
 <div id="innermainimage">
 
-<video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+ <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
      <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
-</video>
+</video> 
 
 
    <div class="row-fluid banner-content">
@@ -48,8 +48,8 @@
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
 					<div class="banner-desc">1-day assistants for your 1-day tasks</div>
 					<div class="text-center">
-					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-info" id="link_employerregister" onclick="return true">Sign Up and Get Your Minyawns Today</a>
-          <a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_minyawnregister" onclick="return true">Minyawn Signup and Apply for Jobs Now</a>
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_employerregister" onclick="return true">Get Your Minyawn</a>
+          			<!--<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_minyawnregister" onclick="return true">Minyawn Signup and Apply for Jobs Now</a>-->
 		  </div>
 				</div>
 			
@@ -143,17 +143,16 @@
 
 <div class="what-we-can-do">
      <div id="down"></div>
+     <div class="stamp">
+   		<img src="<?php echo get_template_directory_uri() ?>/images/span4_N.png"/>
+   	</div>
    <div class="">
       <h3 class="heading-title">What can we do?</h3>
       <p class="excerpt">The minyawns have superpowers, find out what they are.</p>
    </div>
  
    <div class="container">
-   <div class="row-fluid">
-   <div class="span3 offset10 stamp">
-   <!--<img src="<?php echo get_template_directory_uri() ?>/images/span4_N.png"/>-->
-   </div>
-   </div>
+   
       <div class="row-fluid">
          <!--<div class="span8">
             <br>
@@ -272,7 +271,7 @@
 			
 			</div>
 			<div class="span8">
-		<h2 class="white">THE BIZ GURU</h2>
+		<h4 class="white"><strong>THE BIZ GU</strong>RU</h4>
 		<p class="white">The Biz Guru is here to represent your business. A personable Minyawn can help you sell your business through cold-calls, data-entry, marketing and more.</p>
 			</div>
 			</div>
@@ -284,7 +283,7 @@
 			
 			</div>
 			<div class="span8">
-			<h2 class="white">THE TESTER</h2>
+			<h4 class="white"><strong>THE TESTER</strong></h4>
 			<p class="white">Perfect for any tech company trying to test their product. Schedule a group of testers for market research and genuine feedback.</p>
 			</div>
 			</div>
@@ -298,7 +297,7 @@
 			
 			</div>
 			<div class="span8">
-			<h2 class="white">THE TECHIE</h2>
+			<h4 class="white"><strong>THE TECHIE</strong></h4>
 			<p class="white">Anything tech related -computers, phones, etc. Our techies can help you now, and teach you how to solve future problem.</p>
 			</div>
 			</div>
@@ -310,7 +309,7 @@
 			
 			</div>
 			<div class="span8">
-			<h2 class="white">THE SERVER</h2>
+			<h4 class="white"><strong>THE SERVER</strong></h4>
 			<p class="white">Good looking, outgoing, and know how to please your guests. Use them for any fancy event you to ensure a good time.</p>
 			</div>
 			</div>
@@ -362,7 +361,6 @@
 					<div class="tooltip-right-2">
 						<div class="data">
 						<h4>Pay what you want</h4>
-						
 						</div>
 						
 					</div>
