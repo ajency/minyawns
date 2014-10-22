@@ -843,6 +843,13 @@ var image_name=$("#image_name").val();
                 if (ele == 'user_skills2')
                     return;
 
+                if ((ele == 'facebook_link' && attr[ele] == '')   || (ele == 'linkedin' && attr[ele] == ''))
+                    return;
+
+                if ((validateURL(attr[ele]) === false && ele == 'facebook_link') || (validateURL(attr[ele]) === false && ele == 'linkedin')){ 
+                      errors.push({field: ele, msg: 'Please enter a valid url ' });
+                }
+
                 if (attr[ele] == '')
                 {
                     errors.push({field: ele, msg: 'Please enter ' + ele});
@@ -874,12 +881,7 @@ var image_name=$("#image_name").val();
             _.each(error, function(ele, index) {
                 var msg = ucfirst(ele.msg);
 
-                if (ele.field == "linkedin") {
-                    if (validateURL($("#linkedin").val()) === false) {
-                        $('#linkedin').parent().append('<span class="form-error">Please enter a valid url</span>');
-                        return false;
-                    }
-
+               
                     if (ele.field == "company_website") {
                         if (validateURL($("#company_website").val()) === false) {
                             $('#company_website').parent().append('<span class="form-error">Please enter a valid url</span>');
@@ -887,7 +889,7 @@ var image_name=$("#image_name").val();
                         }
                     }
 
-                }
+              
 
                 var msg_new = msg.replace('_', ' ');
 
@@ -1255,6 +1257,12 @@ var image_name=$("#image_name").val();
     /*trigger login lick on no acess login option click*/
  jQuery("#btn__login_oaccess").live("click", function() {
         jQuery("#btn__login").trigger('click');
+   });
+ jQuery("#link__employerregister").live("click", function() {
+        jQuery("#link_employerregister").trigger('click');
+   });
+  jQuery("#link__minyawnregister").live("click", function() {
+        jQuery("#link_minyawnregister").trigger('click');
    });
     /* POPUP LOGIN */
 
@@ -2524,6 +2532,7 @@ jQuery('.isotope').imagesLoaded( function(){
 //				}
 //			);
 //		});
+ 
  
 
 

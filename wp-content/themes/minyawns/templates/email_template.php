@@ -54,6 +54,14 @@ function email_template($emailid, $data, $type) {
                 'message' => get_email_msg($type, $data, $emailid)
             );
             break;
+        case 'minyawn_job_reminder':
+            $template = array(
+                'hhtml' => email_template_header(),
+                'fhtml' => email_template_footer(),
+                'subject' => get_email_subject($type, $data),
+                'message' => get_email_msg($type, $data, $emailid)
+            );
+            break;
 
         default:
             $template = array(
@@ -157,6 +165,10 @@ function get_email_subject($type, $data) {
             return $email_sub;
             
         case 'invite_minion':$email_sub="Congratulations! You have been invited to apply for a job.";
+            return $email_sub;
+
+
+        case 'minyawn_job_reminder':$email_sub="You have a Job to do tomorrow!";
             return $email_sub;
     }//end switch($type)
 }
@@ -273,6 +285,17 @@ If you are facing difficulties applying for the job feel free to email us on <a 
  ";
             
           return $email_msg;  
+
+          case 'minyawn_job_reminder':
+            $email_msg= "Hi ".$data['minyawn_name'].", <br/><br/>Check your schedule tomorrow, make sure you are free.<br>";
+
+            $email_msg .= 'Get ready for your Job <a href='.$data['job_page'].'>"'.$data['job_title'].'"</a> and be there on time.<br>';
+
+            $email_msg .= "Contact your Employer today if you need any details.";
+
+            $email_msg .= "";
+          return $email_msg;  
+
     }//end switch($type)
 }
 

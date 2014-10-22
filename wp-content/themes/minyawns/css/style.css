@@ -541,10 +541,11 @@ top: 15%;
 div.profile-wrapper{
 	position: relative;
 	overflow: hidden;
-	width: 100%;
-	height: auto !important; 
+	width: 100%; 
+	height: auto !important;
+  
 	/*min-height: 650px;*/
-	min-height: 986px; 
+	min-height: 986px;  
 }
 
 
@@ -2876,6 +2877,7 @@ float:none !important;
 }
  
  
+ 
 .item-remove{
 	cursor:pointer;
 }
@@ -2899,7 +2901,7 @@ float:none !important;
     z-index: 99999;
     position:absolute;
 }
- 
+  
  .load_ajax_large_minyawns_container{
 	 
     overflow:hidden ;
@@ -2908,8 +2910,22 @@ float:none !important;
   position:relative;
  }
  
+
+ 
+ 
+.readonly-color{
+	color:#A59C9C !important;
+}
+  
+ 
+ .auto-width-btn{
+ 	width: auto !important;
+ }
+ 
+ 
 .item-remove{
 	cursor:pointer;
 } 
 
+ 
  

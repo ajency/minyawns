@@ -21,9 +21,11 @@
                                              <ul class="inline">
                                                
  
+
                                                 <li data-toggle="collapse-next"  ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
                                                       <li class="" data-toggle="collapse-next" ><i class="icon-map-marker"></i> <%= result.job_location %></li>
                                                       
+
                                                       <li class="no-bdr">
                                                       <i class="icon-calendar"></i>
 

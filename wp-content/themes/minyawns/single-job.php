@@ -413,8 +413,10 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
         Please Select at-least one Minyawn
     </div>
  
+ 
   
 </div>  
+ 
 
 <div class="hidden">
     <script type="text/javascript">
@@ -432,5 +434,6 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
         //--><!]]>
     </script>
 </div>
+ 
 <?php
 get_footer();

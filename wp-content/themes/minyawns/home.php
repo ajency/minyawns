@@ -467,6 +467,7 @@
                       <a href='<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
                       <?php }  ?>
  
+ 
                       <?php if ($homepage_user_data["facebook_link"] !=""  ){?>
 
  
@@ -479,7 +480,9 @@
                       ?>
  
                       <a href='<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-                      <?php }  ?></div>
+ 
+                      <?php  } ?></div>
+ 
 					<div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
                         <i class="icon-thumbs-up"></i> <?php echo $homepage_user_data["rating_positive"] ;?>

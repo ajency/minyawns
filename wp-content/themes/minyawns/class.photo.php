@@ -415,7 +415,7 @@ public function send_photo_upload_mail($user_id,$job_id){
     $message = "Hi, <br/><br/>".$user_data->first_name." ".$user_data->last_name." has uploaded Images to Job ".$job_data->post_title.".<br/><br/><a href='".get_post_permalink($job_id)."'>Click here</a> to view the images.<br/><br/>";
  
    	//mail to the employer
- 	///wp_mail( $job_author_data->user_email, $subject, email_header() . $message . email_signature(), $headers);
+ 	wp_mail( $job_author_data->user_email, $subject, email_header() . $message . email_signature(), $headers);
 
    	//mail to administrator
    	$adminsitrators = get_users( 'role=administrator' );
@@ -425,7 +425,7 @@ public function send_photo_upload_mail($user_id,$job_id){
 
   		add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
    
-		//wp_mail( $adminsitrator->user_email, $subject, email_header() . $message . email_signature(), $headers);
+		wp_mail( $adminsitrator->user_email, $subject, email_header() . $message . email_signature(), $headers);
 
 	}
      

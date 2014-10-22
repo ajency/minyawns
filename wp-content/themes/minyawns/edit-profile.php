@@ -147,8 +147,6 @@ require 'templates/_jobs.php';
                                     <input type="text" id="facebook_link"  name="facebook_link" placeholder="www.facebook.com/username" value="<?php echo user_profile_facebook(); ?>" class="input">
                                 </div>
                             </div>
-
-
  
 
                             <div class="control-group">
@@ -186,6 +184,7 @@ require 'templates/_jobs.php';
 
 
 
+ 
  
                         <?php else : ?>
                             <div class="control-group">
@@ -259,6 +258,7 @@ require 'templates/_jobs.php';
 </div>
 
 
+ 
  
 
 <!-- Modal for record video with webcam -->
@@ -432,7 +432,7 @@ require 'templates/_jobs.php';
 
     </script>
 
-
+ 
  
 <?php
 get_footer();
