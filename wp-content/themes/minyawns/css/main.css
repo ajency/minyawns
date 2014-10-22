@@ -6572,3 +6572,9 @@ div.tooltip1:after {
   margin: 20px 0 0 -20px;
   font-weight: normal;
 }
+.find-min {
+  margin-top: 10px;
+}
+.find-min .m1 {
+  min-height: 0;
+}

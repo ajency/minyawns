@@ -1229,7 +1229,7 @@ color: #FFF;
     width: 18px; margin: 6px;
     background: #FFFFFF;
     border: 2px solid #999999; border-radius: 9px;
-    position: absolute; /*top: 0;*/ top:-5px; bottom: 0; right: 69px;
+    position: absolute; top: 0; bottom: 0; right: 69px;
     -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
     -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
 }
@@ -1351,7 +1351,7 @@ body .minyawns-grid1 .thumbspan {
     text-align: center;
     /*top: 4%;*/
 	top:8%;
-	left:8%;
+	left:6%;
     /*width: 140px;*/
 	width:80px;
 }
@@ -2854,4 +2854,5 @@ html body .minyawns-grid1 .thumbspan.card{
 	width:100% !important;
 }
 }
+
 
