@@ -33,9 +33,9 @@
     </script>
 <div id="innermainimage">
 
- <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+<!--  <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
      <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
-</video> 
+</video>  -->
 
 
    <div class="row-fluid banner-content">
