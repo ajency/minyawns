@@ -6229,7 +6229,7 @@ div.tooltip1:after {
 .blog-bg {
   background: url(../images/bg-4.png) bottom no-repeat;
   height: 250px;
-  margin-top: -100px;
+  margin-top: -20px;
 }
 .blog-bg h3 {
   text-align: center;
