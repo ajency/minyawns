@@ -33,10 +33,10 @@
     </script>
 <div id="innermainimage">
 
-<!--  <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
-     <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
-</video>  -->
-
+<div id="home-video">
+  <img  data-video="http://www.youtube.com/embed/GDKSMN0DBbs?autoplay=1&amp;rel=0" title="Play Video" />
+  <span class="play-button"></span>
+</div>
 
    <div class="row-fluid banner-content">
     
@@ -65,9 +65,9 @@
 				</a>
 				</div>
 				</div>
-   <div class="bg-overflow">
+   <!-- <div class="bg-overflow">
 		
-   </div>
+   </div> -->
 </div>
 <div id="pliip" class="how-does-it-work">
 <div class="">
@@ -844,6 +844,23 @@ jQuery(document).ready(function($) {
 	  itemsDesktop : [1199,4],
 	   itemsDesktopSmall : [980,3]
       
+  });
+});
+
+
+$("#home-video img, #home-video span.play-button").on("click", function() {
+  $("#home-video").css("min-height","600px");
+  var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
+  $(video).insertAfter($("#home-video img"));
+  $("#home-video span.play-button").hide();
+  var closebtn = '<span class="close-button"></span>';
+  $(closebtn).insertAfter($(this));
+  
+  $("#home-video span.close-button").on("click", function() {
+    $("#home-video").css("min-height","100px");
+    $("#video-player").remove();
+    $(this).remove();
+    $("#home-video span.play-button").show();
   });
 });
 </script>
