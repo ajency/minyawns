@@ -4,8 +4,8 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['startapp', 'backbone'], function(App) {
-    return App.module("Entities.User", function(Activity, App) {
-      var API, ActivityCollection, User, activityCollection, myarray;
+    return App.module("Entities.User", function(User, App) {
+      var API, UserCollection, userCollection;
       User = (function(_super) {
         __extends(User, _super);
 
@@ -22,37 +22,45 @@
           profile_url: ""
         };
 
-        User.prototype.name = 'activity';
+        User.prototype.name = 'user';
 
         return User;
 
       })(Backbone.Model);
-      ActivityCollection = (function(_super) {
-        __extends(ActivityCollection, _super);
+      UserCollection = (function(_super) {
+        __extends(UserCollection, _super);
 
-        function ActivityCollection() {
-          return ActivityCollection.__super__.constructor.apply(this, arguments);
+        function UserCollection() {
+          return UserCollection.__super__.constructor.apply(this, arguments);
         }
 
-        ActivityCollection.prototype.model = Activity;
+        UserCollection.prototype.model = User;
 
-        ActivityCollection.prototype.url = function() {
-          return SITEURL + ajan_get_activities_uri;
+        UserCollection.prototype.url = function() {
+          return SITEURL + '/api/users';
         };
 
-        return ActivityCollection;
+        UserCollection.prototype.parse = function(response) {
+          return response.collection;
+        };
+
+        return UserCollection;
 
       })(Backbone.Collection);
-      activityCollection = new ActivityCollection;
-      myarray = [];
-      activityCollection.fetch();
+      userCollection = new UserCollection;
+      userCollection.fetch();
       API = {
-        getActivities: function() {
-          return activityCollection;
+        getUsers: function(opt) {
+          userCollection.fetch({
+            data: {
+              users: opt.users
+            }
+          });
+          return userCollection;
         }
       };
-      return App.reqres.setHandler("get:activity:collection", function(data) {
-        return API.getActivities();
+      return App.reqres.setHandler("get:user:collection", function(opt) {
+        return API.getUsers(opt);
       });
     });
   });

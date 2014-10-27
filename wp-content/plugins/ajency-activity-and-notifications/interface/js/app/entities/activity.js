@@ -45,6 +45,10 @@
           return SITEURL + ajan_get_activities_uri;
         };
 
+        ActivityCollection.prototype.parse = function(response) {
+          return response.collection;
+        };
+
         return ActivityCollection;
 
       })(Backbone.Collection);

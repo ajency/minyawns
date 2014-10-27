@@ -120,7 +120,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					$data = ajan_get_activities($args);
 
 					if($data){
-						$response = $data;
+						$response = array('status'=>'success','collection'=>$data);
 					}else{
 						$response = array('status'=>'failed','error'=>'No data found');
 					}
@@ -235,7 +235,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 		function get_activity_users(){
 			//Checking if all parameters are set
-			if(isset($_REQUEST['users']) && isset($_REQUEST['nonce'])){
+			if(isset($_REQUEST['users']) ){
 
 				$ids = explode(",", $_REQUEST['users']);
 

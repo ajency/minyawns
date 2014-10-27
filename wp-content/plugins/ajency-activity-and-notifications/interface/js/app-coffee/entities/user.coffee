@@ -1,6 +1,6 @@
 define ['startapp' , 'backbone'], (App) ->
 
-  App.module "Entities.User", (Activity, App)->
+  App.module "Entities.User", (User, App)->
 
     # define the User model
     class User extends Backbone.Model
@@ -14,29 +14,33 @@ define ['startapp' , 'backbone'], (App) ->
         profile_url: "" 
 
 
-      name : 'activity'
+      name : 'user'
 
       
     # define the menu collection
-    class ActivityCollection extends Backbone.Collection
+    class UserCollection extends Backbone.Collection
 
-      model : Activity
+      model : User
       
       url : ->
-        SITEURL + ajan_get_activities_uri
+        SITEURL + '/api/users'
+
+      parse :(response)->
+        response.collection
         
-    activityCollection = new ActivityCollection
-    myarray = []
-    
+    userCollection = new UserCollection 
 
     # API
 
-    activityCollection.fetch()
+    userCollection.fetch()
     API =   
-      getActivities:->
-        activityCollection
+      getUsers:(opt)-> #returns a collection of customers
+        userCollection.fetch
+          data : 
+            users : opt.users 
+        userCollection
         
 
     
-    App.reqres.setHandler "get:activity:collection", (data)->
-      API.getActivities() 
+    App.reqres.setHandler "get:user:collection", (opt)-> 
+      API.getUsers(opt) 

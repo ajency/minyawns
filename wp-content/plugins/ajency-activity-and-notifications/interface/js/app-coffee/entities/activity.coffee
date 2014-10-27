@@ -29,6 +29,9 @@ define ['startapp' , 'backbone'], (App) ->
       
       url : ->
         SITEURL + ajan_get_activities_uri
+
+      parse :(response)->
+        response.collection
         
     activityCollection = new ActivityCollection
     myarray = []

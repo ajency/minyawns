@@ -2515,6 +2515,52 @@ class PhotoAPI {
 
 
 }
+//Custom User profile pic
+function get_profile_url($userid){
+    return site_url().'/profile/'.$userid;
+}
+//Filter profile pic
+add_filter( 'activity_user_profile_url','get_profile_url', $userid);
+
+//Custom User profile url
+function get_profile_pic($userid){
+   $user_meta = get_user_meta($userid);
+   $user_profile_pic = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
+
+
+   if ($user_profile_pic !== false) {
+    $user_pic_img_src =   wp_get_attachment_thumb_url($user_profile_pic);
+} else {
+    $user_pic_img_src = get_avatar($userid);
+}
+return $user_pic_img_src;
+}
+//Filter profile url
+add_filter( 'activity_user_profile_pic','get_profile_pic', $userid );
+
+
+
+
+
+//Define common nonce string and checking if request nonce was correct
+function check_nonce(){
+if ( ! defined( 'NONCE_STRING' ) ) {
+  define('NONCE_STRING','some_unique_key');
+ }
+
+if(isset($_REQUEST['nonce']) && !wp_verify_nonce( $_REQUEST['nonce'], NONCE_STRING)){
+        $response = array('status'=>'failed','error'=>'Invalid request');
+
+        $response = json_encode( $response );
+
+        header( "Content-Type: application/json" );
+
+        echo $response;
+
+        exit;
+    }
+}
+add_action('init', 'check_nonce');
 
 
 

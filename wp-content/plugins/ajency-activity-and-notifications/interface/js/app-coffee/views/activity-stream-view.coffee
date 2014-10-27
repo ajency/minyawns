@@ -9,10 +9,10 @@ define ['startapp','text!app/templates/activity-stream.html'], (App,activityStre
             
             template    : '<div class="avatar-box">
                   <div class="avatar left" href="#">
-                      <img src="{{NOAVATAR}}" class="avatar-img">
+                      <img src="{{{NOAVATAR}}}" class="avatar-img">
                   </div>
                   <div class="avatar-content">
-                      <h5 class="avatar-heading left">{{action}} </h5>
+                      <h5 class="avatar-heading left">{{{action}}} </h5>
                 
                       <p class="comment m-tb-5">{{content}}</p>
 
@@ -46,6 +46,14 @@ define ['startapp','text!app/templates/activity-stream.html'], (App,activityStre
                     </div>
                 </div>'
 
+            mixinTemplateHelpers:(data)->
+                console.log "data"
+                console.log data
+                data.NOAVATAR = NOAVATAR
+                console.log "datamod"
+                console.log data
+                data
+
             
          
 
@@ -63,7 +71,8 @@ define ['startapp','text!app/templates/activity-stream.html'], (App,activityStre
  
 
             onShow:-> 
-                console.log("viewshw"+NOAVATAR)
+              @trigger "new:user:info"
+ 
 
 
          

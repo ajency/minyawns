@@ -17,18 +17,33 @@
           var view;
           this.activityCollection = App.request("get:activity:collection");
           this.view = view = this._getView(this.activityCollection);
-          App.execute("when:fetched", [this.activityCollection], (function(_this) {
-            return function() {};
+          this.listenTo(view, "new:user:info", this._getUsers);
+          return App.execute("when:fetched", [this.activityCollection], (function(_this) {
+            return function() {
+              return _this.show(view);
+            };
           })(this));
-          return this.show(view);
         };
 
         activitystreamcontroller.prototype._getView = function(activityCollection) {
-          console.log("activityCollection");
-          console.log(activityCollection);
           return new ListActivity.Views.ShowPackage({
             collection: activityCollection
           });
+        };
+
+        activitystreamcontroller.prototype._getUsers = function() {
+          var user_ids;
+          user_ids = this.activityCollection.pluck("user_id");
+          user_ids = _.uniq(user_ids).join();
+          this.userCollection = App.request("get:user:collection", {
+            users: user_ids
+          });
+          return App.execute("when:fetched", [this.userCollection], (function(_this) {
+            return function() {
+              console.log("usercol");
+              return console.log(_this.userCollection);
+            };
+          })(this));
         };
 
         return activitystreamcontroller;
