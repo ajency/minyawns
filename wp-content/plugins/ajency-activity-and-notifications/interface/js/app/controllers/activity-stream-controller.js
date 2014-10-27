@@ -18,6 +18,7 @@
           this.activityCollection = App.request("get:activity:collection");
           this.view = view = this._getView(this.activityCollection);
           this.listenTo(view, "new:user:info", this._getUsers);
+          this.listenTo(view, "change:user:info", this._displayUserInfo);
           return App.execute("when:fetched", [this.activityCollection], (function(_this) {
             return function() {
               return _this.show(view);
@@ -35,15 +36,24 @@
           var user_ids;
           user_ids = this.activityCollection.pluck("user_id");
           user_ids = _.uniq(user_ids).join();
-          this.userCollection = App.request("get:user:collection", {
-            users: user_ids
+          this.userCollection = new App.Entities.User.UserCollection;
+          return this.userCollection.fetch({
+            data: {
+              users: user_ids
+            },
+            success: function(c, y) {
+              return this.view.triggerMethod("change:user:info", c);
+            }
           });
-          return App.execute("when:fetched", [this.userCollection], (function(_this) {
-            return function() {
-              console.log("usercol");
-              return console.log(_this.userCollection);
-            };
-          })(this));
+        };
+
+        activitystreamcontroller.prototype._displayUserInfo = function() {
+          console.log("displayuserCollection");
+          console.log(this.userCollection);
+          return _.each(this.userCollection, function(property, index) {
+            console.log("property");
+            return console.log(property);
+          });
         };
 
         return activitystreamcontroller;

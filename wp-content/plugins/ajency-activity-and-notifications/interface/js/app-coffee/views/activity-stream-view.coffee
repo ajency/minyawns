@@ -9,7 +9,7 @@ define ['startapp','text!app/templates/activity-stream.html'], (App,activityStre
             
             template    : '<div class="avatar-box">
                   <div class="avatar left" href="#">
-                      <img src="{{{NOAVATAR}}}" class="avatar-img">
+                      <img src="{{{NOAVATAR}}}" class="avatar-img" id="ajan-user-pic-{{id}}">
                   </div>
                   <div class="avatar-content">
                       <h5 class="avatar-heading left">{{{action}}} </h5>
@@ -47,11 +47,7 @@ define ['startapp','text!app/templates/activity-stream.html'], (App,activityStre
                 </div>'
 
             mixinTemplateHelpers:(data)->
-                console.log "data"
-                console.log data
                 data.NOAVATAR = NOAVATAR
-                console.log "datamod"
-                console.log data
                 data
 
             

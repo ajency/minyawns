@@ -5,7 +5,7 @@
 
   define(['startapp', 'backbone'], function(App) {
     return App.module("Entities.User", function(User, App) {
-      var API, UserCollection, userCollection;
+      var API, userCollection;
       User = (function(_super) {
         __extends(User, _super);
 
@@ -27,7 +27,7 @@
         return User;
 
       })(Backbone.Model);
-      UserCollection = (function(_super) {
+      User.UserCollection = (function(_super) {
         __extends(UserCollection, _super);
 
         function UserCollection() {

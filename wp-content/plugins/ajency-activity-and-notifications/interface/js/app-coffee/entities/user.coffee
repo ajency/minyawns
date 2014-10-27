@@ -18,7 +18,7 @@ define ['startapp' , 'backbone'], (App) ->
 
       
     # define the menu collection
-    class UserCollection extends Backbone.Collection
+    class User.UserCollection extends Backbone.Collection
 
       model : User
       
@@ -37,7 +37,7 @@ define ['startapp' , 'backbone'], (App) ->
       getUsers:(opt)-> #returns a collection of customers
         userCollection.fetch
           data : 
-            users : opt.users 
+            users : opt.users
         userCollection
         
 

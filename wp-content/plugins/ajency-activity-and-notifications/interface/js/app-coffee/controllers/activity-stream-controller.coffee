@@ -15,6 +15,8 @@ define [
 
         @listenTo view ,"new:user:info" , @_getUsers
 
+        @listenTo view, "change:user:info" , @_displayUserInfo
+
         App.execute "when:fetched", [@activityCollection], =>
           @show view
 
@@ -28,12 +30,19 @@ define [
         user_ids = @activityCollection.pluck("user_id");
         user_ids =_.uniq(user_ids).join()  
 
-        @userCollection = App.request "get:user:collection", 
-          users : user_ids 
-        App.execute "when:fetched", [@userCollection], =>
-          console.log "usercol"
-          console.log @userCollection
+        @userCollection = new App.Entities.User.UserCollection
+        @userCollection.fetch   
+          data:
+            users : user_ids 
+          success: (c, y)->
+            @view.triggerMethod "change:user:info" , c
           
+      _displayUserInfo:() ->
+        console.log "displayuserCollection"
+        console.log @userCollection 
+        _.each @userCollection, (property, index)->
+                console.log "property"
+                console.log property
 
     App.commands.setHandler "show:activity:package", (opt = {})->
       new activitystreamcontroller opt
