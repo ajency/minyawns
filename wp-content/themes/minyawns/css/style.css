@@ -2829,12 +2829,22 @@ body .minyawns-grid1 .m3 .social-link {
 	margin-top: 0px!important;
 }
 @media screen and (max-width:767px){
+.row-fluid .span3 {
+	/*width: 31.623931623931625%;*/
+	width: 23.076923076923077%;
+	float:left;
+}
 .row-fluid .span4 {
 	width: 31.623931623931625%;
 	float:left;
 }
 .row-fluid .span8 {
 	width: 65.81196581196582%;
+	float:left;
+}
+.row-fluid .span9 {
+	/*width: 65.81196581196582%;*/
+	width: 74.35897435897436%;
 	float:left;
 }
 .row-fluid .span12 {

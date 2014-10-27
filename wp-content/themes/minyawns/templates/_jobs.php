@@ -399,12 +399,8 @@ $current_user_role =  trim($user_role);
 			      <!--comment-ends-->
       		</div>
       		<div class="span6">
-            <ul class="thumbnails">
-              <span class='load_ajaxsingle_job_minions' style="display:none"></span>
-            </ul>
-            </br></br><span id="div_confirmhire"></span>
-
-            <div class=" mobile-alert-box-hidden">
+			
+			<div class=" mobile-alert-box-hidden">
               <!--<div class="alert alert-success alert-sidebar author-data">
                 <b style="color:#000;">Employer Details</b>
                 <div class="row-fluid">
@@ -425,7 +421,7 @@ $current_user_role =  trim($user_role);
                   <hr>
                   <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
                   <b> Wages per Minion:<span id="wages_per_minyawns">0</span><span>$</span></b>
-                  <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br>
+                  <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><!--<br>-->
                   <div class="msg-info">
                     <span>Please Note</span> Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
                     <br> Any credit or debit card will do!
@@ -435,6 +431,14 @@ $current_user_role =  trim($user_role);
                 </div>
               <%}%>      
             </div>
+			
+            <ul class="thumbnails">
+              <span class='load_ajaxsingle_job_minions' style="display:none"></span>
+			  <a href="#" class="pull-right">View All &raquo;</a>
+            </ul>
+            </br></br><span id="div_confirmhire"></span>
+
+            
 
 	        </div>
 	      </div>
