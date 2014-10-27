@@ -349,6 +349,7 @@ review =""
 
                         }
 
+
                     } else {
                         jQuery(".load_more").show();
                         var sample = samplejobs({result: model.toJSON()});
@@ -379,7 +380,9 @@ review =""
 			
 
 	 
-            }
+            } 
+            //load messageboard
+            loadActivityStream($("#ajan-activity-stream-container"));
             //display photo containers
             display_job_photo_option();
            
