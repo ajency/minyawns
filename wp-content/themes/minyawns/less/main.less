@@ -3920,7 +3920,7 @@ background: url(../../../uploads/site_images/banner2.jpg)0px 0px no-repeat;
 background-size: cover;
 }
 	#innermainimage {
-height: 905px;
+height: 795px;
 }		
 }
 
@@ -7642,4 +7642,64 @@ body .job-view-list{
   width: 42%;
   margin: 20px 0 0 -20px;
   font-weight: normal;
+}
+
+
+
+#home-video, #home-video img {
+  min-width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#home-video {
+  span.play-button {
+    background:url(../images/banner2.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+  }
+    
+  &:hover span.play-button {
+    // background-position: 0 150px;
+    // width: 150px;
+    // height: 150px;
+  }
+  
+  span.close-button {
+    background: url("http://bit.ly/1pkMcv5");
+    background-position: 0 0;
+    width: 100px;
+    height: 100px;
+    top: 8%;
+    right: 2%;
+    position: absolute;
+    display: block;
+    z-index: 100;
+    
+    &:hover {
+      background-position: 0 100px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  iframe#video-player {
+    // min-height: 600px;
+    height: 125%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    @media (min-width:1420px){
+    	height: 112%;
+    }
+  }
 }
