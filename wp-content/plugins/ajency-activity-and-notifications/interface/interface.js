@@ -33,10 +33,10 @@ jQuery(document).ready(function($) {
 
             ajan_get_activities_uri = "/api/activities?type=get"
  
-            if(ajan_component!="" && ajan_component != undefined){
+            //if(ajan_component!="" && ajan_component != undefined){
 
-                ajan_get_activities_uri += "&component="+ajan_component
-            } 
+               // ajan_get_activities_uri += "&component="+ajan_component
+            //} 
 
  
             if(ajan_item_id!="" && ajan_item_id != undefined){
