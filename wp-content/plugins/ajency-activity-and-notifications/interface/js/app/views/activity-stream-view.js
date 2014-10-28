@@ -15,7 +15,7 @@
 
         SingleView.prototype.tagName = 'div';
 
-        SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> <span class="right rep-del"> <a href="#" class="reply"> <span class="glyphicon glyphicon-share-alt"></span> </a>&nbsp; <a href="#" class="delete"> <span class="glyphicon glyphicon-trash"  ></span> </a> </span> </div> </div> <div class="alert-msg"> <div class="icon-close right"> <a href="#"  ><span class="glyphicon glyphicon-remove"></span></a> </div> Successfully deleted the message </div> </div>';
+        SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> <span class="right rep-del"> <a href="#" class="reply"> comments(0) </a>&nbsp; <a href="#" class="reply"> <span class="glyphicon glyphicon-share-alt"></span> </a>&nbsp; <a href="#" class="delete"> <span class="glyphicon glyphicon-trash"  ></span> </a> </span> </div> </div> <div class="alert-msg"> <div class="icon-close right"> <a href="#"  ><span class="glyphicon glyphicon-remove"></span></a> </div> Successfully deleted the message </div> </div>';
 
         SingleView.prototype.mixinTemplateHelpers = function(data) {
           var activity_date, date_recorded, date_recorded_date, date_recorded_time;
@@ -54,6 +54,7 @@
           return _.each(n.models, function(model) {
             $(".ajan-user-pic-" + model.get("ID")).attr("src", model.get("profile_pic"));
             $(".ajan-user-role-" + model.get("ID")).html(model.get("user_role"));
+            $(".ajan-user-name-" + model.get("ID")).html(model.get("name"));
             if (model.get("additional_info") !== "") {
               $(".ajan-user-additional-info-" + model.get("ID")).addClass("ajan-user-additional-info");
               $(".ajan-user-additional-info-" + model.get("ID")).html(model.get("additional_info"));

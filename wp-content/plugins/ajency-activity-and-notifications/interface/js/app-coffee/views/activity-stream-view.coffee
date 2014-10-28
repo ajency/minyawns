@@ -31,6 +31,9 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
                           <span class="right rep-del">
                               <a href="#" class="reply">
+                                  comments(0)
+                              </a>&nbsp;
+                              <a href="#" class="reply">
                                   <span class="glyphicon glyphicon-share-alt"></span>
                               </a>&nbsp;
                               <a href="#" class="delete">
@@ -85,6 +88,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
               _.each n.models, (model) -> 
                 $(".ajan-user-pic-" + model.get("ID")).attr "src", model.get("profile_pic")
                 $(".ajan-user-role-" + model.get("ID")).html model.get("user_role")
+                $(".ajan-user-name-" + model.get("ID")).html model.get("name")
                 unless model.get("additional_info") is "" 
                   $(".ajan-user-additional-info-" + model.get("ID")).addClass "ajan-user-additional-info"
                   $(".ajan-user-additional-info-" + model.get("ID")).html model.get("additional_info")
