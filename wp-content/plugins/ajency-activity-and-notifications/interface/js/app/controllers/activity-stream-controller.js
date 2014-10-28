@@ -39,20 +39,14 @@
           this.userCollection = new App.Entities.User.UserCollection;
           return this.userCollection.fetch({
             data: {
-              users: user_ids
+              users: user_ids,
+              item_id: ajan_item_id
             },
-            success: function(c, y) {
-              return this.view.triggerMethod("change:user:info", c);
-            }
-          });
-        };
-
-        activitystreamcontroller.prototype._displayUserInfo = function() {
-          console.log("displayuserCollection");
-          console.log(this.userCollection);
-          return _.each(this.userCollection, function(property, index) {
-            console.log("property");
-            return console.log(property);
+            success: (function(_this) {
+              return function(collection, response) {
+                return _this.view.triggerMethod("change:user:image", collection);
+              };
+            })(this)
           });
         };
 

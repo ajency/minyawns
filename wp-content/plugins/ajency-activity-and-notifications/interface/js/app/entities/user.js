@@ -5,26 +5,26 @@
 
   define(['startapp', 'backbone'], function(App) {
     return App.module("Entities.User", function(User, App) {
-      var API, userCollection;
-      User = (function(_super) {
-        __extends(User, _super);
+      var UserModel, userCollection;
+      UserModel = (function(_super) {
+        __extends(UserModel, _super);
 
-        function User() {
-          return User.__super__.constructor.apply(this, arguments);
+        function UserModel() {
+          return UserModel.__super__.constructor.apply(this, arguments);
         }
 
-        User.prototype.idAttribute = 'ID';
+        UserModel.prototype.idAttribute = 'ID';
 
-        User.prototype.defaults = {
+        UserModel.prototype.defaults = {
           ID: "",
           name: "",
           profile_pic: "",
           profile_url: ""
         };
 
-        User.prototype.name = 'user';
+        UserModel.prototype.name = 'user';
 
-        return User;
+        return UserModel;
 
       })(Backbone.Model);
       User.UserCollection = (function(_super) {
@@ -34,7 +34,7 @@
           return UserCollection.__super__.constructor.apply(this, arguments);
         }
 
-        UserCollection.prototype.model = User;
+        UserCollection.prototype.model = UserModel;
 
         UserCollection.prototype.url = function() {
           return SITEURL + '/api/users';
@@ -47,21 +47,7 @@
         return UserCollection;
 
       })(Backbone.Collection);
-      userCollection = new UserCollection;
-      userCollection.fetch();
-      API = {
-        getUsers: function(opt) {
-          userCollection.fetch({
-            data: {
-              users: opt.users
-            }
-          });
-          return userCollection;
-        }
-      };
-      return App.reqres.setHandler("get:user:collection", function(opt) {
-        return API.getUsers(opt);
-      });
+      return userCollection = new User.UserCollection;
     });
   });
 

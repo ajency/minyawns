@@ -33,16 +33,11 @@ define [
         @userCollection = new App.Entities.User.UserCollection
         @userCollection.fetch   
           data:
-            users : user_ids 
-          success: (c, y)->
-            @view.triggerMethod "change:user:info" , c
-          
-      _displayUserInfo:() ->
-        console.log "displayuserCollection"
-        console.log @userCollection 
-        _.each @userCollection, (property, index)->
-                console.log "property"
-                console.log property
+            users : user_ids
+            item_id: ajan_item_id
+          success: (collection, response)=>
+            @view.triggerMethod "change:user:image" , collection 
+       
 
     App.commands.setHandler "show:activity:package", (opt = {})->
       new activitystreamcontroller opt

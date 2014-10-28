@@ -251,11 +251,16 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 								'ID' => $user->ID,
 								'name' => $user->display_name,
 
+								//get user role (filter: activity_userrole)
+								'user_role' => get_activity_user_role($user->ID),
 								//get user profile pic (filter: activity_user_profile_pic)
 								'profile_pic' => get_activity_user_profile_pic($user->ID),
 
 								//get user profile link url (filter: activity_user_profile_url)
 								'profile_url' => get_activity_user_profile_url($user->ID),
+
+									//get user profile link url (filter: activity_user_profile_url)
+								'additional_info' => get_activity_user_additional_info($user->ID),
 								);
 						}
 						$response = array('status'=>'success','collection'=>$users);

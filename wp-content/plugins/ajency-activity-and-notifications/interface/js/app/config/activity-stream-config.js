@@ -29,7 +29,8 @@
       bootstrap: "libs/plugins/bootstrap",
       text: "libs/plugins/text",
       jasminejquery: "libs/plugins/jasmine-jquery",
-      startapp: 'app/activity-stream-app'
+      startapp: 'app/activity-stream-app',
+      moment: 'libs/moment'
     },
     shim: {
       underscore: {

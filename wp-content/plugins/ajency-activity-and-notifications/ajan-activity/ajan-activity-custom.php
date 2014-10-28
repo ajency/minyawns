@@ -377,8 +377,9 @@ function ajan_activity_delete_by_id($id){
 //Function to get user profile image
 function get_activity_user_profile_pic($id){
 	$profile_pic = apply_filters( 'activity_user_profile_pic', $id );
-	if($profile_pic == $id){
-		$profile_pic = get_avatar($id);
+  
+	if($profile_pic == $id || $profile_pic==""){
+		$profile_pic = activitynotifications()->plugin_url. "interface/img/non-avatar.jpg";
 	}
 	return $profile_pic;
 }
@@ -390,4 +391,23 @@ function get_activity_user_profile_url($id){
 		$profile_url = get_author_posts_url($id);
 	}
 	return $profile_url;
+}
+
+//Function to get user profile url
+function get_activity_user_additional_info($id){
+	$additional_info = apply_filters( 'activity_user_additional_info', $id );
+	if($additional_info == $id){
+		$additional_info = '';
+	}
+	return $additional_info;
+}
+
+
+//Function to get user profile url
+function get_activity_user_role($id){
+	$user_role = apply_filters( 'activity_user_role', $id );
+	if($user_role == $id){
+		$user_role = '';
+	}
+	return $user_role;
 }

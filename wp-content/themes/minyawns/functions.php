@@ -2515,12 +2515,53 @@ class PhotoAPI {
 
 
 }
+
+
+//Custom User role
+function get_minyawns_user_roles($userid){
+    global $wp_roles;
+
+    $user_info = get_userdata($userid);
+
+    $role = implode(', ', $user_info->roles); 
+
+    return $wp_roles->roles[$role]['name'];
+}
+//Filter role
+add_filter( 'activity_user_role','get_minyawns_user_roles', 10,1);
+
+
 //Custom User profile pic
 function get_profile_url($userid){
     return site_url().'/profile/'.$userid;
 }
 //Filter profile pic
 add_filter( 'activity_user_profile_url','get_profile_url', $userid);
+
+
+
+//Custom User profile pic
+function get_user_additional_info($userid){
+
+    $is_minyawn = user_can( $userid, 'apply_for_jobs');
+
+    $results = "";
+    if(  $is_minyawn){
+        global $wpdb;  
+        $job = $_REQUEST["item_id"];
+           
+        $results = $wpdb->get_var( "SELECT CONCAT(UCASE(SUBSTRING(status, 1, 1)),LOWER(SUBSTRING(status, 2))) FROM ".$wpdb->prefix."userjobs WHERE user_id = ".$userid." AND job_id = ".$job );
+
+    }
+
+   return  $results;
+
+}
+
+
+//Filter profile pic
+add_filter( 'activity_user_additional_info','get_user_additional_info', $userid);
+
 
 //Custom User profile url
 function get_profile_pic($userid){
@@ -2530,9 +2571,9 @@ function get_profile_pic($userid){
 
    if ($user_profile_pic !== false) {
     $user_pic_img_src =   wp_get_attachment_thumb_url($user_profile_pic);
-} else {
-    $user_pic_img_src = get_avatar($userid);
-}
+}else{
+    $user_pic_img_src = $userid;
+}  
 return $user_pic_img_src;
 }
 //Filter profile url

@@ -95,8 +95,8 @@
   font-weight: bold;
   color: #79B91E;
 }
-.avatar-container .avatar-box .avatar-box .avatar-heading .job-status,
-.avatar-container .avatar-box .avatar-content .avatar-heading .job-status {
+.avatar-container .avatar-box .avatar-box .avatar-heading .ajan-user-additional-info,
+.avatar-container .avatar-box .avatar-content .avatar-heading .ajan-user-additional-info {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -108,8 +108,8 @@
   padding: 1px 9px 2px;
   text-shadow: none;
 }
-.avatar-container .avatar-box .avatar-box .avatar-heading .member-status,
-.avatar-container .avatar-box .avatar-content .avatar-heading .member-status {
+.avatar-container .avatar-box .avatar-box .avatar-heading .ajan-user-name,
+.avatar-container .avatar-box .avatar-content .avatar-heading .ajan-user-name {
   color: #8ed030;
   font-family: 'Open Sans';
   font-size: 12px;

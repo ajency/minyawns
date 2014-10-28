@@ -33,7 +33,7 @@ add_action( 'admin_enqueue_scripts', 'ajan_core_confirmation_js' );
  * Load JS files.
  */
 function ajan_core_enqueue_js() {
- 
+	 
 	$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	wp_enqueue_script( 'ajan-interface', activitynotifications()->plugin_url . "interface/interface.js", array( 'jquery' ), ajan_get_version() );
 	wp_localize_script( 'ajan-interface', 'AJANPLUGINPATH', activitynotifications()->plugin_url. "interface/");

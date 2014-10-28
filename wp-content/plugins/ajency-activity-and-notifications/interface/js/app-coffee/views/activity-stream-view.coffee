@@ -1,4 +1,4 @@
-define ['startapp','text!app/templates/activity-stream.html'], (App,activityStreamTpl)->
+define ['startapp','text!app/templates/activity-stream.html','moment'], (App,activityStreamTpl,moment)->
 
     App.module "ListActivity.Views", (Views, App)-> 
 
@@ -9,20 +9,24 @@ define ['startapp','text!app/templates/activity-stream.html'], (App,activityStre
             
             template    : '<div class="avatar-box">
                   <div class="avatar left" href="#">
-                      <img src="{{{NOAVATAR}}}" class="avatar-img" id="ajan-user-pic-{{id}}">
+                      <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}">
                   </div>
                   <div class="avatar-content">
                       <h5 class="avatar-heading left">{{{action}}} </h5>
-                
+                      <h5 class="avatar-heading left full-width">
+                      <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small>
+                      <small class="ajan-user-role ajan-user-role-{{user_id}}"></small>
+                      <small class="ajan-user-additional-info-{{user_id}}"></small></h5>
+                       
                       <p class="comment m-tb-5">{{content}}</p>
 
                       <div class="comment-info m-b-10">
                           <span class="comment-date left">
-                              14 July 2016
+                              {{activity_date}}
                           </span>
                           <span class="left">&nbsp;|&nbsp;</span>
                           <span class="comment-time left">
-                          9:30 am
+                          {{activity_time}}
                           </span>
 
                           <span class="right rep-del">
@@ -48,6 +52,14 @@ define ['startapp','text!app/templates/activity-stream.html'], (App,activityStre
 
             mixinTemplateHelpers:(data)->
                 data.NOAVATAR = NOAVATAR
+                activity_date = data.date_recorded
+                date_recorded = data.date_recorded.split(" ")
+                date_recorded_date = date_recorded[0]
+                date_recorded_time = date_recorded[1]
+                activity_date = moment(date_recorded_date) 
+                data.activity_date =activity_date.format("MMM Do YY");
+                data.activity_time =date_recorded_time;  
+
                 data
 
             
@@ -68,6 +80,17 @@ define ['startapp','text!app/templates/activity-stream.html'], (App,activityStre
 
             onShow:-> 
               @trigger "new:user:info"
+
+            onChangeUserImage : (n)->
+              _.each n.models, (model) -> 
+                $(".ajan-user-pic-" + model.get("ID")).attr "src", model.get("profile_pic")
+                $(".ajan-user-role-" + model.get("ID")).html model.get("user_role")
+                unless model.get("additional_info") is "" 
+                  $(".ajan-user-additional-info-" + model.get("ID")).addClass "ajan-user-additional-info"
+                  $(".ajan-user-additional-info-" + model.get("ID")).html model.get("additional_info")
+ 
+                
+                return
  
 
 

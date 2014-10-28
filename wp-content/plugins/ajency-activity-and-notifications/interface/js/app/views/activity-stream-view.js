@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['startapp', 'text!app/templates/activity-stream.html'], function(App, activityStreamTpl) {
+  define(['startapp', 'text!app/templates/activity-stream.html', 'moment'], function(App, activityStreamTpl, moment) {
     return App.module("ListActivity.Views", function(Views, App) {
       var SingleView;
       SingleView = (function(_super) {
@@ -15,10 +15,18 @@
 
         SingleView.prototype.tagName = 'div';
 
-        SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img" id="ajan-user-pic-{{id}}"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">{{{action}}} </h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> 14 July 2016 </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> 9:30 am </span> <span class="right rep-del"> <a href="#" class="reply"> <span class="glyphicon glyphicon-share-alt"></span> </a>&nbsp; <a href="#" class="delete"> <span class="glyphicon glyphicon-trash"  ></span> </a> </span> </div> </div> <div class="alert-msg"> <div class="icon-close right"> <a href="#"  ><span class="glyphicon glyphicon-remove"></span></a> </div> Successfully deleted the message </div> </div>';
+        SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> <span class="right rep-del"> <a href="#" class="reply"> <span class="glyphicon glyphicon-share-alt"></span> </a>&nbsp; <a href="#" class="delete"> <span class="glyphicon glyphicon-trash"  ></span> </a> </span> </div> </div> <div class="alert-msg"> <div class="icon-close right"> <a href="#"  ><span class="glyphicon glyphicon-remove"></span></a> </div> Successfully deleted the message </div> </div>';
 
         SingleView.prototype.mixinTemplateHelpers = function(data) {
+          var activity_date, date_recorded, date_recorded_date, date_recorded_time;
           data.NOAVATAR = NOAVATAR;
+          activity_date = data.date_recorded;
+          date_recorded = data.date_recorded.split(" ");
+          date_recorded_date = date_recorded[0];
+          date_recorded_time = date_recorded[1];
+          activity_date = moment(date_recorded_date);
+          data.activity_date = activity_date.format("MMM Do YY");
+          data.activity_time = date_recorded_time;
           return data;
         };
 
@@ -40,6 +48,17 @@
 
         ShowPackage.prototype.onShow = function() {
           return this.trigger("new:user:info");
+        };
+
+        ShowPackage.prototype.onChangeUserImage = function(n) {
+          return _.each(n.models, function(model) {
+            $(".ajan-user-pic-" + model.get("ID")).attr("src", model.get("profile_pic"));
+            $(".ajan-user-role-" + model.get("ID")).html(model.get("user_role"));
+            if (model.get("additional_info") !== "") {
+              $(".ajan-user-additional-info-" + model.get("ID")).addClass("ajan-user-additional-info");
+              $(".ajan-user-additional-info-" + model.get("ID")).html(model.get("additional_info"));
+            }
+          });
         };
 
         return ShowPackage;

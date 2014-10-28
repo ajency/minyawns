@@ -3,7 +3,7 @@ define ['startapp' , 'backbone'], (App) ->
   App.module "Entities.User", (User, App)->
 
     # define the User model
-    class User extends Backbone.Model
+    class UserModel extends Backbone.Model
 
       idAttribute : 'ID'
 
@@ -17,10 +17,10 @@ define ['startapp' , 'backbone'], (App) ->
       name : 'user'
 
       
-    # define the menu collection
+    # define the User collection
     class User.UserCollection extends Backbone.Collection
 
-      model : User
+      model : UserModel
       
       url : ->
         SITEURL + '/api/users'
@@ -28,19 +28,9 @@ define ['startapp' , 'backbone'], (App) ->
       parse :(response)->
         response.collection
         
-    userCollection = new UserCollection 
+    userCollection = new User.UserCollection 
 
-    # API
-
-    userCollection.fetch()
-    API =   
-      getUsers:(opt)-> #returns a collection of customers
-        userCollection.fetch
-          data : 
-            users : opt.users
-        userCollection
+     
         
 
     
-    App.reqres.setHandler "get:user:collection", (opt)-> 
-      API.getUsers(opt) 
