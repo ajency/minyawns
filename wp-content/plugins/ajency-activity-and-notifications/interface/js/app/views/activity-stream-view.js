@@ -13,9 +13,11 @@
           return SingleView.__super__.constructor.apply(this, arguments);
         }
 
+        SingleView.prototype.initialize = function() {};
+
         SingleView.prototype.tagName = 'div';
 
-        SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> <span class="right rep-del"> <a href="#" class="reply"> comments(0) </a>&nbsp; <a href="#" class="reply"> <span class="glyphicon glyphicon-share-alt"></span> </a>&nbsp; <a href="#" class="delete"> <span class="glyphicon glyphicon-trash"  ></span> </a> </span> </div> </div> <div class="alert-msg"> <div class="icon-close right"> <a href="#"  ><span class="glyphicon glyphicon-remove"></span></a> </div> Successfully deleted the message </div> </div>';
+        SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> <span class="right rep-del"> <a href="#" class="reply"> comments({{comment_count}}) </a>&nbsp; <a href="#" class="reply"> <span class="glyphicon glyphicon-share-alt"></span> </a>&nbsp; <a href="#" class="delete"> <span class="glyphicon glyphicon-trash"  ></span> </a> </span> </div> </div> <div class="alert-msg"> <div class="icon-close right"> <a href="#"  ><span class="glyphicon glyphicon-remove"></span></a> </div> Successfully deleted the message </div> </div>';
 
         SingleView.prototype.mixinTemplateHelpers = function(data) {
           var activity_date, date_recorded, date_recorded_date, date_recorded_time;
@@ -52,15 +54,21 @@
             e.preventDefault();
             console.log("click event");
             data = {
-              content: 'fdg',
-              item_id: 2676
+              content: $("#activity_content").val(),
+              item_id: ajan_item_id
             };
             return this.trigger("save:new:activity", data);
           }
         };
 
-        ShowPackage.prototype.onShow = function() {
-          console.log("view rendered");
+        ShowPackage.prototype.collectionEvents = function() {
+          return {
+            "add": "itemAdded"
+          };
+        };
+
+        ShowPackage.prototype.itemAdded = function() {
+          console.log("view onDomRefresh");
           return this.trigger("new:user:info");
         };
 

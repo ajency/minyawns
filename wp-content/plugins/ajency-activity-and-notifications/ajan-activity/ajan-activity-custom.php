@@ -51,19 +51,20 @@ add_action( 'ajan_set_activity_action', 'ajan_set_activity_action' );
  * @return $activities_template the activity collection array or false if no activities are found 
  */
 function ajan_has_activities_return($has_activities, $activities_template, $template_args){
- 	
+ 
  	$activities = array();
  	if($has_activities){
  		foreach($activities_template->activities as $activities_template_activity)
  		{
  			$children = array();
-
- 			$comment_count = count(ajan_get_activities($args=array('secondary_id'=>$activities_template_activity->id)));
+ 			 
+ 			$comment_count = count(AJAN_Activity_Activity::get_child_comments($activities_template_activity->id));
  
  			$activities_template_activity->comment_count = $comment_count;
  			$activities[] = custom_resturn_fields($activities_template_activity);
+
  		}
- 			
+ 	
 		return $activities;
  	}else{
  		return $has_activities; //if activities are not present return false
@@ -116,7 +117,7 @@ function custom_resturn_fields($activities_template_activity){
 				 	'date_recorded'		=>$activities_template_activity->date_recorded,
 				 	//'hide_sitewide'		=>$activities_template_activity->hide_sitewide,
 				 	//'children'			=>$children,
-				 	'comment_count'		=>child_count_for_parent($activities_template_activity->id),
+				 	'comment_count'		=>$activities_template_activity->comment_count,
 
 			 		);
 }

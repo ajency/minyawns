@@ -56,6 +56,8 @@
       },
       parse: function(resp) {
         if (resp.code === 'OK') {
+          console.log("response");
+          console.log(resp);
           return resp.data;
         }
         return resp;

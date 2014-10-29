@@ -115,7 +115,9 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					if(isset($_REQUEST['activity_parent']) && $_REQUEST['activity_parent'] != ''){
 						$args['secondary_id'] = $_REQUEST['activity_parent'];
 					}
- 
+					 	$args['sort'] = 'ASC';
+				 
+ 						
 					$data = ajan_get_activities($args);
 
 					if($data){
@@ -139,9 +141,9 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 			 
  
-				if(!isset($_REQUEST['nonce'])){
-					$response = array('status'=>'failed','error'=>'Invalid request');
-				}else{
+		//		if(!isset($_REQUEST['nonce']) || !wp_verify_nonce( $_REQUEST['nonce'], "ACTIVITY_NONCE_STRING")){
+			//		$response = array('status'=>'failed','error'=>'Invalid requestrrrr');
+		//	}else{
 					$creator_user_info = get_userdata(ajan_loggedin_user_id());
  
 					if(isset($_REQUEST['secondary_id']) && !empty($_REQUEST['secondary_id'])){
@@ -154,21 +156,23 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 					$args = array(         
 						'action'            => $action,
-						'component'         => 'activities',
-						'type'              => 'activities_comment',
+						'component'         => 'activity',
+						'type'              => 'activity_update',
 						'user_id'           => ajan_loggedin_user_id(),
 						'item_id'           => $_REQUEST['item_id'],
 						'content'           => $_REQUEST['content'],
 						'secondary_item_id' => $_REQUEST['secondary_id']
 						);
+					$id = ajan_activity_add($args);
 
-					if(!ajan_activity_add($args)){
-						$response = array('status'=>'failed','error'=>'Cannot be added');
+
+					if(!$id){
+						$response = array('error');
 					}else{
-						$response = array('status'=>'success','message'=>'Added successfully');
+						$response = ajan_get_activity_by_id($id);
 					}
 
-				}
+			//	}
  
 
 			//Encode with json and print response

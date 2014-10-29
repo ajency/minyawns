@@ -2583,25 +2583,7 @@ add_filter( 'activity_user_profile_pic','get_profile_pic', $userid );
 
 
 
-//Define common nonce string and checking if request nonce was correct
-function check_nonce(){
-if ( ! defined( 'NONCE_STRING' ) ) {
-  define('NONCE_STRING','some_unique_key');
- }
-
-if(isset($_REQUEST['nonce']) && !wp_verify_nonce( $_REQUEST['nonce'], NONCE_STRING)){
-        $response = array('status'=>'failed','error'=>'Invalid request');
-
-        $response = json_encode( $response );
-
-        header( "Content-Type: application/json" );
-
-        echo $response;
-
-        exit;
-    }
-}
-add_action('init', 'check_nonce');
+ 
 
 
 

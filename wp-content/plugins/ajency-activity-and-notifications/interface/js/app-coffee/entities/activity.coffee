@@ -8,6 +8,7 @@ define ['startapp' , 'backbone'], (App) ->
       idAttribute : 'ID'
 
       defaults:
+        
         user_id: ""
         component: ""
         type: ""
@@ -17,12 +18,14 @@ define ['startapp' , 'backbone'], (App) ->
         secondary_item_id: ""
         date_recorded: ""
         comment_count: ""
+        nonce:ACTIVITY_NONCE_STRING
 
 
       name : 'activity'
 
       urlRoot : ->
         SITEURL + ajan_post_activities_uri
+ 
       
     # define the menu collection
     class ActivityCollection extends Backbone.Collection

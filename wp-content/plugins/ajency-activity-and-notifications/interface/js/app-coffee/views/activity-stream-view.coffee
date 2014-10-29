@@ -4,7 +4,9 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
         class SingleView extends Marionette.ItemView
  
-              
+            initialize:-> 
+         
+ 
             tagName     : 'div'
             
             template    : '<div class="avatar-box">
@@ -31,7 +33,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
                           <span class="right rep-del">
                               <a href="#" class="reply">
-                                  comments(0)
+                                  comments({{comment_count}})
                               </a>&nbsp;
                               <a href="#" class="reply">
                                   <span class="glyphicon glyphicon-share-alt"></span>
@@ -84,12 +86,15 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
               'click #ajan-post-activity':(e)->
                 e.preventDefault()
                 console.log "click event"
-                data = {content:'fdg',item_id:2676}
+                data = {content:$("#activity_content").val(),item_id:ajan_item_id}
                 @trigger "save:new:activity" , data
 
-            onShow:-> 
-              console.log "view rendered"
-              @trigger "new:user:info"
+            collectionEvents:->
+              "add": "itemAdded" 
+
+            itemAdded:-> 
+              console.log "view onDomRefresh"
+              @trigger "new:user:info" 
 
             onChangeUserImage : (n)->
               _.each n.models, (model) -> 

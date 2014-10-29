@@ -123,6 +123,8 @@ define ["backbone"], (Backbone) ->
 		parse:(resp)->
 			# change sizes to an array
 			if resp.code is 'OK'
+				console.log("response")
+				console.log(resp)
 				return resp.data 
 
 			resp

@@ -39,6 +39,7 @@ function ajan_core_enqueue_js() {
 	wp_localize_script( 'ajan-interface', 'AJANPLUGINPATH', activitynotifications()->plugin_url. "interface/");
 	wp_localize_script( 'ajan-interface', 'BUST', date('dmyhis'));
 	wp_localize_script( 'ajan-interface', 'NOAVATAR',  activitynotifications()->plugin_url. "interface/img/non-avatar.jpg");
+	wp_localize_script( 'ajan-interface', 'ACTIVITY_NONCE_STRING',  wp_create_nonce("ACTIVITY_NONCE_STRING")); 
  
 }
 add_action( 'wp_enqueue_scripts',    'ajan_core_enqueue_js' );

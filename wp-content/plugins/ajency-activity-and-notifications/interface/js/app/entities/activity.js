@@ -24,7 +24,8 @@
           item_id: "",
           secondary_item_id: "",
           date_recorded: "",
-          comment_count: ""
+          comment_count: "",
+          nonce: ACTIVITY_NONCE_STRING
         };
 
         Activity.prototype.name = 'activity';
