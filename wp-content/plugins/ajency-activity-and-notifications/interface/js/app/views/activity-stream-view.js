@@ -46,7 +46,21 @@
 
         ShowPackage.prototype.itemViewContainer = '#activity_container';
 
+        ShowPackage.prototype.events = {
+          'click #ajan-post-activity': function(e) {
+            var data;
+            e.preventDefault();
+            console.log("click event");
+            data = {
+              content: 'fdg',
+              item_id: 2676
+            };
+            return this.trigger("save:new:activity", data);
+          }
+        };
+
         ShowPackage.prototype.onShow = function() {
+          console.log("view rendered");
           return this.trigger("new:user:info");
         };
 
@@ -60,6 +74,10 @@
               $(".ajan-user-additional-info-" + model.get("ID")).html(model.get("additional_info"));
             }
           });
+        };
+
+        ShowPackage.prototype.onOptionAdded = function() {
+          return console.log("newactivity added view");
         };
 
         return ShowPackage;

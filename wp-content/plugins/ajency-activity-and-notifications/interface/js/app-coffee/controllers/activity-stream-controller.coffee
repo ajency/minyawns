@@ -17,6 +17,8 @@ define [
 
         @listenTo view, "change:user:info" , @_displayUserInfo
 
+        @listenTo view , "save:new:activity" , @_saveActivity
+
         App.execute "when:fetched", [@activityCollection], =>
           @show view
 
@@ -28,7 +30,10 @@ define [
       _getUsers:() ->
 
         user_ids = @activityCollection.pluck("user_id");
-        user_ids =_.uniq(user_ids).join()  
+        user_ids =_.uniq(user_ids).join() 
+        console.log  "user_ids"
+        console.log  user_ids
+        console.log  @activityCollection
 
         @userCollection = new App.Entities.User.UserCollection
         @userCollection.fetch   
@@ -36,7 +41,21 @@ define [
             users : user_ids
             item_id: ajan_item_id
           success: (collection, response)=>
-            @view.triggerMethod "change:user:image" , collection 
+            @view.triggerMethod "change:user:image" , collection
+
+      _saveActivity:(data)->
+        console.log "controller save activity" 
+        activityModel = App.request "create:new:activity", data
+        activityModel.save null,
+                emulateJSON : true, 
+                wait: true
+                success : @_activityAdded
+                error : console.log "error saving"
+
+      _activityAdded :(model,response)=>
+        console.log "controller added activity"
+        App.execute "add:new:activity:model", model
+        @view.triggerMethod "activity:added" 
        
 
     App.commands.setHandler "show:activity:package", (opt = {})->

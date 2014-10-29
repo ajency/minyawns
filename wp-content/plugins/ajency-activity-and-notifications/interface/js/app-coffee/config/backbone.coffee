@@ -47,7 +47,7 @@ define ["backbone"], (Backbone) ->
 			# All ajax request in wordpress are sent to admin_url(‘admin-ajax.php’)
 			# a global AJAXURL variable must be defined for all ajax actions
 			# so, the url is always AJAXURL
-			params.url = AJAXURL
+			params.url = SITEURL + ajan_post_activities_uri
 			
 			# generate the “action” param and bind it to data attribute of ‘params’
 			_action = "#{method}-#{@name}"

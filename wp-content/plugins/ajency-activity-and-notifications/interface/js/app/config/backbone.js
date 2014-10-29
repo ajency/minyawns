@@ -13,7 +13,7 @@
           dataType: "json",
           data: {}
         };
-        params.url = AJAXURL;
+        params.url = SITEURL + ajan_post_activities_uri;
         _action = "" + method + "-" + this.name;
         params.data['action'] = _action;
         switch (method) {

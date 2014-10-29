@@ -80,8 +80,15 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
             itemViewContainer : '#activity_container' 
  
+            events      :
+              'click #ajan-post-activity':(e)->
+                e.preventDefault()
+                console.log "click event"
+                data = {content:'fdg',item_id:2676}
+                @trigger "save:new:activity" , data
 
             onShow:-> 
+              console.log "view rendered"
               @trigger "new:user:info"
 
             onChangeUserImage : (n)->
@@ -95,6 +102,15 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
  
                 
                 return
+
+            onOptionAdded :->
+              console.log("newactivity added view")
+         
+
+            
+
+          
+
  
 
 

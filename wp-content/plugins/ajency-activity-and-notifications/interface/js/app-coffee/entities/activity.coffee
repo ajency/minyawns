@@ -21,6 +21,8 @@ define ['startapp' , 'backbone'], (App) ->
 
       name : 'activity'
 
+      urlRoot : ->
+        SITEURL + ajan_post_activities_uri
       
     # define the menu collection
     class ActivityCollection extends Backbone.Collection
@@ -44,7 +46,28 @@ define ['startapp' , 'backbone'], (App) ->
       getActivities:->
         activityCollection
         
+      saveActivity:(data)->
+        console.log "entity save activity"
+        activity = new Activity data
+        console.log activity
+        activity
 
+      addActivity :(model)->
+        console.log "model add activity"
+        activityCollection.add model
+
+      getSingleActivity:(ID)->
+        activityModel = activityCollection.get ID
+        
     
     App.reqres.setHandler "get:activity:collection", (data)->
       API.getActivities() 
+
+    App.reqres.setHandler "create:new:activity", (data)->
+      API.saveActivity data
+
+    App.commands.setHandler "add:new:activity:model", (model)->
+      API.addActivity model
+
+    App.reqres.setHandler  "get:activity:model" , (ID)->
+      API.getSingleActivity ID

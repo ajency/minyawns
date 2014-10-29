@@ -74,7 +74,8 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 
 			$routes['/activities'] = array(
-				array( array( $this, 'create_get_activities'), WP_JSON_Server::READABLE ),	 
+				array( array( $this, 'get_activities'), WP_JSON_Server::READABLE ),
+				array( array( $this, 'create_get_activities'), WP_JSON_Server::CREATABLE ),	 
 			);
 
 			$routes['/activities/(?P<activityid>\d+)'] = array(
@@ -94,10 +95,8 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 
 
-		function create_get_activities(){
-			
-			if(isset($_REQUEST['type']) && $_REQUEST['type'] == 'get'){
-
+		function get_activities(){
+ 
 				//diana	if(!isset($_REQUEST['nonce'])){
 					//diana	$response = array('status'=>'failed','error'=>'Invalid request');
 					//diana}else{
@@ -127,13 +126,24 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 				//diana}
 
-			}else if(isset($_REQUEST['type']) && $_REQUEST['type'] == 'post'){
+			 
 
+			//Encode with json and print response
+			 wp_send_json($response); 
+
+		}
+
+
+
+	function create_get_activities(){
+
+			 
+ 
 				if(!isset($_REQUEST['nonce'])){
 					$response = array('status'=>'failed','error'=>'Invalid request');
 				}else{
 					$creator_user_info = get_userdata(ajan_loggedin_user_id());
-
+ 
 					if(isset($_REQUEST['secondary_id']) && !empty($_REQUEST['secondary_id'])){
 						$parent = ajan_get_activity_by_id($_REQUEST['secondary_id']);
 						$parent_user_info = get_userdata($parent['user_id']);
@@ -149,7 +159,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 						'user_id'           => ajan_loggedin_user_id(),
 						'item_id'           => $_REQUEST['item_id'],
 						'content'           => $_REQUEST['content'],
-						'secondary_item_id'           => $_REQUEST['secondary_id']
+						'secondary_item_id' => $_REQUEST['secondary_id']
 						);
 
 					if(!ajan_activity_add($args)){
@@ -159,13 +169,13 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					}
 
 				}
-
-			}
+ 
 
 			//Encode with json and print response
 			 wp_send_json($response); 
 
 		}
+
 
 
 

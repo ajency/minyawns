@@ -32,6 +32,8 @@ jQuery(document).ready(function($) {
             ajan_item_id = container.attr("item-id")  
 
             ajan_get_activities_uri = "/api/activities?type=get"
+
+            ajan_post_activities_uri = "/api/activities"
  
             //if(ajan_component!="" && ajan_component != undefined){
 

@@ -29,6 +29,10 @@
 
         Activity.prototype.name = 'activity';
 
+        Activity.prototype.urlRoot = function() {
+          return SITEURL + ajan_post_activities_uri;
+        };
+
         return Activity;
 
       })(Backbone.Model);
@@ -58,10 +62,34 @@
       API = {
         getActivities: function() {
           return activityCollection;
+        },
+        saveActivity: function(data) {
+          var activity;
+          console.log("entity save activity");
+          activity = new Activity(data);
+          console.log(activity);
+          return activity;
+        },
+        addActivity: function(model) {
+          console.log("model add activity");
+          return activityCollection.add(model);
+        },
+        getSingleActivity: function(ID) {
+          var activityModel;
+          return activityModel = activityCollection.get(ID);
         }
       };
-      return App.reqres.setHandler("get:activity:collection", function(data) {
+      App.reqres.setHandler("get:activity:collection", function(data) {
         return API.getActivities();
+      });
+      App.reqres.setHandler("create:new:activity", function(data) {
+        return API.saveActivity(data);
+      });
+      App.commands.setHandler("add:new:activity:model", function(model) {
+        return API.addActivity(model);
+      });
+      return App.reqres.setHandler("get:activity:model", function(ID) {
+        return API.getSingleActivity(ID);
       });
     });
   });
