@@ -281,8 +281,6 @@ $current_user_role =  trim($user_role);
  
 <div class="span12">
 	<div class="row-fluid">
-  <%="result.ID"%>
-  <%=result%>
 		<div class="span6" id="ajan-activity-stream-container" component="job" item-id="<%=result.post_id%>">
 			<!--comment starts-->
   		

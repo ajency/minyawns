@@ -15,6 +15,8 @@ define [
 
         @listenTo view ,"new:user:info" , @_getUsers
 
+        @listenTo view ,"fetch:latest:comments" , @_getLatestComments
+
         @listenTo view, "change:user:info" , @_displayUserInfo
 
         @listenTo view , "save:new:activity" , @_saveActivity
@@ -28,14 +30,17 @@ define [
           collection : activityCollection
 
       _getUsers:() ->
-
+        @userCollection = new App.Entities.User.UserCollection
         user_ids = @activityCollection.pluck("user_id");
-        user_ids =_.uniq(user_ids).join() 
-        console.log  "user_ids"
-        console.log  user_ids
+        #fetcheduser_ids = @userCollection.pluck("id");
+        #user_ids = arr_diff(fetcheduser_ids,user_ids);
+        #console.log  "user_ids"
+        #console.log  fetcheduser_ids
         console.log  @activityCollection
 
-        @userCollection = new App.Entities.User.UserCollection
+        user_ids =_.uniq(user_ids).join() 
+
+        
         @userCollection.fetch   
           data:
             users : user_ids
@@ -56,6 +61,9 @@ define [
         console.log "controller added activity"
         App.execute "add:new:activity:model", model
         @view.triggerMethod "activity:added" 
+
+      _getLatestComments:->
+         console.log "get latest comments"
        
 
     App.commands.setHandler "show:activity:package", (opt = {})->

@@ -95,6 +95,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
             itemAdded:-> 
               console.log "view onDomRefresh"
               @trigger "new:user:info" 
+              @trigger "fetch:latest:comments" 
 
             onChangeUserImage : (n)->
               _.each n.models, (model) -> 

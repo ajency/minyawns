@@ -2,11 +2,18 @@
 
 var ajan_activity_stream_container ;
 
+var ajan_post_data;
+
 var ajan_component ;
 
 var ajan_item_id ; 
 
 var ajan_get_activities_uri;  
+
+var ajan_post_activities_uri;
+
+var ajan_get_comments_uri;
+
 jQuery(document).ready(function($) {
 
     if ($("#ajan-activity-stream-container").length >0){
@@ -25,6 +32,7 @@ jQuery(document).ready(function($) {
 
 
         function loadActivityStream(container){ 
+
             ajan_activity_stream_container = "#"+container.attr("id")
 
             ajan_component = container.attr("component")  
@@ -34,6 +42,8 @@ jQuery(document).ready(function($) {
             ajan_get_activities_uri = "/api/activities?type=get"
 
             ajan_post_activities_uri = "/api/activities"
+
+            ajan_get_comments_uri = "/api/activities?type=get"
  
             //if(ajan_component!="" && ajan_component != undefined){
 
@@ -75,3 +85,16 @@ jQuery(document).ready(function($) {
             document.getElementsByTagName("head")[0].appendChild(script);
 
         }
+
+        function arr_diff(a1, a2)
+            {
+              var a=[], diff=[];
+              for(var i=0;i<a1.length;i++)
+                a[a1[i]]=true;
+              for(var i=0;i<a2.length;i++)
+                if(a[a2[i]]) delete a[a2[i]];
+                else a[a2[i]]=true;
+              for(var k in a)
+                diff.push(k);
+              return diff;
+            }

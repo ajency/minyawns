@@ -20,6 +20,7 @@
           this.activityCollection = App.request("get:activity:collection");
           this.view = view = this._getView(this.activityCollection);
           this.listenTo(view, "new:user:info", this._getUsers);
+          this.listenTo(view, "fetch:latest:comments", this._getLatestComments);
           this.listenTo(view, "change:user:info", this._displayUserInfo);
           this.listenTo(view, "save:new:activity", this._saveActivity);
           return App.execute("when:fetched", [this.activityCollection], (function(_this) {
@@ -37,12 +38,10 @@
 
         activitystreamcontroller.prototype._getUsers = function() {
           var user_ids;
-          user_ids = this.activityCollection.pluck("user_id");
-          user_ids = _.uniq(user_ids).join();
-          console.log("user_ids");
-          console.log(user_ids);
-          console.log(this.activityCollection);
           this.userCollection = new App.Entities.User.UserCollection;
+          user_ids = this.activityCollection.pluck("user_id");
+          console.log(this.activityCollection);
+          user_ids = _.uniq(user_ids).join();
           return this.userCollection.fetch({
             data: {
               users: user_ids,
@@ -72,6 +71,10 @@
           console.log("controller added activity");
           App.execute("add:new:activity:model", model);
           return this.view.triggerMethod("activity:added");
+        };
+
+        activitystreamcontroller.prototype._getLatestComments = function() {
+          return console.log("get latest comments");
         };
 
         return activitystreamcontroller;

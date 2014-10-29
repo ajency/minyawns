@@ -23,8 +23,7 @@ define ['startapp' , 'backbone'], (App) ->
 
       name : 'activity'
 
-      urlRoot : ->
-        SITEURL + ajan_post_activities_uri
+      urlRoot : SITEURL + ajan_post_activities_uri
  
       
     # define the menu collection
@@ -50,6 +49,8 @@ define ['startapp' , 'backbone'], (App) ->
         activityCollection
         
       saveActivity:(data)->
+
+        ajan_post_data = ajan_post_activities_uri
         console.log "entity save activity"
         activity = new Activity data
         console.log activity

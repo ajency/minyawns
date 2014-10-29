@@ -69,7 +69,8 @@
 
         ShowPackage.prototype.itemAdded = function() {
           console.log("view onDomRefresh");
-          return this.trigger("new:user:info");
+          this.trigger("new:user:info");
+          return this.trigger("fetch:latest:comments");
         };
 
         ShowPackage.prototype.onChangeUserImage = function(n) {

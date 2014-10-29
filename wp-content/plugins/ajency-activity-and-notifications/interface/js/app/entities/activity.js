@@ -30,9 +30,7 @@
 
         Activity.prototype.name = 'activity';
 
-        Activity.prototype.urlRoot = function() {
-          return SITEURL + ajan_post_activities_uri;
-        };
+        Activity.prototype.urlRoot = SITEURL + ajan_post_activities_uri;
 
         return Activity;
 
@@ -65,7 +63,8 @@
           return activityCollection;
         },
         saveActivity: function(data) {
-          var activity;
+          var activity, ajan_post_data;
+          ajan_post_data = ajan_post_activities_uri;
           console.log("entity save activity");
           activity = new Activity(data);
           console.log(activity);
