@@ -348,7 +348,6 @@ function load_browse_jobs(id, _action, category_ids) {
             }
 
 
-
         },
         error: function(err) {
             console.log(err);
@@ -1415,6 +1414,16 @@ function load_job_minions(jobmodel)
                 jQuery(".thumbnails").animate({left: '100px'}, "slow").append(blankt);
 
             }
+			
+			jQuery('.isotope').imagesLoaded( function(){
+jQuery('.isotope').isotope({
+itemSelector: '.item',
+masonry: {
+columnWidth: '.grid-sizer'
+}
+});
+});
+
         }
     });
 

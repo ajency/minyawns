@@ -843,6 +843,29 @@ $current_user_role =  trim($user_role);
     </div>
     </li>
 	</div>
+	
+	<div class="isotope">
+  <div class="grid-sizer"></div>
+  
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
+  
+ 
+  
+  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
+  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
+  
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
+  
+ 
+  
+  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
+  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
+</div>
+					</div>
 </script>
 
 <script type="text/templates" id="no-result">

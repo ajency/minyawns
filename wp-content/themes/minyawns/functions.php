@@ -102,11 +102,12 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('bootstrap-tagmanager', get_template_directory_uri() . '/css/bootstrap-tagmanager.css', array(), null);
 wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
                 wp_enqueue_style('bootstrap-timepicker', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
+				//wp_enqueue_style('masonry', get_template_directory_uri() . '/css/masonry.css', array(), null);
                  
             }
 		wp_enqueue_style('real-state-landing', get_template_directory_uri() . '/css/landing-pages.css', array(), null);
-
-
+			wp_enqueue_script('imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.js', array(), null);
+			wp_enqueue_script('isotope', get_template_directory_uri() . '/js/isotope.pkgd.js', array(), null);
 			wp_enqueue_script('holder', get_template_directory_uri() . '/js/holder.js', array(), null);
             wp_enqueue_script('bxslider', get_template_directory_uri() . '/js/jquery.bxslider.min.js', array('jquery'), null);
             //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);

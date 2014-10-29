@@ -6585,3 +6585,71 @@ div.tooltip1:after {
 .find-min .m1 {
   min-height: 0;
 }
+/*isotope*/
+.isotope * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.isotope:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.isotope .grid-sizer {
+  width: 33.33%;
+  border: 4px solid #fff;
+}
+.isotope .item {
+  width: 33.33%;
+  border: 4px solid #fff;
+  float: left;
+}
+@media screen and (max-width: 768px) {
+  .isotope .item {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .isotope .item {
+    width: 33.3%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .isotope .item {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 321px) {
+  .isotope .item {
+    width: 100%;
+  }
+}
+.isotope .item img {
+  max-width: 100% !important;
+  height: auto;
+}
+@media screen and (max-width: 768px) {
+  .isotope .item,
+  .isotope .grid-sizer {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .isotope .item,
+  .isotope .grid-sizer {
+    width: 33.3%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .isotope .item,
+  .isotope .grid-sizer {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 321px) {
+  .isotope .item,
+  .isotope .grid-sizer {
+    width: 100%;
+  }
+}
