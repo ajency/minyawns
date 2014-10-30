@@ -228,6 +228,78 @@ addthisevent.settings({
 								 -->                           </a>
 							</div>
 							<div class="data-link">
+								<span id="notification-count">9</span>
+								<a class="" href="#" id="notification-link"><i class="icon-envelope"></i></a>
+								<div id="notification-container">
+									<div id="notification-title">Notifications<a href="#" class="pull-right">Mark all as read</a></div>
+									<div id="notifications-body" class="notifications">
+									<ul>
+									<li class="new-notif">
+									<div class="avatar-container">
+										<div class="avatar-imga">
+											<a href="#" ><img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/05/landfall-140x140.jpg" class="imga img-circle"></a>
+										</div>
+										<div class="notification-content">
+											<div><a href="#" onclick="(function(){alert('hiii');})()">Mary</a>&nbsp;&nbsp;&nbsp;<span>has posted a new job</span>
+											<span class="dot-green pull-right img-circle"></span></div>
+											<div><a href="#">Cleaning Garden</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="period">22 mins ago</span></div>
+										</div>
+									</div>
+									</li>
+									<li class="new-notif">
+									<div class="avatar-container">
+										<div class="avatar-imga">
+											<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/05/landfall-140x140.jpg" class="imga img-circle">
+										</div>
+										<div class="notification-content">
+											<div><a href="#">Mary</a>&nbsp;&nbsp;&nbsp;<span>has selected you for</span>
+											<span class="dot-green pull-right img-circle"></span></div>
+											<div><a href="#">Event Maker</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="period">40 mins ago</span></div>
+										</div>
+									</div>
+									</li>
+									<li>
+									<div class="avatar-container">
+										<div class="avatar-imga">
+											<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/05/landfall-140x140.jpg" class="imga img-circle">
+										</div>
+										<div class="notification-content">
+											<div><a href="#">Mary</a>&nbsp;&nbsp;&nbsp;<span>has given you " <i class="icon-thumbs-up rate-up"></i>" for </span>
+											<span class="dot-grey pull-right img-circle"></span></div>
+											<div><a href="#">House Keeping</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="period">1 hr ago</span></div>
+										</div>
+									</div>
+									</li>
+									<li>
+									<div class="avatar-container">
+										<div class="avatar-imga">
+											<img src="http://erikjohanssonphoto.com/wp-content/uploads/2013/03/expectingwinter-140x140.jpg" class="imga img-circle">
+										</div>
+										<div class="notification-content">
+											<div><a href="#">Jim</a>&nbsp;&nbsp;&nbsp;<span>has posted a new job</span>
+											<span class="dot-grey pull-right img-circle"></span></div>
+											<div><a href="#">Help in Garage</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="period">1 day ago</span></div>
+										</div>
+									</div>
+									</li>
+									<li>
+									<div class="avatar-container">
+										<div class="avatar-imga">
+											<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/10/dreamwalking-140x140.jpg" class="imga img-circle">
+										</div>
+										<div class="notification-content">
+											<div><a href="#">James</a>&nbsp;&nbsp;&nbsp;<span>has posted a new job</span>
+											<span class="dot-grey pull-right img-circle"></span></div>
+											<div><a href="#">SEO Support</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="period">2 days ago</span></div>
+										</div>
+									</div>
+									</li>
+									</ul>
+									</div>
+									<div id="notification-footer"><a href="#">See All</a></div>
+								</div>
+							</div>
+							<div class="data-link">
 								<a class="" href="<?php echo site_url() ?>/profile"><i class="icon-user"></i> View Profile</a>
 							</div>
 								<div class="data-link">
@@ -597,3 +669,28 @@ addthisevent.settings({
 		   <span id="div_signup_subheader"></span>
 	   </div>
 	</div>
+	</div>
+	
+	<script type="text/javascript" >
+$(document).ready(function()
+{
+$("#notification-link").click(function()
+{
+$("#notification-container").fadeToggle(300);
+$("#notification-count").fadeOut("slow");
+return false;
+});
+
+//Document Click
+$(document).click(function()
+{
+$("#notification-container").hide();
+});
+//Popup Click
+$("#notification-container").click(function()
+{
+return false
+});
+
+});
+</script>

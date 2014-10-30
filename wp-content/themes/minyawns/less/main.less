@@ -7512,3 +7512,130 @@ body .job-view-list{
 	font-size: 12px;
 }
 /*Payment modal style End*/
+
+/*notification*/
+#notification-container {
+	background-color: #fff;
+	border: 1px solid rgba(100, 100, 100, .4);
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+	overflow: visible;
+	position: absolute;
+	top: 40px;
+	margin-left: -192px;
+	width: 400px;
+	z-index: 1;
+	display: none;
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 0;
+			height: 0;
+			color: transparent;
+			border: 10px solid black;
+			border-color: transparent transparent #e9eaed;
+			margin-top: -20px;
+			margin-left: 188px;
+				}
+		#notification-title {
+			z-index: 1000;
+			font-weight: bold;
+			padding: 8px;
+			font-size: 14px;
+			background-color: #e9eaed;
+			width: 384px;
+			border-bottom: 1px solid #dddddd;
+				a{
+					font-size:11px;
+				}
+		}
+		#notifications-body {
+			min-height:300px;
+				ul{
+					margin:0;
+					padding:0;
+						li{
+							list-style-type:none;
+							clear:both;
+								&:not{
+									&(:last-child){
+										border-bottom:1px solid #ccc;
+									}
+								}
+								&:hover{
+									background:#eee;
+									cursor:pointer;
+								}
+								.avatar-container{
+										padding:0 10px 10px 10px;
+												.avatar-imga{
+													width:48px;
+													display:inline-block;
+													vertical-align:top;
+													//margin-right:10px;
+													margin:10px 10px 0 0;
+														.imga{
+															max-width:100%;
+															height:auto !important;	
+															
+															border: 3px solid @green;															
+															}
+													}
+								 .notification-content{
+									width:83%;
+									display:inline-block;
+									margin-top:15px;
+										a{
+											font-weight:bold;
+											color: #8cd525;	
+										}
+										.period{
+											font-size:12px;
+											font-weight:bold;
+											
+										}
+										.rate-up{
+											color:@green;
+										}
+										.dot-green{
+											height:10px;
+											width:10px;
+											background:@green;
+										}
+										.dot-grey{
+											.dot-green();
+											background:#ccc !important;
+										}
+								}
+							}
+						}
+				}
+				
+				.new-notif{
+					//border-right: 5px solid @green;
+				}
+			}
+		#notification-footer {
+			background-color: #e9eaed;
+			text-align: center;
+			font-weight: bold;
+			padding: 8px;
+			font-size: 12px;
+			border-top: 1px solid #dddddd;
+		}
+		
+}
+
+#notification-count {
+			padding: 3px 7px 3px 7px;
+			background: #cc0000;
+			color: #ffffff;
+			font-weight: bold;
+			margin-left: 5px;
+			border-radius: 9px;
+			position: absolute;
+			margin-top: -11px;
+			font-size: 11px;
+		}
+
+	
