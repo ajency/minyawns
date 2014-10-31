@@ -181,23 +181,25 @@ function get_activitycomments(){
 			//		$response = array('status'=>'failed','error'=>'Invalid requestrrrr');
 		//	}else{
 					$creator_user_info = get_userdata(ajan_loggedin_user_id());
- 
-					if(isset($_REQUEST['secondary_id']) && !empty($_REQUEST['secondary_id'])){
-						$parent = ajan_get_activity_by_id($_REQUEST['secondary_id']);
+ 				
+					if(isset($_REQUEST['secondary_item_id']) && !empty($_REQUEST['secondary_item_id'])){
+						$parent = ajan_get_activity_by_id($_REQUEST['secondary_item_id']);
 						$parent_user_info = get_userdata($parent['user_id']);
 						$action = $creator_user_info->display_name." replied on ".$parent_user_info->display_name."'s message on <a href='". get_permalink($_REQUEST['item_id'])."'>".get_the_title( $_REQUEST['item_id'] )."</a>";
+						$activity_type="activity_comment";
 					}else{
 						$action = $creator_user_info->display_name.' posted message on <a href="'. get_permalink($_REQUEST['item_id']).'">'.get_the_title( $_REQUEST['item_id'] ).'</a>';
+						$activity_type="activity_update";
 					}
 
 					$args = array(         
 						'action'            => $action,
 						'component'         => 'activity',
-						'type'              => 'activity_update',
+						'type'              => $activity_type,
 						'user_id'           => ajan_loggedin_user_id(),
 						'item_id'           => $_REQUEST['item_id'],
 						'content'           => $_REQUEST['content'],
-						'secondary_item_id' => $_REQUEST['secondary_id']
+						'secondary_item_id' => $_REQUEST['secondary_item_id']
 						);
 					$id = ajan_activity_add($args);
 

@@ -5,7 +5,7 @@
 
   define(['startapp', 'backbone'], function(App) {
     return App.module("Entities.Comment", function(Comment, App) {
-      var CommentModel, commentCollection;
+      var API, CommentModel, commentCollection;
       CommentModel = (function(_super) {
         __extends(CommentModel, _super);
 
@@ -30,9 +30,7 @@
 
         CommentModel.prototype.name = 'comment';
 
-        CommentModel.prototype.urlRoot = function() {
-          return SITEURL + ajan_post_comments_uri;
-        };
+        CommentModel.prototype.urlRoot = SITEURL + ajan_post_comments_uri;
 
         return CommentModel;
 
@@ -57,7 +55,27 @@
         return CommentCollection;
 
       })(Backbone.Collection);
-      return commentCollection = new Comment.CommentCollection;
+      commentCollection = new Comment.CommentCollection;
+      API = {
+        saveComment: function(data) {
+          var ajan_post_data, comment;
+          ajan_post_data = ajan_post_activities_uri;
+          console.log("entity save comment");
+          comment = new CommentModel(data);
+          console.log(comment);
+          return comment;
+        },
+        addComment: function(model) {
+          console.log("model add activity");
+          return commentCollection.add(model);
+        }
+      };
+      App.reqres.setHandler("create:new:comment", function(data) {
+        return API.saveComment(data);
+      });
+      return App.commands.setHandler("add:new:comment:model", function(model) {
+        return API.addComment(model);
+      });
     });
   });
 

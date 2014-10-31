@@ -23,8 +23,7 @@ define ['startapp' , 'backbone'], (App) ->
 
       name : 'comment'
 
-      urlRoot : ->
-        SITEURL + ajan_post_comments_uri
+      urlRoot : SITEURL + ajan_post_comments_uri
  
       
     # define the menu collection
@@ -39,5 +38,25 @@ define ['startapp' , 'backbone'], (App) ->
         response.collection
         
     commentCollection = new Comment.CommentCollection
+
+    API =    
+        
+      saveComment:(data)->
+
+        ajan_post_data = ajan_post_activities_uri
+        console.log "entity save comment"
+        comment = new CommentModel data
+        console.log comment
+        comment
+
+      addComment :(model)->
+        console.log "model add activity"
+        commentCollection.add model
+
+    App.reqres.setHandler "create:new:comment", (data)->
+      API.saveComment data
+
+    App.commands.setHandler "add:new:comment:model", (model)->
+      API.addComment model
     
 

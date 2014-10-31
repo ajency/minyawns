@@ -201,8 +201,7 @@
 }
 .avatar-box-1 {
   margin-left: 29px;
-  clear: both;
-  display: none;
+  clear: both; 
 }
 .avatar-box-1 > .left,
 .avatar-box-2 > .left {

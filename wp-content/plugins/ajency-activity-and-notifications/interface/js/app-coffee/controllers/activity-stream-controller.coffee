@@ -22,6 +22,8 @@ define [
 
         @listenTo view , "save:new:activity" , @_saveActivity
 
+        @listenTo view , "save:new:comment" , @_saveComment
+
         App.execute "when:fetched", [@activityCollection], =>
           @show view
 
@@ -55,10 +57,23 @@ define [
                 wait: true
                 success : @_activityAdded
 
+      _saveComment:(data)->
+        console.log "controller save comment" 
+        commentModel = App.request "create:new:comment", data
+        commentModel.save null,
+                emulateJSON : true, 
+                wait: true
+                success : @_commentAdded
+
       _activityAdded :(model,response)=>
         console.log "controller added activity"
         App.execute "add:new:activity:model", model
         @view.triggerMethod "added:activity:model" 
+
+      _commentAdded :(model,response)=>
+        console.log "controller added comment"
+        App.execute "add:new:comment:model", model
+        @view.triggerMethod "added:comment:model" 
 
       _getLatestComments:->
         console.log "get latest comments"

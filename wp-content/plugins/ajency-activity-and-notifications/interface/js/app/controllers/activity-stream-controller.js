@@ -11,6 +11,7 @@
         __extends(activitystreamcontroller, _super);
 
         function activitystreamcontroller() {
+          this._commentAdded = __bind(this._commentAdded, this);
           this._activityAdded = __bind(this._activityAdded, this);
           return activitystreamcontroller.__super__.constructor.apply(this, arguments);
         }
@@ -23,6 +24,7 @@
           this.listenTo(view, "fetch:latest:comments", this._getLatestComments);
           this.listenTo(view, "change:user:info", this._displayUserInfo);
           this.listenTo(view, "save:new:activity", this._saveActivity);
+          this.listenTo(view, "save:new:comment", this._saveComment);
           return App.execute("when:fetched", [this.activityCollection], (function(_this) {
             return function() {
               return _this.show(view);
@@ -68,10 +70,27 @@
           });
         };
 
+        activitystreamcontroller.prototype._saveComment = function(data) {
+          var commentModel;
+          console.log("controller save comment");
+          commentModel = App.request("create:new:comment", data);
+          return commentModel.save(null, {
+            emulateJSON: true,
+            wait: true,
+            success: this._commentAdded
+          });
+        };
+
         activitystreamcontroller.prototype._activityAdded = function(model, response) {
           console.log("controller added activity");
           App.execute("add:new:activity:model", model);
           return this.view.triggerMethod("added:activity:model");
+        };
+
+        activitystreamcontroller.prototype._commentAdded = function(model, response) {
+          console.log("controller added comment");
+          App.execute("add:new:comment:model", model);
+          return this.view.triggerMethod("added:comment:model");
         };
 
         activitystreamcontroller.prototype._getLatestComments = function() {
