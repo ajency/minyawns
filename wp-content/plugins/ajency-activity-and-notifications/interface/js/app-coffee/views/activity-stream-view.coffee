@@ -32,7 +32,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                           </span>
 
                           <span class="right rep-del">
-                              <a href="#" class="reply">
+                              <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}">
                                   comments({{comment_count}})
                               </a>&nbsp;
                               <a href="javascript:void(0)" class="reply reply-activity" activity="{{id}}">
@@ -109,6 +109,9 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
               'click .save-activity-reply':(e)->  
                 data = {content:$('#activity-comment-'+$(e.target).attr('activity')).val(),item_id:ajan_item_id,secondary_item_id:$(e.target).attr('activity')}
                 @trigger "save:new:comment" , data
+
+              'click .get-comments':(e)->
+                console.log $(e.target).attr('activity')
 
             onRender:(collection)->
               @trigger "get:user:info"
