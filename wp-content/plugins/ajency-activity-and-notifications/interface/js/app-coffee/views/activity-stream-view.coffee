@@ -112,6 +112,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
               'click .get-comments':(e)->
                 console.log $(e.target).attr('activity')
+                @trigger "fetch:all:comments"
 
             onRender:(collection)->
               @trigger "get:user:info"

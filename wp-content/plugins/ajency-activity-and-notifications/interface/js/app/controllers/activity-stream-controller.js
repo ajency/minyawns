@@ -22,6 +22,7 @@
           this.view = view = this._getView(this.activityCollection);
           this.listenTo(view, "get:user:info", this._getUsers);
           this.listenTo(view, "fetch:latest:comments", this._getLatestComments);
+          this.listenTo(view, "fetch:all:comments", this._getAllComments);
           this.listenTo(view, "change:user:info", this._displayUserInfo);
           this.listenTo(view, "save:new:activity", this._saveActivity);
           this.listenTo(view, "save:new:comment", this._saveComment);
@@ -104,6 +105,26 @@
               activity_parent: activity_ids,
               item_id: ajan_item_id,
               records: 3
+            },
+            success: (function(_this) {
+              return function(collection, response) {
+                return _this.view.triggerMethod("activity:comments:fetched", collection);
+              };
+            })(this)
+          });
+        };
+
+        activitystreamcontroller.prototype._getAllComments = function() {
+          var activity_ids;
+          console.log("get All comments");
+          activity_ids = this.activityCollection.pluck("id");
+          activity_ids = activity_ids.join();
+          this.commentCollection = new App.Entities.Comment.CommentCollection;
+          return this.commentCollection.fetch({
+            data: {
+              activity_parent: activity_ids,
+              item_id: ajan_item_id,
+              records: ''
             },
             success: (function(_this) {
               return function(collection, response) {

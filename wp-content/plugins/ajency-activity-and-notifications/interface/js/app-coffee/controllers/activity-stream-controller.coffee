@@ -18,6 +18,8 @@ define [
 
         @listenTo view ,"fetch:latest:comments" , @_getLatestComments
 
+        @listenTo view ,"fetch:all:comments" , @_getAllComments
+
         @listenTo view, "change:user:info" , @_displayUserInfo
 
         @listenTo view , "save:new:activity" , @_saveActivity
@@ -85,6 +87,19 @@ define [
             activity_parent : activity_ids
             item_id : ajan_item_id
             records : 3
+          success: (collection, response)=>
+            @view.triggerMethod "activity:comments:fetched" , collection
+
+      _getAllComments:->
+        console.log "get All comments"
+        activity_ids = @activityCollection.pluck("id"); 
+        activity_ids = activity_ids.join() 
+        @commentCollection = new App.Entities.Comment.CommentCollection
+        @commentCollection.fetch   
+          data:
+            activity_parent : activity_ids
+            item_id : ajan_item_id
+            records : ''
           success: (collection, response)=>
             @view.triggerMethod "activity:comments:fetched" , collection
 

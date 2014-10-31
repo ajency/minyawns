@@ -75,7 +75,8 @@
             return this.trigger("save:new:comment", data);
           },
           'click .get-comments': function(e) {
-            return console.log($(e.target).attr('activity'));
+            console.log($(e.target).attr('activity'));
+            return this.trigger("fetch:all:comments");
           }
         };
 
