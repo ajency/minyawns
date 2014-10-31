@@ -238,11 +238,11 @@ if($this->admin){
   return false;
 
  //Check for nonce
-}else if(!$this->upload_nonce) {
+}/*else if(!$this->upload_nonce) {
 return false;
 
 //Check for user capabilities
-}else if (!$this->can_upload) {
+}*/else if (!$this->can_upload) {
  return false;
 
 //Check if job id was set
