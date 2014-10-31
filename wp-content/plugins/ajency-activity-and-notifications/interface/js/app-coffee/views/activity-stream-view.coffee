@@ -89,13 +89,16 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 data = {content:$("#activity_content").val(),item_id:ajan_item_id}
                 @trigger "save:new:activity" , data
 
-            collectionEvents:->
-              "add": "itemAdded" 
+            onRender:(collection)->
+              @trigger "get:user:info"
 
-            itemAdded:-> 
+            onItemAdded:-> 
               console.log "view onDomRefresh"
-              @trigger "new:user:info" 
-              @trigger "fetch:latest:comments" 
+              @trigger "get:user:info"  
+
+            onAddedActivityModel : ()->
+              console.log "onNewActivityAdded" 
+              @trigger "get:user:info"  
 
             onChangeUserImage : (n)->
               _.each n.models, (model) -> 

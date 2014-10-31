@@ -61,16 +61,18 @@
           }
         };
 
-        ShowPackage.prototype.collectionEvents = function() {
-          return {
-            "add": "itemAdded"
-          };
+        ShowPackage.prototype.onRender = function(collection) {
+          return this.trigger("get:user:info");
         };
 
-        ShowPackage.prototype.itemAdded = function() {
+        ShowPackage.prototype.onItemAdded = function() {
           console.log("view onDomRefresh");
-          this.trigger("new:user:info");
-          return this.trigger("fetch:latest:comments");
+          return this.trigger("get:user:info");
+        };
+
+        ShowPackage.prototype.onAddedActivityModel = function() {
+          console.log("onNewActivityAdded");
+          return this.trigger("get:user:info");
         };
 
         ShowPackage.prototype.onChangeUserImage = function(n) {

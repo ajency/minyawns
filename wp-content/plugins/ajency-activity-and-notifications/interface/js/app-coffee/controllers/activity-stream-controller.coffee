@@ -13,7 +13,7 @@ define [
         @activityCollection = App.request "get:activity:collection"
         @view = view = @_getView @activityCollection 
 
-        @listenTo view ,"new:user:info" , @_getUsers
+        @listenTo view ,"get:user:info" , @_getUsers
 
         @listenTo view ,"fetch:latest:comments" , @_getLatestComments
 
@@ -30,14 +30,12 @@ define [
           collection : activityCollection
 
       _getUsers:() ->
-        @userCollection = new App.Entities.User.UserCollection
-        user_ids = @activityCollection.pluck("user_id");
-        #fetcheduser_ids = @userCollection.pluck("id");
-        #user_ids = arr_diff(fetcheduser_ids,user_ids);
-        #console.log  "user_ids"
-        #console.log  fetcheduser_ids
-        console.log  @activityCollection
+        if _.isUndefined(@userCollection)
+          @userCollection = new App.Entities.User.UserCollection
 
+        user_ids = @activityCollection.pluck("user_id");
+        fetcheduser_ids = @userCollection.pluck("ID");
+        #user_ids =   _.difference( _.uniq(user_ids),fetcheduser_ids);
         user_ids =_.uniq(user_ids).join() 
 
         
@@ -55,12 +53,11 @@ define [
                 emulateJSON : true, 
                 wait: true
                 success : @_activityAdded
-                error : console.log "error saving"
 
       _activityAdded :(model,response)=>
         console.log "controller added activity"
         App.execute "add:new:activity:model", model
-        @view.triggerMethod "activity:added" 
+        @view.triggerMethod "added:activity:model" 
 
       _getLatestComments:->
          console.log "get latest comments"
