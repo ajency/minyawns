@@ -193,6 +193,29 @@ function ajan_get_user_personal_activities($args){
  }
 
 
+function ajan_get_activity_comments($args){
+
+ 		$activity_comments = array();
+ 		$activity_parents = explode(",", $args['activity_parent']);
+ 		foreach($activity_parents as $activity_parent){
+ 	 		$activities_ids = array();
+			$activities_ids_objects =   AJAN_Activity_Activity::get_child_comments($activity_parent);
+	 		foreach($activities_ids_objects as $activities_ids_object){
+	 			$activities_ids[] = intval($activities_ids_object->id);
+	 		}
+			  
+			  if(count($activities_ids)){
+			  		add_filter('ajan_has_activities','ajan_has_activities_return',10,3);
+ 						$args['in'] = $activities_ids;
+ 						$args['display_comments'] = true; 
+ 			 
+    				$activity_comments = array_merge($activity_comments,ajan_has_activities($args));
+			  }
+ 				
+ 		}
+ 		return $activity_comments;
+}
+
  /**
  * get activities where the user has been mentioned,
  *

@@ -91,6 +91,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
             onRender:(collection)->
               @trigger "get:user:info"
+              @trigger "fetch:latest:comments"
 
             onItemAdded:-> 
               console.log "view onDomRefresh"

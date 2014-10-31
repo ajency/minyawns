@@ -60,7 +60,14 @@ define [
         @view.triggerMethod "added:activity:model" 
 
       _getLatestComments:->
-         console.log "get latest comments"
+        console.log "get latest comments"
+        activity_ids = @activityCollection.pluck("id"); 
+        activity_ids = activity_ids.join() 
+        data=
+          activity_parent : activity_ids
+          item_id : ajan_item_id
+          records : 3
+        @commentCollection = App.request "get:comment:collection" , data
        
 
     App.commands.setHandler "show:activity:package", (opt = {})->

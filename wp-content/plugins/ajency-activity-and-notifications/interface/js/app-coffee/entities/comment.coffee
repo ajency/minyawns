@@ -46,11 +46,11 @@ define ['startapp' , 'backbone'], (App) ->
 
     commentCollection.fetch()
     API =   
-      getComments(data):->
+      getComments:(data)->
+        console.log("data")
+        console.log(data)
         commentCollection.fetch
-          console.log("data")
-          console.log(data)
-          commentCollection
+          data:data
         
       saveComment:(data)->
         console.log "entity save comment"
@@ -67,7 +67,7 @@ define ['startapp' , 'backbone'], (App) ->
         
     
     App.reqres.setHandler "get:comment:collection", (data)->
-      API.getComments() 
+      API.getComments(data) 
 
     App.reqres.setHandler "create:new:comment", (data)->
       API.saveComment data

@@ -75,7 +75,16 @@
         };
 
         activitystreamcontroller.prototype._getLatestComments = function() {
-          return console.log("get latest comments");
+          var activity_ids, data;
+          console.log("get latest comments");
+          activity_ids = this.activityCollection.pluck("id");
+          activity_ids = activity_ids.join();
+          data = {
+            activity_parent: activity_ids,
+            item_id: ajan_item_id,
+            records: 3
+          };
+          return this.commentCollection = App.request("get:comment:collection", data);
         };
 
         return activitystreamcontroller;

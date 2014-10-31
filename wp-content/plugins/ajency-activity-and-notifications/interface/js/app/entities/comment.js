@@ -61,8 +61,12 @@
       myarray = [];
       commentCollection.fetch();
       API = {
-        getComments: function() {
-          return commentCollection;
+        getComments: function(data) {
+          console.log("data");
+          console.log(data);
+          return commentCollection.fetch({
+            data: data
+          });
         },
         saveComment: function(data) {
           var comment;
@@ -81,7 +85,7 @@
         }
       };
       App.reqres.setHandler("get:comment:collection", function(data) {
-        return API.getComments();
+        return API.getComments(data);
       });
       App.reqres.setHandler("create:new:comment", function(data) {
         return API.saveComment(data);

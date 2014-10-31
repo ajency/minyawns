@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
 
             ajan_post_activities_uri = "/api/activities"
 
-            ajan_get_comments_uri = "/api/activities?type=get"
+            ajan_get_comments_uri = "/api/activities/comments"
  
             //if(ajan_component!="" && ajan_component != undefined){
 

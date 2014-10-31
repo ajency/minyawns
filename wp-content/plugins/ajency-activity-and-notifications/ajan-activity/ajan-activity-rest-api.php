@@ -78,6 +78,10 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 				array( array( $this, 'create_get_activities'), WP_JSON_Server::CREATABLE ),	 
 			);
 
+			$routes['/activities/comments'] = array(
+				array( array( $this, 'get_activitycomments'), WP_JSON_Server::READABLE ),  
+			);
+
 			$routes['/activities/(?P<activityid>\d+)'] = array(
 				array( array( $this, 'get_update_delete_activities'), WP_JSON_Server::READABLE ),	 
 			);
@@ -117,6 +121,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					}
 					 	$args['sort'] = 'ASC';
 				 
+				 		$args['per_page'] = '';
  						
 					$data = ajan_get_activities($args);
 
@@ -135,7 +140,38 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 		}
 
+function get_activitycomments(){
+ 
+		 
+					if(isset($_REQUEST['item_id']) && $_REQUEST['item_id'] != ''){
+						$args['primary_id'] = $_REQUEST['item_id'];
+					}
+					if(isset($_REQUEST['records']) && $_REQUEST['records'] != ''){
+						$args['max'] = $_REQUEST['records'];
+					}
+				 
+					if(isset($_REQUEST['activity_parent']) && $_REQUEST['activity_parent'] != ''){
+						$args['activity_parent'] = $_REQUEST['activity_parent'];
+					}
+					 	$args['sort'] = 'ASC';
+				 
+ 						
+					$data = ajan_get_activity_comments($args);
 
+					if($data){
+						$response = array('status'=>'success','collection'=>$data);
+					}else{
+						$response = array('status'=>'failed','error'=>'No data found');
+					}
+
+				//diana}
+
+			 
+
+			//Encode with json and print response
+			 wp_send_json($response); 
+
+		}
 
 	function create_get_activities(){
 

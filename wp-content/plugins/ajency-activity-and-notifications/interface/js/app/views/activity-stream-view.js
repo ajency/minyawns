@@ -62,7 +62,8 @@
         };
 
         ShowPackage.prototype.onRender = function(collection) {
-          return this.trigger("get:user:info");
+          this.trigger("get:user:info");
+          return this.trigger("fetch:latest:comments");
         };
 
         ShowPackage.prototype.onItemAdded = function() {
