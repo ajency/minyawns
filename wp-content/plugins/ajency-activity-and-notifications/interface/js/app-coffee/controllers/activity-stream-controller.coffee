@@ -11,6 +11,7 @@ define [
     class activitystreamcontroller extends RegionController
       initialize  :->
         @activityCollection = App.request "get:activity:collection"
+
         @view = view = @_getView @activityCollection 
 
         @listenTo view ,"get:user:info" , @_getUsers
@@ -63,12 +64,14 @@ define [
         console.log "get latest comments"
         activity_ids = @activityCollection.pluck("id"); 
         activity_ids = activity_ids.join() 
-        data=
-          activity_parent : activity_ids
-          item_id : ajan_item_id
-          records : 3
-        @commentCollection = App.request "get:comment:collection" , data
-       
+        @commentCollection = new App.Entities.Comment.CommentCollection
+        @commentCollection.fetch   
+          data:
+            activity_parent : activity_ids
+            item_id : ajan_item_id
+            records : 3
+          success: (collection, response)=>
+            @view.triggerMethod "activity:comments:fetched" , collection
 
     App.commands.setHandler "show:activity:package", (opt = {})->
       new activitystreamcontroller opt

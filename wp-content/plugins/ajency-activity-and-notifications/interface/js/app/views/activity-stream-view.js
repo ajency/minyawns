@@ -88,8 +88,9 @@
           });
         };
 
-        ShowPackage.prototype.onOptionAdded = function() {
-          return console.log("newactivity added view");
+        ShowPackage.prototype.onActivityCommentsFetched = function(n) {
+          console.log("collection of comments");
+          return console.log(n);
         };
 
         return ShowPackage;

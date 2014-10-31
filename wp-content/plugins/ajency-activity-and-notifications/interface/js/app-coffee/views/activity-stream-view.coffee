@@ -113,8 +113,9 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 
                 return
 
-            onOptionAdded :->
-              console.log("newactivity added view")
+            onActivityCommentsFetched : (n)->
+              console.log "collection of comments"
+              console.log n
          
 
             

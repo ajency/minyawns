@@ -1,9 +1,9 @@
 define ['startapp' , 'backbone'], (App) ->
 
-  App.module "Entities.Comment", (Activity, App)->
+  App.module "Entities.Comment", (Comment, App)->
 
     # define the Activity model
-    class Comment extends Backbone.Model
+    class CommentModel extends Backbone.Model
 
       idAttribute : 'ID'
 
@@ -28,9 +28,9 @@ define ['startapp' , 'backbone'], (App) ->
  
       
     # define the menu collection
-    class CommentCollection extends Backbone.Collection
+    class Comment.CommentCollection extends Backbone.Collection
 
-      model : Comment
+      model : CommentModel
       
       url : ->
         SITEURL + ajan_get_comments_uri
@@ -38,42 +38,6 @@ define ['startapp' , 'backbone'], (App) ->
       parse :(response)->
         response.collection
         
-    commentCollection = new CommentCollection
-    myarray = []
+    commentCollection = new Comment.CommentCollection
     
 
-    # API
-
-    commentCollection.fetch()
-    API =   
-      getComments:(data)->
-        console.log("data")
-        console.log(data)
-        commentCollection.fetch
-          data:data
-        
-      saveComment:(data)->
-        console.log "entity save comment"
-        comment = new Activity data
-        console.log comment
-        comment
-
-      addComment :(model)->
-        console.log "model add comment"
-        commentCollection.add model
-
-      getSingleComment:(ID)->
-        commentModel = commentCollection.get ID
-        
-    
-    App.reqres.setHandler "get:comment:collection", (data)->
-      API.getComments(data) 
-
-    App.reqres.setHandler "create:new:comment", (data)->
-      API.saveComment data
-
-    App.commands.setHandler "add:new:comment:model", (model)->
-      API.addComment model
-
-    App.reqres.setHandler  "get:comment:model" , (ID)->
-      API.getSingleComment ID
