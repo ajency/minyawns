@@ -90,7 +90,7 @@
         activitystreamcontroller.prototype._commentAdded = function(model, response) {
           console.log("controller added comment");
           App.execute("add:new:comment:model", model);
-          return this.view.triggerMethod("added:comment:model");
+          return this.view.triggerMethod("added:comment:model", model);
         };
 
         activitystreamcontroller.prototype._getLatestComments = function() {

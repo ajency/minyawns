@@ -68,12 +68,12 @@ define [
       _activityAdded :(model,response)=>
         console.log "controller added activity"
         App.execute "add:new:activity:model", model
-        @view.triggerMethod "added:activity:model" 
+        @view.triggerMethod "added:activity:model"
 
       _commentAdded :(model,response)=>
         console.log "controller added comment"
         App.execute "add:new:comment:model", model
-        @view.triggerMethod "added:comment:model" 
+        @view.triggerMethod "added:comment:model" , model
 
       _getLatestComments:->
         console.log "get latest comments"
