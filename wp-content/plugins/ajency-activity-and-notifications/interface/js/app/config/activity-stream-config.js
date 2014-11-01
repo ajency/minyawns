@@ -6,8 +6,6 @@
     urlArgs: "bust=" + BUST,
     baseUrl: AJANPLUGINPATH + "js",
     paths: {
-      jquery: "libs/jquery",
-      jqueryui: "libs/jqueryui",
       backbonesyphon: 'libs/plugins/backbone.syphon',
       jquerymobile: "libs/jquery.mobile",
       underscore: "libs/underscore",
@@ -28,7 +26,6 @@
       backbone_validateAll: "libs/plugins/Backbone.validateAll",
       bootstrap: "libs/plugins/bootstrap",
       text: "libs/plugins/text",
-      jasminejquery: "libs/plugins/jasmine-jquery",
       startapp: 'app/activity-stream-app',
       moment: 'libs/moment'
     },
@@ -36,10 +33,8 @@
       underscore: {
         exports: '_'
       },
-      jquery: ['underscore'],
-      jqueryui: ['jquery'],
       backbone: {
-        deps: ['jquery', 'underscore'],
+        deps: ['underscore'],
         exports: 'Backbone'
       },
       backbonesyphon: {
@@ -49,7 +44,6 @@
         deps: ['backbone'],
         exports: 'Marionette'
       },
-      bootstrap: ["jquery"],
       text: {
         deps: ['mustache', 'handlebars']
       },

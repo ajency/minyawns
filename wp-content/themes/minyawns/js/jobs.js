@@ -380,10 +380,12 @@ review =""
 
 	 
             }
-             //load messageboard
-            loadActivityStream($("#ajan-activity-stream-container"));
+
             //display photo containers
             display_job_photo_option();
+
+                         //load messageboard
+            loadActivityStream($("#ajan-activity-stream-container"));
            
 
         },
@@ -592,7 +594,6 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
         {
             user_employer = true;
         }
-         
  
         if(user_minyawn==true ||user_employer==true || user_admin==true ){
             
@@ -1734,14 +1735,7 @@ function load_job_minions(jobmodel)
 
             }
 			
-			jQuery('.isotope').imagesLoaded( function(){
-jQuery('.isotope').isotope({
-itemSelector: '.item',
-masonry: {
-columnWidth: '.grid-sizer'
-}
-});
-});
+
 
         }
     });

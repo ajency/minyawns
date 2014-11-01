@@ -330,9 +330,43 @@ $current_user_role =  trim($user_role);
 			  </div>
             </ul>
             </br></br><span id="div_confirmhire"></span>
-
+ 
+           <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>">
+            <input type="hidden" name="userid" value="<%= USER.id%>">
             
+            <input type="hidden" name="upload_nonce"  id="upload_nonce" value=""  >
+            <input type="hidden" name="delete_nonce"  id="delete_nonce" value=""  >
+           
+            
+            <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">
+             
+                  <div class="row-fluid">
+                  <div class="span12">
+                    <div id="drop">
+                      Drop Your Job Photos Here 
+                      <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                      <input type="file" name="photo" multiple />
+                    </div>
 
+                    <ul>
+                      <!-- The file uploads will be shown here -->
+                    </ul>
+                  </div>
+                </div>
+            </div>  
+
+
+          <!--jobphotos-->
+            <div class="row-fluid">
+  <div class="span12">
+  <h3 class="custom-h3 pull-left m-t-10">Job Images</h3>
+  </div>
+  </div>
+  <div class="isotope">
+  <div class="grid-sizer"></div>
+  
+   
+</div>
 	        </div>
 		<div class="span5" id="ajan-activity-stream-container" component="job" item-id="<%=result.post_id%>">
 			<!--comment starts-->
@@ -753,32 +787,7 @@ $current_user_role =  trim($user_role);
     </li>
 	</div>
 	
-	<div class="row-fluid">
-	<div class="span12">
-	<h3 class="custom-h3 pull-left m-t-10">Job Images</h3>
-	</div>
-	</div>
-	<div class="isotope">
-  <div class="grid-sizer"></div>
-  
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
-  
- 
-  
-  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
-  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
-  
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
-  
- 
-  
-  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
-  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
-  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
-</div>
+
 					</div>
 </script>
 

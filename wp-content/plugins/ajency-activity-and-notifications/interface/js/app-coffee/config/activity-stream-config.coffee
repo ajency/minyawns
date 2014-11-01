@@ -9,8 +9,7 @@ require.config
   paths:
     
     # Core Libraries
-    jquery: "libs/jquery"
-    jqueryui: "libs/jqueryui"
+ 
     backbonesyphon: 'libs/plugins/backbone.syphon'
     jquerymobile: "libs/jquery.mobile"
     underscore: "libs/underscore"
@@ -31,8 +30,7 @@ require.config
     # Plugins
     backbone_validateAll: "libs/plugins/Backbone.validateAll"
     bootstrap: "libs/plugins/bootstrap"
-    text: "libs/plugins/text"
-    jasminejquery: "libs/plugins/jasmine-jquery",
+    text: "libs/plugins/text" 
     startapp :'app/activity-stream-app',
     moment :'libs/moment'
 
@@ -40,19 +38,16 @@ require.config
   # Sets the configuration for your third party scripts that are not AMD compatible
   shim: 
     underscore:
-      exports : '_'
-    jquery    : ['underscore']
-    jqueryui  : ['jquery']
+      exports : '_' 
     backbone:
-      deps  : ['jquery','underscore']
+      deps  : ['underscore']
       exports : 'Backbone'
     backbonesyphon:
       deps  : ['backbone']
     marionette :
       deps  : ['backbone']
       exports : 'Marionette'
-    # Twitter Bootstrap jQuery plugins
-    bootstrap: ["jquery"] 
+ 
     text  :
       deps  : ['mustache','handlebars']
     
