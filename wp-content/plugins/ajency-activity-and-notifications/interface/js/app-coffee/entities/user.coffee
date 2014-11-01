@@ -6,7 +6,6 @@ define ['startapp' , 'backbone'], (App) ->
     class UserModel extends Backbone.Model
 
       idAttribute : 'ID'
-
       defaults:
         ID: ""
         name: ""
