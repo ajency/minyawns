@@ -92,6 +92,8 @@
 
         activitystreamcontroller.prototype._commentAdded = function(model, response) {
           console.log("controller added comment");
+          this.commentCollection.add(model);
+          console.log(this.commentCollection);
           App.execute("add:new:comment:model", model);
           return this.view.triggerMethod("added:comment:model", model);
         };
@@ -149,6 +151,7 @@
         activitystreamcontroller.prototype._deleteComment = function(activity) {
           var model;
           console.log("_deleteComment");
+          console.log(this.commentCollection);
           model = this.commentCollection.get(activity);
           return model.destroy({
             success: (function(_this) {

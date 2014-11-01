@@ -79,6 +79,8 @@ define [
 
       _commentAdded :(model,response)=>
         console.log "controller added comment"
+        @commentCollection.add model 
+        console.log @commentCollection
         App.execute "add:new:comment:model", model
         @view.triggerMethod "added:comment:model" , model
 
@@ -116,6 +118,7 @@ define [
 
       _deleteComment:(activity)->  
         console.log "_deleteComment"
+        console.log @commentCollection
         model =  @commentCollection.get activity 
         model.destroy
           success: (status, response)=>
