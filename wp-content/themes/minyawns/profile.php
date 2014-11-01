@@ -371,7 +371,8 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 					</div>
 				</div>
 
-              
+
+         
 
              <!--   <div class="jobs_table">
                     <div id="browse-jobs-table" class=" browse-jobs-table">
