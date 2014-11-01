@@ -28,6 +28,8 @@ define [
 
         @listenTo view , "delete:activity" , @_deleteActivity
 
+        @listenTo view , "delete:comment" , @_deleteComment
+
         App.execute "when:fetched", [@activityCollection], =>
           @show view
 
@@ -107,14 +109,19 @@ define [
             @view.triggerMethod "activity:comments:fetched" , collection
 
 
-      _deleteActivity:(activity)->
-        console.log "delete"+activity
-        console.log @activityCollection
-        model =  @activityCollection.get activity
-        console.log (model)
+      _deleteActivity:(activity)->  
+        model =  @activityCollection.get activity 
         model.destroy
           success: (status, response)=>
             console.log "status"
+
+      _deleteComment:(activity)->  
+        console.log "_deleteComment"
+        model =  @commentCollection.get activity 
+        model.destroy
+          success: (status, response)=>
+            console.log "status"
+            @view.triggerMethod "activity:comment:deleted" , activity
        
 
     App.commands.setHandler "show:activity:package", (opt = {})->

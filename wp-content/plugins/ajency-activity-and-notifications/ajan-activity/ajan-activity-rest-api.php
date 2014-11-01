@@ -76,7 +76,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			$routes['/activities'] = array(
 				array( array( $this, 'get_activities'), WP_JSON_Server::READABLE ),
 				array( array( $this, 'create_get_activities'), WP_JSON_Server::CREATABLE ),	 
-				array( array( $this, 'get_update_delete_activities'), WP_JSON_Server::DELETABLE ),	 
+				
 			);
 
 			$routes['/activities/comments'] = array(
@@ -84,7 +84,8 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			);
 
 			$routes['/activities/(?P<activityid>\d+)'] = array(
-				array( array( $this, 'get_update_delete_activities'), WP_JSON_Server::READABLE ),	 
+				//array( array( $this, 'get_update_delete_activities'), WP_JSON_Server::READABLE ),	 
+				array( array( $this, 'delete_activities'), WP_JSON_Server::DELETABLE ),	 
 			);
 
 			$routes['/users'] = array(
@@ -220,25 +221,10 @@ function get_activitycomments(){
 		}
 
 
-		function get_update_delete_activities($activityid){
-			if(isset($_REQUEST['type']) && $_REQUEST['type']=='get'){
+		function delete_activities($activityid){
+	  
 
-				if(!isset($_REQUEST['nonce'])){
-					$response = array('status'=>'failed','error'=>'Invalid request');
-				}else{
-					$data = ajan_get_activity_by_id($activityid);
-					if($data){
-						$response = array('status'=>'success','collection'=>$data);
-					}else{
-						$response = array('status'=>'failed','error'=>'No data found');
-					}
-				}
-
-			}else if(isset($_REQUEST['type']) && $_REQUEST['type']=='delete'){
-
-				if(!isset($_REQUEST['nonce'])){
-					$response = array('status'=>'failed','error'=>'Invalid request');
-				}else{
+				 
 					//delete childrens activity if any
 					ajan_activity_delete( array( 'secondary_item_id' => $activityid) );
 
@@ -248,25 +234,9 @@ function get_activitycomments(){
 					}else{
 						$response = array('status'=>'failed','error'=>'Incorrect id or cannot be deleted');
 					}
-				}
+			 
 
-			}else if(isset($_REQUEST['type']) && $_REQUEST['type']=='update'){
-
-				if(!isset($_REQUEST['nonce'])){
-					$response = array('status'=>'failed','error'=>'Invalid request');
-				}else{
-					$creator_user_info = get_userdata(ajan_loggedin_user_id());
-					$activity                    = new AJAN_Activity_Activity( $activityid );
-					$activity->content           = $_REQUEST['content'];
-					$activity->action            = $creator_user_info->display_name.' updated message';
-					if (!$activity->save()){
-						$response = array('status'=>'failed','error'=>'Incorrent id or cannot be updated');
-					}else{
-						$response = array('status'=>'success','message'=>'Updated successfully');
-					}
-				}
-				
-			}
+ 
 
 			//Encode with json and print response
 			$response = json_encode( $response );

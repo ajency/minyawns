@@ -46,8 +46,15 @@ define ["backbone"], (Backbone) ->
 				
 			# All ajax request in wordpress are sent to admin_url(‘admin-ajax.php’)
 			# a global AJAXURL variable must be defined for all ajax actions
-			# so, the url is always AJAXURL 
-			params.url =  @urlRoot 
+			# so, the url is always AJAXURL
+			console.log model
+			console.log model.get("id")
+			console.log @urlRoot+"/"+ model.get("id")
+			if method is "delete"
+			  params.url =  @urlRoot+"/"+ model.get("id")
+			else
+			  params.url =  @urlRoot 
+			
 			
 			# generate the “action” param and bind it to data attribute of ‘params’
 			_action = "#{method}-#{@name}"

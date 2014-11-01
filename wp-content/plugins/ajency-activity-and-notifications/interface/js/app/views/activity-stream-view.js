@@ -84,12 +84,13 @@
           'click .delete-activity': function(e) {
             $('.delete-activity-' + $(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>');
             $('.delete-activity-' + $(e.target).attr('activity')).parent().hide();
-            console.log("delete:single:activity");
             return this.trigger("delete:activity", $(e.target).attr('activity'));
           },
           'click .delete-comment': function(e) {
             $('.delete-comment-' + $(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>');
-            return $('.delete-comment-' + $(e.target).attr('activity')).parent().hide();
+            $('.delete-comment-' + $(e.target).attr('activity')).parent().hide();
+            console.log("delete-comment");
+            return this.trigger("delete:comment", $(e.target).attr('activity'));
           },
           'click .get-comments': function(e) {
             console.log($(e.target).attr('activity'));
@@ -158,9 +159,14 @@
             activity_date = moment(date_recorded_date);
             activity_date = activity_date.format("MMM Do YY");
             activity_time = date_recorded_time;
-            return $(".activity-main-" + model.get("secondary_item_id")).append('<div class="avatar-box-1"> <div class="avatar left" href="#"> <img src="' + NOAVATAR + '" class="avatar-img ajan-user-pic-' + model.get("user_id") + '"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">' + model.get("action") + '</h5> <p class="comment m-tb-5">' + model.get("content") + '</p> <div class="comment-info m-b-10"> <span class="comment-date left">' + activity_date + '</span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left">' + activity_time + '</span> <span class="right rep-del"> <a href="javascript:void(0)" class="delete delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> <span class="glyphicon glyphicon-trash delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"></span> </a> </span> </div> </div> </div>');
+            return $(".activity-main-" + model.get("secondary_item_id")).append('<div class="avatar-box-1" id="activity-comment-container-' + model.get("id") + '"> <div class="avatar left" href="#"> <img src="' + NOAVATAR + '" class="avatar-img ajan-user-pic-' + model.get("user_id") + '"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">' + model.get("action") + '</h5> <p class="comment m-tb-5">' + model.get("content") + '</p> <div class="comment-info m-b-10"> <span class="comment-date left">' + activity_date + '</span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left">' + activity_time + '</span> <span class="right rep-del"> <a href="javascript:void(0)" class="delete delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> <span class="glyphicon glyphicon-trash delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"></span> </a> </span> </div> </div> </div>');
           });
           return this.trigger("get:user:info");
+        };
+
+        ShowPackage.prototype.onActivityCommentDeleted = function(activity) {
+          console.log("onActivityCommentDeleted");
+          return $('#activity-comment-container-' + activity).remove();
         };
 
         return ShowPackage;

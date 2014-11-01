@@ -27,6 +27,7 @@
           this.listenTo(view, "save:new:activity", this._saveActivity);
           this.listenTo(view, "save:new:comment", this._saveComment);
           this.listenTo(view, "delete:activity", this._deleteActivity);
+          this.listenTo(view, "delete:comment", this._deleteComment);
           return App.execute("when:fetched", [this.activityCollection], (function(_this) {
             return function() {
               return _this.show(view);
@@ -137,14 +138,25 @@
 
         activitystreamcontroller.prototype._deleteActivity = function(activity) {
           var model;
-          console.log("delete" + activity);
-          console.log(this.activityCollection);
           model = this.activityCollection.get(activity);
-          console.log(model);
           return model.destroy({
             success: (function(_this) {
               return function(status, response) {
                 return console.log("status");
+              };
+            })(this)
+          });
+        };
+
+        activitystreamcontroller.prototype._deleteComment = function(activity) {
+          var model;
+          console.log("_deleteComment");
+          model = this.commentCollection.get(activity);
+          return model.destroy({
+            success: (function(_this) {
+              return function(status, response) {
+                console.log("status");
+                return _this.view.triggerMethod("activity:comment:deleted", activity);
               };
             })(this)
           });

@@ -13,8 +13,6 @@
           return CommentModel.__super__.constructor.apply(this, arguments);
         }
 
-        CommentModel.prototype.idAttribute = 'ID';
-
         CommentModel.prototype.defaults = {
           user_id: "",
           component: "",

@@ -123,12 +123,13 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
               'click .delete-activity':(e)-> 
                 $('.delete-activity-'+$(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>')
                 $('.delete-activity-'+$(e.target).attr('activity')).parent().hide()
-                console.log "delete:single:activity"
                 @trigger "delete:activity" , $(e.target).attr('activity')
 
               'click .delete-comment':(e)-> 
                 $('.delete-comment-'+$(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>')
                 $('.delete-comment-'+$(e.target).attr('activity')).parent().hide()
+                console.log "delete-comment"
+                @trigger "delete:comment" , $(e.target).attr('activity')
 
               'click .get-comments':(e)->
                 console.log $(e.target).attr('activity')
@@ -214,7 +215,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 activity_date = moment(date_recorded_date) 
                 activity_date =activity_date.format("MMM Do YY");
                 activity_time =date_recorded_time; 
-                $(".activity-main-"+model.get("secondary_item_id") ).append('<div class="avatar-box-1">
+                $(".activity-main-"+model.get("secondary_item_id") ).append('<div class="avatar-box-1" id="activity-comment-container-'+model.get("id")+'">
                       <div class="avatar left" href="#">
                           <img src="'+NOAVATAR+'" class="avatar-img ajan-user-pic-'+model.get("user_id")+'">
                       </div>
@@ -239,6 +240,11 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                           </div>
                       </div>')
               @trigger "get:user:info"  
+
+            onActivityCommentDeleted:(activity)->
+              console.log "onActivityCommentDeleted"
+              $('#activity-comment-container-'+activity).remove()
+
               
 
            

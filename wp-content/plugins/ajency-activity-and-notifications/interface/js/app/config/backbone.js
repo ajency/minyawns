@@ -14,7 +14,14 @@
           dataType: "json",
           data: {}
         };
-        params.url = this.urlRoot;
+        console.log(model);
+        console.log(model.get("id"));
+        console.log(this.urlRoot + "/" + model.get("id"));
+        if (method === "delete") {
+          params.url = this.urlRoot + "/" + model.get("id");
+        } else {
+          params.url = this.urlRoot;
+        }
         _action = "" + method + "-" + this.name;
         params.data['action'] = _action;
         switch (method) {
