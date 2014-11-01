@@ -95,18 +95,17 @@ define [
           success: (collection, response)=>
             @view.triggerMethod "activity:comments:fetched" , collection
 
-      _getAllComments:->
-        console.log "get All comments"
-        activity_ids = @activityCollection.pluck("id"); 
-        activity_ids = activity_ids.join() 
+      _getAllComments:(activity)->
+        console.log "get All comments" 
         @commentCollection = new App.Entities.Comment.CommentCollection
         @commentCollection.fetch   
           data:
-            activity_parent : activity_ids
+            activity_parent : activity
             item_id : ajan_item_id
             records : ''
           success: (collection, response)=>
-            @view.triggerMethod "activity:comments:fetched" , collection
+            console.log collection.length
+            @view.triggerMethod "activity:comments:fetched" , collection, activity
 
 
       _deleteActivity:(activity)->  

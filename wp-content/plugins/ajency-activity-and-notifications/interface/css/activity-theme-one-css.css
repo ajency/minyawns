@@ -261,3 +261,7 @@ img {
   position: absolute;
   width: 18px; 
 }
+.throbber-container{
+  margin-right: 30px; 
+  margin-bottom: 30px;
+}

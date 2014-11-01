@@ -28,8 +28,10 @@ define ["backbone"], (Backbone) ->
 		# 	model : the model which will trigger the sync
 		# 	options : the ajax options for the user to overwrite
 
-		sync : (method, model, options)->
-			console.log method 
+		sync : (method, model, options)-> 
+			sendmethod = method
+			if method is "create"
+				sendmethod = "POST"
 			# check if the name property is set for the model
 			# this property is important because the “action”
 			# param required for wordpress ajax is generated 
@@ -40,16 +42,14 @@ define ["backbone"], (Backbone) ->
 			
 			# Default JSON-request options.
 			params =
-				type : method
+				type : sendmethod
 				dataType: "json"
 				data : {}
 				
 			# All ajax request in wordpress are sent to admin_url(‘admin-ajax.php’)
 			# a global AJAXURL variable must be defined for all ajax actions
 			# so, the url is always AJAXURL
-			console.log model
-			console.log model.get("id")
-			console.log @urlRoot+"/"+ model.get("id")
+			console.log model 
 			if method is "delete"
 			  params.url =  @urlRoot+"/"+ model.get("id")
 			else

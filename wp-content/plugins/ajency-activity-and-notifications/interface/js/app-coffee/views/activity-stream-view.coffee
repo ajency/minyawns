@@ -98,8 +98,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 e.preventDefault()
                 console.log "click event"
                 data = {content:$("#activity_content").val(),item_id:ajan_item_id}
-             
-                $(e.target).parent().parent().append('<span style="margin-right: 30px; margin-bottom: 30px;" class="right"><span style="float: right;" id="mf3" class="throbber right"></span></span>')
+                $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>')
                 $(e.target).hide()
                 @trigger "save:new:activity" , data
 
@@ -114,7 +113,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
               'click .save-activity-reply':(e)->  
                 data = {content:$('#activity-comment-'+$(e.target).attr('activity')).val(),item_id:ajan_item_id,secondary_item_id:$(e.target).attr('activity')}
-                $(e.target).parent().append('<span class="throbber"></span>')
+                $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>')
                 $(e.target).next().hide()
                 $(e.target).hide()
                 
@@ -126,14 +125,13 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 @trigger "delete:activity" , $(e.target).attr('activity')
 
               'click .delete-comment':(e)-> 
-                $('.delete-comment-'+$(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>')
-                $('.delete-comment-'+$(e.target).attr('activity')).parent().hide()
+                $('.delete-comment-'+$(e.target).attr('activity')).parent().append('<span class="throbber"></span>')
+                $(e.target).parent().hide()
                 console.log "delete-comment"
                 @trigger "delete:comment" , $(e.target).attr('activity')
 
-              'click .get-comments':(e)->
-                console.log $(e.target).attr('activity')
-                @trigger "fetch:all:comments"
+              'click .get-comments':(e)-> 
+                @trigger "fetch:all:comments" ,$(e.target).attr('activity')
 
             onRender:(collection)->
               @trigger "get:user:info"
@@ -142,14 +140,14 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
             onItemAdded:-> 
               console.log "view onDomRefresh"
               $("#ajan-post-activity").show()
-              $("#ajan-post-activity").parent().find(".throbber").remove()
+              $("#ajan-post-activity").parent().parent().find(".throbber-container").remove()
               @trigger "get:user:info"  
 
             onAddedActivityModel : ()->
               console.log "onNewActivityAdded" 
               $("#ajan-post-activity").show()
-              $("#ajan-post-activity").parent().find(".throbber").remove()
-              
+              $("#ajan-post-activity").parent().parent().find(".throbber-container").remove()
+              $("#activity_content").val("")
               @trigger "get:user:info"  
 
             onChangeUserImage : (n)->
@@ -169,8 +167,9 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
               console.log model
               $("#save-activity-reply-"+model.get("secondary_item_id")).show()
               $("#save-activity-reply-"+model.get("secondary_item_id")).next().show()
-              $("#save-activity-reply-"+model.get("secondary_item_id")).parent().find(".throbber").remove()
+              $("#save-activity-reply-"+model.get("secondary_item_id")).parent().parent().find(".throbber-container").remove()
               $("#save-activity-reply-"+model.get("secondary_item_id")).next().trigger('click')        
+              $("#activity-comment-"+model.get("secondary_item_id")).val("")
               activity_date = model.get("date_recorded")
               date_recorded = activity_date.split(" ")
               date_recorded_date = date_recorded[0]
@@ -204,9 +203,9 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                       </div>')
               @trigger "get:user:info"  
 
-            onActivityCommentsFetched : (activity_comments)->
+            onActivityCommentsFetched : (activity_comments,activity)->
               console.log "collection of comments"
-             
+              $(".activity-main-"+activity).find('.avatar-box-1').remove()
               _.each activity_comments.models, (model) -> 
                 activity_date = model.get("date_recorded")
                 date_recorded = activity_date.split(" ")
@@ -243,7 +242,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
             onActivityCommentDeleted:(activity)->
               console.log "onActivityCommentDeleted"
-              #$('#activity-comment-container-'+activity).remove()
+              $('#activity-comment-container-'+activity).remove()
 
               
 

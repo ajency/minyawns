@@ -116,21 +116,19 @@
           });
         };
 
-        activitystreamcontroller.prototype._getAllComments = function() {
-          var activity_ids;
+        activitystreamcontroller.prototype._getAllComments = function(activity) {
           console.log("get All comments");
-          activity_ids = this.activityCollection.pluck("id");
-          activity_ids = activity_ids.join();
           this.commentCollection = new App.Entities.Comment.CommentCollection;
           return this.commentCollection.fetch({
             data: {
-              activity_parent: activity_ids,
+              activity_parent: activity,
               item_id: ajan_item_id,
               records: ''
             },
             success: (function(_this) {
               return function(collection, response) {
-                return _this.view.triggerMethod("activity:comments:fetched", collection);
+                console.log(collection.length);
+                return _this.view.triggerMethod("activity:comments:fetched", collection, activity);
               };
             })(this)
           });

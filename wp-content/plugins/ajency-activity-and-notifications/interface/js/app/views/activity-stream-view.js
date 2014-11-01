@@ -57,7 +57,7 @@
               content: $("#activity_content").val(),
               item_id: ajan_item_id
             };
-            $(e.target).parent().parent().append('<span style="margin-right: 30px; margin-bottom: 30px;" class="right"><span style="float: right;" id="mf3" class="throbber right"></span></span>');
+            $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
             $(e.target).hide();
             return this.trigger("save:new:activity", data);
           },
@@ -76,7 +76,7 @@
               item_id: ajan_item_id,
               secondary_item_id: $(e.target).attr('activity')
             };
-            $(e.target).parent().append('<span class="throbber"></span>');
+            $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
             $(e.target).next().hide();
             $(e.target).hide();
             return this.trigger("save:new:comment", data);
@@ -87,14 +87,13 @@
             return this.trigger("delete:activity", $(e.target).attr('activity'));
           },
           'click .delete-comment': function(e) {
-            $('.delete-comment-' + $(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>');
-            $('.delete-comment-' + $(e.target).attr('activity')).parent().hide();
+            $('.delete-comment-' + $(e.target).attr('activity')).parent().append('<span class="throbber"></span>');
+            $(e.target).parent().hide();
             console.log("delete-comment");
             return this.trigger("delete:comment", $(e.target).attr('activity'));
           },
           'click .get-comments': function(e) {
-            console.log($(e.target).attr('activity'));
-            return this.trigger("fetch:all:comments");
+            return this.trigger("fetch:all:comments", $(e.target).attr('activity'));
           }
         };
 
@@ -106,14 +105,15 @@
         ShowPackage.prototype.onItemAdded = function() {
           console.log("view onDomRefresh");
           $("#ajan-post-activity").show();
-          $("#ajan-post-activity").parent().find(".throbber").remove();
+          $("#ajan-post-activity").parent().parent().find(".throbber-container").remove();
           return this.trigger("get:user:info");
         };
 
         ShowPackage.prototype.onAddedActivityModel = function() {
           console.log("onNewActivityAdded");
           $("#ajan-post-activity").show();
-          $("#ajan-post-activity").parent().find(".throbber").remove();
+          $("#ajan-post-activity").parent().parent().find(".throbber-container").remove();
+          $("#activity_content").val("");
           return this.trigger("get:user:info");
         };
 
@@ -135,8 +135,9 @@
           console.log(model);
           $("#save-activity-reply-" + model.get("secondary_item_id")).show();
           $("#save-activity-reply-" + model.get("secondary_item_id")).next().show();
-          $("#save-activity-reply-" + model.get("secondary_item_id")).parent().find(".throbber").remove();
+          $("#save-activity-reply-" + model.get("secondary_item_id")).parent().parent().find(".throbber-container").remove();
           $("#save-activity-reply-" + model.get("secondary_item_id")).next().trigger('click');
+          $("#activity-comment-" + model.get("secondary_item_id")).val("");
           activity_date = model.get("date_recorded");
           date_recorded = activity_date.split(" ");
           date_recorded_date = date_recorded[0];
@@ -148,8 +149,9 @@
           return this.trigger("get:user:info");
         };
 
-        ShowPackage.prototype.onActivityCommentsFetched = function(activity_comments) {
+        ShowPackage.prototype.onActivityCommentsFetched = function(activity_comments, activity) {
           console.log("collection of comments");
+          $(".activity-main-" + activity).find('.avatar-box-1').remove();
           _.each(activity_comments.models, function(model) {
             var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time;
             activity_date = model.get("date_recorded");
@@ -165,7 +167,8 @@
         };
 
         ShowPackage.prototype.onActivityCommentDeleted = function(activity) {
-          return console.log("onActivityCommentDeleted");
+          console.log("onActivityCommentDeleted");
+          return $('#activity-comment-container-' + activity).remove();
         };
 
         return ShowPackage;

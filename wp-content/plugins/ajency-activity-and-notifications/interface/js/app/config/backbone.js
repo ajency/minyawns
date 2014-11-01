@@ -4,19 +4,20 @@
     var _sync;
     _.extend(Backbone.Model.prototype, {
       sync: function(method, model, options) {
-        var allData, idAttr, onlyChanged, params, xhr, _action, _ref, _ref1;
-        console.log(method);
+        var allData, idAttr, onlyChanged, params, sendmethod, xhr, _action, _ref, _ref1;
+        sendmethod = method;
+        if (method === "create") {
+          sendmethod = "POST";
+        }
         if (!this.name) {
           throw new Error("'name' property not set for the model");
         }
         params = {
-          type: method,
+          type: sendmethod,
           dataType: "json",
           data: {}
         };
         console.log(model);
-        console.log(model.get("id"));
-        console.log(this.urlRoot + "/" + model.get("id"));
         if (method === "delete") {
           params.url = this.urlRoot + "/" + model.get("id");
         } else {
