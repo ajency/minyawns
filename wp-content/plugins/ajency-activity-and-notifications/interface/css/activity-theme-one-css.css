@@ -120,6 +120,7 @@
   font-size: 11px;
   font-family: 'Open Sans';
   white-space: nowrap;
+  margin-right:10px;
 }
 .comment-info .rep-del {
   font-size: 14px;
@@ -256,8 +257,7 @@ img {
     background: url("../img/throbber.gif") no-repeat scroll 0 0
     transparent;
   height: 30px;
-  margin-top: 5px;
-  margin-right: 0px;
+ margin-right: 0px;
   position: absolute;
-  width: 60px; 
+  width: 18px; 
 }

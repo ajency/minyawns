@@ -57,7 +57,7 @@
               content: $("#activity_content").val(),
               item_id: ajan_item_id
             };
-            $(e.target).parent().append('<span class="throbber"></span>');
+            $(e.target).parent().parent().append('<span style="margin-right: 30px; margin-bottom: 30px;" class="right"><span style="float: right;" id="mf3" class="throbber right"></span></span>');
             $(e.target).hide();
             return this.trigger("save:new:activity", data);
           },
@@ -165,8 +165,7 @@
         };
 
         ShowPackage.prototype.onActivityCommentDeleted = function(activity) {
-          console.log("onActivityCommentDeleted");
-          return $('#activity-comment-container-' + activity).remove();
+          return console.log("onActivityCommentDeleted");
         };
 
         return ShowPackage;

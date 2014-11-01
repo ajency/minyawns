@@ -99,7 +99,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 console.log "click event"
                 data = {content:$("#activity_content").val(),item_id:ajan_item_id}
              
-                $(e.target).parent().append('<span class="throbber"></span>')
+                $(e.target).parent().parent().append('<span style="margin-right: 30px; margin-bottom: 30px;" class="right"><span style="float: right;" id="mf3" class="throbber right"></span></span>')
                 $(e.target).hide()
                 @trigger "save:new:activity" , data
 
@@ -243,7 +243,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
             onActivityCommentDeleted:(activity)->
               console.log "onActivityCommentDeleted"
-              $('#activity-comment-container-'+activity).remove()
+              #$('#activity-comment-container-'+activity).remove()
 
               
 
