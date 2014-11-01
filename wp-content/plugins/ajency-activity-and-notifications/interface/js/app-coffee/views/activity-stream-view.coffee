@@ -35,11 +35,11 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                               <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}">
                                   comments({{comment_count}})
                               </a>&nbsp;
-                              <a href="javascript:void(0)" class="reply reply-activity" activity="{{id}}">
-                                  <span class="glyphicon glyphicon-share-alt reply-activity" activity="{{id}}"></span>
+                              <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"    activity="{{id}}">
+                                  <span class="glyphicon glyphicon-share-alt reply-activity reply-activity-{{id}}" activity="{{id}}"></span>
                               </a>&nbsp;
-                              <a href="#" class="delete">
-                                  <span class="glyphicon glyphicon-trash"  ></span>
+                              <a href="javascript:void(0)" class="delete">
+                                  <span class="glyphicon glyphicon-trash delete-activity delete-activity-{{id}}" activity="{{id}}" ></span>
                               </a>
 
                           </span>
@@ -47,7 +47,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                           <p class="reply-msg left">Enter your Reply here</p><br>
                           <textarea class="full m-tb-10" name="activity-comment-{{id}}" id="activity-comment-{{id}}" rows="2"></textarea>
                           <div class="right m-b-10">
-                              <input type="button" class="btn green-btn save-activity-reply" value="Post Reply"  activity="{{id}}">
+                              <input type="button" class="btn green-btn save-activity-reply" id="save-activity-reply-{{id}}" value="Post Reply"  activity="{{id}}">
                               <input type="button" class="btn cancel-activity-reply" value="Cancel"  activity="{{id}}">
                           </div>
                         </div>
@@ -98,17 +98,37 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 e.preventDefault()
                 console.log "click event"
                 data = {content:$("#activity_content").val(),item_id:ajan_item_id}
+             
+                $(e.target).parent().append('<span class="throbber"></span>')
+                $(e.target).hide()
                 @trigger "save:new:activity" , data
 
               'click .reply-activity' :(e)-> 
                 $('.reply-txt-'+$(e.target).attr('activity')).show()
+                $('.reply-activity-'+$(e.target).attr('activity')).hide()
 
               'click .cancel-activity-reply':(e)-> 
+                $('.reply-activity-'+$(e.target).attr('activity')).show()
+
                 $('.reply-txt-'+$(e.target).attr('activity')).hide()
 
               'click .save-activity-reply':(e)->  
                 data = {content:$('#activity-comment-'+$(e.target).attr('activity')).val(),item_id:ajan_item_id,secondary_item_id:$(e.target).attr('activity')}
+                $(e.target).parent().append('<span class="throbber"></span>')
+                $(e.target).next().hide()
+                $(e.target).hide()
+                
                 @trigger "save:new:comment" , data
+
+              'click .delete-activity':(e)-> 
+                $('.delete-activity-'+$(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>')
+                $('.delete-activity-'+$(e.target).attr('activity')).parent().hide()
+                console.log "delete:single:activity"
+                @trigger "delete:activity" , $(e.target).attr('activity')
+
+              'click .delete-comment':(e)-> 
+                $('.delete-comment-'+$(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>')
+                $('.delete-comment-'+$(e.target).attr('activity')).parent().hide()
 
               'click .get-comments':(e)->
                 console.log $(e.target).attr('activity')
@@ -120,10 +140,15 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
             onItemAdded:-> 
               console.log "view onDomRefresh"
+              $("#ajan-post-activity").show()
+              $("#ajan-post-activity").parent().find(".throbber").remove()
               @trigger "get:user:info"  
 
             onAddedActivityModel : ()->
               console.log "onNewActivityAdded" 
+              $("#ajan-post-activity").show()
+              $("#ajan-post-activity").parent().find(".throbber").remove()
+              
               @trigger "get:user:info"  
 
             onChangeUserImage : (n)->
@@ -141,6 +166,10 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
             onAddedCommentModel : (model)->
               console.log "onAddedCommentModel"
               console.log model
+              $("#save-activity-reply-"+model.get("secondary_item_id")).show()
+              $("#save-activity-reply-"+model.get("secondary_item_id")).next().show()
+              $("#save-activity-reply-"+model.get("secondary_item_id")).parent().find(".throbber").remove()
+              $("#save-activity-reply-"+model.get("secondary_item_id")).next().trigger('click')        
               activity_date = model.get("date_recorded")
               date_recorded = activity_date.split(" ")
               date_recorded_date = date_recorded[0]
@@ -202,8 +231,8 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                               </span>
                               <span class="right rep-del">
                                       
-                                      <a href="#" class="delete">
-                                          <span class="glyphicon glyphicon-trash"></span>
+                                      <a href="javascript:void(0)" class="delete delete-comment delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'">
+                                          <span class="glyphicon glyphicon-trash delete-comment delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'"></span>
                                       </a>
                                   </span>
                               </div>

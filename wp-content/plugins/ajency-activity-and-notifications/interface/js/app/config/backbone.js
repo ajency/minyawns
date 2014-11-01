@@ -5,11 +5,12 @@
     _.extend(Backbone.Model.prototype, {
       sync: function(method, model, options) {
         var allData, idAttr, onlyChanged, params, xhr, _action, _ref, _ref1;
+        console.log(method);
         if (!this.name) {
           throw new Error("'name' property not set for the model");
         }
         params = {
-          type: "POST",
+          type: method,
           dataType: "json",
           data: {}
         };

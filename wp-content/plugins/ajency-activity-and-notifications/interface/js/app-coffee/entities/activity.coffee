@@ -4,8 +4,7 @@ define ['startapp' , 'backbone'], (App) ->
 
     # define the Activity model
     class Activity extends Backbone.Model
-
-      idAttribute : 'ID'
+ 
 
       defaults:
         

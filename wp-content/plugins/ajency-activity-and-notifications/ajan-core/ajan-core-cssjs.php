@@ -41,6 +41,8 @@ function ajan_core_enqueue_js() {
 	wp_localize_script( 'ajan-interface', 'NOAVATAR',  activitynotifications()->plugin_url. "interface/img/non-avatar.jpg");
 	wp_localize_script( 'ajan-interface', 'ACTIVITY_NONCE_STRING',  wp_create_nonce("ACTIVITY_NONCE_STRING")); 
  
+ 	wp_enqueue_style('activity-theme-one-css', activitynotifications()->plugin_url . "interface/css/activity-theme-one-css.css", array(), null);
+  
 }
 add_action( 'wp_enqueue_scripts',    'ajan_core_enqueue_js' );
 

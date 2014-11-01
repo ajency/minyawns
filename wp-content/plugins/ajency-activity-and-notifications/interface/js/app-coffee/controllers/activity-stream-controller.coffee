@@ -26,6 +26,8 @@ define [
 
         @listenTo view , "save:new:comment" , @_saveComment
 
+        @listenTo view , "delete:activity" , @_deleteActivity
+
         App.execute "when:fetched", [@activityCollection], =>
           @show view
 
@@ -71,6 +73,7 @@ define [
         console.log "controller added activity"
         App.execute "add:new:activity:model", model
         @view.triggerMethod "added:activity:model"
+        
 
       _commentAdded :(model,response)=>
         console.log "controller added comment"
@@ -102,6 +105,17 @@ define [
             records : ''
           success: (collection, response)=>
             @view.triggerMethod "activity:comments:fetched" , collection
+
+
+      _deleteActivity:(activity)->
+        console.log "delete"+activity
+        console.log @activityCollection
+        model =  @activityCollection.get activity
+        console.log (model)
+        model.destroy
+          success: (status, response)=>
+            console.log "status"
+       
 
     App.commands.setHandler "show:activity:package", (opt = {})->
       new activitystreamcontroller opt

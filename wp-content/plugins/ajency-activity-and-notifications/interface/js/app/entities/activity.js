@@ -13,8 +13,6 @@
           return Activity.__super__.constructor.apply(this, arguments);
         }
 
-        Activity.prototype.idAttribute = 'ID';
-
         Activity.prototype.defaults = {
           user_id: "",
           component: "",

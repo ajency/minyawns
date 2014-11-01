@@ -29,7 +29,7 @@ define ["backbone"], (Backbone) ->
 		# 	options : the ajax options for the user to overwrite
 
 		sync : (method, model, options)->
-			
+			console.log method 
 			# check if the name property is set for the model
 			# this property is important because the “action”
 			# param required for wordpress ajax is generated 
@@ -40,7 +40,7 @@ define ["backbone"], (Backbone) ->
 			
 			# Default JSON-request options.
 			params =
-				type : "POST"
+				type : method
 				dataType: "json"
 				data : {}
 				
