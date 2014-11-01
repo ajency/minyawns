@@ -1,5 +1,6 @@
 
-<script type="text/template" id="jobs-table"> 
+	<script type="text/template" id="jobs-table"> 
+
       <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%> panel">
       
 							 <div class="row-fluid mobile-hide" >
@@ -278,101 +279,241 @@ $current_user_role =  trim($user_role);
 					   
 </div>
  <%}%>
-        <div class="span9">
-        
-    <div class="load_ajax_large_minyawns_container span12"><span class="load_ajax_large_minyawns"  ></span></div>
-    <ul class="thumbnails">
-    </ul>
-        </br></br></br></br><span id="div_confirmhire"></span>
-</div>
 
-
-
-
-
-
-
-
-
-<div class="span3 mobile-alert-box-hidden">
-                  <div class="alert alert-success alert-sidebar author-data">
-                      <b style="color:#000;">Employer Details</b>
-					  
-					  <div class="row-fluid">
-					  <div class="span3">
-						<%= result.job_author_logo %>
-					  </div>
-						<div class="span9 author-info">
-						
-                                                <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
-							<i class="icon-map-marker"></i> <%= result.job_company_location%>
-						</div>
-					  </div>
-						
-                        <br>
-                    </div> 
-            <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>">
-            <input type="hidden" name="userid" value="<%= USER.id%>">
-            
-            <input type="hidden" name="upload_nonce"  id="upload_nonce" value=""  >
-            <input type="hidden" name="delete_nonce"  id="delete_nonce" value=""  >
-           
-            
-            <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">
-             
-                  <div class="row-fluid">
-                  <div class="span12">
-                    <div id="drop">
-                      Drop Your Job Photos Here 
-                      <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
-                      <input type="file" name="photo" multiple />
-                    </div>
-
-                    <ul>
-                      <!-- The file uploads will be shown here -->
-                    </ul>
+<div class="span12">
+	<div class="row-fluid">
+	<div class="span7">
+			
+			<div class=" mobile-alert-box-hidden">
+              <!--<div class="alert alert-success alert-sidebar author-data">
+                <b style="color:#000;">Employer Details</b>
+                <div class="row-fluid">
+                  <div class="span3">
+                    <%= result.job_author_logo %>
+                  </div>
+                  <div class="span9 author-info">
+                    <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
+                    <i class="icon-map-marker"></i> <%= result.job_company_location%>
                   </div>
                 </div>
-            </div> 
-                      
-            
-             
-           <div class="row-fluid" id="photo-grid" style="display:none">
-      <div class="span12 align-left">
-     <div align="left" id="photos_title" class="photos-title" style="display:none"> <b >Job Photos</b></div>
-        <div class="isotope">
-          <div class="grid-sizer"></div>
-          
-             </div>
-        
-       </div>
-    </div>
+                <br>
+              </div>-->
+                             
               <% if( ( (is_admin==true)  || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
-                     <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
-                        <h3>Your selection</h3>
-                        <hr>
-                        <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
-                        <b> Wages per Minion:<span id="wages_per_minyawns">0</span><span>$</span></b>
-                        <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br>
-							<div class="msg-info">
-							<span>Please Note</span>
-							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
-<br> Any credit or debit card will do!</div>
-                        <span id="paypal_pay" style="display:none"><?php echo $payment_button; ?></span>
-                     <span id="selection_message"></span>
-                                    </div>
-                            <%}%>
-           
-		
-</div>
- 
-                       
-                     </div>
+                <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
+                  <h3>Your selection</h3>
+                  <hr>
+                  <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
+                  <b> Wages per Minion:<span id="wages_per_minyawns">0</span><span>$</span></b>
+                  <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><!--<br>-->
+                  <div class="msg-info">
+                    <span>Please Note</span> Funds to minions will be released on job completion only. If minions don\'t show up, you will get full refund.
+                    <br> Any credit or debit card will do!
                   </div>
-    </form>
+                  <span id="paypal_pay" style="display:none"><?php echo $payment_button; ?></span>
+                  <span id="selection_message"></span>
+                </div>
+              <%}%>      
+            </div>
+			
+			<div class="row-fluid">
+			<div class="span12">
+			<h3 class="pull-left custom-h3">Applicants</h3>
+			</div>
+			</div>
+            <ul class="thumbnails">
+              <span class='load_ajaxsingle_job_minions' style="display:none"></span>
+			  <div class="row-fluid">
+			  <div class="span12">
+			  <a href="#" class="pull-right view-all-app">View All Applicants &raquo;</a>
+			  </div>
+			  </div>
+            </ul>
+            </br></br><span id="div_confirmhire"></span>
 
+            
 
+	        </div>
+		<div class="span5">
+			<!--comment starts-->
+  		<div class="msg-cover">
+    		<p class="msg left">Enter your Message here</p>
+    		<textarea class="full m-b-10" rows="3" ></textarea>
+    		<div class="right m-b-10">
+      		<input type="submit" class="btn green-btn" value="Post Message">
+      		<input type="submit" class="btn" value="Cancel">
+    		</div>
+		
 
+  		<div class="avatar-container">
+  			<div class="avatar-box">
+  				<div class="avatar left" href="#">
+  					<img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" class="avatar-img">
+  				</div>
+  				<div class="avatar-content">
+  					<h5 class="avatar-heading left">Alice Benz</h5>
+					<div class="comment-info m-b-10">
+  						<span class="comment-date right">
+  							14 July 2016
+  						</span>
+  						<span class="right">&nbsp;,&nbsp;</span>
+  						<span class="comment-time right">
+  						9:30 am
+  						</span>
+					</div>
+					<h5 class="avatar-heading left full-width"><small class="member-status"> Minyawn</small><small class="job-status"> Applied</small></h5>
+  					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+
+  					<div class="comment-info m-b-10">
+  						
+
+  						<span class="left rep-del">
+						<a href="#" class="comments">
+  								comments(3)
+  							</a>|
+  							<a href="#" class="reply">
+  								reply
+  							</a>|
+  							<a href="#" class="delete">
+  								delete
+  							</a>
+
+  						</span>
+  					</div>
+
+				
+    				</div>
+    				<div class="alert-msg">
+    					<div class="icon-close right">
+    						<a href="#" onclick="$('.alert-msg').hide()"><span class="glyphicon glyphicon-remove"></span></a>
+    					</div>
+    					Successfully deleted the message
+    				</div>
+    			</div>
+
+			    <div class="avatar-box">
+    				<div class="avatar left" href="#">
+    					<img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" class="avatar-img">
+    				</div>
+				
+    				<div class="avatar-content">
+    					<h5 class="avatar-heading left">John Smith</h5>
+    					<p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+    					<!--<div class="comment-info m-b-10">
+      					<span class="comment-date left">
+      					15 July 2016
+      					</span>
+      					<span class="left">&nbsp;|&nbsp;</span>
+      					<span class="comment-time left">
+      					10:45 am
+      					</span>
+
+    					  <span class="right rep-del">
+    							<a href="#" class="reply" onclick="$('.reply-txt').show();$('.rep-del').hide();">
+    								<span class="glyphicon glyphicon-share-alt"></span>
+    							</a>&nbsp;
+    							<a href="#" class="delete">
+    								<span class="glyphicon glyphicon-trash"></span>
+    							</a>
+    						</span>
+
+						    <div class="reply-txt">
+          				<p class="reply-msg left">Enter your Reply here</p>
+          				<textarea class="full m-tb-10" rows="3"></textarea>
+          				<div class="right m-b-10">
+          					<input type="submit" class="btn green-btn" value="Post Reply" onclick="$('.avatar-box-1').show();$('.reply-txt').hide();">
+          					<input type="submit" class="btn" value="Cancel" onclick="$('.reply-txt').hide();$('.rep-del').show();">
+          				</div>
+				        </div>
+				  	  </div>-->
+					  <div class="comment-info m-b-10" id="mf276">
+  						
+
+  						<span class="left rep-del" id="mf277">
+						<a href="#" class="comments" id="mfa22">
+  								comments(3)
+  							</a>|
+  							<a href="#" class="reply" id="mfa23">
+  								reply
+  							</a>|
+  							<a href="#" class="delete" id="mfa24">
+  								delete
+  							</a>
+
+  						</span>
+  					</div>
+				    </div>
+
+            <!--child-1-->				
+            <div class="avatar-box-1">
+      				<div class="avatar left" href="#">
+      					<img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" class="avatar-img">
+      				</div>
+      				<div class="avatar-content">
+      					<h5 class="avatar-heading left">Dorlem sipsum color sit amet</h5>
+					      <p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+        					<div class="comment-info m-b-10" id="mf199">
+  						
+
+  						<span class="left rep-del" id="mf200">
+						<a href="#" class="comments" id="mfa14">
+  								comments(3)
+  							</a>|
+  							<a href="#" class="reply" id="mfa15">
+  								reply
+  							</a>|
+  							<a href="#" class="delete" id="mfa16">
+  								delete
+  							</a>
+
+  						</span>
+  					</div>
+          				</div>
+          			</div>
+          			<!--child-1 ends-->
+
+                <!--child-2-->				
+                <div class="avatar-box-2">
+          				<div class="avatar left" href="#">
+          					<img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" class="avatar-img">
+          				</div>
+          				<div class="avatar-content">
+          					<h5 class="avatar-heading left">William Spoke</h5>
+					          <p class="comment m-tb-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+          					<div class="comment-info m-b-10" id="mf199">
+  						
+
+  						<span class="left rep-del" id="mf200">
+						<a href="#" class="comments" id="mfa14">
+  								comments(0)
+  							</a>|
+  							<a href="#" class="reply" id="mfa15">
+  								reply
+  							</a>|
+  							<a href="#" class="delete" id="mfa16">
+  								delete
+  							</a>
+
+  						</span>
+  					</div>
+				            </div>
+            			</div>
+            			<!--child-2 ends-->
+                </div>
+		          </div>
+            </div>
+			      <!--comment-ends-->
+      		</div>
+      		
+	      </div>
+      </div>
+
+        
+ 
+      </div>
+    </div>
+  </form>
+ 
 </script>
 
 
@@ -530,26 +671,28 @@ $current_user_role =  trim($user_role);
 
 <script type="text/template" id="minion-cards">
 
-
-    <li class="span3 thumbspan" id="<%= result.user_id %>" >
-
+	<!--<div class="row-fluid">-->
+    <li class="thumbspan" id="<%= result.user_id %>" >
+	
     <div class="thumbnail select-button-<%= result.user_id %>" id="thumbnail-<%= result.user_id %>">
     <div class="layer">
-    <div id="a" class="m1">
+    <!--<div id="a" class="m1">
     <div class="caption" >
     <% if(result.is_invited == 4){%>
      <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
      <%}%>
 
+	
     <div class="minyawns-img">
     <% if(result.is_hired === true){%>
-    <div class="minaywns-sel">
-	<i class="icon-ok"></i>
-	SELECTED
-	</div>
+      <div class="minaywns-sel">
+	     <i class="icon-ok"></i>
+      	SELECTED
+      </div>
     <% } %>
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>'><%= result.user_image%></a>
     </div>
+	
     <% if(result.is_verified === 'Y'){%>
     <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
     <div class="verfied-txt">Verified Minion</div>
@@ -593,17 +736,25 @@ $current_user_role =  trim($user_role);
 
     </div>
 
-    </div>
+    </div>-->
 
 
-    <div id="b" class="m2">
+    <div id="b" class=" m3">
 
-    <div class="caption" >
+    <div class="caption m4" >
     <div>
+	<div class="row-fluid">
+	<div class="span4">
     <div class="minyawns-img" >
-    <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
+        <% if(result.is_hired === true){%>
+          <div class="minaywns-sel">
+           <i class="icon-ok"></i>
+            <!--SELECTED-->
+          </div>
+        <% } %>
+      <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
     </div>
-    <div class="rating">
+    <div class="rating full-width">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
     <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
     </a>
@@ -611,12 +762,18 @@ $current_user_role =  trim($user_role);
     <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
     </a>
     </div>
-    <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
-    <div class="collage"> <%= result.college%> </div>
-    <div class="collage"> <%= result.major%> </div>
-    <div class="social-link">
+	</div>
+	<div class="span8">
+	<div class="row-fluid">
+	<div class="span8">
+    <h4 class="align-left"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
+    <div class="collage align-left"> <%= result.college%> </div>
+    <div class="collage align-left"> <%= result.major%> </div>
+    <div class="social-link align-left">
     <%= result.user_email %>
     </div>
+	</div>
+	<div class="span4">
     <div class="social-link   profile-social-link">
     <% if (result.linkedin.length > 0 ){%>
     <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
@@ -639,12 +796,11 @@ $current_user_role =  trim($user_role);
     <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
     <%} %>
             </div>
-    </div>
-
-
-
-    <div class="tags">
-    Tags:<br>
+			</div>
+			<div class="row-fluid">
+	<div class="span12">
+    <div class="tagsa">
+    Tags:
     <%
     var split_skills=result.user_skills.split(',');
     for(var index=0;index<=split_skills.length;index++){
@@ -653,7 +809,43 @@ $current_user_role =  trim($user_role);
 
     <% } %>
     </div>
+	</div>
+	</div>	
+			</div>
+			</div>
+</div>
+			<div class="">
+          <%= select_button %>
+		  
+		  
+        </div>
+		
+		<div class="dwn-btn review_popover">
+
+   <%= ratings_button %>
+<!--   <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <%= result.comment %></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <%= result.comment %></div><%}%>-->
+   </div>
+		  
+	
+        <div class="clearfix"></div>
+			
     </div>
+
+
+	
+    </div>
+	<!--like-dislike-btns-->
+	    <!--<div class="rating hider">
+      	<div class="like-dis">
+          <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
+            <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
+          </a>
+          <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
+            <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
+          </a>
+      	</div>
+    </div>-->
+	<!--like-dislike-btns-ends-->
 
     </div>
     </div>
@@ -665,13 +857,13 @@ $current_user_role =  trim($user_role);
     <%  if(result.comment !== 0){ %>   <div  class="comment-box"> <i class="icon-thumbs-up weldone"></i><%= result.comment %></div><% } %>
 
     </div>-->
-    <div class="dwn-btn review_popover">
+    <!--<div class="dwn-btn review_popover">-->
 
-   <%= ratings_button %>
+   <!--<%= ratings_button %>-->
 <!--   <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <%= result.comment %></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <%= result.comment %></div><%}%>-->
-   </div>
+   <!--</div>-->
 
-    <%= select_button %>
+    
     <!--<div class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
     <label class="onoffswitch-label" for="myonoffswitch">
@@ -680,6 +872,7 @@ $current_user_role =  trim($user_role);
     </label>
     </div>-->
     </li>
+	<!--</div>-->
 
 </script>
 
@@ -691,29 +884,67 @@ $current_user_role =  trim($user_role);
 </script>
 
 <script type="text/template" id="blank-card">
-    <li class="span3 thumbspan card" id="91">
+	<div class="row-fluid">
+    <li class="span3 thumbspan card find-min full-width" id="91">
     <div class="thumbnail select-button-91" id="thumbnail-91">
     <div class="m1">
     <div class="caption">
+	<div class="row-fluid">
+	<div class="span3">
     <div class="minyawns-img">
     <img src="<?php echo get_template_directory_uri(); ?>/images/avatar2.jpg" height="96" width="96"/>
     </div>
+	</div>
+	<div class="span5 width40">
     <h4> Why wait for Minions to apply?</h4>
     <div class="text-meta-bold">With over 500 Minions equipped with valuable skills from top universities. 
     </div>
     <div class="text-meta">
     </div>
+	</div>
+	<div class="span4">
  <% if(result.job_owner_id === logged_in_user_id && result.user_to_job_status.indexOf('hired') == -1){ %>
-    <a href="<?php echo site_url() ?>/minyawns-directory" target="_blank" class="btn btn-primary">
+    <a href="<?php echo site_url() ?>/minyawns-directory" target="_blank" class="btn btn-primary m-t-40">
     <i class="icon-eye-open"></i>
     View All Minions
     </a>
     <% } %>
+	</div>
+	</div>
     </div>
     </div>
 
     </div>
     </li>
+	</div>
+	
+	<div class="row-fluid">
+	<div class="span12">
+	<h3 class="custom-h3 pull-left m-t-10">Job Images</h3>
+	</div>
+	</div>
+	<div class="isotope">
+  <div class="grid-sizer"></div>
+  
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
+  
+ 
+  
+  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
+  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
+  
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/tour-deyorkshire.jpg" alt="Tour de Yorkshire" width="229"></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/my-name-is-buck.jpg" alt="My name is Buck" width="229"></div>
+  
+ 
+  
+  <div class="item"><img src="http://lorempixum.com/200/250/food/6" alt=""></div>
+  <div class="item"><img src="http://lorempixum.com/200/150/food/5" alt=""></div>
+  <div class="item"><img src="http://images.veerle.duoh.com/uploads/inspiration-images/oink-floyd-dark-side.jpg" alt="The dark side of the moon" width="229"></div>
+</div>
+					</div>
 </script>
 
 <script type="text/templates" id="no-result">
@@ -796,7 +1027,7 @@ $current_user_role =  trim($user_role);
       <div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
 			<div class="row-fluid">
                             <div class="span3"><br><img src="<?php echo get_template_directory_uri(); ?>/images/404error.png"/></div>
-				<div class="span9">	<h4 >No Access</h4>
+				<div class="span12">	<h4 >No Access</h4>
 		<hr>
 		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
 		<br>
