@@ -2367,6 +2367,11 @@ class PhotoAPI {
             array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
             );
 
+        //Upload route for user profile picture
+       $routes['/photos/upload/profile'] = array(
+            array( array( $this, 'upload_profile_picture'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
        //Delete route
        $routes['/photos/delete/(?P<photoid>\d+)'] = array(
             array( array( $this, 'delete_photos'), WP_JSON_Server::DELETABLE ),
@@ -2403,6 +2408,17 @@ class PhotoAPI {
         echo $response;
         exit;
     }
+
+
+
+     //Upload profile picture
+    public function upload_profile_picture(){
+        $response = json_encode( $this->photo_model->upload_profile_picture() );
+        header( "Content-Type: application/json" );
+        echo $response;
+        exit;
+    }
+
 
     //Delete photos and get response
     public function delete_photos($photoid){

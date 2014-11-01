@@ -159,6 +159,80 @@ return $response;
 
 
 
+//Upload Profile Picture
+public function upload_profile_picture(){
+$file = $_FILES['profile_photo']['tmp_name'];
+$filename = $_FILES['profile_photo']['name'];
+
+$user_id = $this->user_id;
+
+if(!$this->user_can_upload_profile_pic()){
+	return array(
+		'status'	=> false,
+		'error'		=> 'User not authorised to perform this task.',
+		);
+	exit;
+}
+
+ 
+$upload_file = wp_upload_bits($filename, null, file_get_contents($file));
+
+if (!$upload_file['error']) {
+	$wp_upload_dir = wp_upload_dir();
+	$wp_filetype = wp_check_filetype($filename, null );
+	$attachment = array(
+		'guid'           => $wp_upload_dir['url'] . '/' . $filename,
+		'post_mime_type' => $wp_filetype['type'],
+		'post_title' => preg_replace('/\.[^.]+$/', '', $filename),
+		'post_content' => '',
+		'post_author' => $user_id,
+		'post_status' => 'inherit'
+	);
+	$attachment_id = wp_insert_attachment( $attachment, $upload_file['file']);
+	if (!is_wp_error($attachment_id)) {
+		require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+		$attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
+		wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+
+		//Adding meta - user-avatar
+		update_user_meta( $user_id, 'avatar_attachment', $attachment_id );
+
+	}else{
+		$response = array(
+		'status'	=> false,
+		'error'		=> is_wp_error($attachment_id)
+		);
+	}
+
+	$image_url =   wp_get_attachment_image_src($attachment_id, 'large' );
+	
+	
+	$response = array(
+		'status'	=> true,
+		'photo'		=> array(
+			'id'	=> $attachment_id,
+			'url'	=> $image_url[0],
+			'author' => $user_id,
+			'date' => get_the_date('Y-m-d H:i:s.u',$attachment_id)
+			)
+		);
+
+	
+}else{
+	
+	$response = array(
+		'status'	=> false,
+		'error'		=> $upload_file['error']
+		);
+}
+
+return $response;
+
+}
+
+
+
+
 
 
 
@@ -220,6 +294,26 @@ foreach($results as $result){
 	 
 	return $data;
  
+}
+
+
+
+
+
+
+public function user_can_upload_profile_pic() {
+if($this->admin){
+	return true;
+	exit;
+
+//Check if is user logged in	
+}else if (!$this->logged_in){
+  return false;
+
+}else{
+	return true;
+}
+
 }
 
 
