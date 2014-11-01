@@ -397,7 +397,9 @@ review =""
 //photo upload scripts starts here
 
 function getJobPhotos(){
-
+ console.log("getJobPhotos")
+ console.log(SITEURL+"/api/photos/job/"+$("#jobid").val())
+ 
  $.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
                 console.log('collection')
                   _.each(collection, function(model) {
@@ -568,7 +570,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 */
  function display_job_photo_option(){
 
- 
+ console.log("display_job_photo_option")
         var user_minyawn = user_employer = user_admin = false;
  
         minyawnNo = current_job.toJSON().applied_user_id.indexOf(USER.id) 
