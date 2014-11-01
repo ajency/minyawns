@@ -6,6 +6,10 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+/*.msg-cover{
+	border-left:1px solid #ccc;
+	padding-left:10px;
+}*/
 .full {
   display: block;
   width: 100%;
@@ -24,6 +28,7 @@
   -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  /*margin:0 10px;*/
 }
 .m-b-10 {
   margin-bottom: 10px;
@@ -57,19 +62,22 @@
   padding: 5px 10px 10px;
   margin-bottom: 10px;
   overflow: auto;
-  box-shadow: 0 0 15px #cccccc;
+  /*box-shadow: 0 0 15px #cccccc;*/
+  border-bottom:1px dotted #ccc;
 }
 .avatar-container .avatar-box .comment {
   font-family: 'Lato';
   text-align: justify;
-  font-size: 14px;
+  /*font-size: 14px;*/
+  font-size:12px;
   clear: both;
-  line-height: 20px;
+  line-height: 16px;
   padding-right: 10px;
 }
 .avatar-container .avatar-box .reply-txt {
   display: none;
   clear: both;
+  padding:0 5px;
 }
 .avatar-container .avatar-box .reply-txt .reply-msg {
   font-family: 'Open Sans';
@@ -89,7 +97,8 @@
 .avatar-container .avatar-box .avatar-box .avatar-heading,
 .avatar-container .avatar-box .avatar-content .avatar-heading {
   margin: 0 0 5px;
-  font-size: 19px;
+  /*font-size: 19px;*/
+  font-size:15px;
   line-height: 1em;
   text-align: justify;
   font-weight: bold;
@@ -112,7 +121,8 @@
 .avatar-container .avatar-box .avatar-content .avatar-heading .member-status {
   color: #8ed030;
   font-family: 'Open Sans';
-  font-size: 12px;
+  /*font-size: 12px;*/
+  font-size: 11px;
   margin: 0 5px 0 0;
   font-weight: bold;
 }
@@ -130,6 +140,10 @@
 }
 .comment-info .rep-del .reply {
   color: #89c4f4;
+  font-size: 12px;
+}
+.comment-info .rep-del .comments {
+  font-size: 12px;
 }
 .comment-info a {
   text-decoration: none;
@@ -198,6 +212,7 @@
   font-size: 14px;
   color: #8f8f8f;
   cursor: pointer;
+  margin:0 10px;
 }
 .avatar-box-1 {
   margin-left: 29px;
@@ -242,11 +257,12 @@ img {
 }
 .avatar-box-1 .avatar,
 .avatar-box-2 .avatar {
-  width: 32px;
+  /*width: 32px;*/
+  width:48px;
 }
 .avatar-img {
-  border: 3px solid #8ed030;
+  /*border: 3px solid #8ed030;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
-  border-radius: 100%;
+  border-radius: 100%;*/
 }

@@ -2637,7 +2637,7 @@ body .jobs_table .data-title .profile-job {
   }
   body .review_popover {
     position: relative!important;
-    width: 96%!important;
+    /*width: 96%!important;*/
   }
   body .review_popover .comment-box {
     font-size: 11px;
@@ -4086,7 +4086,7 @@ body .jobs_table .data-title .profile-job {
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    padding: 7px;
+    padding: 6px;
     font-size: 11px;
   }
   body .job-view-list ._li .status .st-footer .st-applicant {
@@ -5762,9 +5762,9 @@ div.tooltip1:after {
 .profile-social-link i {
   width: 30px;
   height: 30px;
-  background: #8ed030;
+  /*background: @green;*/
   border-radius: 100%;
-  color: #FFF;
+  color: #ccc;
   font-size: 19px;
   display: inline-block;
   text-align: center;
@@ -6597,11 +6597,11 @@ div.tooltip1:after {
   clear: both;
 }
 .isotope .grid-sizer {
-  width: 33.33%;
+  width: 25%;
   border: 4px solid #fff;
 }
 .isotope .item {
-  width: 33.33%;
+  width: 25%;
   border: 4px solid #fff;
   float: left;
 }
