@@ -2513,14 +2513,14 @@ function toProperCase(str) {
 
     //isotope
 function set_isotope(){
-jQuery('.isotope').imagesLoaded( function(){
-      jQuery('.isotope').isotope({
-            itemSelector: '.item',
-            masonry: {
-              columnWidth: '.grid-sizer'
-            }
-          });
-		});
+            jQuery('.isotope').imagesLoaded( function(){
+jQuery('.isotope').isotope({
+itemSelector: '.item',
+masonry: {
+columnWidth: '.grid-sizer'
+}
+});
+});
 }
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
