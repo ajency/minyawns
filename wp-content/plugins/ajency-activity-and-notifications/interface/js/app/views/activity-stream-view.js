@@ -17,7 +17,7 @@
 
         SingleView.prototype.tagName = 'div';
 
-        SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content activity-main-{{id}}">me {{loggedinuser}} <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> <span class="right rep-del"> <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}"> comments({{comment_count}}) </a>&nbsp; <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"    activity="{{id}}"> <span class="glyphicon glyphicon-share-alt reply-activity reply-activity-{{id}}" activity="{{id}}"></span> </a>&nbsp; <a href="javascript:void(0)" class="delete"> <span class="glyphicon glyphicon-trash delete-activity delete-activity-{{id}}" activity="{{id}}" ></span> </a> </span> <div class="reply-txt reply-txt-{{id}}"> <p class="reply-msg left">Enter your Reply here</p><br> <textarea class="full m-tb-10" name="activity-comment-{{id}}" id="activity-comment-{{id}}" rows="2"></textarea> <div class="right m-b-10"> <input type="button" class="btn green-btn save-activity-reply" id="save-activity-reply-{{id}}" value="Post Reply"  activity="{{id}}"> <input type="button" class="btn cancel-activity-reply" value="Cancel"  activity="{{id}}"> </div> </div> </div> </div> <div class="alert-msg"> <div class="icon-close right"> <a href="#"  ><span class="glyphicon glyphicon-remove"></span></a> </div> Successfully deleted the message </div> </div>';
+        SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content activity-main-{{id}}"> <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> <span class="right rep-del"> <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}"> comments({{comment_count}}) </a>&nbsp; <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"    activity="{{id}}"> <span class="glyphicon glyphicon-share-alt reply-activity reply-activity-{{id}}" activity="{{id}}"></span> </a>&nbsp; <a href="javascript:void(0)" class="delete"> <span class="glyphicon glyphicon-trash delete-activity delete-activity-{{id}}" activity="{{id}}" ></span> </a> </span> <div class="reply-txt reply-txt-{{id}}"> <p class="reply-msg left">Enter your Reply here</p><br> <textarea class="full m-tb-10" name="activity-comment-{{id}}" id="activity-comment-{{id}}" rows="2"></textarea> <div class="right m-b-10"> <input type="button" class="btn green-btn save-activity-reply" id="save-activity-reply-{{id}}" value="Post Reply"  activity="{{id}}"> <input type="button" class="btn cancel-activity-reply" value="Cancel"  activity="{{id}}"> </div> </div> </div> </div> <div class="alert-msg"> <div class="icon-close right"> <a href="#"  ><span class="glyphicon glyphicon-remove"></span></a> </div> Successfully deleted the message </div> </div>';
 
         SingleView.prototype.mixinTemplateHelpers = function(data) {
           var activity_date, date_recorded, date_recorded_date, date_recorded_time;
@@ -29,7 +29,6 @@
           activity_date = moment(date_recorded_date);
           data.activity_date = activity_date.format("MMM Do YY");
           data.activity_time = date_recorded_time;
-          data.loggedinuser = ajan_loggedin_user.display_name;
           return data;
         };
 
@@ -53,14 +52,17 @@
           'click #ajan-post-activity': function(e) {
             var data;
             e.preventDefault();
-            console.log("click event");
-            data = {
-              content: $("#activity_content").val(),
-              item_id: ajan_item_id
-            };
-            $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
-            $(e.target).hide();
-            return this.trigger("save:new:activity", data);
+            if ($("#activity_content").val() === "") {
+              return $("#activity_content").after("<span class='error-message'>Mesage cannot be empty</span>");
+            } else {
+              data = {
+                content: $("#activity_content").val(),
+                item_id: ajan_item_id
+              };
+              $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
+              $(e.target).hide();
+              return this.trigger("save:new:activity", data);
+            }
           },
           'click .reply-activity': function(e) {
             $('.reply-txt-' + $(e.target).attr('activity')).show();
@@ -72,26 +74,38 @@
           },
           'click .save-activity-reply': function(e) {
             var data;
-            data = {
-              content: $('#activity-comment-' + $(e.target).attr('activity')).val(),
-              item_id: ajan_item_id,
-              secondary_item_id: $(e.target).attr('activity')
-            };
-            $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
-            $(e.target).next().hide();
-            $(e.target).hide();
-            return this.trigger("save:new:comment", data);
+            if ($('#activity-comment-' + $(e.target).attr('activity')).val() === "") {
+              return $('#activity-comment-' + $(e.target).attr('activity')).after("<span class='error-message'>Mesage cannot be empty</span>");
+            } else {
+              data = {
+                content: $('#activity-comment-' + $(e.target).attr('activity')).val(),
+                item_id: ajan_item_id,
+                secondary_item_id: $(e.target).attr('activity')
+              };
+              $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
+              $(e.target).next().hide();
+              $(e.target).hide();
+              return this.trigger("save:new:comment", data);
+            }
           },
           'click .delete-activity': function(e) {
-            $('.delete-activity-' + $(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>');
-            $('.delete-activity-' + $(e.target).attr('activity')).parent().hide();
-            return this.trigger("delete:activity", $(e.target).attr('activity'));
+            var check;
+            check = confirm('Are you sure you want to delete this activity?');
+            if (check === true) {
+              $('.delete-activity-' + $(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>');
+              $('.delete-activity-' + $(e.target).attr('activity')).parent().hide();
+              return this.trigger("delete:activity", $(e.target).attr('activity'));
+            }
           },
           'click .delete-comment': function(e) {
-            $('.delete-comment-' + $(e.target).attr('activity')).parent().append('<span class="throbber"></span>');
-            $(e.target).parent().hide();
-            console.log("delete-comment");
-            return this.trigger("delete:comment", $(e.target).attr('activity'));
+            var check;
+            check = confirm('Are you sure you want to delete this activity comment?');
+            if (check === true) {
+              $('.delete-comment-' + $(e.target).attr('activity')).parent().append('<span class="throbber"></span>');
+              $(e.target).parent().hide();
+              console.log("delete-comment");
+              return this.trigger("delete:comment", $(e.target).attr('activity'));
+            }
           },
           'click .get-comments': function(e) {
             return this.trigger("fetch:all:comments", $(e.target).attr('activity'));
