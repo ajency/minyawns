@@ -13,7 +13,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                   <div class="avatar left" href="#">
                       <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}">
                   </div>
-                  <div class="avatar-content activity-main-{{id}}">
+                  <div class="avatar-content activity-main-{{id}}">me {{loggedinuser}}
                       <h5 class="avatar-heading left">{{{action}}} </h5>
                       <h5 class="avatar-heading left full-width">
                       <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small>
@@ -75,6 +75,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 activity_date = moment(date_recorded_date) 
                 data.activity_date =activity_date.format("MMM Do YY");
                 data.activity_time =date_recorded_time;  
+                data.loggedinuser = ajan_loggedin_user.display_name
 
                 data
 
