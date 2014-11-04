@@ -2697,7 +2697,7 @@ function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$aut
     $user['id'] = $user_id;
     $user['user_login'] = $user_info->data->user_login;
     $user['user_email'] = $user_info->data->user_email;
-    $user['display_name'] = $user_info->data->display_name; 
+    $user['display_name'] = $user_info->data->first_name." ".$user_info->data->last_name; 
     $user['role'] =  key($user_info->caps) ;
     $user['display_role'] = $wp_roles->role_names[key($user_info->caps)] ;
     $user['avatar_url'] = $avatar_url;
