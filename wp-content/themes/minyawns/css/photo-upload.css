@@ -1,26 +1,27 @@
 #upload{
-    font-family:'PT Sans Narrow', sans-serif;
+    /*font-family:'PT Sans Narrow', sans-serif;
     background-color:#373a3d;
 
     background-image:-webkit-linear-gradient(top, #373a3d, #313437);
     background-image:-moz-linear-gradient(top, #373a3d, #313437);
     background-image:linear-gradient(top, #373a3d, #313437);
  
-    border-radius:3px;
+    border-radius:3px;*/
 }
 
 #drop{
     background-color: #2E3134; 
-    margin-bottom: 30px;
-    border: 20px solid rgba(0, 0, 0, 0);
+    /*margin-bottom: 30px;
+    border: 20px solid rgba(0, 0, 0, 0);*/
     border-radius: 3px;
-    border-image: url('images/upload/border-image.png') 25 repeat;
+    /*border-image: url('images/upload/border-image.png') 25 repeat;*/
     text-align: center;
     text-transform: uppercase;
 
     font-size:16px;
     font-weight:bold;
     color:#7f858a;
+	padding:15px 0;
 }
 
 #drop a{
@@ -35,7 +36,9 @@
 
 #upload ul{
     list-style:none;
-    margin:0 -15px; 
+    /*margin:0 -15px;*/
+	margin:0;
+	padding:0;
 }
 
 #upload ul li{
@@ -48,10 +51,11 @@
 
     border-top:1px solid #3d4043;
     border-bottom:1px solid #2b2e31;
-    padding:15px;
+    /*padding:15px;*/
     height: 100px;
 
     position: relative;
+	border-radius:3px;
 }
 
 #upload ul li input{
@@ -81,6 +85,7 @@
     color: #79B91E;
     position: absolute;
     top: 70px;
+	left:40%;
    
 }
 #upload ul li i{
