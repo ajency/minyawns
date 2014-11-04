@@ -338,13 +338,13 @@ $current_user_role =  trim($user_role);
             <input type="hidden" name="delete_nonce"  id="delete_nonce" value=""  >
            
             
-            <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">
+            <!--<div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">-->
              
                   <div class="row-fluid">
-                  <div class="span12">
+                  <div class="span6">
                     <div id="drop">
-                      Drop Your Job Photos Here 
-                      <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                      <p>Drop Your Job Photos Here </p>
+                      <a class="btn btn-primary"><i class="icon-file">&nbsp;</i>Browse</a>
                       <input type="file" name="photo" multiple />
                     </div>
 
@@ -352,8 +352,26 @@ $current_user_role =  trim($user_role);
                       <!-- The file uploads will be shown here -->
                     </ul>
                   </div>
+				  <div class="span6">
+					  <div class="alert alert-success alert-sidebar author-data">
+                      <b style="color:#000;">Employer Details</b>
+                      
+                      <div class="row-fluid">
+                      <div class="span3">
+                        <%= result.job_author_logo %>
+                      </div>
+                        <div class="span9 author-info">
+                        
+                                                <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
+                            <i class="icon-map-marker"></i> <%= result.job_company_location%>
+                        </div>
+                      </div>
+                        
+                        <br>
+                    </div>
+				  </div>
                 </div>
-            </div>  
+            <!--</div>-->  
 
 
           <!--jobphotos-->
