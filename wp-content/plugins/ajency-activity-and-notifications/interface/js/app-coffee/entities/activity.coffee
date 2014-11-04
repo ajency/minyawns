@@ -37,6 +37,9 @@ define ['startapp' , 'backbone'], (App) ->
         response.collection
         
     activityCollection = new ActivityCollection
+
+    currentActivityCollection = new ActivityCollection
+
     myarray = []
     
 
@@ -46,6 +49,9 @@ define ['startapp' , 'backbone'], (App) ->
     API =   
       getActivities:->
         activityCollection
+
+      getCurrentActivities:->
+        currentActivityCollection.reset(activityCollection.toJSON())
         
       saveActivity:(data)->
 
@@ -57,7 +63,7 @@ define ['startapp' , 'backbone'], (App) ->
 
       addActivity :(model)->
         console.log "model add activity"
-        activityCollection.add model
+        activityCollection.unshift model 
 
       getSingleActivity:(ID)->
         activityModel = activityCollection.get ID
@@ -65,6 +71,9 @@ define ['startapp' , 'backbone'], (App) ->
     
     App.reqres.setHandler "get:activity:collection", (data)->
       API.getActivities() 
+
+    App.reqres.setHandler "get:current:activity:collection", (data)->
+      API.getCurrentActivities() 
 
     App.reqres.setHandler "create:new:activity", (data)->
       API.saveActivity data

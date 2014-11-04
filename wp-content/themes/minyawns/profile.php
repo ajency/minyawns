@@ -345,13 +345,13 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     <input type="hidden" id="upload_nonce" name="upload_nonce" value="<?php echo $upload_nonce; ?>" />
                     <input type="hidden" id="delete_nonce" name="delete_nonce" value="<?php echo $delete_nonce; ?>" />
                     <input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
-                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
+                    <div class="" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
                      
                           <div class="row-fluid">
                           <div class="span12">
                             <div id="drop">
-                              Drop Your Photos Here <br>
-                              <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                              <p>Drop Your Photos Here</p>
+                              <a class="btn btn-primary"><i class="icon-file"></i>&nbsp;Browse</a>
                               <input type="file" name="photo" multiple />
                             </div>
 
@@ -364,7 +364,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     </form>
                      <div align="left" id="photos_title" class="photos-title" style="display:none"> <h7><?php if(get_current_user_id()==get_user_id()){ ?>My<?php } else{ echo $display_name."'s"; }?> Photos</h7></div>
 					<div class="isotope">
-                          <div class="grid-sizer"></div>
+                          <div class="grid-sizer-prof"></div>
                           
                           
                         </div>

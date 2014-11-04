@@ -630,7 +630,7 @@ function minyawn_job_apply() {
                 $status = 2;
         }
     }
-
+    do_action( 'apply_job', $min_job );
     // send mail to employer who created job
     send_mail_employer_apply_job($job_id, 'applied');
 
@@ -656,7 +656,7 @@ function minyawn_job_unapply() {
     ));
     // send mail to employer who created job
    // send_mail_employer_apply_job($job_id, 'unapplied');
-
+    do_action( 'unapply_job', $min_job );
     echo json_encode(array('success' => 1, 'new_action' => 'apply'));
 
     die;

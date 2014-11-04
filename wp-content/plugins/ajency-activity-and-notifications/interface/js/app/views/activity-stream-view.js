@@ -52,14 +52,17 @@
           'click #ajan-post-activity': function(e) {
             var data;
             e.preventDefault();
-            console.log("click event");
-            data = {
-              content: $("#activity_content").val(),
-              item_id: ajan_item_id
-            };
-            $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
-            $(e.target).hide();
-            return this.trigger("save:new:activity", data);
+            if ($("#activity_content").val() === "") {
+              return $("#activity_content").after("<span class='error-message'>Mesage cannot be empty</span>");
+            } else {
+              data = {
+                content: $("#activity_content").val(),
+                item_id: ajan_item_id
+              };
+              $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
+              $(e.target).hide();
+              return this.trigger("save:new:activity", data);
+            }
           },
           'click .reply-activity': function(e) {
             $('.reply-txt-' + $(e.target).attr('activity')).show();
@@ -71,29 +74,45 @@
           },
           'click .save-activity-reply': function(e) {
             var data;
-            data = {
-              content: $('#activity-comment-' + $(e.target).attr('activity')).val(),
-              item_id: ajan_item_id,
-              secondary_item_id: $(e.target).attr('activity')
-            };
-            $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
-            $(e.target).next().hide();
-            $(e.target).hide();
-            return this.trigger("save:new:comment", data);
+            if ($('#activity-comment-' + $(e.target).attr('activity')).val() === "") {
+              return $('#activity-comment-' + $(e.target).attr('activity')).after("<span class='error-message'>Mesage cannot be empty</span>");
+            } else {
+              data = {
+                content: $('#activity-comment-' + $(e.target).attr('activity')).val(),
+                item_id: ajan_item_id,
+                secondary_item_id: $(e.target).attr('activity')
+              };
+              $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
+              $(e.target).next().hide();
+              $(e.target).hide();
+              return this.trigger("save:new:comment", data);
+            }
           },
           'click .delete-activity': function(e) {
-            $('.delete-activity-' + $(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>');
-            $('.delete-activity-' + $(e.target).attr('activity')).parent().hide();
-            return this.trigger("delete:activity", $(e.target).attr('activity'));
+            var check;
+            check = confirm('Are you sure you want to delete this activity?');
+            if (check === true) {
+              $('.delete-activity-' + $(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>');
+              $('.delete-activity-' + $(e.target).attr('activity')).parent().hide();
+              return this.trigger("delete:activity", $(e.target).attr('activity'));
+            }
           },
           'click .delete-comment': function(e) {
-            $('.delete-comment-' + $(e.target).attr('activity')).parent().append('<span class="throbber"></span>');
-            $(e.target).parent().hide();
-            console.log("delete-comment");
-            return this.trigger("delete:comment", $(e.target).attr('activity'));
+            var check;
+            check = confirm('Are you sure you want to delete this activity comment?');
+            if (check === true) {
+              $('.delete-comment-' + $(e.target).attr('activity')).parent().append('<span class="throbber"></span>');
+              $(e.target).parent().hide();
+              console.log("delete-comment");
+              return this.trigger("delete:comment", $(e.target).attr('activity'));
+            }
           },
           'click .get-comments': function(e) {
             return this.trigger("fetch:all:comments", $(e.target).attr('activity'));
+          },
+          'change #activity_filter': function(e) {
+            console.log("change activity-filter");
+            return this.trigger("filter:activity", $(e.target).val());
           }
         };
 
@@ -102,18 +121,23 @@
           return this.trigger("fetch:latest:comments");
         };
 
-        ShowPackage.prototype.onItemAdded = function() {
-          console.log("view onDomRefresh");
-          $("#ajan-post-activity").show();
-          $("#ajan-post-activity").parent().parent().find(".throbber-container").remove();
+        ShowPackage.prototype.onShow = function() {
+          return this.trigger("create:filters");
+        };
+
+        ShowPackage.prototype.collectionEvents = {
+          'reset': 'collectionReset'
+        };
+
+        ShowPackage.prototype.collectionReset = function(model) {
           return this.trigger("get:user:info");
         };
 
         ShowPackage.prototype.onAddedActivityModel = function() {
-          console.log("onNewActivityAdded");
           $("#ajan-post-activity").show();
           $("#ajan-post-activity").parent().parent().find(".throbber-container").remove();
           $("#activity_content").val("");
+          $("#activity_filter").trigger('change');
           return this.trigger("get:user:info");
         };
 
@@ -131,8 +155,6 @@
 
         ShowPackage.prototype.onAddedCommentModel = function(model) {
           var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time;
-          console.log("onAddedCommentModel");
-          console.log(model);
           $("#save-activity-reply-" + model.get("secondary_item_id")).show();
           $("#save-activity-reply-" + model.get("secondary_item_id")).next().show();
           $("#save-activity-reply-" + model.get("secondary_item_id")).parent().parent().find(".throbber-container").remove();
@@ -150,7 +172,6 @@
         };
 
         ShowPackage.prototype.onActivityCommentsFetched = function(activity_comments, activity) {
-          console.log("collection of comments");
           $(".activity-main-" + activity).find('.avatar-box-1').remove();
           _.each(activity_comments.models, function(model) {
             var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time;
@@ -167,8 +188,22 @@
         };
 
         ShowPackage.prototype.onActivityCommentDeleted = function(activity) {
-          console.log("onActivityCommentDeleted");
           return $('#activity-comment-container-' + activity).remove();
+        };
+
+        ShowPackage.prototype.onGenerateFilters = function(activityFilters) {
+          return _.each(activityFilters, function(val) {
+            var displayVal;
+            console.log("val" + val);
+            displayVal = val.replace("_", " ");
+            displayVal = displayVal.charAt(0).toUpperCase() + displayVal.slice(1);
+            return $("#activity_filter").append(new Option(displayVal, val));
+          });
+        };
+
+        ShowPackage.prototype.onTriggerActivityFilter = function() {
+          console.log("onTriggerActivityFilter");
+          return this.trigger("filter:activity", $("#activity_filter").val());
         };
 
         return ShowPackage;

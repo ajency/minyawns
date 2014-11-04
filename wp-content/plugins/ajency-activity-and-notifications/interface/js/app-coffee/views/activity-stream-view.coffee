@@ -95,12 +95,14 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
  
             events      :
               'click #ajan-post-activity':(e)->
-                e.preventDefault()
-                console.log "click event"
-                data = {content:$("#activity_content").val(),item_id:ajan_item_id}
-                $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>')
-                $(e.target).hide()
-                @trigger "save:new:activity" , data
+                e.preventDefault()  
+                if $("#activity_content").val()==""
+                  $("#activity_content").after("<span class='error-message'>Mesage cannot be empty</span>")
+                else
+                  data = {content:$("#activity_content").val(),item_id:ajan_item_id}
+                  $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>')
+                  $(e.target).hide()
+                  @trigger "save:new:activity" , data
 
               'click .reply-activity' :(e)-> 
                 $('.reply-txt-'+$(e.target).attr('activity')).show()
@@ -111,44 +113,59 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
 
                 $('.reply-txt-'+$(e.target).attr('activity')).hide()
 
-              'click .save-activity-reply':(e)->  
-                data = {content:$('#activity-comment-'+$(e.target).attr('activity')).val(),item_id:ajan_item_id,secondary_item_id:$(e.target).attr('activity')}
-                $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>')
-                $(e.target).next().hide()
-                $(e.target).hide()
+              'click .save-activity-reply':(e)->
+                if $('#activity-comment-'+$(e.target).attr('activity')).val()==""
+                  $('#activity-comment-'+$(e.target).attr('activity')).after("<span class='error-message'>Mesage cannot be empty</span>")
+                else  
+                  data = {content:$('#activity-comment-'+$(e.target).attr('activity')).val(),item_id:ajan_item_id,secondary_item_id:$(e.target).attr('activity')}
+                  $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>')
+                  $(e.target).next().hide()
+                  $(e.target).hide()
                 
-                @trigger "save:new:comment" , data
+                  @trigger "save:new:comment" , data
 
-              'click .delete-activity':(e)-> 
-                $('.delete-activity-'+$(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>')
-                $('.delete-activity-'+$(e.target).attr('activity')).parent().hide()
-                @trigger "delete:activity" , $(e.target).attr('activity')
+              'click .delete-activity':(e)->
+                check = confirm('Are you sure you want to delete this activity?')
+                if check == true
+                  $('.delete-activity-'+$(e.target).attr('activity')).parent().parent().append('<span class="throbber"></span>')
+                  $('.delete-activity-'+$(e.target).attr('activity')).parent().hide()
+                  @trigger "delete:activity" , $(e.target).attr('activity')
 
-              'click .delete-comment':(e)-> 
-                $('.delete-comment-'+$(e.target).attr('activity')).parent().append('<span class="throbber"></span>')
-                $(e.target).parent().hide()
-                console.log "delete-comment"
-                @trigger "delete:comment" , $(e.target).attr('activity')
+              'click .delete-comment':(e)->
+                check = confirm('Are you sure you want to delete this activity comment?')
+                if check == true 
+                  $('.delete-comment-'+$(e.target).attr('activity')).parent().append('<span class="throbber"></span>')
+                  $(e.target).parent().hide()
+                  console.log "delete-comment"
+                  @trigger "delete:comment" , $(e.target).attr('activity')
 
               'click .get-comments':(e)-> 
                 @trigger "fetch:all:comments" ,$(e.target).attr('activity')
 
-            onRender:(collection)->
+              'change #activity_filter':(e)-> 
+                console.log "change activity-filter"
+                @trigger "filter:activity" ,$(e.target).val()
+
+            onRender:(collection)->    
               @trigger "get:user:info"
               @trigger "fetch:latest:comments"
 
-            onItemAdded:-> 
-              console.log "view onDomRefresh"
-              $("#ajan-post-activity").show()
-              $("#ajan-post-activity").parent().parent().find(".throbber-container").remove()
-              @trigger "get:user:info"  
+            onShow:()-> 
+              @trigger "create:filters" 
 
-            onAddedActivityModel : ()->
-              console.log "onNewActivityAdded" 
+            collectionEvents:
+                'reset': 'collectionReset'
+
+            collectionReset:(model)-> 
+              @trigger "get:user:info" 
+ 
+
+            onAddedActivityModel : ()-> 
               $("#ajan-post-activity").show()
               $("#ajan-post-activity").parent().parent().find(".throbber-container").remove()
-              $("#activity_content").val("")
-              @trigger "get:user:info"  
+              $("#activity_content").val("") 
+              $("#activity_filter").trigger('change') 
+              @trigger "get:user:info" 
 
             onChangeUserImage : (n)->
               _.each n.models, (model) -> 
@@ -162,9 +179,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 
                 return
 
-            onAddedCommentModel : (model)->
-              console.log "onAddedCommentModel"
-              console.log model
+            onAddedCommentModel : (model)->  
               $("#save-activity-reply-"+model.get("secondary_item_id")).show()
               $("#save-activity-reply-"+model.get("secondary_item_id")).next().show()
               $("#save-activity-reply-"+model.get("secondary_item_id")).parent().parent().find(".throbber-container").remove()
@@ -203,8 +218,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                       </div>')
               @trigger "get:user:info"  
 
-            onActivityCommentsFetched : (activity_comments,activity)->
-              console.log "collection of comments"
+            onActivityCommentsFetched : (activity_comments,activity)-> 
               $(".activity-main-"+activity).find('.avatar-box-1').remove()
               _.each activity_comments.models, (model) -> 
                 activity_date = model.get("date_recorded")
@@ -240,11 +254,21 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                       </div>')
               @trigger "get:user:info"  
 
-            onActivityCommentDeleted:(activity)->
-              console.log "onActivityCommentDeleted"
+            onActivityCommentDeleted:(activity)-> 
               $('#activity-comment-container-'+activity).remove()
 
-              
+            onGenerateFilters:(activityFilters)-> 
+              _.each activityFilters, (val) -> 
+                console.log "val"+val
+                displayVal = val.replace("_"," ")
+                displayVal =   displayVal.charAt(0).toUpperCase() + displayVal.slice(1);
+                $("#activity_filter").append new Option(displayVal, val)
+
+            
+
+            onTriggerActivityFilter:()-> 
+              console.log "onTriggerActivityFilter" 
+              @trigger "filter:activity" ,$("#activity_filter").val() 
 
            
 

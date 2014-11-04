@@ -7735,6 +7735,11 @@ body .job-view-list{
 		border:4px solid #fff;
 		
 	}
+	.grid-sizer-prof{
+		width: 50%;
+		border:4px solid #fff;
+		
+	}
 	.item{
 		.grid-sizer();
 		float:left;
@@ -7744,8 +7749,19 @@ body .job-view-list{
 				height:auto;
 			}
 	}
+	.item-prof{
+		.grid-sizer-prof();
+		float:left;
+		
+			img{
+				max-width:100% !important;
+				height:auto;
+			}
+	}
 	.item,
-	.grid-sizer{
+	.item-prof,
+	.grid-sizer,
+	.grid-sizer-prof{
 		@media screen and (max-width:768px){width:25%;}
 		@media screen and (max-width:640px){width:33.3%;}
 		@media screen and (max-width:480px){width:50%;}

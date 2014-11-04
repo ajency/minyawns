@@ -1,15 +1,26 @@
+
 <div class="msg-cover">
-			<form>
-    		<p class="msg left">Enter your Message here</p>
+			 
+        <div class="right">
+          Show: <select name="activity_filter" id="activity_filter" class="select-filter">
+            <option value="">Everything</option>
+          </select>
+        </div>
+    		<p class="msg left" style="clear: both;">Enter your Message here</p>
     		<textarea class="full m-b-10 clearfix" rows="3" name="content" id="activity_content"></textarea>
     		<div class="right m-b-10">
       		<input type="submit" id="ajan-post-activity" class="btn green-btn" value="Post Message">
-    		</div>
-    	</form>
+    		</div> 
 		
 
   		<div class="avatar-container" id="activity_container">
       
       </div>
+          <div class="alert-msg">
+                        <div class="icon-close right">
+                            <a href="#" onclick="$('.alert-msg').hide()"><span class="glyphicon glyphicon-remove"></span></a>
+                        </div>
+                        Successfully deleted the message
+                    </div>
 
 </div>

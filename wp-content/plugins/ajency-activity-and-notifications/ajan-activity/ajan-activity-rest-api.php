@@ -121,7 +121,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					if(isset($_REQUEST['activity_parent']) && $_REQUEST['activity_parent'] != ''){
 						$args['secondary_id'] = $_REQUEST['activity_parent'];
 					}
-					 	$args['sort'] = 'ASC';
+					 	$args['sort'] = 'DESC';
 				 
 				 		$args['per_page'] = '';
  						
@@ -155,7 +155,7 @@ function get_activitycomments(){
 					if(isset($_REQUEST['activity_parent']) && $_REQUEST['activity_parent'] != ''){
 						$args['activity_parent'] = $_REQUEST['activity_parent'];
 					}
-					 	$args['sort'] = 'ASC';
+					 	$args['sort'] = 'DESC';
 				 
  						
 					$data = ajan_get_activity_comments($args);

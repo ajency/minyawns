@@ -2555,9 +2555,132 @@ class PhotoAPI {
 
 }
 
+<<<<<<< HEAD
  
 
 
+=======
+//customization Activity n Notification plugin
+
+
+
+
+
+/*Activity and Notification*/
+
+function register_theme_activity_actions($args){
+
+    $args = array(
+                array(  'component_id'      =>  'job',
+                        'type'              =>  'job_created',
+                        'description'       =>  'Job Created',
+                        'format_callback'   =>  'format_job_create_activity'
+                    ),
+                 array(  'component_id'      =>  'job',
+                        'type'              =>  'job_updated',
+                        'description'       =>  'Job Updated',
+                        'format_callback'   =>  'format_job_update_activity'
+                    ),
+
+                 /*array(  'component_id'      =>  'activities',
+                        'type'              =>  'activities_comment',
+                        'description'       =>  'Comment',
+                        'format_callback'   =>  'format_job_comment_activity'
+                    ),*/
+
+                 array(  'component_id'      =>  'users',
+                        'type'              =>  'job_applied',
+                        'description'       =>  'Job Applied',
+                        'format_callback'   =>  'format_job_apply_activity'
+                    ),
+                 array(  'component_id'      =>  'users',
+                        'type'              =>  'job_unapplied',
+                        'description'       =>  'Job Unapplied',
+                        'format_callback'   =>  'format_job_unapply_activity'
+                    ),
+            ); 
+    return $args;
+
+}
+add_filter('ajan_register_theme_activity_actions','register_theme_activity_actions',10,1);
+
+
+
+
+
+function record_job_create_update_activity( $ID, $post ) {
+
+global $user_ID;
+$creator_user_info = get_userdata($user_ID);
+
+//Check if the job is not new
+        if ($post->post_date != $post->post_modified){
+            $args = array(         
+               'action'            => $creator_user_info->display_name.' updated job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
+               'component'         => 'job',
+               'type'              => 'job_updated',
+               'user_id'           => $user_ID,
+               'item_id'           => $ID
+               );
+        }else{
+
+            $args = array(         
+                'action'            => $creator_user_info->display_name.' created job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
+                'component'         => 'job',
+                'type'              => 'job_created',
+                'user_id'           => $user_ID,
+                'item_id'           => $ID
+                );
+        }
+
+        ajan_activity_add($args); 
+ 
+}
+add_action(  'publish_job',  'record_job_create_update_activity', 10, 2 );
+
+
+
+
+
+
+function record_job_apply_activity( $job ) {
+
+global $user_ID;
+$creator_user_info = get_userdata($user_ID);
+
+    $args = array(         
+        'action'            => $creator_user_info->display_name.' applied for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'component'         => 'users',
+        'type'              => 'job_applied',
+        'user_id'           => $user_ID,
+        'item_id'           => $job->ID
+        );
+
+    ajan_activity_add($args); 
+}
+
+add_action(  'apply_job',  'record_job_apply_activity', 10, 2 );
+
+
+
+
+function record_job_unapply_activity( $job ) {
+
+global $user_ID;
+$creator_user_info = get_userdata($user_ID);
+
+    $args = array(         
+        'action'            => $creator_user_info->display_name.' unapplied for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'component'         => 'users',
+        'type'              => 'job_unapplied',
+        'user_id'           => $user_ID,
+        'item_id'           => $job->ID
+        );
+
+    ajan_activity_add($args); 
+}
+add_action(  'unapply_job',  'record_job_unapply_activity', 10, 2 );
+>>>>>>> issue57new
 
 
 
