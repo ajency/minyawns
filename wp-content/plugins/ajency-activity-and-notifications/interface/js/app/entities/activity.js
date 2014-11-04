@@ -5,7 +5,7 @@
 
   define(['startapp', 'backbone'], function(App) {
     return App.module("Entities.Activity", function(Activity, App) {
-      var API, ActivityCollection, activityCollection, myarray;
+      var API, ActivityCollection, activityCollection, currentActivityCollection, myarray;
       Activity = (function(_super) {
         __extends(Activity, _super);
 
@@ -54,11 +54,15 @@
 
       })(Backbone.Collection);
       activityCollection = new ActivityCollection;
+      currentActivityCollection = new ActivityCollection;
       myarray = [];
       activityCollection.fetch();
       API = {
         getActivities: function() {
           return activityCollection;
+        },
+        getCurrentActivities: function() {
+          return currentActivityCollection.reset(activityCollection.toJSON());
         },
         saveActivity: function(data) {
           var activity, ajan_post_data;
@@ -70,7 +74,7 @@
         },
         addActivity: function(model) {
           console.log("model add activity");
-          return activityCollection.add(model);
+          return activityCollection.unshift(model);
         },
         getSingleActivity: function(ID) {
           var activityModel;
@@ -79,6 +83,9 @@
       };
       App.reqres.setHandler("get:activity:collection", function(data) {
         return API.getActivities();
+      });
+      App.reqres.setHandler("get:current:activity:collection", function(data) {
+        return API.getCurrentActivities();
       });
       App.reqres.setHandler("create:new:activity", function(data) {
         return API.saveActivity(data);

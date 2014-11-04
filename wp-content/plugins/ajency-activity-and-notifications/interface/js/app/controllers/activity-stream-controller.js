@@ -19,17 +19,23 @@
         activitystreamcontroller.prototype.initialize = function() {
           var view;
           this.activityCollection = App.request("get:activity:collection");
-          this.view = view = this._getView(this.activityCollection);
+          this.currentActivityCollection = App.request("get:current:activity:collection");
+          this.view = view = this._getView(this.currentActivityCollection);
           this.listenTo(view, "get:user:info", this._getUsers);
           this.listenTo(view, "fetch:latest:comments", this._getLatestComments);
+          this.listenTo(view, "create:filters", this._createFilters);
           this.listenTo(view, "fetch:all:comments", this._getAllComments);
           this.listenTo(view, "change:user:info", this._displayUserInfo);
           this.listenTo(view, "save:new:activity", this._saveActivity);
           this.listenTo(view, "save:new:comment", this._saveComment);
           this.listenTo(view, "delete:activity", this._deleteActivity);
           this.listenTo(view, "delete:comment", this._deleteComment);
+          this.listenTo(view, "filter:activity", this._filterActivity);
+          this.listenTo(view, "delete:comment", this._deleteComment);
+          this.listenTo(this.activityCollection, "add", this._triggerFilter);
           return App.execute("when:fetched", [this.activityCollection], (function(_this) {
             return function() {
+              _this.currentActivityCollection.reset(_this.activityCollection.toJSON());
               return _this.show(view);
             };
           })(this));
@@ -43,6 +49,10 @@
 
         activitystreamcontroller.prototype._getUsers = function() {
           var fetcheduser_ids, user_ids;
+          console.log("activityCollection");
+          console.log(this.activityCollection);
+          console.log("currentActivityCollection");
+          console.log(this.currentActivityCollection);
           if (_.isUndefined(this.userCollection)) {
             this.userCollection = new App.Entities.User.UserCollection;
           }
@@ -60,6 +70,14 @@
               };
             })(this)
           });
+        };
+
+        activitystreamcontroller.prototype._createFilters = function() {
+          var componentType;
+          componentType = _.uniq(this.activityCollection.pluck("type"));
+          console.log("componentType");
+          console.log(componentType);
+          return this.view.triggerMethod("generate:filters", componentType);
         };
 
         activitystreamcontroller.prototype._saveActivity = function(data) {
@@ -142,7 +160,8 @@
           return model.destroy({
             success: (function(_this) {
               return function(status, response) {
-                return console.log("status");
+                console.log("status");
+                return _this.currentActivityCollection.remove(model);
               };
             })(this)
           });
@@ -161,6 +180,23 @@
               };
             })(this)
           });
+        };
+
+        activitystreamcontroller.prototype._filterActivity = function(filterBy) {
+          var filteredActivityCollection;
+          console.log("filtering");
+          if (filterBy === "") {
+            return this.currentActivityCollection.reset(this.activityCollection.toJSON());
+          } else {
+            filteredActivityCollection = _.where(this.activityCollection.toJSON(), {
+              type: filterBy
+            });
+            return this.currentActivityCollection.reset(filteredActivityCollection);
+          }
+        };
+
+        activitystreamcontroller.prototype._triggerFilter = function() {
+          return this.view.triggerMethod("trigger:activity:filter");
         };
 
         return activitystreamcontroller;

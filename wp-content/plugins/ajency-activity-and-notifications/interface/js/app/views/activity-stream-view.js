@@ -109,6 +109,10 @@
           },
           'click .get-comments': function(e) {
             return this.trigger("fetch:all:comments", $(e.target).attr('activity'));
+          },
+          'change #activity_filter': function(e) {
+            console.log("change activity-filter");
+            return this.trigger("filter:activity", $(e.target).val());
           }
         };
 
@@ -117,18 +121,23 @@
           return this.trigger("fetch:latest:comments");
         };
 
-        ShowPackage.prototype.onItemAdded = function() {
-          console.log("view onDomRefresh");
-          $("#ajan-post-activity").show();
-          $("#ajan-post-activity").parent().parent().find(".throbber-container").remove();
+        ShowPackage.prototype.onShow = function() {
+          return this.trigger("create:filters");
+        };
+
+        ShowPackage.prototype.collectionEvents = {
+          'reset': 'collectionReset'
+        };
+
+        ShowPackage.prototype.collectionReset = function(model) {
           return this.trigger("get:user:info");
         };
 
         ShowPackage.prototype.onAddedActivityModel = function() {
-          console.log("onNewActivityAdded");
           $("#ajan-post-activity").show();
           $("#ajan-post-activity").parent().parent().find(".throbber-container").remove();
           $("#activity_content").val("");
+          $("#activity_filter").trigger('change');
           return this.trigger("get:user:info");
         };
 
@@ -146,8 +155,6 @@
 
         ShowPackage.prototype.onAddedCommentModel = function(model) {
           var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time;
-          console.log("onAddedCommentModel");
-          console.log(model);
           $("#save-activity-reply-" + model.get("secondary_item_id")).show();
           $("#save-activity-reply-" + model.get("secondary_item_id")).next().show();
           $("#save-activity-reply-" + model.get("secondary_item_id")).parent().parent().find(".throbber-container").remove();
@@ -165,7 +172,6 @@
         };
 
         ShowPackage.prototype.onActivityCommentsFetched = function(activity_comments, activity) {
-          console.log("collection of comments");
           $(".activity-main-" + activity).find('.avatar-box-1').remove();
           _.each(activity_comments.models, function(model) {
             var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time;
@@ -182,8 +188,22 @@
         };
 
         ShowPackage.prototype.onActivityCommentDeleted = function(activity) {
-          console.log("onActivityCommentDeleted");
           return $('#activity-comment-container-' + activity).remove();
+        };
+
+        ShowPackage.prototype.onGenerateFilters = function(activityFilters) {
+          return _.each(activityFilters, function(val) {
+            var displayVal;
+            console.log("val" + val);
+            displayVal = val.replace("_", " ");
+            displayVal = displayVal.charAt(0).toUpperCase() + displayVal.slice(1);
+            return $("#activity_filter").append(new Option(displayVal, val));
+          });
+        };
+
+        ShowPackage.prototype.onTriggerActivityFilter = function() {
+          console.log("onTriggerActivityFilter");
+          return this.trigger("filter:activity", $("#activity_filter").val());
         };
 
         return ShowPackage;

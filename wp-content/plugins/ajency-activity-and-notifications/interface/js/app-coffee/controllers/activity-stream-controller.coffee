@@ -12,11 +12,15 @@ define [
       initialize  :->
         @activityCollection = App.request "get:activity:collection"
 
-        @view = view = @_getView @activityCollection 
+        @currentActivityCollection = App.request "get:current:activity:collection"
+
+        @view = view = @_getView @currentActivityCollection 
 
         @listenTo view ,"get:user:info" , @_getUsers
 
         @listenTo view ,"fetch:latest:comments" , @_getLatestComments
+
+        @listenTo view ,"create:filters" , @_createFilters
 
         @listenTo view ,"fetch:all:comments" , @_getAllComments
 
@@ -30,7 +34,16 @@ define [
 
         @listenTo view , "delete:comment" , @_deleteComment
 
+        @listenTo view , "filter:activity" , @_filterActivity
+
+
+        @listenTo view , "delete:comment" , @_deleteComment
+
+        @listenTo @activityCollection , "add" , @_triggerFilter
+
+
         App.execute "when:fetched", [@activityCollection], =>
+          @currentActivityCollection.reset(@activityCollection.toJSON())
           @show view
 
        
@@ -39,6 +52,11 @@ define [
           collection : activityCollection
 
       _getUsers:() ->
+
+        console.log "activityCollection"
+        console.log @activityCollection
+        console.log "currentActivityCollection"
+        console.log @currentActivityCollection
         if _.isUndefined(@userCollection)
           @userCollection = new App.Entities.User.UserCollection
 
@@ -54,6 +72,13 @@ define [
             item_id: ajan_item_id
           success: (collection, response)=>
             @view.triggerMethod "change:user:image" , collection
+
+      _createFilters:() ->
+        componentType = _.uniq(@activityCollection.pluck("type"));
+        console.log "componentType"
+        console.log componentType
+        @view.triggerMethod "generate:filters" , componentType
+
 
       _saveActivity:(data)->
         console.log "controller save activity" 
@@ -115,6 +140,8 @@ define [
         model.destroy
           success: (status, response)=>
             console.log "status"
+            @currentActivityCollection.remove(model)
+
 
       _deleteComment:(activity)->  
         console.log "_deleteComment"
@@ -124,6 +151,21 @@ define [
           success: (status, response)=>
             console.log "status"
             @view.triggerMethod "activity:comment:deleted" , activity
+
+      _filterActivity:(filterBy)->   
+        console.log  "filtering"
+        if filterBy ==""
+          @currentActivityCollection.reset(@activityCollection.toJSON())  
+        else
+          filteredActivityCollection = _.where(@activityCollection.toJSON(),
+                                    type: filterBy
+                                  ) 
+          @currentActivityCollection.reset(filteredActivityCollection)  
+
+      _triggerFilter:->
+        @view.triggerMethod "trigger:activity:filter" 
+
+         
        
 
     App.commands.setHandler "show:activity:package", (opt = {})->

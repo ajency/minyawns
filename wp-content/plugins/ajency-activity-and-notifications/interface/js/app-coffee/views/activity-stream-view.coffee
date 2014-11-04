@@ -142,22 +142,30 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
               'click .get-comments':(e)-> 
                 @trigger "fetch:all:comments" ,$(e.target).attr('activity')
 
-            onRender:(collection)->
+              'change #activity_filter':(e)-> 
+                console.log "change activity-filter"
+                @trigger "filter:activity" ,$(e.target).val()
+
+            onRender:(collection)->    
               @trigger "get:user:info"
               @trigger "fetch:latest:comments"
 
-            onItemAdded:-> 
-              console.log "view onDomRefresh"
-              $("#ajan-post-activity").show()
-              $("#ajan-post-activity").parent().parent().find(".throbber-container").remove()
-              @trigger "get:user:info"  
+            onShow:()-> 
+              @trigger "create:filters" 
 
-            onAddedActivityModel : ()->
-              console.log "onNewActivityAdded" 
+            collectionEvents:
+                'reset': 'collectionReset'
+
+            collectionReset:(model)-> 
+              @trigger "get:user:info" 
+ 
+
+            onAddedActivityModel : ()-> 
               $("#ajan-post-activity").show()
               $("#ajan-post-activity").parent().parent().find(".throbber-container").remove()
-              $("#activity_content").val("")
-              @trigger "get:user:info"  
+              $("#activity_content").val("") 
+              $("#activity_filter").trigger('change') 
+              @trigger "get:user:info" 
 
             onChangeUserImage : (n)->
               _.each n.models, (model) -> 
@@ -171,9 +179,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                 
                 return
 
-            onAddedCommentModel : (model)->
-              console.log "onAddedCommentModel"
-              console.log model
+            onAddedCommentModel : (model)->  
               $("#save-activity-reply-"+model.get("secondary_item_id")).show()
               $("#save-activity-reply-"+model.get("secondary_item_id")).next().show()
               $("#save-activity-reply-"+model.get("secondary_item_id")).parent().parent().find(".throbber-container").remove()
@@ -212,8 +218,7 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                       </div>')
               @trigger "get:user:info"  
 
-            onActivityCommentsFetched : (activity_comments,activity)->
-              console.log "collection of comments"
+            onActivityCommentsFetched : (activity_comments,activity)-> 
               $(".activity-main-"+activity).find('.avatar-box-1').remove()
               _.each activity_comments.models, (model) -> 
                 activity_date = model.get("date_recorded")
@@ -249,11 +254,21 @@ define ['startapp','text!app/templates/activity-stream.html','moment'], (App,act
                       </div>')
               @trigger "get:user:info"  
 
-            onActivityCommentDeleted:(activity)->
-              console.log "onActivityCommentDeleted"
+            onActivityCommentDeleted:(activity)-> 
               $('#activity-comment-container-'+activity).remove()
 
-              
+            onGenerateFilters:(activityFilters)-> 
+              _.each activityFilters, (val) -> 
+                console.log "val"+val
+                displayVal = val.replace("_"," ")
+                displayVal =   displayVal.charAt(0).toUpperCase() + displayVal.slice(1);
+                $("#activity_filter").append new Option(displayVal, val)
+
+            
+
+            onTriggerActivityFilter:()-> 
+              console.log "onTriggerActivityFilter" 
+              @trigger "filter:activity" ,$("#activity_filter").val() 
 
            
 
