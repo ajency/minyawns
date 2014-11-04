@@ -2555,11 +2555,7 @@ class PhotoAPI {
 
 }
 
-<<<<<<< HEAD
  
-
-
-=======
 //customization Activity n Notification plugin
 
 
@@ -2680,7 +2676,7 @@ $creator_user_info = get_userdata($user_ID);
     ajan_activity_add($args); 
 }
 add_action(  'unapply_job',  'record_job_unapply_activity', 10, 2 );
->>>>>>> issue57new
+ 
 
 
 
