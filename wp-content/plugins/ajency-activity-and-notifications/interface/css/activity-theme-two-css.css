@@ -149,7 +149,7 @@
   text-decoration: none;
 }
 .alert-msg {
-  -webkit-border-radius: 4px;
+  /*-webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
   background: #bce8f1;
@@ -157,8 +157,19 @@
   display: none;
   margin: 10px 0;
   font-family: 'open sans';
-  font-size: 13px;
+  font-size: 13px;*/
   text-align: left;
+  text-align: left;
+	color: #417C4F;
+	padding: 8px;
+	text-shadow: none;
+	background-color: #C2FFA0;
+	border: 1px solid #A1EC8A;
+	font-size: 13px;
+	font-weight: 400;
+	-webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+	border-radius: 2px;
 }
 .icon-close {
   opacity: .4;

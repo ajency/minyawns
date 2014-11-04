@@ -10,7 +10,9 @@
 }
 
 #drop{
-    background-color: #2E3134; 
+    /*background-color: #2E3134; */
+	background:#f0f0f0;
+	border:1px solid #e0e0e0;
     /*margin-bottom: 30px;
     border: 20px solid rgba(0, 0, 0, 0);*/
     border-radius: 3px;
@@ -78,6 +80,7 @@
     color: #F65151;
     position: absolute;
     top: 70px;
+	left:40%;
    
 }
 #upload ul li   .process_successmsg{
