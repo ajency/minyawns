@@ -2472,8 +2472,8 @@ function login_response($user_id,$logged_in_cookie,$auth_cookie){
     $user['auth_cookie'] = $auth_cookie;
     $user['id'] = $user_id;
     $user['user_login'] = $user_info->data->user_login;
-    $user['user_email'] = $user_info->data->user_email;
-    $user['display_name'] = $user_info->data->first_name." ".$user_info->data->last_name; 
+    $user['user_email'] = $user_info->data->user_email; 
+    $user['display_name'] = $usermeta['first_name'][0]." ".$usermeta['last_name'][0]; 
     $user['role'] =  key($user_info->caps) ;
     $user['display_role'] = $wp_roles->role_names[key($user_info->caps)] ;
     $user['avatar_url'] = $avatar_url;
