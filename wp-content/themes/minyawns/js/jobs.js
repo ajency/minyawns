@@ -9,6 +9,13 @@ jQuery(document).ready(function($) {
  
 
 
+
+
+
+
+
+
+
 //actual price
 
 
@@ -399,11 +406,11 @@ review =""
 //photo upload scripts starts here
 
 function getJobPhotos(){
- console.log("getJobPhotos")
+
  console.log(SITEURL+"/api/photos/job/"+$("#jobid").val())
  
  $.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
-                console.log('collection')
+                console.log(collection);
                   _.each(collection, function(model) {
                       appendToGrid(model)
                   });
@@ -416,7 +423,9 @@ function getJobPhotos(){
 
 function getUserPhotos(user_id){
 
+        console.log('user-path:' + SITEURL+"/api/photos/user/"+user_id);
      $.get(SITEURL+"/api/photos/user/"+user_id, {}, function(collection)  { 
+
                  
                   _.each(collection, function(model) {
                       appendToGrid(model)
@@ -631,7 +640,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
  function display_user_photo_option(){
         display_user_photo_option_done= true
         user_id = jQuery("#upload").attr("user-id")
-        
+        console.log('user' + user_id);
         getUserPhotos(user_id);
  
         if(user_id==USER.id){
@@ -720,6 +729,7 @@ function fetch_my_jobs(id)
 
         },
         success: function(collection, response) {
+            console.log('new test');
             //jQuery(".load_ajax1_myjobs").hide();
 
             if (logged_in_role === 'Employer')
@@ -741,12 +751,13 @@ function fetch_my_jobs(id)
                 jQuery(".previous-jobs").hide();
                 jQuery("#accordion24").html(template);
 				
-                set_isotope()
+               /* set_isotope()
 
-                display_user_photo_option();
+                display_user_photo_option();*/
 
             } else {
-                // jQuery("#load-more-my-jobs").hide();
+
+                  // jQuery("#load-more-my-jobs").hide();
                 jQuery("#list-my-jobs").show();
                 jQuery(".no-result").hide()
                 //jQuery("#accordion24").empty();
@@ -796,17 +807,17 @@ function fetch_my_jobs(id)
                             jQuery("#selection").hide();
 							
 							//isitope 
-                            if(display_user_photo_option_done==false){
+                           /* if(display_user_photo_option_done==false){
                                  set_isotope()
 
                                 display_user_photo_option();
-                            }
+                            }*/
                            
   
 
                         } else
                         {
-                        	
+                        	console.log('test');
                         	var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                             jQuery("#accordion24").append(html);
@@ -848,6 +859,12 @@ function fetch_my_jobs(id)
                 jQuery(".dialog-success").show();//hiding add job button
                 jQuery("#loader").hide();
             }
+
+
+            //Display photos
+            set_isotope()
+            display_user_photo_option();
+
 
         },
         error: function(err) {

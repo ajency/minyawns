@@ -362,6 +362,9 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                         </div>
                     </div>
                     </form>
+
+                    <!-- <div class="row-fluid" id="photo-grid" style="display:none"> -->
+
                      <div align="left" id="photos_title" class="photos-title" style="display:none"> <h7><?php if(get_current_user_id()==get_user_id()){ ?>My<?php } else{ echo $display_name."'s"; }?> Photos</h7></div>
 					<div class="isotope">
                           <div class="grid-sizer-prof"></div>
