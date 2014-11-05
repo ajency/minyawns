@@ -2547,7 +2547,7 @@ function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$aut
     $user_info = get_userdata($user_id);
     $usermeta = get_user_meta($user_id);
     $attchid = $usermeta['avatar_attachment'][0];
-    $avatar_url = wp_get_attachment_image_src($attchid, 'large' )[0]; 
+   // $avatar_url = wp_get_attachment_image_src($attchid, 'large' )[0]; 
     $user['status'] = 'true';
     $user['logged_in_cookie_key'] = $logged_in_key;
     $user['logged_in_cookie_value'] = $logged_in_cookie;

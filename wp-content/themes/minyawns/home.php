@@ -47,7 +47,7 @@
 				<div class="span12">
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
 					<div class="banner-desc">1-day assistants for your 1-day tasks</div>
-					<div class="text-center">
+					<div class="text-center b-text">
 					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_employerregister" onclick="return true">Get Your Minyawn</a>
           			<!--<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_minyawnregister" onclick="return true">Minyawn Signup and Apply for Jobs Now</a>-->
 		  </div>
@@ -153,7 +153,7 @@
  
    <div class="container">
    
-      <div class="row-fluid">
+      <div class="row-fluid m-80">
          <!--<div class="span8">
             <br>
 			<div class="row-fluid">
@@ -267,11 +267,11 @@
 		
 		<div class="span6">
 			<div class="row-fluid">
-			<div class="span4 wwcd-1">
+			<div class="span4 wwcd-1 width100">
 			
 			</div>
-			<div class="span8">
-		<h4 class="white"><strong>THE BIZ GU</strong>RU</h4>
+			<div class="span8 m100">
+		<h5 class="white">THE BIZ GURU</h5>
 		<p class="white">The Biz Guru is here to represent your business. A personable Minyawn can help you sell your business through cold-calls, data-entry, marketing and more.</p>
 			</div>
 			</div>
@@ -279,44 +279,42 @@
 		
 		<div class="span6">
 			<div class="row-fluid">
-			<div class="span4 wwcd-2">
+			<div class="span4 wwcd-2 width100">
 			
 			</div>
-			<div class="span8">
-			<h4 class="white"><strong>THE TESTER</strong></h4>
+			<div class="span8 m100">
+			<h5 class="white">THE TESTER</h5>
 			<p class="white">Perfect for any tech company trying to test their product. Schedule a group of testers for market research and genuine feedback.</p>
 			</div>
 			</div>
 		</div>
-		
-		
-		<div class="row-fluid">
+	</div>
+	
+	<div class="row-fluid">
 		<div class="span6">
-			<div class="row-fluid">
-			<div class="span4 wwcd-3">
+			<div class="row-fluid m-50">
+			<div class="span4 wwcd-3 width100">
 			
 			</div>
-			<div class="span8">
-			<h4 class="white"><strong>THE TECHIE</strong></h4>
+			<div class="span8 m100">
+			<h5 class="white">THE TECHIE</h5>
 			<p class="white">Anything tech related -computers, phones, etc. Our techies can help you now, and teach you how to solve future problem.</p>
 			</div>
 			</div>
 		</div>
 		
 		<div class="span6">
-			<div class="row-fluid">
-			<div class="span4 wwcd-4">
+			<div class="row-fluid m-50">
+			<div class="span4 wwcd-4 width100">
 			
 			</div>
-			<div class="span8">
-			<h4 class="white"><strong>THE SERVER</strong></h4>
+			<div class="span8 m100">
+			<h5 class="white">THE SERVER</h5>
 			<p class="white">Good looking, outgoing, and know how to please your guests. Use them for any fancy event you to ensure a good time.</p>
 			</div>
 			</div>
 		</div>
 		</div>
-		
-      </div>
    </div>
 
  
@@ -853,6 +851,7 @@ $("#home-video img, #home-video span.play-button").on("click", function() {
   var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
   $(video).insertAfter($("#home-video img"));
   $("#home-video span.play-button").hide();
+  $(".banner-title, .banner-desc, .b-text").hide();
   var closebtn = '<span class="close-button"></span>';
   $(closebtn).insertAfter($(this));
   
