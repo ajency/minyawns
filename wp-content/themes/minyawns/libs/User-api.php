@@ -256,6 +256,46 @@ function get_user_profile_linkedin() {
    
 }
 
+
+//User profile id linkedin
+function user_profile_id_linkedin() {
+    return get_user_profile_id_linkedin();
+}
+
+function get_user_profile_id_linkedin() {
+    global $current_user_new;
+
+    $linkedin_url = preg_replace('#^http(s)?://#', '', rtrim($current_user_new->data->linkedin,'/'));
+    $url_array = explode("/", $linkedin_url);
+
+    if (count($url_array)>1){
+     return end($url_array);
+ }
+
+}
+
+
+
+
+//User profile id facebook
+function user_profile_id_facebook() {
+    return get_user_profile_id_facebook();
+}
+
+function get_user_profile_id_facebook() {
+    global $current_user_new;
+
+    $facebook_url = preg_replace('#^http(s)?://#', '', rtrim($current_user_new->data->facebook_link,'/'));
+    $url_array = explode("/", $facebook_url);
+
+    if (count($url_array)>1){
+     return end($url_array);
+ }
+
+}
+
+
+
 //user profile facebook
 function user_profile_facebook() {
     return get_user_profile_facebook();

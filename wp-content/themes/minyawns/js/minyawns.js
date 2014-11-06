@@ -843,12 +843,13 @@ var image_name=$("#image_name").val();
                 if (ele == 'user_skills2')
                     return;
 
-                if ((ele == 'facebook_link' && attr[ele] == '')   || (ele == 'linkedin' && attr[ele] == ''))
+
+                if (ele == 'linkedin')
                     return;
 
-                if ((validateURL(attr[ele]) === false && ele == 'facebook_link') || (validateURL(attr[ele]) === false && ele == 'linkedin')){ 
-                      errors.push({field: ele, msg: 'Please enter a valid url ' });
-                }
+                 if (ele == 'facebook_link')
+                    return;
+
 
                 if (attr[ele] == '')
                 {
@@ -881,7 +882,16 @@ var image_name=$("#image_name").val();
             _.each(error, function(ele, index) {
                 var msg = ucfirst(ele.msg);
 
+<<<<<<< HEAD
                
+=======
+                if (ele.field == "linkedin") {
+                    /*if (validateURL($("#linkedin").val()) === false) {
+                        $('#linkedin').parent().append('<span class="form-error">Please enter a valid url</span>');
+                        return false;
+                    }*/
+
+>>>>>>> issue#42
                     if (ele.field == "company_website") {
                         if (validateURL($("#company_website").val()) === false) {
                             $('#company_website').parent().append('<span class="form-error">Please enter a valid url</span>');

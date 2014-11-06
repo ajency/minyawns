@@ -135,19 +135,29 @@ require 'templates/_jobs.php';
                                     <input name="user_skills2" id="user_skills2" class="tagsinput1" value="<?php echo get_user_skills(); ?>"  style="width:60%;"/>
                                 </div>
                             </div>
+                          
+
                             <div class="control-group">
-                                <label class="control-label" for="LinkedIn">LinkedIn Link</label>
-                                <div class="controls">
-                                    <input type="text" id="linkedin"  name="linkedin" placeholder="www.linkedin.com/username" value="<?php echo user_profile_linkedin(); ?>" class="input">
+                              <label class="control-label" for="LinkedIn">LinkedIn Link</label>
+                              <div class="controls">
+                                <div class="input-prepend">
+                                <span class="add-on">http://linkedin.com/</span>
+                                <input type="text" id="linkedin"  name="linkedin" placeholder="username" value="<?php echo user_profile_id_linkedin(); ?>" class="input">
                                 </div>
+                              </div>
                             </div>
+
+                           
                             <div class="control-group">
-                                <label class="control-label" for="facebook_link">Facebook Link</label>
-                                <div class="controls">
-                                    <input type="text" id="facebook_link"  name="facebook_link" placeholder="www.facebook.com/username" value="<?php echo user_profile_facebook(); ?>" class="input">
-                                </div>
+                              <label class="control-label" for="facebook_link">Facebook Link</label>
+                              <div class="controls">
+                                <div class="input-prepend">
+                                <span class="add-on">http://facebook.com/</span>
+                                <input type="text" id="facebook_link"  name="facebook_link" placeholder="username" value="<?php echo user_profile_id_facebook(); ?>" class="input">
+                              </div>
+                              </div>
                             </div>
- 
+
 
                             <div class="control-group">
                                 <label class="control-label" for="upload_video">Intro Video</label>

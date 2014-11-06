@@ -21,6 +21,12 @@ $app->map('/user/', function() use ($app) {
                     if ($key == 'user_skills2')
                         $key = 'user_skills';
 
+                    if($key == 'facebook_link')
+                        $value = 'http://facebook.com/'.$value;
+
+                    if($key == 'linkedin')
+                        $value = 'http://linkedin.com/'.$value;
+
                     update_user_meta($user_id, $key, $value);
                 }
             }
