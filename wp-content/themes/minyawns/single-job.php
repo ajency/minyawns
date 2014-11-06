@@ -144,7 +144,9 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
 
         
         <div class="tab-pane jobs_table active single-job-1 rr single-view" id="tab2">
-		
+		DIANA
+<div id="main-region"></div> 
+<div id="sidebar-region"></div> 
           
             <div class="breadcrumb-text">
                 <p>
@@ -414,7 +416,8 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
     </div>
  
   
-</div>  
+</div> 
+
 
 <div class="hidden">
     <script type="text/javascript">

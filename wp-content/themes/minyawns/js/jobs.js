@@ -385,7 +385,7 @@ review =""
             display_job_photo_option();
 
                          //load messageboard
-            loadActivityStream($("#ajan-activity-stream-container"));
+           // loadActivityStream($("#ajan-activity-stream-container"));
            
 
         },

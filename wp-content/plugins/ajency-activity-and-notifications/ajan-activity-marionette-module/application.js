@@ -145,7 +145,7 @@ MessageBoardCtrl = (function(_super) {
       options = {};
     }
     return options.region.show(new NotificationView({
-      'template': '<h2>New templae</h2>'
+      'template': '<h2>New template WEDnesday</h2>'
     }));
   };
 
