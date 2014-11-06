@@ -1653,8 +1653,81 @@ $('#mylogin').live('keyup', function(e){
                     }
                 });
     });
-    /** Apply/UnApply code */
-    $('#apply-job-browse,#unapply-job').live('click', function(evt) {
+
+
+
+
+//Single job page apply click action
+$('#apply-job-browse').live('click', function(evt) {
+
+    var _this = $(this);
+    var _action = $(this).attr('data-action');
+    var _job_id = $(this).attr('data-job-id');
+    if(_action == "apply"){
+
+        if($("#apply-job-popup").length==0){
+
+            $( "body" ).append(appy_job_popup_content(_job_id))
+
+       }
+
+       $("#apply-job-popup").modal('show'); 
+   }
+
+   evt.preventDefault();
+});
+
+
+
+
+
+//apply job popup apply click action
+$('#apply-job-final').live('click', function(evt) {
+var _this = $(this);
+    var _action = $(this).attr('data-action');
+    var _job_id = $(this).attr('data-job-id');
+
+        evt.preventDefault();
+       
+
+        $(this).append(' <img src="' + siteurl + '/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
+        $(".load_ajax1").show();
+        $(".load_ajax3").show();
+
+
+    $.post(ajaxurl,
+                {
+                    action: 'minyawn_job_' + _action,
+                    job_id: parseInt(_job_id)
+                },
+        function(response) {
+
+            if (window.page === '1') 
+                window.location.reload();
+
+
+            load_browse_jobs(_job_id, 'single_json');
+            $(".load_ajax1").hide();
+
+            if (response.new_action == 'unapply')
+            {
+                $(_this).removeClass('btn btn-primary').addClass('btn btn-danger').attr('id', 'unapply-job').text('Unapply');
+                $(_this).attr('data-action', 'unapply');
+            }
+
+        }, 'json');
+
+});
+
+
+
+
+
+
+
+
+    /** UnApply code */
+    $('#unapply-job').live('click', function(evt) {
 
         var _this = $(this);
         var _action = $(this).attr('data-action');
@@ -1708,11 +1781,23 @@ $('#mylogin').live('keyup', function(e){
         }, 'json');
     });
 
-    function appy_job_popup_content(){
+    function appy_job_popup_content(_job_id){
 
         html  = '<div id="apply-job-popup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
       
-        html += '<div class="modal-body"><img src="'+warning_image.src +'">'
+        html += '<div class="modal-body">'
+
+        html += '<div class="warning-content">'
+
+        html += '<img src="'+warning_image.src +'">'
+
+        html += '<div class="popup-apply-btn-cont">'
+
+        html += '<a href="#" id="apply-job-final" class="btn btn-primary" data-action="apply" data-job-id="'+_job_id+'">Apply</a>'
+
+        html += '</div>'
+
+        html += '</div>'
          
         html += '</div>'
       

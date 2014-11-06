@@ -2,7 +2,7 @@
 /*
 photo upload scripts
 */
- var current_job;
+var current_job;
 var current_job_status;
 var display_user_photo_option_done = false;
 jQuery(document).ready(function($) {
