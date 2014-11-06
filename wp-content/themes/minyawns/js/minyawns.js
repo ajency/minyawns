@@ -884,13 +884,10 @@ var image_name=$("#image_name").val();
             _.each(error, function(ele, index) {
                 var msg = ucfirst(ele.msg);
 
-<<<<<<< HEAD
-               
-=======
-                if (ele.field == "linkedin") {
+
+                
                     
 
->>>>>>> issue#42
                     if (ele.field == "company_website") {
                         if (validateURL($("#company_website").val()) === false) {
                             $('#company_website').parent().append('<span class="form-error">Please enter a valid url</span>');
