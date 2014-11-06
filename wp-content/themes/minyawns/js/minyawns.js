@@ -864,6 +864,8 @@ var image_name=$("#image_name").val();
         }
 
     });
+
+
     $('a#update-profile-info').click(function(e) {
 //alert(validateURL("asdasd"));
         e.preventDefault();
@@ -881,10 +883,7 @@ var image_name=$("#image_name").val();
                 var msg = ucfirst(ele.msg);
 
                 if (ele.field == "linkedin") {
-                    /*if (validateURL($("#linkedin").val()) === false) {
-                        $('#linkedin').parent().append('<span class="form-error">Please enter a valid url</span>');
-                        return false;
-                    }*/
+                    
 
                     if (ele.field == "company_website") {
                         if (validateURL($("#company_website").val()) === false) {
