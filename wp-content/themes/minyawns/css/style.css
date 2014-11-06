@@ -529,7 +529,8 @@ margin-top: -2px;
 
 
 .modal.fade.in {
-top: 15%;
+/*top: 15%;*/
+	top:5%;
 }
 
 .fbLoginButton img
@@ -2854,7 +2855,8 @@ float:none !important;
  
 #apply-job-popup .modal-body{
 	max-height: 520px !important;
-}
+	
+	}
 
 
  
@@ -2913,5 +2915,3 @@ float:none !important;
 .item-remove{
 	cursor:pointer;
 } 
-
- 

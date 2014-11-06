@@ -6429,3 +6429,20 @@ div.tooltip1:after {
   font-size: 12px;
 }
 /*Payment modal style End*/
+/*modal popup*/
+.modal {
+  width: 500px;
+}
+.modal .modal-body {
+  overflow: inherit;
+  height: 460px;
+  padding: 0;
+}
+.modal .modal-body .modal-img {
+  position: absolute;
+  clip: rect(10px, 490px, 465px, 10px);
+  z-index: -1;
+}
+.modal .popup-apply-btn-cont {
+  margin-bottom: 10px;
+}

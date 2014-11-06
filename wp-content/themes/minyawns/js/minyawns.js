@@ -1789,16 +1789,16 @@ var _this = $(this);
 
         html += '<div class="warning-content">'
 
-        html += '<img src="'+warning_image.src +'">'
-
-        html += '<div class="popup-apply-btn-cont">'
-
-        html += '<a href="#" id="apply-job-final" class="btn btn-primary" data-action="apply" data-job-id="'+_job_id+'">Apply</a>'
-
-        html += '</div>'
+        html += '<img src="'+warning_image.src +'" class="modal-img">'
 
         html += '</div>'
          
+        html += '</div>'
+		
+		html += '<div class="popup-apply-btn-cont text-center">'
+
+        html += '<a href="#" id="apply-job-final" class="btn btn-primary" data-action="apply" data-job-id="'+_job_id+'">Apply</a>'
+
         html += '</div>'
       
         html += '</div>';
