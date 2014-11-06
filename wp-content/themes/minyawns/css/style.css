@@ -530,7 +530,8 @@ margin-top: -2px;
 
 
 .modal.fade.in {
-top: 15%;
+/*top: 15%;*/
+	top:5%;
 }
 
 .fbLoginButton img
@@ -2887,7 +2888,10 @@ float:none !important;
  
 #apply-job-popup .modal-body{
 	max-height: 520px !important;
-}
+	
+	}
+
+
  
 .icon-facebook{
 	/*background: none repeat scroll 0% 0% rgb(6, 173, 252) ! important;"*/
@@ -3008,6 +3012,7 @@ html body .minyawns-grid1 .thumbspan.card{
 }
  
 
+
 .icon-linkedin:hover{
 	color:rgb(0,133,175) !important;
 }
@@ -3016,4 +3021,16 @@ html body .minyawns-grid1 .thumbspan.card{
 	margin-top:6px;
 }
  
+
+ .load_ajax_large_minyawns_container{
+	 
+    overflow:hidden ;
+    text-align: center;
+    height: 101px; 
+  position:relative;
+ }
  
+.item-remove{
+	cursor:pointer;
+} 
+

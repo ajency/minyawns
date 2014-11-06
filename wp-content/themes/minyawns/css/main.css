@@ -6749,9 +6749,7 @@ div.tooltip1:after {
     width: 100%;
   }
 }
-<<<<<<< HEAD
- 
-=======
+
 .width100 {
   width: 100px !important;
 }
@@ -6779,4 +6777,22 @@ p.white {
   font-size: 16px;
   line-height: 26px;
 }
->>>>>>> homepage-chages
+
+/*modal popup*/
+.modal {
+  width: 500px;
+}
+.modal .modal-body {
+  overflow: inherit;
+  height: 460px;
+  padding: 0;
+}
+.modal .modal-body .modal-img {
+  position: absolute;
+  clip: rect(10px, 490px, 465px, 10px);
+  z-index: -1;
+}
+.modal .popup-apply-btn-cont {
+  margin-bottom: 10px;
+}
+
