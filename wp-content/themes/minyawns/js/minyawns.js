@@ -1785,7 +1785,7 @@ var _this = $(this);
 
         html  = '<div id="apply-job-popup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
       
-        html += '<div class="modal-body">'
+        html += '<div class="modal-body cust-modal-body">'
 
         html += '<div class="warning-content">'
 

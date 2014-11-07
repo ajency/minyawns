@@ -6433,12 +6433,12 @@ div.tooltip1:after {
 .modal {
   width: 500px;
 }
-.modal .modal-body {
+.modal .cust-modal-body {
   overflow: inherit;
   height: 460px;
   padding: 0;
 }
-.modal .modal-body .modal-img {
+.modal .cust-modal-body .modal-img {
   position: absolute;
   clip: rect(10px, 490px, 465px, 10px);
   z-index: -1;

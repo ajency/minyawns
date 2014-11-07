@@ -529,8 +529,8 @@ margin-top: -2px;
 
 
 .modal.fade.in {
-/*top: 15%;*/
-	top:5%;
+top: 10%;
+	
 }
 
 .fbLoginButton img
