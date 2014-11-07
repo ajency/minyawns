@@ -6430,19 +6430,19 @@ div.tooltip1:after {
 }
 /*Payment modal style End*/
 /*modal popup*/
-.modal {
-  width: 500px;
+.cust-modal {
+  width: 500px !important;
 }
-.modal .cust-modal-body {
-  overflow: inherit;
-  height: 460px;
-  padding: 0;
+.cust-modal .cust-modal-body {
+  overflow: inherit !important;
+  height: 460px !important;
+  padding: 0 !important;
 }
-.modal .cust-modal-body .modal-img {
+.cust-modal .cust-modal-body .modal-img {
   position: absolute;
   clip: rect(10px, 490px, 465px, 10px);
   z-index: -1;
 }
-.modal .popup-apply-btn-cont {
+.cust-modal .popup-apply-btn-cont {
   margin-bottom: 10px;
 }
