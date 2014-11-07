@@ -466,7 +466,7 @@ addthisevent.settings({
 													size="20" id="user_login" tabindex="1001" />
 											</div>
 											<div class="login_fields">
-												<?php do_action('login_form', 'resetpass'); ?>
+												<?php //do_action('login_form', 'resetpass'); ?>
 												<input type="button" id="user-submit" name="user-submit"
 													value="<?php _e('Reset my password'); ?>"
 													class="user-submit btn btn-large btn-block btn-inverse span2"
@@ -480,24 +480,16 @@ addthisevent.settings({
 											</div>
 										</form>
 									</div>
+
 										<div class="span6 fb-login fb-mobile">
 										<h6 class="align-center" style="margin-bottom: 0px;">Login
 											Using Facebook</h6>
 										<p class="align-center">Get using Minyawns, faster !</p>
 										<br>
 
-										<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
-
-										<?php
-										/*if(is_page('fb-connect-test')){ */
-											jfb_output_facebook_btn();
-
-										/*}
-										else{
-											echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
-										}*/
-										?>
+										<?php echo jfb_output_facebook_btn(); ?>
 									</div>
+
 										<span id="signup_subheader">Don’t have an account? <a href="#myModal" <?php /*id="get-minon"*/ ?>  data-toggle="modal" id="link_employerregister" class="login-signup" >Sign up here</a></span>	
 								</div>
 							</div>
