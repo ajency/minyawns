@@ -1,3 +1,7 @@
+_.templateSettings = {
+    evaluate: /\{\[([\s\S]+?)\]\}/g,
+    interpolate: /\{\{([\s\S]+?)\}\}/g
+};
 
 Marionette._ctrl = {};
 

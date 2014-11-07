@@ -33,7 +33,8 @@ add_action( 'admin_enqueue_scripts', 'ajan_core_confirmation_js' );
  * Load JS files.
  */
 function ajan_core_enqueue_js() {
-  wp_register_script('activity-stream-module', activitynotifications()->plugin_url . "ajan-activity-marionette-module/dist/aj-notification.js", array( 'jquery','underscore','backbone','marionette'), ajan_get_version() );
+  wp_register_script('activity-stream-module', activitynotifications()->plugin_url . "ajan-marionette-notification/dist/aj-notification.js", 
+  					array(), ajan_get_version() );
 	
 
 
