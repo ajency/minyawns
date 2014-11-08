@@ -65,7 +65,7 @@ var __hasProp = {}.hasOwnProperty,
         options = {};
       }
       return options.region.show(new NotificationView({
-        'template': '<h2>New templae</h2>'
+        'template': '<h2>New template diana</h2>'
       }));
     };
 

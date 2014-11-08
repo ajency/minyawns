@@ -143,10 +143,7 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
     <div class="tab-content" style="min-height:928px;">
 
         
-        <div class="tab-pane jobs_table active single-job-1 rr single-view" id="tab2">
-		DIANA
-<div id="main-region"></div> 
-<div id="sidebar-region"></div> 
+        <div class="tab-pane jobs_table active single-job-1 rr single-view" id="tab2"> 
           
             <div class="breadcrumb-text">
                 <p>

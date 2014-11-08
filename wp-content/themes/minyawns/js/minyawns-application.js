@@ -1,24 +1,24 @@
-jQuery(document).ready(function(){
-	window.app = new Marionette.Application();
+ 
+function loadPluginActivityStream(job_id){
 
-	app.addRegions({
-	  main: "#main-region",
-	  sideBar: "#sidebar-region"
+		window.app = new Marionette.Application();
+
+	app.addRegions({ 
+	  activityContainer: "#ajan-activity-stream-container"
 	});
 
-	app.module("aj-notification", AjNotificationModule);
+	app.module("aj-activity-stream", AjActivityStreamModule);
 
 	app.on('start', function(){
 		Marionette.run({
-				region : app.sideBar,
-				ctrl : 'MessageBoardCtrl',
+				region : app.activityContainer,
+				ctrl : 'ActivityStreamCtrl',
 				args :{
-					objectId : 23,
-					posttype : 'job',
-					style : 'default'
+					item_id : job_id, 
 				}
 			});
 	});
 	app.start();
+}
 
-});
+ 

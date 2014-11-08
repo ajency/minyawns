@@ -133,6 +133,8 @@ function minyawns_scripts_styles() {
     wp_deregister_script('jquery-ui-core'); 
     wp_dequeue_script('underscore');
     wp_deregister_script('underscore');
+     wp_enqueue_script('minyawns-moment', get_template_directory_uri() . '/js/moment.js', array(), null);
+   
     wp_enqueue_script('minyawns-jquery', get_template_directory_uri() . '/js/jquery.js', array(), null);
     wp_enqueue_script('minyawns-jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array(), null);
        

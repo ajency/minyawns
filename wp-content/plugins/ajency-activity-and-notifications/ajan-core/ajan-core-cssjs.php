@@ -33,16 +33,17 @@ add_action( 'admin_enqueue_scripts', 'ajan_core_confirmation_js' );
  * Load JS files.
  */
 function ajan_core_enqueue_js() {
-  wp_register_script('activity-stream-module', activitynotifications()->plugin_url . "ajan-marionette-notification/dist/aj-notification.js", 
+  wp_register_script('activity-stream-module', activitynotifications()->plugin_url . "ajan-marionete-activity-stream/dist/aj-activity-stream.js", 
   					array(), ajan_get_version() );
 	
-
+wp_localize_script( 'activity-stream-module', 'AJANSITEURL', site_url());
+wp_localize_script( 'activity-stream-module', 'NOAVATAR',  activitynotifications()->plugin_url. "interface/img/non-avatar.jpg");
+		
 
 	$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	wp_enqueue_script( 'ajan-interface', activitynotifications()->plugin_url . "interface/interface.js", array( 'jquery' ), ajan_get_version() );
 	wp_localize_script( 'ajan-interface', 'AJANPLUGINPATH', activitynotifications()->plugin_url. "interface/");
 	wp_localize_script( 'ajan-interface', 'BUST', date('dmyhis'));
-	wp_localize_script( 'ajan-interface', 'NOAVATAR',  activitynotifications()->plugin_url. "interface/img/non-avatar.jpg");
 	wp_localize_script( 'ajan-interface', 'ACTIVITY_NONCE_STRING',  wp_create_nonce("ACTIVITY_NONCE_STRING")); 
  
  	wp_enqueue_style('activity-theme-one-css', activitynotifications()->plugin_url . "interface/css/activity-theme-one-css.css", array(), null);

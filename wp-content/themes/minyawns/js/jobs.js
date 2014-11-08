@@ -172,7 +172,7 @@ function load_add_job_form(event) {
 
 }
 function load_browse_jobs(id, _action, category_ids) {
-
+ 
 $ = jQuery;
     jQuery("#sidebar-content").show();
     $("#my-jobs-emp-min").hide();
@@ -385,6 +385,7 @@ review =""
             display_job_photo_option();
 
                          //load messageboard
+            loadPluginActivityStream(id);
            // loadActivityStream($("#ajan-activity-stream-container"));
            
 
