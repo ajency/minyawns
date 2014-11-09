@@ -424,7 +424,7 @@
 									            <option value="">Everything</option>
 									          </select>
 									        </div>
-									    		<p class="msg left" style="clear: both;">Enter your Message here</p>
+									    		<p class="msg left" >Enter your Message here</p><br>
 									    		<textarea class="full m-b-10 clearfix" rows="3" name="content" id="activity_content"></textarea>
 									    		<div class="right m-b-10">
 									      		<input type="submit" id="ajan-post-activity" class="btn green-btn" value="Post Message">
@@ -483,7 +483,6 @@
 									if check == true 
 										$('.delete-comment-'+$(e.target).attr('activity')).parent().append('<span class="throbber"></span>')
 										$(e.target).parent().hide()
-										console.log "delete-comment"
 										@trigger "delete:comment" , $(e.target).attr('activity')
 	
 			'click .get-comments':(e)-> 
@@ -493,7 +492,6 @@
 									@trigger "create:filters" ,$(e.target).val()
 	
 			'change #activity_filter':(e)-> 
-									console.log "change activity-filter"
 									@trigger "filter:activity" ,$(e.target).val()
 	
 		onRender:(collection)->    
@@ -501,13 +499,11 @@
 			@trigger "fetch:latest:comments"
 	
 		onShow:()->
-			console.log "showing" 
 	
 		collectionEvents:
 			'reset': 'collectionReset'
 	
 		collectionReset:(model)-> 
-			console.log "collection has been reset"
 			@trigger "get:user:info" 
 	 
 	
@@ -570,6 +566,7 @@
 			@trigger "get:user:info"  
 	
 		onActivityCommentsFetched : (activity_comments,activity)-> 
+			console.log "onActivityCommentsFetched"
 			$(".activity-main-"+activity).find('.avatar-box-1').remove()
 			_.each activity_comments.models, (model) -> 
 				activity_date = model.get("date_recorded")
@@ -613,10 +610,7 @@
 			$("#activity_filter").empty()
 			$('#lstCities option[value!="'+selectedFilter+'"]').remove();
 			$("#activity_filter").append new Option("Everything", "")
-			console.log "activityFilters"
-			console.log activityFilters
 			_.each activityFilters, (val) -> 
-				console.log "val"+val
 				displayVal = val.replace("_"," ")
 				displayVal =   displayVal.charAt(0).toUpperCase() + displayVal.slice(1);
 				$("#activity_filter").append new Option(displayVal, val)
@@ -641,8 +635,6 @@
 			@commentCollection = new CommentCollection(options)
 	
 			@view = view = @_getView @currentActivityCollection 
-			console.log "activity stream controllen init"
-			console.log options
 			@activityCollection.fetch
 				wait: true
 				data:
@@ -687,8 +679,6 @@
 				#now @show view
 	
 		show:(view) =>
-			console.log("showview")
-			console.log(@options.region)
 			@options.region.show @view
 	
 		_getView: (activityCollection) -> 
@@ -696,10 +686,6 @@
 				collection :  activityCollection
 	
 		_getUsers:() -> 
-			console.log "activityCollection"
-			console.log @activityCollection
-			console.log "currentActivityCollection"
-			console.log @currentActivityCollection
 			#now if _.isUndefined(@userCollection)
 				#now @userCollection = new App.Entities.User.UserCollection
 	
@@ -718,17 +704,12 @@
 	
 		_createFilters:(selectedFilter) ->
 			componentType = _.uniq(@activityCollection.pluck("type"));
-			console.log "componentType"
-			console.log componentType
 			@view.triggerMethod "generate:filters" , componentType ,selectedFilter
 	
 	
 		_saveActivity:(data)-> 
 			data.item_id = @options.options.item_id
-			console.log data
-			console.log "controller save activity" 
 			activityModel = new ActivityModel data
-			console.log (activityModel)
 			activityModel.save null,
 				emulateJSON : true, 
 				wait: true
@@ -736,7 +717,6 @@
 	
 		_saveComment:(data)->
 			data.item_id = @options.options.item_id
-			console.log "controller save comment" 
 			commentModel = new CommentModel(data)
 			commentModel.save null,
 							emulateJSON : true, 
@@ -744,15 +724,12 @@
 							success : @_commentAdded
 	
 		_activityAdded :(model,response)=>
-			console.log "controller added activity"
 			@activityCollection.unshift model 
-			console.log @activityCollection
 			#now App.execute "add:new:activity:model", model
 			@view.triggerMethod "added:activity:model"
 			
 	
 		_commentAdded :(model,response)=>
-			console.log "controller added comment"
 			@commentCollection.add model 
 			secondary_item_id = model.get("secondary_item_id") 
 			parentModel = @activityCollection.get(secondary_item_id)
@@ -765,7 +742,7 @@
 			@view.triggerMethod "added:comment:model" , model
 	
 		_getLatestComments:-> 
-			console.log "get latest comments"
+			console.log "_getLatestComments"
 			activity_ids = @activityCollection.pluck("id"); 
 			activity_ids = activity_ids.join() 
 			#now @commentCollection = new App.Entities.Comment.CommentCollection
@@ -775,10 +752,10 @@
 					item_id : @options.item_id
 					records : 3
 				success: (collection, response)=>
+					console.log "_getLatestComments fetched"
 					@view.triggerMethod "activity:comments:fetched" , collection
 	
 		_getAllComments:(activity)->
-			console.log "get All comments" 
 			#now @commentCollection = new App.Entities.Comment.CommentCollection
 			@commentCollection.fetch   
 				data:
@@ -786,7 +763,6 @@
 					item_id : @options.item_id
 					records : ''
 				success: (collection, response)=>
-					console.log collection.length
 					@view.triggerMethod "activity:comments:fetched" , collection, activity
 	
 	
@@ -799,13 +775,10 @@
 	
 	
 		_deleteComment:(activity)->  
-			console.log "_deleteComment"
-			console.log @commentCollection
 			model =  @commentCollection.get activity
 			secondary_item_id = model.get("secondary_item_id") 
 			model.destroy
 				success: (status, response)=>
-					console.log "status"
 					parentModel = @activityCollection.get(secondary_item_id)
 					clonedParentModel = @currentActivityCollection.get(secondary_item_id) 
 					comment_count = parentModel.get("comment_count") 
@@ -816,9 +789,6 @@
 					@view.triggerMethod "activity:comment:deleted" , activity
 	
 		_filterActivity:(filterBy)->   
-			console.log  "filtering......."   
-			console.log  filterBy
-	
 			if filterBy ==""
 				@currentActivityCollection.reset(@activityCollection.toJSON())  
 			else
@@ -826,9 +796,6 @@
 																	type: filterBy
 																) 
 				@currentActivityCollection.reset(filteredActivityCollection)
-	
-			console.log  "filtered......." 
-			console.log(@currentActivityCollection)  
 	
 		_triggerFilter:->
 			@view.triggerMethod "trigger:activity:filter" 

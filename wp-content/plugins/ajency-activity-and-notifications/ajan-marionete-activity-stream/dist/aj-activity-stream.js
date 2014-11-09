@@ -347,7 +347,7 @@ var __hasProp = {}.hasOwnProperty,
 
     ShowPackage.prototype.initialize = function(options) {};
 
-    ShowPackage.prototype.template = '<div class="msg-cover"> <div class="right"> Show: <select name="activity_filter" id="activity_filter" class="select-filter"> <option value="">Everything</option> </select> </div> <p class="msg left" style="clear: both;">Enter your Message here</p> <textarea class="full m-b-10 clearfix" rows="3" name="content" id="activity_content"></textarea> <div class="right m-b-10"> <input type="submit" id="ajan-post-activity" class="btn green-btn" value="Post Message"> </div> <div class="avatar-container" id="activity_container"> </div> </div>';
+    ShowPackage.prototype.template = '<div class="msg-cover"> <div class="right"> Show: <select name="activity_filter" id="activity_filter" class="select-filter"> <option value="">Everything</option> </select> </div> <p class="msg left" >Enter your Message here</p><br> <textarea class="full m-b-10 clearfix" rows="3" name="content" id="activity_content"></textarea> <div class="right m-b-10"> <input type="submit" id="ajan-post-activity" class="btn green-btn" value="Post Message"> </div> <div class="avatar-container" id="activity_container"> </div> </div>';
 
     ShowPackage.prototype.childView = SingleView;
 
@@ -406,7 +406,6 @@ var __hasProp = {}.hasOwnProperty,
         if (check === true) {
           $('.delete-comment-' + $(e.target).attr('activity')).parent().append('<span class="throbber"></span>');
           $(e.target).parent().hide();
-          console.log("delete-comment");
           return this.trigger("delete:comment", $(e.target).attr('activity'));
         }
       },
@@ -417,7 +416,6 @@ var __hasProp = {}.hasOwnProperty,
         return this.trigger("create:filters", $(e.target).val());
       },
       'change #activity_filter': function(e) {
-        console.log("change activity-filter");
         return this.trigger("filter:activity", $(e.target).val());
       }
     };
@@ -427,16 +425,13 @@ var __hasProp = {}.hasOwnProperty,
       return this.trigger("fetch:latest:comments");
     };
 
-    ShowPackage.prototype.onShow = function() {
-      return console.log("showing");
-    };
+    ShowPackage.prototype.onShow = function() {};
 
     ShowPackage.prototype.collectionEvents = {
       'reset': 'collectionReset'
     };
 
     ShowPackage.prototype.collectionReset = function(model) {
-      console.log("collection has been reset");
       return this.trigger("get:user:info");
     };
 
@@ -479,6 +474,7 @@ var __hasProp = {}.hasOwnProperty,
     };
 
     ShowPackage.prototype.onActivityCommentsFetched = function(activity_comments, activity) {
+      console.log("onActivityCommentsFetched");
       $(".activity-main-" + activity).find('.avatar-box-1').remove();
       _.each(activity_comments.models, function(model) {
         var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time;
@@ -502,11 +498,8 @@ var __hasProp = {}.hasOwnProperty,
       $("#activity_filter").empty();
       $('#lstCities option[value!="' + selectedFilter + '"]').remove();
       $("#activity_filter").append(new Option("Everything", ""));
-      console.log("activityFilters");
-      console.log(activityFilters);
       return _.each(activityFilters, function(val) {
         var displayVal;
-        console.log("val" + val);
         displayVal = val.replace("_", " ");
         displayVal = displayVal.charAt(0).toUpperCase() + displayVal.slice(1);
         return $("#activity_filter").append(new Option(displayVal, val));
@@ -538,8 +531,6 @@ var __hasProp = {}.hasOwnProperty,
       this.userCollection = new UserCollection(options);
       this.commentCollection = new CommentCollection(options);
       this.view = view = this._getView(this.currentActivityCollection);
-      console.log("activity stream controllen init");
-      console.log(options);
       this.activityCollection.fetch({
         wait: true,
         data: {
@@ -569,8 +560,6 @@ var __hasProp = {}.hasOwnProperty,
     };
 
     ActivityStreamCtrl.prototype.show = function(view) {
-      console.log("showview");
-      console.log(this.options.region);
       return this.options.region.show(this.view);
     };
 
@@ -582,10 +571,6 @@ var __hasProp = {}.hasOwnProperty,
 
     ActivityStreamCtrl.prototype._getUsers = function() {
       var fetcheduser_ids, user_ids;
-      console.log("activityCollection");
-      console.log(this.activityCollection);
-      console.log("currentActivityCollection");
-      console.log(this.currentActivityCollection);
       user_ids = this.activityCollection.pluck("user_id");
       fetcheduser_ids = this.userCollection.pluck("ID");
       user_ids = _.difference(_.uniq(user_ids), fetcheduser_ids);
@@ -606,18 +591,13 @@ var __hasProp = {}.hasOwnProperty,
     ActivityStreamCtrl.prototype._createFilters = function(selectedFilter) {
       var componentType;
       componentType = _.uniq(this.activityCollection.pluck("type"));
-      console.log("componentType");
-      console.log(componentType);
       return this.view.triggerMethod("generate:filters", componentType, selectedFilter);
     };
 
     ActivityStreamCtrl.prototype._saveActivity = function(data) {
       var activityModel;
       data.item_id = this.options.options.item_id;
-      console.log(data);
-      console.log("controller save activity");
       activityModel = new ActivityModel(data);
-      console.log(activityModel);
       return activityModel.save(null, {
         emulateJSON: true,
         wait: true,
@@ -628,7 +608,6 @@ var __hasProp = {}.hasOwnProperty,
     ActivityStreamCtrl.prototype._saveComment = function(data) {
       var commentModel;
       data.item_id = this.options.options.item_id;
-      console.log("controller save comment");
       commentModel = new CommentModel(data);
       return commentModel.save(null, {
         emulateJSON: true,
@@ -638,15 +617,12 @@ var __hasProp = {}.hasOwnProperty,
     };
 
     ActivityStreamCtrl.prototype._activityAdded = function(model, response) {
-      console.log("controller added activity");
       this.activityCollection.unshift(model);
-      console.log(this.activityCollection);
       return this.view.triggerMethod("added:activity:model");
     };
 
     ActivityStreamCtrl.prototype._commentAdded = function(model, response) {
       var clonedParentModel, comment_count, parentModel, secondary_item_id;
-      console.log("controller added comment");
       this.commentCollection.add(model);
       secondary_item_id = model.get("secondary_item_id");
       parentModel = this.activityCollection.get(secondary_item_id);
@@ -661,7 +637,7 @@ var __hasProp = {}.hasOwnProperty,
 
     ActivityStreamCtrl.prototype._getLatestComments = function() {
       var activity_ids;
-      console.log("get latest comments");
+      console.log("_getLatestComments");
       activity_ids = this.activityCollection.pluck("id");
       activity_ids = activity_ids.join();
       return this.commentCollection.fetch({
@@ -672,6 +648,7 @@ var __hasProp = {}.hasOwnProperty,
         },
         success: (function(_this) {
           return function(collection, response) {
+            console.log("_getLatestComments fetched");
             return _this.view.triggerMethod("activity:comments:fetched", collection);
           };
         })(this)
@@ -679,7 +656,6 @@ var __hasProp = {}.hasOwnProperty,
     };
 
     ActivityStreamCtrl.prototype._getAllComments = function(activity) {
-      console.log("get All comments");
       return this.commentCollection.fetch({
         data: {
           activity_parent: activity,
@@ -688,7 +664,6 @@ var __hasProp = {}.hasOwnProperty,
         },
         success: (function(_this) {
           return function(collection, response) {
-            console.log(collection.length);
             return _this.view.triggerMethod("activity:comments:fetched", collection, activity);
           };
         })(this)
@@ -710,15 +685,12 @@ var __hasProp = {}.hasOwnProperty,
 
     ActivityStreamCtrl.prototype._deleteComment = function(activity) {
       var model, secondary_item_id;
-      console.log("_deleteComment");
-      console.log(this.commentCollection);
       model = this.commentCollection.get(activity);
       secondary_item_id = model.get("secondary_item_id");
       return model.destroy({
         success: (function(_this) {
           return function(status, response) {
             var clonedParentModel, comment_count, parentModel;
-            console.log("status");
             parentModel = _this.activityCollection.get(secondary_item_id);
             clonedParentModel = _this.currentActivityCollection.get(secondary_item_id);
             comment_count = parentModel.get("comment_count");
@@ -734,18 +706,14 @@ var __hasProp = {}.hasOwnProperty,
 
     ActivityStreamCtrl.prototype._filterActivity = function(filterBy) {
       var filteredActivityCollection;
-      console.log("filtering.......");
-      console.log(filterBy);
       if (filterBy === "") {
-        this.currentActivityCollection.reset(this.activityCollection.toJSON());
+        return this.currentActivityCollection.reset(this.activityCollection.toJSON());
       } else {
         filteredActivityCollection = _.where(this.activityCollection.toJSON(), {
           type: filterBy
         });
-        this.currentActivityCollection.reset(filteredActivityCollection);
+        return this.currentActivityCollection.reset(filteredActivityCollection);
       }
-      console.log("filtered.......");
-      return console.log(this.currentActivityCollection);
     };
 
     ActivityStreamCtrl.prototype._triggerFilter = function() {
