@@ -46,7 +46,8 @@ wp_localize_script( 'activity-stream-module', 'NOAVATAR',  activitynotifications
 	wp_localize_script( 'ajan-interface', 'BUST', date('dmyhis'));
 	wp_localize_script( 'ajan-interface', 'ACTIVITY_NONCE_STRING',  wp_create_nonce("ACTIVITY_NONCE_STRING")); 
  
- 	wp_enqueue_style('activity-theme-one-css', activitynotifications()->plugin_url . "interface/css/activity-theme-one-css.css", array(), null);
+ 	wp_register_style('activity-theme-one-css', activitynotifications()->plugin_url . "ajan-marionete-activity-stream/css/activity-theme-one-css.css", array(), null);
+  wp_register_style('activity-theme-two-css', activitynotifications()->plugin_url . "ajan-marionete-activity-stream/css/activity-theme-two-css.css", array(), null);
   
 }
 add_action( 'wp_enqueue_scripts',    'ajan_core_enqueue_js' );

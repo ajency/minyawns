@@ -150,6 +150,7 @@ function minyawns_scripts_styles() {
  
             //load activity stream module
             wp_enqueue_script('activity-stream-module');
+            wp_enqueue_style('activity-theme-two-css');
 
             //load marionette app
              wp_enqueue_script('minyawns-application', get_template_directory_uri() . '/js/minyawns-application.js', array('minyawns-jquery'), null);

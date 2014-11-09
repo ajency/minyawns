@@ -88,7 +88,7 @@ class ShowPackage extends Marionette.CompositeView
 								            <option value="">Everything</option>
 								          </select>
 								        </div>
-								    		<p class="msg left" style="clear: both;">Enter your Message here</p>
+								    		<p class="msg left" >Enter your Message here</p><br>
 								    		<textarea class="full m-b-10 clearfix" rows="3" name="content" id="activity_content"></textarea>
 								    		<div class="right m-b-10">
 								      		<input type="submit" id="ajan-post-activity" class="btn green-btn" value="Post Message">
@@ -147,7 +147,6 @@ class ShowPackage extends Marionette.CompositeView
 								if check == true 
 									$('.delete-comment-'+$(e.target).attr('activity')).parent().append('<span class="throbber"></span>')
 									$(e.target).parent().hide()
-									console.log "delete-comment"
 									@trigger "delete:comment" , $(e.target).attr('activity')
 
 		'click .get-comments':(e)-> 
@@ -157,7 +156,6 @@ class ShowPackage extends Marionette.CompositeView
 								@trigger "create:filters" ,$(e.target).val()
 
 		'change #activity_filter':(e)-> 
-								console.log "change activity-filter"
 								@trigger "filter:activity" ,$(e.target).val()
 
 	onRender:(collection)->    
@@ -165,13 +163,11 @@ class ShowPackage extends Marionette.CompositeView
 		@trigger "fetch:latest:comments"
 
 	onShow:()->
-		console.log "showing" 
 
 	collectionEvents:
 		'reset': 'collectionReset'
 
 	collectionReset:(model)-> 
-		console.log "collection has been reset"
 		@trigger "get:user:info" 
  
 
@@ -234,6 +230,7 @@ class ShowPackage extends Marionette.CompositeView
 		@trigger "get:user:info"  
 
 	onActivityCommentsFetched : (activity_comments,activity)-> 
+		console.log "onActivityCommentsFetched"
 		$(".activity-main-"+activity).find('.avatar-box-1').remove()
 		_.each activity_comments.models, (model) -> 
 			activity_date = model.get("date_recorded")
@@ -277,10 +274,7 @@ class ShowPackage extends Marionette.CompositeView
 		$("#activity_filter").empty()
 		$('#lstCities option[value!="'+selectedFilter+'"]').remove();
 		$("#activity_filter").append new Option("Everything", "")
-		console.log "activityFilters"
-		console.log activityFilters
 		_.each activityFilters, (val) -> 
-			console.log "val"+val
 			displayVal = val.replace("_"," ")
 			displayVal =   displayVal.charAt(0).toUpperCase() + displayVal.slice(1);
 			$("#activity_filter").append new Option(displayVal, val)
