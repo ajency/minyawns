@@ -649,12 +649,9 @@ var __hasProp = {}.hasOwnProperty,
       console.log("controller added comment");
       this.commentCollection.add(model);
       secondary_item_id = model.get("secondary_item_id");
-      console.log(secondary_item_id);
       parentModel = this.activityCollection.get(secondary_item_id);
       clonedParentModel = this.currentActivityCollection.get(secondary_item_id);
-      console.log(parentModel);
       comment_count = parentModel.get("comment_count");
-      console.log("comment_count" + comment_count);
       parentModel.set("comment_count", comment_count + 1);
       clonedParentModel.set("comment_count", comment_count + 1);
       this.currentActivityCollection.add(clonedParentModel);
@@ -712,14 +709,23 @@ var __hasProp = {}.hasOwnProperty,
     };
 
     ActivityStreamCtrl.prototype._deleteComment = function(activity) {
-      var model;
+      var model, secondary_item_id;
       console.log("_deleteComment");
       console.log(this.commentCollection);
       model = this.commentCollection.get(activity);
+      secondary_item_id = model.get("secondary_item_id");
       return model.destroy({
         success: (function(_this) {
           return function(status, response) {
+            var clonedParentModel, comment_count, parentModel;
             console.log("status");
+            parentModel = _this.activityCollection.get(secondary_item_id);
+            clonedParentModel = _this.currentActivityCollection.get(secondary_item_id);
+            comment_count = parentModel.get("comment_count");
+            parentModel.set("comment_count", comment_count - 1);
+            clonedParentModel.set("comment_count", comment_count - 1);
+            _this.currentActivityCollection.add(clonedParentModel);
+            _this.activityCollection.add(parentModel);
             return _this.view.triggerMethod("activity:comment:deleted", activity);
           };
         })(this)

@@ -754,13 +754,10 @@
 		_commentAdded :(model,response)=>
 			console.log "controller added comment"
 			@commentCollection.add model 
-			secondary_item_id = model.get("secondary_item_id")
-			console.log secondary_item_id
+			secondary_item_id = model.get("secondary_item_id") 
 			parentModel = @activityCollection.get(secondary_item_id)
-			clonedParentModel = @currentActivityCollection.get(secondary_item_id)
-			console.log parentModel
-			comment_count = parentModel.get("comment_count")
-			console.log "comment_count"+comment_count
+			clonedParentModel = @currentActivityCollection.get(secondary_item_id) 
+			comment_count = parentModel.get("comment_count") 
 			parentModel.set("comment_count",comment_count+1 )
 			clonedParentModel.set("comment_count",comment_count+1 )
 			@currentActivityCollection.add clonedParentModel
@@ -804,10 +801,18 @@
 		_deleteComment:(activity)->  
 			console.log "_deleteComment"
 			console.log @commentCollection
-			model =  @commentCollection.get activity 
+			model =  @commentCollection.get activity
+			secondary_item_id = model.get("secondary_item_id") 
 			model.destroy
 				success: (status, response)=>
 					console.log "status"
+					parentModel = @activityCollection.get(secondary_item_id)
+					clonedParentModel = @currentActivityCollection.get(secondary_item_id) 
+					comment_count = parentModel.get("comment_count") 
+					parentModel.set("comment_count",comment_count-1 )
+					clonedParentModel.set("comment_count",comment_count-1 )
+					@currentActivityCollection.add clonedParentModel
+					@activityCollection.add parentModel
 					@view.triggerMethod "activity:comment:deleted" , activity
 	
 		_filterActivity:(filterBy)->   
