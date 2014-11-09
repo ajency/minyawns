@@ -688,26 +688,4 @@ function ajan_get_admin_bar_pref( $context, $user = 0 ) {
 	return 'true' === $pref;
 }
 
-/**
- * Enqueue the BuddyBar CSS.
- */
-function ajan_core_load_ajanbar_css() {
-	global $wp_styles;
-
-	if ( ajan_use_wp_admin_bar() || ( (int) ajan_get_option( 'hide-loggedout-adminbar' ) && !is_user_logged_in() ) || ( defined( 'AJAN_DISABLE_ADMIN_BAR' ) && AJAN_DISABLE_ADMIN_BAR ) )
-		return;
-
-	$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-	if ( file_exists( get_stylesheet_directory() . '/_inc/css/adminbar.css' ) ) { // Backwards compatibility
-		$stylesheet = get_stylesheet_directory_uri() . '/_inc/css/adminbar.css';
-	} else {
-		$stylesheet = activitynotifications()->plugin_url . "ajan-core/css/ajanbar{$min}.css";
-	}
-
-	wp_enqueue_style( 'ajan-admin-bar', apply_filters( 'ajan_core_ajanbar_rtl_css', $stylesheet ), array(), ajan_get_version() );
-	$wp_styles->add_data( 'ajan-admin-bar', 'rtl', true );
-	if ( $min )
-		$wp_styles->add_data( 'ajan-admin-bar', 'suffix', $min );
-}
-add_action( 'ajan_init', 'ajan_core_load_ajanbar_css' );
+ 

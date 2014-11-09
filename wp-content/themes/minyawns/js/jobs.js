@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
 //actual price
 
 
-      jQuery("#job_wages").live("keyup", function() {
+      jQuery("#job_wages").on("keyup", function() {
                  
                  actual_wages = "";
                  if(jQuery("#job_wages").val()!=""){
@@ -179,9 +179,9 @@ function load_add_job_form(event) {
 
 }
 function load_browse_jobs(id, _action, category_ids) {
-
-
-    $("#sidebar-content").show();
+ 
+$ = jQuery;
+    jQuery("#sidebar-content").show();
     $("#my-jobs-emp-min").hide();
 
 
@@ -343,7 +343,7 @@ review =""
                             }, "slow").append(html);
                             jQuery(".details").find(".minyawansgrid").hide();
                             jQuery("#select-minyawn").removeAttr('href');
-                            jQuery("#select-minyawn").live("click", function() {
+                            jQuery("#select-minyawn").on("click", function() {
                                 jQuery("html, body").animate({scrollTop: jQuery(document).height()}, 1000);
                             });
                             jQuery(".load_ajaxsingle_job").hide();
@@ -392,7 +392,8 @@ review =""
             display_job_photo_option();
 
                          //load messageboard
-            loadActivityStream($("#ajan-activity-stream-container"));
+            loadPluginActivityStream(id);
+           // loadActivityStream($("#ajan-activity-stream-container"));
            
 
         },
@@ -549,7 +550,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 
  }
 
- jQuery(".icon-remove").live('click', function(e) {
+ jQuery(".icon-remove").on('click', function(e) {
         var _e = e
     
 
@@ -1972,7 +1973,7 @@ function load_comments(user_id)
  *  ONCLICK OF THE LI
  *
  */
-$("li").live('click', function() {
+$("li").on('click', function() {
 
     var id = $(this).attr('id');
     $('#job_tags_tagsinput').find('span').remove();
@@ -2030,7 +2031,7 @@ $("li").live('click', function() {
  *
  *  FROM A TEMPLATE
  */
-$(".tag a").live('click', function() {
+$(".tag a").on('click', function() {
 
     $(this).parent().remove();
 });
