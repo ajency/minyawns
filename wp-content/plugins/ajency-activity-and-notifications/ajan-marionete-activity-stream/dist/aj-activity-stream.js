@@ -309,7 +309,7 @@ var __hasProp = {}.hasOwnProperty,
       return SingleView.__super__.constructor.apply(this, arguments);
     }
 
-    SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content activity-main-{{id}}"> <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> <span class="right rep-del"> <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}"> comments({{comment_count}}) </a>&nbsp; <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"    activity="{{id}}"> <span class="glyphicon glyphicon-share-alt reply-activity reply-activity-{{id}}" activity="{{id}}"></span> </a>&nbsp; <a href="javascript:void(0)" class="delete"> <span class="glyphicon glyphicon-trash delete-activity delete-activity-{{id}}" activity="{{id}}" ></span> </a> </span> <div class="reply-txt reply-txt-{{id}}"> <p class="reply-msg left">Enter your Reply here</p><br> <textarea class="full m-tb-10" name="activity-comment-{{id}}" id="activity-comment-{{id}}" rows="2"></textarea> <div class="right m-b-10"> <input type="button" class="btn green-btn save-activity-reply" id="save-activity-reply-{{id}}" value="Post Reply"  activity="{{id}}"> <input type="button" class="btn cancel-activity-reply" value="Cancel"  activity="{{id}}"> </div> </div> </div> </div> </div>';
+    SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content activity-main-{{id}}"> <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> <span class="right rep-del"> <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}"> comments(<span id="comment_count_{{id}}">{{comment_count}}</span>) </a>&nbsp; <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"    activity="{{id}}"> <span class="glyphicon glyphicon-share-alt reply-activity reply-activity-{{id}}" activity="{{id}}"></span> </a>&nbsp; <a href="javascript:void(0)" class="delete"> <span class="glyphicon glyphicon-trash delete-activity delete-activity-{{id}}" activity="{{id}}" ></span> </a> </span> <div class="reply-txt reply-txt-{{id}}"> <p class="reply-msg left">Enter your Reply here</p><br> <textarea class="full m-tb-10" name="activity-comment-{{id}}" id="activity-comment-{{id}}" rows="2"></textarea> <div class="right m-b-10"> <input type="button" class="btn green-btn save-activity-reply" id="save-activity-reply-{{id}}" value="Post Reply"  activity="{{id}}"> <input type="button" class="btn cancel-activity-reply" value="Cancel"  activity="{{id}}"> </div> </div> </div> </div> </div>';
 
     SingleView.prototype.mixinTemplateHelpers = function(data) {
       var activity_date, date_recorded, date_recorded_date, date_recorded_time;
@@ -322,6 +322,17 @@ var __hasProp = {}.hasOwnProperty,
       data.activity_date = activity_date.format("MMM Do YY");
       data.activity_time = date_recorded_time;
       return data;
+    };
+
+    SingleView.prototype.modelEvents = {
+      'change': 'modelChanged'
+    };
+
+    SingleView.prototype.modelChanged = function(model) {
+      console.log("modellllll");
+      console.log(model);
+      console.log("#comment_count_" + model.get("id"));
+      return $("#comment_count_" + model.get("id")).html(model.get("comment_count"));
     };
 
     return SingleView;
@@ -402,7 +413,7 @@ var __hasProp = {}.hasOwnProperty,
       'click .get-comments': function(e) {
         return this.trigger("fetch:all:comments", $(e.target).attr('activity'));
       },
-      'click #activity_filter': function(e) {
+      'focus #activity_filter': function(e) {
         return this.trigger("create:filters", $(e.target).val());
       },
       'change #activity_filter': function(e) {
@@ -425,6 +436,7 @@ var __hasProp = {}.hasOwnProperty,
     };
 
     ShowPackage.prototype.collectionReset = function(model) {
+      console.log("collection has been reset");
       return this.trigger("get:user:info");
     };
 
@@ -486,8 +498,10 @@ var __hasProp = {}.hasOwnProperty,
       return $('#activity-comment-container-' + activity).remove();
     };
 
-    ShowPackage.prototype.onGenerateFilters = function(activityFilters) {
+    ShowPackage.prototype.onGenerateFilters = function(activityFilters, selectedFilter) {
       $("#activity_filter").empty();
+      $('#lstCities option[value!="' + selectedFilter + '"]').remove();
+      $("#activity_filter").append(new Option("Everything", ""));
       console.log("activityFilters");
       console.log(activityFilters);
       return _.each(activityFilters, function(val) {
@@ -523,7 +537,7 @@ var __hasProp = {}.hasOwnProperty,
       this.activityCollection = new ActivityCollection(options);
       this.userCollection = new UserCollection(options);
       this.commentCollection = new CommentCollection(options);
-      this.view = view = this._getView(this.activityCollection);
+      this.view = view = this._getView(this.currentActivityCollection);
       console.log("activity stream controllen init");
       console.log(options);
       this.activityCollection.fetch({
@@ -589,12 +603,12 @@ var __hasProp = {}.hasOwnProperty,
       });
     };
 
-    ActivityStreamCtrl.prototype._createFilters = function() {
+    ActivityStreamCtrl.prototype._createFilters = function(selectedFilter) {
       var componentType;
       componentType = _.uniq(this.activityCollection.pluck("type"));
       console.log("componentType");
       console.log(componentType);
-      return this.view.triggerMethod("generate:filters", componentType);
+      return this.view.triggerMethod("generate:filters", componentType, selectedFilter);
     };
 
     ActivityStreamCtrl.prototype._saveActivity = function(data) {
@@ -631,9 +645,20 @@ var __hasProp = {}.hasOwnProperty,
     };
 
     ActivityStreamCtrl.prototype._commentAdded = function(model, response) {
+      var clonedParentModel, comment_count, parentModel, secondary_item_id;
       console.log("controller added comment");
       this.commentCollection.add(model);
-      console.log(this.commentCollection);
+      secondary_item_id = model.get("secondary_item_id");
+      console.log(secondary_item_id);
+      parentModel = this.activityCollection.get(secondary_item_id);
+      clonedParentModel = this.currentActivityCollection.get(secondary_item_id);
+      console.log(parentModel);
+      comment_count = parentModel.get("comment_count");
+      console.log("comment_count" + comment_count);
+      parentModel.set("comment_count", comment_count + 1);
+      clonedParentModel.set("comment_count", comment_count + 1);
+      this.currentActivityCollection.add(clonedParentModel);
+      this.activityCollection.add(parentModel);
       return this.view.triggerMethod("added:comment:model", model);
     };
 
@@ -661,7 +686,7 @@ var __hasProp = {}.hasOwnProperty,
       return this.commentCollection.fetch({
         data: {
           activity_parent: activity,
-          item_id: ajan_item_id,
+          item_id: this.options.item_id,
           records: ''
         },
         success: (function(_this) {
@@ -703,15 +728,18 @@ var __hasProp = {}.hasOwnProperty,
 
     ActivityStreamCtrl.prototype._filterActivity = function(filterBy) {
       var filteredActivityCollection;
-      console.log("filtering");
+      console.log("filtering.......");
+      console.log(filterBy);
       if (filterBy === "") {
-        return this.currentActivityCollection.reset(this.activityCollection.toJSON());
+        this.currentActivityCollection.reset(this.activityCollection.toJSON());
       } else {
         filteredActivityCollection = _.where(this.activityCollection.toJSON(), {
           type: filterBy
         });
-        return this.currentActivityCollection.reset(filteredActivityCollection);
+        this.currentActivityCollection.reset(filteredActivityCollection);
       }
+      console.log("filtered.......");
+      return console.log(this.currentActivityCollection);
     };
 
     ActivityStreamCtrl.prototype._triggerFilter = function() {

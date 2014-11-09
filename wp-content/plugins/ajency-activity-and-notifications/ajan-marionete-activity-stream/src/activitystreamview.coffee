@@ -25,7 +25,7 @@ class SingleView extends Marionette.ItemView
 
 													<span class="right rep-del">
 															<a href="javascript:void(0)" class="reply get-comments" activity="{{id}}">
-																	comments({{comment_count}})
+																	comments(<span id="comment_count_{{id}}">{{comment_count}}</span>)
 															</a>&nbsp;
 															<a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"    activity="{{id}}">
 																	<span class="glyphicon glyphicon-share-alt reply-activity reply-activity-{{id}}" activity="{{id}}"></span>
@@ -64,7 +64,15 @@ class SingleView extends Marionette.ItemView
 		data.activity_time = date_recorded_time;  
 
 		data
+	modelEvents:
+		'change': 'modelChanged'
 
+	modelChanged:(model)->
+		console.log "modellllll"
+		console.log model
+
+		console.log "#comment_count_"+model.get("id")
+		$("#comment_count_"+model.get("id")).html(model.get("comment_count"))
 						
 				 
 
@@ -145,7 +153,7 @@ class ShowPackage extends Marionette.CompositeView
 		'click .get-comments':(e)-> 
 								@trigger "fetch:all:comments" ,$(e.target).attr('activity')
 
-		'click #activity_filter' : (e)->
+		'focus #activity_filter' : (e)->
 								@trigger "create:filters" ,$(e.target).val()
 
 		'change #activity_filter':(e)-> 
@@ -163,6 +171,7 @@ class ShowPackage extends Marionette.CompositeView
 		'reset': 'collectionReset'
 
 	collectionReset:(model)-> 
+		console.log "collection has been reset"
 		@trigger "get:user:info" 
  
 
@@ -264,8 +273,10 @@ class ShowPackage extends Marionette.CompositeView
 	onActivityCommentDeleted:(activity)-> 
 		$('#activity-comment-container-'+activity).remove()
 
-	onGenerateFilters:(activityFilters)->
+	onGenerateFilters:(activityFilters,selectedFilter)->
 		$("#activity_filter").empty()
+		$('#lstCities option[value!="'+selectedFilter+'"]').remove();
+		$("#activity_filter").append new Option("Everything", "")
 		console.log "activityFilters"
 		console.log activityFilters
 		_.each activityFilters, (val) -> 

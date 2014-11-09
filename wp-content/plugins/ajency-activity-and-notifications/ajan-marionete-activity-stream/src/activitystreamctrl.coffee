@@ -13,7 +13,7 @@ class ActivityStreamCtrl extends Marionette.Controller
 
 		@commentCollection = new CommentCollection(options)
 
-		@view = view = @_getView @activityCollection 
+		@view = view = @_getView @currentActivityCollection 
 		console.log "activity stream controllen init"
 		console.log options
 		@activityCollection.fetch
@@ -89,11 +89,11 @@ class ActivityStreamCtrl extends Marionette.Controller
 			success: (collection, response)=>
 				@view.triggerMethod "change:user:image" , collection
 
-	_createFilters:() ->
+	_createFilters:(selectedFilter) ->
 		componentType = _.uniq(@activityCollection.pluck("type"));
 		console.log "componentType"
 		console.log componentType
-		@view.triggerMethod "generate:filters" , componentType
+		@view.triggerMethod "generate:filters" , componentType ,selectedFilter
 
 
 	_saveActivity:(data)-> 
@@ -127,8 +127,17 @@ class ActivityStreamCtrl extends Marionette.Controller
 	_commentAdded :(model,response)=>
 		console.log "controller added comment"
 		@commentCollection.add model 
-		console.log @commentCollection
-		#now App.execute "add:new:comment:model", model
+		secondary_item_id = model.get("secondary_item_id")
+		console.log secondary_item_id
+		parentModel = @activityCollection.get(secondary_item_id)
+		clonedParentModel = @currentActivityCollection.get(secondary_item_id)
+		console.log parentModel
+		comment_count = parentModel.get("comment_count")
+		console.log "comment_count"+comment_count
+		parentModel.set("comment_count",comment_count+1 )
+		clonedParentModel.set("comment_count",comment_count+1 )
+		@currentActivityCollection.add clonedParentModel
+		@activityCollection.add parentModel
 		@view.triggerMethod "added:comment:model" , model
 
 	_getLatestComments:-> 
@@ -150,7 +159,7 @@ class ActivityStreamCtrl extends Marionette.Controller
 		@commentCollection.fetch   
 			data:
 				activity_parent : activity
-				item_id : ajan_item_id
+				item_id : @options.item_id
 				records : ''
 			success: (collection, response)=>
 				console.log collection.length
@@ -175,14 +184,19 @@ class ActivityStreamCtrl extends Marionette.Controller
 				@view.triggerMethod "activity:comment:deleted" , activity
 
 	_filterActivity:(filterBy)->   
-		console.log  "filtering"
+		console.log  "filtering......."   
+		console.log  filterBy
+
 		if filterBy ==""
 			@currentActivityCollection.reset(@activityCollection.toJSON())  
 		else
 			filteredActivityCollection = _.where(@activityCollection.toJSON(),
 																type: filterBy
 															) 
-			@currentActivityCollection.reset(filteredActivityCollection)  
+			@currentActivityCollection.reset(filteredActivityCollection)
+
+		console.log  "filtered......." 
+		console.log(@currentActivityCollection)  
 
 	_triggerFilter:->
 		@view.triggerMethod "trigger:activity:filter" 
