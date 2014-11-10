@@ -7,6 +7,15 @@ class SingleView extends Marionette.ItemView
 									</div>
 									<div class="avatar-content activity-main-{{id}}">
 											<h5 class="avatar-heading left">{{{action}}} </h5>
+											 <div class="comment-info m-b-10">
+                          <span class="comment-date right">
+                              14 July 2016
+                          </span>
+                          <span class="right">&nbsp;,&nbsp;</span>
+                          <span class="comment-time right">
+                          9:30 am
+                          </span>
+                    </div>
 											<h5 class="avatar-heading left full-width">
 											<small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small>
 											<small class="ajan-user-role ajan-user-role-{{user_id}}"></small>
@@ -22,7 +31,18 @@ class SingleView extends Marionette.ItemView
 													<span class="comment-time left">
 													{{activity_time}}
 													</span>
+ 												<span class="left rep-del">
+                        <a href="#" class="comments">
+                                  comments(3)
+                              </a>|
+                              <a href="#" class="reply">
+                                  reply
+                              </a>|
+                              <a href="#" class="delete">
+                                  delete
+                              </a>
 
+                          </span>
 													<span class="right rep-del">
 															<a href="javascript:void(0)" class="reply get-comments" activity="{{id}}">
 																	comments(<span id="comment_count_{{id}}">{{comment_count}}</span>)
