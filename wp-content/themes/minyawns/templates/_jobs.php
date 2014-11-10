@@ -318,19 +318,21 @@ $current_user_role =  trim($user_role);
               <%}%>      
             </div>
 			
-			<div class="row-fluid">
+			<div class="row-fluid"  id="applicant-container">
 			<div class="span12">
 			<h3 class="pull-left custom-h3">Applicants</h3>
 			</div>
 			</div>
-            <ul class="thumbnails">
-              <span class='load_ajaxsingle_job_minions' style="display:none"></span>
+
+            <ul class="thumbnails" id="minion-thumbnails">
+              <span class='load_ajaxsingle_job_minions' ></span>
 			  <div class="row-fluid">
 			  <div class="span12">
-			  <a href="#" class="pull-right view-all-app">View All Applicants &raquo;</a>
+			  
 			  </div>
 			  </div>
             </ul>
+
             </br></br><span id="div_confirmhire"></span>
  
            <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>">

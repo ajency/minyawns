@@ -352,7 +352,7 @@ review =""
                             current_job = model
                             console.log("current_jobmodel")
                             console.log(current_job)
-                            jQuery(".load_ajaxsingle_job_minions").hide();
+                            //
 
                         }
 
@@ -1742,9 +1742,31 @@ function load_job_minions(jobmodel)
 
                     var html = template({result: model.toJSON(), select_button: select_button, ratings_button: ratings_button_text});
                     jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
+                    jQuery(".load_ajaxsingle_job_minions").hide();
+
 
                     //jQuery(".thumbnails").append(blank);
                 });
+                    if(collection.length > 4){
+                       $('#view-all-applicants').show()
+                       $('#minion-thumbnails li').hide().filter(':lt(2)').show();
+                        $('#minion-thumbnails').append('<li><a href="javascript:void(0)" class="pull-right view-all-app" id= "view-all-applicants" toggled="all">View All Applicants &raquo;</a></li>')
+                        $('#minion-thumbnails').find('li:last').click(function(){
+                            $(this).siblings(':gt(1)').toggle(); 
+                              jQuery(".load_ajaxsingle_job_minions").hide();
+                            if($('#view-all-applicants').attr('toggled') == "less"){
+                                $('#view-all-applicants').html("View All Applicants &raquo;")
+                                window.location.hash = '#applicant-container';
+                                $('#view-all-applicants').attr('toggled','all') 
+                            }else{
+                                $('#view-all-applicants').html("View Less Applicants &raquo;")
+
+                                $('#view-all-applicants').attr('toggled','less') 
+                            }
+                             
+                        });
+
+                    }
 
                 if (role === 'Employer') {
                     var blankt = blank({result: jobmodel.toJSON()});
