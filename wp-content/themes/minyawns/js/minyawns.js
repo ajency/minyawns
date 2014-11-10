@@ -1668,13 +1668,14 @@ $('#mylogin').on('keyup', function(e){
                 });
     });
  
+ 
 
 
 
 
-//Single job page apply click action
-$('#apply-job-browse').on('click', function(evt) {
-
+//Single job page apply click action 
+jQuery(document.body).on('click', '#apply-job-browse', function(evt) {
+ 
     var _this = $(this);
     var _action = $(this).attr('data-action');
     var _job_id = $(this).attr('data-job-id');
@@ -1697,7 +1698,9 @@ $('#apply-job-browse').on('click', function(evt) {
 
 
 //apply job popup apply click action
-$('#apply-job-final').on('click', function(evt) {
+  jQuery(document.body).on('click', '#apply-job-final', function(evt) {
+ 
+
 var _this = $(this);
     var _action = $(this).attr('data-action');
     var _job_id = $(this).attr('data-job-id');
@@ -1741,8 +1744,9 @@ var _this = $(this);
 
 
 
-    /** UnApply code */
-    $('#unapply-job').on('click', function(evt) {
+ 
+    /** Apply/UnApply code */
+    jQuery(document.body).on('click', '#unapply-job', function(evt) {
  
 
         var _this = $(this);

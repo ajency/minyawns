@@ -414,8 +414,13 @@ function getJobPhotos(){
                 console.log(collection);
                   _.each(collection, function(model) {
                       appendToGrid(model)
+                       
                   });
+                  if(collection.length >0){
+                    $("#photo_title").show()
                     set_isotope();
+                  }
+                    
             });
 
 
@@ -1787,9 +1792,8 @@ function load_job_minions(jobmodel)
 
                 jQuery(".thumbnails").animate({left: '100px'}, "slow").append(blankt);
 
-            }
-			
-
+            } 
+            jQuery(".load_ajaxsingle_job_minions").hide();
 
         }
     });

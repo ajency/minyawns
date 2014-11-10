@@ -384,7 +384,7 @@ $current_user_role =  trim($user_role);
           <!--jobphotos-->
             <div class="row-fluid">
   <div class="span12">
-  <h3 class="custom-h3 pull-left m-t-10">Job Images</h3>
+  <h3 class="custom-h3 pull-left m-t-10" style="display:none" id = "photo_title">Job Images</h3>
   </div>
   </div>
   <div class="isotope">

@@ -689,6 +689,7 @@ function minyawn_job_unapply() {
 
     //get job ID
     $job_id = $_POST['job_id'];
+    $min_job = new Minyawn_Job($job_id);
 
     $wpdb->delete($wpdb->prefix . 'userjobs', array(
         'user_id' => $user_ID,
