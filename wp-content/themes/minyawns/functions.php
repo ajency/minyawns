@@ -2681,6 +2681,7 @@ add_action(  'apply_job',  'record_job_apply_activity', 10, 2 );
 
 function record_job_unapply_activity( $job ) {
 
+
 global $user_ID;
 $creator_user_info = get_userdata($user_ID);
 
@@ -2690,8 +2691,7 @@ $creator_user_info = get_userdata($user_ID);
         'type'              => 'job_unapplied',
         'user_id'           => $user_ID,
         'item_id'           => $job->ID
-        );
-
+        ); 
     ajan_activity_add($args); 
 }
 add_action(  'unapply_job',  'record_job_unapply_activity', 10, 2 );

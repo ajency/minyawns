@@ -1653,8 +1653,9 @@ $('#mylogin').on('keyup', function(e){
                     }
                 });
     });
+ 
     /** Apply/UnApply code */
-    $('#apply-job-browse,#unapply-job').on('click', function(evt) {
+    jQuery(document.body).on('click', '#apply-job-browse,#unapply-job', function(evt) {
 
         var _this = $(this);
         var _action = $(this).attr('data-action');
@@ -1685,8 +1686,8 @@ $('#mylogin').on('keyup', function(e){
                 },
         function(response) {
 
-            if (window.page === '1') //single job page reload to get new minion data
-                window.location.reload();
+            //if (window.page === '1') //single job page reload to get new minion data
+               // window.location.reload();
 
 
             load_browse_jobs(_job_id, 'single_json');/*appends a single row to the table*/
