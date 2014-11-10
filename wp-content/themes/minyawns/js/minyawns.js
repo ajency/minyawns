@@ -1803,9 +1803,9 @@ var _this = $(this);
 
     function appy_job_popup_content(_job_id){
 
-        html  = '<div id="apply-job-popup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+        html  = '<div id="apply-job-popup" class="modal hide fade cust-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
       
-        html += '<div class="modal-body">'
+        html += '<div class="modal-body cust-modal-body">'
 
         html += '<div class="warning-content">'
 
