@@ -125,7 +125,11 @@ wp_deregister_script('jquery-ui-core');
 add_action( 'wp_print_scripts', 'wpdocs_dequeue_script', 100 );
 
 function minyawns_scripts_styles() {  
-    wp_dequeue_script('backbone');
+	global $post;
+
+	// add activity and notification marionette plugin
+
+	wp_dequeue_script('backbone');
     wp_deregister_script('backbone');
     wp_dequeue_script('jquery');
     wp_dequeue_script('jquery-core');
@@ -137,16 +141,20 @@ function minyawns_scripts_styles() {
    
     wp_enqueue_script('minyawns-jquery', get_template_directory_uri() . '/js/jquery.js', array(), null);
     wp_enqueue_script('minyawns-jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array(), null);
-       
-
- //activity notification plugin prerequisites
-          //  wp_enqueue_script('minyawns-jquery', get_template_directory_uri() . '/js/jquery.js', array(), null);
-           
-            wp_enqueue_script('minyawns-underscore', get_template_directory_uri() . '/js/underscore.js', array(), null);
+        wp_enqueue_script('minyawns-underscore', get_template_directory_uri() . '/js/underscore.js', array(), null);
             wp_enqueue_script('min-backbone', get_template_directory_uri() . '/js/backbone.js', array(), null);
             wp_enqueue_script('marionette', get_template_directory_uri() . '/js/backbone.marionette.js', array(), null);
             wp_enqueue_script('mustache', get_template_directory_uri() . '/js/mustache.js', array(), null);
-            wp_enqueue_script('ajency-marionette-core', get_template_directory_uri() . '/js/ajency.marionette.core.js', array('min-backbone'), null);
+              
+
+	if($post->post_type=="job" && is_user_logged_in()){
+
+
+		
+ //activity notification plugin prerequisites
+          //  wp_enqueue_script('minyawns-jquery', get_template_directory_uri() . '/js/jquery.js', array(), null);
+           
+         wp_enqueue_script('ajency-marionette-core', get_template_directory_uri() . '/js/ajency.marionette.core.js', array('min-backbone'), null);
  
             //load activity stream module
             wp_enqueue_script('activity-stream-module');
@@ -156,6 +164,9 @@ function minyawns_scripts_styles() {
              wp_enqueue_script('minyawns-application', get_template_directory_uri() . '/js/minyawns-application.js', array('minyawns-jquery'), null);
            
 
+
+}
+    
     switch (ENVIRONMENT) {
         case 'TESTING':
             wp_enqueue_style('minyawns-testing-css', get_template_directory_uri() . '/css/minyawns-testing.css', array(), null);
