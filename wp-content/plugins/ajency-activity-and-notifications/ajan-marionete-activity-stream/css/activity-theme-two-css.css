@@ -291,3 +291,7 @@ img {
 .select-filter{
   width:auto !important;
 }
+
+.comment-date-left,.activity-comment-actions-right{
+	display:none;
+}

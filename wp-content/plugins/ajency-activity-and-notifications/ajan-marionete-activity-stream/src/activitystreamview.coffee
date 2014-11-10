@@ -8,13 +8,15 @@ class SingleView extends Marionette.ItemView
 									<div class="avatar-content activity-main-{{id}}">
 											<h5 class="avatar-heading left">{{{action}}} </h5>
 											 <div class="comment-info m-b-10">
+                          <div class="comment-date-right">
                           <span class="comment-date right">
-                              14 July 2016
+                              {{activity_date}}
                           </span>
                           <span class="right">&nbsp;,&nbsp;</span>
                           <span class="comment-time right">
-                          9:30 am
+                          		{{activity_time}}
                           </span>
+                          </div>
                     </div>
 											<h5 class="avatar-heading left full-width">
 											<small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small>
@@ -24,6 +26,7 @@ class SingleView extends Marionette.ItemView
 											<p class="comment m-tb-5">{{content}}</p>
 
 											<div class="comment-info m-b-10">
+												<div class="comment-date-left">
 													<span class="comment-date left">
 															{{activity_date}}
 													</span>
@@ -31,18 +34,22 @@ class SingleView extends Marionette.ItemView
 													<span class="comment-time left">
 													{{activity_time}}
 													</span>
+												</div>
+												<div class="activity-comment-actions-left">  
  												<span class="left rep-del">
                         <a href="#" class="comments">
-                                  comments(3)
+                                  comments(<span id="comment_count_{{id}}">{{comment_count}}</span>)
                               </a>|
-                              <a href="#" class="reply">
+                              <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"  activity="{{id}}">
                                   reply
                               </a>|
-                              <a href="#" class="delete">
+                              <a href="javascript:void(0)" class="delete delete-activity delete-activity-{{id}}" activity="{{id}}">
                                   delete
                               </a>
 
                           </span>
+                         </div>
+                        <div class="activity-comment-actions-right">  
 													<span class="right rep-del">
 															<a href="javascript:void(0)" class="reply get-comments" activity="{{id}}">
 																	comments(<span id="comment_count_{{id}}">{{comment_count}}</span>)
@@ -55,6 +62,7 @@ class SingleView extends Marionette.ItemView
 															</a>
 
 													</span>
+													</div>
 													<div class="reply-txt reply-txt-{{id}}">
 													<p class="reply-msg left">Enter your Reply here</p><br>
 													<textarea class="full m-tb-10" name="activity-comment-{{id}}" id="activity-comment-{{id}}" rows="2"></textarea>
@@ -229,8 +237,18 @@ class ShowPackage extends Marionette.CompositeView
 											</div>
 											<div class="avatar-content">
 													<h5 class="avatar-heading left">'+model.get("action")+'</h5>
+														<div class="comment-date-right">
+                          <span class="comment-date right">
+                              date
+                          </span>
+                          <span class="right">&nbsp;,&nbsp;</span>
+                          <span class="comment-time right">
+                          		time
+                          </span>
+                          </div>
 													<p class="comment m-tb-5">'+model.get("content")+'</p>
 														<div class="comment-info m-b-10">
+															<div class="comment-date-left">
 															<span class="comment-date left">
 															'+activity_date+'
 															</span>
@@ -238,6 +256,7 @@ class ShowPackage extends Marionette.CompositeView
 															<span class="comment-time left">
 															 '+activity_time+'
 															</span>
+															</div>
 															<span class="right rep-del">
 																			
 																			<a href="javascript:void(0)" class="delete delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'">
