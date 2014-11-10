@@ -1596,8 +1596,8 @@ body .jobs_table .data-title .profile-job {
     height: 80px!important;
   }
   html body .minyawns-grid1 .thumbspan.card .m1 .caption .minyawns-img img {
-    width: 70px!important;
-    height: 70px!important;
+    width: 80px!important;
+    height: 80px!important;
   }
   body #innermainimage .banner-content {
     position: relative;
@@ -4248,8 +4248,8 @@ body .minyawns-grid1 .m2 .social-link {
 .minyawns-grid1 .thumbspan.card .m1 .caption .minyawns-img img {
   /*width: 120px!important;
 					height: 120px!important;*/
-  width: 110px!important;
-  height: 110px!important;
+  width: 120px!important;
+  height: 120px!important;
 }
 .minyawns-grid1 .thumbspan.card .m1 .caption h4 {
   color: #8ed030;
