@@ -451,6 +451,7 @@ function photoUpload(){
             // This function is called when a file is added to the queue;
             // either via the browse button, or via drag/drop:
             add: function (e, data) {
+                console.log ("file added to queue")
 
                 var tpl = jQuery('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
                     ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p class="file_details"></p><span style="display:none"></span><p class="process_successmsg"></p><p class="process_errormsg"></p></li>');
@@ -498,12 +499,15 @@ function photoUpload(){
                 }
             },
             done: function(e, data) { 
- 
+                
+                console.log ("file done")
                     if(data.result.status==true){
+                           console.log ("file done succ")
                           data.context.find('.process_successmsg').text("Photo Uploaded !")
                           appendToGrid(data.result.photo);
                     }else
                     {
+                        console.log ("file done err")
                         data.context.find('.process_errormsg').text(data.result.error+" !")
                         
                     }
@@ -512,6 +516,7 @@ function photoUpload(){
      
                 }, 
             fail:function(e, data){
+                   console.log ("fail")
                 // Something has gone wrong!
                 data.context.addClass('error');
             }
@@ -595,13 +600,22 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
         {
             user_employer = true;
         }
- 
+ console.log ("check_capability('apply_for_jobs') ")
+ console.log (check_capability('apply_for_jobs') )
+ console.log (current_job.toJSON().user_to_job_status[minyawnNo] )
+ console.log (current_job_status )
+
+               console.log ("user_minyawn"+user_minyawn)  
+
+               console.log ("user_employer"+user_employer)  
+
+               console.log ("user_admin"+user_admin)  
         if(user_minyawn==true ||user_employer==true || user_admin==true ){
             
             jQuery("#upload").show();
 
              //option to upload job photos
-                 
+               console.log ("photoUpload")  
             photoUpload(); 
  
             if(jQuery("#upload_nonce").val()==""){
