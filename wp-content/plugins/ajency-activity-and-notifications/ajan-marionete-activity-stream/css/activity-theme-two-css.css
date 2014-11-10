@@ -295,3 +295,4 @@ img {
 .comment-date-left, .activity-comment-actions-right{
 	display:none;
 }
+.activity-comment-actions-left{padding-bottom:20px;}

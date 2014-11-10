@@ -239,14 +239,16 @@ class ShowPackage extends Marionette.CompositeView
 											</div>
 											<div class="avatar-content">
 													<h5 class="avatar-heading left">'+model.get("action")+'</h5>
+														<div class="comment-info m-b-10">
 														<div class="comment-date-right">
-                          <span class="comment-date left">
+                          <span class="comment-date right">
 															'+activity_date+'
 															</span>
-															<span class="left">&nbsp;|&nbsp;</span>
-															<span class="comment-time left">
+															<span class="right">,</span>
+															<span class="comment-time right">
 															 '+activity_time+'
 															</span>
+                          </div>
                           </div>
 													<p class="comment m-tb-5">'+model.get("content")+'</p>
 														<div class="comment-info m-b-10">
@@ -287,14 +289,16 @@ class ShowPackage extends Marionette.CompositeView
 										</div>
 										<div class="avatar-content">
 												<h5 class="avatar-heading left">'+model.get("action")+'</h5>
+													<div class="comment-info m-b-10">
 														<div class="comment-date-right">
-                          <span class="comment-date left">
+                          <span class="comment-date right">
 															'+activity_date+'
 															</span>
-															<span class="left">&nbsp;|&nbsp;</span>
-															<span class="comment-time left">
+															<span class="right">,</span>
+															<span class="comment-time right">
 															 '+activity_time+'
 															</span>
+                          </div>
                           </div>
 												<p class="comment m-tb-5">'+model.get("content")+'</p>
 													<div class="comment-info m-b-10">
