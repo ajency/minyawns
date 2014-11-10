@@ -344,15 +344,18 @@ $current_user_role =  trim($user_role);
              
                   <div class="row-fluid">
                   <div class="span6">
+                             <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">
+              
                     <div id="drop">
-                      <p>Drop Your Job Photos Here </p>
-                      <a class="btn btn-primary"><i class="icon-file">&nbsp;</i>Browse</a>
+                      Drop Your Job Photos Here 
+                      <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
                       <input type="file" name="photo" multiple />
                     </div>
 
                     <ul>
                       <!-- The file uploads will be shown here -->
-                    </ul>
+                    </ul> 
+            </div> 
                   </div>
 				  <div class="span6">
 					  <div class="alert alert-success alert-sidebar author-data">
