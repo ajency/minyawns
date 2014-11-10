@@ -37,7 +37,7 @@ class SingleView extends Marionette.ItemView
 												</div>
 												<div class="activity-comment-actions-left">  
  												<span class="left rep-del">
-                        <a href="#" class="comments">
+                        <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}">
                                   comments(<span id="comment_count_{{id}}">{{comment_count}}</span>)
                               </a>|
                               <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"  activity="{{id}}">
@@ -154,10 +154,12 @@ class ShowPackage extends Marionette.CompositeView
 
 		'click .save-activity-reply':(e)->
 								if $('#activity-comment-'+$(e.target).attr('activity')).val()==""
-									$('#activity-comment-'+$(e.target).attr('activity')).after("<span class='error-message'>Mesage cannot be empty</span>")
+									 
+									alert("Mesage cannot be empty")
 								else  
 									data = {content:$('#activity-comment-'+$(e.target).attr('activity')).val(),secondary_item_id:$(e.target).attr('activity')}
 									$(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>')
+									 
 									$(e.target).next().hide()
 									$(e.target).hide()
 								
@@ -238,13 +240,13 @@ class ShowPackage extends Marionette.CompositeView
 											<div class="avatar-content">
 													<h5 class="avatar-heading left">'+model.get("action")+'</h5>
 														<div class="comment-date-right">
-                          <span class="comment-date right">
-                              date
-                          </span>
-                          <span class="right">&nbsp;,&nbsp;</span>
-                          <span class="comment-time right">
-                          		time
-                          </span>
+                          <span class="comment-date left">
+															'+activity_date+'
+															</span>
+															<span class="left">&nbsp;|&nbsp;</span>
+															<span class="comment-time left">
+															 '+activity_time+'
+															</span>
                           </div>
 													<p class="comment m-tb-5">'+model.get("content")+'</p>
 														<div class="comment-info m-b-10">
@@ -285,8 +287,18 @@ class ShowPackage extends Marionette.CompositeView
 										</div>
 										<div class="avatar-content">
 												<h5 class="avatar-heading left">'+model.get("action")+'</h5>
+														<div class="comment-date-right">
+                          <span class="comment-date left">
+															'+activity_date+'
+															</span>
+															<span class="left">&nbsp;|&nbsp;</span>
+															<span class="comment-time left">
+															 '+activity_time+'
+															</span>
+                          </div>
 												<p class="comment m-tb-5">'+model.get("content")+'</p>
 													<div class="comment-info m-b-10">
+														<div class="comment-date-left">
 														<span class="comment-date left">
 														'+activity_date+'
 														</span>
@@ -294,12 +306,24 @@ class ShowPackage extends Marionette.CompositeView
 														<span class="comment-time left">
 														 '+activity_time+'
 														</span>
+														 </div>
+														 	<div class="activity-comment-actions-left">  
+ 															<span class="left rep-del">
+                      
+                              <a href="javascript:void(0)" class="delete delete-comment delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'">
+                                  delete
+                              </a>
+
+                          </span>
+                         </div>
+                         <div class="activity-comment-actions-right">  
 														<span class="right rep-del">
 																		
 																		<a href="javascript:void(0)" class="delete  delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'">
 																				<span class="glyphicon glyphicon-trash delete-comment delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'"></span>
 																		</a>
 																</span>
+													</div>
 														</div>
 												</div>
 										</div>')
