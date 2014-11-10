@@ -1757,8 +1757,12 @@ $current_userdata = get_userdata($user_ID);
 						//echo "UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'";
 						$wpdb->get_results("UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'");
 						update_post_meta($data['item_number'],'job_status','completed');
+
 						//send mail to hired minyawns						
-						$job_data = get_post($data['item_number']);						
+						$job_data = get_post($data['item_number']);	
+
+
+						 do_action( 'minyawn_hired', $job_data ,$value->ID);					
 						//$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
 						$minyawns_subject = "Minyawns - You have been hired! ";
                			$minyawns_message = "Hi,<br/><br/>
@@ -2737,6 +2741,23 @@ add_action(  'unapply_job',  'record_job_unapply_activity', 10, 2 );
 
 
 
+function record_minyawn_hired_activity( $job ,$minyawn) {
+
+global $user_ID;
+$creator_user_info = get_userdata($minyawn);
+
+    $args = array(         
+        'action'            => $creator_user_info->display_name.' hired for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'component'         => 'users',
+        'type'              => 'minyawn_hired',
+        'user_id'           => $user_ID,
+        'item_id'           => $job->ID
+        );
+
+    ajan_activity_add($args); 
+}
+
+add_action(  'minyawn_hired',  'record_minyawn_hired_activity', 10, 2 );
  
 function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$auth_cookie){
  
@@ -2769,8 +2790,7 @@ function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$aut
  
 function send_job_day_minyawns_reminder(){
 
-    $args = array();
-
+    $args = array(); 
     $args["post_type"] = "job";
 
     $today = date('Y-m-d');
