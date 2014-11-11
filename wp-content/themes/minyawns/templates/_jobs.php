@@ -568,10 +568,7 @@ $current_user_role =  trim($user_role);
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>'><%= result.user_image%></a>
     </div>
 	
-    <% if(result.is_verified === 'Y'){%>
-    <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
-    <div class="verfied-txt">Verified Minion</div>
-    <% } %>
+
     <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
     <div class="collage"> <%= result.college%> </div>
     <div class="collage"> <%= result.major%> </div>
@@ -642,6 +639,10 @@ $current_user_role =  trim($user_role);
 	<div class="row-fluid">
 	<div class="span8">
     <h4 class="align-left"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
+    <% if(result.is_verified === 'Y'){%>
+    <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
+    <div class="verfied-txt">Verified Minion</div>
+    <% } %>
     <div class="collage align-left"> <%= result.college%> </div>
     <div class="collage align-left"> <%= result.major%> </div>
     <div class="social-link align-left">
