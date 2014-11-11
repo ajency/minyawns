@@ -2396,7 +2396,7 @@ function paypal_form_values(no_of_minyawns) {
 
 }
 
-jQuery(document.body).on('click', '#invite-minion', function() { 
+jQuery(document).on('click', '#invite-minion', function() { 
 jQuery("#invite_to").empty();
  jQuery("#miniondir").modal('show');
    
@@ -2406,8 +2406,8 @@ jQuery("#invite_to").empty();
     window.fetchi = new Fetchuserinvites;
     window.fetchi.fetch({
         data: {
-            user_id: $(this).attr("minion-id"),
-            employer_id: $(this).attr("employer-id")
+            user_id: jQuery(this).attr("minion-id"),
+            employer_id: jQuery(this).attr("employer-id")
         },
         success: function(collection, response) {
           
@@ -2455,11 +2455,11 @@ function button_for_invite(model){
     
 }
  
-$(document.body).on('click', '.show-minyawn', function(e) {   
-    if($(e.target).attr('href') || $(e.target).parent().attr('href')  ) {
+$(document).on('click', '.show-minyawn', function(e) {   
+    if(jQuery(e.target).attr('href') || jQuery(e.target).parent().attr('href')  ) {
     return;
   }
-       window.open(SITEURL+'/profile/'+$(e.target).closest( "li").attr('item-id')+'/','_target') 
+       window.open(SITEURL+'/profile/'+jQuery(e.target).closest( "li").attr('item-id')+'/','_target') 
     
 }); 
 
