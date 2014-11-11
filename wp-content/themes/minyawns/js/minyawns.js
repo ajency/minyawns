@@ -1384,6 +1384,10 @@ var image_name=$("#image_name").val();
         jQuery("#div_alreadyregister").html("Already a Minyawn?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
+        jQuery("#signup_fname").show()
+        jQuery("#signup_lname").show()
+        jQuery("#signup_email").show()
+        jQuery("#signup_password").show()
         jQuery("#signup_company").hide();
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
@@ -1427,6 +1431,10 @@ var image_name=$("#image_name").val();
         jQuery("#div_alreadyregister").html("Already registered at Minyawns?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
+        jQuery("#signup_fname").show();
+        jQuery("#signup_lname").show();
+        jQuery("#signup_email").show();
+        jQuery("#signup_password").show();
         jQuery("#signup_company").show();
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
