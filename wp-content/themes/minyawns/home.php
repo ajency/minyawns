@@ -9,7 +9,7 @@
    ?>
 
 <script type="text/javascript">
-    $(function(){
+    jQuery(document).ready(function($) {
     $('#powtoon-frame').load(function(){
         $(this).show();
       
@@ -845,7 +845,7 @@ jQuery(document).ready(function($) {
   });
 });
 
-
+ jQuery(document).ready(function($) {
 $("#home-video img, #home-video span.play-button").on("click", function() {
   $("#home-video").css("min-height","600px");
   var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
@@ -861,6 +861,7 @@ $("#home-video img, #home-video span.play-button").on("click", function() {
     $(this).remove();
     $("#home-video span.play-button").show();
   });
+});
 });
 </script>
 <?php 
