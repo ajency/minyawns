@@ -6498,34 +6498,6 @@ div.tooltip1:after {
 .minyawns-grid1 .thumbaspan .thumbnail:hover .m3 .icon-thumbs-down {
   color: #F65151;
 }
-/*what we can do*/
-.wwcd-1 {
-  background: url(../images/What-we-can-do_container_N.png) no-repeat;
-  height: 246px;
-  background-position-x: -300px;
-}
-.wwcd-2 {
-  background: url(../images/What-we-can-do_container_N.png) no-repeat;
-  height: 246px;
-  background-position-x: -521px;
-}
-.wwcd-3 {
-  background: url(../images/What-we-can-do_container_N.png) no-repeat;
-  height: 246px;
-  background-position-x: -706px;
-}
-.wwcd-4 {
-  background: url(../images/What-we-can-do_container_N.png) no-repeat;
-  height: 246px;
-  background-position-x: -908px;
-}
-.stamp {
-  position: absolute;
-  right: -140px;
-  top: 0px;
-  background: url(../images/span4_N.png) no-repeat;
-  height: 168px;
-}
 .tooltip-left h4 {
   background: url(../images/tooltip_N.png) no-repeat;
   width: 327px;
@@ -6705,35 +6677,35 @@ div.tooltip1:after {
 }
 /*what we can do*/
 .wwcd-1 {
-  background: url(../images/What-we-can-do_container_N.png) no-repeat;
+  background: url(../images/What-we-can-do_container_N.png) no-repeat -210px 70px;
   height: 246px;
-  /*background-position-x: -300px;*/
-  background-position-x: -210px;
-  background-position-y: 70px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 .wwcd-2 {
-  background: url(../images/What-we-can-do_container_N.png) no-repeat;
+  background: url(../images/What-we-can-do_container_N.png) no-repeat -348px 70px;
   height: 246px;
-  /*background-position-x: -521px;*/
-  background-position-x: -348px;
-  background-position-y: 70px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 .wwcd-3 {
-  background: url(../images/What-we-can-do_container_N.png) no-repeat;
+  background: url(../images/What-we-can-do_container_N.png) no-repeat -478px 70px;
   height: 246px;
-  /*background-position-x: -706px;*/
-  background-position-x: -478px;
-  background-position-y: 70px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 .wwcd-4 {
-  background: url(../images/What-we-can-do_container_N.png) no-repeat;
+  background: url(../images/What-we-can-do_container_N.png) no-repeat -612px 70px;
   height: 246px;
-  /*background-position-x: -908px;*/
-  background-position-x: -612px;
-  background-position-y: 70px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 .stamp {
