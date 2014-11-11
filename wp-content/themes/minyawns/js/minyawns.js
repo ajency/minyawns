@@ -2065,8 +2065,8 @@ var _this = $(this);
         return result;
     }
 
-    $(".onoffswitch").on('click', function(e) {
-
+ 
+    $(document.body).on('click', '.onoffswitch', function(e) {
 
 
 
