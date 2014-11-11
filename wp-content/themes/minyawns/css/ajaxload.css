@@ -291,12 +291,11 @@ margin-top: 6px;
 
 .load_ajaxsingle_job_minions{
     
-     background: url("../images/2.gif") no-repeat scroll 0 0 transparent;
+     background: url("../images/ajax-loader.gif") no-repeat scroll 0 0 transparent;
      float: left;
-    height: 34px;
-    margin: 99px auto auto 500px;
-    position: inherit;
-    width: 20px;
+    width: 97px;
+height: 70px;
+float: left;
     z-index: 99999;
     
 }

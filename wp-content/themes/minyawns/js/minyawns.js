@@ -13,8 +13,7 @@ jQuery("#signinlink").click(function() {
 jQuery(document).ready(function($) {
 
 
-
-    $("#lst_sitecity").live("change",function(){
+     $(document.body).on('change', '#lst_sitecity', function() {
 
         if($("#lst_sitecity").val() =="Seattle"){
 
@@ -193,8 +192,7 @@ jQuery(document).ready(function($) {
     }
 
 
-
-    $('.select__city').live('click',function(){
+    $(document.body).on('click', '.select__city', function() { 
 
         var cur_site_url = document.URL ;
 
@@ -216,8 +214,7 @@ jQuery(document).ready(function($) {
 	
 	
 //Braintree payment form
-	
-$('#paypal_pay').live("click",function(){
+ $(document.body).on('click', '#paypal_pay', function() { 
 	
 	
 	$('.payment_msg').html('').hide();
@@ -350,7 +347,9 @@ position: "right"
 	
 	$target.collapse('toggle');
 });	*/
-	$('body').on('click', '[data-toggle=collapse-next]', function (e) {
+//$('body').on('click', '[data-toggle=collapse-next]', function (e) {
+ $(document.body).on('click', '[data-toggle=collapse-next]', function(e) { 
+	
     // Try to close all of the collapse areas first
     var parent_id = $(this).data('parent');
    // $(parent_id+' .accordion-body').collapse('hide');
@@ -414,9 +413,8 @@ position: "right"
     });
 
     var no_of_minyawns = 0;
-
-    $(".jumper").on("click", function(e) {
-
+ 
+$(document.body).on('click', '.jumper', function(e) { 
         e.preventDefault();
 
         $("body, html").animate({
@@ -759,7 +757,7 @@ position: "right"
         }
     });
 
-    $("#done-cropping").live('click', function() {
+    $(document.body).on('click', '#done-cropping', function() { 
         $(".load_ajax-crop-upload").show();
         $("#div_cropmsg").html("<br/>");
 
@@ -790,8 +788,8 @@ var image_name=$("#image_name").val();
     $(function() {
         $('.switch')['bootstrapSwitch']();
     });
-    /** ANimate the profile view + edit views */
-    $('.edit-user-profile').live('click', function(e) {
+    /** ANimate the profile view + edit views */ 
+    $(document.body).on('click', '.edit-user-profile', function(e) { 
 
         e.preventDefault();
         var span1 = $('#profile-view');
@@ -979,7 +977,7 @@ var image_name=$("#image_name").val();
      *  LOADs a new link now
      * 
      */
-//    $("#add-job-button,#new-job,#create_my_jobs").live('click', function(e) {
+//    $("#add-job-button,#new-job,#create_my_jobs").on('click', function(e) {
 //
 //load_add_job_form(e);
 //        //jQuery("#parent_item").html("My Jobs");
@@ -1185,7 +1183,7 @@ var image_name=$("#image_name").val();
     });
     /*############POP UP############*/
     /*Function to etrieve password */
-    jQuery("#user-submit").live("click", function() {
+    $(document.body).on('click', '#user-submit', function() { 
         jQuery('#frm_forgotpassword').submit();
     })
 
@@ -1228,7 +1226,7 @@ var image_name=$("#image_name").val();
 
 
     /* forgotpass link */
-    jQuery("#btn_forgotpass").live("click", function() {
+    jQuery(document.body).on('click', '#btn_forgotpass', function() {  
         jQuery("#div_forgotpass").toggle();
         jQuery("#div_msgforgotpass").html("");
     })
@@ -1261,19 +1259,19 @@ var image_name=$("#image_name").val();
     /* end reset pasword validation */
 
     /*trigger login lick on no acess login option click*/
- jQuery("#btn__login_oaccess").live("click", function() {
+ jQuery(document.body).on('click', '#btn__login_oaccess', function() { 
         jQuery("#btn__login").trigger('click');
    });
- jQuery("#link__employerregister").live("click", function() {
+ jQuery("#link__employerregister").on("click", function() {
         jQuery("#link_employerregister").trigger('click');
    });
-  jQuery("#link__minyawnregister").live("click", function() {
+  jQuery("#link__minyawnregister").on("click", function() {
         jQuery("#link_minyawnregister").trigger('click');
    });
     /* POPUP LOGIN */
 
     //hide forget password section on login pop up link click
-    jQuery("#btn__login,#btn__loginpop").live("click", function() {
+    jQuery(document.body).on('click', '#btn__login,#btn__loginpop', function() {  
         jQuery("#div_forgotpass").hide();
         jQuery("#div_msgforgotpass").html("");
         jQuery("#user_login").val("");
@@ -1285,7 +1283,7 @@ var image_name=$("#image_name").val();
     })
 
     //user login form validation and user login
-    jQuery("#btn_login").live("click", function() {
+    jQuery(document.body).on('click', '#btn_login', function() {   
         jQuery('#frm_login').submit();
         
     })
@@ -1351,13 +1349,13 @@ var image_name=$("#image_name").val();
 
 
     /*sign in here link*/
-    jQuery("#lnk_signin").live("click", function() {
+    jQuery(document.body).on('click', '#lnk_signin', function() {   
        /* commented on 19june2014 jQuery("#signup_popup_close").click();
         jQuery("#btn__login").click();
         */
         window.location = siteurl+"/wp-login.php";
     })
-    jQuery(".login-signup").live("click", function() {
+    jQuery(document.body).on('click', '.login-signup', function() {    
         $('#mylogin').modal('hide')
     })
 
@@ -1386,6 +1384,10 @@ var image_name=$("#image_name").val();
         jQuery("#div_alreadyregister").html("Already a Minyawn?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
+        jQuery("#signup_fname").show()
+        jQuery("#signup_lname").show()
+        jQuery("#signup_email").show()
+        jQuery("#signup_password").show()
         jQuery("#signup_company").hide();
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
@@ -1395,12 +1397,11 @@ var image_name=$("#image_name").val();
         jQuery("#signup_lname").val("");
         jQuery("#signup_email").removeClass('error');
     }
-
-    jQuery("#link_minyawnregister").live("click", function() {
+ jQuery(document.body).on('click', '#link_minyawnregister', function() {     
         setup_minionsignup_modal()
     })
 
-    jQuery("#show_minionreg").live("click", function() {
+   jQuery(document.body).on('click', '#show_minionreg', function() { 
         setup_minionsignup_modal()
 
     })
@@ -1430,6 +1431,10 @@ var image_name=$("#image_name").val();
         jQuery("#div_alreadyregister").html("Already registered at Minyawns?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
+        jQuery("#signup_fname").show();
+        jQuery("#signup_lname").show();
+        jQuery("#signup_email").show();
+        jQuery("#signup_password").show();
         jQuery("#signup_company").show();
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
@@ -1440,30 +1445,29 @@ var image_name=$("#image_name").val();
         jQuery("#signup_email").removeClass("error");
     }
 
-    jQuery("#link_employerregister").live("click", function() {
+ jQuery(document.body).on('click', '#link_employerregister', function() {  
         setupemployersignup_modal()
     })
 
-    jQuery("#show_employerreg").live("click", function() {
+ jQuery(document.body).on('click', '#show_employerreg', function() { 
         setupemployersignup_modal()
 
     })
 
 //on enter key press trigger form submission
-$('#myModal').live('keyup', function(e){
+$(document.body).on('keyup', '#myModal', function(e) { 
   if (e.keyCode == 13) {
     $("#btn_signup").trigger('click')
   }
 });
 
 //on enter key press trigger form submission
-$('#mylogin').live('keyup', function(e){
+$(document.body).on('keyup', '#mylogin', function(e) {  
   if (e.keyCode == 13) { 
     $("#btn_login").trigger('click')
   }
 });
-
-    jQuery("#btn_signup").live("click", function() {
+jQuery(document.body).on('click', '#btn_signup', function(e) {   
         jQuery('#frm_signup').submit();
     })
 
@@ -1523,7 +1527,7 @@ $('#mylogin').live('keyup', function(e){
     });
     /*END POPUP SIGNUP */
 
-    $('.edit-job-data').live('click', function(e) {
+$(document.body).on('click', '.edit-job-data', function(e) {   
 
         e.preventDefault();
 
@@ -1667,13 +1671,15 @@ $('#mylogin').live('keyup', function(e){
                     }
                 });
     });
+ 
+ 
 
 
 
 
-//Single job page apply click action
-$('#apply-job-browse').live('click', function(evt) {
-
+//Single job page apply click action 
+jQuery(document.body).on('click', '#apply-job-browse', function(evt) {
+ 
     var _this = $(this);
     var _action = $(this).attr('data-action');
     var _job_id = $(this).attr('data-job-id');
@@ -1696,7 +1702,9 @@ $('#apply-job-browse').live('click', function(evt) {
 
 
 //apply job popup apply click action
-$('#apply-job-final').live('click', function(evt) {
+  jQuery(document.body).on('click', '#apply-job-final', function(evt) {
+ 
+
 var _this = $(this);
     var _action = $(this).attr('data-action');
     var _job_id = $(this).attr('data-job-id');
@@ -1740,8 +1748,10 @@ var _this = $(this);
 
 
 
-    /** UnApply code */
-    $('#unapply-job').live('click', function(evt) {
+ 
+    /** Apply/UnApply code */
+    jQuery(document.body).on('click', '#unapply-job', function(evt) {
+ 
 
         var _this = $(this);
         var _action = $(this).attr('data-action');
@@ -1797,9 +1807,9 @@ var _this = $(this);
 
     function appy_job_popup_content(_job_id){
 
-        html  = '<div id="apply-job-popup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+        html  = '<div id="apply-job-popup" class="modal hide fade cust-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
       
-        html += '<div class="modal-body">'
+        html += '<div class="modal-body cust-modal-body">'
 
         html += '<div class="warning-content">'
 
@@ -2013,10 +2023,11 @@ var _this = $(this);
         });
 
 
-        $('.collapse').live('show', function() {
+$(document.body).on('show', '.collapse', function() {    
             $(this).parent().find('a').addClass('open'); //add active state to button on open
         });
-        $('.collapse').live('hide', function() {
+
+$(document.body).on('hide', '.collapse', function() {     
             $(this).parent().find('a').removeClass('open'); //remove active state to button on close
         });
     }
@@ -2024,8 +2035,7 @@ var _this = $(this);
 
 
 
-
-    $("#show-calendar").live('click', function(e) {
+$(document.body).on('click', '#show-calendar', function(e) {  
         onload_calendar(); /*load the calendar*/
         $("#calendar-jobs").show();
         $("#show-calendar").hide();
@@ -2059,8 +2069,8 @@ var _this = $(this);
         return result;
     }
 
-    $(".onoffswitch").live('click', function(e) {
-
+ 
+    $(document.body).on('click', '.onoffswitch', function(e) {
 
 
 
@@ -2164,8 +2174,7 @@ var _this = $(this);
 //        }
 
     });
-
-    $("#hide-calendar").live('click', function(e) {
+$(document.body).on('click', '#hide-calendar', function(e) {   
         var c = 0;
         $("#calendar-jobs").hide();
 
@@ -2179,7 +2188,7 @@ var _this = $(this);
         });
     });
 
-    $('#confirm-hire-button').live('click', function(evt) {
+$(document.body).on('click', '#confirm-hire-button', function(evt) {    
 
         evt.preventDefault();
         var _job_id;
@@ -2239,7 +2248,7 @@ var _this = $(this);
 
 
 
-    $('.well-done,.terrible').live('click', function(evt) {
+$(document.body).on('click', '.well-done,.terrible', function(evt) { 
 //alert('.well-done,.terrible')
 
         if (evt.target.id === 'vote-up' + $(this).attr('user_id')) {
@@ -2266,7 +2275,7 @@ var _this = $(this);
 
 //
 ////$("#review"+$(this).attr('user_id')).attr("action",)
-////$('.rate-positive,.rate-negative').live('click', function(evt) {
+////$('.rate-positive,.rate-negative').on('click', function(evt) {
 //
 ////        if ($(this).attr('is_rated') != "0")
 ////            return false;
@@ -2277,7 +2286,7 @@ var _this = $(this);
 
     });
 
-    $(".rate-button").live('click', function() {
+$(document.body).on('click', '.rate-button', function() {  
 
 
       //  alert('rate button')
@@ -2361,7 +2370,7 @@ var _this = $(this);
 
     });
 
-    $("#edit-selection").live('click', function(evt) {
+$(document.body).on('click', '#edit-selection', function(evt) {   
         $("#edit-selection").hide();
         $("#confirm-hire").show();
 
@@ -2414,11 +2423,11 @@ function ucfirst(str) {
     $('.carousel').carousel({interval: 1000, pause: 'hover'});
 })(jQuery);
 
-jQuery('.collapse').live('show', function() {
+jQuery(document.body).on('show', '.collapse', function() {  
     jQuery(this).parent().find('a').addClass('open'); //add active state to button on open
 });
 
-jQuery('.collapse').live('hide', function() {
+jQuery(document.body).on('hide', '.collapse', function() {  
     jQuery(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
 
@@ -2446,16 +2455,15 @@ function load_profile(id)
     var url = siteurl + "/profile/" + id;
     window.open(url, '_blank');
 }
-
-$('.collapse').live('show', function() {
+$(document.body).on('show', '.collapse', function() { 
     $(this).parent().find('.data-title').addClass('open'); //add active state to button on open
 });
 
-$('.collapse').live('hide', function() {
+$(document.body).on('hide', '.collapse', function() { 
     $(this).parent().find('.data-title').removeClass('open'); //remove active state to button on close
 });
 
-jQuery("#delete_jobs_link").live("click", function() {
+jQuery(document.body).on('click', '#delete_jobs_link', function() {  
     
     $("#myModal1").show();
     
@@ -2468,8 +2476,7 @@ jQuery("#delete_jobs_link").live("click", function() {
 //            });
 
 });
-
-jQuery("#delete_job").live("click",function(){
+jQuery(document.body).on('click', '#delete_job', function() {  
        $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/delete-job',
             {
                 job_id: jQuery("#delete_job").attr("job-id"),
@@ -2501,8 +2508,7 @@ function paypal_form_values(no_of_minyawns) {
 
 }
 
-
-jQuery("#invite-minion").live("click", function() {
+jQuery(document).on('click', '#invite-minion', function() { 
 jQuery("#invite_to").empty();
  jQuery("#miniondir").modal('show');
    
@@ -2512,8 +2518,8 @@ jQuery("#invite_to").empty();
     window.fetchi = new Fetchuserinvites;
     window.fetchi.fetch({
         data: {
-            user_id: $(this).attr("minion-id"),
-            employer_id: $(this).attr("employer-id")
+            user_id: jQuery(this).attr("minion-id"),
+            employer_id: jQuery(this).attr("employer-id")
         },
         success: function(collection, response) {
           
@@ -2561,12 +2567,11 @@ function button_for_invite(model){
     
 }
  
- 
- $('.show-minyawn').live('click',function(e){
-    if($(e.target).attr('href') || $(e.target).parent().attr('href')  ) {
+$(document).on('click', '.show-minyawn', function(e) {   
+    if(jQuery(e.target).attr('href') || jQuery(e.target).parent().attr('href')  ) {
     return;
   }
-       window.open(SITEURL+'/profile/'+$(e.target).closest( "li").attr('item-id')+'/','_target') 
+       window.open(SITEURL+'/profile/'+jQuery(e.target).closest( "li").attr('item-id')+'/','_target') 
     
 }); 
 

@@ -312,7 +312,7 @@ font-weight: 800;
 .m1{
 	position: relative;
 	top: 0px;
-	display: inline-block;
+	/*display: inline-block;*/
 vertical-align: top;
 min-height: 300px;
 }
@@ -4966,8 +4966,8 @@ body .minyawns-grid1{
 					img{
 					/*width: 120px!important;
 					height: 120px!important;*/
-					width: 110px!important;
-					height: 110px!important;
+					width: 120px!important;
+					height: 120px!important;
 					}
 				}
 				
@@ -7583,6 +7583,12 @@ body .job-view-list{
 							-moz-border-radius: 100%;
 							-webkit-border-radius: 100%;
 							border: 3px solid #8ed030;
+								@media screen and (max-width:321px){
+									&{
+										width:70px;
+										height:70px;
+									}
+								}
 						}
 					}
 				}
@@ -7940,21 +7946,20 @@ p{
  
 
 /*modal popup*/
-.modal{
-  width:500px;
-  .modal-body{
-  	.cust-modal-body{
-  		overflow:inherit;
-	    height:460px;
-	    padding:0;
-	    .modal-img{
-      		position:absolute;
-			clip: rect(10px, 490px, 465px, 10px);
-			z-index:-1;
-  		}
-    }
-  }
-  .popup-apply-btn-cont{
-      margin-bottom:10px
-    }
+.cust-modal{
+width:500px !important;
+.cust-modal-body{
+overflow:inherit !important;
+height:460px !important;
+padding:0 !important;
+.modal-img{
+position:absolute;
+clip: rect(10px, 490px, 465px, 10px);
+z-index:-1;
 }
+}
+.popup-apply-btn-cont{
+margin-bottom:10px;
+}
+}
+

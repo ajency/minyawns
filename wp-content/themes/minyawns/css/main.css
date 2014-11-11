@@ -290,7 +290,7 @@ a:hover {
 .m1 {
   position: relative;
   top: 0px;
-  display: inline-block;
+  /*display: inline-block;*/
   vertical-align: top;
   min-height: 300px;
 }
@@ -4248,8 +4248,8 @@ body .minyawns-grid1 .m2 .social-link {
 .minyawns-grid1 .thumbspan.card .m1 .caption .minyawns-img img {
   /*width: 120px!important;
 					height: 120px!important;*/
-  width: 110px!important;
-  height: 110px!important;
+  width: 120px!important;
+  height: 120px!important;
 }
 .minyawns-grid1 .thumbspan.card .m1 .caption h4 {
   color: #8ed030;
@@ -6486,6 +6486,12 @@ div.tooltip1:after {
   -webkit-border-radius: 100%;
   border: 3px solid #8ed030;
 }
+@media screen and (max-width: 321px) {
+  .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img img {
+    width: 70px;
+    height: 70px;
+  }
+}
 .minyawns-grid1 .thumbspan .thumbnail:hover .m3 {
   top: 0 !important;
 }
@@ -6849,19 +6855,19 @@ p.white {
   line-height: 26px;
 }
 /*modal popup*/
-.modal {
-  width: 500px;
+.cust-modal {
+width: 500px !important;
 }
-.modal .modal-body .cust-modal-body {
-  overflow: inherit;
-  height: 460px;
-  padding: 0;
+.cust-modal .cust-modal-body {
+overflow: inherit !important;
+height: 460px !important;
+padding: 0 !important;
 }
-.modal .modal-body .cust-modal-body .modal-img {
-  position: absolute;
-  clip: rect(10px, 490px, 465px, 10px);
-  z-index: -1;
+.cust-modal .cust-modal-body .modal-img {
+position: absolute;
+clip: rect(10px, 490px, 465px, 10px);
+z-index: -1;
 }
-.modal .popup-apply-btn-cont {
-  margin-bottom: 10px;
+.cust-modal .popup-apply-btn-cont {
+margin-bottom: 10px;
 }

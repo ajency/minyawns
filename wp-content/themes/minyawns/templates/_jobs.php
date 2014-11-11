@@ -318,19 +318,21 @@ $current_user_role =  trim($user_role);
               <%}%>      
             </div>
 			
-			<div class="row-fluid">
+			<div class="row-fluid"  id="applicant-container">
 			<div class="span12">
 			<h3 class="pull-left custom-h3">Applicants</h3>
 			</div>
 			</div>
-            <ul class="thumbnails">
-              <span class='load_ajaxsingle_job_minions' style="display:none"></span>
+
+            <ul class="thumbnails" id="minion-thumbnails">
+              <span class='load_ajaxsingle_job_minions' ></span>
 			  <div class="row-fluid">
 			  <div class="span12">
-			  <a href="#" class="pull-right view-all-app">View All Applicants &raquo;</a>
+			  
 			  </div>
 			  </div>
             </ul>
+
             </br></br><span id="div_confirmhire"></span>
  
            <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>">
@@ -343,35 +345,21 @@ $current_user_role =  trim($user_role);
             <!--<div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none">-->
              
                   <div class="row-fluid">
-                  <div class="span6">
+                  <div class="span12">
+                             <div  id="upload" style="display:none">
+              
                     <div id="drop">
-                      <p>Drop Your Job Photos Here </p>
-                      <a class="btn btn-primary"><i class="icon-file">&nbsp;</i>Browse</a>
+                      Drop Your Job Photos Here 
+                      <a class="btn btn-primary"><i class="icon-file"></i>&nbsp;Browse</a>
                       <input type="file" name="photo" multiple />
                     </div>
 
                     <ul>
                       <!-- The file uploads will be shown here -->
-                    </ul>
+                    </ul> 
+            </div> 
                   </div>
-				  <div class="span6">
-					  <div class="alert alert-success alert-sidebar author-data">
-                      <b style="color:#000;">Employer Details</b>
-                      
-                      <div class="row-fluid">
-                      <div class="span3">
-                        <%= result.job_author_logo %>
-                      </div>
-                        <div class="span9 author-info">
-                        
-                                                <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
-                            <i class="icon-map-marker"></i> <%= result.job_company_location%>
-                        </div>
-                      </div>
-                        
-                        <br>
-                    </div>
-				  </div>
+				  
                 </div>
             <!--</div>-->  
 
@@ -379,7 +367,7 @@ $current_user_role =  trim($user_role);
           <!--jobphotos-->
             <div class="row-fluid">
   <div class="span12">
-  <h3 class="custom-h3 pull-left m-t-10">Job Images</h3>
+  <h3 class="custom-h3 pull-left m-t-10" style="display:none" id = "photo_title">Job Images</h3>
   </div>
   </div>
   <div class="isotope">
@@ -582,10 +570,7 @@ $current_user_role =  trim($user_role);
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>'><%= result.user_image%></a>
     </div>
 	
-    <% if(result.is_verified === 'Y'){%>
-    <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
-    <div class="verfied-txt">Verified Minion</div>
-    <% } %>
+
     <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
     <div class="collage"> <%= result.college%> </div>
     <div class="collage"> <%= result.major%> </div>
@@ -656,6 +641,10 @@ $current_user_role =  trim($user_role);
 	<div class="row-fluid">
 	<div class="span8">
     <h4 class="align-left"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
+    <% if(result.is_verified === 'Y'){%>
+    <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
+    <div class="verfied-txt">Verified Minion</div>
+    <% } %>
     <div class="collage align-left"> <%= result.college%> </div>
     <div class="collage align-left"> <%= result.major%> </div>
     <div class="social-link align-left">

@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
 //actual price
 
 
-      jQuery("#job_wages").live("keyup", function() {
+      jQuery("#job_wages").on("keyup", function() {
                  
                  actual_wages = "";
                  if(jQuery("#job_wages").val()!=""){
@@ -179,9 +179,9 @@ function load_add_job_form(event) {
 
 }
 function load_browse_jobs(id, _action, category_ids) {
-
-
-    $("#sidebar-content").show();
+ 
+$ = jQuery;
+    jQuery("#sidebar-content").show();
     $("#my-jobs-emp-min").hide();
 
 
@@ -343,7 +343,7 @@ review =""
                             }, "slow").append(html);
                             jQuery(".details").find(".minyawansgrid").hide();
                             jQuery("#select-minyawn").removeAttr('href');
-                            jQuery("#select-minyawn").live("click", function() {
+                            jQuery("#select-minyawn").on("click", function() {
                                 jQuery("html, body").animate({scrollTop: jQuery(document).height()}, 1000);
                             });
                             jQuery(".load_ajaxsingle_job").hide();
@@ -352,7 +352,7 @@ review =""
                             current_job = model
                             console.log("current_jobmodel")
                             console.log(current_job)
-                            jQuery(".load_ajaxsingle_job_minions").hide();
+                            //
 
                         }
 
@@ -392,7 +392,8 @@ review =""
             display_job_photo_option();
 
                          //load messageboard
-            loadActivityStream($("#ajan-activity-stream-container"));
+            loadPluginActivityStream(id);
+           // loadActivityStream($("#ajan-activity-stream-container"));
            
 
         },
@@ -413,8 +414,13 @@ function getJobPhotos(){
                 console.log(collection);
                   _.each(collection, function(model) {
                       appendToGrid(model)
+                       
                   });
+                  if(collection.length >0){
+                    $("#photo_title").show()
                     set_isotope();
+                  }
+                    
             });
 
 
@@ -459,6 +465,7 @@ function photoUpload(){
             // This function is called when a file is added to the queue;
             // either via the browse button, or via drag/drop:
             add: function (e, data) {
+                console.log ("file added to queue")
 
                 var tpl = jQuery('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
                     ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p class="file_details"></p><span style="display:none"></span><p class="process_successmsg"></p><p class="process_errormsg"></p></li>');
@@ -506,12 +513,15 @@ function photoUpload(){
                 }
             },
             done: function(e, data) { 
- 
+                
+                console.log ("file done")
                     if(data.result.status==true){
+                           console.log ("file done succ")
                           data.context.find('.process_successmsg').text("Photo Uploaded !")
                           appendToGrid(data.result.photo);
                     }else
                     {
+                        console.log ("file done err")
                         data.context.find('.process_errormsg').text(data.result.error+" !")
                         
                     }
@@ -520,6 +530,7 @@ function photoUpload(){
      
                 }, 
             fail:function(e, data){
+                   console.log ("fail")
                 // Something has gone wrong!
                 data.context.addClass('error');
             }
@@ -549,7 +560,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 
  }
 
- jQuery(".icon-remove").live('click', function(e) {
+ jQuery(".icon-remove").on('click', function(e) {
         var _e = e
     
 
@@ -603,13 +614,22 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
         {
             user_employer = true;
         }
- 
+ console.log ("check_capability('apply_for_jobs') ")
+ console.log (check_capability('apply_for_jobs') )
+ console.log (current_job.toJSON().user_to_job_status[minyawnNo] )
+ console.log (current_job_status )
+
+               console.log ("user_minyawn"+user_minyawn)  
+
+               console.log ("user_employer"+user_employer)  
+
+               console.log ("user_admin"+user_admin)  
         if(user_minyawn==true ||user_employer==true || user_admin==true ){
             
             jQuery("#upload").show();
 
              //option to upload job photos
-                 
+               console.log ("photoUpload")  
             photoUpload(); 
  
             if(jQuery("#upload_nonce").val()==""){
@@ -1727,9 +1747,31 @@ function load_job_minions(jobmodel)
 
                     var html = template({result: model.toJSON(), select_button: select_button, ratings_button: ratings_button_text});
                     jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
+                    jQuery(".load_ajaxsingle_job_minions").hide();
+
 
                     //jQuery(".thumbnails").append(blank);
                 });
+                    if(collection.length > 4){
+                       $('#view-all-applicants').show()
+                       $('#minion-thumbnails li').hide().filter(':lt(2)').show();
+                        $('#minion-thumbnails').append('<li><a href="javascript:void(0)" class="pull-right view-all-app" id= "view-all-applicants" toggled="all">View All Applicants &raquo;</a></li>')
+                        $('#minion-thumbnails').find('li:last').click(function(){
+                            $(this).siblings(':gt(1)').toggle(); 
+                              jQuery(".load_ajaxsingle_job_minions").hide();
+                            if($('#view-all-applicants').attr('toggled') == "less"){
+                                $('#view-all-applicants').html("View All Applicants &raquo;")
+                                window.location.hash = '#applicant-container';
+                                $('#view-all-applicants').attr('toggled','all') 
+                            }else{
+                                $('#view-all-applicants').html("View Less Applicants &raquo;")
+
+                                $('#view-all-applicants').attr('toggled','less') 
+                            }
+                             
+                        });
+
+                    }
 
                 if (role === 'Employer') {
                     var blankt = blank({result: jobmodel.toJSON()});
@@ -1750,9 +1792,8 @@ function load_job_minions(jobmodel)
 
                 jQuery(".thumbnails").animate({left: '100px'}, "slow").append(blankt);
 
-            }
-			
-
+            } 
+            jQuery(".load_ajaxsingle_job_minions").hide();
 
         }
     });
@@ -1972,7 +2013,7 @@ function load_comments(user_id)
  *  ONCLICK OF THE LI
  *
  */
-$("li").live('click', function() {
+$("li").on('click', function() {
 
     var id = $(this).attr('id');
     $('#job_tags_tagsinput').find('span').remove();
@@ -2030,7 +2071,7 @@ $("li").live('click', function() {
  *
  *  FROM A TEMPLATE
  */
-$(".tag a").live('click', function() {
+$(".tag a").on('click', function() {
 
     $(this).parent().remove();
 });

@@ -432,7 +432,7 @@ class ActivityNotifications {
 		require( $this->plugin_dir . 'ajan-core/ajan-core-filters.php'    );
 		require( $this->plugin_dir . 'ajan-core/ajan-core-avatars.php'    ); 
 		require( $this->plugin_dir . 'ajan-core/ajan-core-template.php'   );
-		require( $this->plugin_dir . 'ajan-core/ajan-core-adminbar.php'   );
+		//require( $this->plugin_dir . 'ajan-core/ajan-core-adminbar.php'   );
 		require( $this->plugin_dir . 'ajan-core/ajan-core-ajanbar.php'   );
 		require( $this->plugin_dir . 'ajan-core/ajan-core-catchuri.php'   );
 		require( $this->plugin_dir . 'ajan-core/ajan-core-component.php'  );
