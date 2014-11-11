@@ -1961,8 +1961,8 @@ $('#mylogin').on('keyup', function(e){
         return result;
     }
 
-    $(".onoffswitch").on('click', function(e) {
-
+ 
+    $(document.body).on('click', '.onoffswitch', function(e) {
 
 
 
