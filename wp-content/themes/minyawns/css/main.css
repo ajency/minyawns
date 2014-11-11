@@ -6856,18 +6856,18 @@ p.white {
 }
 /*modal popup*/
 .cust-modal {
-width: 500px !important;
+  width: 500px !important;
 }
 .cust-modal .cust-modal-body {
-overflow: inherit !important;
-height: 460px !important;
-padding: 0 !important;
+  overflow: inherit !important;
+  height: 460px !important;
+  padding: 0 !important;
 }
 .cust-modal .cust-modal-body .modal-img {
-position: absolute;
-clip: rect(10px, 490px, 465px, 10px);
-z-index: -1;
+  position: absolute;
+  clip: rect(10px, 490px, 465px, 10px);
+  z-index: -1;
 }
 .cust-modal .popup-apply-btn-cont {
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
