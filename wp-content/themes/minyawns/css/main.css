@@ -6705,3 +6705,13 @@ div.tooltip1:after {
     width: 100%;
   }
 }
+.verfied-txt-job-prof {
+  background: #F6FAF4;
+  padding: 3px;
+  border: 1px dotted #2AE431;
+  margin: 5px auto;
+  position: relative;
+  margin-top: -27px;
+  font-size: 12px;
+  font-family: arial;
+}
