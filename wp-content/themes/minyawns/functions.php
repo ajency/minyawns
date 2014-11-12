@@ -2644,9 +2644,10 @@ global $user_ID;
 $creator_user_info = get_userdata($user_ID);
 
 //Check if the job is not new
+$company_name = get_user_meta($user_ID,'company_name',true);
         if ($post->post_date != $post->post_modified){
             $args = array(         
-               'action'            => $creator_user_info->display_name.' updated job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
+               'action'            => $company_name.' updated Job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
                'component'         => 'job',
                'type'              => 'job_updated',
                'user_id'           => $user_ID,
@@ -2655,7 +2656,7 @@ $creator_user_info = get_userdata($user_ID);
         }else{
 
             $args = array(         
-                'action'            => $creator_user_info->display_name.' created job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
+                'action'            => $company_name.' posted a new job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
                 'component'         => 'job',
                 'type'              => 'job_created',
                 'user_id'           => $user_ID,
