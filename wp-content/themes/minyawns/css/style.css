@@ -108,7 +108,7 @@ float: right;
 }
 #logged-in a img {
 	width: 22px;
-height: 22px;
+	height: 22px !important;
 	padding: 2px;
 	border: 1px solid #DFDFDF;
 	margin-right: 7px;
