@@ -355,7 +355,7 @@
 	                          </div>
 	                    </div>
 												<h5 class="avatar-heading left full-width">
-												<small class="ajan-user-name ajan-user-name-{{user_id}}"> Minyawn</small>
+												<small class="ajan-user-name ajan-user-name-{{user_id}}"></small>
 												<small class="ajan-user-role ajan-user-role-{{user_id}}"></small>
 												<small class="ajan-user-additional-info-{{user_id}}"></small></h5>
 												 

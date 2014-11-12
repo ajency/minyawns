@@ -416,6 +416,13 @@ function get_activity_user_profile_url($id){
 	}
 	return $profile_url;
 }
+ 
+//Function to get user display name
+function get_activity_user_display_name($id){
+	$display_name = apply_filters( 'activity_user_display_name', $id );
+ 
+	return $display_name;
+}
 
 //Function to get user profile url
 function get_activity_user_additional_info($id){

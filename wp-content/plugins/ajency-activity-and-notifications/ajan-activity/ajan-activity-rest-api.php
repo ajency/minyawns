@@ -329,7 +329,8 @@ function get_activitycomments(){
 
 							$users[] = array(
 								'ID' => $user->ID,
-								'name' => $user->display_name,
+
+								'name' => get_activity_user_display_name($user->ID),
 
 								//get user role (filter: activity_userrole)
 								'user_role' => get_activity_user_role($user->ID),

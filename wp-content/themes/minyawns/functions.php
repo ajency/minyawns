@@ -2750,10 +2750,28 @@ function get_profile_url($userid){
     return site_url().'/profile/'.$userid;
 }
 //Filter profile pic
-add_filter( 'activity_user_profile_url','get_profile_url', $userid);
+add_filter( 'activity_user_profile_url','get_profile_url',10,1);
+
+//Custom User display name
+function get_user_display_name($userid){
+    global $wp_roles;
 
 
+    $user_info = get_userdata($userid);
 
+    
+    $role = implode(', ', $user_info->roles); 
+ 
+    if($wp_roles->roles[$role]['name']=="employer"){
+        return $user_info->company_name;
+    }
+    else{
+        return $user_info->display_name;
+    }
+ 
+
+}
+add_filter( 'activity_user_display_name','get_user_display_name',10,1);
 //Custom User profile pic
 function get_user_additional_info($userid){
 
@@ -2774,7 +2792,7 @@ function get_user_additional_info($userid){
 
 
 //Filter profile pic
-add_filter( 'activity_user_additional_info','get_user_additional_info', $userid);
+add_filter( 'activity_user_additional_info','get_user_additional_info', 10,1);
 
 
 //Custom User profile url
@@ -2791,7 +2809,7 @@ function get_profile_pic($userid){
 return $user_pic_img_src;
 }
 //Filter profile url
-add_filter( 'activity_user_profile_pic','get_profile_pic', $userid );
+add_filter( 'activity_user_profile_pic','get_profile_pic', 10,1 );
 
 
 
