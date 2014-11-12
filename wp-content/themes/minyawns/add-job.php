@@ -515,7 +515,7 @@ $(".inline li").removeClass("selected");
         </div>
 
     </div>
-    <div id="examplejob" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="examplejob" class="modal hide fade modal-dwn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h5 id="myModalLabel">Sample Job Popup</h5>

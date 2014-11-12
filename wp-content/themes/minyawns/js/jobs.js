@@ -699,8 +699,8 @@ function fetch_my_jobs(id)
 
     var profile_page = 0;
 
-    $("#sidebar-content").hide();
-    $("#my-jobs-emp-min").show();
+    jQuery("#sidebar-content").hide();
+    jQuery("#my-jobs-emp-min").show();
 
     jQuery("#accordion24").empty();
     //jQuery(".job-view-list").empty();
@@ -723,9 +723,9 @@ function fetch_my_jobs(id)
     //if(window.location.hash != '#my-jobs'){
     // $("#add-job-form").toggle();
     //}
-    $(".inline li").removeClass("selected");
+    jQuery(".inline li").removeClass("selected");
 
-    $("#my_jobs").addClass('selected');
+    jQuery("#my_jobs").addClass('selected');
     var filter = 0;
     if (window.location.href.indexOf("profile") > -1)
         var profile_page = 1;
@@ -753,9 +753,9 @@ function fetch_my_jobs(id)
             //jQuery(".load_ajax1_myjobs").hide();
 
             if (logged_in_role === 'Employer')
-                $("#my-jobs-emp-min").html($("#employer-sidebar").html());
+                jQuery("#my-jobs-emp-min").html(jQuery("#employer-sidebar").html());
             else
-                $("#my-jobs-emp-min").html($("#minion-sidebar").html());
+                jQuery("#my-jobs-emp-min").html(jQuery("#minion-sidebar").html());
 
 
             if (collection.length === 0) {
@@ -847,10 +847,10 @@ function fetch_my_jobs(id)
                         }
 
                         if (model.toJSON().load_more === 0)
-                            $(".load_more").show();
+                            jQuery(".load_more").show();
 
 
-                        $('.jobs-rating').hide('');
+                        jQuery('.jobs-rating').hide('');
 
                     } else
                     {
@@ -2013,33 +2013,33 @@ function load_comments(user_id)
  *  ONCLICK OF THE LI
  *
  */
-$("li").on('click', function() {
+$(document).on('click', 'li', function() {
 
-    var id = $(this).attr('id');
-    $('#job_tags_tagsinput').find('span').remove();
+    var id = jQuery(this).attr('id');
+    jQuery('#job_tags_tagsinput').find('span').remove();
 
     var map = {};
-    $("#" + id + " input").each(function() {
-        map[$(this).attr("name")] = $(this).val(); // creates an array for hidden names with values pairs
+    jQuery("#" + id + " input").each(function() {
+        map[jQuery(this).attr("name")] = jQuery(this).val(); // creates an array for hidden names with values pairs
 
-        $("#" + $(this).attr("name")).val($(this).val()); // *here the hidden field names are same as form input ids* assign based on name.
+        jQuery("#" + jQuery(this).attr("name")).val(jQuery(this).val()); // *here the hidden field names are same as form input ids* assign based on name.
 
         /*
          *  FOR CATEGORIES
          *
          */
-        if ($(this).attr("name") === 'categories') {
-            var categories = $(this).val();
+        if (jQuery(this).attr("name") === 'categories') {
+            var categories = jQuery(this).val();
 
             var indv_categories = categories.split(','); //category ids saved as , seperated in hidden type. they are split and looped through
 
-            $('.controls').find('input[type=checkbox]:checked').removeAttr('checked');//clears all checkboxes before adding new
+            jQuery('.controls').find('input[type=checkbox]:checked').removeAttr('checked');//clears all checkboxes before adding new
             for (var i = 0; i < indv_categories.length; i++)
             {
 
 
                 //$("#category-" + indv_categories[i]).removeAttr('checked'); //clears checkboxes before loading new values
-                $("#category-" + indv_categories[i]).attr('checked', 'checked');
+                jQuery("#category-" + indv_categories[i]).attr('checked', 'checked');
 
             }
 
@@ -2050,14 +2050,14 @@ $("li").on('click', function() {
          */
 
         var tags;
-        if ($(this).attr("name") == 'job_tags') {
-            tags = $(this).val();
+        if (jQuery(this).attr("name") == 'job_tags') {
+            tags = jQuery(this).val();
             var tags_jquery = tags.split(',');
             for (var i = 0; i < tags_jquery.length; i++)
             {
-                $("#job_tags_tagsinput").prepend('<span class="tag"><span>' + tags_jquery[i] + '&nbsp;&nbsp;</span><a class="tagsinput-remove-link"></a></span>');
+                jQuery("#job_tags_tagsinput").prepend('<span class="tag"><span>' + tags_jquery[i] + '&nbsp;&nbsp;</span><a class="tagsinput-remove-link"></a></span>');
             }
-            $("#user_skills").val(tags);
+            jQuery("#user_skills").val(tags);
         }
 
 

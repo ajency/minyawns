@@ -243,7 +243,7 @@ $current_user_role =  trim($user_role);
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
              <div class="row-fluid minyawns-grid1" >
-		  <%  if ($(window).width() < 800) {%>
+		  <%  if (jQuery(window).width() < 800) {%>
 			
 			<div class="span3 mobile-alert-box">
                   <div class="alert alert-success alert-sidebar author-data">
@@ -628,6 +628,10 @@ $current_user_role =  trim($user_role);
         <% } %>
       <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
     </div>
+	<% if(result.is_verified === 'Y'){%>
+    <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
+    <div class="verfied-txt-job-prof">Verified Minion</div>
+    <% } %>
     <div class="rating full-width">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
     <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
@@ -641,10 +645,7 @@ $current_user_role =  trim($user_role);
 	<div class="row-fluid">
 	<div class="span8">
     <h4 class="align-left"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
-    <% if(result.is_verified === 'Y'){%>
-    <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
-    <div class="verfied-txt">Verified Minion</div>
-    <% } %>
+    
     <div class="collage align-left"> <%= result.college%> </div>
     <div class="collage align-left"> <%= result.major%> </div>
     <div class="social-link align-left">

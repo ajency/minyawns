@@ -375,10 +375,10 @@
 	 												<span class="left rep-del">
 	                        <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}">
 	                                  comments(<span id="comment_count_{{id}}">{{comment_count}}</span>)
-	                              </a>|
+	                              |</a>
 	                              <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"  activity="{{id}}">
 	                                  reply
-	                              </a>|
+	                              |</a>
 	                              <a href="javascript:void(0)" class="delete delete-activity delete-activity-{{id}}" activity="{{id}}">
 	                                  delete
 	                              </a>

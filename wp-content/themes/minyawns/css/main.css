@@ -6476,6 +6476,13 @@ div.tooltip1:after {
 .minyawns-grid1 .thumbspan .thumbnail .m3 .icon-thumbs-down {
   color: #F65151;
 }
+.minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img {
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border: 3px solid #8ed030;
+  display: inline-block;
+}
 .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img img {
   width: 80px;
   height: 80px;
@@ -6484,7 +6491,7 @@ div.tooltip1:after {
   border-radius: 100%;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
-  border: 3px solid #8ed030;
+  vertical-align: middle;
 }
 @media screen and (max-width: 321px) {
   .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img img {
@@ -6815,6 +6822,16 @@ div.tooltip1:after {
   background-position: 0 100px;
   width: 100px;
   height: 100px;
+}
+#home-video .verfied-txt-job-prof {
+  background: #F6FAF4;
+  padding: 3px;
+  border: 1px dotted #2AE431;
+  margin: 5px auto;
+  position: relative;
+  margin-top: -27px;
+  font-size: 12px;
+  font-family: arial;
 }
 #home-video iframe#video-player {
   height: 125%;

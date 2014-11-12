@@ -108,7 +108,7 @@ float: right;
 }
 #logged-in a img {
 	width: 22px;
-height: 22px;
+	height: 22px !important;
 	padding: 2px;
 	border: 1px solid #DFDFDF;
 	margin-right: 7px;
@@ -530,10 +530,16 @@ margin-top: -2px;
 
 
 .modal.fade.in {
-top: 10%;
+top: 15%;
 	
 }
+.modal.fade.in.apply-modal-dwn{
+	top:10% !important;
+}
 
+.modal.fade.in.modal-dwn{
+	top:4% !important;
+}
 .fbLoginButton img
 {
     margin: auto;
@@ -2903,11 +2909,18 @@ float:none !important;
  
 .search-minyawn{
 	width: 170px !important;
+ 
 }
 .tagsa{
 	text-align:left;
 }
-
+  
+ .auto-width-btn{
+ 	width: auto !important;
+ }
+ 
+ 
+ 
 .hider{
 	display:none;
 	position:absolute;
