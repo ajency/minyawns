@@ -255,6 +255,9 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 								   <li class="website">
 								   Company Website : <b>  <a href="http://<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
 								   </li>
+                                    <li class="website">
+                                   Email : <b>  <a href="mailto:<?php user_profile_email();?>" target="_blank"><?php echo user_profile_email(); ?></a></b>
+                                   </li>
 								   </ul>
 								
 								
