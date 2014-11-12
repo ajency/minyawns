@@ -17,7 +17,7 @@ require 'templates/_jobs.php';
         
         $(".inline li").removeClass("selected");
          fetch_my_jobs(logged_in_user_id);
-        $("#example_right").live('click', function() {
+        $("#example_right").on('click', function() {
 
             $(".load_ajax_profile_comments").show();
             var Fetchusercomments = Backbone.Collection.extend({
