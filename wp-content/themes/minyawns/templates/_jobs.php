@@ -241,7 +241,7 @@ $current_user_role =  trim($user_role);
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
              <div class="row-fluid minyawns-grid1" >
-		  <%  if ($(window).width() < 800) {%>
+		  <%  if (jQuery(window).width() < 800) {%>
 			
 			<div class="span3 mobile-alert-box">
                   <div class="alert alert-success alert-sidebar author-data">
