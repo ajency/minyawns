@@ -2905,11 +2905,18 @@ float:none !important;
  
 .search-minyawn{
 	width: 170px !important;
+ 
 }
 .tagsa{
 	text-align:left;
 }
-
+  
+ .auto-width-btn{
+ 	width: auto !important;
+ }
+ 
+ 
+ 
 .hider{
 	display:none;
 	position:absolute;
@@ -3036,3 +3043,8 @@ html body .minyawns-grid1 .thumbspan.card{
 	cursor:pointer;
 } 
 
+<<<<<<< HEAD
+=======
+ 
+ 
+>>>>>>> issue#31
