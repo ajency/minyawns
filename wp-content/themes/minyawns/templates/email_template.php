@@ -274,9 +274,11 @@ function get_email_msg($type, $data, $emailid) {
              return $email_msg;
              
         case 'invite_minion':$email_msg="Hi,<br/><br/> Well done! Your profile has caught the attention of an employer. You are one of the handpicked minions invited to apply for the job.<br/><br/>
-<b>Job details</b><br/>Job description:".$data['decription']."<br/>
-Wages: ".$data['wages']."<br/>
-Report for duty at ".$data['time']." on ".$data['date']."<br/>
+<b>Job details</b><br/>
+Job Title : ".$data['title']."<br/>
+Job Description : ".$data['content']."<br/>
+Wages : $".$data['wages']."<br/>
+Report for duty at ".$data['time'].$data['timeampm']." on ".$data['date']."<br/>
 You are at an advantage over other minions as you are invited by the employer after going over your profile and checking if you meet the criteria for the job.
 Sounds good? Go ahead.
 <a href='".  site_url()."/job/".$data['slug']."'>Apply now</a><br/><br/>Once you apply you will receive a mail confirming your application.<br/><br/>You will be notified by email when you are selected for the job. Get, set and go! 
