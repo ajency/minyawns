@@ -1160,11 +1160,11 @@ var image_name=$("#image_name").val();
                     var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                     if ($("#tab_identifier").val() === '1') {
-                        $("#accordion24").append(html);
+                        $("#accordion24").append(html); 
                     }
                     else {
 
-                        $("#accordion24").append(html);
+                        $("#accordion24").append(html); 
                     }
 
                 });
@@ -1718,7 +1718,7 @@ $('#mylogin').live('keyup', function(e){
 
         html  = '<div id="apply-job-popup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
       
-        html += '<div class="modal-body"><img src="'+THEMEURL+'/images/minyawns-job-warning.jpg">'
+        html += '<div class="modal-body"><img src="'+warning_image.src +'">'
          
         html += '</div>'
       
@@ -2476,6 +2476,50 @@ function button_for_invite(model){
        window.open(SITEURL+'/profile/'+$(e.target).closest( "li").attr('item-id')+'/','_target') 
     
 }); 
+
+function toProperCase(str) { 
+        var noCaps = ['of','a','the','and','an','am','or','nor','but','is','if','then', 
+                      'else','when','at','from','by','on','off','for','in','out','to','into','with'];
+        return str.replace(/\w\S*/g, function(txt, offset){
+            if(offset != 0 && noCaps.indexOf(txt.toLowerCase()) != -1){
+                return txt.toLowerCase();    
+            }
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+ function check_capability (user_cap) { 
+ 
+        ret_val = false; 
+        jQuery.each(USER.all_caps, function(i, val) {
+             
+ 
+            if( user_cap==val)
+            {
+ 
+                capability_name =  val.replace(/_/g,' ');
+                capability_name =  toProperCase(capability_name);
+                ret_val = capability_name.replace(/Ph /g,'');
+ 
+                return false;
+
+            }
+
+        }); 
+        return ret_val;
+    }
+
+
+    //isotope
+function set_isotope(){
+jQuery('.isotope').imagesLoaded( function(){
+      jQuery('.isotope').isotope({
+            itemSelector: '.item',
+            masonry: {
+              columnWidth: '.grid-sizer'
+            }
+          });
+		});
+}
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
 //				{
@@ -2486,7 +2530,11 @@ function button_for_invite(model){
 //				}
 //			);
 //		});
+ 
 
 
-
-
+//fancybox
+jQuery(function($) {
+$(".fancybox").fancybox();
+});
+ 

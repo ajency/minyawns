@@ -1,5 +1,35 @@
-jQuery(document).ready(function($) {
 
+/*
+photo upload scripts
+*/
+ var current_job;
+var current_job_status;
+var display_user_photo_option_done = false;
+jQuery(document).ready(function($) {
+ 
+
+
+
+
+
+
+
+
+
+//actual price
+
+
+      jQuery("#job_wages").live("keyup", function() {
+                 
+                 actual_wages = "";
+                 if(jQuery("#job_wages").val()!=""){
+
+                    job_wages = parseFloat(jQuery("#job_wages").val());
+                    actual_wages = job_wages - (job_wages*(10/100));
+                    
+                 } 
+                 jQuery("#job_wages_actual").val(actual_wages)
+        });
 //if(!logged_in_user_id){
 //load_browse_jobs();
 //return false;
@@ -220,7 +250,7 @@ function load_browse_jobs(id, _action, category_ids) {
         data: _data,
         reset: true,
         success: function(collection, response) {
-
+review =""
             if (collection.length === 0) {
                 jQuery("#accordion24").empty();
 
@@ -318,7 +348,10 @@ function load_browse_jobs(id, _action, category_ids) {
                             });
                             jQuery(".load_ajaxsingle_job").hide();
                             jQuery("#collapse" + model.toJSON().post_id + "").addClass("in");
-                            load_job_minions(model);
+                            load_job_minions(model); 
+                            current_job = model
+                            console.log("current_jobmodel")
+                            console.log(current_job)
                             jQuery(".load_ajaxsingle_job_minions").hide();
 
                         }
@@ -342,11 +375,21 @@ function load_browse_jobs(id, _action, category_ids) {
                         jQuery(".dialog-success").hide(); // hides the ADD JOB FORM ON BROWSE JOBS
 
                     }
+
                 });
                 jQuery(".load_ajax").hide();
                 jQuery("#loader").hide();
-            }
+				
+				
+				
+				
+			
 
+	 
+            }
+            //display photo containers
+            display_job_photo_option();
+           
 
 
         },
@@ -357,10 +400,274 @@ function load_browse_jobs(id, _action, category_ids) {
     });
 
 }
+//photo upload scripts starts here
+
+function getJobPhotos(){
+console.log(SITEURL+"/api/photos/job/"+$("#jobid").val());
+ $.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
+                console.log(collection);
+                  _.each(collection, function(model) {
+                      appendToGrid(model)
+                  });
+                    set_isotope();
+            });
 
 
+ }
 
 
+function getUserPhotos(user_id){
+
+        console.log('user-path:' + SITEURL+"/api/photos/user/"+user_id);
+     $.get(SITEURL+"/api/photos/user/"+user_id, {}, function(collection)  { 
+
+                 
+                  _.each(collection, function(model) {
+                      appendToGrid(model)
+                  });
+                    set_isotope();
+            });
+}
+function photoUpload(){ 
+ 
+  
+
+        var ul = jQuery('#upload ul');
+
+        jQuery('#drop a').click(function(){
+            // Simulate a click on the file input button
+            // to show the file browser dialog
+            jQuery(this).parent().find('input').click();
+        });
+
+        // Initialize the jQuery File Upload plugin
+        jQuery('#upload').fileupload({
+
+            // This element will accept file drag/drop uploading
+            dropZone: jQuery('#drop'),
+
+
+            url: SITEURL + '/api/photos/upload',
+
+            dataType: 'json',
+
+            // This function is called when a file is added to the queue;
+            // either via the browse button, or via drag/drop:
+            add: function (e, data) {
+
+                var tpl = jQuery('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
+                    ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p class="file_details"></p><span style="display:none"></span><p class="process_successmsg"></p><p class="process_errormsg"></p></li>');
+
+                // Append the file name and file size
+                tpl.find('.file_details').text(data.files[0].name)
+                             .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+
+                // Add the HTML to the UL element
+                data.context = tpl.appendTo(ul);
+
+                // Initialize the knob plugin
+                tpl.find('input').knob({'fgColor': '#8ED030',});
+
+                // Listen for clicks on the cancel icon
+                tpl.find('span').click(function(){
+
+                    if(tpl.hasClass('working')){
+                        jqXHR.abort();
+                    }
+
+                    tpl.fadeOut(function(){
+                        tpl.remove();
+                    });
+
+                });
+
+                // Automatically upload the file once it is added to the queue
+                var jqXHR = data.submit();
+            },
+
+            progress: function(e, data){
+
+                // Calculate the completion percentage of the upload
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+
+                // Update the hidden input field and trigger a change
+                // so that the jQuery knob plugin knows to update the dial
+                data.context.find('input').val(progress).change();
+
+                if(progress == 100){
+                  //  data.context.removeClass('working');
+                 setTimeout(function(){data.context.find('span').trigger('click')}, 2000);
+              
+                }
+            },
+            done: function(e, data) { 
+ 
+                    if(data.result.status==true){
+                          data.context.find('.process_successmsg').text("Photo Uploaded !")
+                          appendToGrid(data.result.photo);
+                    }else
+                    {
+                        data.context.find('.process_errormsg').text(data.result.error+" !")
+                        
+                    }
+                     
+                   
+     
+                }, 
+            fail:function(e, data){
+                // Something has gone wrong!
+                data.context.addClass('error');
+            }
+
+        });
+
+
+        // Prevent the default action when a file is dropped on the window
+        jQuery(document).on('drop dragover', function (e) {
+            e.preventDefault();
+        }); 
+}
+ 
+ function appendToGrid(model){
+
+  
+   $("#photos_title").show()
+  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'"  ><img author= "'+model.author+'" src="'+model.url+'"   width="229" /></a>');
+  if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
+    newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
+  }
+  
+ set_isotope()
+jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
+
+   
+
+ }
+
+ jQuery(".icon-remove").live('click', function(e) {
+        var _e = e
+    
+
+    userResponse =  confirm("Are you sure you want to delete this photo?")
+    if(userResponse==true){
+            jQuery.ajax({
+            url: SITEURL+"/api/photos/delete/"+jQuery(e.target).attr('photo'),
+            type: 'DELETE',
+            data:{delete_nonce:$("#delete_nonce").val()},
+            success: function(result) {
+                 jQuery('.isotope').isotope( 'remove', jQuery(_e.target).parent() )
+                        // layout remaining item elements
+                          .isotope('layout'); 
+ 
+                     if(jQuery('.isotope').find('.item').length<=1){
+                        $('#photos_title').hide()
+                     }
+            }
+        });
+        }else{
+            return false;
+        }
+
+  
+ })
+
+/*function to check if the user can view or 
+ upload photos  and display the UI accordingly
+*/
+ function display_job_photo_option(){
+
+ 
+        var user_minyawn = user_employer = user_admin = false;
+ 
+        minyawnNo = current_job.toJSON().applied_user_id.indexOf(USER.id) 
+      
+        //if minyawn and selected for the job
+         if( check_capability('apply_for_jobs') && current_job.toJSON().user_to_job_status[minyawnNo] =="hired" && current_job_status=="Expired" )
+        {
+            user_minyawn = true;
+        }
+
+        //if employer and author of the job
+         if( check_capability('manage_jobs') &&    USER.id  ==  current_job.toJSON().job_author_id  && current_job_status=="Expired"  )
+        {
+            user_employer = true;
+        }
+         
+        //if adminsitartor
+        if( check_capability('manage_options') && current_job_status=="Expired"  )
+        {
+            user_employer = true;
+        }
+         
+ 
+        if(user_minyawn==true ||user_employer==true || user_admin==true ){
+            
+            jQuery("#upload").show();
+
+             //option to upload job photos
+                 
+            photoUpload(); 
+ 
+            if(jQuery("#upload_nonce").val()==""){
+
+                jQuery("#upload_nonce").val(jQuery("#upload_nonce_").val())
+            }
+
+        } 
+        if(current_job_status=="Expired"){
+
+
+            jQuery("#photo-grid").show();
+            //display jb photos
+
+            if(jQuery("#delete_nonce").val()==""){
+ 
+                jQuery("#delete_nonce").val(jQuery("#delete_nonce_").val())
+            }
+
+
+            getJobPhotos();
+            
+        }
+                      
+    
+ }
+
+ function display_user_photo_option(){
+        display_user_photo_option_done= true
+        user_id = jQuery("#upload").attr("user-id")
+        console.log('user' + user_id);
+        getUserPhotos(user_id);
+ 
+        if(user_id==USER.id){
+
+             //option to upload job photos
+            
+            jQuery("#upload").show();
+
+            photoUpload(); 
+
+        }
+     
+
+ }
+    // Helper function that formats the file sizes
+    function formatFileSize(bytes) {
+        if (typeof bytes !== 'number') {
+            return '';
+        }
+
+        if (bytes >= 1000000000) {
+            return (bytes / 1000000000).toFixed(2) + ' GB';
+        }
+
+        if (bytes >= 1000000) {
+            return (bytes / 1000000).toFixed(2) + ' MB';
+        }
+
+        return (bytes / 1000).toFixed(2) + ' KB';
+    }
+//photo upload scripts ends here
 function fetch_my_jobs(id)
 {
 
@@ -418,6 +725,7 @@ function fetch_my_jobs(id)
 
         },
         success: function(collection, response) {
+            console.log('new test');
             //jQuery(".load_ajax1_myjobs").hide();
 
             if (logged_in_role === 'Employer')
@@ -438,12 +746,19 @@ function fetch_my_jobs(id)
                 jQuery("#load-more-my-jobs,.load_more_profile").hide();
                 jQuery(".previous-jobs").hide();
                 jQuery("#accordion24").html(template);
+				
+               /* set_isotope()
+
+                display_user_photo_option();*/
+
             } else {
-                // jQuery("#load-more-my-jobs").hide();
+
+                  // jQuery("#load-more-my-jobs").hide();
                 jQuery("#list-my-jobs").show();
                 jQuery(".no-result").hide()
                 //jQuery("#accordion24").empty();
                 var template = _.template(jQuery("#jobs-table").html());
+				
                 var samplejobs = _.template(jQuery("#sample-jobs-template").html());
                 var profiletemp = _.template(jQuery("#profile-table").html());
 
@@ -486,10 +801,19 @@ function fetch_my_jobs(id)
                            
                             jQuery("#accordion24").prepend(html);
                             jQuery("#selection").hide();
+							
+							//isitope 
+                           /* if(display_user_photo_option_done==false){
+                                 set_isotope()
+
+                                display_user_photo_option();
+                            }*/
+                           
+  
 
                         } else
                         {
-                        	
+                        	console.log('test');
                         	var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                             jQuery("#accordion24").append(html);
@@ -509,7 +833,9 @@ function fetch_my_jobs(id)
                         // TO VIEW PROFILES VIA A LINK
                         var profiletemp = _.template(jQuery("#profile-table").html());
                         if (window.location.href.indexOf("profile") > 1) {
-                        	
+                        	   if(review==undefined){
+                                    review=""
+                                }
                             var html = profiletemp({result: model.toJSON(), review: review, job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                             jQuery(".job-view-list").prepend(html);
@@ -529,6 +855,12 @@ function fetch_my_jobs(id)
                 jQuery(".dialog-success").show();//hiding add job button
                 jQuery("#loader").hide();
             }
+
+
+            //Display photos
+            set_isotope()
+            display_user_photo_option();
+
 
         },
         error: function(err) {
@@ -618,7 +950,7 @@ function job_status_e(model) {
 
         job_status = "Expired";
     }
-
+current_job_status = job_status; 
     switch (job_status)
     {
         case 'Available': //JOB STATUS AVAILABLE
@@ -1362,8 +1694,7 @@ function job_status_li(model)
 
 
 function load_job_minions(jobmodel)
-{
-
+{ 
     jQuery(".load_ajaxsingle_job_minions").show();
     var Fetchuserprofiles = Backbone.Collection.extend({
         model: Userprofile,
@@ -1377,6 +1708,7 @@ function load_job_minions(jobmodel)
             job_id: jQuery("#job_id").val()
         },
         success: function(collection, response) {
+             jQuery(".load_ajax_large_minyawns_container").remove()
 
             var blank = _.template((jQuery("#blank-card").html()));
             if (collection.length > 0) {
@@ -1587,7 +1919,7 @@ function remove_cat()
 function load_comments(user_id)
 {
     $("#example_right").unbind('click').popover({
-        content: "asdasda",
+        content: "",
         title: 'Dynamic response!',
         html: true,
         delay: {show: 500, hide: 100}
@@ -1695,3 +2027,4 @@ $(".tag a").live('click', function() {
 
     $(this).parent().remove();
 });
+

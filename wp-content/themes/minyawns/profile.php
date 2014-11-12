@@ -184,22 +184,21 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                 
                     <?php  if(strlen(user_profile_linkedin()) >0 ){ ?>
                     <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a> 
-                                        <?php }else {?>
-                                        <a href='#'><i class="icon-linkedin"></i></a> 
-                                            <?php }?>
+                                        <?php  }?>
                                             
                     <?php  if(strlen(user_profile_facebook()) >0 ){ ?>
                     <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
-                                        <?php }else {?>
-                                        <a href='#'  class="icon-facebook-a"><i class="icon-facebook" ></i></a>
-                                            <?php }?>     </div>                           
+                                        <?php } ?>     </div>                           
                                             <?php endif; ?> 
                                       
 					  <h4 class="name"> <?php
                             if (get_user_role() === "employer") {
                                 echo user_profile_company_name();
+                                $display_name = user_profile_company_name();
                             } else {
                                 echo user_profile_first_name() . " " . user_profile_last_name();
+
+                                $display_name = user_profile_first_name() . " " . user_profile_last_name();
                             } if (!is_numeric(check_direct_access())) {
                                 ?>  <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit"><i class="icon-edit"></i> Edit</a><?php } ?>
 
@@ -225,6 +224,14 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                      <div class="profiledata ">
 					  <?php if (get_user_role() === 'minyawn'): ?>
                                    <ul class="college-data inline">
+
+                                   <?php if( get_user_intro_video_id()!=""){ ?>
+                                    <li class="introvideo_data">
+                                   Intro Video : <b>  <a href="#introvideo" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a></b>
+                                   </li>
+                                   <?php } ?>
+                                    
+
 									<li class="college_data">
 								   College : <b>  <?php echo user_college(); ?></b>
 								   </li>
@@ -322,7 +329,7 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 				<h4><i class="icon-briefcase"></i> &nbsp; Job List</h4>
 				<p>All your Jobs are listed below</p>
 				<div class="row-fluid accordion">
-					<div class="span12">
+					<div class="span9">
 						<ul class="unstyled job-view-list" id="accordion24">
 						<dl class="accordion">
                              
@@ -331,6 +338,39 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 						   </ul>
 					</div>
 					<div class="span3">
+                    
+                    <form>
+                    <?php $upload_nonce = wp_create_nonce("upload_photo_".get_current_user_id()); ?>
+                    <?php $delete_nonce = wp_create_nonce("delete_photo_".get_current_user_id()); ?>
+                    <input type="hidden" id="upload_nonce" name="upload_nonce" value="<?php echo $upload_nonce; ?>" />
+                    <input type="hidden" id="delete_nonce" name="delete_nonce" value="<?php echo $delete_nonce; ?>" />
+                    <input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
+                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
+                     
+                          <div class="row-fluid">
+                          <div class="span12">
+                            <div id="drop">
+                              Drop Your Photos Here <br>
+                              <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                              <input type="file" name="photo" multiple />
+                            </div>
+
+                            <ul>
+                              <!-- The file uploads will be shown here -->
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
+                    </form>
+
+                    <!-- <div class="row-fluid" id="photo-grid" style="display:none"> -->
+
+                     <div align="left" id="photos_title" class="photos-title" style="display:none"> <h7><?php if(get_current_user_id()==get_user_id()){ ?>My<?php } else{ echo $display_name."'s"; }?> Photos</h7></div>
+					<div class="isotope">
+                          <div class="grid-sizer"></div>
+                          
+                          
+                        </div>
 					</div>
 				</div>
 
@@ -371,5 +411,30 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+<!-- Intro Video Modal -->
+<?php if( get_user_intro_video_id()!=""){ ?>
+<div id="introvideo" class="modal hide fade video-pop in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-body">
+            <iframe id="videowrap" frameborder="0" allowfullscreen="1" title="YouTube video player" width="530" height="350" src="https://www.youtube.com/embed/<?php echo get_user_intro_video_id(); ?>?enablejsapi=1&origin=<?php echo $_SERVER['HTTP_HOST']; ?>"></iframe>
+            </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+           
+    </div>
+<?php } ?>
+<!-- End Intro Video Modal -->
+
+
+
 <?php
 get_footer();

@@ -344,7 +344,7 @@ $(".inline li").removeClass("selected");
                                             </div>
                                         </div>
                                         <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
-                                            <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" value="<?php echo $minyawn_job->get_job_start_time()  ?>">
+                                            <input id="job_start_time" type="text" readonly class="timepicker-default input-small" name="job_start_time" value="<?php echo $minyawn_job->get_job_start_time()  ?>">
                                             <span class="add-on">
                                                 <i class="icon-time"></i>
                                             </span>
@@ -361,7 +361,7 @@ $(".inline li").removeClass("selected");
 
                                         </div>
                                         <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
-                                            <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time" value="<?php echo $minyawn_job->get_job_end_time()  ?>">
+                                            <input id="job_end_time" type="text" readonly class="timepicker-default input-small" name="job_end_time" value="<?php echo $minyawn_job->get_job_end_time()  ?>">
                                             <span class="add-on">
                                                 <i class="icon-time"></i>
                                             </span>
@@ -377,16 +377,28 @@ $(".inline li").removeClass("selected");
 
 
                                         <div class="control-group small">
-                                            <label class="control-label" for="inputtask">Total Price Per Minyawn</label>
+                                            <div class="span6">
+                                                <label class="control-label" for="inputtask">Total Price Per Minyawn</label>
 
-                                            <div class="controls small">
-                                                <div class="input-prepend">
-                                                    <span class="add-on"><i class="icon-dollar"></i></span>
-                                                    <input class="span2 sm-input" id="job_wages" type="text" value="<?php echo $minyawn_job->get_job_wages()?>" name="job_wages" >
-                                                    <span class="help-block">Eg: $120.00</span>
+                                                <div class="controls small">
+                                                    <div class="input-prepend">
+                                                        <span class="add-on"><i class="icon-dollar"></i></span>
+                                                        <input class="span2 sm-input" id="job_wages" type="text" value="<?php echo $minyawn_job->get_job_wages()?>" name="job_wages" >
+                                                        <span class="help-block">Eg: $120.00</span>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="span6">
+                                                <label class="control-label" for="inputtask">Actual Price Per Minyawn</label>
 
+                                                <div class="controls small">
+                                                    <div class="input-prepend">
+                                                        <span class="add-on"><i class="icon-dollar"></i></span>
+                                                        <input class="span2 sm-input  readonly-color" id="job_wages_actual" type="text" readonly value="" name="job_wages" >
+                                                        <span class="help-block">Actual Price shown to Minyawns,<br> due to Service fee</span>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                         </div>
                                         <div class="control-group small">
