@@ -529,10 +529,12 @@ margin-top: -2px;
 
 
 .modal.fade.in {
-top: 10%;
+top: 15%;
 	
 }
-
+.modal.fade.in.apply-modal-dwn{
+	top:10% !important;
+}
 .fbLoginButton img
 {
     margin: auto;
