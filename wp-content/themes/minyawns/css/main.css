@@ -6708,7 +6708,7 @@ div.tooltip1:after {
   .isotope .grid-sizer-prof {
     width: 100%;
   }
-}
+} 
 /*what we can do*/
 .wwcd-1 {
   background: url(../images/What-we-can-do_container_N.png) no-repeat;
@@ -6897,5 +6897,14 @@ clip: rect(10px, 490px, 465px, 10px);
 z-index: -1;
 }
 .cust-modal .popup-apply-btn-cont {
-margin-bottom: 10px;
+margin-bottom: 10px; 
+.verfied-txt-job-prof {
+  background: #F6FAF4;
+  padding: 3px;
+  border: 1px dotted #2AE431;
+  margin: 5px auto;
+  position: relative;
+  margin-top: -27px;
+  font-size: 12px;
+  font-family: arial; 
 }
