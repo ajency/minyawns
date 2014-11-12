@@ -389,7 +389,7 @@ $(".inline li").removeClass("selected");
                                                 </div>
                                             </div>
                                             <div class="span6">
-                                                <label class="control-label" for="inputtask">Actual Price Per Minyawn</label>
+                                                <label class="control-label " for="inputtask">Wages the Minyawns will Earn</label>
 
                                                 <div class="controls small">
                                                     <div class="input-prepend">

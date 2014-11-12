@@ -299,7 +299,7 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
                             </div>
                         </div>
                     </div>
-                          <label class="control-label" for="inputtask">Actual Wages &nbsp;&nbsp;</label>
+                          <label class="control-label control-label-large" for="inputtask">Wages the Minyawns will Earn</label>
 
                         <div class="controls small">
                             <div class="input-prepend">
