@@ -1996,33 +1996,33 @@ function load_comments(user_id)
  *  ONCLICK OF THE LI
  *
  */
-$("li").on('click', function() {
+$(document).on('click', 'li', function() {
 
-    var id = $(this).attr('id');
-    $('#job_tags_tagsinput').find('span').remove();
+    var id = jQuery(this).attr('id');
+    jQuery('#job_tags_tagsinput').find('span').remove();
 
     var map = {};
-    $("#" + id + " input").each(function() {
-        map[$(this).attr("name")] = $(this).val(); // creates an array for hidden names with values pairs
+    jQuery("#" + id + " input").each(function() {
+        map[jQuery(this).attr("name")] = jQuery(this).val(); // creates an array for hidden names with values pairs
 
-        $("#" + $(this).attr("name")).val($(this).val()); // *here the hidden field names are same as form input ids* assign based on name.
+        jQuery("#" + jQuery(this).attr("name")).val(jQuery(this).val()); // *here the hidden field names are same as form input ids* assign based on name.
 
         /*
          *  FOR CATEGORIES
          *
          */
-        if ($(this).attr("name") === 'categories') {
-            var categories = $(this).val();
+        if (jQuery(this).attr("name") === 'categories') {
+            var categories = jQuery(this).val();
 
             var indv_categories = categories.split(','); //category ids saved as , seperated in hidden type. they are split and looped through
 
-            $('.controls').find('input[type=checkbox]:checked').removeAttr('checked');//clears all checkboxes before adding new
+            jQuery('.controls').find('input[type=checkbox]:checked').removeAttr('checked');//clears all checkboxes before adding new
             for (var i = 0; i < indv_categories.length; i++)
             {
 
 
                 //$("#category-" + indv_categories[i]).removeAttr('checked'); //clears checkboxes before loading new values
-                $("#category-" + indv_categories[i]).attr('checked', 'checked');
+                jQuery("#category-" + indv_categories[i]).attr('checked', 'checked');
 
             }
 
@@ -2033,14 +2033,14 @@ $("li").on('click', function() {
          */
 
         var tags;
-        if ($(this).attr("name") == 'job_tags') {
-            tags = $(this).val();
+        if (jQuery(this).attr("name") == 'job_tags') {
+            tags = jQuery(this).val();
             var tags_jquery = tags.split(',');
             for (var i = 0; i < tags_jquery.length; i++)
             {
-                $("#job_tags_tagsinput").prepend('<span class="tag"><span>' + tags_jquery[i] + '&nbsp;&nbsp;</span><a class="tagsinput-remove-link"></a></span>');
+                jQuery("#job_tags_tagsinput").prepend('<span class="tag"><span>' + tags_jquery[i] + '&nbsp;&nbsp;</span><a class="tagsinput-remove-link"></a></span>');
             }
-            $("#user_skills").val(tags);
+            jQuery("#user_skills").val(tags);
         }
 
 
