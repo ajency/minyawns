@@ -1682,8 +1682,8 @@ $(document.body).on('click', '.edit-job-data', function(e) {
                 },
         function(response) {
 
-            //if (window.page === '1') //single job page reload to get new minion data
-               // window.location.reload();
+            if (window.page === '1') //single job page reload to get new minion data
+                window.location.reload();
 
 
             load_browse_jobs(_job_id, 'single_json');/*appends a single row to the table*/
