@@ -690,8 +690,8 @@ function fetch_my_jobs(id)
 
     var profile_page = 0;
 
-    $("#sidebar-content").hide();
-    $("#my-jobs-emp-min").show();
+    jQuery("#sidebar-content").hide();
+    jQuery("#my-jobs-emp-min").show();
 
     jQuery("#accordion24").empty();
     //jQuery(".job-view-list").empty();
@@ -714,9 +714,9 @@ function fetch_my_jobs(id)
     //if(window.location.hash != '#my-jobs'){
     // $("#add-job-form").toggle();
     //}
-    $(".inline li").removeClass("selected");
+    jQuery(".inline li").removeClass("selected");
 
-    $("#my_jobs").addClass('selected');
+    jQuery("#my_jobs").addClass('selected');
     var filter = 0;
     if (window.location.href.indexOf("profile") > -1)
         var profile_page = 1;
@@ -743,9 +743,9 @@ function fetch_my_jobs(id)
             //jQuery(".load_ajax1_myjobs").hide();
 
             if (logged_in_role === 'Employer')
-                $("#my-jobs-emp-min").html($("#employer-sidebar").html());
+                jQuery("#my-jobs-emp-min").html(jQuery("#employer-sidebar").html());
             else
-                $("#my-jobs-emp-min").html($("#minion-sidebar").html());
+                jQuery("#my-jobs-emp-min").html(jQuery("#minion-sidebar").html());
 
 
             if (collection.length === 0) {
@@ -836,10 +836,10 @@ function fetch_my_jobs(id)
                         }
 
                         if (model.toJSON().load_more === 0)
-                            $(".load_more").show();
+                            jQuery(".load_more").show();
 
 
-                        $('.jobs-rating').hide('');
+                        jQuery('.jobs-rating').hide('');
 
                     } else
                     {
