@@ -536,6 +536,10 @@ top: 15%;
 .modal.fade.in.apply-modal-dwn{
 	top:10% !important;
 }
+
+.modal.fade.in.modal-dwn{
+	top:4% !important;
+}
 .fbLoginButton img
 {
     margin: auto;
@@ -3043,8 +3047,3 @@ html body .minyawns-grid1 .thumbspan.card{
 	cursor:pointer;
 } 
 
-<<<<<<< HEAD
-=======
- 
- 
->>>>>>> issue#31
