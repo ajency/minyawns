@@ -829,10 +829,14 @@ $app->map('/inviteminions', function() use($app) {
             //print_r($user_meta);exit();
             $email = get_userdata($_POST['user_id']);
           $emailid=$email->user_email;
+          $content_post = get_post($_POST['job_id']);
+          $content = $content_post->post_content;
             $data_mail = array(
-                'content' => get_the_content($_POST['job_id']),
+                'title' => get_the_title($_POST['job_id']),
+                'content' => $content,
                 'wages' => get_post_meta($_POST['job_id'], 'job_wages', true),
                 'time' => date('g:i', get_post_meta($_POST['job_id'], 'job_start_time', true)),
+                'timeampm' => date('a', get_post_meta($_POST['job_id'], 'job_start_time', true)),
                 'date' => date('d M Y', get_post_meta($_POST['job_id'], 'job_start_date', true)),
                 'slug' => preg_replace('/[[:space:]]+/', '-', get_the_title($_POST['job_id']))
             );
