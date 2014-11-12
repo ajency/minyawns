@@ -2739,7 +2739,7 @@ function get_minyawns_user_roles($userid){
 
     $role = implode(', ', $user_info->roles); 
 
-    return $wp_roles->roles[$role]['name'];
+    return ucwords(strtolower($wp_roles->roles[$role]['name']));
 }
 //Filter role
 add_filter( 'activity_user_role','get_minyawns_user_roles', 10,1);
