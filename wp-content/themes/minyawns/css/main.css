@@ -6476,6 +6476,13 @@ div.tooltip1:after {
 .minyawns-grid1 .thumbspan .thumbnail .m3 .icon-thumbs-down {
   color: #F65151;
 }
+.minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img {
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border: 3px solid #8ed030;
+  display: inline-block;
+}
 .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img img {
   width: 80px;
   height: 80px;
@@ -6484,7 +6491,7 @@ div.tooltip1:after {
   border-radius: 100%;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
-  border: 3px solid #8ed030;
+  vertical-align: middle;
 }
 @media screen and (max-width: 321px) {
   .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img img {
