@@ -394,7 +394,7 @@ $(".inline li").removeClass("selected");
                                                 <div class="controls small">
                                                     <div class="input-prepend">
                                                         <span class="add-on"><i class="icon-dollar"></i></span>
-                                                        <input class="span2 sm-input  readonly-color" id="job_wages_actual" type="text" readonly value="" name="job_wages" >
+                                                        <input class="span2 sm-input  readonly-color" id="job_wages_actual" type="text" readonly value="" name="job_wages_actual" >
                                                         <span class="help-block">Actual Price shown to Minyawns,<br> due to Service fee</span>
                                                     </div>
                                                 </div>
