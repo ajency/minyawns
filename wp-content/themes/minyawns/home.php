@@ -34,7 +34,7 @@
 <div id="innermainimage">
 
 <div id="home-video">
-  <img  data-video="http://www.youtube.com/embed/GDKSMN0DBbs?autoplay=1&amp;rel=0" title="Play Video" />
+  <img  data-video="http://www.youtube.com/embed/niu4tNbD6IY?autoplay=1&vq=hd720" title="Play Video" />
   <span class="play-button"></span>
 </div>
 
@@ -102,7 +102,7 @@
 			<div class="span3"></div>
 			
 			<div class="span3">
-			<a id="click1" href="#video1"  data-toggle="modal" class="btn btn-normal btn-huge btn-block btn-primary" ><i class="icon-youtube-play"></i> &nbsp; Minyawns For Student</a>
+			<a id="click1" href="#video1"  data-toggle="modal" class="btn btn-normal btn-huge btn-block btn-primary" ><i class="icon-youtube-play"></i> &nbsp; Minyawns For Students</a>
 			</div>
 			<div class="span3">
 			
@@ -381,7 +381,7 @@
 						</div>
 						<div class="span4">
 						<br><br><br><br>
-						<h3 class="a-left">Hire minyawnss with skills required for the job.</h3><br>
+						<h3 class="a-left">Hire minyawns with skills required for the job.</h3><br>
 						<p align="left" style="font-size: 15px;">Get assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. </p>
 						</div>
 						<div class="span1">
