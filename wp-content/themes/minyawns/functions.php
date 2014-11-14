@@ -2682,9 +2682,10 @@ global $user_ID;
 $creator_user_info = get_userdata($user_ID);
 
 //Check if the job is not new
+$company_name = get_user_meta($user_ID,'company_name',true);
         if ($post->post_date != $post->post_modified){
             $args = array(         
-               'action'            => $creator_user_info->display_name.' updated job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
+               'action'            => $company_name.' updated Job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
                'component'         => 'job',
                'type'              => 'job_updated',
                'user_id'           => $user_ID,
@@ -2693,7 +2694,7 @@ $creator_user_info = get_userdata($user_ID);
         }else{
 
             $args = array(         
-                'action'            => $creator_user_info->display_name.' created job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
+                'action'            => $company_name.' posted a new job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
                 'component'         => 'job',
                 'type'              => 'job_created',
                 'user_id'           => $user_ID,
@@ -2717,7 +2718,7 @@ global $user_ID;
 $creator_user_info = get_userdata($user_ID);
 
     $args = array(         
-        'action'            => $creator_user_info->display_name.' applied for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'action'            => $creator_user_info->first_name.' '.$creator_user_info->last_name.' applied for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
         'component'         => 'users',
         'type'              => 'job_applied',
         'user_id'           => $user_ID,
@@ -2739,7 +2740,7 @@ global $user_ID;
 $creator_user_info = get_userdata($user_ID);
 
     $args = array(         
-        'action'            => $creator_user_info->display_name.' unapplied for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'action'            => $creator_user_info->first_name.' '.$creator_user_info->last_name.' unapplied for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
         'component'         => 'users',
         'type'              => 'job_unapplied',
         'user_id'           => $user_ID,
@@ -2758,7 +2759,7 @@ global $user_ID;
 $creator_user_info = get_userdata($minyawn);
 
     $args = array(         
-        'action'            => $creator_user_info->display_name.' hired for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'action'            => $creator_user_info->first_name.' '.$creator_user_info->last_name.' hired for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
         'component'         => 'users',
         'type'              => 'minyawn_hired',
         'user_id'           => $user_ID,
@@ -2892,7 +2893,7 @@ function get_minyawns_user_roles($userid){
 
     $role = implode(', ', $user_info->roles); 
 
-    return $wp_roles->roles[$role]['name'];
+    return ucwords(strtolower($wp_roles->roles[$role]['name']));
 }
 //Filter role
 add_filter( 'activity_user_role','get_minyawns_user_roles', 10,1);
@@ -2903,10 +2904,28 @@ function get_profile_url($userid){
     return site_url().'/profile/'.$userid;
 }
 //Filter profile pic
-add_filter( 'activity_user_profile_url','get_profile_url', $userid);
+add_filter( 'activity_user_profile_url','get_profile_url',10,1);
+
+//Custom User display name
+function get_user_display_name($userid){
+    global $wp_roles;
 
 
+    $user_info = get_userdata($userid);
 
+    
+    $role = implode(', ', $user_info->roles); 
+ 
+    if($wp_roles->roles[$role]['name']=="employer"){
+        return $user_info->company_name;
+    }
+    else{
+        return $user_info->first_name." ".$user_info->last_name;
+    }
+ 
+
+}
+add_filter( 'activity_user_display_name','get_user_display_name',10,1);
 //Custom User profile pic
 function get_user_additional_info($userid){
 
@@ -2927,7 +2946,7 @@ function get_user_additional_info($userid){
 
 
 //Filter profile pic
-add_filter( 'activity_user_additional_info','get_user_additional_info', $userid);
+add_filter( 'activity_user_additional_info','get_user_additional_info', 10,1);
 
 
 //Custom User profile url
@@ -2944,12 +2963,31 @@ function get_profile_pic($userid){
 return $user_pic_img_src;
 }
 //Filter profile url
-add_filter( 'activity_user_profile_pic','get_profile_pic', $userid );
+add_filter( 'activity_user_profile_pic','get_profile_pic', 10,1 );
 
 
+function get_activity_update_action($action,$item_id,$userid ){
+
+     global $wp_roles;
 
 
+    $user_info = get_userdata($userid);
 
+    
+    $role = implode(', ', $user_info->roles); 
+ 
+    if($wp_roles->roles[$role]['name']=="employer"){
+        $commented_by = $user_info->company_name;
+    }
+    else{
+        $commented_by = $user_info->first_name." ".$user_info->last_name;
+    }
+
+            $action = $commented_by.' posted message on <a href="'. get_permalink($item_id).'">'.get_the_title( $item_id ).'</a>';
+            return $action;
+}
+
+add_filter('activity_update_action','get_activity_update_action',10,3);
  
 
  

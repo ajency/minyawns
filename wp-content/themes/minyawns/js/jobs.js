@@ -429,10 +429,9 @@ function getJobPhotos(){
 
 function getUserPhotos(user_id){
 
-        console.log('user-path:' + SITEURL+"/api/photos/user/"+user_id);
-     $.get(SITEURL+"/api/photos/user/"+user_id, {}, function(collection)  { 
-
-                 
+ 
+     jQuery.get(SITEURL+"/api/photos/user/"+user_id, {}, function(collection)  { 
+            
                   _.each(collection, function(model) {
                       appendToGrid(model)
                   });
@@ -546,8 +545,8 @@ function photoUpload(){
  
  function appendToGrid(model){
 
-  
-   $("#photos_title").show()
+ 
+   jQuery("#photos_title").show()
   var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'"  ><img author= "'+model.author+'" src="'+model.url+'"   width="229" /></a>');
   if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
     newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
@@ -576,7 +575,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
                           .isotope('layout'); 
  
                      if(jQuery('.isotope').find('.item').length<=1){
-                        $('#photos_title').hide()
+                        jQuery('#photos_title').hide()
                      }
             }
         });

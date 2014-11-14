@@ -190,7 +190,7 @@ function get_activitycomments(){
 						$action = $creator_user_info->display_name." replied on ".$parent_user_info->display_name."'s message on <a href='". get_permalink($_REQUEST['item_id'])."'>".get_the_title( $_REQUEST['item_id'] )."</a>";
 						$activity_type="activity_comment";
 					}else{
-						$action = $creator_user_info->display_name.' posted message on <a href="'. get_permalink($_REQUEST['item_id']).'">'.get_the_title( $_REQUEST['item_id'] ).'</a>';
+						$action = apply_filters('activity_update_action',$creator_user_info->display_name.' posted message on <a href="'. get_permalink($_REQUEST['item_id']).'">'.get_the_title( $_REQUEST['item_id'] ).'</a>',$_REQUEST['item_id'],ajan_loggedin_user_id());
 						$activity_type="activity_update";
 					}
 
@@ -329,7 +329,8 @@ function get_activitycomments(){
 
 							$users[] = array(
 								'ID' => $user->ID,
-								'name' => $user->display_name,
+
+								'name' => get_activity_user_display_name($user->ID),
 
 								//get user role (filter: activity_userrole)
 								'user_role' => get_activity_user_role($user->ID),
