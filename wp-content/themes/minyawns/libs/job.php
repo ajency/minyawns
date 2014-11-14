@@ -116,14 +116,28 @@ $app->get('/fetchjobs/', function() use ($app) {
                 if ($user->roles[0] == 'minyawn') {
                     $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . $user_id . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID ".$additional_filter."";
-                    $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    
+                    //Check if all jobs parameter set
+                    if (isset($_GET['all_jobs'])) {
+                        $limit = "";
+                    }else{
+                        $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    }
+                    
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value $sort_value";
                 } else {
                     //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
                     $tables = "$wpdb->posts,$wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . $user_id . "' AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' ";
-                    $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    
+                    //Check if all jobs parameter set
+                    if (isset($_GET['all_jobs'])) {
+                        $limit = "";
+                    }else{
+                        $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    }
+
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value $sort_value";
                 }
@@ -141,7 +155,18 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
                             ORDER BY $wpdb->postmeta.meta_value $sort_value";
-                    $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    if (isset($_GET['all_jobs'])) {
+                        $limit = "";
+                    }else{
+
+                        //Check if all jobs parameter set
+                        if (isset($_GET['all_jobs'])) {
+                            $limit = "";
+                        }else{
+                            $limit = "LIMIT " . $_GET['offset'] . ",5";
+                        }
+
+                    }
                 }
             }
 
