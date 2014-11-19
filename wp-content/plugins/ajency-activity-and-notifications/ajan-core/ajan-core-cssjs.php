@@ -37,7 +37,7 @@ function ajan_core_enqueue_js() {
   					array(), ajan_get_version() );
 	
 wp_localize_script( 'activity-stream-module', 'AJANSITEURL', site_url());
-wp_localize_script( 'activity-stream-module', 'NOAVATAR',  activitynotifications()->plugin_url. "interface/img/non-avatar.jpg");
+wp_localize_script( 'activity-stream-module', 'NOAVATAR',  activitynotifications()->plugin_url . "ajan-marionete-activity-stream/img/non-avatar.jpg");
 		
 
 	$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
