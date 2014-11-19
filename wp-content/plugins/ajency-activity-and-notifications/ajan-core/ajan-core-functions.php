@@ -724,7 +724,7 @@ function ajan_core_get_site_path() {
  * @param bool $gmt True to use GMT (rather than local) time. Default: true.
  * @return string Current time in 'Y-m-d h:i:s' format.
  */
-function ajan_core_current_time( $gmt = true ) {
+function ajan_core_current_time( $gmt = false ) {
 	// Get current time in MYSQL format
 	$current_time = current_time( 'mysql', $gmt );
 
