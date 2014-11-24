@@ -119,13 +119,13 @@ require 'templates/_jobs.php';
                             <div class="control-group">
                                 <label class="control-label" for="inptcollege">College</label>
                                 <div class="controls">
-                                    <input type="text" id="college"  name="college" placeholder="" value="<?php user_college() ?>" class="input">
+                                    <input type="text" id="college"  name="college" placeholder="" maxlength="30" value="<?php user_college() ?>" class="input">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="inputmajor">Major</label>
                                 <div class="controls">
-                                    <input type="text" id="major"  name="major"  placeholder="" value="<?php user_college_major() ?>" class="input">
+                                    <input type="text" id="major"  name="major"  placeholder="" maxlength="30" value="<?php user_college_major() ?>" class="input">
                                 </div>
                             </div>
                             <div class="control-group">
