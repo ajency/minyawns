@@ -2445,33 +2445,32 @@ class PhotoAPI {
 
 
 
-public function get_fblogin_status($token){
+ public function get_fblogin_status($token){
+//get response from facebook using access token
+    $user_response = file_get_contents('https://graph.facebook.com/me?access_token='.$token);
+
+    $data = json_decode($user_response);
+
+//if response is true
+    if($user_response){
+     
+        $user_name = username_exists( strtolower($data->first_name) );
+
+//register the user if not exist
+        if ( !$user_name and email_exists($data->email) == false ) {
+            $random_password = wp_generate_password( $length=12, $include_standard_special_chars=false );
+            $user_name = wp_create_user( strtolower($data->first_name), $random_password, $data->email );
+        }
 
 
-//$fields = 'id,name,first_name,last_name,link,gender,picture,hometown';
-//$response = file_get_contents('https://graph.facebook.com/'.$userid.'?fields='.$fields.'&access_token='.$token);
+        $user = get_user_by('email', $data->email );
 
-$user_response = file_get_contents('https://graph.facebook.com/me?access_token='.$token);
+//fetch profile photo from facebook
+        $prodata = file_get_contents('https://graph.facebook.com/me/picture?redirect=0&height=150&type=normal&width=150&access_token='.$token);
+        $prodata = json_decode($prodata);
+        $avatar_url = $prodata->data->url;
 
-$data = json_decode($user_response);
-
-if($user_response){
-    
-    $user_name = username_exists( strtolower($data->first_name) );
-
-    if ( !$user_name and email_exists($data->email) == false ) {
-        $random_password = wp_generate_password( $length=12, $include_standard_special_chars=false );
-        $user_name = wp_create_user( strtolower($data->first_name), $random_password, $data->email );
-    }
-
-
-    $user = get_user_by('email', $data->email );
-
-
-$prodata = file_get_contents('https://graph.facebook.com/me/picture?redirect=0&height=150&type=normal&width=150&access_token='.$token);
-$prodata = json_decode($prodata);
-$avatar_url = $prodata->data->url;
-
+//Update user meta
         update_user_meta( $user->ID, 'facebook_uid', $data->id );
         update_user_meta( $user->ID, 'facebook_avatar_full', $avatar_url );
         update_user_meta( $user->ID, 'facebook_avatar_thumb', $avatar_url );
@@ -2479,15 +2478,11 @@ $avatar_url = $prodata->data->url;
         update_user_meta( $user->ID, 'last_name', $data->last_name );
 
 
-
-
-
-// Redirect URL //
-if ( !is_wp_error( $user ) )
-{
-    wp_clear_auth_cookie();
-    wp_set_current_user ( $user->ID );
-    
+        if ( !is_wp_error( $user ) )
+        {
+            wp_clear_auth_cookie();
+            wp_set_current_user ( $user->ID );
+            
     //get the user id
             $user_id = $user->ID;
 
@@ -2541,22 +2536,19 @@ if ( !is_wp_error( $user ) )
 
             $response = login_response($user_id,LOGGED_IN_COOKIE,$logged_in_cookie,AUTH_COOKIE,$auth_cookie);
 
-}
+        }
 
 
+    }else{
+        $response = array('status'=>false);
+    }
 
 
-}else{
-    $response = array('status'=>false);
-}
+    $response = json_encode($response);
 
-
-
-$response = json_encode($response);
-
-header( "Content-Type: application/json" );
-echo $response;
-exit;
+    header( "Content-Type: application/json" );
+    echo $response;
+    exit;
 }
 
 
