@@ -356,8 +356,6 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     <input type="hidden" id="delete_nonce" name="delete_nonce" value="<?php echo $delete_nonce; ?>" />
                     <input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
 
-                    <div class="" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
-
                     <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>" user-admin="<?php echo $user_admin; ?>">
 
                      
