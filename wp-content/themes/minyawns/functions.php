@@ -2389,6 +2389,10 @@ class PhotoAPI {
             array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
             );
 
+        $routes['/fblogin/token/(?P<token>\w+)'] = array(
+            array( array( $this, 'get_fblogin_status'), WP_JSON_Server::READABLE ),
+            );
+
 
         
          return $routes;
@@ -2435,6 +2439,46 @@ class PhotoAPI {
 
      exit;
  }
+
+
+
+
+
+
+public function get_fblogin_status($token){
+
+
+//$fields = 'id,name,first_name,last_name,link,gender,picture,hometown';
+//$response = file_get_contents('https://graph.facebook.com/'.$userid.'?fields='.$fields.'&access_token='.$token);
+
+$user_response = file_get_contents('https://graph.facebook.com/me?access_token='.$token);
+
+if($user_response){
+    $data = json_decode($user_response);
+
+    $user_id = username_exists( strtolower($data->first_name) );
+
+    if ( !$user_id and email_exists($data->email) == false ) {
+        $random_password = wp_generate_password( $length=12, $include_standard_special_chars=false );
+        $user_id = wp_create_user( strtolower($data->first_name), $random_password, $data->email );
+    }
+
+}
+
+
+
+
+$response = json_encode($data);
+
+header( "Content-Type: application/json" );
+echo $user_response;
+exit;
+}
+
+
+
+
+
 
 
 //User Authentication
