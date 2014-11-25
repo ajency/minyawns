@@ -438,7 +438,7 @@ function getUserPhotos(user_id){
                     set_isotope();
             });
 }
-function photoUpload(){ 
+function photoUpload(user_id){ 
  
   
 
@@ -457,7 +457,7 @@ function photoUpload(){
             dropZone: jQuery('#drop'),
 
 
-            url: SITEURL + '/api/photos/upload',
+            url: SITEURL + '/api/photos/upload/?user_id='+user_id,
 
             dataType: 'json',
 
@@ -508,6 +508,8 @@ function photoUpload(){
                 if(progress == 100){
                   //  data.context.removeClass('working');
                  setTimeout(function(){data.context.find('span').trigger('click')}, 2000);
+
+                 //console.log('Uploading....');
               
                 }
             },
@@ -545,10 +547,12 @@ function photoUpload(){
  
  function appendToGrid(model){
 
- 
-   jQuery("#photos_title").show()
+    user_admin = jQuery("#upload").attr("user-admin");
+  
+   $("#photos_title").show()
+
   var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'"  ><img author= "'+model.author+'" src="'+model.url+'"   width="229" /></a>');
-  if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
+  if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) || user_admin=='true' ){
     newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
   }
   
@@ -593,6 +597,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 
  console.log("display_job_photo_option")
         var user_minyawn = user_employer = user_admin = false;
+
  
         minyawnNo = current_job.toJSON().applied_user_id.indexOf(USER.id) 
       
@@ -628,8 +633,10 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
             jQuery("#upload").show();
 
              //option to upload job photos
-               console.log ("photoUpload")  
-            photoUpload(); 
+
+                 
+            photoUpload(USER.id); 
+
  
             if(jQuery("#upload_nonce").val()==""){
 
@@ -659,16 +666,17 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
  function display_user_photo_option(){
         display_user_photo_option_done= true
         user_id = jQuery("#upload").attr("user-id")
+        user_admin = jQuery("#upload").attr("user-admin")
         console.log('user' + user_id);
         getUserPhotos(user_id);
  
-        if(user_id==USER.id){
+        if(user_id==USER.id || user_admin=='true'){
 
              //option to upload job photos
             
             jQuery("#upload").show();
 
-            photoUpload(); 
+            photoUpload(user_id); 
 
         }
      
