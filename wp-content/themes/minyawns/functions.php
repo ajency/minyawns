@@ -2453,25 +2453,109 @@ public function get_fblogin_status($token){
 
 $user_response = file_get_contents('https://graph.facebook.com/me?access_token='.$token);
 
+$data = json_decode($user_response);
+
 if($user_response){
-    $data = json_decode($user_response);
+    
+    $user_name = username_exists( strtolower($data->first_name) );
 
-    $user_id = username_exists( strtolower($data->first_name) );
-
-    if ( !$user_id and email_exists($data->email) == false ) {
+    if ( !$user_name and email_exists($data->email) == false ) {
         $random_password = wp_generate_password( $length=12, $include_standard_special_chars=false );
-        $user_id = wp_create_user( strtolower($data->first_name), $random_password, $data->email );
+        $user_name = wp_create_user( strtolower($data->first_name), $random_password, $data->email );
     }
+
+
+    $user = get_user_by('email', $data->email );
+
+
+$prodata = file_get_contents('https://graph.facebook.com/me/picture?redirect=0&height=150&type=normal&width=150&access_token='.$token);
+$prodata = json_decode($prodata);
+$avatar_url = $prodata->data->url;
+
+        update_user_meta( $user->ID, 'facebook_uid', $data->id );
+        update_user_meta( $user->ID, 'facebook_avatar_full', $avatar_url );
+        update_user_meta( $user->ID, 'facebook_avatar_thumb', $avatar_url );
+        update_user_meta( $user->ID, 'first_name', $data->first_name );
+        update_user_meta( $user->ID, 'last_name', $data->last_name );
+
+
+
+
+
+// Redirect URL //
+if ( !is_wp_error( $user ) )
+{
+    wp_clear_auth_cookie();
+    wp_set_current_user ( $user->ID );
+    
+    //get the user id
+            $user_id = $user->ID;
+
+            //Set expiration time
+            $expiration = time() + apply_filters( 'auth_cookie_expiration', 14 * DAY_IN_SECONDS, $user_id, strtotime( '+14 days' ) );
+
+            //Needed for the login grace period in wp_validate_auth_cookie().
+            $expire = $expiration + ( 12 * HOUR_IN_SECONDS );
+
+
+            if ( '' === $secure ) {
+                $secure = is_ssl();
+            }
+
+            // Frontend cookie is secure when the auth cookie is secure and the site's home URL is forced HTTPS.
+            $secure_logged_in_cookie = $secure && 'https' === parse_url( get_option( 'home' ), PHP_URL_SCHEME );
+
+            //Filter whether the connection is secure.
+            $secure = apply_filters( 'secure_auth_cookie', $secure, $user_id );
+
+            //Filter whether to use a secure cookie when logged-in.
+            $secure_logged_in_cookie = apply_filters( 'secure_logged_in_cookie', $secure_logged_in_cookie, $user_id, $secure );
+
+            if ( $secure ) {
+                $auth_cookie_name = SECURE_AUTH_COOKIE;
+                $scheme = 'secure_auth';
+            } else {
+                $auth_cookie_name = AUTH_COOKIE;
+                $scheme = 'auth';
+            }
+
+            //Generate token
+            $manager = WP_Session_Tokens::get_instance( $user_id );
+            $token = $manager->create( $expiration );
+
+            //Generate logged-in and auth cookie
+            $auth_cookie = wp_generate_auth_cookie( $user_id, $expiration, $scheme, $token );
+            $logged_in_cookie = wp_generate_auth_cookie( $user_id, $expiration, 'logged_in', $token );
+
+            //Fires immediately before the authentication cookie is set.
+            do_action( 'set_auth_cookie', $auth_cookie, $expire, $expiration, $user_id, $scheme );
+
+            //Fires immediately before the secure authentication cookie is set.
+            do_action( 'set_logged_in_cookie', $logged_in_cookie, $expire, $expiration, $user_id, 'logged_in' );
+
+            setcookie($auth_cookie_name, $auth_cookie, $expire, PLUGINS_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie($auth_cookie_name, $auth_cookie, $expire, ADMIN_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, COOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+            if ( COOKIEPATH != SITECOOKIEPATH )
+                setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, SITECOOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+
+            $response = login_response($user_id,LOGGED_IN_COOKIE,$logged_in_cookie,AUTH_COOKIE,$auth_cookie);
 
 }
 
 
 
 
-$response = json_encode($data);
+}else{
+    $response = array('status'=>false);
+}
+
+
+
+$response = json_encode($response);
 
 header( "Content-Type: application/json" );
-echo $user_response;
+echo $response;
 exit;
 }
 
@@ -2482,62 +2566,82 @@ exit;
 
 
 //User Authentication
- public function get_login_status($username,$password){
-    global $wp, $wp_rewrite, $wp_the_query, $wp_query;
+  public function get_login_status($username,$password){
 
-
+    //Check for empty username or password
     if(empty($username) || empty($password)){
-
         return false;
-
     } else {
-
-        $response = array('status'=>false);
-
+        //Login using username and password 
         $auth = wp_authenticate($username, $password );
 
+       // Check for any error 
         if( is_wp_error($auth) ) { 
-            wp_logout();     
+            wp_logout();
+            wp_clear_auth_cookie();     
             $response = array('status'=>false);
         } else {
+            //get the user id
+            $user_id = $auth->data->ID;
 
-            /*$user_login = $username;
-            $user = get_userdatabylogin($user_login);
-            $user_id = $user->ID;
-            wp_set_current_user($user_id, $user_login);
-            wp_set_auth_cookie($user_id);
-            do_action('wp_login', $user_login);*/
+            //Set expiration time
+            $expiration = time() + apply_filters( 'auth_cookie_expiration', 14 * DAY_IN_SECONDS, $user_id, strtotime( '+14 days' ) );
 
-
-            $user_login = $username;
-            $user = get_userdatabylogin($user_login);
-            $user_id = $user->ID;
+            //Needed for the login grace period in wp_validate_auth_cookie().
+            $expire = $expiration + ( 12 * HOUR_IN_SECONDS );
 
 
-            $creds = array();
-            $creds['user_login'] = $username;
-            $creds['user_password'] = $password;
-            $creds['remember'] = ($remember_me === "true") ? true : false;
+            if ( '' === $secure ) {
+                $secure = is_ssl();
+            }
 
-            $user = wp_signon( $creds, false );
+            // Frontend cookie is secure when the auth cookie is secure and the site's home URL is forced HTTPS.
+            $secure_logged_in_cookie = $secure && 'https' === parse_url( get_option( 'home' ), PHP_URL_SCHEME );
 
-            //$user_id = get_current_user_id();
-            //$logincookie = wp_generate_auth_cookie('1',strtotime( '+14 days' ),'logged_in','');
+            //Filter whether the connection is secure.
+            $secure = apply_filters( 'secure_auth_cookie', $secure, $user_id );
 
-            $logincookie = wp_generate_auth_cookie( $user_id, strtotime( '+14 days' ), 'logged_in', '' );
-            setcookie(LOGGED_IN_COOKIE, $logincookie, strtotime( '+14 days' ), COOKIEPATH, COOKIE_DOMAIN, false, false);
+            //Filter whether to use a secure cookie when logged-in.
+            $secure_logged_in_cookie = apply_filters( 'secure_logged_in_cookie', $secure_logged_in_cookie, $user_id, $secure );
 
-            //do_action( 'set_logged_in_cookie', LOGGED_IN_COOKIE, '43200', strtotime( '+14 days' ), '1','logged_in');
+            if ( $secure ) {
+                $auth_cookie_name = SECURE_AUTH_COOKIE;
+                $scheme = 'secure_auth';
+            } else {
+                $auth_cookie_name = AUTH_COOKIE;
+                $scheme = 'auth';
+            }
 
-           // apply_filters('auth_cookie', $cookie, $user_id, $expiration, $scheme)
+            //Generate token
+            $manager = WP_Session_Tokens::get_instance( $user_id );
+            $token = $manager->create( $expiration );
 
-            $response = array('status'=> 'true',
-                            'cookie'=> LOGGED_IN_COOKIE,
-                            'value' =>  $logincookie
-                    );
+            //Generate logged-in and auth cookie
+            $auth_cookie = wp_generate_auth_cookie( $user_id, $expiration, $scheme, $token );
+            $logged_in_cookie = wp_generate_auth_cookie( $user_id, $expiration, 'logged_in', $token );
+
+            //Fires immediately before the authentication cookie is set.
+            do_action( 'set_auth_cookie', $auth_cookie, $expire, $expiration, $user_id, $scheme );
+
+            //Fires immediately before the secure authentication cookie is set.
+            do_action( 'set_logged_in_cookie', $logged_in_cookie, $expire, $expiration, $user_id, 'logged_in' );
+
+            setcookie($auth_cookie_name, $auth_cookie, $expire, PLUGINS_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie($auth_cookie_name, $auth_cookie, $expire, ADMIN_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, COOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+            if ( COOKIEPATH != SITECOOKIEPATH )
+                setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, SITECOOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+
+            
+            /*$response = array('status'=> 'true',
+                'logged_in' => $logged_in_cookie,
+                'authentication' =>  $auth_cookie
+                );*/
+
+            $response = login_response($user_id,LOGGED_IN_COOKIE,$logged_in_cookie,AUTH_COOKIE,$auth_cookie);
+
         }
 
-        //$response = array('status'=>$status);
         $response = json_encode( $response );
 
         header( "Content-Type: application/json" );
@@ -2555,6 +2659,49 @@ exit;
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$auth_cookie){
+ 
+    global $user_ID,  $wp_roles ;
+    $user = array();
+    $user_info = get_userdata($user_id);
+    $usermeta = get_user_meta($user_id);
+    $attchid = $usermeta['avatar_attachment'][0];
+    $facebook_avatar = $usermeta['facebook_avatar_full'][0];
+    $avatar_url = wp_get_attachment_image_src($attchid, 'thumbnail' )[0]; 
+    $user['status'] = 'true';
+    $user['logged_in_cookie_key'] = $logged_in_key;
+    $user['logged_in_cookie_value'] = $logged_in_cookie;
+    $user['auth_cookie_key'] = $auth_key;
+    $user['auth_cookie_value'] = $auth_cookie;
+    $user['id'] = $user_id;
+    $user['user_login'] = $user_info->data->user_login;
+    $user['user_email'] = $user_info->data->user_email; 
+    $user['display_name'] = $usermeta['first_name'][0]." ".$usermeta['last_name'][0]; 
+    $user['role'] =  key($user_info->caps) ;
+    $user['display_role'] = $wp_roles->role_names[key($user_info->caps)] ;
+    if($facebook_avatar){
+       $user['avatar_url'] = $facebook_avatar; 
+   }else{
+        $user['avatar_url'] = $avatar_url;
+   }
+    
+    return  $user;
+}
+
+
+
+
 
 
 
