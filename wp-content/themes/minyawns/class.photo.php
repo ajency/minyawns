@@ -18,7 +18,7 @@ public $is_minyawn = false;
 function init(){
     $this->user_id = get_current_user_id();
 
-    if(is_super_admin()){
+    if(is_super_admin($this->user_id)){
     	$this->admin = true;
     }
 
@@ -80,7 +80,16 @@ $file = $_FILES['photo']['tmp_name'];
 $filename = $_FILES['photo']['name'];
 //$parent_post_id = $_POST['jobid'];
 $parent_post_id = $jobid;
-$user_id = $this->user_id;
+//$user_id = $this->user_id;
+
+
+if($this->admin){
+	$user_id = $_GET['user_id'];
+}else{
+	$user_id = $this->user_id;
+}
+
+
 
 if(!$this->user_can_upload($parent_post_id)){
 	return array(
@@ -190,6 +199,13 @@ if($userid !=''){
 	$args["author"] = $userid;
 	
 }
+
+
+/*if($this->admin == true){
+	$args["author"] = $this->admin;
+}
+*/
+
 $args['post_type'] = 'attachment';
 $args['posts_per_page'] =  -1;
  

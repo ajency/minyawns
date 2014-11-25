@@ -342,10 +342,17 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     <form>
                     <?php $upload_nonce = wp_create_nonce("upload_photo_".get_current_user_id()); ?>
                     <?php $delete_nonce = wp_create_nonce("delete_photo_".get_current_user_id()); ?>
+                    <?php
+                    if(is_super_admin( get_current_user_id() )){
+                        $user_admin = 'true';
+                    }else{
+                        $user_admin = 'false';
+                    }
+                    ?>
                     <input type="hidden" id="upload_nonce" name="upload_nonce" value="<?php echo $upload_nonce; ?>" />
                     <input type="hidden" id="delete_nonce" name="delete_nonce" value="<?php echo $delete_nonce; ?>" />
                     <input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
-                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
+                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>" user-admin="<?php echo $user_admin; ?>">
                      
                           <div class="row-fluid">
                           <div class="span12">
