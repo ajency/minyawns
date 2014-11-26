@@ -135,16 +135,26 @@ require 'templates/_jobs.php';
                 	<?php
                                                                    
                  if (get_logged_in_role() == 'Minion') {
+
+                    //Check if minion profile complete or not
+                    if(!minyawns_complete_profile()){
 				   echo '<div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href="'.site_url().'/edit-profile"  class="" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
-				 }
+				    }
+
+                 }
                     ?>
 				<?php
                                                                    
                     if (get_logged_in_role() == 'Employer') {
-					
-			 echo '<div class="alert alert-msg"> Complete your profile 
+
+                        //Check if employer profile complete or not
+                        if(!employer_complete_profile()){
+                            echo '<div class="alert alert-msg"> Complete your profile 
 and get more applications from eager minyawns. Simply <a href="'.site_url().'/edit-profile"  class="" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 
+                        }
+					
+			 
  }
                     ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs/#browse" class=""> Click Here</a></h4>
                 <div class="row-fluid min_profile  <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">

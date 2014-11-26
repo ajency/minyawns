@@ -192,6 +192,32 @@ function user_profile_company_name() {
     return $current_user_new->data->company_name;
 }
 
+
+function employer_complete_profile() {
+  
+    global $current_user_new;
+
+    if($current_user_new->data->company_name && $current_user_new->data->location && $current_user_new->data->company_website && $current_user_new->data->profilebody){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+function minyawns_complete_profile() {
+  
+    global $current_user_new;
+
+    if($current_user_new->data->first_name && $current_user_new->data->last_name && $current_user_new->data->college && $current_user_new->data->major && $current_user_new->data->user_skills && $current_user_new->data->linkedin && $current_user_new->data->facebook_link){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+
 function get_user_profile_first_name() {
     global $current_user_new;
 
