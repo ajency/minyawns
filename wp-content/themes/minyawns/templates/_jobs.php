@@ -75,7 +75,13 @@
                                     </div>
 									 <div class="additional-info">
                                        <div class="row-fluid">
-                                          <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
+                                          <div class="span6"><span> Category :</span><br>
+                                          <% for(i=0;i<result.job_categories.length;i++){ %>
+                                           <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')">
+                                           <%= result.job_categories[i] %><% if (i === result.job_categories.length - 1) { %> <% } else { %>,<% } %>
+                                           </span>
+                                           <%}%>
+                                          </div>
                                           <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
                                        </div>
                                     </div>
