@@ -533,7 +533,7 @@ function photoUpload(user_id){
  function appendToGrid(model){
     user_admin = jQuery("#upload").attr("user-admin");
   
-   $("#photos_title").show()
+   jQuery("#photos_title").show();
   var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'"  ><img author= "'+model.author+'" src="'+model.url+'"   width="229" /></a>');
   if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) || user_admin=='true' ){
     newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
