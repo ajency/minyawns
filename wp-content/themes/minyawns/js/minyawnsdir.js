@@ -343,7 +343,8 @@ function create_verified_array(modelTojson)
 
 }
 
-$(document.body).on('click', '.checkbox', function() {   
+
+jQuery(document).on('click', '.checkbox', function() {   
 
 
 
@@ -355,7 +356,7 @@ $(document.body).on('click', '.checkbox', function() {
 //        jQuery(".minyawns-grid1").find('#filters-loader').remove()
 //    }, 1000);
 
-    if ($("#checkbox-verified").attr("checked") === 'checked')
+    if (jQuery("#checkbox-verified").attr("checked") === 'checked')
     {
         window.is_verified = 'Y';
         jQuery(".minyawnslist").empty();
