@@ -344,44 +344,30 @@ function create_verified_array(modelTojson)
 }
 
 
-jQuery(document).on('click', '.checkbox', function() {   
 
+jQuery(document).bind('click', '#checkbox-verified', miniyawnsVerified);
+var first = true;
 
-
-
-//    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
-//    jQuery(".minyawns-grid1").append(filter_loader_template);
-
-//    setTimeout(function() {
-//        jQuery(".minyawns-grid1").find('#filters-loader').remove()
-//    }, 1000);
-
-    if (jQuery("#checkbox-verified").attr("checked") === 'checked')
-    {
+function miniyawnsVerified(e) {
+    if(first){
         window.is_verified = 'Y';
         jQuery(".minyawnslist").empty();
         jQuery(".load_ajax_large").show();
 
         fetch_minyawns_list();
-
-
-    }
-    else
-    {
-
+    }else{
         jQuery(".minyawnslist").empty();
         jQuery(".load_ajax_large").show();
-        delete  window.is_verified;
+       delete  window.is_verified;
         fetch_minyawns_list();
-
     }
+    first = !first; 
+}
 
 
 
 
 
-
-});
 $(document).on('click', '.on-pop', function(event) {  
 
     jQuery("#loader" + jQuery(this).attr('job-id')).show();
