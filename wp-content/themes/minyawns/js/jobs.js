@@ -350,9 +350,7 @@ review =""
                             jQuery("#collapse" + model.toJSON().post_id + "").addClass("in");
                             load_job_minions(model); 
                             current_job = model
-                            console.log("current_jobmodel")
-                            console.log(current_job)
-                            //
+                           
 
                         }
 
@@ -408,12 +406,10 @@ review =""
 
 function getJobPhotos(){
 
- console.log(SITEURL+"/api/photos/job/"+$("#jobid").val())
- 
- $.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
-                console.log(collection);
+$.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
+                
                   _.each(collection, function(model) {
-                      appendToGrid(model)
+                      appendToGrid(model);
                        
                   });
                   if(collection.length >0){
@@ -433,9 +429,9 @@ function getUserPhotos(user_id){
      jQuery.get(SITEURL+"/api/photos/user/"+user_id, {}, function(collection)  { 
             
                   _.each(collection, function(model) {
-                      appendToGrid(model)
+                      appendToGrid(model);
                   });
-                    set_isotope();
+                    //set_isotope();
             });
 }
 function photoUpload(user_id){ 
@@ -464,8 +460,7 @@ function photoUpload(user_id){
             // This function is called when a file is added to the queue;
             // either via the browse button, or via drag/drop:
             add: function (e, data) {
-                console.log ("file added to queue")
-
+                
                 var tpl = jQuery('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
                     ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p class="file_details"></p><span style="display:none"></span><p class="process_successmsg"></p><p class="process_errormsg"></p></li>');
 
@@ -509,20 +504,18 @@ function photoUpload(user_id){
                   //  data.context.removeClass('working');
                  setTimeout(function(){data.context.find('span').trigger('click')}, 2000);
 
-                 //console.log('Uploading....');
-              
+                             
                 }
             },
             done: function(e, data) { 
                 
-                console.log ("file done")
                     if(data.result.status==true){
-                           console.log ("file done succ")
+                          
                           data.context.find('.process_successmsg').text("Photo Uploaded !")
                           appendToGrid(data.result.photo);
                     }else
                     {
-                        console.log ("file done err")
+                     
                         data.context.find('.process_errormsg').text(data.result.error+" !")
                         
                     }
@@ -531,7 +524,7 @@ function photoUpload(user_id){
      
                 }, 
             fail:function(e, data){
-                   console.log ("fail")
+                 
                 // Something has gone wrong!
                 data.context.addClass('error');
             }
@@ -556,14 +549,17 @@ function photoUpload(user_id){
     newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
   }
   
- set_isotope()
-jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
+ //set_isotope()
+//jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 
-   
+
+var $container = jQuery('.isotope').isotope();
+$container.append( newItems );
 
  }
 
- jQuery(".icon-remove").on('click', function(e) {
+ //jQuery(".icon-remove").on('click', function(e) {
+    jQuery(document).on('click','.icon-remove', function(e) {
         var _e = e
     
 
@@ -572,11 +568,14 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
             jQuery.ajax({
             url: SITEURL+"/api/photos/delete/"+jQuery(e.target).attr('photo'),
             type: 'DELETE',
-            data:{delete_nonce:$("#delete_nonce").val()},
+            data:{delete_nonce:jQuery("#delete_nonce").val()},
             success: function(result) {
-                 jQuery('.isotope').isotope( 'remove', jQuery(_e.target).parent() )
+                // jQuery('.isotope').isotope( 'remove', jQuery(_e.target).parent() )
+
+                jQuery(_e.target).parent().remove();
+
                         // layout remaining item elements
-                          .isotope('layout'); 
+                          //.isotope('layout'); 
  
                      if(jQuery('.isotope').find('.item').length<=1){
                         jQuery('#photos_title').hide()
@@ -595,8 +594,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
 */
  function display_job_photo_option(){
 
- console.log("display_job_photo_option")
-        var user_minyawn = user_employer = user_admin = false;
+         var user_minyawn = user_employer = user_admin = false;
 
  
         minyawnNo = current_job.toJSON().applied_user_id.indexOf(USER.id) 
@@ -618,16 +616,9 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
         {
             user_employer = true;
         }
- console.log ("check_capability('apply_for_jobs') ")
- console.log (check_capability('apply_for_jobs') )
- console.log (current_job.toJSON().user_to_job_status[minyawnNo] )
- console.log (current_job_status )
 
-               console.log ("user_minyawn"+user_minyawn)  
 
-               console.log ("user_employer"+user_employer)  
-
-               console.log ("user_admin"+user_admin)  
+               
         if(user_minyawn==true ||user_employer==true || user_admin==true ){
             
             jQuery("#upload").show();
@@ -667,7 +658,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
         display_user_photo_option_done= true
         user_id = jQuery("#upload").attr("user-id")
         user_admin = jQuery("#upload").attr("user-admin")
-        console.log('user' + user_id);
+        
         getUserPhotos(user_id);
  
         if(user_id==USER.id || user_admin=='true'){
@@ -756,8 +747,7 @@ function fetch_my_jobs(id)
 
         },
         success: function(collection, response) {
-            console.log('new test');
-            //jQuery(".load_ajax1_myjobs").hide();
+           
 
             if (logged_in_role === 'Employer')
                 jQuery("#my-jobs-emp-min").html(jQuery("#employer-sidebar").html());
@@ -844,7 +834,7 @@ function fetch_my_jobs(id)
 
                         } else
                         {
-                        	console.log('test');
+                        	
                         	var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                             jQuery("#accordion24").append(html);
@@ -908,8 +898,6 @@ var Job = Backbone.Model.extend({
         return SITEURL + '/wp-content/themes/minyawns/libs/job.php/addjob';
     },
     validate: function(attr) {
-
-console.log(attr);
 
         var errors = [];
         if (document.getElementById("job_start_date").value !== '' && document.getElementById("job_end_date").value !== '') {
@@ -1905,7 +1893,7 @@ function ratings_button(jobmodel, model)
 function job_minyawns_grid(job)
 {
     var miny_grid = "";
-    console.log(job.toJSON().users_applied.length);
+    
     for (var i = 0; i < job.toJSON().users_applied.length; i++) {
         if (job.toJSON().is_verfied[i] == 'Y')
             var is_verified = "<span>Minyawn verified </span>";
@@ -1995,18 +1983,7 @@ function load_comments(user_id)
         },
         success: function(collection, response) {
 
-            console.log(collection.models);
-//            if (collection.length > 0) {
-//                var template = _.template(jQuery("#minion-cards").html());
-//                _.each(collection.models, function(model) {
-//
-//
-            //                    var html = template({result: model.toJSON(), select_button: select_button});
-// jQuery(".thumbnails").animate({left: '100px'}, "slow").prepend(html);
-//                });
-////
-//
-//            }
+            
 
         }
 

@@ -348,6 +348,7 @@ function create_verified_array(modelTojson)
 jQuery(document).bind('click', '#checkbox-verified', miniyawnsVerified);
 var first = true;
 
+
 function miniyawnsVerified(e) {
     if(first){
         window.is_verified = 'Y';
@@ -363,9 +364,6 @@ function miniyawnsVerified(e) {
     }
     first = !first; 
 }
-
-
-
 
 
 $(document).on('click', '.on-pop', function(event) {  
