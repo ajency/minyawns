@@ -600,8 +600,12 @@ $(document.body).on('click', '.jumper', function(e) {
         e.preventDefault();
         //$('#change-avatar').click();
     });
+
+
+var profuserid = $('#photoimg').attr('data-user');
+
     $('#photoimg').fileupload({
-        url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
+        url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar?uid='+profuserid,
         dataType: 'json',
         done: function(data) {
           
