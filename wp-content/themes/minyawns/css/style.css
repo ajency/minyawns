@@ -130,6 +130,20 @@ float: right;
 	
 }
 
+
+
+
+.isotope .item-remove {
+background: #D24D57;
+color: #fff;
+padding: 2px;
+position: absolute;
+top: auto !important;
+right: auto !important;
+margin-left: 42px !important;
+}
+
+
 .caret {
 	display: inline-block;
 	width: 0;

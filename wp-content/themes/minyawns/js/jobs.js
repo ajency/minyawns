@@ -554,9 +554,7 @@ function photoUpload(user_id){
 
 
 var $container = jQuery('.isotope').isotope();
-//$container.append( newItems ).isotope( 'appended', newItems );
-$container.isotope( 'insert', newItems );
-$container.isotope('shuffle')
+$container.append( newItems );
 
  }
 
@@ -572,9 +570,12 @@ $container.isotope('shuffle')
             type: 'DELETE',
             data:{delete_nonce:jQuery("#delete_nonce").val()},
             success: function(result) {
-                 jQuery('.isotope').isotope( 'remove', jQuery(_e.target).parent() )
+                // jQuery('.isotope').isotope( 'remove', jQuery(_e.target).parent() )
+
+                jQuery(_e.target).parent().remove();
+
                         // layout remaining item elements
-                          .isotope('layout'); 
+                          //.isotope('layout'); 
  
                      if(jQuery('.isotope').find('.item').length<=1){
                         jQuery('#photos_title').hide()
