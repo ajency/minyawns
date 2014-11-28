@@ -88,7 +88,7 @@ require 'templates/_jobs.php';
 
                 <form id="cropimage" method="post" enctype="multipart/form-data">
                     <a type="button" class="btn btn-primary" id="done-cropping" style="display:none">Done? </a>
-                    Upload your image <input type="file" name="files" id="photoimg" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
+                    Upload your image <input type="file" name="files" id="photoimg" data-user="<?php echo get_user_id(); ?>" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
                     <br>
                     <span id="div_cropmsg"> 
                         <?php /* Please drag to select/crop your picture. */ ?>

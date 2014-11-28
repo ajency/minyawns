@@ -30,13 +30,19 @@ $app->map('/user/', function() use ($app) {
         })->via('GET', 'POST', 'PUT', 'DELETE');;
 
 //update the user avatar
-$app->map('/change-avatar', function() use($app) {
+$app->map('/change-avatar/', function() use($app) {
 
-            global $user_ID;
+            //global $user_ID;
+
+            $req = $app->request();
+            $userid = $req->get('uid');
+
            /* delete_user_meta($user_ID, 'facebook_avatar_thumb');
             delete_user_meta($user_ID, 'facebook_avatar_full');
 			*/
-            $targetFolder = '/uploads/user-avatars/' . $user_ID; // Relative to the root
+            //$targetFolder = '/uploads/user-avatars/' . $user_ID; // Relative to the root
+
+             $targetFolder = '/uploads/user-avatars/' . $userid; // Relative to the root
 
 
             $files = $_FILES['files'];
@@ -64,7 +70,10 @@ $app->map('/change-avatar', function() use($app) {
 
 
                 foreach ($_FILES as $file => $array) {
-                    $attach_id = upload_attachment($file, $user_ID);
+                    //$attach_id = upload_attachment($file, $user_ID);
+
+                    $attach_id = upload_attachment($file, $userid);
+
                     $attachment_id = $attach_id;
                    // $attachment_url = wp_get_attachment_link($attach_id);
                     $attachment_data = wp_get_attachment_image_src($attach_id,'medium');
@@ -87,7 +96,9 @@ $app->map('/change-avatar', function() use($app) {
             );
             $atach_post_id = wp_insert_post($post_data);
             $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $attachment_url);*/
-            update_user_meta($user_ID, 'avatar_attachment', $attachment_id);
+            //update_user_meta($user_ID, 'avatar_attachment', $attachment_id);
+
+            update_user_meta($userid, 'avatar_attachment', $attachment_id);
                 
                 
             }
