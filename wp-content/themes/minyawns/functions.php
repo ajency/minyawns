@@ -2538,6 +2538,7 @@ class PhotoAPI {
 
 
  public function get_fblogin_status($token){
+
 //get response from facebook using access token
     $user_response = file_get_contents('https://graph.facebook.com/me?access_token='.$token);
 
@@ -2545,17 +2546,65 @@ class PhotoAPI {
 
 //if response is true
     if($user_response){
+
+        $user_newid = 'FB_'.$data->id;
      
-        $user_name = username_exists( strtolower($data->first_name) );
+        $user_name = username_exists( $user_newid );
 
 //register the user if not exist
         if ( !$user_name and email_exists($data->email) == false ) {
             $random_password = wp_generate_password( $length=12, $include_standard_special_chars=false );
-            $user_name = wp_create_user( strtolower($data->first_name), $random_password, $data->email );
+            $user_name = wp_create_user( $user_newid, $random_password, $data->email );
         }
 
 
+
+
+/*if( !$user_login_id )
+    {
+
+$user_data = array();
+        $user_data['user_login']    = "FB_" . $data->id;
+        $user_data['user_pass']     = wp_generate_password();
+        $user_data['user_nicename'] = sanitize_title($user_data['user_login']);
+        $user_data['first_name']    = $data->first_name;
+        $user_data['last_name']     = $data->last_name;
+        $user_data['display_name']  = $data->first_name;
+        $user_data['user_url']      = $data->profile_url;
+        $user_data['user_email']    = $data->email;
+
+        $user_data = apply_filters('wpfb_insert_user', $user_data, $data );
+        $user_data = apply_filters('wpfb_inserting_user', $user_data, array('WP_ID' => $user_login_id, 'FB_ID' => $fb_uid, 'FB_UserData' => $fbuser, 'access_token'=>$access_token) );
+
+        //Insert a new user to our database and make sure it worked
+        $user_login_id   = wp_insert_user($user_data);
+
+}
+*/
+
+
+
+
+
         $user = get_user_by('email', $data->email );
+
+
+
+
+        $userprofiledata = array(
+                        'ID' => $user->ID,
+                        'first_name' => $data->first_name,
+                        'last_name' => $data->last_name,
+                        'display_name' => $data->first_name,
+                        'user_nicename' => sanitize_title($user->user_login),
+                        'user_url' => $data->profile_url
+            );
+
+        wp_update_user( $userprofiledata );
+
+
+
+
 
 //fetch profile photo from facebook
         $prodata = file_get_contents('https://graph.facebook.com/me/picture?redirect=0&height=150&type=normal&width=150&access_token='.$token);
@@ -2568,6 +2617,10 @@ class PhotoAPI {
         update_user_meta( $user->ID, 'facebook_avatar_thumb', $avatar_url );
         update_user_meta( $user->ID, 'first_name', $data->first_name );
         update_user_meta( $user->ID, 'last_name', $data->last_name );
+        update_user_meta( $user->ID, 'display_name', $data->first_name );
+        
+        
+
 
 
         if ( !is_wp_error( $user ) )
@@ -2641,6 +2694,7 @@ class PhotoAPI {
     header( "Content-Type: application/json" );
     echo $response;
     exit;
+
 }
 
 
