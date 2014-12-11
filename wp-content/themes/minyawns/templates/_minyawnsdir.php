@@ -23,6 +23,12 @@
                                     <div class="social-link   profile-social-link">
                                         <% 
                                         if(result.linkedin.length > 0){
+
+                                          var linkedin_id = result.linkedin.split('/').pop();
+
+                                            if(linkedin_id.length > 0 && linkedin_id != 'linkedin.com'){
+
+
                                         if((result.linkedin.indexOf("http://") <= -1) && (result.linkedin.indexOf("https://") <= -1) ){
                                             var linkedinUrl = "http://"+result.linkedin;
                                         }
@@ -32,8 +38,13 @@
                                         %>
                                         <a href='<%= linkedinUrl   %>' target='_blank' class="edit"><i class="icon-linkedin"></i></a>
                                          <%
-                                         }
+                                         } }
                                           if(result.facebook_link.length > 0){
+
+                                            var facebook_id = result.facebook_link.split('/').pop();
+                                            
+                                            if(facebook_id.length > 0){
+
 
                                           if((result.facebook_link.indexOf("http://") <= -1) && (result.facebook_link.indexOf("https://") <= -1) ){
                                             var facebook_linkUrl = "http://"+result.facebook_link;
@@ -43,7 +54,7 @@
                                         }
                                         %>
                                         <a href='<%= facebook_linkUrl   %>' target='_blank' class="edit icon-facebook-a"><i class="icon-facebook"></i></a>
-                                        <% } %>
+                                        <% } } %>
                                     </div>
 									<div class="m1-invite">
 									<a class="btn btn-primary invite-btn" href= "javascript:void(0)" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
@@ -86,7 +97,12 @@
                                     <div class="collage"><%= result.college %></div>
                                     <div class="collage"><%= result.major %></div>
                                     <div class="social-link  profile-social-link">
-                                     <% if (result.linkedin.length > 0 ){%>
+                                     <% if (result.linkedin.length > 0 ){
+                                      var linkedin_id = result.linkedin.split('/').pop();
+
+                                            if(linkedin_id.length > 0 && linkedin_id != 'linkedin.com'){
+
+                                      %>
                                         <% if(  (result.linkedin.indexOf("https://") <= -1) &&   (result.linkedin.indexOf("http://") <= -1) ) {
                                             var linkedinUrl = "http://"+result.linkedin;
                                         }
@@ -95,8 +111,13 @@
                                         }
                                         %>
                                         <a href='<%= linkedinUrl   %>' target='_blank' class="edit"><i class="icon-linkedin"></i></a> 
-                                       <%} %>
-                                      <% if (result.facebook_link.length > 0 ){%>
+                                       <%} } %>
+                                      <% if (result.facebook_link.length > 0 ){
+                                          var facebook_id = result.facebook_link.split('/').pop();
+
+                                            if(facebook_id.length > 0){
+
+                                        %>
                                         <% if(  (result.facebook_link.indexOf("https://") <= -1) &&   (result.facebook_link.indexOf("http://") <= -1) ) {
                                             var facebook_linkUrl = "http://"+result.facebook_link;
                                         }
@@ -105,7 +126,7 @@
                                         }
                                         %>
                                         <a href='<%= facebook_linkUrl   %>' target='_blank' class="edit icon-facebook-a"><i class="icon-facebook"></i></a> 
-                                       <%} %>
+                                       <%} } %>
                                       </div>
                                     <div class="social-link">
                                        <%= result.user_email %>

@@ -182,11 +182,11 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 					  <?php if (get_user_role() === 'minyawn'): ?>
 				<div class="social-link profile-social-link"> 
                 
-                    <?php  if(strlen(user_profile_linkedin()) >0 ){ ?>
+                    <?php  if(strlen(user_profile_id_linkedin()) >0 ){ ?>
                     <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a> 
                                         <?php  }?>
                                             
-                    <?php  if(strlen(user_profile_facebook()) >0 ){ ?>
+                    <?php  if(strlen(user_profile_id_facebook()) >0 ){ ?>
                     <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
                                         <?php } ?>     </div>                           
                                             <?php endif; ?> 
