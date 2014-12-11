@@ -3081,3 +3081,8 @@ html body .minyawns-grid1 .thumbspan.card{
 	cursor:pointer;
 } 
 
+ 
+.control-label-large {
+	width: 250px !important;
+}
+
