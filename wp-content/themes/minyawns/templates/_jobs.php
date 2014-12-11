@@ -584,7 +584,11 @@ $current_user_role =  trim($user_role);
     <%= result.user_email %>
     </div>
     <div class="social-link profile-social-link">
-    <% if (result.linkedin.length > 0 ){%>
+    <% if (result.linkedin.length > 0 ){
+      var linkedin_id = result.linkedin.split('/').pop();
+      if(linkedin_id.length > 0 && linkedin_id != 'linkedin.com'){
+
+      %>
     <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
         var linkedinUrl = "http://"+result.linkedin;
     }
@@ -593,8 +597,12 @@ $current_user_role =  trim($user_role);
     }
     %>
     <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
-    <%} %>
-     <% if (result.facebook_link.length > 0 ){%>
+    <%} } %>
+     <% if (result.facebook_link.length > 0 ){
+         var facebook_id = result.facebook_link.split('/').pop();
+         if(facebook_id.length > 0 && facebook_id != 'facebook.com'){
+
+      %>
     <% if( (result.facebook_link.indexOf("https://") <= -1) && (result.facebook_link.indexOf("http://") <= -1) ){
         var facebook_linkUrl = "http://"+result.facebook_link;
     }
@@ -603,7 +611,7 @@ $current_user_role =  trim($user_role);
     }
     %>
     <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-    <%} %></div>
+    <%} } %></div>
 
     <div class="rating">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
@@ -660,7 +668,14 @@ $current_user_role =  trim($user_role);
 	</div>
 	<div class="span4">
     <div class="social-link   profile-social-link">
-    <% if (result.linkedin.length > 0 ){%>
+    <% if (result.linkedin.length > 0 ){
+
+      var linkedin_id = result.linkedin.split('/').pop();
+      console.log(result.linkedin);
+
+      if(linkedin_id.length > 0 && linkedin_id != 'linkedin.com'){
+
+      %>
     <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
         var linkedinUrl = "http://"+result.linkedin;
     }
@@ -668,9 +683,13 @@ $current_user_role =  trim($user_role);
         var linkedinUrl = result.linkedin;
     }
     %>
-    <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
-    <%} %>
-     <% if (result.facebook_link.length > 0 ){%>
+    <a href='http://<%= result.linkedin %>' target='_blank'>kl<i class='icon-linkedin'></i></a>
+    <%} } %>
+     <% if (result.facebook_link.length > 0 ){
+          var facebook_id = result.facebook_link.split('/').pop();
+         if(facebook_id.length > 0 && facebook_id != 'facebook.com'){
+
+      %>
     <% if( (result.facebook_link.indexOf("https://") <= -1) && (result.facebook_link.indexOf("http://") <= -1) ){
         var facebook_linkUrl = "http://"+result.facebook_link;
     }
@@ -679,7 +698,7 @@ $current_user_role =  trim($user_role);
     }
     %>
     <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-    <%} %>
+    <%} } %>
             </div>
 			</div>
 			<div class="row-fluid">

@@ -47,6 +47,26 @@ margin:auto;
 .social-icon{
 	display:none;
 }
+
+
+
+.frm-edit .controls .input-prepend .add-on {
+font-weight: normal;
+font-size: 14px;
+height: auto;
+padding:08px;
+}
+
+.frm-edit .controls input#facebook_link{
+  width:160px;
+}
+.frm-edit .controls input#linkedin{
+  width:168px;
+}
+
+
+
+
 @media (max-width: 767px) {
 	.social-icon{
 		display:block !important;
