@@ -328,9 +328,9 @@ var __hasProp = {}.hasOwnProperty,
       data.activity_date = localDate;
       data.activity_time = localTime;
 
+      data.activity_moment = moment(localdt).fromNow();
 
-
-      data.activity_moment = localDate+', '+localTime;
+      //data.activity_moment = localDate+', '+localTime;
       return data;
     };
 
@@ -488,9 +488,9 @@ var __hasProp = {}.hasOwnProperty,
         activity_date = localDate;
         activity_time = localTime;
 
+        data.activity_moment = moment(localdt).fromNow();
 
-
-        activity_moment = localDate+', '+localTime;
+        //activity_moment = localDate+', '+localTime;
 
       $(".activity-main-" + model.get("secondary_item_id")).append('<div class="avatar-box-1" id="activity-comment-container-' + model.get("id") + '"> <div class="avatar left" href="#"> <img src="' + NOAVATAR + '" class="avatar-img ajan-user-pic-' + model.get("user_id") + '"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">' + model.get("action") + '</h5> <p class="comment m-tb-5">' + model.get("content") + '</p> <div class="comment-info m-b-10"> <div class="comment-date-left"> <span class="comment-date left">' + activity_date + '</span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left">' + activity_time + '</span> </div> <div class="activity-comment-actions-left left"> <span class=" rep-del"> <a href="javascript:void(0)" class="delete delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> Delete </a> </span> <span class="comment-info m-b-10"> <span class="comment-date-right"> | <span class="comment-date">' + activity_date + ', </span> <span class="comment-time">' + activity_time + '</span> </span> </span> </div> <div class="activity-comment-actions-right"> <span class="right rep-del"> <a href="javascript:void(0)" class="delete  delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> <span class="glyphicon glyphicon-trash delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"></span> </a> </span> </div> </div> </div> </div>');
       return this.trigger("get:user:info");
@@ -516,9 +516,9 @@ var __hasProp = {}.hasOwnProperty,
         activity_date = localDate;
         activity_time = localTime;
 
+        data.activity_moment = moment(localdt).fromNow();
 
-
-        activity_moment = localDate+', '+localTime;
+        //activity_moment = localDate+', '+localTime;
 
         return $(".activity-main-" + model.get("secondary_item_id")).append('<div class="avatar-box-1" id="activity-comment-container-' + model.get("id") + '"> <div class="avatar left" href="#"> <img src="' + NOAVATAR + '" class="avatar-img ajan-user-pic-' + model.get("user_id") + '"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">' + model.get("action") + '</h5> <p class="comment m-tb-5">' + model.get("content") + '</p> <div class="comment-info m-b-10"> <div class="comment-date-left"> <span class="comment-date left">' + activity_date + '</span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left">' + activity_time + '</span> </div> <div class="activity-comment-actions-left left"> <span class=" rep-del"> <a href="javascript:void(0)" class="delete delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> delete </a> </span> <span class="comment-info m-b-10"> <span class="comment-date-right"> | <span class="comment-date">' + activity_moment + ', </span> </span> </span> </div> <div class="activity-comment-actions-right"> <span class="right rep-del"> <a href="javascript:void(0)" class="delete  delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> <span class="glyphicon glyphicon-trash delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"></span> </a> </span> </div> </div> </div> </div>');
       });
