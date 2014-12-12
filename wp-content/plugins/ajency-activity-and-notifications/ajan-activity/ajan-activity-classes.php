@@ -187,6 +187,8 @@ class AJAN_Activity_Activity {
  
 		global $wpdb, $ajan;
 
+		$timestamp = time()+date("Z");
+
 		$this->id                = apply_filters_ref_array( 'ajan_activity_id_before_save',                array( $this->id,                &$this ) );
 		$this->item_id           = apply_filters_ref_array( 'ajan_activity_item_id_before_save',           array( $this->item_id,           &$this ) );
 		$this->secondary_item_id = apply_filters_ref_array( 'ajan_activity_secondary_item_id_before_save', array( $this->secondary_item_id, &$this ) );
@@ -195,7 +197,8 @@ class AJAN_Activity_Activity {
 		$this->type              = apply_filters_ref_array( 'ajan_activity_type_before_save',              array( $this->type,              &$this ) );
 		$this->action            = apply_filters_ref_array( 'ajan_activity_action_before_save',            array( $this->action,            &$this ) );
 		$this->content           = apply_filters_ref_array( 'ajan_activity_content_before_save',           array( $this->content,           &$this ) );
-		$this->date_recorded     = apply_filters_ref_array( 'ajan_activity_date_recorded_before_save',     array( $this->date_recorded,     &$this ) );
+		//$this->date_recorded     = apply_filters_ref_array( 'ajan_activity_date_recorded_before_save',     array( $this->date_recorded,     &$this ) );
+		$this->date_recorded     = gmdate("Y-m-d H:i:s",$timestamp).'.000000';
 		$this->hide_sitewide     = apply_filters_ref_array( 'ajan_activity_hide_sitewide_before_save',     array( $this->hide_sitewide,     &$this ) );
 		$this->mptt_left         = apply_filters_ref_array( 'ajan_activity_mptt_left_before_save',         array( $this->mptt_left,         &$this ) );
 		$this->mptt_right        = apply_filters_ref_array( 'ajan_activity_mptt_right_before_save',        array( $this->mptt_right,        &$this ) );
