@@ -309,18 +309,28 @@ var __hasProp = {}.hasOwnProperty,
       return SingleView.__super__.constructor.apply(this, arguments);
     }
 
-    SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content activity-main-{{id}}"> <h5 class="avatar-heading left">{{{action}}} </h5> <div class="comment-info m-b-10"> <div class="comment-date-right"> <span class="comment-date right"> {{activity_date}} </span> <span class="right">&nbsp;,&nbsp;</span> <span class="comment-time right"> {{activity_time}} </span> </div> </div> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"></small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <div class="comment-date-left"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> </div> <div class="activity-comment-actions-left"> <span class="left rep-del"> <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}"> comments(<span id="comment_count_{{id}}">{{comment_count}}</span>) |</a> <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"  activity="{{id}}"> reply |</a> <a href="javascript:void(0)" class="delete delete-activity delete-activity-{{id}}" activity="{{id}}"> delete </a> </span> </div> <div class="activity-comment-actions-right"> <span class="right rep-del"> <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}"> comments(<span id="comment_count_{{id}}">{{comment_count}}</span>) </a>&nbsp; <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"    activity="{{id}}"> <span class="glyphicon glyphicon-share-alt reply-activity reply-activity-{{id}}" activity="{{id}}"></span> </a>&nbsp; <a href="javascript:void(0)" class="delete"> <span class="glyphicon glyphicon-trash delete-activity delete-activity-{{id}}" activity="{{id}}" ></span> </a> </span> </div> <div class="reply-txt reply-txt-{{id}}"> <p class="reply-msg left">Enter your Reply here</p><br> <textarea class="full m-tb-10" name="activity-comment-{{id}}" id="activity-comment-{{id}}" rows="2"></textarea> <div class="right m-b-10"> <input type="button" class="btn green-btn save-activity-reply" id="save-activity-reply-{{id}}" value="Post Reply"  activity="{{id}}"> <input type="button" class="btn cancel-activity-reply" value="Cancel"  activity="{{id}}"> </div> </div> </div> </div> </div>';
+    SingleView.prototype.template = '<div class="avatar-box"> <div class="avatar left" href="#"> <img src="{{{NOAVATAR}}}" class="avatar-img ajan-user-pic-{{user_id}}"> </div> <div class="avatar-content activity-main-{{id}}"> <h5 class="avatar-heading left">{{{action}}} </h5> <h5 class="avatar-heading left full-width"> <small class="ajan-user-name ajan-user-name-{{user_id}}"></small> <small class="ajan-user-role ajan-user-role-{{user_id}}"></small> <small class="ajan-user-additional-info-{{user_id}}"></small></h5> <p class="comment m-tb-5">{{content}}</p> <div class="comment-info m-b-10"> <div class="comment-date-left"> <span class="comment-date left"> {{activity_date}} </span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left"> {{activity_time}} </span> </div> <div class="activity-comment-actions-left left"> <span class="rep-del"> <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}"> Comments(<span id="comment_count_{{id}}">{{comment_count}}</span>) |</a> <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"  activity="{{id}}"> Reply |</a> <a href="javascript:void(0)" class="delete delete-activity delete-activity-{{id}}" activity="{{id}}"> Delete </a> </span> <span class="comment-info m-b-10"> <span class="comment-date-right"> | <span class="comment-date">{{activity_moment}}</span> </span> </div> <div class="activity-comment-actions-right"> <span class="right rep-del"> <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}"> comments(<span id="comment_count_{{id}}">{{comment_count}}</span>) </a>&nbsp; <a href="javascript:void(0)" class="reply reply-activity reply-activity-{{id}}"    activity="{{id}}"> <span class="glyphicon glyphicon-share-alt reply-activity reply-activity-{{id}}" activity="{{id}}"></span> </a>&nbsp; <a href="javascript:void(0)" class="delete"> <span class="glyphicon glyphicon-trash delete-activity delete-activity-{{id}}" activity="{{id}}" ></span> </a> </span> </div> <div class="reply-txt reply-txt-{{id}}"> <p class="reply-msg left">Enter your Reply here</p><br> <textarea class="full m-tb-10" name="activity-comment-{{id}}" id="activity-comment-{{id}}" rows="2"></textarea> <div class="right m-b-10"> <input type="button" class="btn green-btn save-activity-reply" id="save-activity-reply-{{id}}" value="Post Reply"  activity="{{id}}"> <input type="button" class="btn cancel-activity-reply" value="Cancel"  activity="{{id}}"> </div> </div> </div> </div> </div>';
 
     SingleView.prototype.mixinTemplateHelpers = function(data) {
-      var activity_date, date_recorded, date_recorded_date, date_recorded_time;
+      var activity_date, date_recorded, date_recorded_date, date_recorded_time, activity_moment;
       data.NOAVATAR = NOAVATAR;
       activity_date = data.date_recorded;
       date_recorded = data.date_recorded.split(" ");
       date_recorded_date = date_recorded[0];
       date_recorded_time = date_recorded[1];
       activity_date = moment(date_recorded_date);
-      data.activity_date = activity_date.format("MMM Do YY");
-      data.activity_time = date_recorded_time;
+      //data.activity_date = activity_date.format("MMM Do YY");
+     
+      var localdt  = moment.utc(data.date_recorded).toDate();
+      var localDate = moment(localdt).format('MMM Do YY');
+      var localTime = moment(localdt).format('hh:mm:ss a');
+
+      data.activity_date = localDate;
+      data.activity_time = localTime;
+
+      data.activity_moment = moment(localdt).fromNow();
+
+      //data.activity_moment = localDate+', '+localTime;
       return data;
     };
 
@@ -456,7 +466,7 @@ var __hasProp = {}.hasOwnProperty,
     };
 
     ShowPackage.prototype.onAddedCommentModel = function(model) {
-      var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time;
+      var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time, activity_moment;
       $("#save-activity-reply-" + model.get("secondary_item_id")).show();
       $("#save-activity-reply-" + model.get("secondary_item_id")).next().show();
       $("#save-activity-reply-" + model.get("secondary_item_id")).parent().parent().find(".throbber-container").remove();
@@ -466,10 +476,23 @@ var __hasProp = {}.hasOwnProperty,
       date_recorded = activity_date.split(" ");
       date_recorded_date = date_recorded[0];
       date_recorded_time = date_recorded[1];
-      activity_date = moment(date_recorded_date);
+      /*activity_date = moment(date_recorded_date);
       activity_date = activity_date.format("MMM Do YY");
-      activity_time = date_recorded_time;
-      $(".activity-main-" + model.get("secondary_item_id")).append('<div class="avatar-box-1" id="activity-comment-container-' + model.get("id") + '"> <div class="avatar left" href="#"> <img src="' + NOAVATAR + '" class="avatar-img ajan-user-pic-' + model.get("user_id") + '"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">' + model.get("action") + '</h5> <div class="comment-info m-b-10"> <div class="comment-date-right"> <span class="comment-date right">' + activity_date + '</span> <span class="right">,</span> <span class="comment-time right">' + activity_time + '</span> </div> </div> <p class="comment m-tb-5">' + model.get("content") + '</p> <div class="comment-info m-b-10"> <div class="comment-date-left"> <span class="comment-date left">' + activity_date + '</span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left">' + activity_time + '</span> </div> <span class="right rep-del"> <a href="javascript:void(0)" class="delete delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> <span class="glyphicon glyphicon-trash delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"></span> </a> </span> </div> </div> </div>');
+      activity_time = date_recorded_time;*/
+
+
+      var localdt  = moment.utc(activity_date).toDate();
+        var localDate = moment(localdt).format('MMM Do YY');
+        var localTime = moment(localdt).format('HH:mm:ss');
+
+        activity_date = localDate;
+        activity_time = localTime;
+
+        activity_moment = moment(localdt).fromNow();
+
+        //activity_moment = localDate+', '+localTime;
+
+      $(".activity-main-" + model.get("secondary_item_id")).append('<div class="avatar-box-1" id="activity-comment-container-' + model.get("id") + '"> <div class="avatar left" href="#"> <img src="' + NOAVATAR + '" class="avatar-img ajan-user-pic-' + model.get("user_id") + '"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">' + model.get("action") + '</h5> <p class="comment m-tb-5">' + model.get("content") + '</p> <div class="comment-info m-b-10"> <div class="comment-date-left"> <span class="comment-date left">' + activity_date + '</span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left">' + activity_time + '</span> </div> <div class="activity-comment-actions-left left"> <span class=" rep-del"> <a href="javascript:void(0)" class="delete delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> Delete </a> </span> <span class="comment-info m-b-10"> <span class="comment-date-right"> | <span class="comment-date">' + activity_moment + ', </span> </span> </span> </div> <div class="activity-comment-actions-right"> <span class="right rep-del"> <a href="javascript:void(0)" class="delete  delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> <span class="glyphicon glyphicon-trash delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"></span> </a> </span> </div> </div> </div> </div>');
       return this.trigger("get:user:info");
     };
 
@@ -477,15 +500,27 @@ var __hasProp = {}.hasOwnProperty,
       console.log("onActivityCommentsFetched");
       $(".activity-main-" + activity).find('.avatar-box-1').remove();
       _.each(activity_comments.models, function(model) {
-        var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time;
+        var activity_date, activity_time, date_recorded, date_recorded_date, date_recorded_time, activity_moment;
         activity_date = model.get("date_recorded");
         date_recorded = activity_date.split(" ");
         date_recorded_date = date_recorded[0];
         date_recorded_time = date_recorded[1];
-        activity_date = moment(date_recorded_date);
+        /*activity_date = moment(date_recorded_date);
         activity_date = activity_date.format("MMM Do YY");
-        activity_time = date_recorded_time;
-        return $(".activity-main-" + model.get("secondary_item_id")).append('<div class="avatar-box-1" id="activity-comment-container-' + model.get("id") + '"> <div class="avatar left" href="#"> <img src="' + NOAVATAR + '" class="avatar-img ajan-user-pic-' + model.get("user_id") + '"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">' + model.get("action") + '</h5> <div class="comment-info m-b-10"> <div class="comment-date-right"> <span class="comment-date right">' + activity_date + '</span> <span class="right">,</span> <span class="comment-time right">' + activity_time + '</span> </div> </div> <p class="comment m-tb-5">' + model.get("content") + '</p> <div class="comment-info m-b-10"> <div class="comment-date-left"> <span class="comment-date left">' + activity_date + '</span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left">' + activity_time + '</span> </div> <div class="activity-comment-actions-left"> <span class="left rep-del"> <a href="javascript:void(0)" class="delete delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> delete </a> </span> </div> <div class="activity-comment-actions-right"> <span class="right rep-del"> <a href="javascript:void(0)" class="delete  delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> <span class="glyphicon glyphicon-trash delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"></span> </a> </span> </div> </div> </div> </div>');
+        activity_time = date_recorded_time;*/
+
+        var localdt  = moment.utc(activity_date).toDate();
+        var localDate = moment(localdt).format('MMM Do YY');
+        var localTime = moment(localdt).format('HH:mm:ss');
+
+        activity_date = localDate;
+        activity_time = localTime;
+
+        activity_moment = moment(localdt).fromNow();
+
+        //activity_moment = localDate+', '+localTime;
+
+        return $(".activity-main-" + model.get("secondary_item_id")).append('<div class="avatar-box-1" id="activity-comment-container-' + model.get("id") + '"> <div class="avatar left" href="#"> <img src="' + NOAVATAR + '" class="avatar-img ajan-user-pic-' + model.get("user_id") + '"> </div> <div class="avatar-content"> <h5 class="avatar-heading left">' + model.get("action") + '</h5> <p class="comment m-tb-5">' + model.get("content") + '</p> <div class="comment-info m-b-10"> <div class="comment-date-left"> <span class="comment-date left">' + activity_date + '</span> <span class="left">&nbsp;|&nbsp;</span> <span class="comment-time left">' + activity_time + '</span> </div> <div class="activity-comment-actions-left left"> <span class=" rep-del"> <a href="javascript:void(0)" class="delete delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> Delete </a> </span> <span class="comment-info m-b-10"> <span class="comment-date-right"> | <span class="comment-date">' + activity_moment + ', </span> </span> </span> </div> <div class="activity-comment-actions-right"> <span class="right rep-del"> <a href="javascript:void(0)" class="delete  delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"> <span class="glyphicon glyphicon-trash delete-comment delete-comment-' + model.get("id") + '" activity="' + model.get("id") + '"></span> </a> </span> </div> </div> </div> </div>');
       });
       return this.trigger("get:user:info");
     };

@@ -343,17 +343,7 @@
 										</div>
 										<div class="avatar-content activity-main-{{id}}">
 												<h5 class="avatar-heading left">{{{action}}} </h5>
-												 <div class="comment-info m-b-10">
-	                          <div class="comment-date-right">
-	                          <span class="comment-date right">
-	                              {{activity_date}}
-	                          </span>
-	                          <span class="right">&nbsp;,&nbsp;</span>
-	                          <span class="comment-time right">
-	                          		{{activity_time}}
-	                          </span>
-	                          </div>
-	                    </div>
+												 
 												<h5 class="avatar-heading left full-width">
 												<small class="ajan-user-name ajan-user-name-{{user_id}}"></small>
 												<small class="ajan-user-role ajan-user-role-{{user_id}}"></small>
@@ -371,8 +361,8 @@
 														{{activity_time}}
 														</span>
 													</div>
-													<div class="activity-comment-actions-left">  
-	 												<span class="left rep-del">
+													<div class="activity-comment-actions-left left">  
+	 												<span class="rep-del">
 	                        <a href="javascript:void(0)" class="reply get-comments" activity="{{id}}">
 	                                  comments(<span id="comment_count_{{id}}">{{comment_count}}</span>)
 	                              |</a>
@@ -384,7 +374,19 @@
 	                              </a>
 	
 	                          </span>
+	                           <span class="comment-info m-b-10">
+	                          <span class="comment-date-right"> |
+	                          <span class="comment-date">
+	                              {{activity_date}},
+	                          </span>
+	                          
+	                          <span class="comment-time">
+	                          		{{activity_time}}
+	                          </span>
+	                          </span>
+	                    </span>
 	                         </div>
+	
 	                        <div class="activity-comment-actions-right">  
 														<span class="right rep-del">
 																<a href="javascript:void(0)" class="reply get-comments" activity="{{id}}">
@@ -570,42 +572,54 @@
 			activity_date =activity_date.format("MMM Do YY");
 			activity_time =date_recorded_time; 
 			$(".activity-main-"+model.get("secondary_item_id") ).append('<div class="avatar-box-1" id="activity-comment-container-'+model.get("id")+'">
-												<div class="avatar left" href="#">
-														<img src="'+NOAVATAR+'" class="avatar-img ajan-user-pic-'+model.get("user_id")+'">
-												</div>
-												<div class="avatar-content">
-														<h5 class="avatar-heading left">'+model.get("action")+'</h5>
-															<div class="comment-info m-b-10">
-															<div class="comment-date-right">
-	                          <span class="comment-date right">
-																'+activity_date+'
-																</span>
-																<span class="right">,</span>
-																<span class="comment-time right">
+											<div class="avatar left" href="#">
+													<img src="'+NOAVATAR+'" class="avatar-img ajan-user-pic-'+model.get("user_id")+'">
+											</div>
+											<div class="avatar-content">
+													<h5 class="avatar-heading left">'+model.get("action")+'</h5>
+														
+													<p class="comment m-tb-5">'+model.get("content")+'</p>
+														<div class="comment-info m-b-10">
+															<div class="comment-date-left">
+															<span class="comment-date left">
+															'+activity_date+'
+															</span>
+															<span class="left">&nbsp;|&nbsp;</span>
+															<span class="comment-time left">
+															 '+activity_time+'
+															</span>
+															 </div>
+															 	<div class="activity-comment-actions-left left">  
+	 															<span class=" rep-del">
+	                      
+	                              <a href="javascript:void(0)" class="delete delete-comment delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'">
+	                              Delete
+	                              </a>
+	
+	                          </span>
+	                          <span class="comment-info m-b-10">
+															<span class="comment-date-right"> |
+	                          <span class="comment-date">
+																'+activity_date+',
+																</span> 
+																<span class="comment-time">
 																 '+activity_time+'
 																</span>
-	                          </div>
-	                          </div>
-														<p class="comment m-tb-5">'+model.get("content")+'</p>
-															<div class="comment-info m-b-10">
-																<div class="comment-date-left">
-																<span class="comment-date left">
-																'+activity_date+'
-																</span>
-																<span class="left">&nbsp;|&nbsp;</span>
-																<span class="comment-time left">
-																 '+activity_time+'
-																</span>
-																</div>
-																<span class="right rep-del">
-																				
-																				<a href="javascript:void(0)" class="delete delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'">
-																						<span class="glyphicon glyphicon-trash delete-comment delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'"></span>
-																				</a>
-																		</span>
-																</div>
+	                          </span>
+	                          </span>
+	                         </div>
+	                         <div class="activity-comment-actions-right">  
+															<span class="right rep-del">
+																			
+																			<a href="javascript:void(0)" class="delete  delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'">
+																					<span class="glyphicon glyphicon-trash delete-comment delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'"></span>
+																			</a>
+																	</span>
+	
 														</div>
-												</div>')
+															</div>
+													</div>
+											</div>')
 			@trigger "get:user:info"  
 	
 		onActivityCommentsFetched : (activity_comments,activity)-> 
@@ -625,17 +639,7 @@
 											</div>
 											<div class="avatar-content">
 													<h5 class="avatar-heading left">'+model.get("action")+'</h5>
-														<div class="comment-info m-b-10">
-															<div class="comment-date-right">
-	                          <span class="comment-date right">
-																'+activity_date+'
-																</span>
-																<span class="right">,</span>
-																<span class="comment-time right">
-																 '+activity_time+'
-																</span>
-	                          </div>
-	                          </div>
+														
 													<p class="comment m-tb-5">'+model.get("content")+'</p>
 														<div class="comment-info m-b-10">
 															<div class="comment-date-left">
@@ -647,13 +651,24 @@
 															 '+activity_time+'
 															</span>
 															 </div>
-															 	<div class="activity-comment-actions-left">  
-	 															<span class="left rep-del">
+															 	<div class="activity-comment-actions-left left">  
+	 															<span class=" rep-del">
 	                      
 	                              <a href="javascript:void(0)" class="delete delete-comment delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'">
 	                                  delete
 	                              </a>
 	
+	                          </span>
+	                          <span class="comment-info m-b-10">
+															<span class="comment-date-right"> |
+	
+	                          <span class="comment-date">
+																'+activity_date+',
+																</span> 
+																<span class="comment-time">
+																 '+activity_time+'
+																</span>
+	                          </span>
 	                          </span>
 	                         </div>
 	                         <div class="activity-comment-actions-right">  
@@ -663,6 +678,7 @@
 																					<span class="glyphicon glyphicon-trash delete-comment delete-comment-'+model.get("id")+'" activity="'+model.get("id")+'"></span>
 																			</a>
 																	</span>
+	
 														</div>
 															</div>
 													</div>

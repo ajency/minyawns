@@ -3279,7 +3279,37 @@ function get_activity_update_action($action,$item_id,$userid ){
 }
 
 add_filter('activity_update_action','get_activity_update_action',10,3);
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('init', 'set_date_timezone');
+
+function set_date_timezone(){
+ ini_set( 'date.timezone', 'UTC' );
+}
+
+
+/*if (date_default_timezone_get()) {
+    echo 'date_default_timezone_set: ' . date_default_timezone_get() . '<br />';
+}
+
+if (ini_get('date.timezone')) {
+    echo 'date.timezone: ' . ini_get('date.timezone');
+}
+ */
+
+/*$timestamp = time()+date("Z");
+echo gmdate("Y-m-d H:i:s",$timestamp);*/
 
 
 
