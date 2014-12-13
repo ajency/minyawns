@@ -2400,9 +2400,33 @@ class PhotoAPI {
             );
 
 
+        //dummy post api route
+         $routes['/testapi'] = array(
+            array( array( $this, 'test_api_check'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
+
         
          return $routes;
     }
+
+
+
+
+//dummy post api data
+    public function test_api_check(){
+    $response = array('name' => $_POST['name']);
+
+    $response = json_encode( $response );
+
+    header( "Content-Type: application/json" );
+
+    echo $response;
+
+    exit;
+    }
+
+
 
 
 
