@@ -2391,7 +2391,7 @@ class PhotoAPI {
 
 
         $routes['/authenticate'] = array(
-            array( array( $this, 'user_api_authentication'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            array( array( $this, 'user_api_authentication'), WP_JSON_Server::READABLE ),
             );
 
 
@@ -2400,31 +2400,10 @@ class PhotoAPI {
             );
 
 
-        //dummy post api route
-         $routes['/testapi'] = array(
-            array( array( $this, 'test_api_check'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
-            );
-
-
-        
+               
          return $routes;
     }
 
-
-
-
-//dummy post api data
-    public function test_api_check(){
-    $response = array('name' => $_POST['name']);
-
-    $response = json_encode( $response );
-
-    header( "Content-Type: application/json" );
-
-    echo $response;
-
-    exit;
-    }
 
 
 
@@ -2740,8 +2719,8 @@ $user_data = array();
 //User Authentication
   public function user_api_authentication(){
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = $_REQUEST['username'];
+    $password = $_REQUEST['password'];
     //Check for empty username or password
     if(empty($username) || empty($password)){
         return false;
