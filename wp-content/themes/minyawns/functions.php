@@ -2477,18 +2477,20 @@ class PhotoAPI {
 
 
         $routes['/authenticate'] = array(
-            array( array( $this, 'user_api_authentication'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            array( array( $this, 'user_api_authentication'), WP_JSON_Server::READABLE ),
             );
 
 
         $routes['/fblogin/token/(?P<token>\w+)'] = array(
             array( array( $this, 'get_fblogin_status'), WP_JSON_Server::READABLE ),
             );
-        
+               
          return $routes;
     }
 
- 
+
+
+
     //Upload photos and get response
     public function upload_photos($jobid = 0){
         $response = json_encode( $this->photo_model->upload_photos($jobid) );
@@ -2808,8 +2810,8 @@ $user_data = array();
 //User Authentication
   public function user_api_authentication(){
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = $_REQUEST['username'];
+    $password = $_REQUEST['password'];
     //Check for empty username or password
     if(empty($username) || empty($password)){
         return false;
