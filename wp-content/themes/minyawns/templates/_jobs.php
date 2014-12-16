@@ -549,6 +549,13 @@ $current_user_role =  trim($user_role);
 	</div>
     <% } %>
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>'><%= result.user_image%></a>
+
+    
+
+    <% if(result.intro_video_id !=''){%>
+      <a class="vidbutton" style="right:100px;"><i class="icon-youtube-play"></i> &nbsp;</a>
+      <% } %>                                
+
     </div>
     <% if(result.is_verified === 'Y'){%>
     <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
@@ -602,6 +609,12 @@ $current_user_role =  trim($user_role);
     <div>
     <div class="minyawns-img" >
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
+
+    <% if(result.intro_video_id !=''){%>
+      <a class="vidbutton" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a>
+      <% } %> 
+
+
     </div>
     <div class="rating">
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
@@ -680,6 +693,25 @@ $current_user_role =  trim($user_role);
     </label>
     </div>-->
     </li>
+
+
+
+
+
+<% if(result.intro_video_id !=''){%>
+<div id="introvideo<%= result.user_id %>" class="modal hide fade video-pop in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-body">
+            <iframe id="videowrap" frameborder="0" allowfullscreen="1" title="YouTube video player" width="530" height="350" src="https://www.youtube.com/embed/<%= result.intro_video_id %>?enablejsapi=1&origin=<?php echo $_SERVER['HTTP_HOST']; ?>"></iframe>
+            </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+           
+    </div>
+ <%}%>
+
+
+    
 
 </script>
 
@@ -829,6 +861,13 @@ $current_user_role =  trim($user_role);
            
             </ul>
 </div>
+
+
+
+
+
+
+
         
 </script>
 
