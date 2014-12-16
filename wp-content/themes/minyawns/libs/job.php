@@ -355,6 +355,14 @@ foreach ($pageposts as $pagepost) {
                 $company_details = get_user_meta(get_the_author_meta('ID', $pagepost->post_author));
 
 
+
+                if ($post_meta['job_start_date_time'][0] < current_time('timestamp')) {
+                   $has_expired = "yes";
+               } else {
+                   $has_expired = "no";
+               }
+
+
                 /*
                  *  1 ->running
                  *  2->locked ,if one applicant also hired then locked
@@ -418,6 +426,7 @@ foreach ($pageposts as $pagepost) {
                     'no_hired' => $count_hired,
                     'count_rated' => $final_count,
                     'comment' => strlen($comment) > 0 ? $comment : '',
+                    'has_expired'   => $has_expired,
                 );
             }
 

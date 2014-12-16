@@ -824,8 +824,11 @@ $current_user_role =  trim($user_role);
 </script>
 
 <script type="text/template" id="blank-card">
+<% if(result.user_to_job_status.indexOf('hired') == -1 || result.has_expired === 'no'){ %>
+
 	<div class="row-fluid">
     <li class="span3 thumbspan card find-min full-width" id="91">
+
     <div class="thumbnail select-button-91" id="thumbnail-91">
     <div class="m1">
     <div class="caption">
@@ -834,6 +837,7 @@ $current_user_role =  trim($user_role);
     <div class="minyawns-img">
     <img src="<?php echo get_template_directory_uri(); ?>/images/avatar2.jpg" height="96" width="96"/>
     </div>
+
 	</div>
 	<div class="span5 width40">
     <h4> Why wait for Minions to apply?</h4>
@@ -856,10 +860,12 @@ $current_user_role =  trim($user_role);
 
     </div>
     </li>
+
 	</div>
 	
 
 					</div>
+<% } %>
 </script>
 
 <script type="text/templates" id="no-result">
