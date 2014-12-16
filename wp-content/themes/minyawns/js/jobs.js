@@ -350,7 +350,9 @@ review =""
                             jQuery("#collapse" + model.toJSON().post_id + "").addClass("in");
                             load_job_minions(model); 
                             current_job = model
-                           
+
+                            jQuery(".load_ajaxsingle_job_minions").hide();
+
 
                         }
 
@@ -396,7 +398,7 @@ review =""
 
         },
         error: function(err) {
-            console.log(err);
+           // console.log(err);
         }
 
     });
@@ -406,8 +408,8 @@ review =""
 
 function getJobPhotos(){
 
-$.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
-                
+ $.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
+
                   _.each(collection, function(model) {
                       appendToGrid(model);
                        
@@ -425,10 +427,12 @@ $.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  {
 
 function getUserPhotos(user_id){
 
- 
+
+       //console.log('user-path:' + SITEURL+"/api/photos/user/"+user_id);
      jQuery.get(SITEURL+"/api/photos/user/"+user_id, {}, function(collection)  { 
+
             
-                  _.each(collection, function(model) {
+                 _.each(collection, function(model) {
                       appendToGrid(model);
                   });
                     //set_isotope();
@@ -449,6 +453,8 @@ function photoUpload(user_id){
         // Initialize the jQuery File Upload plugin
         jQuery('#upload').fileupload({
 
+            //maxFilesize: 10,
+            
             // This element will accept file drag/drop uploading
             dropZone: jQuery('#drop'),
 
@@ -504,7 +510,7 @@ function photoUpload(user_id){
                   //  data.context.removeClass('working');
                  setTimeout(function(){data.context.find('span').trigger('click')}, 2000);
 
-                             
+
                 }
             },
             done: function(e, data) { 
@@ -512,6 +518,7 @@ function photoUpload(user_id){
                     if(data.result.status==true){
                           
                           data.context.find('.process_successmsg').text("Photo Uploaded !")
+                          console.log('photo object is' + data.result.photo);
                           appendToGrid(data.result.photo);
                     }else
                     {
@@ -527,6 +534,7 @@ function photoUpload(user_id){
                  
                 // Something has gone wrong!
                 data.context.addClass('error');
+                console.log(data);
             }
 
         });
@@ -542,10 +550,12 @@ function photoUpload(user_id){
 
     user_admin = jQuery("#upload").attr("user-admin");
   
-   jQuery("#photos_title").show();
+   
+  
+   jQuery("#photos_title").show()
+  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.large_url+'"  ><img author= "'+model.author+'" src="'+model.url+'" /></a>');
+  if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
 
-  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'"  ><img author= "'+model.author+'" src="'+model.url+'"   width="229" /></a>');
-  if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) || user_admin=='true' ){
     newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
   }
   
@@ -657,8 +667,9 @@ $container.append( newItems );
  function display_user_photo_option(){
         display_user_photo_option_done= true
         user_id = jQuery("#upload").attr("user-id")
+
         user_admin = jQuery("#upload").attr("user-admin")
-        
+
         getUserPhotos(user_id);
  
         if(user_id==USER.id || user_admin=='true'){
@@ -747,7 +758,7 @@ function fetch_my_jobs(id)
 
         },
         success: function(collection, response) {
-           
+
 
             if (logged_in_role === 'Employer')
                 jQuery("#my-jobs-emp-min").html(jQuery("#employer-sidebar").html());
@@ -834,7 +845,7 @@ function fetch_my_jobs(id)
 
                         } else
                         {
-                        	
+
                         	var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                             jQuery("#accordion24").append(html);
@@ -898,6 +909,7 @@ var Job = Backbone.Model.extend({
         return SITEURL + '/wp-content/themes/minyawns/libs/job.php/addjob';
     },
     validate: function(attr) {
+
 
         var errors = [];
         if (document.getElementById("job_start_date").value !== '' && document.getElementById("job_end_date").value !== '') {
@@ -1893,7 +1905,7 @@ function ratings_button(jobmodel, model)
 function job_minyawns_grid(job)
 {
     var miny_grid = "";
-    
+
     for (var i = 0; i < job.toJSON().users_applied.length; i++) {
         if (job.toJSON().is_verfied[i] == 'Y')
             var is_verified = "<span>Minyawn verified </span>";
@@ -1983,7 +1995,7 @@ function load_comments(user_id)
         },
         success: function(collection, response) {
 
-            
+
 
         }
 
