@@ -574,6 +574,13 @@ $current_user_role =  trim($user_role);
       </div>
     <% } %>
     <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>'><%= result.user_image%></a>
+
+    
+
+    <% if(result.intro_video_id !=''){%>
+      <a class="vidbutton" style="right:100px;"><i class="icon-youtube-play"></i> &nbsp;</a>
+      <% } %>                                
+
     </div>
 	
 
@@ -634,19 +641,24 @@ $current_user_role =  trim($user_role);
 	<div class="row-fluid">
 	<div class="span4">
     <div class="minyawns-img" >
+
         <% if(result.is_hired === true){%>
           <div class="minaywns-sel">
            <i class="icon-ok"></i>
             <!--SELECTED-->
           </div>
         <% } %>
-      <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
+   
+    <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
+
+    <% if(result.intro_video_id !=''){%>
+      <a class="vidbutton" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a>
+      <% } %> 
+
+
     </div>
-	<% if(result.is_verified === 'Y'){%>
-    <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
-    <div class="verfied-txt-job-prof">Verified Minion</div>
-    <% } %>
-    <div class="rating full-width">
+    <div class="rating">
+
     <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
     <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
     </a>
@@ -683,7 +695,7 @@ $current_user_role =  trim($user_role);
         var linkedinUrl = result.linkedin;
     }
     %>
-    <a href='http://<%= result.linkedin %>' target='_blank'>kl<i class='icon-linkedin'></i></a>
+    <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
     <%} } %>
      <% if (result.facebook_link.length > 0 ){
           var facebook_id = result.facebook_link.split('/').pop();
@@ -777,6 +789,25 @@ $current_user_role =  trim($user_role);
     </div>-->
     </li>
 	<!--</div>-->
+
+
+
+
+
+<% if(result.intro_video_id !=''){%>
+<div id="introvideo<%= result.user_id %>" class="modal hide fade video-pop in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-body">
+            <iframe id="videowrap" frameborder="0" allowfullscreen="1" title="YouTube video player" width="530" height="350" src="https://www.youtube.com/embed/<%= result.intro_video_id %>?enablejsapi=1&origin=<?php echo $_SERVER['HTTP_HOST']; ?>"></iframe>
+            </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+           
+    </div>
+ <%}%>
+
+
+    
 
 </script>
 
@@ -939,6 +970,13 @@ $current_user_role =  trim($user_role);
            
             </ul>
 </div>
+
+
+
+
+
+
+
         
 </script>
 

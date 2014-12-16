@@ -723,6 +723,21 @@ $app->get('/jobminions/', function() use ($app) {
 
                     $is_invited = get_current_job_status($_GET['job_id'], $minion_ids[$i]);
 
+
+
+
+                    $user_meta = get_user_meta( $minion_ids[$i] );
+                    $user_profile_pic = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
+
+                    if(isset($user_meta['intro_video_id'][0])){
+                        $user_pic_img_src =  '<img src="http://i.ytimg.com/vi/'.$user_meta['intro_video_id'][0].'/1.jpg" />';
+                    }else{
+                      $user_pic_img_src = $user['image'];
+                     }
+
+
+
+
 $user_email=get_userdata($minion_ids[$i]);
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
@@ -735,14 +750,15 @@ $user_email=get_userdata($minion_ids[$i]);
                         'user_email' =>$user_email->user_email, /* nick name temp fix */
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
-                        'user_image' => $user['image'],
+                        'user_image' => $user_pic_img_src,
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
                         'comment' => isset($comment) > 0 ? $comment : 0,
                         'is_verified' => isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] : '',
                         'is_hired' => minyawns_hired_to_jobs($minion_ids[$i], $_GET['job_id']),
                         'count_rated' => $count_rated,
-                        'is_invited' => $is_invited
+                        'is_invited' => $is_invited,
+                        'intro_video_id'=>isset($user_meta['intro_video_id'][0]) ? $user_meta['intro_video_id'][0] :''
                     );
                 }
             }

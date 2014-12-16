@@ -659,6 +659,12 @@ top: 39px;
 right: 104px;
 }
 
+.m3 .vidbutton{
+position: absolute;
+top: 40px;
+left: 45px;
+}
+
 .minyawns-img a [class^="icon-"]{
 font-size: 30px !important;
 vertical-align: middle;
