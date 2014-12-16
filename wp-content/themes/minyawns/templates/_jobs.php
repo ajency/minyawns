@@ -712,18 +712,18 @@ $current_user_role =  trim($user_role);
     <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
     <%} } %>
             </div>
+
 			</div>
 			<div class="row-fluid">
 	<div class="span12">
     <div class="tagsa">
-    Tags:
-    <%
-    var split_skills=result.user_skills.split(',');
-    for(var index=0;index<=split_skills.length;index++){
-    %>
-    <span class="label label-small"><%= split_skills[index] %></span>
-
-    <% } %>
+     <% var sk=result.user_skills.split(',');
+    if(result.user_skills.length > 0){ %>
+     Tags:<br> 
+     <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%></li>
+     <% } else {%>
+      No skills added yet!
+      <%}%>
     </div>
 	</div>
 	</div>	
@@ -749,6 +749,11 @@ $current_user_role =  trim($user_role);
 
 
 	
+    </div>
+
+
+
+  
     </div>
 	<!--like-dislike-btns-->
 	    <!--<div class="rating hider">
