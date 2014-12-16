@@ -108,8 +108,8 @@ require 'templates/_minyawnsdir.php';
                                                 </div>-->
                 <!--			  <div id="more" class="peplist more">Send Invites by selecting Minyawns below </div>-->
 
-                <div class="row-fluid minyawns-grid1">
-                    <ul class="thumbnails minyawnslist" style="left: 100px;">
+                <div class="row-fluid minyawns-grid1 cust-minyawns-grid1">
+                    <ul class="thumbnails minyawnslist thumbnail-dir" style="left: 100px;">
 
                         <span class="load_ajaxsingle_job_minions" style="display: none;"></span>
                     </ul>

@@ -1426,7 +1426,7 @@ font-size: 16px;
 
 body .minyawns-grid1 .thumbspan {
     display: inline-block;
-    min-height: 365px !important;
+    /*min-height: 365px !important;*/
     width: 30%;
 }
 .minaywns-sel {
@@ -2911,5 +2911,6 @@ float:none !important;
 .item-remove{
 	cursor:pointer;
 } 
+
 
  
