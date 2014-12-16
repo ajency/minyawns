@@ -116,8 +116,10 @@ if (!$upload_file['error']) {
 		'error'		=> is_wp_error($attachment_id)
 		);
 	}
-	$image_url =   wp_get_attachment_image_src($attachment_id, 'large' );
+	$image_url =   wp_get_attachment_image_src($attachment_id, 'thumbnail' );
 	//get the author of the job
+
+	$image_url_large =   wp_get_attachment_image_src($attachment_id, 'large' );
 
 	$job = get_post($parent_post_id); 
 	$job_author = $job->post_author;
@@ -127,6 +129,7 @@ if (!$upload_file['error']) {
 		'photo'		=> array(
 			'id'	=> $attachment_id,
 			'url'	=> $image_url[0],
+			'large_url'	=> $image_url_large[0],
 			'author' => $user_id,
 			'date' => get_the_date('Y-m-d H:i:s.u',$attachment_id),
 			'job_id' => $parent_post_id,
@@ -204,12 +207,17 @@ foreach($results as $result){
 
 	$job_author = $job->post_author;
 
-	$image_url =   wp_get_attachment_image_src($result->ID, 'large' );
+	$image_url =   wp_get_attachment_image_src($result->ID, 'thumbnail' );
+
+	$image_url_large =   wp_get_attachment_image_src($result->ID, 'large' );
  
    	$image_url = ( $image_url!=false)? $image_url[0]:'' ;
+   	$image_url_large = ( $image_url_large!=false)? $image_url_large[0]:'' ;
+
 	 $data[] = array(
 					'id' => $result->ID,
 					'url' =>  $image_url,
+					'large_url' =>  $image_url_large,
 					'author' => $result->post_author,
 					'date' => $result->post_date,
 					'job_id' => $result->post_parent,

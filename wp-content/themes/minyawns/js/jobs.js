@@ -529,10 +529,10 @@ function photoUpload(){
 }
  
  function appendToGrid(model){
-
+//console.log(model);
   
    $("#photos_title").show()
-  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.url+'"  ><img author= "'+model.author+'" src="'+model.url+'"   width="229" /></a>');
+  var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.large_url+'"  ><img author= "'+model.author+'" src="'+model.url+'" /></a>');
   if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
     newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
   }
