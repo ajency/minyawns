@@ -350,8 +350,8 @@ review =""
                             jQuery("#collapse" + model.toJSON().post_id + "").addClass("in");
                             load_job_minions(model); 
                             current_job = model
-                            console.log("current_jobmodel")
-                            console.log(current_job)
+                            //console.log("current_jobmodel")
+                            //console.log(current_job)
                             jQuery(".load_ajaxsingle_job_minions").hide();
 
                         }
@@ -394,7 +394,7 @@ review =""
 
         },
         error: function(err) {
-            console.log(err);
+           // console.log(err);
         }
 
     });
@@ -403,9 +403,9 @@ review =""
 //photo upload scripts starts here
 
 function getJobPhotos(){
-console.log(SITEURL+"/api/photos/job/"+$("#jobid").val());
+//console.log(SITEURL+"/api/photos/job/"+$("#jobid").val());
  $.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
-                console.log(collection);
+                //console.log(collection);
                   _.each(collection, function(model) {
                       appendToGrid(model)
                   });
@@ -418,7 +418,7 @@ console.log(SITEURL+"/api/photos/job/"+$("#jobid").val());
 
 function getUserPhotos(user_id){
 
-        console.log('user-path:' + SITEURL+"/api/photos/user/"+user_id);
+       //console.log('user-path:' + SITEURL+"/api/photos/user/"+user_id);
      $.get(SITEURL+"/api/photos/user/"+user_id, {}, function(collection)  { 
 
                  
@@ -443,6 +443,8 @@ function photoUpload(){
         // Initialize the jQuery File Upload plugin
         jQuery('#upload').fileupload({
 
+            //maxFilesize: 10,
+            
             // This element will accept file drag/drop uploading
             dropZone: jQuery('#drop'),
 
@@ -497,6 +499,8 @@ function photoUpload(){
                 if(progress == 100){
                   //  data.context.removeClass('working');
                  setTimeout(function(){data.context.find('span').trigger('click')}, 2000);
+
+                 console.log('photo processing done');
               
                 }
             },
@@ -504,6 +508,7 @@ function photoUpload(){
  
                     if(data.result.status==true){
                           data.context.find('.process_successmsg').text("Photo Uploaded !")
+                          console.log('photo object is' + data.result.photo);
                           appendToGrid(data.result.photo);
                     }else
                     {
@@ -517,6 +522,7 @@ function photoUpload(){
             fail:function(e, data){
                 // Something has gone wrong!
                 data.context.addClass('error');
+                console.log(data);
             }
 
         });
@@ -636,7 +642,7 @@ jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
  function display_user_photo_option(){
         display_user_photo_option_done= true
         user_id = jQuery("#upload").attr("user-id")
-        console.log('user' + user_id);
+        //console.log('user' + user_id);
         getUserPhotos(user_id);
  
         if(user_id==USER.id){
@@ -725,7 +731,7 @@ function fetch_my_jobs(id)
 
         },
         success: function(collection, response) {
-            console.log('new test');
+            //console.log('new test');
             //jQuery(".load_ajax1_myjobs").hide();
 
             if (logged_in_role === 'Employer')
@@ -813,7 +819,7 @@ function fetch_my_jobs(id)
 
                         } else
                         {
-                        	console.log('test');
+                        	//console.log('test');
                         	var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                             jQuery("#accordion24").append(html);
@@ -878,7 +884,7 @@ var Job = Backbone.Model.extend({
     },
     validate: function(attr) {
 
-console.log(attr);
+//console.log(attr);
 
         var errors = [];
         if (document.getElementById("job_start_date").value !== '' && document.getElementById("job_end_date").value !== '') {
@@ -1850,7 +1856,7 @@ function ratings_button(jobmodel, model)
 function job_minyawns_grid(job)
 {
     var miny_grid = "";
-    console.log(job.toJSON().users_applied.length);
+    //console.log(job.toJSON().users_applied.length);
     for (var i = 0; i < job.toJSON().users_applied.length; i++) {
         if (job.toJSON().is_verfied[i] == 'Y')
             var is_verified = "<span>Minyawn verified </span>";
@@ -1940,7 +1946,7 @@ function load_comments(user_id)
         },
         success: function(collection, response) {
 
-            console.log(collection.models);
+            //console.log(collection.models);
 //            if (collection.length > 0) {
 //                var template = _.template(jQuery("#minion-cards").html());
 //                _.each(collection.models, function(model) {
