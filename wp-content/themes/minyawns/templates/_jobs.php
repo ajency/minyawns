@@ -643,16 +643,17 @@ $current_user_role =  trim($user_role);
 
 
 
+    
     <div class="tags">
-    Tags:<br>
-    <%
-    var split_skills=result.user_skills.split(',');
-    for(var index=0;index<=split_skills.length;index++){
-    %>
-    <span class="label label-small"><%= split_skills[index] %></span>
-
-    <% } %>
-    </div>
+    <% var sk=result.user_skills.split(',');
+    if(result.user_skills.length > 0){ %>
+     Tags:<br> 
+     <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%></li>
+     <% } else {%>
+      No skills added yet!
+      <%}%>
+      </div>
+    
     </div>
 
     </div>
