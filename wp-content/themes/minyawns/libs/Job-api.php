@@ -399,13 +399,13 @@ $args = array(
     public function get_start_time_eform() {
         global $minyawn_job;
 
-        return date('H:i a ', $this->job_start_time);
+        return date('g:i a ', $this->job_start_time);
     }
 
     public function get_end_time_eform() {
         global $minyawn_job;
 
-        return date('H:i a ', $this->job_end_time);
+        return date('g:i a ', $this->job_end_time);
     }
 
     public function get_job_tags() {

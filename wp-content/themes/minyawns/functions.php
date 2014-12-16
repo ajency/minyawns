@@ -102,7 +102,71 @@ function mn_template_directory_uri($template_dir_uri, $template, $theme_root_uri
 
 add_filter('template_directory_uri', 'mn_template_directory_uri', 100, 3);
 
-function minyawns_scripts_styles() {
+
+/**
+ * Dequeue the jQuery UI script.
+ *
+ * Hooked to the wp_print_scripts action, with a late priority (100),
+ * so that it is after the script was enqueued.
+ */
+function wpdocs_dequeue_script() {
+   wp_dequeue_script('jquery');
+   wp_dequeue_script('jquery-core'); 
+    wp_dequeue_script('underscore');
+    wp_deregister_script('jquery');
+    wp_deregister_script('underscore');
+wp_deregister_script('jquery-ui-core');
+
+    wp_dequeue_script('backbone');
+    wp_deregister_script('backbone');    
+    wp_dequeue_script('backbone');
+    wp_deregister_script('backbone');
+}
+add_action( 'wp_print_scripts', 'wpdocs_dequeue_script', 100 );
+
+function minyawns_scripts_styles() {  
+	global $post;
+
+	// add activity and notification marionette plugin
+
+	wp_dequeue_script('backbone');
+    wp_deregister_script('backbone');
+    wp_dequeue_script('jquery');
+    wp_dequeue_script('jquery-core');
+    wp_deregister_script('jquery');
+    wp_deregister_script('jquery-ui-core'); 
+    wp_dequeue_script('underscore');
+    wp_deregister_script('underscore');
+     wp_enqueue_script('minyawns-moment', get_template_directory_uri() . '/js/moment.js', array(), null);
+   
+    wp_enqueue_script('minyawns-jquery', get_template_directory_uri() . '/js/jquery.js', array(), null);
+    wp_enqueue_script('minyawns-jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array(), null);
+        wp_enqueue_script('minyawns-underscore', get_template_directory_uri() . '/js/underscore.js', array(), null);
+            wp_enqueue_script('min-backbone', get_template_directory_uri() . '/js/backbone.js', array(), null);
+            wp_enqueue_script('marionette', get_template_directory_uri() . '/js/backbone.marionette.js', array(), null);
+            wp_enqueue_script('mustache', get_template_directory_uri() . '/js/mustache.js', array(), null);
+              
+
+	if($post->post_type=="job" && is_user_logged_in()){
+
+
+		
+ //activity notification plugin prerequisites
+          //  wp_enqueue_script('minyawns-jquery', get_template_directory_uri() . '/js/jquery.js', array(), null);
+           
+         wp_enqueue_script('ajency-marionette-core', get_template_directory_uri() . '/js/ajency.marionette.core.js', array('min-backbone'), null);
+ 
+            //load activity stream module
+            wp_enqueue_script('activity-stream-module');
+            wp_enqueue_style('activity-theme-two-css');
+
+            //load marionette app
+             wp_enqueue_script('minyawns-application', get_template_directory_uri() . '/js/minyawns-application.js', array('minyawns-jquery'), null);
+           
+
+
+}
+    
     switch (ENVIRONMENT) {
         case 'TESTING':
             wp_enqueue_style('minyawns-testing-css', get_template_directory_uri() . '/css/minyawns-testing.css', array(), null);
@@ -141,6 +205,9 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('imgareaselect-animated', get_template_directory_uri() . '/css/imgareaselect-animated.css', array(), null);
                 wp_enqueue_style('imgareaselect-default', get_template_directory_uri() . '/css/imgareaselect-default.css', array(), null);
                 wp_enqueue_style('imgareaselect-deprecated', get_template_directory_uri() . '/css/imgareaselect-deprecated.css', array(), null);
+				
+			 wp_enqueue_style('font', get_template_directory_uri() . '/css/font.css', array(), null);
+			 wp_enqueue_style('plugin', get_template_directory_uri() . '/css/plugin.css', array(), null);
                 wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
                 wp_enqueue_style('photo-upload', get_template_directory_uri() . '/css/photo-upload.css', array(), null);
 //            wp_enqueue_style('bootstrap-lightbox', get_template_directory_uri() . '/css/bootstrap-lightbox.min.css', array(), null);
@@ -155,19 +222,22 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('bootstrap-tagmanager', get_template_directory_uri() . '/css/bootstrap-tagmanager.css', array(), null);
 wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
                 wp_enqueue_style('bootstrap-timepicker', get_template_directory_uri() . '/css/bootstrap-timepicker.css', array(), null);
+				//wp_enqueue_style('masonry', get_template_directory_uri() . '/css/masonry.css', array(), null);
                  
             }
 		wp_enqueue_style('real-state-landing', get_template_directory_uri() . '/css/landing-pages.css', array(), null);
-
-          
-
-            wp_enqueue_script('bxslider', get_template_directory_uri() . '/js/jquery.bxslider.min.js', array('jquery'), null);
-            //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
-            wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
-            wp_enqueue_script('jquery-ui', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null);
-            wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'jquery'), null);
  
-            wp_enqueue_script('owl-carousel-js', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), null);
+			wp_enqueue_script('imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.js', array(), null);
+			wp_enqueue_script('isotope', get_template_directory_uri() . '/js/isotope.pkgd.js', array(), null);
+			wp_enqueue_script('holder', get_template_directory_uri() . '/js/holder.js', array(), null);
+ 
+            wp_enqueue_script('bxslider', get_template_directory_uri() . '/js/jquery.bxslider.min.js', array('minyawns-jquery'), null);
+            //wp_enqueue_script('jquery', get_template_directory_uri() . '/src/jquery.js', array(), null);
+            //wp_enqueue_script('mn-underscore', site_url() . '/wp-includes/js/underscore.min.js', array(), null);
+           // wp_enqueue_script('jquery-ui-minyawns', get_template_directory_uri() . '/js/jquery-ui-1.10.3.custom.min.js', array('minyawns-jquery'), null);
+            //wp_enqueue_script('mn-backbone', site_url() . '/wp-includes/js/backbone.min.js', array('mn-underscore', 'minyawns-jquery'), null);
+ 
+            wp_enqueue_script('owl-carousel-js', get_template_directory_uri() . '/js/owl.carousel.min.js', array('minyawns-jquery'), null);
        
 			
 			wp_enqueue_script('holder', get_template_directory_uri() . '/js/holder.js', array(), null);
@@ -179,38 +249,38 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
 		
 
             //if(is_page('profile'))
-
-            wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('jquery'), null);
-            wp_enqueue_script('jquery-knob', get_template_directory_uri() . '/js/jquery.knob.js', array('jquery'), null);
-            wp_enqueue_script('ui-widget', get_template_directory_uri() . '/js/jquery.ui.widget.js', array('jquery'), null);
-            wp_enqueue_script('iframe-transport', get_template_directory_uri() . '/js/jquery.iframe-transport.js', array('jquery'), null);
+			 
+            wp_enqueue_script('jquery-fileupload', get_template_directory_uri() . '/js/jquery.fileupload.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('jquery-knob', get_template_directory_uri() . '/js/jquery.knob.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('ui-widget', get_template_directory_uri() . '/js/jquery.ui.widget.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('iframe-transport', get_template_directory_uri() . '/js/jquery.iframe-transport.js', array('minyawns-jquery'), null);
             
-            wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('jquery', 'jquery-ui'), null);
-            wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null);
-            wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/modernizr.custom.14550.js', array('jquery'), null);
+            wp_enqueue_script('jquery_validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array('minyawns-jquery', 'minyawns-jquery-ui'), null);
+            wp_enqueue_script('bootstrap-min', get_template_directory_uri() . '/js/bootstrap.min.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/modernizr.custom.14550.js', array('minyawns-jquery'), null);
 
 
 //            wp_enqueue_script('bootstrap-lightbox', get_template_directory_uri() . '/js/bootstrap-lightbox.min.js', array('jquery'), null);
-            wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('jquery', 'bootstrap-min'), null);
-            wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('jquery', 'bootstrap-min'), null);
-            wp_enqueue_script('simple', get_template_directory_uri() . '/js/jquery.simpletip-1.3.1.pack.js', array('jquery', 'bootstrap-min'), null);
-            wp_enqueue_script('fcbkcomplete', get_template_directory_uri() . '/js/jquery.fcbkcomplete.js', array('jquery', 'bootstrap-min'), null);
-            wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() . '/js/bootstrap-timepicker.js', array('jquery', 'bootstrap-min'), null);
-            wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('jquery', 'bootstrap-min'), null);
+            wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array('minyawns-jquery', 'bootstrap-min'), null);
+            wp_enqueue_script('bootstrap-switch', get_template_directory_uri() . '/js/bootstrap-switch.js', array('minyawns-jquery', 'bootstrap-min'), null);
+            wp_enqueue_script('simple', get_template_directory_uri() . '/js/jquery.simpletip-1.3.1.pack.js', array('minyawns-jquery', 'bootstrap-min'), null);
+            wp_enqueue_script('fcbkcomplete', get_template_directory_uri() . '/js/jquery.fcbkcomplete.js', array('minyawns-jquery', 'bootstrap-min'), null);
+            wp_enqueue_script('bootstrap-timepicker', get_template_directory_uri() . '/js/bootstrap-timepicker.js', array('minyawns-jquery', 'bootstrap-min'), null);
+            wp_enqueue_script('bootstrap-tagmanager', get_template_directory_uri() . '/js/bootstrap-tagmanager.js', array('minyawns-jquery', 'bootstrap-min'), null);
 
-            wp_enqueue_script('flatui-checkbox', get_template_directory_uri() . '/js/flatui-checkbox.js', array('jquery'), null);
-            wp_enqueue_script('flatui-radio', get_template_directory_uri() . '/js/flatui-radio.js', array('jquery'), null);
-            wp_enqueue_script('jquery.tagsinput', get_template_directory_uri() . '/js/jquery.tagsinput.js', array('jquery'), null);
-            wp_enqueue_script('jquery.stacktable', get_template_directory_uri() . '/js/jquery.stacktable.js', array('jquery'), null);
-            wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('jquery'), null);
-            wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('jquery'), null);
-            wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('jquery'), null);
-			 wp_enqueue_script('menu-pack', get_template_directory_uri() . '/js/jquery.mmenu.min.all.js', array('jquery'), null);
+            wp_enqueue_script('flatui-checkbox', get_template_directory_uri() . '/js/flatui-checkbox.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('flatui-radio', get_template_directory_uri() . '/js/flatui-radio.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('jquery.tagsinput', get_template_directory_uri() . '/js/jquery.tagsinput.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('jquery.stacktable', get_template_directory_uri() . '/js/jquery.stacktable.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('jquery.placeholder', get_template_directory_uri() . '/js/jquery.placeholder.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('minyawns-jquery'), null);
+			 wp_enqueue_script('menu-pack', get_template_directory_uri() . '/js/jquery.mmenu.min.all.js', array('minyawns-jquery'), null);
 	
-            wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('jquery'), null);
-            wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('jquery'), null);
-             wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('jquery'), null);
-wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.strings.js', array('jquery'), null);
+            wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('minyawns-jquery'), null);
+            wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('minyawns-jquery'), null);
+             wp_enqueue_script('jobs', get_template_directory_uri() . '/js/jobs.js', array('minyawns-jquery'), null);
+wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.strings.js', array('minyawns-jquery'), null);
 //            // wp_dequeue_script('jquery');
 //            if (is_page('jobs') || is_page('jobs-2')) {
 //
@@ -227,7 +297,7 @@ wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.str
             
             if(is_page('minyawns-directory'))
             {
-                wp_enqueue_script('minyawns', get_template_directory_uri() . '/js/minyawnsdir.js', array('jquery'), null);
+                wp_enqueue_script('minyawns', get_template_directory_uri() . '/js/minyawnsdir.js', array('minyawns-jquery'), null);
                 
                 //wp_enqueue_script('jscroll', get_template_directory_uri() . '/js/jquery.jscroll.js', array('jquery'), null);
                 
@@ -242,13 +312,17 @@ wp_enqueue_script('ustrings', get_template_directory_uri() . '/js/underscore.str
            
     		if( ($post_data->post_type=='job') && ($payment_type=="braintree") ) {
                 
-    			wp_enqueue_script('braintree', get_template_directory_uri() . '/braintree_lib/braintree.js', array('jquery'), null);
+    			wp_enqueue_script('braintree', get_template_directory_uri() . '/braintree_lib/braintree.js', array('minyawns-jquery'), null);
            }
 
-            wp_localize_script('jquery-ui', 'AJAXURL', admin_url( "admin-ajax.php" ) );
-            wp_localize_script('jquery-ui', 'SITEURL', site_url());
-            wp_localize_script('jquery-ui', 'THEMEURL', get_template_directory_uri());
-            wp_localize_script( 'jquery-ui', 'USER', get_miny_current_user() );
+            wp_localize_script('minyawns-jquery-ui', 'AJAXURL', admin_url( "admin-ajax.php" ) );
+            wp_localize_script('minyawns-jquery-ui', 'SITEURL', site_url());
+            wp_localize_script('minyawns-jquery-ui', 'THEMEURL', get_template_directory_uri());
+            wp_localize_script('minyawns-jquery-ui', 'THEMEDIR', get_template_directory());
+            wp_localize_script( 'minyawns-jquery-ui', 'USER', get_miny_current_user() );
+
+           
+
             break;
     }
 }
@@ -1694,8 +1768,12 @@ $current_userdata = get_userdata($user_ID);
 						//echo "UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'";
 						$wpdb->get_results("UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'");
 						update_post_meta($data['item_number'],'job_status','completed');
+
 						//send mail to hired minyawns						
-						$job_data = get_post($data['item_number']);						
+						$job_data = get_post($data['item_number']);	
+
+
+						 do_action( 'minyawn_hired', $job_data ,$value->ID);					
 						//$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
 						$minyawns_subject = "Minyawns - You have been hired! ";
                			$minyawns_message = "Hi,<br/><br/>
@@ -2289,11 +2367,13 @@ function get_user_avatar_by_id($id){
         $user_pic_img_src = get_avatar($id);
 
     }
-echo $user_pic_img_src;
+ 
     return $user_pic_img_src;
 }
 
+ 
 
+ 
 
 /*function photocontrol() {
 require_once('class.photo.php');
@@ -2367,6 +2447,11 @@ class PhotoAPI {
             array( array( $this, 'upload_photos'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
             );
 
+        //Upload route for user profile picture
+       $routes['/photos/upload/profile'] = array(
+            array( array( $this, 'upload_profile_picture'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
+            );
+
        //Delete route
        $routes['/photos/delete/(?P<photoid>\d+)'] = array(
             array( array( $this, 'delete_photos'), WP_JSON_Server::DELETABLE ),
@@ -2385,14 +2470,24 @@ class PhotoAPI {
             array( array( $this, 'get_photos'), WP_JSON_Server::READABLE ),
             );
 
-        $routes['/login/username/(?P<username>\w+)/password/(?P<password>\w+)'] = array(
+        $routes['/login/username/(?P<username>\S+)/password/(?P<password>\S+)'] = array(
             array( array( $this, 'get_login_status'), WP_JSON_Server::READABLE ),
             );
 
 
-        
+
+        $routes['/authenticate'] = array(
+            array( array( $this, 'user_api_authentication'), WP_JSON_Server::READABLE ),
+            );
+
+
+        $routes['/fblogin/token/(?P<token>\w+)'] = array(
+            array( array( $this, 'get_fblogin_status'), WP_JSON_Server::READABLE ),
+            );
+               
          return $routes;
     }
+
 
 
 
@@ -2403,6 +2498,17 @@ class PhotoAPI {
         echo $response;
         exit;
     }
+
+
+
+     //Upload profile picture
+    public function upload_profile_picture(){
+        $response = json_encode( $this->photo_model->upload_profile_picture() );
+        header( "Content-Type: application/json" );
+        echo $response;
+        exit;
+    }
+
 
     //Delete photos and get response
     public function delete_photos($photoid){
@@ -2437,63 +2543,251 @@ class PhotoAPI {
  }
 
 
-//User Authentication
- public function get_login_status($username,$password){
-    global $wp, $wp_rewrite, $wp_the_query, $wp_query;
 
 
-    if(empty($username) || empty($password)){
+ public function get_fblogin_status($token){
 
-        return false;
+//get response from facebook using access token
+    $user_response = file_get_contents('https://graph.facebook.com/me?access_token='.$token);
 
-    } else {
+    $data = json_decode($user_response);
 
-        $response = array('status'=>false);
+//if response is true
+    if($user_response){
 
-        $auth = wp_authenticate($username, $password );
+        $user_newid = 'FB_'.$data->id;
+     
+        $user_name = username_exists( $user_newid );
 
-        if( is_wp_error($auth) ) { 
-            wp_logout();     
-            $response = array('status'=>false);
-        } else {
-
-            /*$user_login = $username;
-            $user = get_userdatabylogin($user_login);
-            $user_id = $user->ID;
-            wp_set_current_user($user_id, $user_login);
-            wp_set_auth_cookie($user_id);
-            do_action('wp_login', $user_login);*/
-
-
-            $user_login = $username;
-            $user = get_userdatabylogin($user_login);
-            $user_id = $user->ID;
-
-
-            $creds = array();
-            $creds['user_login'] = $username;
-            $creds['user_password'] = $password;
-            $creds['remember'] = ($remember_me === "true") ? true : false;
-
-            $user = wp_signon( $creds, false );
-
-            //$user_id = get_current_user_id();
-            //$logincookie = wp_generate_auth_cookie('1',strtotime( '+14 days' ),'logged_in','');
-
-            $logincookie = wp_generate_auth_cookie( $user_id, strtotime( '+14 days' ), 'logged_in', '' );
-            setcookie(LOGGED_IN_COOKIE, $logincookie, strtotime( '+14 days' ), COOKIEPATH, COOKIE_DOMAIN, false, false);
-
-            //do_action( 'set_logged_in_cookie', LOGGED_IN_COOKIE, '43200', strtotime( '+14 days' ), '1','logged_in');
-
-           // apply_filters('auth_cookie', $cookie, $user_id, $expiration, $scheme)
-
-            $response = array('status'=> 'true',
-                            'cookie'=> LOGGED_IN_COOKIE,
-                            'value' =>  $logincookie
-                    );
+//register the user if not exist
+        if ( !$user_name and email_exists($data->email) == false ) {
+            $random_password = wp_generate_password( $length=12, $include_standard_special_chars=false );
+            $user_name = wp_create_user( $user_newid, $random_password, $data->email );
         }
 
-        //$response = array('status'=>$status);
+
+
+
+/*if( !$user_login_id )
+    {
+
+$user_data = array();
+        $user_data['user_login']    = "FB_" . $data->id;
+        $user_data['user_pass']     = wp_generate_password();
+        $user_data['user_nicename'] = sanitize_title($user_data['user_login']);
+        $user_data['first_name']    = $data->first_name;
+        $user_data['last_name']     = $data->last_name;
+        $user_data['display_name']  = $data->first_name;
+        $user_data['user_url']      = $data->profile_url;
+        $user_data['user_email']    = $data->email;
+
+        $user_data = apply_filters('wpfb_insert_user', $user_data, $data );
+        $user_data = apply_filters('wpfb_inserting_user', $user_data, array('WP_ID' => $user_login_id, 'FB_ID' => $fb_uid, 'FB_UserData' => $fbuser, 'access_token'=>$access_token) );
+
+        //Insert a new user to our database and make sure it worked
+        $user_login_id   = wp_insert_user($user_data);
+
+}
+*/
+
+
+
+
+
+        $user = get_user_by('email', $data->email );
+
+
+
+
+        $userprofiledata = array(
+                        'ID' => $user->ID,
+                        'first_name' => $data->first_name,
+                        'last_name' => $data->last_name,
+                        'display_name' => $data->first_name,
+                        'user_nicename' => sanitize_title($user->user_login),
+                        'user_url' => $data->profile_url
+            );
+
+        wp_update_user( $userprofiledata );
+
+
+
+
+
+//fetch profile photo from facebook
+        $prodata = file_get_contents('https://graph.facebook.com/me/picture?redirect=0&height=150&type=normal&width=150&access_token='.$token);
+        $prodata = json_decode($prodata);
+        $avatar_url = $prodata->data->url;
+
+//Update user meta
+        update_user_meta( $user->ID, 'facebook_uid', $data->id );
+        update_user_meta( $user->ID, 'facebook_avatar_full', $avatar_url );
+        update_user_meta( $user->ID, 'facebook_avatar_thumb', $avatar_url );
+        update_user_meta( $user->ID, 'first_name', $data->first_name );
+        update_user_meta( $user->ID, 'last_name', $data->last_name );
+        update_user_meta( $user->ID, 'display_name', $data->first_name );
+        
+        
+
+
+
+        if ( !is_wp_error( $user ) )
+        {
+            wp_clear_auth_cookie();
+            wp_set_current_user ( $user->ID );
+            
+    //get the user id
+            $user_id = $user->ID;
+
+            //Set expiration time
+            $expiration = time() + apply_filters( 'auth_cookie_expiration', 14 * DAY_IN_SECONDS, $user_id, strtotime( '+14 days' ) );
+
+            //Needed for the login grace period in wp_validate_auth_cookie().
+            $expire = $expiration + ( 12 * HOUR_IN_SECONDS );
+
+
+            if ( '' === $secure ) {
+                $secure = is_ssl();
+            }
+
+            // Frontend cookie is secure when the auth cookie is secure and the site's home URL is forced HTTPS.
+            $secure_logged_in_cookie = $secure && 'https' === parse_url( get_option( 'home' ), PHP_URL_SCHEME );
+
+            //Filter whether the connection is secure.
+            $secure = apply_filters( 'secure_auth_cookie', $secure, $user_id );
+
+            //Filter whether to use a secure cookie when logged-in.
+            $secure_logged_in_cookie = apply_filters( 'secure_logged_in_cookie', $secure_logged_in_cookie, $user_id, $secure );
+
+            if ( $secure ) {
+                $auth_cookie_name = SECURE_AUTH_COOKIE;
+                $scheme = 'secure_auth';
+            } else {
+                $auth_cookie_name = AUTH_COOKIE;
+                $scheme = 'auth';
+            }
+
+            //Generate token
+            $manager = WP_Session_Tokens::get_instance( $user_id );
+            $token = $manager->create( $expiration );
+
+            //Generate logged-in and auth cookie
+            $auth_cookie = wp_generate_auth_cookie( $user_id, $expiration, $scheme, $token );
+            $logged_in_cookie = wp_generate_auth_cookie( $user_id, $expiration, 'logged_in', $token );
+
+            //Fires immediately before the authentication cookie is set.
+            do_action( 'set_auth_cookie', $auth_cookie, $expire, $expiration, $user_id, $scheme );
+
+            //Fires immediately before the secure authentication cookie is set.
+            do_action( 'set_logged_in_cookie', $logged_in_cookie, $expire, $expiration, $user_id, 'logged_in' );
+
+            setcookie($auth_cookie_name, $auth_cookie, $expire, PLUGINS_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie($auth_cookie_name, $auth_cookie, $expire, ADMIN_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, COOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+            if ( COOKIEPATH != SITECOOKIEPATH )
+                setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, SITECOOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+
+            $response = login_response($user_id,LOGGED_IN_COOKIE,$logged_in_cookie,AUTH_COOKIE,$auth_cookie);
+
+        }
+
+
+    }else{
+        $response = array('status'=>false);
+    }
+
+
+    $response = json_encode($response);
+
+    header( "Content-Type: application/json" );
+    echo $response;
+    exit;
+
+}
+
+
+
+
+
+
+
+//User Authentication
+  public function get_login_status($username,$password){
+
+    //Check for empty username or password
+    if(empty($username) || empty($password)){
+        return false;
+    } else {
+        //Login using username and password 
+        $auth = wp_authenticate($username, $password );
+
+       // Check for any error 
+        if( is_wp_error($auth) ) { 
+            wp_logout();
+            wp_clear_auth_cookie();     
+            $response = array('status'=>false);
+        } else {
+            //get the user id
+            $user_id = $auth->data->ID;
+
+            //Set expiration time
+            $expiration = time() + apply_filters( 'auth_cookie_expiration', 14 * DAY_IN_SECONDS, $user_id, strtotime( '+14 days' ) );
+
+            //Needed for the login grace period in wp_validate_auth_cookie().
+            $expire = $expiration + ( 12 * HOUR_IN_SECONDS );
+
+
+            if ( '' === $secure ) {
+                $secure = is_ssl();
+            }
+
+            // Frontend cookie is secure when the auth cookie is secure and the site's home URL is forced HTTPS.
+            $secure_logged_in_cookie = $secure && 'https' === parse_url( get_option( 'home' ), PHP_URL_SCHEME );
+
+            //Filter whether the connection is secure.
+            $secure = apply_filters( 'secure_auth_cookie', $secure, $user_id );
+
+            //Filter whether to use a secure cookie when logged-in.
+            $secure_logged_in_cookie = apply_filters( 'secure_logged_in_cookie', $secure_logged_in_cookie, $user_id, $secure );
+
+            if ( $secure ) {
+                $auth_cookie_name = SECURE_AUTH_COOKIE;
+                $scheme = 'secure_auth';
+            } else {
+                $auth_cookie_name = AUTH_COOKIE;
+                $scheme = 'auth';
+            }
+
+            //Generate token
+            $manager = WP_Session_Tokens::get_instance( $user_id );
+            $token = $manager->create( $expiration );
+
+            //Generate logged-in and auth cookie
+            $auth_cookie = wp_generate_auth_cookie( $user_id, $expiration, $scheme, $token );
+            $logged_in_cookie = wp_generate_auth_cookie( $user_id, $expiration, 'logged_in', $token );
+
+            //Fires immediately before the authentication cookie is set.
+            do_action( 'set_auth_cookie', $auth_cookie, $expire, $expiration, $user_id, $scheme );
+
+            //Fires immediately before the secure authentication cookie is set.
+            do_action( 'set_logged_in_cookie', $logged_in_cookie, $expire, $expiration, $user_id, 'logged_in' );
+
+            setcookie($auth_cookie_name, $auth_cookie, $expire, PLUGINS_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie($auth_cookie_name, $auth_cookie, $expire, ADMIN_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, COOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+            if ( COOKIEPATH != SITECOOKIEPATH )
+                setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, SITECOOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+
+            
+            /*$response = array('status'=> 'true',
+                'logged_in' => $logged_in_cookie,
+                'authentication' =>  $auth_cookie
+                );*/
+
+            $response = login_response($user_id,LOGGED_IN_COOKIE,$logged_in_cookie,AUTH_COOKIE,$auth_cookie);
+
+        }
+
         $response = json_encode( $response );
 
         header( "Content-Type: application/json" );
@@ -2506,11 +2800,526 @@ class PhotoAPI {
 }
 
 
+
+
+
+
+
+
+
+//User Authentication
+  public function user_api_authentication(){
+
+    $username = $_REQUEST['username'];
+    $password = $_REQUEST['password'];
+    //Check for empty username or password
+    if(empty($username) || empty($password)){
+        return false;
+    } else {
+        //Login using username and password 
+        $auth = wp_authenticate($username, $password );
+
+       // Check for any error 
+        if( is_wp_error($auth) ) { 
+            wp_logout();
+            wp_clear_auth_cookie();     
+            $response = array('status'=>false);
+        } else {
+            //get the user id
+            $user_id = $auth->data->ID;
+
+            //Set expiration time
+            $expiration = time() + apply_filters( 'auth_cookie_expiration', 14 * DAY_IN_SECONDS, $user_id, strtotime( '+14 days' ) );
+
+            //Needed for the login grace period in wp_validate_auth_cookie().
+            $expire = $expiration + ( 12 * HOUR_IN_SECONDS );
+
+
+            if ( '' === $secure ) {
+                $secure = is_ssl();
+            }
+
+            // Frontend cookie is secure when the auth cookie is secure and the site's home URL is forced HTTPS.
+            $secure_logged_in_cookie = $secure && 'https' === parse_url( get_option( 'home' ), PHP_URL_SCHEME );
+
+            //Filter whether the connection is secure.
+            $secure = apply_filters( 'secure_auth_cookie', $secure, $user_id );
+
+            //Filter whether to use a secure cookie when logged-in.
+            $secure_logged_in_cookie = apply_filters( 'secure_logged_in_cookie', $secure_logged_in_cookie, $user_id, $secure );
+
+            if ( $secure ) {
+                $auth_cookie_name = SECURE_AUTH_COOKIE;
+                $scheme = 'secure_auth';
+            } else {
+                $auth_cookie_name = AUTH_COOKIE;
+                $scheme = 'auth';
+            }
+
+            //Generate token
+            $manager = WP_Session_Tokens::get_instance( $user_id );
+            $token = $manager->create( $expiration );
+
+            //Generate logged-in and auth cookie
+            $auth_cookie = wp_generate_auth_cookie( $user_id, $expiration, $scheme, $token );
+            $logged_in_cookie = wp_generate_auth_cookie( $user_id, $expiration, 'logged_in', $token );
+
+            //Fires immediately before the authentication cookie is set.
+            do_action( 'set_auth_cookie', $auth_cookie, $expire, $expiration, $user_id, $scheme );
+
+            //Fires immediately before the secure authentication cookie is set.
+            do_action( 'set_logged_in_cookie', $logged_in_cookie, $expire, $expiration, $user_id, 'logged_in' );
+
+            setcookie($auth_cookie_name, $auth_cookie, $expire, PLUGINS_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie($auth_cookie_name, $auth_cookie, $expire, ADMIN_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
+            setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, COOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+            if ( COOKIEPATH != SITECOOKIEPATH )
+                setcookie(LOGGED_IN_COOKIE, $logged_in_cookie, $expire, SITECOOKIEPATH, COOKIE_DOMAIN, $secure_logged_in_cookie, false);
+
+            
+            /*$response = array('status'=> 'true',
+                'logged_in' => $logged_in_cookie,
+                'authentication' =>  $auth_cookie
+                );*/
+
+            $response = login_response($user_id,LOGGED_IN_COOKIE,$logged_in_cookie,AUTH_COOKIE,$auth_cookie);
+
+        }
+
+        $response = json_encode( $response );
+
+        header( "Content-Type: application/json" );
+
+        echo $response;
+
+        exit;
+
+    }   
+}
+
+
+
+
+
+
+
+
   
 }
 
 
 }
+
+ 
+//customization Activity n Notification plugin
+
+
+
+
+
+/*Activity and Notification*/
+
+function register_theme_activity_actions($args){
+
+    $args = array(
+                array(  'component_id'      =>  'job',
+                        'type'              =>  'job_created',
+                        'description'       =>  'Job Created',
+                        'format_callback'   =>  'format_job_create_activity'
+                    ),
+                 array(  'component_id'      =>  'job',
+                        'type'              =>  'job_updated',
+                        'description'       =>  'Job Updated',
+                        'format_callback'   =>  'format_job_update_activity'
+                    ),
+
+                 /*array(  'component_id'      =>  'activities',
+                        'type'              =>  'activities_comment',
+                        'description'       =>  'Comment',
+                        'format_callback'   =>  'format_job_comment_activity'
+                    ),*/
+
+                 array(  'component_id'      =>  'users',
+                        'type'              =>  'job_applied',
+                        'description'       =>  'Job Applied',
+                        'format_callback'   =>  'format_job_apply_activity'
+                    ),
+                 array(  'component_id'      =>  'users',
+                        'type'              =>  'job_unapplied',
+                        'description'       =>  'Job Unapplied',
+                        'format_callback'   =>  'format_job_unapply_activity'
+                    ),
+            ); 
+    return $args;
+
+}
+add_filter('ajan_register_theme_activity_actions','register_theme_activity_actions',10,1);
+
+
+
+
+
+function record_job_create_update_activity( $ID, $post ) {
+
+global $user_ID;
+$creator_user_info = get_userdata($user_ID);
+
+//Check if the job is not new
+$company_name = get_user_meta($user_ID,'company_name',true);
+        if ($post->post_date != $post->post_modified){
+            $args = array(         
+               'action'            => $company_name.' updated Job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
+               'component'         => 'job',
+               'type'              => 'job_updated',
+               'user_id'           => $user_ID,
+               'item_id'           => $ID
+               );
+        }else{
+
+            $args = array(         
+                'action'            => $company_name.' posted a new job <a href="'. get_permalink( $ID).'">'.$post->post_title.'</a>',
+                'component'         => 'job',
+                'type'              => 'job_created',
+                'user_id'           => $user_ID,
+                'item_id'           => $ID
+                );
+        }
+
+        ajan_activity_add($args); 
+ 
+}
+add_action(  'publish_job',  'record_job_create_update_activity', 10, 2 );
+
+
+
+
+
+
+function record_job_apply_activity( $job ) {
+
+global $user_ID;
+$creator_user_info = get_userdata($user_ID);
+
+    $args = array(         
+        'action'            => $creator_user_info->first_name.' '.$creator_user_info->last_name.' applied for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'component'         => 'users',
+        'type'              => 'job_applied',
+        'user_id'           => $user_ID,
+        'item_id'           => $job->ID
+        );
+
+    ajan_activity_add($args); 
+}
+
+add_action(  'apply_job',  'record_job_apply_activity', 10, 2 );
+
+
+
+
+function record_job_unapply_activity( $job ) {
+
+
+global $user_ID;
+$creator_user_info = get_userdata($user_ID);
+
+    $args = array(         
+        'action'            => $creator_user_info->first_name.' '.$creator_user_info->last_name.' unapplied for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'component'         => 'users',
+        'type'              => 'job_unapplied',
+        'user_id'           => $user_ID,
+        'item_id'           => $job->ID
+        ); 
+    ajan_activity_add($args); 
+}
+add_action(  'unapply_job',  'record_job_unapply_activity', 10, 2 );
+ 
+
+
+
+function record_minyawn_hired_activity( $job ,$minyawn) {
+
+global $user_ID;
+$creator_user_info = get_userdata($minyawn);
+
+    $args = array(         
+        'action'            => $creator_user_info->first_name.' '.$creator_user_info->last_name.' hired for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'component'         => 'users',
+        'type'              => 'minyawn_hired',
+        'user_id'           => $user_ID,
+        'item_id'           => $job->ID
+        );
+
+    ajan_activity_add($args); 
+}
+
+add_action(  'minyawn_hired',  'record_minyawn_hired_activity', 10, 2 );
+ 
+
+
+function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$auth_cookie){
+ 
+    global $user_ID,  $wp_roles ;
+    $user = array();
+    $user_info = get_userdata($user_id);
+    $usermeta = get_user_meta($user_id);
+    $attchid = $usermeta['avatar_attachment'][0];
+    $facebook_avatar = $usermeta['facebook_avatar_full'][0];
+    $image_attributes = wp_get_attachment_image_src($attchid, 'thumbnail');
+    $avatar_url = $image_attributes[0];
+    $user['status'] = 'true';
+    $user['logged_in_cookie_key'] = $logged_in_key;
+    $user['logged_in_cookie_value'] = $logged_in_cookie;
+    $user['auth_cookie_key'] = $auth_key;
+    $user['auth_cookie_value'] = $auth_cookie;
+    $user['id'] = $user_id;
+    $user['user_login'] = $user_info->data->user_login;
+    $user['user_email'] = $user_info->data->user_email; 
+    $user['display_name'] = $usermeta['first_name'][0]." ".$usermeta['last_name'][0]; 
+    $user['role'] =  key($user_info->caps) ;
+    $user['display_role'] = $wp_roles->role_names[key($user_info->caps)] ;
+    if($facebook_avatar){
+       $user['avatar_url'] = $facebook_avatar; 
+   }else{
+        $user['avatar_url'] = $avatar_url;
+   }
+    
+    return  $user;
+}
+
+
+
+
+ 
+ 
+ 
+ 
+function send_job_day_minyawns_reminder(){
+
+    $args = array(); 
+    $args["post_type"] = "job";
+
+    $today = date('Y-m-d');
+
+    $dayaftertomorrow = date('Y-m-d', strtotime("+2 days")); 
+
+    $args["meta_query"] = array('relation' => 'AND',
+        array(
+            'key' => 'job_start_date',
+            'value' => strtotime($today),
+            'compare' => '>',
+        ),
+        array(
+            'key' => 'job_start_date',
+            'value' => strtotime($dayaftertomorrow),
+            'compare' => '<',
+        ));
+ 
+
+
+$query = new WP_Query($args);
+ 
+$posts = $query->get_posts();
+
+foreach($posts as $post) {
+    // Do your stuff, e.g.
+    
+
+      $minyawns = (get_hired_minyawns_for_job($post->ID));
+
+      if($minyawns !=false){
+        foreach($minyawns as $minyawn){
+ 
+            $data_mail = array( 'job_title'=>$post->post_title,
+                                'job_page'=>get_permalink($post->ID),
+                                'minyawn_name'=>$minyawn->display_name); 
+            
+            $mail = email_template($minyawn->user_email, $data_mail, 'minyawn_job_reminder');
+         
+            $headers = 'From: Minyawns support@minyawns.com' . "\r\n";
+            $headers .= "MIME-Version: 1.0\n" .
+                    "From: Minyawns support@minyawns.com\n" .
+                    "Content-Type: text/html; charset=\"" . "\"\n";
+
+             wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
+        }
+       
+      }
+}
+
+
+
+         
+
+ 
+}
+add_action('job_day_minyawns_reminder','send_job_day_minyawns_reminder');
+
+
+//to get hired minyawns for a job
+
+
+function get_hired_minyawns_for_job($job_id){
+
+    global $wpdb;
+
+    $query = "Select user_id from ".$wpdb->base_prefix ."userjobs WHERE job_id = ".$job_id." and status = 'hired'";
+ 
+    $results = $wpdb->get_results( $query,OBJECT);
+    $users = array();
+    foreach($results as $result){
+       $users[] =  $result->user_id;
+    }
+
+    if(count($users)!=0){
+        return get_users( array( 'include' => $users ) );
+    }else{
+        return false;
+    }
+    
+}
+ 
+//Custom User role
+function get_minyawns_user_roles($userid){
+    global $wp_roles;
+
+    $user_info = get_userdata($userid);
+
+    $role = implode(', ', $user_info->roles); 
+
+    return ucwords(strtolower($wp_roles->roles[$role]['name']));
+}
+//Filter role
+add_filter( 'activity_user_role','get_minyawns_user_roles', 10,1);
+
+
+//Custom User profile pic
+function get_profile_url($userid){
+    return site_url().'/profile/'.$userid;
+}
+//Filter profile pic
+add_filter( 'activity_user_profile_url','get_profile_url',10,1);
+
+//Custom User display name
+function get_user_display_name($userid){
+    global $wp_roles;
+
+
+    $user_info = get_userdata($userid);
+
+    
+    $role = implode(', ', $user_info->roles); 
+ 
+    if($wp_roles->roles[$role]['name']=="employer"){
+        return $user_info->company_name;
+    }
+    else{
+        return $user_info->first_name." ".$user_info->last_name;
+    }
+ 
+
+}
+add_filter( 'activity_user_display_name','get_user_display_name',10,1);
+//Custom User profile pic
+function get_user_additional_info($userid){
+
+    $is_minyawn = user_can( $userid, 'apply_for_jobs');
+
+    $results = "";
+    if(  $is_minyawn){
+        global $wpdb;  
+        $job = $_REQUEST["item_id"];
+           
+        $results = $wpdb->get_var( "SELECT CONCAT(UCASE(SUBSTRING(status, 1, 1)),LOWER(SUBSTRING(status, 2))) FROM ".$wpdb->prefix."userjobs WHERE user_id = ".$userid." AND job_id = ".$job );
+
+    }
+
+   return  $results;
+
+}
+
+
+//Filter profile pic
+add_filter( 'activity_user_additional_info','get_user_additional_info', 10,1);
+
+
+//Custom User profile url
+function get_profile_pic($userid){
+   $user_meta = get_user_meta($userid);
+   $user_profile_pic = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
+
+
+   if ($user_profile_pic !== false) {
+    $user_pic_img_src =   wp_get_attachment_thumb_url($user_profile_pic);
+}else{
+    $user_pic_img_src = $userid;
+}  
+return $user_pic_img_src;
+}
+//Filter profile url
+add_filter( 'activity_user_profile_pic','get_profile_pic', 10,1 );
+
+
+function get_activity_update_action($action,$item_id,$userid ){
+
+     global $wp_roles;
+
+
+    $user_info = get_userdata($userid);
+
+    
+    $role = implode(', ', $user_info->roles); 
+ 
+    if($wp_roles->roles[$role]['name']=="employer"){
+        $commented_by = $user_info->company_name;
+    }
+    else{
+        $commented_by = $user_info->first_name." ".$user_info->last_name;
+    }
+
+            $action = $commented_by.' posted message on <a href="'. get_permalink($item_id).'">'.get_the_title( $item_id ).'</a>';
+            return $action;
+}
+
+add_filter('activity_update_action','get_activity_update_action',10,3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('init', 'set_date_timezone');
+
+function set_date_timezone(){
+ ini_set( 'date.timezone', 'UTC' );
+}
+
+
+/*if (date_default_timezone_get()) {
+    echo 'date_default_timezone_set: ' . date_default_timezone_get() . '<br />';
+}
+
+if (ini_get('date.timezone')) {
+    echo 'date.timezone: ' . ini_get('date.timezone');
+}
+ */
+
+/*$timestamp = time()+date("Z");
+echo gmdate("Y-m-d H:i:s",$timestamp);*/
+
+
+
+
+
+
+
+
 
 
 

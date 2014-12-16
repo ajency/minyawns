@@ -192,6 +192,32 @@ function user_profile_company_name() {
     return $current_user_new->data->company_name;
 }
 
+
+function employer_complete_profile() {
+  
+    global $current_user_new;
+
+    if($current_user_new->data->company_name && $current_user_new->data->location && $current_user_new->data->company_website && $current_user_new->data->profilebody){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+function minyawns_complete_profile() {
+  
+    global $current_user_new;
+
+    if($current_user_new->data->first_name && $current_user_new->data->last_name && $current_user_new->data->college && $current_user_new->data->major && $current_user_new->data->user_skills && $current_user_new->data->linkedin && $current_user_new->data->facebook_link){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+
 function get_user_profile_first_name() {
     global $current_user_new;
 
@@ -255,6 +281,46 @@ function get_user_profile_linkedin() {
     return preg_replace('#^http(s)?://#', '', rtrim($current_user_new->data->linkedin,'/'));
    
 }
+
+
+//User profile id linkedin
+function user_profile_id_linkedin() {
+    return get_user_profile_id_linkedin();
+}
+
+function get_user_profile_id_linkedin() {
+    global $current_user_new;
+
+    $linkedin_url = preg_replace('#^http(s)?://#', '', rtrim($current_user_new->data->linkedin,'/'));
+    $url_array = explode("/", $linkedin_url);
+
+    if (count($url_array)>1){
+     return end($url_array);
+ }
+
+}
+
+
+
+
+//User profile id facebook
+function user_profile_id_facebook() {
+    return get_user_profile_id_facebook();
+}
+
+function get_user_profile_id_facebook() {
+    global $current_user_new;
+
+    $facebook_url = preg_replace('#^http(s)?://#', '', rtrim($current_user_new->data->facebook_link,'/'));
+    $url_array = explode("/", $facebook_url);
+
+    if (count($url_array)>1){
+     return end($url_array);
+ }
+
+}
+
+
 
 //user profile facebook
 function user_profile_facebook() {
@@ -630,7 +696,7 @@ function minyawn_job_apply() {
                 $status = 2;
         }
     }
-
+    do_action( 'apply_job', $min_job );
     // send mail to employer who created job
     send_mail_employer_apply_job($job_id, 'applied');
 
@@ -649,6 +715,7 @@ function minyawn_job_unapply() {
 
     //get job ID
     $job_id = $_POST['job_id'];
+    $min_job = new Minyawn_Job($job_id);
 
     $wpdb->delete($wpdb->prefix . 'userjobs', array(
         'user_id' => $user_ID,
@@ -656,7 +723,7 @@ function minyawn_job_unapply() {
     ));
     // send mail to employer who created job
    // send_mail_employer_apply_job($job_id, 'unapplied');
-
+    do_action( 'unapply_job', $min_job );
     echo json_encode(array('success' => 1, 'new_action' => 'apply'));
 
     die;
@@ -814,8 +881,8 @@ function get_minyawn_profile($userData,$total)
                         'user_url' => isset($userData->user_url) ? $userData->user_url : '',
                         'description' => isset($user_meta['description'][0]) ? $user_meta['description'][0] : '',
                         'skills' => isset($user_meta['user_skills'][0]) ? $user_meta['user_skills'][0] : '',
-                        'major' => isset($user_meta['major'][0]) ? substr($user_meta['major'][0],0,20) : '',
-                        'college' => isset($user_meta['college'][0]) ? substr($user_meta['college'][0],0,20) : '',
+                        'major' => isset($user_meta['major'][0]) ? substr($user_meta['major'][0],0,30) : '',
+                        'college' => isset($user_meta['college'][0]) ? substr($user_meta['college'][0],0,30) : '',
                         'linkedin' => isset($user_meta['linkedin'][0]) ? $user_meta['linkedin'][0] : '',
                         'facebook_link' => isset($user_meta['facebook_link'][0]) ? $user_meta['facebook_link'][0] : '',
                         'rating_positive' => isset($user_rating) ? $user_rating : 0,

@@ -221,7 +221,9 @@ else
 						$wpdb->get_results("UPDATE {$wpdb->prefix}userjobs SET status = 'hired' WHERE user_id = '" . $value->ID . "' AND job_id = '" . $data['item_number'] . "'");
 						update_post_meta($data['item_number'],'job_status','completed');
 						//send mail to hired minyawns						
-						$job_data = get_post($data['item_number']);
+						$job_data = get_post($data['item_number'],$value->ID);
+
+						 do_action( 'minyawn_hired', $job_data );		
 						//$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
 						$minyawns_subject = "Minyawns - You have been hired! ";
                			$minyawns_message = "Hi,<br/><br/>

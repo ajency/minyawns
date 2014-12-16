@@ -18,8 +18,9 @@ require 'templates/_jobs.php';
 
       window.page='1';
       $("#show-single-job").show();
-       $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
-        $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
+     $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
+     $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
+
 
     });
 </script>
@@ -143,8 +144,7 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
     <div class="tab-content" style="min-height:928px;">
 
         
-        <div class="tab-pane jobs_table active single-job-1 rr single-view" id="tab2">
-		
+        <div class="tab-pane jobs_table active single-job-1 rr single-view" id="tab2"> 
           
             <div class="breadcrumb-text">
                 <p>
@@ -273,7 +273,7 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
 
                     </div>
                     <div class="input-append bootstrap-timepicker">
-                        <input id="job_end_time" type="text" readonly class="timepicker-default input-small" value="<?php echo $minyawn_job->get_end_time_eform() ?>" name="job_end_time">
+                        <input id="job_end_time" type="text" readonly class="timepicker-default input-small" name="job_end_time">
                         <span class="add-on">
                             <i class="icon-time"></i>
                         </span>
@@ -287,7 +287,7 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
                     </div>
 
 
-                    <div class="control-group small">
+                    <!--<div class="control-group small">
                     <div class="control-group small float-left ">
                         <label class="control-label" for="inputtask">Wages</label>
 
@@ -298,7 +298,9 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
                             </div>
                         </div>
                     </div>
-                          <label class="control-label" for="inputtask">Actual Wages &nbsp;&nbsp;</label>
+
+                          <label class="control-label control-label-large" for="inputtask">Wages the Minyawns will Earn</label>
+
 
                         <div class="controls small">
                             <div class="input-prepend">
@@ -308,7 +310,36 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
                         </div>
 
 
-                    </div>
+                    </div>-->
+					
+					<!--test 11-12-14-->
+					<div class="control-group small">
+					<div class="row">
+                                            <div class="span4">
+                                                <label class="control-label" for="inputtask">Wages</label>
+
+                                                <div class="controls small">
+                                                    <div class="input-prepend">
+                                                        <span class="add-on"><i class="icon-dollar"></i></span>
+                                                        <input class="span2 sm-input" id="job_wages" type="text" name="job_wages" value="<?php echo $minyawn_job->get_job_wages(); ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <label class="control-label " for="inputtask">Wages the Minyawns will Earn</label>
+
+                                                <div class="controls small">
+                                                    <div class="input-prepend">
+                                                        <span class="add-on"><i class="icon-dollar"></i></span>
+                                                        <input class="span2 readonly-color" id="job_wages_actual"  readonly type="text" name="job_wages_actual" value="<?php echo $minyawn_job->get_job_wages() - ($minyawn_job->get_job_wages() *(10/100)) ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+										</div>
+                                        </div>
+					<!--test-->
+					
+					
                     <div class="control-group small">
                         <label class="control-label" for="inputtask">Location</label>
                         <div class="controls ">
@@ -413,8 +444,10 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
         Please Select at-least one Minyawn
     </div>
  
-  
+ 
+   
 </div>  
+  
 
 <div class="hidden">
     <script type="text/javascript">
@@ -432,5 +465,6 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
         //--><!]]>
     </script>
 </div>
+ 
 <?php
 get_footer();

@@ -18,7 +18,7 @@ public $is_minyawn = false;
 function init(){
     $this->user_id = get_current_user_id();
 
-    if(is_super_admin()){
+    if(is_super_admin($this->user_id)){
     	$this->admin = true;
     }
 
@@ -80,7 +80,16 @@ $file = $_FILES['photo']['tmp_name'];
 $filename = $_FILES['photo']['name'];
 //$parent_post_id = $_POST['jobid'];
 $parent_post_id = $jobid;
-$user_id = $this->user_id;
+//$user_id = $this->user_id;
+
+
+if($this->admin){
+	$user_id = $_GET['user_id'];
+}else{
+	$user_id = $this->user_id;
+}
+
+
 
 if(!$this->user_can_upload($parent_post_id)){
 	return array(
@@ -159,6 +168,80 @@ return $response;
 
 
 
+//Upload Profile Picture
+public function upload_profile_picture(){
+$file = $_FILES['profile_photo']['tmp_name'];
+$filename = $_FILES['profile_photo']['name'];
+
+$user_id = $this->user_id;
+
+if(!$this->user_can_upload_profile_pic()){
+	return array(
+		'status'	=> false,
+		'error'		=> 'User not authorised to perform this task.',
+		);
+	exit;
+}
+
+ 
+$upload_file = wp_upload_bits($filename, null, file_get_contents($file));
+
+if (!$upload_file['error']) {
+	$wp_upload_dir = wp_upload_dir();
+	$wp_filetype = wp_check_filetype($filename, null );
+	$attachment = array(
+		'guid'           => $wp_upload_dir['url'] . '/' . $filename,
+		'post_mime_type' => $wp_filetype['type'],
+		'post_title' => preg_replace('/\.[^.]+$/', '', $filename),
+		'post_content' => '',
+		'post_author' => $user_id,
+		'post_status' => 'inherit'
+	);
+	$attachment_id = wp_insert_attachment( $attachment, $upload_file['file']);
+	if (!is_wp_error($attachment_id)) {
+		require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+		$attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
+		wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+
+		//Adding meta - user-avatar
+		update_user_meta( $user_id, 'avatar_attachment', $attachment_id );
+
+	}else{
+		$response = array(
+		'status'	=> false,
+		'error'		=> is_wp_error($attachment_id)
+		);
+	}
+
+	$image_url =   wp_get_attachment_image_src($attachment_id, 'large' );
+	
+	
+	$response = array(
+		'status'	=> true,
+		'photo'		=> array(
+			'id'	=> $attachment_id,
+			'url'	=> $image_url[0],
+			'author' => $user_id,
+			'date' => get_the_date('Y-m-d H:i:s.u',$attachment_id)
+			)
+		);
+
+	
+}else{
+	
+	$response = array(
+		'status'	=> false,
+		'error'		=> $upload_file['error']
+		);
+}
+
+return $response;
+
+}
+
+
+
+
 
 
 
@@ -190,6 +273,13 @@ if($userid !=''){
 	$args["author"] = $userid;
 	
 }
+
+
+/*if($this->admin == true){
+	$args["author"] = $this->admin;
+}
+*/
+
 $args['post_type'] = 'attachment';
 $args['posts_per_page'] =  -1;
  
@@ -226,6 +316,26 @@ foreach($results as $result){
 
 
 
+
+public function user_can_upload_profile_pic() {
+if($this->admin){
+	return true;
+	exit;
+
+//Check if is user logged in	
+}else if (!$this->logged_in){
+  return false;
+
+}else{
+	return true;
+}
+
+}
+
+
+
+
+
 public function user_can_upload($jobid) {
  
 
@@ -238,11 +348,11 @@ if($this->admin){
   return false;
 
  //Check for nonce
-}else if(!$this->upload_nonce) {
+}/*else if(!$this->upload_nonce) {
 return false;
 
 //Check for user capabilities
-}else if (!$this->can_upload) {
+}*/else if (!$this->can_upload) {
  return false;
 
 //Check if job id was set
@@ -415,7 +525,7 @@ public function send_photo_upload_mail($user_id,$job_id){
     $message = "Hi, <br/><br/>".$user_data->first_name." ".$user_data->last_name." has uploaded Images to Job ".$job_data->post_title.".<br/><br/><a href='".get_post_permalink($job_id)."'>Click here</a> to view the images.<br/><br/>";
  
    	//mail to the employer
- 	///wp_mail( $job_author_data->user_email, $subject, email_header() . $message . email_signature(), $headers);
+ 	wp_mail( $job_author_data->user_email, $subject, email_header() . $message . email_signature(), $headers);
 
    	//mail to administrator
    	$adminsitrators = get_users( 'role=administrator' );
@@ -425,7 +535,7 @@ public function send_photo_upload_mail($user_id,$job_id){
 
   		add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
    
-		//wp_mail( $adminsitrator->user_email, $subject, email_header() . $message . email_signature(), $headers);
+		wp_mail( $adminsitrator->user_email, $subject, email_header() . $message . email_signature(), $headers);
 
 	}
      
