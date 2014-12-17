@@ -1495,9 +1495,8 @@ font-size: 16px;
 body .minyawns-grid1 .thumbspan {
     display: inline-block;
     /*min-height: 365px !important;*/
-	/*min-height:225px !important;*/
-    
-	width:50%;
+    width: 30%;
+
 }
 .full-width{
 	width:100% !important;
@@ -3086,6 +3085,7 @@ html body .minyawns-grid1 .thumbspan.card{
 .item-remove{
 	cursor:pointer;
 } 
+
 
  
 .control-label-large {

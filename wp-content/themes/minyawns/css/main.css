@@ -1472,7 +1472,6 @@ body .jobs_table .data-title .profile-job {
   width: 60%;
   margin-bottom: 1px;
 }
-
 .mobile-toggle-show {
   display: none;
 }
@@ -1539,9 +1538,8 @@ body .jobs_table .data-title .profile-job {
     width: 100% !important;
   }
   html body .minyawns-grid1 .thumbspan {
-    /*width: 48% !important;*/
     width: 100% !important;
-    min-height: 322px !important;
+    /*min-height: 322px !important;*/
     float: left;
   }
   html body .minyawns-grid1 .thumbspan .m1 {
@@ -6465,6 +6463,90 @@ div.tooltip1:after {
   font-size: 12px;
 }
 /*Payment modal style End*/
+.thumbnail-dir {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.thumbnail-dir .m5li {
+  width: 49% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  padding: 5px !important;
+}
+.thumbnail-dir .m5li .thumbnail {
+  /*width:100%;*/
+  /*.m7{*/
+  width: 100%;
+  -webkit-box-shadow: 0 0 15px #ccc;
+  -moz-box-shadow: 0 0 15px #ccc;
+  box-shadow: 0 0 15px #ccc;
+}
+.thumbnail-dir .m5li .thumbnail .icon-thumbs {
+  color: #F65151;
+}
+.thumbnail-dir .m5li .thumbnail .social-link {
+  font-size: 12px !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.thumbnail-dir .m5li .thumbnail img {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  display: block;
+  border: 3px solid #8ed030;
+  border-radius: 100%;
+}
+.thumbnail-dir .m5li .thumbnail .verfied-txt-1 {
+  background: #F6FAF4;
+  padding: 3px;
+  border: 1px dotted #2AE431;
+  margin: 5px auto;
+  margin-top: -27px;
+  font-size: 12px;
+  font-family: arial;
+}
+.thumbnail-dir .m5li .thumbnail h4 {
+  font-size: 19px;
+}
+.cust-minyawns-grid1 .thumbnails:hover {
+  margin-top: 0 !important;
+}
+.text-left {
+  text-align: left;
+}
+.invite-btn {
+  padding: 5px 8px 6px !important;
+}
+@media screen and (max-width: 767px) {
+  .m5li .span4 {
+    width: 31.623931623931625%;
+    float: left;
+  }
+  .m5li .span8 {
+    width: 65.81196581196582%;
+    float: left;
+  }
+  .m5li .span3 {
+    width: 23.076923076923077%;
+    float: left;
+  }
+  .m5li .span9 {
+    width: 74.35897435897436%;
+    float: left;
+  }
+  .m5li .span12 {
+    width: 100%;
+  }
+}
 /*code added*/
 .minyawns-grid1 .thumbspan .thumbnail .m3 {
   display: block !important;
