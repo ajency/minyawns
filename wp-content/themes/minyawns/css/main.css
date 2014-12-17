@@ -963,7 +963,7 @@ body .jobs_table .data-title .profile-job {
   font-size: 28px;
   font-family: arial;
   font-weight: bold;
-  margin-top: 70px;
+  margin-top: 60px;
 }
 .min_profile .profiledata {
   height: 46px;
@@ -3351,9 +3351,9 @@ body .jobs_table .data-title .profile-job {
   line-height: 20px;
 }
 .employer-image {
-  overflow: hidden;
-  width: 170px;
-  height: 110px;
+  /*overflow: hidden;
+			width: 170px;
+			height: 110px;*/
 }
 .employer-image img {
   border: 0px !important;
@@ -5777,7 +5777,7 @@ div.tooltip1:after {
   line-height: 29px;
 }
 .employe-detail .name {
-  margin-top: 10px;
+  margin-top: 48px;
 }
 .employe-detail .employer-body {
   margin-bottom: 20px;
