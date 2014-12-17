@@ -6685,6 +6685,7 @@ div.tooltip1:after {
   width: 25%;
   border: 4px solid #fff;
   float: left;
+  position: relative;
 }
 @media screen and (max-width: 768px) {
   .isotope .item {

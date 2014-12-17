@@ -158,9 +158,7 @@ background: #D24D57;
 color: #fff;
 padding: 2px;
 position: absolute;
-top: auto !important;
-right: auto !important;
-margin-left: 42px !important;
+right:0;
 }
 
 
