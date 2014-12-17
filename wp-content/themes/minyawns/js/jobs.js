@@ -408,14 +408,14 @@ review =""
 
 function getJobPhotos(){
 
- $.get(SITEURL+"/api/photos/job/"+$("#jobid").val(), {}, function(collection)  { 
+ jQuery.get(SITEURL+"/api/photos/job/"+jQuery("#jobid").val(), {}, function(collection)  { 
 
                   _.each(collection, function(model) {
                       appendToGrid(model);
                        
                   });
                   if(collection.length >0){
-                    $("#photo_title").show()
+                    jQuery("#photo_title").show()
                     set_isotope();
                   }
                     
