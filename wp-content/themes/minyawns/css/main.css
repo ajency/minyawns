@@ -2664,14 +2664,13 @@ body .jobs_table .data-title .profile-job {
     margin: auto;
     position: absolute;
     text-align: center;
-    top: 2%;
     width: 80px;
   }
   body .minaywns-sel i {
     display: block;
     font-size: 19px;
     text-align: center;
-    margin-top: 21px;
+    /*margin-top: 21px;*/
   }
   body .blog-bg {
     margin-top: -2px;
@@ -6565,6 +6564,12 @@ div.tooltip1:after {
   -webkit-border-radius: 100%;
   border: 3px solid #8ed030;
   display: inline-block;
+}
+@media screen and (max-width: 321px) {
+  .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img .minaywns-sel {
+    width: 70px;
+    height: 70px;
+  }
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img img {
   width: 80px;
