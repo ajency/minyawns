@@ -106,7 +106,7 @@ class Minyawn_Job {
 
         $this->required_minyawns = trim($job_meta['job_required_minyawns'][0]);
 
-        $this->categories = get_the_category($this->ID);
+       $this->categories = wp_get_object_terms($this->ID,'job_category');
 $args = array(
 	'type'                     => 'job',
 	'child_of'                 => 0,
@@ -399,13 +399,13 @@ $args = array(
     public function get_start_time_eform() {
         global $minyawn_job;
 
-        return date('H:i a ', $this->job_start_time);
+        return date('g:i a ', $this->job_start_time);
     }
 
     public function get_end_time_eform() {
         global $minyawn_job;
 
-        return date('H:i a ', $this->job_end_time);
+        return date('g:i a ', $this->job_end_time);
     }
 
     public function get_job_tags() {

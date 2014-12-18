@@ -7,7 +7,7 @@ $app = new \Slim\Slim(array('debug' => true));
 require '../../../../wp-load.php';
 
 /** Update the profile data */
-$app->post('/user', function() use ($app) {
+$app->map('/user/', function() use ($app) { 
 
             $requestBody = $app->request()->getBody();  // <- getBody() of http request
             $json_a = json_decode($requestBody, true);
@@ -27,10 +27,10 @@ $app->post('/user', function() use ($app) {
 
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(array('success' => 1));
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');;
 
 //update the user avatar
-$app->post('/change-avatar', function() use($app) {
+$app->map('/change-avatar', function() use($app) {
 
             global $user_ID;
            /* delete_user_meta($user_ID, 'facebook_avatar_thumb');
@@ -44,9 +44,9 @@ $app->post('/change-avatar', function() use($app) {
 
             if ($files['name']) {
                 $file = array(
-                    'name' => preg_replace('/\s+/', '_',$files['name']),
-                    'type' => $files['type'],
-                    'tmp_name' => preg_replace('/\s+/', '_',$files['tmp_name']),
+                    'name' => preg_replace('/\s+/', '_',  strtolower($files['name'])),
+                    'type' => strtolower($files['type']),
+                    'tmp_name' => preg_replace('/\s+/', '_',  $files['tmp_name']),
                     'error' => $files['error'],
                     'size' => $files['size']
                 );
@@ -58,7 +58,7 @@ $app->post('/change-avatar', function() use($app) {
                 }
 
                 $_FILES = array("upload_attachment" => $file);
-
+//print_r($_FILES);exit();
 
                 $attach_data = array();
 
@@ -67,16 +67,38 @@ $app->post('/change-avatar', function() use($app) {
                     $attach_id = upload_attachment($file, $user_ID);
                     $attachment_id = $attach_id;
                    // $attachment_url = wp_get_attachment_link($attach_id);
-                    $attachment_data = wp_get_attachment_image_src($attach_id,400,400);
+                    $attachment_data = wp_get_attachment_image_src($attach_id,'medium');
                     $attachment_url =  $attachment_data[0];
                 }
+                   /*Double entry commented
+                $post_data = array(
+                'post_author' => get_user_id(),
+                'post_content' => '',
+                'post_date' => date('Y-m-d H:i:s'),
+                'post_date_gmt' => date('Y-m-d H:i:s'),
+                'post_excerpt' => '',
+                'post_name' => $filename,
+                'post_parent' => 0,
+                'post_status' => 'inherit',
+                'post_title' => $filename,
+                'post_type' => 'attachment',
+                'post_mime_type' => 'image/jpeg',
+                'guid' => $attachment_url,
+            );
+            $atach_post_id = wp_insert_post($post_data);
+            $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $attachment_url);*/
+            update_user_meta($user_ID, 'avatar_attachment', $attachment_id);
+                
+                
             }
 
-            $app->response()->header("Content-Type", "application/json");
-            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => $files['name'], 'image_height' => $image_height, 'image_width' => $image_width));
-        });
+//            $app->response()->header("Content-Type", "application/json");
+//            echo json_encode(array('success' => 1, 'image' => $attachment_url, 'image_name' => strtolower($files['name']), 'image_height' => $image_height, 'image_width' => $image_width));
+ echo 1;       
+            
+                })->via('GET', 'POST', 'PUT', 'DELETE');;
 
-$app->post('/resize-user-avatar', function() use($app) {
+$app->map('/resize-user-avatar', function() use($app) {
 
             global $user_ID;
             
@@ -97,16 +119,7 @@ $app->post('/resize-user-avatar', function() use($app) {
 
             $for_user_meta = "user-avatars/" . $user_ID . "/" . $new_name;
 
-			
-			 
-           
-            
-            
-            
-            
-            
-            
-			if(asp_ratio=="1:1")
+			if($asp_ratio=="1:1")
 			{
             	$t_width = 100; // Maximum thumbnail width
             	$t_height =100; // Maximum thumbnail height
@@ -146,10 +159,10 @@ $app->post('/resize-user-avatar', function() use($app) {
             $new_width = round(($orig__width /$fin_asp_ratio),3);
             $new_height = round(($orig__height/$fin_asp_ratio),3);
             
-            $image_p = imagecreatetruecolor($new_width, $new_height);
-            $image = imagecreatefromjpeg($targetFolder . $image_name);
-            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $orig__width, $orig__height);
-            
+//            $image_p = imagecreatetruecolor($new_width, $new_height);
+//            $image = imagecreatefromjpeg($targetFolder . $image_name);
+//            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $orig__width, $orig__height);
+//            
             
             
              
@@ -223,7 +236,7 @@ $app->post('/resize-user-avatar', function() use($app) {
            
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(get_user_company_logo($user_ID));
-        });
+        })->via('GET', 'POST', 'PUT', 'DELETE');;
 
 $app->run();
 

@@ -68,7 +68,9 @@ function setup_user_profile_data() {
     //set profile profile linked in
     $current_user_new->data->linkedin = isset($user_meta['linkedin']) ? trim($user_meta['linkedin'][0]) : '';
 
-    //set profile profile linked in
+ //set profile profile facebook
+    $current_user_new->data->facebook_link = isset($user_meta['facebook_link']) ? trim($user_meta['facebook_link'][0]) : '';
+     
     $current_user_new->data->company_website = isset($user_meta['company_website']) ? trim($user_meta['company_website'][0]) : '';
 
     $current_user_new->data->company_name = isset($user_meta['company_name']) ? trim($user_meta['company_name'][0]) : '';
@@ -143,7 +145,9 @@ function get_mn_user_avatar() {
     global $current_user_new;
    
     if ($current_user_new->data->avatar !== false) {
-        $url=wp_get_attachment_image_src($current_user_new->data->avatar,array(200,100));
+       
+        $url=wp_get_attachment_image_src($current_user_new->data->avatar);
+        
     return $url[0];
         
     } else {
@@ -178,7 +182,7 @@ function get_user_profile_name() {
 
 //User profile first name
 function user_profile_first_name() {
-    echo get_user_profile_first_name();
+    return get_user_profile_first_name();
 }
 
 function user_profile_company_name() {
@@ -196,7 +200,7 @@ function get_user_profile_first_name() {
 
 //User profile last name
 function user_profile_last_name() {
-    echo get_user_profile_last_name();
+    return get_user_profile_last_name();
 }
 
 function get_user_profile_last_name() {
@@ -252,6 +256,18 @@ function get_user_profile_linkedin() {
    
 }
 
+//user profile facebook
+function user_profile_facebook() {
+    return get_user_profile_facebook();
+}
+
+function get_user_profile_facebook() {
+    global $current_user_new;
+  
+    return preg_replace('#^http(s)?://#', '', rtrim($current_user_new->data->facebook_link,'/'));
+   
+}
+
 // user role
 function get_user_role() {
     global $current_user_new;
@@ -278,6 +294,16 @@ function get_user_college_major() {
     global $current_user_new;
     return isset($current_user_new->data->major) ? $current_user_new->data->major : '';
 }
+
+
+
+//User Intro Video ID
+function get_user_intro_video_id() {
+    global $current_user_new;
+    return get_user_meta($current_user_new->data->ID, 'intro_video_id', true);
+    
+    }
+
 
 //User profile email
 function user_profile_email() {
@@ -366,7 +392,7 @@ class MN_User_Jobs {
         'job_required_minyawns',
         'job_wages',
         'job_location');
-    public $include_user_meta = array('college', 'major', 'linkedin', 'user_skills');
+    public $include_user_meta = array('college', 'major', 'linkedin','facebook_link', 'user_skills');
 
     function __construct($args = null) {
         if (!empty($args)) {
@@ -517,7 +543,7 @@ function send_mail_employer_apply_job($job_id, $action) {
 
     $mail_message = "Hi,<br/><br/>Looks like " .
             $current_user->display_name . " has " . $action . " for the job '" . get_the_title($job_id) . "'
-                The next step is to confirm, pay and hire. Please log back on to minyawns  <a href='".site_url()."/job/".replaceAll(get_the_title($job_id))."' target='_blank'>'".get_the_title($job_id)."'</a>  and finish the process.<br/><br/>
+                The next step is to confirm, pay and hire. Please log back on to minyawns  <a href='".  get_permalink($job_id)."' target='_blank'>'".get_the_title($job_id)."'</a>  and finish the process.<br/><br/>
                     Don't fret, we wont charge you until the job is done. We also offer 100% satisfaction guarantee or your money back!
                 		<br/><br/><h3>Minyawn Details</h3>
                 		<br/><b>Username : " . $current_user->user_login . "</b>
@@ -532,7 +558,7 @@ function send_mail_employer_apply_job($job_id, $action) {
                 		<br/><b>End Date : </b>" . date('d M Y', get_post_meta($_POST['job_id'], 'job_end_date', true)) . "
 					    <br/><b>end Time : </b>" . date('g:i a', get_post_meta($_POST['job_id'], 'job_end_time', true)) . "
                 		<br/><b>Location : </b>" . get_post_meta($_POST['job_id'], 'job_location', true) . "
-						<br/><b>Wages : </b>" . get_post_meta($_POST['job_id'], 'job_wages', true) . "
+						<br/><b>Wages : </b>$" . get_post_meta($_POST['job_id'], 'job_wages', true) . "
                 		<br/><b>details : </b>" . $job_data->post_content . "
 	
                 		<br/><br/>
@@ -629,7 +655,7 @@ function minyawn_job_unapply() {
         'job_id' => $job_id
     ));
     // send mail to employer who created job
-    send_mail_employer_apply_job($job_id, 'unapplied');
+   // send_mail_employer_apply_job($job_id, 'unapplied');
 
     echo json_encode(array('success' => 1, 'new_action' => 'apply'));
 
@@ -703,7 +729,16 @@ function get_logged_in_role()
 {
     global $current_user;
    $user_role=$current_user->roles[0];
-   if ($user_role == "minyawn"){ return 'Minion';} else  return 'Employer' ; 
+   
+   
+   switch($user_role){
+   
+   	case "minyawn"  	: return 'Minion';
+   	case 'employer' 	: return 'Employer';
+   	case 'administrator': return 'Administrator';	
+   	default 			: return ucwords($user_role);
+   }
+   //if ($user_role == "minyawn"){ return 'Minion';} else  if('')return 'Employer' ; 
     
 }
 
@@ -758,12 +793,20 @@ function get_minyawn_profile($userData,$total)
 
                     $user_profile_pic = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
+                    if(isset($user_meta['intro_video_id'][0])){
+                        $user_pic_img_src =  '<img src="http://i.ytimg.com/vi/'.$user_meta['intro_video_id'][0].'/1.jpg" />';
+                    }else{
 
-                    if ($user_profile_pic !== false) {
+                       if ($user_profile_pic !== false) {
                         $user_pic_img_src =  wp_get_attachment_image($user_profile_pic, get_user_role());
                     } else {
                         $user_pic_img_src = get_avatar($userData->ID);
                     }
+                     
+                    }
+                    
+
+                    
              
                     $data = array(
                         'user_id' => $userData->ID,
@@ -774,12 +817,14 @@ function get_minyawn_profile($userData,$total)
                         'major' => isset($user_meta['major'][0]) ? substr($user_meta['major'][0],0,20) : '',
                         'college' => isset($user_meta['college'][0]) ? substr($user_meta['college'][0],0,20) : '',
                         'linkedin' => isset($user_meta['linkedin'][0]) ? $user_meta['linkedin'][0] : '',
+                        'facebook_link' => isset($user_meta['facebook_link'][0]) ? $user_meta['facebook_link'][0] : '',
                         'rating_positive' => isset($user_rating) ? $user_rating : 0,
                         'rating_negative' => isset($user_dislike) ? $user_dislike : 0,
                         'user_avatar' => $user_pic_img_src,
                         'total' => $total,
-                        'minion_name' => isset($user_meta['first_name'][0]) > 0 ? substr($user_meta['first_name'][0] . $user_meta['last_name'][0],0,20) :'',
-                        'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N'     
+                        'minion_name' => isset($user_meta['first_name'][0]) > 0 ? substr($user_meta['first_name'][0] ." ". $user_meta['last_name'][0],0,20) :'',
+                        'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N',
+                        'intro_video_id'=>isset($user_meta['intro_video_id'][0]) ? $user_meta['intro_video_id'][0] :''     
                     );
   
                     

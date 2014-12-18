@@ -10,3 +10,6 @@ wp-content/uploads
 nbproject
 .settings/
 .project
+Thumbs.db
+htaccess
+wp-config .php

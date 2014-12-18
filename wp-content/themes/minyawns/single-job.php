@@ -18,11 +18,14 @@ require 'templates/_jobs.php';
 
       window.page='1';
       $("#show-single-job").show();
+     $('#job_start_time').timepicker('setTime', '<?php echo $minyawn_job->get_start_time_eform() ?>');
+     $('#job_end_time').timepicker('setTime','<?php echo $minyawn_job->get_end_time_eform() ?>');
+
 
     });
 </script>
-<!-- Minions have not been selected.  
-You need to confirm the minion selection by making the payment,if you leave this page the selections will be lost.-->
+<!-- Minyawns have not been selected.  
+You need to confirm the minyawn selection by making the payment,if you leave this page the selections will be lost.-->
 <style type="text/css">
     /* ROUNDED TWO */
     .single-jobs .minyawns-grid .thumbnails .span3 .thumbnail .dwn-btn {
@@ -126,7 +129,7 @@ You need to confirm the minion selection by making the payment,if you leave this
         cursor: auto!important;
     }
     .category_label{
-        margin-right: 5px !important; 
+        margin-right: 5px !important;
         margin-top: -2px !important;
     }
     .category_name{
@@ -141,13 +144,13 @@ You need to confirm the minion selection by making the payment,if you leave this
     <div class="tab-content" style="min-height:928px;">
 
         
-        <div class="tab-pane jobs_table active single-job-1 single-view" id="tab2">
+        <div class="tab-pane jobs_table active single-job-1 rr single-view" id="tab2">
 		
           
             <div class="breadcrumb-text">
                 <p>
-                    <a href="<?php echo site_url() ?>/jobs/">My Jobs</a>
-                    <a href="#single-jobs" class="view  edit-job-data"><?php echo get_the_title() ?></a>
+                    <a href="<?php echo site_url() ?>/jobs/#browse">My Jobs</a>
+                    <?php echo get_the_title() ?>
                   				<div class="single-job-action">
 <ul class="inline">				<li >
 				<?php if ((get_user_role() === 'employer') && is_job_owner(get_user_id(), get_the_ID()) !== 0): ?> 
@@ -182,7 +185,7 @@ You need to confirm the minion selection by making the payment,if you leave this
 			<div class="row-fluid">
 			<div class="span12">
             <span class='load_ajaxsingle_job' style="display:block"></span>
-              <ul class="unstyled job-view-list " id="single-job-accordion" >
+              <ul class="unstyled job-view-list" id="single-job-accordion" >
             
 
                 <span  id='single-job-page'style="display:none"></span>
@@ -248,13 +251,13 @@ You need to confirm the minion selection by making the payment,if you leave this
                         <div class="controls">
                             <div class="input-prepend input-datepicker">
                                 <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                <input type="text" class="span1" name="job_start_date" value="<?php echo $minyawn_job->get_job_date(); ?>" id="job_start_date">
+                                <input type="text" class="span1" readonly  name="job_start_date" value="<?php echo $minyawn_job->get_job_date(); ?>" id="job_start_date">
                             </div>
 
                         </div>
                     </div>
                     <div class="input-append bootstrap-timepicker">
-                        <input id="job_start_time" type="text" value="<?php echo $minyawn_job->get_start_time_eform() ?>" class="timepicker-default input-small" name="job_start_time" >
+                        <input id="job_start_time" type="text"readonly class="timepicker-default input-small" name="job_start_time"/>
                         <span class="add-on">
                             <i class="icon-time"></i>
                         </span>
@@ -265,13 +268,13 @@ You need to confirm the minion selection by making the payment,if you leave this
                         <div class="controls">
                             <div class="input-prepend input-datepicker">
                                 <button type="button" class="btn"><span class="fui-calendar"></span></button>
-                                <input type="text"  name="job_end_date" class="span1" readonly value="<?php echo $minyawn_job->get_job_end_date(); ?>" id="job_end_date">
+                                <input type="text"  name="job_end_date" class="span1 hasDatepicker" readonly value="<?php echo $minyawn_job->get_job_end_date(); ?>" id="job_end_date">
                             </div>
                         </div>
 
                     </div>
                     <div class="input-append bootstrap-timepicker">
-                        <input id="job_end_time" type="text" class="timepicker-default input-small" value="<?php echo $minyawn_job->get_end_time_eform() ?>" name="job_end_time">
+                        <input id="job_end_time" type="text" readonly class="timepicker-default input-small" name="job_end_time">
                         <span class="add-on">
                             <i class="icon-time"></i>
                         </span>
@@ -286,12 +289,22 @@ You need to confirm the minion selection by making the payment,if you leave this
 
 
                     <div class="control-group small">
+                    <div class="control-group small float-left ">
                         <label class="control-label" for="inputtask">Wages</label>
 
                         <div class="controls small">
                             <div class="input-prepend">
                                 <span class="add-on"><i class="icon-dollar"></i></span>
                                 <input class="span2" id="job_wages" type="text" name="job_wages" value="<?php echo $minyawn_job->get_job_wages(); ?>">
+                            </div>
+                        </div>
+                    </div>
+                          <label class="control-label" for="inputtask">Actual Wages &nbsp;&nbsp;</label>
+
+                        <div class="controls small">
+                            <div class="input-prepend">
+                                <span class="add-on"><i class="icon-dollar"></i></span>
+                                <input class="span2 readonly-color" id="job_wages_actual"  readonly type="text" name="job_wages_actual" value="<?php echo $minyawn_job->get_job_wages() - ($minyawn_job->get_job_wages() *(10/100)) ?>">
                             </div>
                         </div>
 
@@ -311,18 +324,20 @@ You need to confirm the minion selection by making the payment,if you leave this
                             <input  name="job_tags" id="job_tags_tag" value="<?php echo $minyawn_job->get_job_tags(); ?>" placeholder="" class="tm-input tagsinput_jobs">
                         </div>
                     </div>
-                    <div class="control-group small">
+                    <div class="control-group small mobile-category">
                         <label class="control-label" for="inputtask">Job Category</label>
                         <div class="controls ">
                             <?php
                             foreach ($minyawn_job->categories as $job_categories) {
 
-                                $job_cats[] = $job_categories->name;
+                                $job_cats[] = $job_categories->term_id;
+                            
+                             
                             }
-
+                       
                             foreach ($minyawn_job->all_categories as $category) {
                                 ?>
-                                <input class="category_label" type="checkbox" value="<?php echo $category->cat_ID ?>" name="category-<?php echo $category->cat_ID ?>" id="category" <?php if (in_array($category->name, $job_cats)) { ?> checked <?php } ?>/> <span class="category_name"><?php echo $category->name ?> </span>
+                                <input class="category_label" type="checkbox" value="<?php echo $category->term_id ?>" name="category-<?php echo $category->term_id ?>" id="category" <?php if (in_array($category->term_id, $job_cats)) { ?> checked <?php } ?>/> <span class="category_name"><?php echo $category->name ?> </span>
                                 <?php
                             }
                             ?>
@@ -339,6 +354,25 @@ You need to confirm the minion selection by making the payment,if you leave this
                     <div class="clear"></div>
                 </form>
             </div>
+
+
+
+ 
+   
+<?php $upload_nonce = wp_create_nonce("upload_photo_".get_current_user_id()); ?>
+<?php $delete_nonce = wp_create_nonce("delete_photo_".get_current_user_id()); ?>
+<div style="display:none">
+<input type="text" id="upload_nonce_" value="<?php echo $upload_nonce; ?>" >
+<input type="text" id="delete_nonce_" value="<?php echo $delete_nonce; ?>" >
+ </div>
+ 
+
+
+
+
+
+
+
         </div>
     </div>
 </div>
@@ -377,8 +411,27 @@ You need to confirm the minion selection by making the payment,if you leave this
 <div id="requiredminyawnerror" class="modal hide fade in papypalform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
     <div class="modal-body">
-        Please Select at-least one Minion
+        Please Select at-least one Minyawn
     </div>
+ 
+  
+</div>  
+
+<div class="hidden">
+    <script type="text/javascript">
+        <!--//--><![CDATA[//><!--
+            var warning_image = new Array()
+            function preload() {
+                for (i = 0; i < preload.arguments.length; i++) {
+                    warning_image = new Image()
+                    warning_image.src = preload.arguments[i]
+                }
+            }
+            preload(
+                "<?php echo get_template_directory_uri();?>/images/minyawns-job-warning.jpg"
+            )
+        //--><!]]>
+    </script>
 </div>
 <?php
 get_footer();

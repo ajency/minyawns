@@ -1,22 +1,56 @@
 
 <script type="text/template" id="minyawn-directory-card">
-    <li class="span3 thumbspan" id="minyawn<%= result.user_id %>">
+    <li class="span3 thumbspan show-minyawn" id="minyawn<%= result.user_id %>" item-id="<%= result.user_id %>">
                            <div class="thumbnail" id="thumbnail-10">
                               <div class="m1" onclick="return true">
                                  <div class="caption">
 								
                                     <div class="minyawns-img">
                                       <%= result.user_avatar %>
+                                      
+                                      <% if(result.intro_video_id !=''){%>
+                                      <a class="vidbutton"><i class="icon-youtube-play"></i> &nbsp;</a>
+                                      <% } %> 
+
                                     </div>
+
                                      <% if(result.user_verified === 'Y'){%>
     <!-- <img class="verfied" src="<?php echo get_template_directory_uri(); ?>/images/verifed.png" />-->
     <div class="verfied-txt">Verified Minion</div>
     <% } %> 
                                     <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"> <%= result.college %></div>
-                                    <div class="social-link">
-                                   <a href='http://<%= result.linkedin.replace(/^http?:\/\//,'') %>' target='_blank'><%= result.linkedin %></a>
+                                    <div class="social-link   profile-social-link">
+                                        <% 
+                                        if(result.linkedin.length > 0){
+                                        if((result.linkedin.indexOf("http://") <= -1) && (result.linkedin.indexOf("https://") <= -1) ){
+                                            var linkedinUrl = "http://"+result.linkedin;
+                                        }
+                                        else{
+                                            var linkedinUrl = result.linkedin;
+                                        }
+                                        %>
+                                        <a href='<%= linkedinUrl   %>' target='_blank' class="edit"><i class="icon-linkedin"></i></a>
+                                         <%
+                                         }
+                                          if(result.facebook_link.length > 0){
+
+                                          if((result.facebook_link.indexOf("http://") <= -1) && (result.facebook_link.indexOf("https://") <= -1) ){
+                                            var facebook_linkUrl = "http://"+result.facebook_link;
+                                        }
+                                        else{
+                                            var facebook_linkUrl = result.facebook_link;
+                                        }
+                                        %>
+                                        <a href='<%= facebook_linkUrl   %>' target='_blank' class="edit icon-facebook-a"><i class="icon-facebook"></i></a>
+                                        <% } %>
                                     </div>
+									<div class="m1-invite">
+									<a class="btn btn-primary invite-btn" href= "javascript:void(0)" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
+												   <i class="icon-ok"></i>
+												 Invite Minion
+												   </a>	
+									</div>
                                     <div class="rating">
                                        <a href="#fakelink" id="thumbs_up_10">
                                        <i class="icon-thumbs-up"></i><%= result.rating_positive %>
@@ -30,7 +64,12 @@
                               <div class="m2">
                                  <div class="caption">
                                     <div class="minyawns-img">
-<%= result.user_avatar %>
+                                    <%= result.user_avatar %>
+
+                                     <% if(result.intro_video_id !=''){%>
+                                      <a class="vidbutton" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a>
+                                      <% } %> 
+
                                     </div>
                             <% if(result.user_verified === 'Y'){%>
         <div class="verfied-txt">Verified Minion</div>
@@ -46,17 +85,32 @@
                                     <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"><%= result.college %></div>
                                     <div class="collage"><%= result.major %></div>
-                                    <div class="social-link">
+                                    <div class="social-link  profile-social-link">
                                      <% if (result.linkedin.length > 0 ){%>
-                                     <a href='http://<%= result.linkedin.replace(/^http?:\/\//,'') %>' target='_blank'><%= result.linkedin %></a>
-                                       <%}else{%>
-                                      <a href='#'><%= result.linkedin %></a>
-    <%}%>
+                                        <% if(  (result.linkedin.indexOf("https://") <= -1) &&   (result.linkedin.indexOf("http://") <= -1) ) {
+                                            var linkedinUrl = "http://"+result.linkedin;
+                                        }
+                                        else{
+                                            var linkedinUrl = result.linkedin;
+                                        }
+                                        %>
+                                        <a href='<%= linkedinUrl   %>' target='_blank' class="edit"><i class="icon-linkedin"></i></a> 
+                                       <%} %>
+                                      <% if (result.facebook_link.length > 0 ){%>
+                                        <% if(  (result.facebook_link.indexOf("https://") <= -1) &&   (result.facebook_link.indexOf("http://") <= -1) ) {
+                                            var facebook_linkUrl = "http://"+result.facebook_link;
+                                        }
+                                        else{
+                                            var facebook_linkUrl = result.facebook_link;
+                                        }
+                                        %>
+                                        <a href='<%= facebook_linkUrl   %>' target='_blank' class="edit icon-facebook-a"><i class="icon-facebook"></i></a> 
+                                       <%} %>
                                       </div>
                                     <div class="social-link">
                                        <%= result.user_email %>
                                     </div>
-					<a class="btn btn-primary invite-btn" id="invite-minion" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
+					<a class="btn btn-primary invite-btn" id="invite-minion"  href= "javascript:void(0)" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
 												   <i class="icon-ok"></i>
 												 Invite Minion
 												   </a>				
@@ -72,7 +126,26 @@
                                  </div>
                               </div>
                            </div>
-                        </li>   
+                        </li>
+
+
+
+
+<% if(result.intro_video_id !=''){%>
+<div id="introvideo<%= result.user_id %>" class="modal hide fade video-pop in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-body">
+            <iframe id="videowrap" frameborder="0" allowfullscreen="1" title="YouTube video player" width="530" height="350" src="https://www.youtube.com/embed/<%= result.intro_video_id %>?enablejsapi=1&origin=<?php echo $_SERVER['HTTP_HOST']; ?>"></iframe>
+            </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+           
+    </div>
+ <%}%>
+
+
+
+
 </script>    
 
 <script type="text/template" id="load-more">

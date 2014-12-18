@@ -1,4 +1,4 @@
-<?php
+﻿<?php
    if(is_user_logged_in())
    	wp_redirect(site_url()."/profile/");
    /**
@@ -41,7 +41,10 @@
 				<div class="span12">
 					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
 					<div class="banner-desc">1-day assistants for your 1-day tasks</div>
-					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-block btn-primary" id="link_employerregister" onclick="return true">Get Your Minyawn</a>
+					<div class="text-center">
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-info" id="link_employerregister" onclick="return true">Sign Up and Get Your Minyawns Today</a>
+          <a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_minyawnregister" onclick="return true">Minyawn Signup and Apply for Jobs Now</a>
+		  </div>
 				</div>
 			
 		 </div>
@@ -76,7 +79,7 @@
          </div>
          <div class="span4">
            <div class="step2-2"></div>
-            <h4> <span class="badge badge2">2</span> Pick your minyawm</h4>
+            <h4> <span class="badge badge2">2</span> Pick your minyawn</h4>
             <p>We're talking about professional, reliable, competent, clean and sociable young college students looking for work.</p>
          </div>
          <div class="span4">
@@ -109,7 +112,7 @@
 
 <div class="customers">
     <div>
-      <h3 class="heading-title"> Here's our customers</h3>
+      <h3 class="heading-title">Our Customers</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minyawns.</p>
    </div>
  <div class="slider1">
@@ -219,7 +222,7 @@
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider1.png" data-interval="500" data-slide-to="0" />
                      <div class="carousel-caption">
                         <h4>Almost anything !</h4>
-                        <p>From simple tasks like office work, labor jobs, and event set-up to ones that need more specialty, our minions can do it all. You may just need an extra hand, our minions are capable of learning quickly on the job.
+                        <p>From simple tasks like office work, labor jobs, and event set-up to ones that need more specialty, our minyawns can do it all. You may just need an extra hand, our minyawns are capable of learning quickly on the job.
                         </p>
                      </div>
                   </div>
@@ -227,7 +230,7 @@
                      <img src="<?php echo get_template_directory_uri() ?>/images/slider2.png" data-interval="500" data-slide-to="1" />
                      <div class="carousel-caption">
                         <h4>Make you feel in charge!</h4>
-                        <p>Our Minions are equipped with the valuable skills from top universities. It's like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
+                        <p>Our Minyawns are equipped with the valuable skills from top universities. It's like having power and resources of an élite billion-dollar institution, awaiting your command.</p>
                      </div>
                   </div>
                   <div class="item">
@@ -350,28 +353,62 @@
    </div>
 
  <div class="container">
-   <div class="row-fluid minyawns-grid1">
-      <ul class="thumbnails" style="left: 100px;">
-         <li class="span3 thumbspan" id="10"  onclick="window.open('http://www.minyawns.com/profile/297/')">
+   <div class="row-fluid minyawns-grid1 minyawns-gridhome">
+   
+      <ul class="thumbnails owl-carousel"  id="owl-example">
+       <?php
+        $homepage_users = get_users_for_homepage_footer();
+        foreach($homepage_users as $homepage_user){
+
+          $homepage_user_data = get_minyawn_profile($homepage_user,'');
+
+           
+
+          ?>
+         <li class="span3 thumbspan show-minyawn"   item-id="<?php echo $homepage_user_data["user_id"];?>">
 		
             <div class="thumbnail " id="thumbnail-10">
                <div class="m1" onClick="return true">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="an example college student that can be hired" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg" >
+                        <?php echo $homepage_user_data["user_avatar"];?>
                      </div>
-                     <h4> Ketfa Inthathirath</h4>
-                     <div class="collage">University of Washington</div>
-                    
-                     <div class="social-link">
-                        www.linkedin.com/pub/ketfa-inthathirath/74/b9b/a9a
-                     </div>
+                     <h4> <?php echo $homepage_user_data["minion_name"];?></h4>
+                     <div class="collage"><?php echo   $homepage_user_data["college"];?></div>
+                      
+                      <div class="social-link profile-social-link">
+                      <?php if ($homepage_user_data["linkedin"] !="" ){?>
+                      <?php if( strpos($homepage_user_data["linkedin"] ,"https://") == false  &&   strpos($homepage_user_data["linkedin"] ,"http://")  == false  ){
+                          $linkedinUrl = "http://".$homepage_user_data["linkedin"];
+                      }
+                      else{
+                          $linkedinUrl = $homepage_user_data["linkedin"];
+                      }
+                      ?>
+ 
+ 
+                      <a href='<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
+                      <?php }  ?>
+ 
+                      <?php if ($homepage_user_data["facebook_link"] !=""  ){?>
+
+ 
+                      <?php if( strpos($homepage_user_data["facebook_link"] ,"https://")  == false  &&   strpos($homepage_user_data["facebook_link"] ,"http://")  == false  ){
+                          $facebook_linkUrl = "http://".$homepage_user_data["facebook_link"];
+                      }
+                      else{
+                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
+                      }
+                      ?>
+ 
+                      <a href='<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+                      <?php }  ?></div>
 					<div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 0
+                        <i class="icon-thumbs-up"></i> <?php echo $homepage_user_data["rating_positive"] ;?>
                         </a>
                         <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down"></i> 0
+                        <i class="icon-thumbs-down"></i> <?php echo $homepage_user_data["rating_negative"] ;?>
                         </a>
                      </div>
                   </div>
@@ -379,204 +416,64 @@
                <div class="m2">
                   <div class="caption">
                      <div class="minyawns-img">
-                        <img alt="another girl example college student that can be hired" src="http://www.minyawns.com/wp-content/uploads/user-avatars/297/minyawn297_944587_487396288005796_927335437_n.jpg">
+                        <?php echo $homepage_user_data["user_avatar"];?>
                      </div>
                      <div class="rating">
                         <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 0
+                        <i class="icon-thumbs-up"></i> <?php echo $homepage_user_data["rating_positive"] ; ?>
                         </a>
                         <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down" ></i> 0
+                        <i class="icon-thumbs-down" ></i> <?php echo $homepage_user_data["rating_negative"] ;?>
                         </a>
                      </div>
-                     <h4>Ketfa Inthathirath</h4>
-                     <div class="collage"> University of Washington Civil and 
-Enviormental Engineering </div>
- <div class="collage"> Biology</div>
+                     <h4><?php echo $homepage_user_data["minion_name"];?></h4>
+                     <div class="collage"> <?php echo $homepage_user_data["college"];?> </div>
+ <div class="collage"> <?php echo $homepage_user_data["major"];?></div>
                      
-                     <div class="social-link">
-                      www.linkedin.com/pub/ketfa-inthathirath/74/b9b/a9a
-                     </div>
+                   <div class="social-link profile-social-link">
+                      <?php if ($homepage_user_data["linkedin"] !="" ){?>
+                      <?php if( strpos($homepage_user_data["linkedin"] ,"https://")  == false  &&   strpos($homepage_user_data["linkedin"] ,"http://")  == false  ){
+                          $linkedinUrl = "http://".$homepage_user_data["linkedin"];
+                      }
+                      else{
+                          $linkedinUrl = $homepage_user_data["linkedin"];
+                      }
+                      ?>
+ 
+                      <a href='<?php echo $linkedinUrl; ?>' target='_blank'><i class='icon-linkedin'></i></a>
+                      <?php } ?>
+ 
+                      <?php if ($homepage_user_data["facebook_link"] !=""  ){?>
+
+ 
+                      <?php if( strpos($homepage_user_data["facebook_link"] ,"https://")  == false  &&   strpos($homepage_user_data["facebook_link"] ,"http://")  == false  ){
+                          $facebook_linkUrl = "http://".$homepage_user_data["facebook_link"];
+                      }
+                      else{
+                          $facebook_linkUrl = $homepage_user_data["facebook_link"];
+                      }
+                      ?>
+ 
+                      <a href='<?php echo $facebook_linkUrl;?>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+                      <?php }  ?></div>
                     
 					 <div class="tags">
-					 Tags:<br>
-						<span class="label label-small">Interpersonal Skills</span>
-						<span class="label label-small">Leadership</span>
-						<span class="label label-small">Public Speaking</span>
-						
+					 Tags:<br><?php $skills = explode(",",$homepage_user_data["skills"]) ;
+             foreach($skills as $skill){
+              ?><span class="label label-small"><?php echo $skill;?></span><?php
+             }
+             ?>
 					</div>
                   </div>
                </div>
             </div>
 		
          </li>
-		    <li class="span3 thumbspan" id="10" onclick="window.open('http://www.minyawns.com/profile/214/')" >
-            <div class="thumbnail" id="thumbnail-10">
-               <div class="m1" onClick="return true">
-                  <div class="caption">
-                     <div class="minyawns-img">
-                        <img alt="male college student that can be hired profile" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg" >
-                     </div>
-                     <h4> Jonathan Hodge</h4>
-                     <div class="collage"> University of Washington</div>
-                    
-                     <div class="social-link">
-                       https://www.facebook.com/jonny.hodge.39
-                     </div>
-					<div class="rating">
-                        <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 1
-                        </a>
-                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down"></i> 0
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="m2">
-                  <div class="caption">
-                     <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/214/minyawn214_dabeach.jpg">
-                     </div>
-                     <div class="rating">
-                        <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 1
-                        </a>
-                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down" ></i> 0
-                        </a>
-                     </div>
-                     <h4>Jonathan Hodge</h4>
-                     <div class="collage">University of Washington </div>
-					  <div class="collage"> Philosophy</div>
-                     
-                     <div class="social-link">
-                       https://www.facebook.com/jonny.hodge.39
-                     </div>
-                     <div class="social-link">
-                      jonny5.myles@gmail.com
-                     </div>
-					 <div class="tags">
-					 Tags:<br>
-						<span class="label label-small">Welding</span>
-						<span class="label label-small">Worked a lot of Manual Labor</span>
-						<span class="label label-small">Construction</span>
-						
-					</div>
-                  </div>
-               </div>
-            </div>
-         </li>
-		        <li class="span3 thumbspan" id="10" onclick="window.open('http://www.minyawns.com/profile/298/')" >
-            <div class="thumbnail" id="thumbnail-10">
-               <div class="m1" onClick="return true">
-                  <div class="caption">
-                     <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/298/minyawn298_Resized.jpg" >
-                     </div>
-                     <h4>Theresa Wang</h4>
-                     <div class="collage"> University of Washington</div>
-                    
-                     <div class="social-link">
-                        http://www.linkedin.com/pub/theresa-wang/78/971/843
-                     </div>
-					<div class="rating">
-                        <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 0
-                        </a>
-                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down"></i> 0
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="m2">
-                  <div class="caption">
-                     <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/298/minyawn298_Resized.jpg">
-                     </div>
-                     <div class="rating">
-                        <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 0
-                        </a>
-                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down" ></i> 0
-                        </a>
-                     </div>
-                     <h4>Theresa Wang</h4>
-                     <div class="collage"> University of Washington </div>
-                    <div class="collage">  Biochemistry, Public Health</div>
-                     <div class="social-link">
-                      http://www.linkedin.com/pub/theresa-wang/78/971/843
-                     </div>
-                   
-					 <div class="tags">
-					 Tags:<br>
-						<span class="label label-small">Public Speaking</span>
-						<span class="label label-small">Leadership</span>
-						<span class="label label-small">Teamwork</span>
-						<span class="label label-small">Event Planning</span>
-					</div>
-                  </div>
-               </div>
-            </div>
-         </li>
-		       <li class="span3 thumbspan" id="10"  onclick="window.open('http://www.minyawns.com/profile/345/')">
-            <div class="thumbnail" id="thumbnail-10">
-               <div class="m1" onClick="return true">
-                  <div class="caption">
-                     <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/345/minyawn345_Lirra.jpg" >
-                     </div>
-                     <h4> Lirra Zullo</h4>
-                     <div class="collage"> University of Washington</div>
-                    
-                     <div class="social-link">
-                        www.linkedin.com/pub/lirra-zullo/7b/b21/804
-                     </div>
-					<div class="rating">
-                        <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 0
-                        </a>
-                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down"></i> 0
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="m2">
-                  <div class="caption">
-                     <div class="minyawns-img">
-                        <img alt="" src="http://www.minyawns.com/wp-content/uploads/user-avatars/345/minyawn345_Lirra.jpg">
-                     </div>
-                     <div class="rating">
-                        <a href="#fakelink" id="thumbs_up_10">
-                        <i class="icon-thumbs-up"></i> 0
-                        </a>
-                        <a href="#fakelink" class="icon-thumbs" id="thumbs_down_10">
-                        <i class="icon-thumbs-down" ></i> 0
-                        </a>
-                     </div>
-                     <h4>Lirra Zullo</h4>
-                     <div class="collage"> University of Washington </div>
-                   <div class="collage">   Psychology</div>
-                     <div class="social-link">
-                      www.linkedin.com/pub/lirra-zullo/7b/b21/804
-                     </div>
-                    
-					 <div class="tags">
-					 Tags:<br>
-						<span class="label label-small">Social-marketing</span>
-						<span class="label label-small">Video</span>
-						<span class="label label-small">Team</span>
-						<span class="label label-small">Documentdrafting</span>
-					</div>
-                  </div>
-               </div>
-            </div>
-         </li>
+         <?php
+         }?>
          <span class="load_ajaxsingle_job_minions" style="display: none;"></span>
       </ul>
+   
    </div>
 </div>
 </div> <div id="down-gray"></div>
@@ -750,7 +647,7 @@ Enviormental Engineering </div>
                     <div class="workflow1">
                         <i class="icon-calendar-empty i-cal"></i>
                     </div>
-                    <h3 class="small-header">Request a Minion</h3>
+                    <h3 class="small-header">Request a Minyawn</h3>
                     <p class="small-desc">Pick a time, place, price and <br>describe your task.</p>
                 </div>
                 <div class="span2">
@@ -758,7 +655,7 @@ Enviormental Engineering </div>
                         <i class="icon-heart i-money"></i>
                     </div>
                     <h3 class="small-header">Pick your favorite</h3>
-                    <p class="small-desc">Put your minion to work when they arrive.</p>
+                    <p class="small-desc">Put your minyawn to work when they arrive.</p>
                     </div>
                 <div class="span3">
                   <div class="workflow">
@@ -775,7 +672,7 @@ Enviormental Engineering </div>
             <div class="row-fluid">
                 <div class="span12">
                     <h3 class="big-heading-title">The power and resources of an elite billion-dollar institution, awaiting your command. </h3>
-                    <p class="big-heading-desc">Minyawns - minions so good you can yawn- is an online service that is revolutionizing traditional staffing temp agencies through on-demand short time minions. 
+                    <p class="big-heading-desc">Minyawns - minions so good you can yawn- is an online service that is revolutionizing traditional staffing temp agencies through on-demand short time minyawns. 
    Businesses and Individual Professionals can post tasks and immediately receive assistance from a crowd of highly intelligent and motivated university students that want to prove themselves. With over 165 majors, our students literally cover anything you would expect or need. Additionally Minyawns provides a marketplace for students to strengthen resumes and gain experience, while business can help mold the future generation.</p>
                 </div>
             </div>
@@ -825,7 +722,7 @@ Enviormental Engineering </div>
 
 
 
-<!-- learn more Get a Minion  -->
+<!-- learn more Get a Minyawn  -->
 <div id="getminion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -840,7 +737,7 @@ Enviormental Engineering </div>
    </div>
 </div>
 
-<!-- learn more Become a minion  -->
+<!-- learn more Become a minyawn  -->
 <div id="becomeminion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -857,6 +754,18 @@ Enviormental Engineering </div>
 
 
  
-
-<?php
-get_footer();
+<script>
+jQuery(document).ready(function($) {
+	$("#owl-example").owlCarousel({
+   autoPlay: 3000, //Set AutoPlay to 3 seconds
+      
+	  
+      items : 4,
+	  itemsDesktop : [1199,4],
+	   itemsDesktopSmall : [980,3]
+      
+  });
+});
+</script>
+<?php 
+get_footer(); 

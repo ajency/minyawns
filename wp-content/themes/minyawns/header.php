@@ -30,7 +30,7 @@
 			 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
 	   
 		<!-- media-queries.js (fallback) -->
@@ -73,12 +73,28 @@
 
 </script>
 
+<!-- AddThisEvent -->
+<script type="text/javascript" src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>
+<!-- AddThisEvent Settings -->
+<script type="text/javascript">
+addthisevent.settings({
+	mouse		: false,
+	css			: false,
+	outlook		: {show:true, text:"Outlook Calendar"},
+	google		: {show:true, text:"Google Calendar"},
+	yahoo		: {show:true, text:"Yahoo Calendar"},
+	ical		: {show:true, text:"iCal Calendar"},
+	hotmail		: {show:true, text:"Hotmail Calendar"},
+	facebook	: {show:false, text:"Facebook Calendar"}
+});
+</script>
+
 		</head>
 			<script>
 				var siteurl='<?php echo site_url(); ?>';
 				var logouturl='<?php echo wp_logout_url('');?>';
 				var email='<?php  echo get_user_profile_email() ?>';
-				var role='<?php if (get_user_role() == "minyawn"){ echo 'Minion';} else echo 'Employer' ; ?>';
+				var role='<?php if (get_user_role() == "minyawn"){ echo 'Minyawn';} else echo 'Employer' ; ?>';
 				var logged_in_role='<?php echo get_logged_in_role() ?>';
 				var logged_in_user_id='<?php echo get_user_id(); ?>'
 				var is_logged_in='<?php echo is_user_logged_in();?>';
@@ -276,7 +292,7 @@
 						<div class=" notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
 						<div class="pull-right">
 							<div class="data-link">
-								<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup as a Minyawn </a> 
+								<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup as a Student </a> 
 							</div>
 							<div class="data-link">
 								<a  href="#myModal" data-toggle="modal" id="link_employerregister" onclick="return true"><i class="icon-signin"></i> Signup as a Business </a> 
@@ -450,7 +466,7 @@
 													size="20" id="user_login" tabindex="1001" />
 											</div>
 											<div class="login_fields">
-												<?php do_action('login_form', 'resetpass'); ?>
+												<?php //do_action('login_form', 'resetpass'); ?>
 												<input type="button" id="user-submit" name="user-submit"
 													value="<?php _e('Reset my password'); ?>"
 													class="user-submit btn btn-large btn-block btn-inverse span2"
@@ -464,24 +480,16 @@
 											</div>
 										</form>
 									</div>
+
 										<div class="span6 fb-login fb-mobile">
 										<h6 class="align-center" style="margin-bottom: 0px;">Login
 											Using Facebook</h6>
 										<p class="align-center">Get using Minyawns, faster !</p>
 										<br>
 
-										<?php /*<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/fbConnect_button.png" class="center-image"/></a>*/ ?>
-
-										<?php
-										/*if(is_page('fb-connect-test')){ */
-											jfb_output_facebook_btn();
-
-										/*}
-										else{
-											echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
-										}*/
-										?>
+										<?php echo jfb_output_facebook_btn(); ?>
 									</div>
+
 										<span id="signup_subheader">Don’t have an account? <a href="#myModal" <?php /*id="get-minon"*/ ?>  data-toggle="modal" id="link_employerregister" class="login-signup" >Sign up here</a></span>	
 								</div>
 							</div>
@@ -501,7 +509,7 @@
 	 <div id="myModal" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
 	   <div class="modal-header">
 		  <button type="button" id="signup_popup_close" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
-		  <span id="div_signupheader"><h4 id="myModalLabel">Sign Up to Minyawns </h4></span>
+		  <span id="div_signupheader"><h4 id="myModalLabel">Sign Up as a Minyawn</h4></span>
 	   </div>
 	   <div class="modal-body">
 	  
@@ -581,3 +589,4 @@
 		   <span id="div_signup_subheader"></span>
 	   </div>
 	</div>
+

@@ -2,13 +2,14 @@
 /**
   Template Name: Minyawn Directory
  */
-require 'templates/_minyawnsdir.php';
+
 get_header();
+require 'templates/_minyawnsdir.php';
 ?>
-<!--  <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion is Invited</div> 
+<!--  <div class="minions-applied"> <i class="icon-location-arrow "></i> Minyawn is Invited</div> 
 <a href="#fakelink" class="btn btn-primary invite-btn">
 												   <i class="icon-ok"></i>
-												 Invite Minion
+												 Invite Minyawn
 												   </a> below user email id
 
 -->
@@ -16,7 +17,7 @@ get_header();
     <div id="main-content" class="main-content bg-white all-minyawns">
         <div class="breadcrumb-text">
             <p id="bread-crumbs-id">
-                <a href="<?php echo site_url() ?>/minyawns-directory" class="view loaded">Minion Directory</a>
+                <a href="<?php echo site_url() ?>/minyawns-directory" class="view loaded">Minyawn Directory</a>
             </p>
         </div>
         <div>
@@ -28,7 +29,7 @@ get_header();
             <div class="row-fluild">
                 <div class="span3">
                     <div class="alert alert-success alert-sidebar">
-                        <h3>Skills / Major </h3>
+                        <h3>Name / Skills / Major </h3>
                         <hr>
                         <form  method="GET" accept-charset="utf-8">
 <!--                           <select name="select3[]" id="select3" multiple="multiple" class=" hidden">
@@ -37,7 +38,7 @@ get_header();
 
                             <ul class="holder" style="width: 600px;">
                                 <!--                              <li class="bit-box" rel="sleep" id="pt_EwU91S1atqiGQn8EbiIHAG4JulxfDChW">sleep<a class="closebutton" href="#"></a></li>-->
-                                <li class="bit-input" id="select3_annoninput"><input placeholder="Enter Major or Skills" name="filter" type="text" class="maininput" size="0" autocomplete="off"></li>
+                                <li class="bit-input" id="select3_annoninput"><input placeholder="Enter Name, Skill or Major" name="filter" type="text" class="maininput" size="0" autocomplete="off"></li>
                             </ul>
                             <div class="facebook-auto" style="width: 600px;">
                                 <ul id="select3_feed" style="width: 600px; display: none;"></ul>
@@ -77,14 +78,14 @@ get_header();
                         <label class="checkbox" for="hired-minyawns">
                             <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span>
                             <input type="checkbox" value="" id="hired-minyawns" data-toggle="checkbox">
-                            Minions who have hired to your jobs before
+                            Minyawns who have hired to your jobs before
                         </label>
                     </div>
                     <div class="alert alert-success alert-sidebar">
                         <label class="checkbox" for="applied-minyawns">
                             <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span>
                             <input type="checkbox" value="" id="applied-minyawns" data-toggle="checkbox">
-                            Minions who have applied to your jobs before
+                            Minyawns who have applied to your jobs before
                         </label>
                     </div>-->
                     <div class="alert alert-success alert-sidebar">
@@ -99,13 +100,13 @@ get_header();
 
             <div class="span9">
                 <!--			   <div id="theFixed" class="alert alert-info alert-job-allminion" style="position:fixed;top:160px;">
-                                           <h6>Invite Minions for following job</h6>
+                                           <h6>Invite Minyawns for following job</h6>
                                            <h5>
                                            <a href="#" target="_blank" style="color:#8ED030;">The template has been conceived with a proper balance
                                                                 UI &amp; UX in order to offer an excellent  </a>
                                            </h5>
                                                 </div>-->
-                <!--			  <div id="more" class="peplist more">Send Invites by selecting Minions below </div>-->
+                <!--			  <div id="more" class="peplist more">Send Invites by selecting Minyawns below </div>-->
 
                 <div class="row-fluid minyawns-grid1">
                     <ul class="thumbnails minyawnslist" style="left: 100px;">
@@ -126,7 +127,7 @@ get_header();
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Invite minion to...</h4>
+        <h4 class="modal-title" id="myModalLabel">Invite minyawn to...</h4>
       </div>
       <div class="modal-body">
        <table class="table">
