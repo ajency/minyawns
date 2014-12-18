@@ -640,6 +640,7 @@ $current_user_role =  trim($user_role);
     <div>
 	<div class="row-fluid">
 	<div class="span4">
+  
     <div class="minyawns-img" >
 
         <% if(result.is_hired === true){%>
