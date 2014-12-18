@@ -80,7 +80,7 @@ position: absolute;
 border-radius: 100%;
 margin: auto;
 
-top: 5%;
+
 text-align: center;
 color: #FFF;
 }
@@ -89,7 +89,8 @@ display:block;
 font-size:30px;
 text-align: center;
 /*margin-top: 38px;*/
-margin-top:27px;
+/*margin-top:27px;*/
+line-height: 80px;
 color: #FFF;
 }
 .Minyawnverified{
@@ -1512,8 +1513,7 @@ body .minyawns-grid1 .thumbspan {
     position: absolute;
     text-align: center;
     /*top: 4%;*/
-	top:6%;
-	left:6%;
+	
     /*width: 140px;*/
 	width:80px;
 }
