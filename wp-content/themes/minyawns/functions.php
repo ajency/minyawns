@@ -3348,17 +3348,3 @@ function set_date_timezone(){
 
 
 
-
-
-$act_type = 'activity_comment';
-$item_id = '2511';
-
-$actresults = $GLOBALS['wpdb']->get_results( 'SELECT * FROM wp_ajan_activity WHERE type = "'.$act_type.'" AND item_id = '.$item_id.'', ARRAY_A );
-if($actresults){
-//print_r($actresults);
-    echo $actresults[0]['id'];
-}
-    
-
-
-
