@@ -122,7 +122,7 @@ require 'templates/_minyawnsdir.php';
 
 
 
-<div class="modal fade minion-dir" id="miniondir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade minion-dir min-invite-job" id="miniondir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

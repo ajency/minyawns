@@ -6972,3 +6972,16 @@ p.white {
 .cust-modal .popup-apply-btn-cont {
   margin-bottom: 10px;
 }
+/*minyawns directory invite popup starts*/
+.min-invite-job .modal-body {
+  padding: 0 15px;
+}
+.min-invite-job .modal-body .table,
+.min-invite-job .modal-body .alert {
+  margin-bottom: 0;
+}
+.min-invite-job .modal-body .table .close,
+.min-invite-job .modal-body .alert .close {
+  font-size: 14px;
+}
+/*minyawns directory invite popup ends*/
