@@ -722,7 +722,7 @@ $current_user_role =  trim($user_role);
      Tags:<br> 
      <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%></li>
      <% } else {%>
-      No skills added yet!
+      
       <%}%>
     </div>
 	</div>
@@ -824,7 +824,9 @@ $current_user_role =  trim($user_role);
 </script>
 
 <script type="text/template" id="blank-card">
-<% if(result.user_to_job_status.indexOf('hired') == -1 || result.has_expired === 'no'){ %>
+<% if(result.days_to_job_expired >0){ 
+if(result.no_hired < result.required_minyawns){
+%>
 
 	<div class="row-fluid">
     <li class="span3 thumbspan card find-min full-width" id="91">
@@ -865,7 +867,10 @@ $current_user_role =  trim($user_role);
 	
 
 					</div>
-<% } %>
+<% }
+
+}
+ %>
 </script>
 
 <script type="text/templates" id="no-result">
