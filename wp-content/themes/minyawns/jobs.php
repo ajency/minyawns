@@ -311,12 +311,14 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     <div id="add-job-form" style="display:none">
                         <div class="row-fluid">
                             <div class="span8">
+							
                                 <?php
                                 if (check_access() === true) {
                                     ?>
                                     <div class="alert alert-success alert-box " id="job-success" style="display:none;">  <button data-dismiss="alert" class="close" type="button">×</button>You have successfully add a job.</div>
                                     <!--                        <div id="success_msg" style="background-color:greenyellow;display:none;">Job added</div>-->
-                                    <div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
+                                    
+									<div id="ajax-load" class="modal_ajax_large" style="display:none"></div>
                                     <form id="job-form" class="form-horizontal">
                                         <input type="hidden" value="" id="user_skills"></input>
                                         <input type="hidden" value="" name="id"></input>
@@ -441,7 +443,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                                         <hr>
                                         <ul>
                                             <li> Need help, I am moving out, require some extra hands.</li>
-                                            <li>Need a minion to clean my house</li>
+                                            <li>Need a minyawn to clean my house</li>
                                             <li>Need more likes for my Facebook page</li>
                                         </ul>
                                         <br>
@@ -475,7 +477,10 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         <!--<div class="row-fluid " id="accordion24" >
 
                         </div>-->
+						
                         <ul class="unstyled job-view-list" id="accordion24">
+
+
 
                         </ul>
 
@@ -531,7 +536,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="inputPassword">Total Price Per Minion:</label>
+                    <label class="control-label" for="inputPassword">Total Price Per Minyawn:</label>
                     <div class="controls">
                         $12.10
                     </div>
@@ -612,6 +617,22 @@ $all_categories = get_categories(array('hide_empty' => 0));
         </div>
     </div>
 </div>  </div>  </div>
+<div class="hidden">
+    <script type="text/javascript">
+        <!--//--><![CDATA[//><!--
+            var warning_image = new Array()
+            function preload() {
+                for (i = 0; i < preload.arguments.length; i++) {
+                    warning_image = new Image()
+                    warning_image.src = preload.arguments[i]
+                }
+            }
+            preload(
+                "<?php echo get_template_directory_uri();?>/images/minyawns-job-warning.jpg"
+            )
+        //--><!]]>
+    </script>
+</div>
 <?php
 get_footer();
 ?>

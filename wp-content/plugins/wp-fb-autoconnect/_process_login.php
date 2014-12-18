@@ -9,7 +9,7 @@ function jfb_process_login()
     //If this pageload isn't supposed to be handing a login, just stop here.
     global $jfb_nonce_name;
     if( !isset($_POST[$jfb_nonce_name]) ) return;
-    
+
     //Start logging
     global $jfb_log, $jfb_version, $opt_jfb_app_id, $jfb_homepage;
     jfb_debug_checkpoint('start');
@@ -27,7 +27,7 @@ function jfb_process_login()
         if( wp_verify_nonce ($_REQUEST[$jfb_nonce_name], $jfb_nonce_name) != 1 )
         {
             //If there's already a user logged in, tell the user and give them a link back to where they were.
-            $currUser = wp_get_current_user(); 
+            $currUser = wp_get_current_user();
             if( $currUser->ID )
             {
                 $msg = "User \"$currUser->user_login\" has already logged in via another browser session.\n";
@@ -35,7 +35,7 @@ function jfb_process_login()
                 j_mail("FB Double-Login: " . $currUser->user_login . " -> " . get_bloginfo('name'));
                 die($msg . "<br /><br /><a href=\"".$_POST['redirectTo']."\">Continue</a>");
             }
-              
+
             j_die("Nonce check failed, login aborted.\nThis usually due to your browser's privacy settings or a server-side caching plugin.  If you get this error on multiple browsers, please contact the site administrator.\n");
         }
         $jfb_log .= "WP: nonce check passed\n";
@@ -54,9 +54,9 @@ function jfb_process_login()
     if( !isset($_POST['access_token']) || !$_POST['access_token'] )
         j_die("Error: Missing POST Data (access_token).\n\nIf you're receiving this notice via e-mail as a site administrator, it's nearly always safe to ignore (these errors are due to spambots automatically hitting your site).  If you're seeing this as a real person attempting to login, please report it to the plugin author at " . $jfb_homepage.".");
     $access_token = $_POST['access_token'];
-    $jfb_log .= "FB: Found access token (" . substr($access_token, 0, 30) . "...)\n"; 
+    $jfb_log .= "FB: Found access token (" . substr($access_token, 0, 30) . "...)\n";
 
-    //Get the basic user info and make sure the access_token is valid  
+    //Get the basic user info and make sure the access_token is valid
     $jfb_log .= "FB: Initiating Facebook connection...\n";
     $fbuser = jfb_api_get("https://graph.facebook.com/me?access_token=$access_token");
     if( isset($fbuser['error']) ) j_die("Error: Failed to get the Facebook user session (" . $fbuser['error']['message'] . ")");
@@ -67,7 +67,7 @@ function jfb_process_login()
     //Get some extra stuff (TODO: I should combine these into one query with the above, for better efficiency)
     $fbuser['profile_url'] = $fbuser['link'];
     $pic = jfb_api_get("https://graph.facebook.com/fql?q=".urlencode("SELECT pic_square,pic_big FROM user WHERE uid=$fb_uid")."&access_token=$access_token");
-    $fbuser['pic_square'] = $pic['data'][0]['pic_square']; 
+    $fbuser['pic_square'] = $pic['data'][0]['pic_square'];
     $fbuser['pic_big'] = $pic['data'][0]['pic_big'];
     $jfb_log .= "FB: Got user info (".$fbuser['name'].")\n";
 
@@ -89,7 +89,7 @@ function jfb_process_login()
         global $jfb_default_email;
         $jfb_log .= "FB: Email priviledge denied.\n";
         $fbuser['email'] = "FB_" . $fb_uid . $jfb_default_email;
-    } 
+    }
 
 
     //Run a hook so users can`examine this Facebook user *before* letting them login.  You might use this
@@ -99,7 +99,7 @@ function jfb_process_login()
     do_action('wpfb_connect', array('FB_ID' => $fb_uid, 'access_token'=>$access_token) );
 
 
-    //Examine all existing WP users to see if any of them match this Facebook user. 
+    //Examine all existing WP users to see if any of them match this Facebook user.
     //The base query for getting the users comes from get_users_from_blog(), to which I add a subquery
     //that limits results only to users who also have the appropriate facebook usermeta.
     global $wp_users, $jfb_uid_meta_name;
@@ -111,7 +111,7 @@ function jfb_process_login()
     	$sql = "SELECT user_id, user_id AS ID, user_login, display_name, user_email, meta_value ".
     		   "FROM $wpdb->users, $wpdb->usermeta ".
     		   "WHERE {$wpdb->users}.ID = {$wpdb->usermeta}.user_id AND meta_key = '{$blog_prefix}capabilities' ".
-    		   "AND {$wpdb->users}.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '$jfb_uid_meta_name' AND meta_value = '$fb_uid')"; 
+    		   "AND {$wpdb->users}.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '$jfb_uid_meta_name' AND meta_value = '$fb_uid')";
     	$wp_users = $wpdb->get_results( $sql );
     }
 
@@ -174,7 +174,7 @@ function jfb_process_login()
             $user_upd['user_email'] = $fbuser['email'];
             wp_update_user($user_upd);
         }
-        
+
         //Run a hook when an existing user logs in
         $jfb_log .= "WP: Running action wpfb_existing_user\n";
         do_action('wpfb_existing_user', array('WP_ID' => $user_login_id, 'FB_ID' => $fb_uid, 'WP_UserData' => $user_data, 'access_token'=>$access_token) );
@@ -196,13 +196,13 @@ function jfb_process_login()
         $user_data['display_name']  = $fbuser['first_name'];
         $user_data['user_url']      = $fbuser["profile_url"];
         $user_data['user_email']    = $fbuser["email"];
-        
+
         //Run a filter so the user can be modified to something different before registration
         //NOTE: If the user has selected "pretty names", this'll change FB_xxx to i.e. "John.Smith"
         $jfb_log .= "WP: Applying filters wpfb_insert_user/wpfb_inserting_user\n";
         $user_data = apply_filters('wpfb_insert_user', $user_data, $fbuser );
         $user_data = apply_filters('wpfb_inserting_user', $user_data, array('WP_ID' => $user_login_id, 'FB_ID' => $fb_uid, 'FB_UserData' => $fbuser, 'access_token'=>$access_token) );
-        
+
         //Insert a new user to our database and make sure it worked
         $user_login_id   = wp_insert_user($user_data);
         if( is_wp_error($user_login_id) )
@@ -214,16 +214,16 @@ function jfb_process_login()
                   "WP_ALLOW_MULTISITE: " . (defined('WP_ALLOW_MULTISITE')?constant('WP_ALLOW_MULTISITE'):"Undefined") . "<br />".
                   "is_multisite: " . (function_exists('is_multisite')?is_multisite():"Undefined"));
         }
-        
+
         //Success! Notify the site admin.
         $user_login_name = $user_data['user_login'];
         wp_new_user_notification($user_login_id);
-        
+
         //Run an action so i.e. usermeta can be added to a user after registration
         $jfb_log .= "WP: Running action wpfb_inserted_user\n";
         do_action('wpfb_inserted_user', array('WP_ID' => $user_login_id, 'FB_ID' => $fb_uid, 'WP_UserData' => $user_data, 'access_token'=>$access_token) );
     }
-    
+
     //Tag the user with our meta so we can recognize them next time, without resorting to email hashes
     global $jfb_uid_meta_name;
     update_user_meta($user_login_id, $jfb_uid_meta_name, $fb_uid);
@@ -232,14 +232,14 @@ function jfb_process_login()
     //Also store the user's facebook avatar(s), in case the user wants to use them later
     if( $fbuser['pic_square'] )
     {
-        if( isset($fbuser['pic_square']['data']['url']) ) $avatarThumb = $fbuser['pic_square']['data']['url']; 
+        if( isset($fbuser['pic_square']['data']['url']) ) $avatarThumb = $fbuser['pic_square']['data']['url'];
     	else 											  $avatarThumb = $fbuser['pic_square'];
         if( isset($fbuser['pic_big']['data']['url']) )    $avatarFull = $fbuser['pic_big']['data']['url'];
     	else 											  $avatarFull = $fbuser['pic_big'];
     	update_user_meta($user_login_id, 'facebook_avatar_full', $avatarFull);
     	update_user_meta($user_login_id, 'facebook_avatar_thumb', $avatarThumb);
     	$jfb_log .= "WP: Updated small avatar ($avatarThumb)\n";
-    	$jfb_log .= "WP: Updated large avatar ($avatarFull)\n"; 
+    	$jfb_log .= "WP: Updated large avatar ($avatarFull)\n";
     }
     else
     {
@@ -247,7 +247,7 @@ function jfb_process_login()
         update_user_meta($user_login_id, 'facebook_avatar_full', '');
         $jfb_log .= "FB: User does not have a profile picture; clearing cached avatar (if present).\n";
     }
-    
+
     //Log them in
     $rememberme = apply_filters('wpfb_rememberme', isset($_POST['rememberme'])&&$_POST['rememberme']);
     wp_set_auth_cookie( $user_login_id, $rememberme );
@@ -283,7 +283,7 @@ function jfb_process_login()
             <title>Logging In...</title>
         </head>
         <body>
-            <?php $jfb_log .= "\n---REQUEST:---\n" . print_r($_REQUEST, true); ?> 
+            <?php $jfb_log .= "\n---REQUEST:---\n" . print_r($_REQUEST, true); ?>
             <?php echo "<pre>".$jfb_log."</pre>" ?>
             <?php echo '<a href="'.$redirectTo.'">Continue</a>'?>
         </body>

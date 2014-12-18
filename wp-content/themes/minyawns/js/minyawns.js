@@ -4,12 +4,375 @@
 
 
 jQuery("#signinlink").click(function() {
-    jQuery('#myModal').modal('hide')
+   /* commented on 19jun2014 jQuery('#myModal').modal('hide')
     jQuery('#mylogin').modal('show')
+    */
+    window.location = siteurl+"/wp-login.php";
 });
 
 jQuery(document).ready(function($) {
 
+
+     $(document.body).on('change', '#lst_sitecity', function() {
+
+        if($("#lst_sitecity").val() =="Seattle"){
+
+            if(siteurl.indexOf("fresno") > -1)
+                window.location = seattle_url;
+        }
+        else{
+
+            if(siteurl.indexOf("fresno") <= -1)
+                window.location = fresno_url ;
+        }
+
+        var redirect_urls = get_fresno_seattle_urls();
+
+        console.log('redirect urls');
+        console.log(redirect_urls);
+
+    })
+
+    /*   Functions to set and get cookies */
+
+    function setCookie(cname,cvalue,exdays){
+        var d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        //document.cookie = cname+"="+cvalue+"; "+expires;
+        document.cookie = cname+"="+cvalue+"; "+expires+" ; path=/";
+    }
+
+    function getCookie(cname){
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+
+
+
+    /*function to check & set cookie minyawns_city */
+    function checkCookie(){
+
+
+        modal_loaded = false;
+        var city =getCookie("minyawns_visitor_city");
+
+        if((typeof city === 'undefined')|| (city==="") ){
+                  setTimeout(function(){
+
+                    $('#chossecity').modal('show');
+
+                }, 1000);
+
+
+        }
+        else{
+            redirect_visitor_based_on_city_select(city,modal_loaded)
+
+         }
+
+    }
+
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+    }
+
+    var citychk = getURLParameter('citychk');
+    var newUrlCity = getURLParameter('city');
+
+ /* minyawns city selection pop up*/
+      if(  (citychk === null) ||  (newUrlCity === null) || (parseInt(citychk) !=0) || (newUrlCity==="") ) {
+        checkCookie() ;  //check and set minyawns_visitor_city cookie
+     }else{
+
+          expiry_days =  365  ; //set to 1 years
+
+          setCookie("minyawns_visitor_city",newUrlCity,expiry_days);
+      }
+
+
+
+
+
+    function get_fresno_seattle_urls(){
+
+        var site_protocol = window.location.protocol;
+        var site_host =  window.location.host;
+        var site_pathname = window.location.pathname;
+
+        if(site_host.indexOf("fresno") > -1){
+            var fresno_host =  site_host;
+            var seattle_host = site_host.replace("fresno.", "");
+
+        }
+
+        else if(site_host.indexOf("fresno") <= -1){
+            if(site_host.indexOf("www") <= -1){
+                var fresno_host = "fresno."+site_host;
+                var seattle_host = site_host;
+            }
+            else{
+                var fresno_host = site_host.replace("www.", "www.fresno.");
+                var seattle_host = site_host ;
+            }
+        }
+        var site_url = new Array();
+
+        site_url['seattle_url'] = site_protocol+"//"+seattle_host+site_pathname;
+        site_url['fresno_url'] = site_protocol+"//"+fresno_host+site_pathname;
+
+        return site_url;
+    }
+
+
+    function redirect_visitor_based_on_city_select(city,modal_loaded){
+
+        var site_protocol = window.location.protocol;
+        var site_host =  window.location.host;
+        var site_pathname = window.location.pathname;
+
+
+
+        console.log(window.location.protocol)
+        console.log(window.location.host)
+        console.log(window.location.pathname)
+
+        if(city == "seattle"){
+
+            if(modal_loaded == true){
+                $('#chossecity').modal('hide');
+            }
+
+            //site_host = "fresno.localhost";
+
+            if(site_host.indexOf("fresno") > -1){
+
+                var site_host = site_host.replace("fresno.", "");
+
+                redirect_url= site_protocol+"//"+site_host+site_pathname;
+
+                window.location = redirect_url;
+            }
+
+
+        }
+        else{
+
+
+            if(modal_loaded == true){
+                $('#chossecity').modal('hide');
+            }
+           // site_host = "www.minyawns.ajency.in";
+            //alert(cur_site_url.indexOf("fresno"))
+            if(site_host.indexOf("fresno") <= -1){
+                if(site_host.indexOf("www") <= -1){
+                    var site_host = "fresno."+site_host;
+                }
+                else{
+                    var site_host = site_host.replace("www.", "www.fresno.");
+                }
+
+
+                redirect_url= site_protocol+"//"+site_host+site_pathname;
+
+
+                window.location = redirect_url;
+
+
+            }
+
+        }
+
+    }
+
+
+    $(document.body).on('click', '.select__city', function() { 
+
+        var cur_site_url = document.URL ;
+
+        var selected_city = $(this).attr('city')
+
+        expiry_days =  365  ; //set to 1 years
+
+        setCookie("minyawns_visitor_city",selected_city,expiry_days);
+
+
+        var modal_loaded = true ;
+        redirect_visitor_based_on_city_select(selected_city,modal_loaded);
+
+
+    })
+
+
+
+	
+	
+//Braintree payment form
+ $(document.body).on('click', '#paypal_pay', function() { 
+	
+	
+	$('.payment_msg').html('').hide();
+	 $("#submit").removeAttr("disabled");
+	 $('.payformdiv').find('input:text').val('');    
+	 //$('.payformdiv').find('input:hidden').val('');  
+	 
+	 
+	if($('#paypal_form').length>0){
+		
+		$('#admin_submit').click(function(){
+			//alert('admion save');
+			 $('#hdn_markaspaid').val('1');
+			 $('#paypal_form').submit();
+			
+			
+		})
+			
+			
+		
+		 
+		var ajax_submit = function (e) {
+			//alert('ajax submit')
+			
+		      form = $('#paypal_form');
+		      e.preventDefault();
+		      $("#submit").attr("disabled", "disabled");
+		    /*  $.post('braintree_payments', form.serialize(), function (data) {
+		        form.parent().replaceWith(data);
+		      });
+		      
+		      */
+		      var target_ = $(e.target);
+		      $(".submit_loader").show();
+		      $.post(ajaxurl, {
+	            action: 'braintree_payments',
+	            data: form.serializeArray(),
+	             
+	        },
+	                function(response) {
+	        			$(".submit_loader").hide();
+	        	 		//form.parent().replaceWith(data);
+	        				
+	        				target_.find('.row-fluid').find('.payment_msg').show().html('');
+	        				
+	        				if(response.success==true){
+	        					target_.find('.row-fluid').find('.payment_msg')
+	        										.addClass("payment_success").removeClass("alert")
+	        										.removeClass("payment_error");
+	        					
+	        					target_.find('.row-fluid').find('.payment_msg').html('<i class="icon-ok"></i> &nbsp; ');
+	        					
+	        					target_.find('.payformdiv').html('');
+	        					target_.find('.row-fluid').find('.payment_msg').append(response.msg)
+	        					setTimeout(function(){ location.reload();}, 3000);
+	        				}
+	        				else{
+	        					
+	        					target_.find('.row-fluid').find('.payment_msg')
+								.removeClass("payment_success").addClass("alert")
+								.addClass("payment_error");
+	        					
+	        					 
+	        					target_.find('.row-fluid').find('.payment_msg').append(response.msg)
+	        					
+	        					
+	        				}
+	        				
+	        				
+	        			    
+	        				 
+	        				/*if(response.error == false){
+	        					
+	        				}*/
+	        	 		console.log(target_);
+	        	 		console.log('response');
+	        	 		console.log(response)
+	        	 					
+	                     
+	                })
+
+
+		      
+		    }
+		    var braintree = Braintree.create('MIIBCgKCAQEAyL76cIAt5S6/q8WIhJUXwVnjoQWeYk+KmGF/GM0xJdZD+XeZNoeqUSSz0J0D77lQN6uOhCOSI9IRpmWL+Z4OVNz6KxuyHWxm8z04JvrGutNpNKTHg06KhiVoINt70gzgOjTqk9RqNnrmGo8BMZ4bY52o4rMzaCXhkT/syn4ZDQ8jZT5eQ+WZsbRa4e+q864VJwrOWQrdFNHH5RvyVe5Mq7yy+T1NmCHAfaKGmBXKB8Lf9htwUKB+R2oniUjDUK27+eY8M+g4EeqNCi3aOOcttiT1Pvpa2HOJQbmXZsjXSqEd7P7cwAMxhbWGXukIlgRE7Oc/GGO+fo356rNB4ihlgQIDAQAB');
+		    braintree.onSubmitEncryptForm('paypal_form', ajax_submit);	
+			
+	}
+	
+})	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+
+//	The menu on the left
+			jQuery(function() {
+				jQuery('#menuleft').mmenu();
+				
+			});
+
+
+			//	The menu on the right
+			jQuery('#menuright').mmenu({
+position: "right"
+});
+/*$('body').on('click', '[data-toggle=collapse-next]', function (e) {
+    // Try to close all of the collapse areas first
+    var parent_id = $(this).data('parent');*/
+    
+	/*$.each($(parent_id + ' .accordion-body'),function(){
+		
+		if($(this).hasClass('in'))
+			$(this).collapse('hide');
+	
+	});*/
+    // ...then open just the one we want
+   /* var $target = $(this).closest('.panel').find('.accordion-body');
+    
+	if(!$target.hasClass('in'))
+		$(this).text('Hide Information');
+	else	
+		$(this).text('Show Information');
+	
+	$target.collapse('toggle');
+});	*/
+//$('body').on('click', '[data-toggle=collapse-next]', function (e) {
+ $(document.body).on('click', '[data-toggle=collapse-next]', function(e) { 
+	
+    // Try to close all of the collapse areas first
+    var parent_id = $(this).data('parent');
+   // $(parent_id+' .accordion-body').collapse('hide');
+
+    // ...then open just the one we want
+    var $target = $(this).parents('._li').find('.accordion-body');
+   
+    var texthtml;
+   // alert("toggle");
+    
+    
+   if($(e.target).closest('.status').find('.accordion-toggle').html() === 'Hide Information'){
+	   texthtml='Show More Information';
+	   $(e.target).parent().closest('.job-closed').find('.jobs-rating').hide('350') ;
+   }       
+   else{
+       texthtml="Hide Information";
+       $(e.target).parent().closest('.job-closed').find('.jobs-rating').show('350') ;
+   }
+   
+    $target.collapse('toggle');
+    $(e.target).closest('.status').find('.accordion-toggle').text(texthtml);
+});	
 
     if ($(window).width() < 800) {
 
@@ -26,6 +389,16 @@ jQuery(document).ready(function($) {
         })(jQuery);
 
 // do stuff
+
+//$('body').on('click', '[data-toggle=collapse-next]', function (e) {
+//    // Try to close all of the collapse areas first
+//    var parent_id = $(this).data('parent');
+//    $(parent_id+' .accordion-body').collapse('hide');
+//
+//    // ...then open just the one we want
+//    var $target = $(this).parents('.panel').find('.accordion-body');
+//    $target.collapse('toggle');
+//});	
     }
 
     $("#select3").fcbkcomplete({
@@ -40,9 +413,8 @@ jQuery(document).ready(function($) {
     });
 
     var no_of_minyawns = 0;
-
-    $(".jumper").on("click", function(e) {
-
+ 
+$(document.body).on('click', '.jumper', function(e) { 
         e.preventDefault();
 
         $("body, html").animate({
@@ -228,13 +600,18 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         //$('#change-avatar').click();
     });
+
+
+var profuserid = $('#photoimg').attr('data-user');
+
     $('#photoimg').fileupload({
-        url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar',
+        url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/change-avatar?uid='+profuserid,
         dataType: 'json',
-        done: function(e, data) {
+        done: function(data) {
+          
             /*console.log(data);
              $(".load_ajax-crop-upload").hide();
-             //$('#change-avatar-span').find('img').attr('src', data.result.image);
+             $('#change-avatar-span').find('img').attr('src', data.result.image);
              alert(data.result.image);
              $('#change-avatar').removeAttr("disabled");
              $("#uploaded-image").attr('src', data.result.image);
@@ -244,11 +621,12 @@ jQuery(document).ready(function($) {
              $("#uploaded-image").css('height', 'auto');
              
              if (data.result.image_width > 500)
-             $("#uploaded-image").css('width', 'auto');
-             
-             // window.location.reload();*/
+             $("#uploaded-image").css('width', 'auto');*/
+            // $("#myprofilepic").remove();
+          window.location.reload(true);
             $(".load_ajax-crop-upload").hide();
-            //$('#change-avatar-span').find('img').attr('src', data.result.image);
+           // $('#change-avatar-span').find('img').attr('src', data.result.image);
+//            $("#image_name").attr('src', data.result.image);
             $('#change-avatar').removeAttr("disabled");
 
 
@@ -269,7 +647,7 @@ jQuery(document).ready(function($) {
             img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
             img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
 
-            $("#uploaded-image").attr('src', data.result.image);
+           // $("#uploaded-image").attr('src', data.result.image); remove this to show tool
             $("#image_name").val(data.result.image_name);
             $("#uploaded-image").css('width', img_width);
             $("#uploaded-image").css('height', img_height);
@@ -383,7 +761,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $("#done-cropping").live('click', function() {
+    $(document.body).on('click', '#done-cropping', function() { 
         $(".load_ajax-crop-upload").show();
         $("#div_cropmsg").html("<br/>");
 
@@ -400,7 +778,7 @@ var image_name=$("#image_name").val();
             $('#myprofilepic').modal('hide')
 //            $('#change-avatar-span').find('img').attr('src', img_link);
 //            $('#logged-in').find('img').attr('src', img_link);
-            location.reload();
+            //location.reload();
             $(".load_ajax-crop-upload").hide();
             $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
 
@@ -414,8 +792,8 @@ var image_name=$("#image_name").val();
     $(function() {
         $('.switch')['bootstrapSwitch']();
     });
-    /** ANimate the profile view + edit views */
-    $('.edit-user-profile').live('click', function(e) {
+    /** ANimate the profile view + edit views */ 
+    $(document.body).on('click', '.edit-user-profile', function(e) { 
 
         e.preventDefault();
         var span1 = $('#profile-view');
@@ -467,6 +845,14 @@ var image_name=$("#image_name").val();
                 if (ele == 'user_skills2')
                     return;
 
+
+                if (ele == 'linkedin')
+                    return;
+
+                 if (ele == 'facebook_link')
+                    return;
+
+
                 if (attr[ele] == '')
                 {
                     errors.push({field: ele, msg: 'Please enter ' + ele});
@@ -482,6 +868,8 @@ var image_name=$("#image_name").val();
         }
 
     });
+
+
     $('a#update-profile-info').click(function(e) {
 //alert(validateURL("asdasd"));
         e.preventDefault();
@@ -498,11 +886,9 @@ var image_name=$("#image_name").val();
             _.each(error, function(ele, index) {
                 var msg = ucfirst(ele.msg);
 
-                if (ele.field == "linkedin") {
-                    if (validateURL($("#linkedin").val()) === false) {
-                        $('#linkedin').parent().append('<span class="form-error">Please enter a valid url</span>');
-                        return false;
-                    }
+
+                
+                    
 
                     if (ele.field == "company_website") {
                         if (validateURL($("#company_website").val()) === false) {
@@ -511,7 +897,7 @@ var image_name=$("#image_name").val();
                         }
                     }
 
-                }
+              
 
                 var msg_new = msg.replace('_', ' ');
 
@@ -595,7 +981,7 @@ var image_name=$("#image_name").val();
      *  LOADs a new link now
      * 
      */
-//    $("#add-job-button,#new-job,#create_my_jobs").live('click', function(e) {
+//    $("#add-job-button,#new-job,#create_my_jobs").on('click', function(e) {
 //
 //load_add_job_form(e);
 //        //jQuery("#parent_item").html("My Jobs");
@@ -640,6 +1026,7 @@ var image_name=$("#image_name").val();
         $('#job-form').find('span.form-error').remove();
         //attach it to global window so we can use it later to update the main profile view
         window.job = new Job();
+       
         window.job.bind('invalid', function(model, error, options) {
 
             _.each(error, function(ele, index) {
@@ -783,11 +1170,11 @@ var image_name=$("#image_name").val();
                     var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
                     if ($("#tab_identifier").val() === '1') {
-                        $("#accordion24").append(html);
+                        $("#accordion24").append(html); 
                     }
                     else {
 
-                        $("#accordion24").append(html);
+                        $("#accordion24").append(html); 
                     }
 
                 });
@@ -800,7 +1187,7 @@ var image_name=$("#image_name").val();
     });
     /*############POP UP############*/
     /*Function to etrieve password */
-    jQuery("#user-submit").live("click", function() {
+    $(document.body).on('click', '#user-submit', function() { 
         jQuery('#frm_forgotpassword').submit();
     })
 
@@ -843,7 +1230,7 @@ var image_name=$("#image_name").val();
 
 
     /* forgotpass link */
-    jQuery("#btn_forgotpass").live("click", function() {
+    jQuery(document.body).on('click', '#btn_forgotpass', function() {  
         jQuery("#div_forgotpass").toggle();
         jQuery("#div_msgforgotpass").html("");
     })
@@ -875,12 +1262,20 @@ var image_name=$("#image_name").val();
     });
     /* end reset pasword validation */
 
-
-
+    /*trigger login lick on no acess login option click*/
+ jQuery(document.body).on('click', '#btn__login_oaccess', function() { 
+        jQuery("#btn__login").trigger('click');
+   });
+ jQuery("#link__employerregister").on("click", function() {
+        jQuery("#link_employerregister").trigger('click');
+   });
+  jQuery("#link__minyawnregister").on("click", function() {
+        jQuery("#link_minyawnregister").trigger('click');
+   });
     /* POPUP LOGIN */
 
     //hide forget password section on login pop up link click
-    jQuery("#btn__login,#btn__loginpop").live("click", function() {
+    jQuery(document.body).on('click', '#btn__login,#btn__loginpop', function() {  
         jQuery("#div_forgotpass").hide();
         jQuery("#div_msgforgotpass").html("");
         jQuery("#user_login").val("");
@@ -892,8 +1287,9 @@ var image_name=$("#image_name").val();
     })
 
     //user login form validation and user login
-    jQuery("#btn_login").live("click", function() {
+    jQuery(document.body).on('click', '#btn_login', function() {   
         jQuery('#frm_login').submit();
+        
     })
 
 
@@ -927,14 +1323,20 @@ var image_name=$("#image_name").val();
                                 window.location.href = jQuery("#noaccess_redirect_url").val();
                             } else {
 
-                                if (response.user_role == 'employer') {
+//                                if (response.user_role == 'employer') {
 
+                                   if(location.href.match("#my-jobs") == null){
+                                    
+                                        window.location =jQuery("#hdn_siteurl").val() + '/jobs/#browse';
+                                   }else{ 
                                     window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#my-jobs';
-
-                                } else {
-
-                                    window.location.href = jQuery("#hdn_siteurl").val() + '/jobs/#browse';
-                                }
+                                   }
+                                    
+//                                } else {
+//
+//                                    window.location = jQuery("#hdn_siteurl").val() + '/jobs/#browse';
+//                                }
+                                
                             }
                         }
                         else
@@ -951,11 +1353,13 @@ var image_name=$("#image_name").val();
 
 
     /*sign in here link*/
-    jQuery("#lnk_signin").live("click", function() {
-        jQuery("#signup_popup_close").click();
+    jQuery(document.body).on('click', '#lnk_signin', function() {   
+       /* commented on 19june2014 jQuery("#signup_popup_close").click();
         jQuery("#btn__login").click();
+        */
+        window.location = siteurl+"/wp-login.php";
     })
-    jQuery(".login-signup").live("click", function() {
+    jQuery(document.body).on('click', '.login-signup', function() {    
         $('#mylogin').modal('hide')
     })
 
@@ -984,6 +1388,10 @@ var image_name=$("#image_name").val();
         jQuery("#div_alreadyregister").html("Already a Minyawn?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
+        jQuery("#signup_fname").show()
+        jQuery("#signup_lname").show()
+        jQuery("#signup_email").show()
+        jQuery("#signup_password").show()
         jQuery("#signup_company").hide();
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
@@ -993,12 +1401,11 @@ var image_name=$("#image_name").val();
         jQuery("#signup_lname").val("");
         jQuery("#signup_email").removeClass('error');
     }
-
-    jQuery("#link_minyawnregister").live("click", function() {
+ jQuery(document.body).on('click', '#link_minyawnregister', function() {     
         setup_minionsignup_modal()
     })
 
-    jQuery("#show_minionreg").live("click", function() {
+   jQuery(document.body).on('click', '#show_minionreg', function() { 
         setup_minionsignup_modal()
 
     })
@@ -1028,6 +1435,10 @@ var image_name=$("#image_name").val();
         jQuery("#div_alreadyregister").html("Already registered at Minyawns?");
         jQuery("#signup_fname").attr("placeholder", "First Name");
         jQuery("#signup_lname").attr("placeholder", "Last Name");
+        jQuery("#signup_fname").show();
+        jQuery("#signup_lname").show();
+        jQuery("#signup_email").show();
+        jQuery("#signup_password").show();
         jQuery("#signup_company").show();
         jQuery("#div_signupmsg").html("");
         validator_signup.resetForm();
@@ -1038,19 +1449,29 @@ var image_name=$("#image_name").val();
         jQuery("#signup_email").removeClass("error");
     }
 
-    jQuery("#link_employerregister").live("click", function() {
+ jQuery(document.body).on('click', '#link_employerregister', function() {  
         setupemployersignup_modal()
     })
 
-    jQuery("#show_employerreg").live("click", function() {
+ jQuery(document.body).on('click', '#show_employerreg', function() { 
         setupemployersignup_modal()
 
     })
 
+//on enter key press trigger form submission
+$(document.body).on('keyup', '#myModal', function(e) { 
+  if (e.keyCode == 13) {
+    $("#btn_signup").trigger('click')
+  }
+});
 
-
-
-    jQuery("#btn_signup").live("click", function() {
+//on enter key press trigger form submission
+$(document.body).on('keyup', '#mylogin', function(e) {  
+  if (e.keyCode == 13) { 
+    $("#btn_login").trigger('click')
+  }
+});
+jQuery(document.body).on('click', '#btn_signup', function(e) {   
         jQuery('#frm_signup').submit();
     })
 
@@ -1097,6 +1518,7 @@ var image_name=$("#image_name").val();
                     jQuery("#signup_password").val("");
                     jQuery("#signup_fname").val("");
                     jQuery("#signup_lname").val("");
+                    window.location.href = SITEURL+'/profile/';
                 }
                 else
                 {
@@ -1109,7 +1531,7 @@ var image_name=$("#image_name").val();
     });
     /*END POPUP SIGNUP */
 
-    $('.edit-job-data').live('click', function(e) {
+$(document.body).on('click', '.edit-job-data', function(e) {   
 
         e.preventDefault();
 
@@ -1253,14 +1675,105 @@ var image_name=$("#image_name").val();
                     }
                 });
     });
-    /** Apply/UnApply code */
-    $('#apply-job-browse,#unapply-job').live('click', function(evt) {
+ 
+ 
 
+
+
+
+//Single job page apply click action 
+jQuery(document.body).on('click', '#apply-job-browse', function(evt) {
+ 
+    var _this = $(this);
+    var _action = $(this).attr('data-action');
+    var _job_id = $(this).attr('data-job-id');
+    if(_action == "apply"){
+
+        if($("#apply-job-popup").length==0){
+
+            $( "body" ).append(appy_job_popup_content(_job_id))
+
+       }
+
+       $("#apply-job-popup").modal('show'); 
+   }
+
+   evt.preventDefault();
+});
+
+
+
+
+
+//apply job popup apply click action
+  jQuery(document.body).on('click', '#apply-job-final', function(evt) {
+ 
+
+var _this = $(this);
+    var _action = $(this).attr('data-action');
+    var _job_id = $(this).attr('data-job-id');
 
         evt.preventDefault();
+       
+
+        $(this).append(' <img src="' + siteurl + '/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
+        $(".load_ajax1").show();
+        $(".load_ajax3").show();
+
+
+    $.post(ajaxurl,
+                {
+                    action: 'minyawn_job_' + _action,
+                    job_id: parseInt(_job_id)
+                },
+        function(response) {
+
+            if (window.page === '1') 
+                window.location.reload();
+
+
+            load_browse_jobs(_job_id, 'single_json');
+            $(".load_ajax1").hide();
+
+            if (response.new_action == 'unapply')
+            {
+                $(_this).removeClass('btn btn-primary').addClass('btn btn-danger').attr('id', 'unapply-job').text('Unapply');
+                $(_this).attr('data-action', 'unapply');
+            }
+
+        }, 'json');
+
+});
+
+
+
+
+
+
+
+
+ 
+    /** Apply/UnApply code */
+    jQuery(document.body).on('click', '#unapply-job', function(evt) {
+ 
+
         var _this = $(this);
         var _action = $(this).attr('data-action');
         var _job_id = $(this).attr('data-job-id');
+ 
+        if(_action == "apply"){
+            
+            if($("#apply-job-popup").length==0){
+
+                 $( "body" ).append(appy_job_popup_content())
+
+            }
+           
+            $("#apply-job-popup").modal('show'); 
+        }
+
+        evt.preventDefault();
+       
 
         $(this).append(' <img src="' + siteurl + '/wp-content/themes/minyawns/images/2.gif" width="10" height="10"/>')
         $(".load_ajax1").show();
@@ -1295,6 +1808,32 @@ var image_name=$("#image_name").val();
 
         }, 'json');
     });
+
+    function appy_job_popup_content(_job_id){
+
+        html  = '<div id="apply-job-popup" class="modal hide fade cust-modal apply-modal-dwn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+      
+        html += '<div class="modal-body cust-modal-body">'
+
+        html += '<div class="warning-content">'
+
+        html += '<img src="'+warning_image.src +'" class="modal-img">'
+
+        html += '</div>'
+         
+        html += '</div>'
+		
+		html += '<div class="popup-apply-btn-cont text-center">'
+
+        html += '<a href="#" id="apply-job-final" class="btn btn-primary" data-action="apply" data-job-id="'+_job_id+'">Apply</a>'
+
+        html += '</div>'
+      
+        html += '</div>';
+
+        return html;
+    }
+
 
     function onload_calendar()
     {
@@ -1488,10 +2027,11 @@ var image_name=$("#image_name").val();
         });
 
 
-        $('.collapse').live('show', function() {
+$(document.body).on('show', '.collapse', function() {    
             $(this).parent().find('a').addClass('open'); //add active state to button on open
         });
-        $('.collapse').live('hide', function() {
+
+$(document.body).on('hide', '.collapse', function() {     
             $(this).parent().find('a').removeClass('open'); //remove active state to button on close
         });
     }
@@ -1499,8 +2039,7 @@ var image_name=$("#image_name").val();
 
 
 
-
-    $("#show-calendar").live('click', function(e) {
+$(document.body).on('click', '#show-calendar', function(e) {  
         onload_calendar(); /*load the calendar*/
         $("#calendar-jobs").show();
         $("#show-calendar").hide();
@@ -1534,8 +2073,8 @@ var image_name=$("#image_name").val();
         return result;
     }
 
-    $(".onoffswitch").live('click', function(e) {
-
+ 
+    $(document.body).on('click', '.onoffswitch', function(e) {
 
 
 
@@ -1639,8 +2178,7 @@ var image_name=$("#image_name").val();
 //        }
 
     });
-
-    $("#hide-calendar").live('click', function(e) {
+$(document.body).on('click', '#hide-calendar', function(e) {   
         var c = 0;
         $("#calendar-jobs").hide();
 
@@ -1654,7 +2192,7 @@ var image_name=$("#image_name").val();
         });
     });
 
-    $('#confirm-hire-button').live('click', function(evt) {
+$(document.body).on('click', '#confirm-hire-button', function(evt) {    
 
         evt.preventDefault();
         var _job_id;
@@ -1714,20 +2252,22 @@ var image_name=$("#image_name").val();
 
 
 
-    $('.well-done,.terrible').live('click', function(evt) {
-
+$(document.body).on('click', '.well-done,.terrible', function(evt) { 
+//alert('.well-done,.terrible')
 
         if (evt.target.id === 'vote-up' + $(this).attr('user_id')) {
             $("#vote-up" + $(this).attr('user_id')).css("opacity", "1");
             $("#vote-down" + $(this).attr('user_id')).css("opacity", "0.4");
-            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+           // $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("action", $(evt.target).attr('action'));
             $("#review" + $(this).attr('user_id')).attr("vote", "1");
             //$("#review-text" + $(this).attr('user_id')).removeClass();
             // $("#review-text" + $(this).attr('user_id')).addClass("welldone-textarea");
         } else {
             $("#vote-down" + $(this).attr('user_id')).css("opacity", "1");
             $("#vote-up" + $(this).attr('user_id')).css("opacity", "0.4");
-            $("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            //$("#review" + $(this).attr('user_id')).attr("action", evt.target.id);
+            $("#review" + $(this).attr('user_id')).attr("action", $(evt.target).attr('action'));
             $("#review" + $(this).attr('user_id')).attr("vote", "-1");
             // $("#review-text" + $(this).attr('user_id')).removeClass();
             // $("#review-text" + $(this).attr('user_id')).addClass("terrible-textarea");
@@ -1739,7 +2279,7 @@ var image_name=$("#image_name").val();
 
 //
 ////$("#review"+$(this).attr('user_id')).attr("action",)
-////$('.rate-positive,.rate-negative').live('click', function(evt) {
+////$('.rate-positive,.rate-negative').on('click', function(evt) {
 //
 ////        if ($(this).attr('is_rated') != "0")
 ////            return false;
@@ -1750,7 +2290,10 @@ var image_name=$("#image_name").val();
 
     });
 
-    $(".rate-button").live('click', function() {
+$(document.body).on('click', '.rate-button', function() {  
+
+
+      //  alert('rate button')
 
         var action = $(".rate-button").attr("action");
 
@@ -1766,9 +2309,7 @@ var image_name=$("#image_name").val();
         var _action = $(this).attr('action');
         var _emp_id = $(this).attr('emp_id');
         var _desc = $("#review-text" + _user_id).val();
-
-
-
+       // $('#thumbnail-22').find('.rating').find("#thumbs_up_22").contents(':not(".icon-thumbs-up")').remove()
 
         $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote',
                 {
@@ -1784,7 +2325,23 @@ var image_name=$("#image_name").val();
         function(response) {
 
             $(".rating").find('a').prop('disabled', false);
-            if (response.action === "vote-up"+ _user_id) {
+           // if (response.action === "vote-up"+ _user_id) {
+
+
+
+            $('#thumbnail-'+response.user_id).find('.rating').find("#thumbs_up_"+response.user_id).find('.thumbs_up_counts').html(response.rating);
+
+            $('#thumbnail-'+response.user_id).find('.rating').find("#thumbs_down_"+response.user_id).find('.thumbs_down_counts').html(response.rating_negative);
+
+            //$('.item').contents(':not(img)').remove();
+         //     $('#thumbnail-'+response.user_id).find('.rating').find("#thumbs_up_"+response.user_id).contents(':not(".icon-thumbs-up")').remove();
+            /*  $('#thumbnail-22').find('.rating').find("#thumbs_up_22").contents().filter(function(){
+             return (this.nodeType == 3);
+             }).remove();
+             */
+
+            if (response.action === "vote-up") {
+
                 $("#thumbs_up_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
                 }).remove();
@@ -1797,7 +2354,8 @@ var image_name=$("#image_name").val();
                 $("#"+ _user_id).append("<div class='up-btn review_popover'><div class='comment-box'> <i class='icon-thumbs-up weldone'></i>"+_desc+"<div></div>");
             
             }
-            if (response.action === "vote-down"+ _user_id) {
+            //if (response.action === "vote-down"+ _user_id) {
+            if (response.action === "vote-down") {
 
                 $("#thumbs_down_" + _user_id).contents().filter(function() {
                     return this.nodeType !== 1;
@@ -1816,7 +2374,7 @@ var image_name=$("#image_name").val();
 
     });
 
-    $("#edit-selection").live('click', function(evt) {
+$(document.body).on('click', '#edit-selection', function(evt) {   
         $("#edit-selection").hide();
         $("#confirm-hire").show();
 
@@ -1869,11 +2427,11 @@ function ucfirst(str) {
     $('.carousel').carousel({interval: 1000, pause: 'hover'});
 })(jQuery);
 
-jQuery('.collapse').live('show', function() {
+jQuery(document.body).on('show', '.collapse', function() {  
     jQuery(this).parent().find('a').addClass('open'); //add active state to button on open
 });
 
-jQuery('.collapse').live('hide', function() {
+jQuery(document.body).on('hide', '.collapse', function() {  
     jQuery(this).parent().find('a').removeClass('open'); //remove active state to button on close
 });
 
@@ -1901,16 +2459,15 @@ function load_profile(id)
     var url = siteurl + "/profile/" + id;
     window.open(url, '_blank');
 }
-
-$('.collapse').live('show', function() {
+$(document.body).on('show', '.collapse', function() { 
     $(this).parent().find('.data-title').addClass('open'); //add active state to button on open
 });
 
-$('.collapse').live('hide', function() {
+$(document.body).on('hide', '.collapse', function() { 
     $(this).parent().find('.data-title').removeClass('open'); //remove active state to button on close
 });
 
-jQuery("#delete_jobs_link").live("click", function() {
+jQuery(document.body).on('click', '#delete_jobs_link', function() {  
     
     $("#myModal1").show();
     
@@ -1923,14 +2480,13 @@ jQuery("#delete_jobs_link").live("click", function() {
 //            });
 
 });
-
-jQuery("#delete_job").live("click",function(){
+jQuery(document.body).on('click', '#delete_job', function() {  
        $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/delete-job',
             {
                 job_id: jQuery("#delete_job").attr("job-id"),
             },
             function(response) {
-                window.location.href = siteurl + '/jobs';
+                window.location.href = siteurl + '/jobs/#browse';
             }); 
     
 });
@@ -1956,8 +2512,7 @@ function paypal_form_values(no_of_minyawns) {
 
 }
 
-
-jQuery("#invite-minion").live("click", function() {
+jQuery(document).on('click', '#invite-minion', function() { 
 jQuery("#invite_to").empty();
  jQuery("#miniondir").modal('show');
    
@@ -1967,8 +2522,8 @@ jQuery("#invite_to").empty();
     window.fetchi = new Fetchuserinvites;
     window.fetchi.fetch({
         data: {
-            user_id: $(this).attr("minion-id"),
-            employer_id: $(this).attr("employer-id")
+            user_id: jQuery(this).attr("minion-id"),
+            employer_id: jQuery(this).attr("employer-id")
         },
         success: function(collection, response) {
           
@@ -2015,8 +2570,58 @@ function button_for_invite(model){
     return button_string;
     
 }
+ 
+$(document).on('click', '.show-minyawn', function(e) {   
+    if(jQuery(e.target).attr('href') || jQuery(e.target).parent().attr('href')  ) {
+    return;
+  }
+       window.open(SITEURL+'/profile/'+jQuery(e.target).closest( "li").attr('item-id')+'/','_target') 
+    
+}); 
+
+function toProperCase(str) { 
+        var noCaps = ['of','a','the','and','an','am','or','nor','but','is','if','then', 
+                      'else','when','at','from','by','on','off','for','in','out','to','into','with'];
+        return str.replace(/\w\S*/g, function(txt, offset){
+            if(offset != 0 && noCaps.indexOf(txt.toLowerCase()) != -1){
+                return txt.toLowerCase();    
+            }
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+ function check_capability (user_cap) { 
+ 
+        ret_val = false; 
+        jQuery.each(USER.all_caps, function(i, val) {
+             
+ 
+            if( user_cap==val)
+            {
+ 
+                capability_name =  val.replace(/_/g,' ');
+                capability_name =  toProperCase(capability_name);
+                ret_val = capability_name.replace(/Ph /g,'');
+ 
+                return false;
+
+            }
+
+        }); 
+        return ret_val;
+    }
 
 
+    //isotope
+function set_isotope(){
+            jQuery('.isotope').imagesLoaded( function(){
+jQuery('.isotope').isotope({
+itemSelector: '.item',
+masonry: {
+columnWidth: '.grid-sizer'
+}
+});
+});
+}
 //jQuery(document).ready(function() {
 //   	jQuery('#example').popover(
 //				{
@@ -2027,3 +2632,12 @@ function button_for_invite(model){
 //				}
 //			);
 //		});
+ 
+ 
+
+
+//fancybox
+jQuery(function($) {
+$(".fancybox").fancybox();
+});
+ 

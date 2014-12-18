@@ -220,7 +220,7 @@ function jfb_output_facebook_callback($redirectTo=0, $callbackName=0)
      //which runs in the "init" action and then immediately redirects elsewhere.  We could basically submit this
      //form to anywhere and it would still work; I just use wp_login_url for simplicity (and because WP will
      //automatically guarantee that it's https if ssl logins are required).      
-     ?><form id="wp-fb-ac-fm" name="<?php echo $callbackName ?>_form" method="post" action="<?php echo wp_login_url();?>" >
+     ?><form id="wp-fb-ac-fm" name="<?php echo $callbackName ?>_form" method="post" action="<?php echo site_url();?>" >
           <input type="hidden" name="redirectTo" value="<?php echo $redirectTo?>" />
           <input type="hidden" name="access_token" id="jfb_access_token" value="0" />
           <input type="hidden" name="fbuid" id="jfb_fbuid" value="0" />

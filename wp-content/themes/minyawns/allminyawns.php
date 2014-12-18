@@ -10,7 +10,7 @@ get_header(); ?>
 
             <p id="bread-crumbs-id">
 
-                <a href="<?php echo site_url() ?>/jobs/" class="view loaded">View all Minions</a>
+                <a href="<?php echo site_url() ?>/jobs/" class="view loaded">View all Minyawns</a>
              
             </p>
         </div>

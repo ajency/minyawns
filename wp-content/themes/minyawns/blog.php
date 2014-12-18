@@ -6,8 +6,8 @@ get_header();
 
 ?>
 <div class="blog-bg">
-<h3><img src="<?php echo get_template_directory_uri(); ?>/images/big-minyawns.png"/> Blog</h3>
-<?php if (function_exists('qt_custom_breadcrumbs')) qt_custom_breadcrumbs(); ?>
+<!-- <h3><img src="<?php echo get_template_directory_uri(); ?>/images/big-minyawns.png"/> Blog</h3> 
+<?php if (function_exists('qt_custom_breadcrumbs')) qt_custom_breadcrumbs(); ?>-->
 </div>
 <div class="container bg-white ">
 		<div class="row-fluid blog-container">
@@ -15,7 +15,7 @@ get_header();
 				<div class="span8 blog-data">
 			<?php // Display blog posts on any page @ http://m0n.co/l
 		$temp = $wp_query; $wp_query= null;
-		$wp_query = new WP_Query(); $wp_query->query('showposts=5' . '&paged='.$paged);
+		$wp_query = new WP_Query(); $wp_query->query('showposts=100' . '&paged='.$paged);
 		while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
 				  <div class="post-item">
     <div class="post-info">

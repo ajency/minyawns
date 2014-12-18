@@ -344,7 +344,7 @@ $(".inline li").removeClass("selected");
                                             </div>
                                         </div>
                                         <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
-                                            <input id="job_start_time" type="text" class="timepicker-default input-small" name="job_start_time" value="<?php echo $minyawn_job->get_job_start_time()  ?>">
+                                            <input id="job_start_time" type="text" readonly class="timepicker-default input-small" name="job_start_time" value="<?php echo $minyawn_job->get_job_start_time()  ?>">
                                             <span class="add-on">
                                                 <i class="icon-time"></i>
                                             </span>
@@ -361,7 +361,7 @@ $(".inline li").removeClass("selected");
 
                                         </div>
                                         <div class="input-append bootstrap-timepicker controls" style=" margin-left: 10px; ">
-                                            <input id="job_end_time" type="text" class="timepicker-default input-small" name="job_end_time" value="<?php echo $minyawn_job->get_job_end_time()  ?>">
+                                            <input id="job_end_time" type="text" readonly class="timepicker-default input-small" name="job_end_time" value="<?php echo $minyawn_job->get_job_end_time()  ?>">
                                             <span class="add-on">
                                                 <i class="icon-time"></i>
                                             </span>
@@ -377,16 +377,30 @@ $(".inline li").removeClass("selected");
 
 
                                         <div class="control-group small">
-                                            <label class="control-label" for="inputtask">Total Price Per Minyawn</label>
+                                            <div class="span6">
+                                                <label class="control-label" for="inputtask">Total Price Per Minyawn</label>
 
-                                            <div class="controls small">
-                                                <div class="input-prepend">
-                                                    <span class="add-on"><i class="icon-dollar"></i></span>
-                                                    <input class="span2 sm-input" id="job_wages" type="text" value="<?php echo $minyawn_job->get_job_wages()?>" name="job_wages" >
-                                                    <span class="help-block">Eg: $120.00</span>
+                                                <div class="controls small">
+                                                    <div class="input-prepend">
+                                                        <span class="add-on"><i class="icon-dollar"></i></span>
+                                                        <input class="span2 sm-input" id="job_wages" type="text" value="<?php echo $minyawn_job->get_job_wages()?>" name="job_wages" >
+                                                        <span class="help-block">Eg: $120.00</span>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="span6">
 
+                                                <label class="control-label " for="inputtask">Wages the Minyawns will Earn</label>
+
+
+                                                <div class="controls small">
+                                                    <div class="input-prepend">
+                                                        <span class="add-on"><i class="icon-dollar"></i></span>
+                                                        <input class="span2 sm-input  readonly-color" id="job_wages_actual" type="text" readonly value="" name="job_wages_actual" >
+                                                        <span class="help-block">Actual Price shown to Minyawns,<br> due to Service fee</span>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                         </div>
                                         <div class="control-group small">
@@ -454,7 +468,7 @@ $(".inline li").removeClass("selected");
                                         <hr>
                                         <ul>
                                             <li> Need help, I am moving out, require some extra hands.</li>
-                                            <li>Need a minion to clean my house</li>
+                                            <li>Need a minyawn to clean my house</li>
                                             <li>Need more likes for my Facebook page</li>
                                         </ul>
                                         <br>
@@ -477,13 +491,16 @@ $(".inline li").removeClass("selected");
 
                        <div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
 			<div class="row-fluid">
-                            <div class="span3"><br><img src="<?php echo get_template_directory_uri(); ?>/images/404error.png"/></div>
+                            <div class="span3"><br><img src="<?php echo get_template_directory_uri(); ?>/images/403error.jpg"/></div>
 				<div class="span9">	<h4 >No Access</h4>
-		<hr>
-		Sorry, you aren\'t allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we\'ll get back to you as soon as possible. 
+		<hr> 
+		Sorry, you aren't allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we'll get back to you as soon as possible. 
+ 
 		<br>
-		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="<?php echo site_url()?>/wp-login.php"   data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
-		<div class="clear"></div></div>
+		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="btn__login_oaccess" class="btn btn-large  btn-success default-btn"  >Login</a>
+        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__minyawnregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >SignUp as Minyawn</a>
+		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__employerregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >SignUp as Business</a>
+        <div class="clear"></div></div>
 			</div>
 		</div>
                         <?php } ?>
@@ -500,7 +517,7 @@ $(".inline li").removeClass("selected");
         </div>
 
     </div>
-    <div id="examplejob" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="examplejob" class="modal hide fade modal-dwn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h5 id="myModalLabel">Sample Job Popup</h5>
@@ -544,7 +561,7 @@ $(".inline li").removeClass("selected");
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="inputPassword">Total Price Per Minion:</label>
+                    <label class="control-label" for="inputPassword">Total Price Per Minyawn:</label>
                     <div class="controls">
                         $12.10
                     </div>
