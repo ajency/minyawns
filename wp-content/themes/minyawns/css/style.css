@@ -1,4 +1,4 @@
-	
+
 .bb  .modal-body{
 	text-align:center !important;
 }
@@ -1475,12 +1475,14 @@ font-size: 16px;
 }
 .popover-box{
     position: absolute;
-  bottom: 83px;
+  	top:0;
     background: #777272;
-    width: 100%;
+    width: 96%;
     padding: 7px;
     z-index: 99999;
-    
+   -webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;    
+	box-sizing: border-box;     
 }
 .popover-box textarea{
      width: 100% !important;
@@ -3069,6 +3071,9 @@ html body .minyawns-grid1 .thumbspan.card{
 .custom-p{
 	text-align:left;
 	margin-top:6px;
+	overflow: hidden;
+	word-wrap:break-word;
+	padding:0 2px;
 }
  
 

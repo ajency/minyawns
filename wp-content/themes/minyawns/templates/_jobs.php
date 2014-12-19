@@ -637,7 +637,7 @@ $current_user_role =  trim($user_role);
     <div id="b" class=" m3">
 
     <div class="caption m4" >
-    <div>
+    <div class="comment-div">
 	<div class="row-fluid">
 	<div class="span4">
   

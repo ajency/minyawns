@@ -2291,7 +2291,7 @@ $(document.body).on('click', '.well-done,.terrible', function(evt) {
     });
 
 $(document.body).on('click', '.rate-button', function() {  
-
+    
 
       //  alert('rate button')
 
@@ -2351,7 +2351,7 @@ $(document.body).on('click', '.rate-button', function() {
                // $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-success' href='#like' is_rated='0' employer-vote='1'>Well Done</a>");
                 // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
                $("#"+_user_id).find(".dwn-btn").remove();
-                $("#"+ _user_id).append("<div class='up-btn review_popover'><div class='comment-box'> <i class='icon-thumbs-up weldone'></i>"+_desc+"<div></div>");
+                $("#"+ _user_id + " .comment-div ").append("<div class='up-btn review_popover'><div class='comment-box'> <i class='icon-thumbs-up weldone'></i><p class='custom-p'>"+_desc+"</p><div></div>");
             
             }
             //if (response.action === "vote-down"+ _user_id) {
@@ -2365,7 +2365,7 @@ $(document.body).on('click', '.rate-button', function() {
                // $("#thumbs_down_" + _user_id).append(response.rating);
                // $("#rating_container" + _user_id).empty().append("<a id='vote-upuserid' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' employer-vote='1'>Terrible</a>");
                 // var desc="<div style='top: 486px;left: -17px;display: block;position: absolute;' class='popover fade bottom in'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'><div class='head'>Lorem ipsum dolor sit amet, adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</div></div></div>";
-                 $("#"+ _user_id).append("<div class='dwn-btn review_popover'><div class='comment-box'> <i class='icon-thumbs-down terrible'></i>"+_desc+"<div></div>");
+                 $("#"+ _user_id + " .comment-div").append("<div class='dwn-btn review_popover'><div class='comment-box'> <i class='icon-thumbs-down terrible'></i><p class='custom-p'>"+_desc+"</p><div></div>");
 
             }
             //$("#thumbnail-" + _user_id).css("height", '480px');
