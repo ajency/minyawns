@@ -635,7 +635,13 @@ $current_user_role =  trim($user_role);
 
 
     <div id="b" class=" m3">
-
+	<div class="row">
+		<div class="span12">
+			<% if(result.is_invited == 4){%>
+     <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
+     <%}%>
+		</div>
+	</div>
     <div class="caption m4" >
     <div class="comment-div">
 	<div class="row-fluid">
