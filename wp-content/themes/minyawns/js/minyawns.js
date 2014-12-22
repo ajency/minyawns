@@ -2107,7 +2107,7 @@ $(document.body).on('click', '#show-calendar', function(e) {
         } else {
             //$("#hidden_selected_min").append(1);
 
-            $("#" + $(this).attr('id')).find(':checkbox').attr("checked", "checked");
+            $("#" + $(this).attr('id')).find(':checkbox').prop("checked", "checked");
             $("." + $(this).attr('id')).addClass("Select-minyawns");
 
             $("#paypal_pay").show();
