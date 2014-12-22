@@ -154,7 +154,7 @@
                                        Tags:<br> 
                                       <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%></li>
                                       <% } else {%>
-                                      No skills added yet!
+                                      
                                       <%}%>
                                       </div>
 									  </div><!--span12 ends-->
@@ -173,7 +173,7 @@
                                        Tags:<br> 
                                       <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%></li>
                                       <% } else {%>
-                                      No skills added yet!
+                                      
                                       <%}%>
                                       </div>-->
                                  </div><!--span8 ends-->
