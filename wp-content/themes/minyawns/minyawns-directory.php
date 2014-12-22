@@ -88,7 +88,7 @@ require 'templates/_minyawnsdir.php';
                             Minyawns who have applied to your jobs before
                         </label>
                     </div>-->
-                    <div class="alert alert-success alert-sidebar">
+                    <div class="alert alert-success alert-sidebar" id="miniyawns-verified-box">
                         <label  class="checkbox" for="checkbox-verified">
                             <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span>
                             <input type="checkbox" value="" id="checkbox-verified" >

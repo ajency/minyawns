@@ -345,7 +345,7 @@ function create_verified_array(modelTojson)
 
 
 
-jQuery(document).bind('click', '#checkbox-verified', miniyawnsVerified);
+jQuery(document).on('click', '#miniyawns-verified-box', miniyawnsVerified);
 var first = true;
 
 
