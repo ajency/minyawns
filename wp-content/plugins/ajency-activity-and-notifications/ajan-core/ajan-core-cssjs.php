@@ -33,9 +33,20 @@ add_action( 'admin_enqueue_scripts', 'ajan_core_confirmation_js' );
  * Load JS files.
  */
 function ajan_core_enqueue_js() {
+
+
+if(is_super_admin(get_current_user_id())){
+	$isadmin = 'TRUE';
+}else{
+	$isadmin = 'FALSE';
+}
+
   wp_register_script('activity-stream-module', activitynotifications()->plugin_url . "ajan-marionete-activity-stream/dist/aj-activity-stream.js", 
   					array(), ajan_get_version() );
 	
+wp_localize_script( 'activity-stream-module', 'AJANSITEURL', site_url());
+wp_localize_script( 'activity-stream-module', 'CURRENTUSER', get_current_user_id());
+wp_localize_script( 'activity-stream-module', 'ISADMIN', $isadmin);
 wp_localize_script( 'activity-stream-module', 'AJANSITEURL', site_url());
 wp_localize_script( 'activity-stream-module', 'NOAVATAR',  activitynotifications()->plugin_url . "ajan-marionete-activity-stream/img/non-avatar.jpg");
 		
