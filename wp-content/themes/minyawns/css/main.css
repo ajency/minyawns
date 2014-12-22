@@ -6997,3 +6997,11 @@ p.white {
   box-sizing: border-box;
 }
 /*minyawns rating popover ends*/
+/*edit job readonly text style starts*/
+input[disabled],
+input[readonly],
+textarea[disabled],
+textarea[readonly] {
+  color: #7b8996;
+}
+/*edit job readonly text style ends*/
