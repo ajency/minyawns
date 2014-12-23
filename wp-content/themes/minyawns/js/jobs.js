@@ -554,10 +554,11 @@ function photoUpload(user_id){
   
    jQuery("#photos_title").show()
   var  newItems = jQuery('<div class="item" author= "'+model.author+'"><a class="fancybox" rel="group" href="'+model.large_url+'"  ><img author= "'+model.author+'" src="'+model.url+'" /></a>');
-  if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
+ 
+/* if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
 
     newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
-  }
+  }*/
   
  //set_isotope()
 //jQuery('.isotope').append(  newItems ).isotope( 'addItems',  newItems );
@@ -565,6 +566,16 @@ function photoUpload(user_id){
 
 var $container = jQuery('.isotope').isotope();
 $container.append( newItems );
+
+
+jQuery('img').load(function() {
+    if(model.author==USER.id || check_capability('manage_options') ||(model.job_id !=0 && model.job_author==USER.id) ){
+
+        newItems.prepend('<i class="icon-remove item-remove" photo="'+model.id+'"></i>');
+    }
+});
+
+
 
  }
 
