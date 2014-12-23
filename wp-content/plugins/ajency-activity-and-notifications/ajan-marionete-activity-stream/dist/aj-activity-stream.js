@@ -334,13 +334,18 @@ var __hasProp = {}.hasOwnProperty,
 
       data.activity_moment = moment(localdt).fromNow();
 
-      
+
+console.log(data);
 
 if(ISADMIN == 'TRUE'){
 data.delbtn = 'Delete';
 data.delseperate = '|';
+}else  if (USERPOSTS.indexOf(data.item_id) != -1) {
+data.delbtn = 'Delete';
+data.delseperate = '|';
 }else{
-if(data.user_id == CURRENTUSER){
+
+if(data.user_id == CURRENTUSER && data.type == 'activity_update'){
 data.delbtn = 'Delete';
 data.delseperate = '|';
 }else{
@@ -545,7 +550,11 @@ data.delseperate = '';
         if(ISADMIN == 'TRUE'){
           delbtn = 'Delete';
           delseperate = '|';
+        }else  if (USERPOSTS.indexOf(model.get("item_id")) != -1) {
+          delbtn = 'Delete';
+          delseperate = '|';
         }else{
+
           if(model.get("user_id") == CURRENTUSER){
             delbtn = 'Delete';
             delseperate = '|';

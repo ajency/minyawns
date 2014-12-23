@@ -41,12 +41,26 @@ if(is_super_admin(get_current_user_id())){
 	$isadmin = 'FALSE';
 }
 
+
+
+$currentpostuser = get_current_user_id();
+global $wpdb;
+$querystr = "SELECT * FROM $wpdb->posts WHERE $wpdb->posts.post_author = {$currentpostuser} AND $wpdb->posts.post_status = 'publish'";
+$newposts = $wpdb->get_results($querystr, ARRAY_A);
+$postids = array();
+ foreach ($newposts as $post){
+    $postids[] = $post['ID'];
+}
+
+
+
   wp_register_script('activity-stream-module', activitynotifications()->plugin_url . "ajan-marionete-activity-stream/dist/aj-activity-stream.js", 
   					array(), ajan_get_version() );
 	
 wp_localize_script( 'activity-stream-module', 'AJANSITEURL', site_url());
 wp_localize_script( 'activity-stream-module', 'CURRENTUSER', get_current_user_id());
 wp_localize_script( 'activity-stream-module', 'ISADMIN', $isadmin);
+wp_localize_script( 'activity-stream-module', 'USERPOSTS', json_encode($postids));
 wp_localize_script( 'activity-stream-module', 'AJANSITEURL', site_url());
 wp_localize_script( 'activity-stream-module', 'NOAVATAR',  activitynotifications()->plugin_url . "ajan-marionete-activity-stream/img/non-avatar.jpg");
 		

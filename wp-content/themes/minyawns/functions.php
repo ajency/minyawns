@@ -3301,25 +3301,23 @@ function set_date_timezone(){
 }
 
 
-/*if (date_default_timezone_get()) {
-    echo 'date_default_timezone_set: ' . date_default_timezone_get() . '<br />';
+
+
+/*$currentpostuser = get_current_user_id();
+$querystr = "
+    SELECT * 
+    FROM $wpdb->posts
+    WHERE $wpdb->posts.post_author = {$currentpostuser} 
+    AND $wpdb->posts.post_status = 'publish' 
+    ";
+global $wpdb;
+ $newposts = $wpdb->get_results($querystr, ARRAY_A);
+$postids = array();
+ foreach ($newposts as $post){
+    $postids[] = $post['ID'];
 }
 
-if (ini_get('date.timezone')) {
-    echo 'date.timezone: ' . ini_get('date.timezone');
-}
- */
-
-/*$timestamp = time()+date("Z");
-echo gmdate("Y-m-d H:i:s",$timestamp);*/
-
-
-
-
-
-
-
-
+echo json_encode($postids);*/
 
 
 
