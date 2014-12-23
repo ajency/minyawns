@@ -472,7 +472,7 @@ function photoUpload(user_id){
 
                 // Append the file name and file size
                 tpl.find('.file_details').text(data.files[0].name)
-                             .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+                             .append('<p>' + formatFileSize(data.files[0].size) + '</p>');
 
                 // Add the HTML to the UL element
                 data.context = tpl.appendTo(ul);
