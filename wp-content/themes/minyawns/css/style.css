@@ -2998,11 +2998,12 @@ body .minyawns-grid1 .m3 .collage {
 	font-weight:bold;
 	color:#8ed030;
 }
+body .minyawns-grid1 .m3 .major {
+	color:#7b8996;
+}
 .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .social-link{
-	text-overflow: ellipsis;
+	word-wrap:break-word;
 	width: 100%;
-	overflow: hidden;
-	text-align:right;
 }
 body .minyawns-grid1 .m3 .social-link {
 	font-size: 12px!important;
