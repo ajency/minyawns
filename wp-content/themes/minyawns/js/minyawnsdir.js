@@ -109,7 +109,7 @@ $(document.body).on('click', '#back-top', function() {
 function fetch_minyawns_list() {
 
 
-
+//jQuery(".no-job").remove();
 
 
     var first = getUrlVars()["filter"];
@@ -147,6 +147,8 @@ function fetch_minyawns_list() {
                 var template = _.template(jQuery("#minyawn-directory-card").html());
 
                 jQuery(".load_ajax_large").show();
+
+
 
                 _.each(collection.models, function(model) {
 
@@ -235,7 +237,7 @@ function formSubmit()
 
 
 function load_more() {
-
+//jQuery(".no-job").hide();
 //    var filter_loader_template = _.template(jQuery("#filters-loader-image").html());
 //    jQuery(".minyawns-grid1").append(filter_loader_template);
     
@@ -353,12 +355,20 @@ function miniyawnsVerified(e) {
     if(first){
         window.is_verified = 'Y';
         jQuery(".minyawnslist").empty();
+
+        //jQuery(".no-job").css('display','block');
+
         jQuery(".load_ajax_large").show();
+        
 
         fetch_minyawns_list();
     }else{
         jQuery(".minyawnslist").empty();
+
+        //jQuery(".no-job").css('display','block');
+
         jQuery(".load_ajax_large").show();
+        
        delete  window.is_verified;
         fetch_minyawns_list();
     }
