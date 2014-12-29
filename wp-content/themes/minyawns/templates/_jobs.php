@@ -1,21 +1,21 @@
-
-	<script type="text/template" id="jobs-table"> 
+<script type="text/template" id="jobs-table"> 
 
       <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%> panel">
       
-							 <div class="row-fluid mobile-hide" >
-							  <div class="span9 ">
-							       <div class="row-fluid "  >
+               <div class="row-fluid mobile-hide" >
+                <div class="span9 ">
+                     <div class="row-fluid "  >
                                       <div class="span1">
-									  <div class="job-date" data-toggle="collapse-next" data-parent="#accordion24">
-										<b><%= result.job_start_day %></b>
-										<%= result.job_start_month %>
-									  </div>
-									  
-									  </div>
-									  <div class="span11 border-right job-details">
+                    <div class="job-date" data-toggle="collapse-next" data-parent="#accordion24">
+                    <b><%= result.job_start_day %></b>
+                    <%= result.job_start_month %>
+                    </div>
+                    
+                    </div>
+                    <div class="span11 border-right job-details">
                                           <div class="job-title">
-                                             <h5><a  class='prevent_default'  href=<?php echo site_url() ?>/job/<%= result.post_slug %>><%= result.post_title %></a></h5>
+                                             <h5><a  class='prevent_default'  href=<?php
+echo site_url() ?>/job/<%= result.post_slug %>><%= result.post_title %></a></h5>
                                           </div>
                                           <div class="job-meta" data-parent="#accordion24">
                                           <div class="span9">
@@ -30,7 +30,8 @@
                                                       <li class="no-bdr">
                                                       <i class="icon-calendar"></i>
 
-                                                      <a href="<?php echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent" style="visibility:visible;color:#949494;z-index:inherit">
+                                                      <a href="<?php
+echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent" style="visibility:visible;color:#949494;z-index:inherit">
 
                                                       Add to Calendar
                                                       <span class="_start"><%= result.event_start %></span>
@@ -49,48 +50,49 @@
 
  
                                              </ul>
-											 			</div>
+                            </div>
                             <div class="span3" data-toggle="collapse-next" ></div>
                                           </div>
                                          
                                        </div>
                                     </div>
-							  </div>
-							  <div class="span3 status">
-							    <div class="st-moile-span1">
+                </div>
+                <div class="span3 status">
+                  <div class="st-moile-span1">
 
                                           <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
-										  <a class="accordion-toggle" data-toggle="collapse-next" data-parent="#accordion24" >
+                      <a class="accordion-toggle" data-toggle="collapse-next" data-parent="#accordion24" >
      Show More Information
       </a>
                                        </div>
-							  </div>
-							 </div>
-	  
-	  <div id="collapseOne" class="accordion-body collapse ">
+                </div>
+               </div>
+    
+    <div id="collapseOne" class="accordion-body collapse ">
       <div class="accordion-inner">
                               <div class="row-fluid mobile-detail">
                                  <div class="span9 ">
                                     <div class="row-fluid ">
                                       <div class="span12 job-details">
-                                         <p><%= result.job_details %><em>Job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_company %></a></em> </p>
+                                         <p><%= result.job_details %><em>Job posted by<a href="<?php
+echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_company %></a></em> </p>
                                        </div>
                                     </div>
-									 <div class="additional-info">
+                   <div class="additional-info">
                                        <div class="row-fluid">
-                                          <div class="span6"><span> Category :</span><br>
+                                          <div class="span6"><span> Category :</span><br />
                                           <% for(i=0;i<result.job_categories.length;i++){ %>
                                            <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')">
                                            <%= result.job_categories[i] %><% if (i === result.job_categories.length - 1) { %> <% } else { %>,<% } %>
                                            </span>
                                            <%}%>
                                           </div>
-                                          <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
+                                          <div class="span6"> <span> Tags :</span> <br /><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
                                        </div>
                                     </div>
                                  </div>
                                  <div class="span3 status">
-								    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
+                    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
                                     <div class="st-fluid">
                                      
                                        <div class="st-moile-span2">
@@ -114,40 +116,41 @@
                                  </div>
                               </div>   
 </div>
-</div>							  
+</div>                
                            </li>  
 <?php
 $salt_job = wp_generate_password(20);
-$key_job = sha1($salt . uniqid(time(), true));
+$key_job = sha1($salt . uniqid(time() , true));
+$payment_type = (get_option('payment_type') == '' ? 'braintree' : get_option('payment_type'));
 
-$payment_type = (get_option('payment_type')==''?'braintree':get_option('payment_type')) ;
-
-
-
-if($payment_type=='braintree'){
-    $form_submit_page = 'payments';
-    $payment_button = '<a href="#paymentform"  data-toggle="modal"><input type="image"  width="160" height="40"  src="'.site_url().'/wp-content/themes/minyawns/images/pay-btn.png" value="Pay with PayPal" class="center-image"/></a>';
-
+if ($payment_type == 'braintree')
+{
+  $form_submit_page = 'payments';
+  $payment_button = '<a href="#paymentform"  data-toggle="modal"><input type="image"  width="160" height="40"  src="' . site_url() . '/wp-content/themes/minyawns/images/pay-btn.png" value="Pay with PayPal" class="center-image"/></a>';
 }
-else {
-    $form_submit_page = 'paypal-payments';
-    $payment_button = '<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/>';
+else
+{
+  $form_submit_page = 'paypal-payments';
+  $payment_button = '<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" value="Pay with PayPal" class="center-image"/>';
 }
 
 ?>
-   <form class="paypal" action="<?php echo site_url() . '/'.$form_submit_page.'/'; ?>" method="post" id="paypal_form" target="_blank">
+   <form class="paypal" action="<?php
+echo site_url() . '/' . $form_submit_page . '/'; ?>" method="post" id="paypal_form" target="_blank">
     <input type="hidden" name="cmd" value="_xclick">
                 <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
                 <input type="hidden" name="lc" value="UK" />
                 <input type="hidden" name="no_note" value="1" />
-                <input type="hidden" name="custom" value="<?php echo $key_job ?>" />
+                <input type="hidden" name="custom" value="<?php
+echo $key_job ?>" />
                 <input type="hidden" name="amount" id="amount"  />
                 <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" /> 
                 <input type="hidden" name="first_name" value="Customer  First Name"  />
                 <input type="hidden" name="last_name" value="Customer  Last Name"  />
                 <input type="hidden" name="item_number" id="item_number"  / >
                 <input type="hidden" name="minyawn_id" id="minyawn_id" />
-                <input type="hidden" name="item_name" value="<?php get_the_title($_POST['job_id']) ?>" / >
+                <input type="hidden" name="item_name" value="<?php
+get_the_title($_POST['job_id']) ?>" / >
 
 
 
@@ -157,84 +160,94 @@ else {
  
 
 
-<?php if($payment_type=="braintree") {
- ?>
+<?php
+
+if ($payment_type == "braintree")
+{
+?>
 <div   id="paymentform" class="modal signup  hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo site_url();?>/wp-content/themes/minyawns/images/delete.png"></button>
-       <img class="payment_image" width="96" height="96" src="<?php echo site_url()?>/wp-content/themes/minyawns/images/avatar2.jpg">
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php
+  echo site_url(); ?>/wp-content/themes/minyawns/images/delete.png"></button>
+       <img class="payment_image" width="96" height="96" src="<?php
+  echo site_url() ?>/wp-content/themes/minyawns/images/avatar2.jpg">
     <h4 id="myModalLabel">Job Payment<!--<img src="Test%20job%2000003%20%7C%20Minyawns_files/logo.png">--> </h4>
   </div>
   <div class="modal-body">
-	<div class="row-fluid" >
-		<p class="payment_msg payment_success"style="display:none"><i class="icon-ok"></i> &nbsp; Transaction successful.</p>
-	<div>
+  <div class="row-fluid" >
+    <p class="payment_msg payment_success"style="display:none"><i class="icon-ok"></i> &nbsp; Transaction successful.</p>
+  <div>
 
     <div class="row-fluid payformdiv" >
-		<div class="span12"> 
-	       <p class="align-center">Please enter the following details</p>
-		<div class="control-group ">
+    <div class="span12"> 
+         <p class="align-center">Please enter the following details</p>
+    <div class="control-group ">
 
-			<input type="text" value="" placeholder="Card Number" autocomplete="off" data-encrypted-name="number"  class="span3">
+      <input type="text" value="" placeholder="Card Number" autocomplete="off" data-encrypted-name="number"  class="span3">
 
         </div>
-		<div class="control-group ">
+    <div class="control-group ">
             <input placeholder="CVV" class="span3" autocomplete="off" data-encrypted-name="cvv" type="text">
         </div>
-		<div class="control-group ">
+    <div class="control-group ">
             <div class="row-fluid">
-            	<div class="span6">
-               		<input type="text" size="2" placeholder="MM" class="span3" name="month" autocomplete="off"  />
-            	</div>
-            	<div class="span6">
-               	 	<input size="4" placeholder="YYYY" class="span3" name="year" type="text" autocomplete="off" >
-            	</div>
+              <div class="span6">
+                  <input type="text" size="2" placeholder="MM" class="span3" name="month" autocomplete="off"  />
+              </div>
+              <div class="span6">
+                  <input size="4" placeholder="YYYY" class="span3" name="year" type="text" autocomplete="off" >
+              </div>
             </div>
         </div>
         
-<?php 
-global $current_user;
-$user_roles = $current_user->roles;
-$user_role = array_shift($user_roles);
-$current_user_role =  trim($user_role);
+<?php
+  global $current_user;
+  $user_roles = $current_user->roles;
+  $user_role = array_shift($user_roles);
+  $current_user_role = trim($user_role);
 
- // if (current_user_can( 'manage_options' )) {
- if($current_user_role ==="administrator"){
-  	
-	  	define("ENCRYPTION_KEY", "!@#$%^&*");
-		$string = get_option('admin_email');
-		$encrypted_data =  encrypt_decrypt('encrypt', $string); 
-  	
-  	?>
-		<div class="control-group ">
-				<input type="hidden" name ="adminverify" id="adminverify" value="<?php echo $encrypted_data; ?>" />
-				<input type="hidden" name ="hdn_markaspaid" id="hdn_markaspaid" value="0" />
-				 
+  // if (current_user_can( 'manage_options' )) {
+
+  if ($current_user_role === "administrator")
+  {
+    define("ENCRYPTION_KEY", "!@#$%^&*");
+    $string = get_option('admin_email');
+    $encrypted_data = encrypt_decrypt('encrypt', $string);
+?>
+    <div class="control-group ">
+        <input type="hidden" name ="adminverify" id="adminverify" value="<?php
+    echo $encrypted_data; ?>" />
+        <input type="hidden" name ="hdn_markaspaid" id="hdn_markaspaid" value="0" />
+         
                 <a id="admin_submit"  name="admin_submit"  href="#" class="">Mark as paid</a>
         </div> 
-<?php }
+<?php
+  }
+
 ?>
         <div class="control-group ">
                 <button id="submit" class="btn btn-primary btn-block">Submit</button>
         </div> 
-<img class="submit_loader" style="display:none;"  src="<?php echo site_url()?>/wp-content/themes/minyawns/images/2.gif">
-		</div>
+<img class="submit_loader" style="display:none;"  src="<?php
+  echo site_url() ?>/wp-content/themes/minyawns/images/2.gif">
+    </div>
 
 
-		
-	</div>
+    
+  </div>
   </div>
   
 </div>
 
 
- 	
-	 
+  
+   
   </div>
   
 </div>
 <?php
 }
+
 ?>
 
 
@@ -249,50 +262,53 @@ $current_user_role =  trim($user_role);
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
              <div class="row-fluid minyawns-grid1" >
-		  <%  if (jQuery(window).width() < 800) {%>
-			
-			<div class="span3 mobile-alert-box">
+      <%  if (jQuery(window).width() < 800) {%>
+      
+      <div class="span3 mobile-alert-box">
                   <div class="alert alert-success alert-sidebar author-data">
                       
-					  
-					  <div class="row-fluid">
-					  <div class="span3">
-						<%= result.job_author_logo %>
-					  </div>
-						<div class="span9 author-info">
-                                                <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
-							<i class="icon-map-marker"></i> <%= result.job_company_location%>
-						</div>
-					  </div>
-						
-                        <br>
+            
+            <div class="row-fluid">
+            <div class="span3">
+            <%= result.job_author_logo %>
+            </div>
+            <div class="span9 author-info">
+                                                <a href="<?php
+echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
+              <i class="icon-map-marker"></i> <%= result.job_company_location%>
+            </div>
+            </div>
+            
+                        <br />
                     </div>
                  
               <% if(  ((is_admin==true) || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
                      <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                         <h3>Your selection</h3>
                         <hr>
-                        <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
+                        <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php
+echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
                         <b> Wages per Minion:<span id="wages_per_minyawns">0</span><span>$</span></b>
-                        <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br>
-							<div class="msg-info">
-							<span>Please Note</span>
-							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
-<br> Any credit or debit card will do!</div>
-                        <span id="paypal_pay" style="display:none"><?php echo $payment_button; ?></span>
+                        <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br />
+              <div class="msg-info">
+              <span>Please Note</span>
+              Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
+<br /> Any credit or debit card will do!</div>
+                        <span id="paypal_pay" style="display:none"><?php
+echo $payment_button; ?></span>
                      <span id="selection_message"></span>
                                     </div>
                             <%}%>
                  
-					   
+             
 </div>
  <%}%>
 
 <div class="span12">
-	<div class="row-fluid">
-	<div class="span7">
-			
-			<div class=" mobile-alert-box-hidden">
+  <div class="row-fluid">
+  <div class="span7">
+      
+      <div class=" mobile-alert-box-hidden">
               <!--<div class="alert alert-success alert-sidebar author-data">
                 <b style="color:#000;">Employer Details</b>
                 <div class="row-fluid">
@@ -300,43 +316,46 @@ $current_user_role =  trim($user_role);
                     <%= result.job_author_logo %>
                   </div>
                   <div class="span9 author-info">
-                    <a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
+                    <a href="<?php
+echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"><h4><%= result.job_company%></h4></a>
                     <i class="icon-map-marker"></i> <%= result.job_company_location%>
                   </div>
                 </div>
-                <br>
+                <br />
               </div>-->
                              
               <% if( ( (is_admin==true)  || (result.job_owner_id === logged_in_user_id))  && result.user_to_job_status.indexOf('hired') == -1){%>
                 <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
                   <h3>Your selection</h3>
                   <hr>
-                  <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
+                  <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php
+echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
                   <b> Wages per Minion:<span id="wages_per_minyawns">0</span><span>$</span></b>
-                  <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><!--<br>-->
+                  <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><!--<br />-->
                   <div class="msg-info">
                     <span>Please Note</span> Funds to minions will be released on job completion only. If minions don\'t show up, you will get full refund.
-                    <br> Any credit or debit card will do!
+                    <br /> Any credit or debit card will do!
                   </div>
-                  <span id="paypal_pay" style="display:none"><?php echo $payment_button; ?></span>
+                  <span id="paypal_pay" style="display:none"><?php
+echo $payment_button; ?></span>
                   <span id="selection_message"></span>
                 </div>
               <%}%>      
             </div>
-			
-			<div class="row-fluid"  id="applicant-container">
-			<div class="span12">
-			<h3 class="pull-left custom-h3">Applicants</h3>
-			</div>
-			</div>
+      
+      <div class="row-fluid"  id="applicant-container">
+      <div class="span12">
+      <h3 class="pull-left custom-h3">Applicants</h3>
+      </div>
+      </div>
 
             <ul class="thumbnails" id="minion-thumbnails">
               <span class='load_ajaxsingle_job_minions' ></span>
-			  <div class="row-fluid">
-			  <div class="span12">
-			  
-			  </div>
-			  </div>
+        <div class="row-fluid">
+        <div class="span12">
+        
+        </div>
+        </div>
             </ul>
 
             </br></br><span id="div_confirmhire"></span>
@@ -365,7 +384,7 @@ $current_user_role =  trim($user_role);
                     </ul> 
             </div> 
                   </div>
-				  
+          
                 </div>
             <!--</div>-->  
 
@@ -381,14 +400,14 @@ $current_user_role =  trim($user_role);
   
    
 </div>
-	        </div>
-		<div class="span5" id="ajan-activity-stream-container" component="job" item-id="<%=result.post_id%>">
-			<!--comment starts-->
-  		
-			      <!--comment-ends-->
-      		</div>
-      		
-	      </div>
+          </div>
+    <div class="span5" id="ajan-activity-stream-container" component="job" item-id="<%=result.post_id%>">
+      <!--comment starts-->
+      
+            <!--comment-ends-->
+          </div>
+          
+        </div>
       </div>
 
         
@@ -410,19 +429,20 @@ $current_user_role =  trim($user_role);
     <li class="_li <% if(result.todays_date_time > result.job_end_date_time_check) {%>job-closed<%}else{%>job-open<%}%>">
     
 
-							 <div class="row-fluid mobile-hide" >
-							  <div class="<% /*if(currentpage_user_role=="employer"){ span9 } else{ */ %>span6<% /* } */  %> ">
-							       <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
+               <div class="row-fluid mobile-hide" >
+                <div class="<% /*if(currentpage_user_role=="employer"){ span9 } else{ */ %>span6<% /* } */  %> ">
+                     <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
                                       <div class="span2">
-									  <div class="job-date">
-										<b><%= result.job_start_day %></b>
-										<%= result.job_start_month %>
-									  </div>
-									  
-									  </div>
-									  <div class="span10 border-right job-details">
+                    <div class="job-date">
+                    <b><%= result.job_start_day %></b>
+                    <%= result.job_start_month %>
+                    </div>
+                    
+                    </div>
+                    <div class="span10 border-right job-details">
                                           <div class="job-title">
-                                             <h5><a href=<?php echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
+                                             <h5><a href=<?php
+echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5>
                                           </div>
                                           <div class="job-meta">
                                              <ul class="inline">
@@ -434,48 +454,49 @@ $current_user_role =  trim($user_role);
                                          
                                        </div>
                                     </div>
-							  </div>
-							  <div class="<% /* if(currentpage_user_role=="employer"){ span3< else{ */ %>span3<% /* } */ %> status">
-							    <div class="st-moile-span1">
+                </div>
+                <div class="<% /* if(currentpage_user_role=="employer"){ span3< else{ */ %>span3<% /* } */ %> status">
+                  <div class="st-moile-span1">
 
                                           <div class="st-wages"> wages <b>$<%= result.job_wages %></b></div>
-										  <a class="accordion-toggle" data-toggle="collapse-next" data-parent="#accordion24" >
+                      <a class="accordion-toggle" data-toggle="collapse-next" data-parent="#accordion24" >
      Show More Information
       </a>
                                        </div>
-							  </div>
-				<% /*if(currentpage_user_role!="employer"){ */ %>
+                </div>
+        <% /*if(currentpage_user_role!="employer"){ */ %>
                  <div class="span3">
 
-                  		<div class="st-moile-span1">
-                     			 <%= review.status1 %>
+                      <div class="st-moile-span1">
+                           <%= review.status1 %>
                          </div>
 
                   </div> 
-				<% /*} */ %>
+        <% /*} */ %>
 
-			   </div> 
+         </div> 
                </div>
                <div class="clearfix"></div>
-	  
-	  <div id="collapseOne" class="accordion-body collapse ">
+    
+    <div id="collapseOne" class="accordion-body collapse ">
       <div class="accordion-inner">
                               <div class="row-fluid mobile-detail">
                                  <div class="span6 ">
                                     <div class="row-fluid ">
                                       <div class="span12 job-details">
-                                         <p> <%= result.job_details %> <em>job posted by<a href="<?php echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></em> </p>
+                                         <p> <%= result.job_details %> <em>job posted by<a href="<?php
+echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></em> </p>
                                        </div>
                                     </div>
-									                   <div class="additional-info">
+                                     <div class="additional-info">
                                        <div class="row-fluid">
-                                          <div class="span6"><span> Category :</span><br><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
-                                          <div class="span6"> <span> Tags :</span> <br><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
+                                          <div class="span6"><span> Category :</span><br /><% for(i=0;i<result.job_categories.length;i++){ %> <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('<%= result.job_category_ids[i] %>','<%= result.job_categories[i]%>')"><%= result.job_categories[i] %>,</span><%}%></div>
+                                          <div class="span6"> <span> Tags :</span> <br /><% for(i=0;i<result.tags.length;i++){ %> <span class="label"><%= result.tags[i] %></span><%}%></div>
                                        </div>
                                  </div>
                                  </div>
                                  <div class="span3 status">
-								                    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
+                                    <div class="st-wages"> <b>$<%= result.job_wages %></b> wages</div>
                                     <div class="st-fluid">
                                      
                                        <div class="st-moile-span2">
@@ -492,26 +513,29 @@ $current_user_role =  trim($user_role);
                                  <div class="span2"> <%= review.status2 %></div>
                               </div>   
 </div>
-</div>	
-							 
+</div>  
+               
     </li>  
     <?php
-    $salt_job = wp_generate_password(20);
-    $key_job = sha1($salt . uniqid(time(), true));
-    ?>
-    <form class="paypal" action="<?php echo site_url() . '/paypal-payments/'; ?>" method="post" id="paypal_form" target="_blank">
+$salt_job = wp_generate_password(20);
+$key_job = sha1($salt . uniqid(time() , true));
+?>
+    <form class="paypal" action="<?php
+echo site_url() . '/paypal-payments/'; ?>" method="post" id="paypal_form" target="_blank">
     <input type="hidden" name="cmd" value="_xclick">
     <input type='hidden' name='hdn_jobwages' id='hdn_jobwages' value='' />
     <input type="hidden" name="lc" value="UK" />
 
     <input type="hidden" name="no_note" value="1" />
-    <input type="hidden" name="custom" value="<?php echo $key_job ?>" />
+    <input type="hidden" name="custom" value="<?php
+echo $key_job ?>" />
     <input type="hidden" name="amount" id="amount"  />
     <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" /> 
     <input type="hidden" name="first_name" value="Customer  First Name"  />
     <input type="hidden" name="last_name" value="Customer  Last Name"  />
     <input type="hidden" name="item_number" id="item_number"  / >
-    <input type="hidden" name="item_name" value="<?php get_the_title($_POST['job_id']) ?>" / >
+    <input type="hidden" name="item_name" value="<?php
+get_the_title($_POST['job_id']) ?>" / >
     <% if(result.job_owner_id === logged_in_user_id){%>
     <div id="show-single-job " class="alert alert-info" style="display:none;"><i class="icon-check-sign"></i> &nbsp;&nbsp;Please Select Your Minions</div>
     <%}%>
@@ -531,14 +555,16 @@ $current_user_role =  trim($user_role);
     <div id="selection" class="alert alert-success alert-sidebar" style="position:relative">
     <h3>Your selection</h3>
     <hr>
-    <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
+    <b> No. of Minions Selected <img id="imgselect" class="imgselect" src="<?php
+echo get_template_directory_uri(); ?>/images/minyawn-total.png" style="margin-top:-10px;"/>: <span id="no_of_minyawns">0</span></b>
     <b> Wages per Minion:<span id="wages_per_minyawns">0</span><span>$</span></b>
-    <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br>
+    <b class="total-cost"> Total Wages Due:<span id="total_wages">0</span><span>$</span></b><br />
 <div class="msg-info">
-							<span>Please Note</span>
-							Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
- <br>Any credit or debit card will do!</div>
-    <span id="paypal_pay" style="display:none"> <?php echo $payment_button; ?></span>
+              <span>Please Note</span>
+              Funds to minions will be released on job completion only. If minions don't show up, you will get full refund.
+ <br />Any credit or debit card will do!</div>
+    <span id="paypal_pay" style="display:none"> <?php
+echo $payment_button; ?></span>
     <span id="selection_message"></span>
     </div>
     <%}%>
@@ -554,232 +580,163 @@ $current_user_role =  trim($user_role);
 
 <script type="text/template" id="minion-cards">
 
-	<!--<div class="row-fluid">-->
-    <li class="thumbspan" id="<%= result.user_id %>" >
-	
+  <!--<div class="row-fluid">-->
+
+<li class="thumbspan" id="<%= result.user_id %>" >
+  
     <div class="thumbnail select-button-<%= result.user_id %>" id="thumbnail-<%= result.user_id %>">
     <div class="layer">
-    <!--<div id="a" class="m1">
-    <div class="caption" >
-    <% if(result.is_invited == 4){%>
-     <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
-     <%}%>
-
-	
-    <div class="minyawns-img">
-    <% if(result.is_hired === true){%>
-      <div class="minaywns-sel">
-	     <i class="icon-ok"></i>
-      	SELECTED
-      </div>
-    <% } %>
-    <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>'><%= result.user_image%></a>
-
     
-
-    <% if(result.intro_video_id !=''){%>
-      <a class="vidbutton" style="right:100px;"><i class="icon-youtube-play"></i> &nbsp;</a>
-      <% } %>                                
-
-    </div>
-	
-
-    <h4><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
-    <div class="collage"> <%= result.college%> </div>
-    <div class="collage"> <%= result.major%> </div>
-    <div class="social-link">
-    <%= result.user_email %>
-    </div>
-    <div class="social-link profile-social-link">
-    <% if (result.linkedin.length > 0 ){
-      var linkedin_id = result.linkedin.split('/').pop();
-      if(linkedin_id.length > 0 && linkedin_id != 'linkedin.com'){
-
-      %>
-    <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
-        var linkedinUrl = "http://"+result.linkedin;
-    }
-    else{
-        var linkedinUrl = result.linkedin;
-    }
-    %>
-    <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
-    <%} } %>
-     <% if (result.facebook_link.length > 0 ){
-         var facebook_id = result.facebook_link.split('/').pop();
-         if(facebook_id.length > 0 && facebook_id != 'facebook.com'){
-
-      %>
-    <% if( (result.facebook_link.indexOf("https://") <= -1) && (result.facebook_link.indexOf("http://") <= -1) ){
-        var facebook_linkUrl = "http://"+result.facebook_link;
-    }
-    else{
-        var facebook_linkUrl = result.facebook_link;
-    }
-    %>
-    <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-    <%} } %></div>
-
-    <div class="rating">
-    <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
-    <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
-    </a>
-    <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
-    <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
-    </a>
-    </div>
-
-    </div>
-
-    </div>-->
 
 
     <div id="b" class=" m3">
-	<div class="row">
-		<div class="span12">
-			<% if(result.is_invited == 4){%>
-     <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
-     <%}%>
-		</div>
-	</div>
-    <div class="caption m4" >
-    <div class="comment-div">
-	<div class="row-fluid">
-	<div class="span4">
   
-    <div class="minyawns-img" >
-
-        <% if(result.is_hired === true){%>
-          <div class="minaywns-sel">
-           <i class="icon-ok"></i>
-            <!--SELECTED-->
-          </div>
-        <% } %>
-   
-    <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
-
-    <% if(result.intro_video_id !=''){%>
-      <a class="vidbutton" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a>
-      <% } %> 
-
-
-    </div>
-    <div class="rating">
-
-    <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
-    <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
-    </a>
-    <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
-    <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
-    </a>
-    </div>
-	</div>
-	<div class="span8">
-	<div class="row-fluid">
-	<div class="span8">
-    <h4 class="align-left"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
-    
-    <div class="collage align-left"> <%= result.college%> </div>
-    <div class="collage align-left"> <%= result.major%> </div>
-    <div class="social-link align-left">
-    <%= result.user_email %>
-    </div>
-	</div>
-	<div class="span4">
-    <div class="social-link   profile-social-link">
-    <% if (result.linkedin.length > 0 ){
-
-      var linkedin_id = result.linkedin.split('/').pop();
-      console.log(result.linkedin);
-
-      if(linkedin_id.length > 0 && linkedin_id != 'linkedin.com'){
-
-      %>
-    <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
-        var linkedinUrl = "http://"+result.linkedin;
-    }
-    else{
-        var linkedinUrl = result.linkedin;
-    }
-    %>
-    <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
-    <%} } %>
-     <% if (result.facebook_link.length > 0 ){
-          var facebook_id = result.facebook_link.split('/').pop();
-         if(facebook_id.length > 0 && facebook_id != 'facebook.com'){
-
-      %>
-    <% if( (result.facebook_link.indexOf("https://") <= -1) && (result.facebook_link.indexOf("http://") <= -1) ){
-        var facebook_linkUrl = "http://"+result.facebook_link;
-    }
-    else{
-        var facebook_linkUrl = result.facebook_link;
-    }
-    %>
-    <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
-    <%} } %>
-            </div>
-
-			</div>
-			<div class="row-fluid">
-	<div class="span12">
-    <div class="tagsa">
-     <% var sk=result.user_skills.split(',');
-    if(result.user_skills.length > 0){ %>
-     Tags:<br> 
-     <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%></li>
-     <% } else {%>
-      
+    <div>
+      <% if(result.is_invited == 4){%>
+      <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
       <%}%>
     </div>
-	</div>
-	</div>	
-			</div>
-			</div>
-</div>
-			<div class="">
-          <%= select_button %>
-		  
-		  
-        </div>
-		
-		<div class="dwn-btn review_popover">
+  
+    <div class="caption m4" >
+      <div class="comment-div">
+        <div class="row-fluid">
+          <div class="span4">
+  
+            <div class="minyawns-img" >
 
-   <%= ratings_button %>
-<!--   <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <%= result.comment %></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <%= result.comment %></div><%}%>-->
+              <% if(result.is_hired === true){%>
+              <div class="minaywns-sel">
+               <i class="icon-ok"></i>
+                <!--SELECTED-->
+              </div>
+              <% } %>
+   
+              <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
+
+              <% if(result.intro_video_id !=''){%>
+              <a class="vidbutton" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a>
+              <% } %> 
+            </div>
+
+            <div class="rating">
+
+              <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
+                <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
+              </a>
+              <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
+                <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
+              </a>
+            </div>
+
+          </div>
+
+          <div class="span8">
+            <div class="row-fluid">
+              <div class="span8">
+                <h4 class="align-left"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
+    
+                  <div class="collage align-left"> <%= result.college%> </div>
+                  <div class="collage align-left major"> <%= result.major%> </div>
+                  <div class="social-link align-left">
+                  <%= result.user_email %>
+                  </div>
+              </div>
+             <div class="span4">
+                  <div class="social-link   profile-social-link">
+                        <% if (result.linkedin.length > 0 ){
+
+                          var linkedin_id = result.linkedin.split('/').pop();
+                          console.log(result.linkedin);
+
+                          if(linkedin_id.length > 0 && linkedin_id != 'linkedin.com'){
+
+                          %>
+                        <% if( (result.linkedin.indexOf("https://") <= -1) && (result.linkedin.indexOf("http://") <= -1) ){
+                            var linkedinUrl = "http://"+result.linkedin;
+                        }
+                        else{
+                            var linkedinUrl = result.linkedin;
+                        }
+                        %>
+                        <a href='http://<%= result.linkedin %>' target='_blank'><i class='icon-linkedin'></i></a>
+                        <%} } %>
+                         <% if (result.facebook_link.length > 0 ){
+                              var facebook_id = result.facebook_link.split('/').pop();
+                             if(facebook_id.length > 0 && facebook_id != 'facebook.com'){
+
+                          %>
+                        <% if( (result.facebook_link.indexOf("https://") <= -1) && (result.facebook_link.indexOf("http://") <= -1) ){
+                            var facebook_linkUrl = "http://"+result.facebook_link;
+                        }
+                        else{
+                            var facebook_linkUrl = result.facebook_link;
+                        }
+                        %>
+                        <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
+                        <%} } %>
+                  </div>
+            </div>
+    
+    
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="tagsa">
+             <% var sk=result.user_skills.split(',');
+            if(result.user_skills.length > 0){ %>
+             Tags:<br /> 
+             <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%>
+             <% } else {%>
+              
+              <%}%>
+          </div>
+        </div>
+      </div> 
+
+
+
+      </div>
+      </div>
+</div>
+      <div class="asd">
+          <%= select_button %>
+      </div>
+    
+    <div class="dwn-btn review_popover">
+      <%= ratings_button %>
+<!--  <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <%= result.comment %></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <%= result.comment %></div><%}%>-->
    </div>
-		  
-	
+      
+  
         <div class="clearfix"></div>
-			
+      
     </div>
 
 
-	
+
     </div>
 
 
 
   
     </div>
-	<!--like-dislike-btns-->
-	    <!--<div class="rating hider">
-      	<div class="like-dis">
+  <!--like-dislike-btns-->
+      <!--<div class="rating hider">
+        <div class="like-dis">
           <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
             <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
           </a>
           <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
             <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
           </a>
-      	</div>
+        </div>
     </div>-->
-	<!--like-dislike-btns-ends-->
+  <!--like-dislike-btns-ends-->
 
     </div>
     </div>
 
     </div>
-<!--	<div class="dwn-btn review_popover">
+<!--  <div class="dwn-btn review_popover">
 
     <%= ratings_button %>
     <%  if(result.comment !== 0){ %>   <div  class="comment-box"> <i class="icon-thumbs-up weldone"></i><%= result.comment %></div><% } %>
@@ -800,7 +757,7 @@ $current_user_role =  trim($user_role);
     </label>
     </div>-->
     </li>
-	<!--</div>-->
+  <!--</div>-->
 
 
 
@@ -809,7 +766,8 @@ $current_user_role =  trim($user_role);
 <% if(result.intro_video_id !=''){%>
 <div id="introvideo<%= result.user_id %>" class="modal hide fade video-pop in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-body">
-            <iframe id="videowrap" frameborder="0" allowfullscreen="1" title="YouTube video player" width="530" height="350" src="https://www.youtube.com/embed/<%= result.intro_video_id %>?enablejsapi=1&origin=<?php echo $_SERVER['HTTP_HOST']; ?>"></iframe>
+            <iframe id="videowrap" frameborder="0" allowfullscreen="1" title="YouTube video player" width="530" height="350" src="https://www.youtube.com/embed/<%= result.intro_video_id %>?enablejsapi=1&origin=<?php
+echo $_SERVER['HTTP_HOST']; ?>"></iframe>
             </div>
           <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -835,45 +793,47 @@ $current_user_role =  trim($user_role);
 if(result.no_hired < result.required_minyawns){
 %>
 
-	<div class="row-fluid">
+  <div class="row-fluid">
     <li class="span3 thumbspan card find-min full-width" id="91">
 
     <div class="thumbnail select-button-91" id="thumbnail-91">
     <div class="m1">
     <div class="caption">
-	<div class="row-fluid">
-	<div class="span3">
+  <div class="row-fluid">
+  <div class="span3">
     <div class="minyawns-img">
-    <img src="<?php echo get_template_directory_uri(); ?>/images/avatar2.jpg" height="96" width="96"/>
+    <img src="<?php
+echo get_template_directory_uri(); ?>/images/avatar2.jpg" height="96" width="96"/>
     </div>
 
-	</div>
-	<div class="span5 width40">
+  </div>
+  <div class="span5 width40">
     <h4> Why wait for Minions to apply?</h4>
     <div class="text-meta-bold">With over 500 Minions equipped with valuable skills from top universities. 
     </div>
     <div class="text-meta">
     </div>
-	</div>
-	<div class="span4">
+  </div>
+  <div class="span4">
  <% if(result.job_owner_id === logged_in_user_id && result.user_to_job_status.indexOf('hired') == -1){ %>
-    <a href="<?php echo site_url() ?>/minyawns-directory" target="_blank" class="btn btn-primary m-t-40">
+    <a href="<?php
+echo site_url() ?>/minyawns-directory" target="_blank" class="btn btn-primary m-t-40">
     <i class="icon-eye-open"></i>
     View All Minions
     </a>
     <% } %>
-	</div>
-	</div>
+  </div>
+  </div>
     </div>
     </div>
 
     </div>
     </li>
 
-	</div>
-	
+  </div>
+  
 
-					</div>
+          </div>
 <% }
 
 }
@@ -882,7 +842,8 @@ if(result.no_hired < result.required_minyawns){
 
 <script type="text/templates" id="no-result">
     <div class="alert alert-info myjobs no-job ">
-    <b style="text-align: center">Create your first job now </b>&nbsp; <a href="<?php echo site_url()  ?>/add-job" class="btn btn-primary btn-large  mll" id="add-job-button">
+    <b style="text-align: center">Create your first job now </b>&nbsp; <a href="<?php
+echo site_url() ?>/add-job" class="btn btn-primary btn-large  mll" id="add-job-button">
                                 <i class="icon-plus-sign"></i>
                                 &nbsp;Add a Job
 
@@ -958,24 +919,26 @@ if(result.no_hired < result.required_minyawns){
 
 <script type="text/templates" id="no_access">
       <div class="alert alert-info " style="width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%">
-			<div class="row-fluid">
-                            <div class="span3"><br><img src="<?php echo get_template_directory_uri(); ?>/images/404error.png"/></div>
-				<div class="span12">	<h4 >No Access</h4>
-		<hr>
-		Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
-		<br>
-		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="<?php echo site_url(); ?>/wp-login.php" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
-		<div class="clear"></div></div>
-			</div>
-		</div>
+      <div class="row-fluid">
+                            <div class="span3"><br /><img src="<?php
+echo get_template_directory_uri(); ?>/images/404error.png"/></div>
+        <div class="span12">  <h4 >No Access</h4>
+    <hr>
+    Hi, you are not logged in yet. If you are registered, please log in, or if not, sign up to get started with minyawns.
+    <br />
+    <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="<?php
+echo site_url(); ?>/wp-login.php" data-toggle="modal" id="btn__login" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
+    <div class="clear"></div></div>
+      </div>
+    </div>
     
 </script>
 
 <script type="text/templates" id="employer-sidebar">
 <div class="alert alert-success alert-sidebar">
 <h3> Stuff that's good to know</h3><hr>
-						<ul class="unstyled nav nav-list categories" id="display_text">
-						<li><b>Make sure you set the right wage for the job,as the minions are hardworking and always deliver - so keep them happy</b></li>
+            <ul class="unstyled nav nav-list categories" id="display_text">
+            <li><b>Make sure you set the right wage for the job,as the minions are hardworking and always deliver - so keep them happy</b></li>
                     <li><b>Be as clear as you can about the nature of the job. A surprised minion is not always a good thing</b></li>                                     
             <li><b>Be sure to rate your minion once the job is completed. A pat on the back or a light reproach will help the minion do better</b></li>
             </ul>
@@ -986,8 +949,8 @@ if(result.no_hired < result.required_minyawns){
 <script type="text/templates" id="minion-sidebar">
 <div class="alert alert-success alert-sidebar">
 <h3>Stuff every good minion must know</h3><hr>
-						<ul class="unstyled nav nav-list categories" id="display_text">
-						<li><b>Make sure your overall ratings are good.Most employers select minions with higher ratings</b></li>
+            <ul class="unstyled nav nav-list categories" id="display_text">
+            <li><b>Make sure your overall ratings are good.Most employers select minions with higher ratings</b></li>
             <li><b>Show up for jobs assigned and accepted by you. You will be paid only once the job has been successfully completed</b></li>
             <li><b>Do every job with a smile. Nobody likes a cranky minion</b></li>
            
@@ -1002,5 +965,3 @@ if(result.no_hired < result.required_minyawns){
 
         
 </script>
-
-
