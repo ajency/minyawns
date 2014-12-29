@@ -1,5 +1,8 @@
 jQuery(document).ready(function($) {
 
+
+
+
 //$('.minyawnslist').jscroll({
 //    loadingHtml: '<img src="loading.gif" alt="Loading" /> Loading...',
 //    padding: 20,
@@ -109,7 +112,7 @@ $(document.body).on('click', '#back-top', function() {
 function fetch_minyawns_list() {
 
 
-//jQuery(".no-job").remove();
+ jQuery(".no-job").remove();
 
 
     var first = getUrlVars()["filter"];
@@ -148,6 +151,8 @@ function fetch_minyawns_list() {
 
                 jQuery(".load_ajax_large").show();
 
+
+                               
 
 
                 _.each(collection.models, function(model) {
