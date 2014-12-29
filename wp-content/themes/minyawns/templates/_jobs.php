@@ -581,7 +581,8 @@ echo $payment_button; ?></span>
 <script type="text/template" id="minion-cards">
 
   <!--<div class="row-fluid">-->
-    <li class="thumbspan" id="<%= result.user_id %>" >
+
+<li class="thumbspan" id="<%= result.user_id %>" >
   
     <div class="thumbnail select-button-<%= result.user_id %>" id="thumbnail-<%= result.user_id %>">
     <div class="layer">
@@ -592,8 +593,8 @@ echo $payment_button; ?></span>
   
     <div>
       <% if(result.is_invited == 4){%>
-     <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
-     <%}%>
+      <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
+      <%}%>
     </div>
   
     <div class="caption m4" >
@@ -683,7 +684,7 @@ echo $payment_button; ?></span>
              <% var sk=result.user_skills.split(',');
             if(result.user_skills.length > 0){ %>
              Tags:<br /> 
-             <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%></li>
+             <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%>
              <% } else {%>
               
               <%}%>
@@ -711,7 +712,7 @@ echo $payment_button; ?></span>
     </div>
 
 
-  
+
     </div>
 
 

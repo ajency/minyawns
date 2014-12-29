@@ -1427,7 +1427,7 @@ width: 100%;
 	color:#fff;
 	font-weight:bold;
 	border-radius:4px;
-	margin-top:10px;
+	/*margin-top:10px;*/
 }
 .single-view .review_popover .comment-box i {
 font-size: 22px;
