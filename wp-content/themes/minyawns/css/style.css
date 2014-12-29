@@ -86,7 +86,7 @@ color: #FFF;
 }
 .minaywns-sel i{
 display:block;
-font-size:30px;
+font-size:25px;
 text-align: center;
 /*margin-top: 38px;*/
 /*margin-top:27px;*/
@@ -659,13 +659,13 @@ right: 104px;
 }
 
 .m3 .vidbutton{
-position: absolute;
+/*position: absolute;
 top: 40px;
-left: 45px;
+left: 45px;*/
 }
 
 .minyawns-img a [class^="icon-"]{
-font-size: 30px !important;
+font-size: 25px !important;
 vertical-align: middle;
 }
 
@@ -1518,6 +1518,7 @@ body .minyawns-grid1 .thumbspan {
 	
     /*width: 140px;*/
 	width:80px;
+	display: table;
 }
 
 
@@ -3094,5 +3095,10 @@ html body .minyawns-grid1 .thumbspan.card{
  
 .control-label-large {
 	width: 250px !important;
+}
+.cust-icon{
+	display: table-cell !important;
+	vertical-align: middle;
+	text-align: center;
 }
 

@@ -606,16 +606,17 @@ echo $payment_button; ?></span>
 
               <% if(result.is_hired === true){%>
               <div class="minaywns-sel">
-               <i class="icon-ok"></i>
+              <% if(result.intro_video_id !=''){%>
+              <a class="vidbutton cust-icon" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i></a>
+              <% } %> 
+               <i class="icon-ok cust-icon"></i>
                 <!--SELECTED-->
               </div>
               <% } %>
    
               <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
 
-              <% if(result.intro_video_id !=''){%>
-              <a class="vidbutton" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a>
-              <% } %> 
+              
             </div>
 
             <div class="rating">
