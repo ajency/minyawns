@@ -963,7 +963,7 @@ body .jobs_table .data-title .profile-job {
   font-size: 28px;
   font-family: arial;
   font-weight: bold;
-  margin-top: 60px;
+  margin-top: 72px;
 }
 .min_profile .profiledata {
   height: 46px;
@@ -5776,7 +5776,7 @@ div.tooltip1:after {
   line-height: 29px;
 }
 .employe-detail .name {
-  margin-top: 48px;
+  margin-top: 60px;
 }
 .employe-detail .employer-body {
   margin-bottom: 20px;
@@ -7006,3 +7006,6 @@ textarea[readonly] {
   color: #7b8996;
 }
 /*edit job readonly text style ends*/
+.change-avtar img {
+  width: 170px;
+}
