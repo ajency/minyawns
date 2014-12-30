@@ -6556,8 +6556,23 @@ div.tooltip1:after {
   -moz-box-shadow: 0 0 15px #ccc;
   box-shadow: 0 0 15px #ccc;
 }
+.minyawns-grid1 .thumbspan .thumbnail .m3 .min-app {
+  background: #79B91E;
+  width: 40%;
+  position: absolute;
+  top: -5px;
+  left: 30%;
+  color: #fff;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  font-size: 12px;
+}
 .minyawns-grid1 .thumbspan .thumbnail .m3 .icon-thumbs-down {
   color: #F65151;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .caption {
+  padding-top: 15px;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img {
   border-radius: 100%;

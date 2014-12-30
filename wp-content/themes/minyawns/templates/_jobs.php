@@ -593,7 +593,7 @@ echo $payment_button; ?></span>
   
     <div>
       <% if(result.is_invited == 4){%>
-      <div class="minions-applied"> <i class="icon-location-arrow "></i> Minion was Invited</div>
+      <div class="minions-applied min-app"> <i class="icon-location-arrow "></i> Minion was Invited</div>
       <%}%>
     </div>
   
