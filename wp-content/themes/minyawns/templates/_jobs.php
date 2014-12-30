@@ -510,7 +510,7 @@ echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= resu
                                       
                                     </div>
                                  </div>
-                                 <div class="span2"> <%= review.status2 %></div>
+                                 <div class="span3"> <%= review.status2 %></div>
                               </div>   
 </div>
 </div>  
