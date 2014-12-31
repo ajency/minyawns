@@ -80,7 +80,7 @@
                                     <%= result.user_avatar %>
 
                                      <% if(result.intro_video_id !=''){%>
-                                      <a class="vidbutton" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a>
+                                      <a class="vidbutton vid-btn" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i></a>
                                       <% } %> 
 
                                     </div>

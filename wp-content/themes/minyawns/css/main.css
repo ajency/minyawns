@@ -6487,6 +6487,17 @@ div.tooltip1:after {
   -moz-box-shadow: 0 0 15px #ccc;
   box-shadow: 0 0 15px #ccc;
 }
+.thumbnail-dir .m5li .thumbnail .minyawns-img {
+  position: relative;
+}
+.thumbnail-dir .m5li .thumbnail .minyawns-img .vid-btn {
+  position: absolute;
+  margin: auto;
+  top: 35%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .thumbnail-dir .m5li .thumbnail .icon-thumbs {
   color: #F65151;
 }
@@ -6556,7 +6567,7 @@ div.tooltip1:after {
     width: 100%;
   }
 }
-/*code added*/
+/*jobs page minyawn card*/
 .minyawns-grid1 .thumbspan .thumbnail .m3 {
   display: block !important;
   width: 100%;
@@ -6584,11 +6595,20 @@ div.tooltip1:after {
   padding-top: 15px;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img {
+  position: relative;
   border-radius: 100%;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
   border: 3px solid #8ed030;
   display: inline-block;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img > .cust-icon {
+  position: absolute;
+  margin: auto;
+  top: 35%;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 @media screen and (max-width: 321px) {
   .minyawns-grid1 .thumbspan .thumbnail .m3 .caption .minyawns-img .minaywns-sel {

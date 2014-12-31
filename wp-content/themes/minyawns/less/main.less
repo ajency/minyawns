@@ -7580,6 +7580,17 @@ body .job-view-list{
 			-webkit-box-shadow: 0 0 15px #ccc;
 			-moz-box-shadow: 0 0 15px #ccc;
 			box-shadow: 0 0 15px #ccc;
+				.minyawns-img{
+					position:relative;
+					.vid-btn{
+						position:absolute;
+						margin:auto;
+						top:35%;
+						left:0;
+						right:0;
+						bottom:0;
+					}
+				}
 				.icon-thumbs{
 					color: #F65151;
 					}		
@@ -7664,7 +7675,7 @@ body .job-view-list{
 }	
 
  
-/*code added*/
+/*jobs page minyawn card*/
 .minyawns-grid1{
 	.thumbspan{
 		.thumbnail{
@@ -7694,11 +7705,20 @@ body .job-view-list{
 				.caption{
 					padding-top: 15px;
 					.minyawns-img{
+						position:relative;
 						border-radius: 100%;
 							-moz-border-radius: 100%;
 							-webkit-border-radius: 100%;
 							border: 3px solid #8ed030;
 							display:inline-block;
+								&>.cust-icon{
+									position:absolute;
+									margin:auto;
+									top:35%;
+									left:0;
+									bottom:0;
+									right:0;
+								}
 								@media screen and (max-width:321px){
 									.minaywns-sel{
 										width:70px;
