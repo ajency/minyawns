@@ -101,7 +101,7 @@
 									<div class="span9"><!--span9 starts-->
                                     <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"><%= result.college %></div>
-                                    <div class="collage"><%= result.major %></div>
+                                    <div class="collage major"><%= result.major %></div>
 									<div class="social-link">
                                        <%= result.user_email %>
                                     </div>

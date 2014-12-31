@@ -6516,6 +6516,15 @@ div.tooltip1:after {
 }
 .thumbnail-dir .m5li .thumbnail h4 {
   font-size: 19px;
+  font-weight: bold;
+}
+.thumbnail-dir .m5li .thumbnail .collage {
+  font-weight: bold;
+  color: #8ed030;
+  font-size: 12px;
+}
+.thumbnail-dir .m5li .thumbnail .major {
+  color: #7b8996;
 }
 .cust-minyawns-grid1 .thumbnails:hover {
   margin-top: 0 !important;
