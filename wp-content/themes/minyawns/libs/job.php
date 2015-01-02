@@ -420,7 +420,7 @@ foreach ($pageposts as $pagepost) {
                     'job_category_ids' => $category_ids,
                     'job_category_slug' => $category_slug,
                     'is_verfied' => $minyawns_verified,
-                    'required_minyawns' => $post_meta['job_required_minyawns'][0]+2,
+                    'required_minyawns' => $post_meta['job_required_minyawns'][0],
                     'days_to_job_expired' => round($difference / 86400),
                     'no_applied' => $count_applied,
                     'no_hired' => $count_hired,
