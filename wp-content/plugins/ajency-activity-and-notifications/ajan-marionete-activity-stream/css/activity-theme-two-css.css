@@ -296,3 +296,8 @@ img {
 	display:none;
 }
 .activity-comment-actions-left{padding-bottom:20px;}
+
+.ajan-user-name{
+  font-size: 100%;
+  font-weight: bold;
+}
