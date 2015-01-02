@@ -7056,3 +7056,9 @@ textarea[readonly] {
 #invite-minion {
   border-bottom: 1px dotted;
 }
+.mt-60 {
+  margin-top: 60px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
