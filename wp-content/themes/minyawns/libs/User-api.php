@@ -607,6 +607,8 @@ function send_mail_employer_apply_job($job_id, $action) {
     //Send mail to Emplyer
     $mail_subject = "Minyawns - " . $current_user->display_name . " has " . $action . " for " . get_the_title($job_id);
 
+    $mail_subject = html_entity_decode($mail_subject);
+
     $mail_message = "Hi,<br/><br/>Looks like " .
             $current_user->display_name . " has " . $action . " for the job '" . get_the_title($job_id) . "'
                 The next step is to confirm, pay and hire. Please log back on to minyawns  <a href='".  get_permalink($job_id)."' target='_blank'>'".get_the_title($job_id)."'</a>  and finish the process.<br/><br/>
