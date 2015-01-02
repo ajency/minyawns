@@ -5210,6 +5210,7 @@ div.tooltip1:after {
   border: 1px solid #E0E0E0;
   background: #F0F0F0;
   text-align: left;
+  margin-top: 40px;
 }
 .alert-sidebar > hr {
   margin: 5px 0;

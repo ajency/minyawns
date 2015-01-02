@@ -351,11 +351,7 @@ echo $payment_button; ?></span>
 
             <ul class="thumbnails" id="minion-thumbnails">
               <span class='load_ajaxsingle_job_minions' ></span>
-        <div class="row-fluid">
-        <div class="span12">
         
-        </div>
-        </div>
             </ul>
 
             </br></br><span id="div_confirmhire"></span>
