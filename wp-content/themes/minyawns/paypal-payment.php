@@ -194,6 +194,8 @@ else
 					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );*/
 
 					$receiver_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
+
+					$receiver_subject = html_entity_decode($receiver_subject);
 					
 					$receiver_message.="Hi,<br/><br/>
 							
@@ -276,6 +278,9 @@ else
 					wp_mail($data['receiver_email'], $receiver_subject, email_header() . $receiver_message . email_signature(), $headers);
 					
 					$sender_subject = "Minyawns - Payment successfull for ".$data['item_name']." job";
+
+					$sender_subject = html_entity_decode($sender_subject);
+
 					$sender_message.="Hi,<br/><br/>
 				
 							Your Payment for '".$data['item_name']."' successfully Completed .
