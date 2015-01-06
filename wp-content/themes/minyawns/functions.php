@@ -3045,12 +3045,24 @@ add_action(  'unapply_job',  'record_job_unapply_activity', 10, 2 );
 function record_minyawn_hired_activity( $job ,$minyawn) {
 
 global $user_ID;
+$act_type = 'minyawn_hired';
 $creator_user_info = get_userdata($minyawn);
 
+$actresults = $GLOBALS['wpdb']->get_results( 'SELECT * FROM wp_ajan_activity WHERE type = "'.$act_type.'" AND item_id = '.$job->ID.'', ARRAY_A );
+if($actresults){
+
+    $activityid = $actresults[0]['id'];
+    
+    $activity                    = new AJAN_Activity_Activity( $activityid );
+    $activity->action            = 'The minyawns have been hired. '.get_job_hired_users($job->ID);
+    $activity->save();
+
+}else{
+    
     $args = array(         
-        'action'            => $creator_user_info->first_name.' '.$creator_user_info->last_name.' hired for job <a href="'. get_permalink($job->ID).'">'.$job->job_title.'</a>',
+        'action'            => 'The minyawns have been hired. <a href="'.get_site_url().'/profile/'.$creator_user_info->ID.'">'.$creator_user_info->first_name.' '.$creator_user_info->last_name.'</a>',
         'component'         => 'users',
-        'type'              => 'minyawn_hired',
+        'type'              => $act_type,
         'user_id'           => $user_ID,
         'item_id'           => $job->ID
         );
@@ -3058,7 +3070,37 @@ $creator_user_info = get_userdata($minyawn);
     ajan_activity_add($args); 
 }
 
+    
+}
+
 add_action(  'minyawn_hired',  'record_minyawn_hired_activity', 10, 2 );
+
+
+
+
+
+
+
+function get_job_hired_users($jobid){
+$hireduser = $GLOBALS['wpdb']->get_results( 'SELECT * FROM wp_userjobs WHERE job_id = "'.$jobid.'" AND status = "hired"', ARRAY_A );
+if($hireduser){
+    $users = array();
+  foreach ($hireduser as $hide){
+
+    $user_info = get_userdata($hide['user_id']);
+    $user_name = '<a href="'.get_site_url().'/profile/'.$hide['user_id'].'">'.$user_info->first_name.' '.$user_info->last_name.'</a>';
+    $users[] = $user_name;
+  }
+
+  return implode(",", $users);  
+}
+}
+
+
+
+
+
+
  
 
 
@@ -3306,24 +3348,6 @@ function set_date_timezone(){
  ini_set( 'date.timezone', 'UTC' );
 }
 
-
-
-
-/*$currentpostuser = get_current_user_id();
-$querystr = "
-    SELECT * 
-    FROM $wpdb->posts
-    WHERE $wpdb->posts.post_author = {$currentpostuser} 
-    AND $wpdb->posts.post_status = 'publish' 
-    ";
-global $wpdb;
- $newposts = $wpdb->get_results($querystr, ARRAY_A);
-$postids = array();
- foreach ($newposts as $post){
-    $postids[] = $post['ID'];
-}
-
-echo json_encode($postids);*/
 
 
 
