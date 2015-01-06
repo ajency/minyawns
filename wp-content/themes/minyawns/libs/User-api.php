@@ -867,7 +867,7 @@ function get_minyawn_profile($userData,$total)
                     }else{
 
                        if ($user_profile_pic !== false) {
-                        $user_pic_img_src =  wp_get_attachment_image($user_profile_pic, get_user_role());
+                        $user_pic_img_src =  wp_get_attachment_image($user_profile_pic, 'thumbnail', get_user_role());
                     } else {
                         $user_pic_img_src = get_avatar($userData->ID);
                     }
