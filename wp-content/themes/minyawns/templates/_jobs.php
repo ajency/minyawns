@@ -790,7 +790,7 @@ echo $_SERVER['HTTP_HOST']; ?>"></iframe>
 <script type="text/template" id="blank-card">
 
 <% if(result.days_to_job_expired >0){ 
-if(result.no_hired < result.required_minyawns){
+if(result.no_hired < 0){
 %>
 
   <div class="row-fluid">
