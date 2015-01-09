@@ -443,7 +443,7 @@ function getUserPhotos(user_id){
 }
 function photoUpload(user_id){ 
  
-  
+    
 
         var ul = jQuery('#upload ul');
 
@@ -487,7 +487,7 @@ function photoUpload(user_id){
                 tpl.find('span').click(function(){
 
                     if(tpl.hasClass('working')){
-                        jqXHR.abort();
+                        //jqXHR.abort();
                     }
 
                     tpl.fadeOut(function(){
