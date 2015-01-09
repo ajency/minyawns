@@ -3038,6 +3038,8 @@ $creator_user_info = get_userdata($user_ID);
     ajan_activity_add($args); 
 }
 add_action(  'unapply_job',  'record_job_unapply_activity', 10, 2 );
+
+
  
 
 
@@ -3045,6 +3047,8 @@ add_action(  'unapply_job',  'record_job_unapply_activity', 10, 2 );
 function record_minyawn_hired_activity( $job ,$minyawn) {
 
 global $user_ID;
+
+$minyawn = $user_ID;
 $act_type = 'minyawn_hired';
 $creator_user_info = get_userdata($minyawn);
 
@@ -3073,7 +3077,32 @@ if($actresults){
     
 }
 
-add_action(  'minyawn_hired',  'record_minyawn_hired_activity', 10, 2 );
+//add_action(  'minyawn_hired',  'record_minyawn_hired_activity', 10, 2 );
+
+
+
+
+
+
+
+function record_minyawn_hired_activity_combined( $job ) {
+
+global $user_ID;
+
+$act_type = 'minyawn_hired';
+
+  $args = array(         
+        'action'            => 'The minyawns have been hired. '.get_job_hired_users($job->ID),
+        'component'         => 'users',
+        'type'              => $act_type,
+        'user_id'           => $user_ID,
+        'item_id'           => $job->ID
+        );  
+
+    ajan_activity_add($args); 
+}
+
+//add_action(  'minyawn_hired',  'record_minyawn_hired_activity_combined', 10, 2 );
 
 
 
@@ -3094,6 +3123,7 @@ if($hireduser){
 
   return implode(",", $users);  
 }
+
 }
 
 

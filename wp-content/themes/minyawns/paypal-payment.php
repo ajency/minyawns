@@ -225,7 +225,7 @@ else
 						//send mail to hired minyawns						
 						$job_data = get_post($data['item_number'],$value->ID);
 
-						 do_action( 'minyawn_hired', $job_data );		
+						 //do_action( 'minyawn_hired', $job_data );		
 						//$minyawns_subject = "Minyawns - You have been hired for " . get_the_title($data['item_number'] ); 
 						$minyawns_subject = "Minyawns - You have been hired! ";
                			$minyawns_message = "Hi,<br/><br/>
@@ -254,6 +254,67 @@ else
 
 					$cnt_sel_minyawns++;
 					}
+
+
+
+
+
+					/****************Activity hired*********************
+					*****************************************************/
+
+					$job_data_hired = get_post($data['item_number']);
+
+					//do_action( 'minyawn_hired', $job_data_hired );
+					record_minyawn_hired_activity_combined_final( $job_data );
+
+
+
+					function record_minyawn_hired_activity_combined_final( $job ) {
+
+						global $user_ID;
+
+						$act_type = 'minyawn_hired';
+
+						$args = array(         
+							'action'            => 'The minyawns have been hired. '.get_job_hired_users_test($job->ID),
+							'component'         => 'users',
+							'type'              => $act_type,
+							'user_id'           => $user_ID,
+							'item_id'           => $job->ID
+							);  
+
+						ajan_activity_add($args); 
+					}
+
+
+
+					function get_job_hired_users_final($jobid){
+						$hireduser = $GLOBALS['wpdb']->get_results( 'SELECT * FROM wp_userjobs WHERE job_id = "'.$jobid.'" AND status = "hired"', ARRAY_A );
+						if($hireduser){
+							$users = array();
+							foreach ($hireduser as $hide){
+
+								$user_info = get_userdata($hide['user_id']);
+								$user_name = '<a href="'.get_site_url().'/profile/'.$hide['user_id'].'">'.$user_info->first_name.' '.$user_info->last_name.'</a>';
+								$users[] = $user_name;
+							}
+
+							return implode(",", $users);  
+						}
+
+					}
+
+
+					/********************Activity hired end********************
+					************************************************************/
+
+
+
+
+
+
+
+
 							 
 									
 					$receiver_message.= "
@@ -424,9 +485,3 @@ else
 	
 	
 }
-
-
-
- 
-
- 
