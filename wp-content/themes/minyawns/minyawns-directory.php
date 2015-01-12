@@ -88,7 +88,7 @@ require 'templates/_minyawnsdir.php';
                             Minyawns who have applied to your jobs before
                         </label>
                     </div>-->
-                    <div class="alert alert-success alert-sidebar">
+                    <div class="alert alert-success alert-sidebar" id="miniyawns-verified-box">
                         <label  class="checkbox" for="checkbox-verified">
                             <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span>
                             <input type="checkbox" value="" id="checkbox-verified" >
@@ -108,8 +108,8 @@ require 'templates/_minyawnsdir.php';
                                                 </div>-->
                 <!--			  <div id="more" class="peplist more">Send Invites by selecting Minyawns below </div>-->
 
-                <div class="row-fluid minyawns-grid1">
-                    <ul class="thumbnails minyawnslist" style="left: 100px;">
+                <div class="row-fluid minyawns-grid1 cust-minyawns-grid1">
+                    <ul class="thumbnails minyawnslist thumbnail-dir" style="left: 100px;">
 
                         <span class="load_ajaxsingle_job_minions" style="display: none;"></span>
                     </ul>
@@ -122,7 +122,7 @@ require 'templates/_minyawnsdir.php';
 
 
 
-<div class="modal fade minion-dir" id="miniondir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade minion-dir min-invite-job" id="miniondir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

@@ -3,6 +3,7 @@
 wp-config.php
 .externalToolBuilders
 node_modules
+bower_components
 wp-content/themes/minyawns/cssb/images/icons/.svn/prop-base
 wp-content/themes/minyawns/cssb/images/icons/.svn
 wp-content/uploads

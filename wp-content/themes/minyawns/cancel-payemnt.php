@@ -156,9 +156,9 @@ if(isset($_GET['mntx']))
 }
 
 ?>
-<div class="container">
+<div class="container mb-20">
 	<div id="main-content" class="main-content bg-white main-page">
-	<div id="primary" class="content-area paypal-success">
+	<div id="primary" class="content-area paypal-success mt-60">
 		<div id="content" class="site-content" role="main">
 		<i class="icon-remove-sign red"></i>
 <h2>Paypal Payment Cancelled !</h2>
@@ -171,5 +171,5 @@ if(isset($_GET['mntx']))
 	</div><!-- #primary -->
 		</div>
 	</div>
-<?php get_sidebar(); ?>
+<?php //get_sidebar(); ?>
 <?php get_footer(); ?>

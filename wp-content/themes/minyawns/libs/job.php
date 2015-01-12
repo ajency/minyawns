@@ -116,14 +116,28 @@ $app->get('/fetchjobs/', function() use ($app) {
                 if ($user->roles[0] == 'minyawn') {
                     $tables = "$wpdb->posts,$wpdb->postmeta,{$wpdb->prefix}userjobs";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND {$wpdb->prefix}userjobs.user_id= '" . $user_id . "' AND {$wpdb->prefix}userjobs.job_id=$wpdb->posts.ID ".$additional_filter."";
-                    $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    
+                    //Check if all jobs parameter set
+                    if (isset($_GET['all_jobs'])) {
+                        $limit = "";
+                    }else{
+                        $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    }
+                    
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value $sort_value";
                 } else {
                     //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
                     $tables = "$wpdb->posts,$wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.post_author= '" . $user_id . "' AND $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_start_date' ";
-                    $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    
+                    //Check if all jobs parameter set
+                    if (isset($_GET['all_jobs'])) {
+                        $limit = "";
+                    }else{
+                        $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    }
+
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_start_date' 
                             ORDER BY $wpdb->postmeta.meta_value $sort_value";
                 }
@@ -141,7 +155,18 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
                             ORDER BY $wpdb->postmeta.meta_value $sort_value";
-                    $limit = "LIMIT " . $_GET['offset'] . ",5";
+                    if (isset($_GET['all_jobs'])) {
+                        $limit = "";
+                    }else{
+
+                        //Check if all jobs parameter set
+                        if (isset($_GET['all_jobs'])) {
+                            $limit = "";
+                        }else{
+                            $limit = "LIMIT " . $_GET['offset'] . ",5";
+                        }
+
+                    }
                 }
             }
 
@@ -330,6 +355,14 @@ foreach ($pageposts as $pagepost) {
                 $company_details = get_user_meta(get_the_author_meta('ID', $pagepost->post_author));
 
 
+
+                if ($post_meta['job_start_date_time'][0] < current_time('timestamp')) {
+                   $has_expired = "yes";
+               } else {
+                   $has_expired = "no";
+               }
+
+
                 /*
                  *  1 ->running
                  *  2->locked ,if one applicant also hired then locked
@@ -387,12 +420,13 @@ foreach ($pageposts as $pagepost) {
                     'job_category_ids' => $category_ids,
                     'job_category_slug' => $category_slug,
                     'is_verfied' => $minyawns_verified,
-                    'required_minyawns' => $post_meta['job_required_minyawns'][0]+2,
+                    'required_minyawns' => $post_meta['job_required_minyawns'][0],
                     'days_to_job_expired' => round($difference / 86400),
                     'no_applied' => $count_applied,
                     'no_hired' => $count_hired,
                     'count_rated' => $final_count,
                     'comment' => strlen($comment) > 0 ? $comment : '',
+                    'has_expired'   => $has_expired,
                 );
             }
 
@@ -698,6 +732,21 @@ $app->get('/jobminions/', function() use ($app) {
 
                     $is_invited = get_current_job_status($_GET['job_id'], $minion_ids[$i]);
 
+
+
+
+                    $user_meta = get_user_meta( $minion_ids[$i] );
+                    $user_profile_pic = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
+
+                    if(isset($user_meta['intro_video_id'][0])){
+                        $user_pic_img_src =  '<img src="http://i.ytimg.com/vi/'.$user_meta['intro_video_id'][0].'/1.jpg" />';
+                    }else{
+                      $user_pic_img_src = $user['image'];
+                     }
+
+
+
+
 $user_email=get_userdata($minion_ids[$i]);
                     $data[] = array(
                         'user_id' => $minion_ids[$i],
@@ -710,14 +759,15 @@ $user_email=get_userdata($minion_ids[$i]);
                         'user_email' =>$user_email->user_email, /* nick name temp fix */
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
-                        'user_image' => $user['image'],
+                        'user_image' => $user_pic_img_src,
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
                         'comment' => isset($comment) > 0 ? $comment : 0,
                         'is_verified' => isset($all_meta_for_user['user_verified']) ? $all_meta_for_user['user_verified'] : '',
                         'is_hired' => minyawns_hired_to_jobs($minion_ids[$i], $_GET['job_id']),
                         'count_rated' => $count_rated,
-                        'is_invited' => $is_invited
+                        'is_invited' => $is_invited,
+                        'intro_video_id'=>isset($user_meta['intro_video_id'][0]) ? $user_meta['intro_video_id'][0] :''
                     );
                 }
             }
@@ -829,10 +879,14 @@ $app->map('/inviteminions', function() use($app) {
             //print_r($user_meta);exit();
             $email = get_userdata($_POST['user_id']);
           $emailid=$email->user_email;
+          $content_post = get_post($_POST['job_id']);
+          $content = $content_post->post_content;
             $data_mail = array(
-                'content' => get_the_content($_POST['job_id']),
+                'title' => get_the_title($_POST['job_id']),
+                'content' => $content,
                 'wages' => get_post_meta($_POST['job_id'], 'job_wages', true),
                 'time' => date('g:i', get_post_meta($_POST['job_id'], 'job_start_time', true)),
+                'timeampm' => date('a', get_post_meta($_POST['job_id'], 'job_start_time', true)),
                 'date' => date('d M Y', get_post_meta($_POST['job_id'], 'job_start_date', true)),
                 'slug' => preg_replace('/[[:space:]]+/', '-', get_the_title($_POST['job_id']))
             );
@@ -840,9 +894,9 @@ $app->map('/inviteminions', function() use($app) {
             //date('g:i', $post_meta['job_start_time'][0]),
             $mail = email_template($emailid, $data_mail, 'invite_minion');
           
-            $headers = 'From: Minyawns support@minyawns.com' . "\r\n";
+            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
             $headers .= "MIME-Version: 1.0\n" .
-                    "From: Minyawns support@minyawns.com\n" .
+                    "From: Minyawns <support@minyawns.com>\n" .
                     "Content-Type: text/html; charset=\"" . "\"\n";
 
 

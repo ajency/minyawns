@@ -72,6 +72,9 @@ function employer_jobcompletion_reminder() {
 add_action('CRON_CONTROL_TIME_1', 'employer_jobcompletion_reminder',2,0);
 
 
+add_action('CRON_CONTROL_TIME_1','send_job_day_minyawns_reminder',10,0);
+
+
 /**
  * Get all users who have signed up 3 days ago and still have not activated the account
  */

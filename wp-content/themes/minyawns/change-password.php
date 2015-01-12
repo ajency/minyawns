@@ -50,7 +50,7 @@ if ( is_wp_error($user) ) {
 	//wp_redirect( site_url('change-password/?action=lostpassword&error=invalidkey') );
 	echo "
 				<div class='container'>
-					<div class='main-content '>
+					<div class=''>
 					<div class='alert alert-info ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
 							<h4 style='text-align:center'>Sorry, that key does not appear to be valid.</h4>
 							<hr>
@@ -75,7 +75,7 @@ if ( ( ! $errors->get_error_code() ) && isset( $_POST['pass1'] ) && !empty( $_PO
 	reset_password_($user, $_POST['pass1']);
 	echo "
 				<div class='container'>
-					<div class='main-content '>
+					<div class=''>
 					<div class='alert alert-info ' style='width:70%;margin:auto;border: 10px solid rgba(204, 204, 204, 0.57);margin-top:10%;margin-bottom:10%'>
 							<h4 style='text-align:center'>Password changed successfully.</h4>
 							<hr>

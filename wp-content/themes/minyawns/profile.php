@@ -17,7 +17,7 @@ require 'templates/_jobs.php';
         
         $(".inline li").removeClass("selected");
          fetch_my_jobs(logged_in_user_id);
-        $("#example_right").live('click', function() {
+        $("#example_right").on('click', function() {
 
             $(".load_ajax_profile_comments").show();
             var Fetchusercomments = Backbone.Collection.extend({
@@ -88,7 +88,7 @@ require 'templates/_jobs.php';
 
                 <form id="cropimage" method="post" enctype="multipart/form-data">
                     <a type="button" class="btn btn-primary" id="done-cropping" style="display:none">Done? </a>
-                    Upload your image <input type="file" name="files" id="photoimg" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
+                    Upload your image <input type="file" name="files" id="photoimg" data-user="<?php echo get_user_id(); ?>" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
                     <br>
                     <span id="div_cropmsg"> 
                         <?php /* Please drag to select/crop your picture. */ ?>
@@ -135,16 +135,26 @@ require 'templates/_jobs.php';
                 	<?php
                                                                    
                  if (get_logged_in_role() == 'Minion') {
+
+                    //Check if minion profile complete or not
+                    if(!minyawns_complete_profile()){
 				   echo '<div class="alert alert-msg">   Attract more job offers with a complete profile.Simply <a href="'.site_url().'/edit-profile"  class="" >click here. </a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
-				 }
+				    }
+
+                 }
                     ?>
 				<?php
                                                                    
                     if (get_logged_in_role() == 'Employer') {
-					
-			 echo '<div class="alert alert-msg"> Complete your profile 
+
+                        //Check if employer profile complete or not
+                        if(!employer_complete_profile()){
+                            echo '<div class="alert alert-msg"> Complete your profile 
 and get more applications from eager minyawns. Simply <a href="'.site_url().'/edit-profile"  class="" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 
+                        }
+					
+			 
  }
                     ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs/#browse" class=""> Click Here</a></h4>
                 <div class="row-fluid min_profile  <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">
@@ -182,11 +192,11 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 					  <?php if (get_user_role() === 'minyawn'): ?>
 				<div class="social-link profile-social-link"> 
                 
-                    <?php  if(strlen(user_profile_linkedin()) >0 ){ ?>
+                    <?php  if(strlen(user_profile_id_linkedin()) >0 ){ ?>
                     <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a> 
                                         <?php  }?>
                                             
-                    <?php  if(strlen(user_profile_facebook()) >0 ){ ?>
+                    <?php  if(strlen(user_profile_id_facebook()) >0 ){ ?>
                     <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
                                         <?php } ?>     </div>                           
                                             <?php endif; ?> 
@@ -255,6 +265,9 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 								   <li class="website">
 								   Company Website : <b>  <a href="http://<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
 								   </li>
+                                    <li class="website">
+                                   Email : <b>  <a href="mailto:<?php user_profile_email();?>" target="_blank"><?php echo user_profile_email(); ?></a></b>
+                                   </li>
 								   </ul>
 								
 								
@@ -342,16 +355,25 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     <form>
                     <?php $upload_nonce = wp_create_nonce("upload_photo_".get_current_user_id()); ?>
                     <?php $delete_nonce = wp_create_nonce("delete_photo_".get_current_user_id()); ?>
+                    <?php
+                    if(is_super_admin( get_current_user_id() )){
+                        $user_admin = 'true';
+                    }else{
+                        $user_admin = 'false';
+                    }
+                    ?>
                     <input type="hidden" id="upload_nonce" name="upload_nonce" value="<?php echo $upload_nonce; ?>" />
                     <input type="hidden" id="delete_nonce" name="delete_nonce" value="<?php echo $delete_nonce; ?>" />
                     <input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
-                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>">
+
+                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>" user-admin="<?php echo $user_admin; ?>">
+
                      
                           <div class="row-fluid">
                           <div class="span12">
                             <div id="drop">
-                              Drop Your Photos Here <br>
-                              <a class="btn btn-primary"><i class="icon-file"></i>Browse</a>
+                              <p>Drop Your Photos Here</p>
+                              <a class="btn btn-primary"><i class="icon-file"></i>&nbsp;Browse</a>
                               <input type="file" name="photo" multiple />
                             </div>
 
@@ -367,14 +389,15 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 
                      <div align="left" id="photos_title" class="photos-title" style="display:none"> <h7><?php if(get_current_user_id()==get_user_id()){ ?>My<?php } else{ echo $display_name."'s"; }?> Photos</h7></div>
 					<div class="isotope">
-                          <div class="grid-sizer"></div>
+                          <div class="grid-sizer-prof"></div>
                           
                           
                         </div>
 					</div>
 				</div>
 
-              
+
+         
 
              <!--   <div class="jobs_table">
                     <div id="browse-jobs-table" class=" browse-jobs-table">
@@ -401,7 +424,10 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
         <hr>
         Sorry, you aren't allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we'll get back to you as soon as possible. 
         <br>
-        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="btn__login_oaccess" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
+        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="btn__login_oaccess" class="btn btn-large  btn-success default-btn"  >Login</a>
+        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__minyawnregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >SignUp as Minyawn</a>
+        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__employerregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >SignUp as Business</a>
+        
         <div class="clear"></div></div>
             </div>
         </div>

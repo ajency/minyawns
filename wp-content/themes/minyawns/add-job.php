@@ -389,7 +389,9 @@ $(".inline li").removeClass("selected");
                                                 </div>
                                             </div>
                                             <div class="span6">
-                                                <label class="control-label" for="inputtask">Actual Price Per Minyawn</label>
+
+                                                <label class="control-label " for="inputtask">Wages the Minyawns will Earn</label>
+
 
                                                 <div class="controls small">
                                                     <div class="input-prepend">
@@ -495,8 +497,10 @@ $(".inline li").removeClass("selected");
 		Sorry, you aren't allowed to view this page. If you are logged in and believe you should have access to this page, send us an email at <a href="mailto:support@minyawns.com">support@minyawns.com</a> with your username and the link of the page you are trying to access and we'll get back to you as soon as possible. 
  
 		<br>
-		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="btn__login_oaccess" class="btn btn-large btn-block btn-success default-btn"  >Login</a>
-		<div class="clear"></div></div>
+		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="btn__login_oaccess" class="btn btn-large  btn-success default-btn"  >Login</a>
+        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__minyawnregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >SignUp as Minyawn</a>
+		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__employerregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >SignUp as Business</a>
+        <div class="clear"></div></div>
 			</div>
 		</div>
                         <?php } ?>
@@ -513,7 +517,7 @@ $(".inline li").removeClass("selected");
         </div>
 
     </div>
-    <div id="examplejob" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="examplejob" class="modal hide fade modal-dwn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h5 id="myModalLabel">Sample Job Popup</h5>
