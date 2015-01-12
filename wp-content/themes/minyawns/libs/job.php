@@ -894,9 +894,9 @@ $app->map('/inviteminions', function() use($app) {
             //date('g:i', $post_meta['job_start_time'][0]),
             $mail = email_template($emailid, $data_mail, 'invite_minion');
           
-            $headers = 'From: Minyawns support@minyawns.com' . "\r\n";
+            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
             $headers .= "MIME-Version: 1.0\n" .
-                    "From: Minyawns support@minyawns.com\n" .
+                    "From: Minyawns <support@minyawns.com>\n" .
                     "Content-Type: text/html; charset=\"" . "\"\n";
 
 

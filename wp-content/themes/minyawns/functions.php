@@ -495,7 +495,7 @@ add_action('init', 'minyawns_initial_checks');
 //add_action('init', 'user_incomplete_profile_reminder');
 //add_action('init', 'users_notactivated_reminder');
 //add_action('init', 'users_no_activity_reminder');
-//add_action('init', 'employer_jobcompletion_reminder');
+add_action('init', 'employer_jobcompletion_reminder');
 //add_action('init', 'daily_cron');
 //Allow only active users to login in 
 
@@ -3213,9 +3213,9 @@ foreach($posts as $post) {
             
             $mail = email_template($minyawn->user_email, $data_mail, 'minyawn_job_reminder');
          
-            $headers = 'From: Minyawns support@minyawns.com' . "\r\n";
+            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
             $headers .= "MIME-Version: 1.0\n" .
-                    "From: Minyawns support@minyawns.com\n" .
+                    "From: Minyawns <support@minyawns.com>\n" .
                     "Content-Type: text/html; charset=\"" . "\"\n";
 
              wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
@@ -3361,23 +3361,11 @@ function get_activity_update_action($action,$item_id,$userid ){
 add_filter('activity_update_action','get_activity_update_action',10,3);
 
 
-
-
-
-
-
-
-
-
-
-
-
-add_action('init', 'set_date_timezone');
-
-function set_date_timezone(){
- ini_set( 'date.timezone', 'UTC' );
+//Set Miniyawn as mail header
+add_filter('wp_mail_from_name','custom_wp_mail_from_name');
+function custom_wp_mail_from_name($name) {
+  return 'Minyawns';
 }
-
 
 
 
