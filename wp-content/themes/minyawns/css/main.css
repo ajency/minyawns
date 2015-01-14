@@ -6943,7 +6943,7 @@ div.tooltip1:after {
   display: block;
 }
 #home-video span.close-button {
-  background: url("http://bit.ly/1pkMcv5");
+  /*background: url("http://bit.ly/1pkMcv5");*/
   background-position: 0 0;
   width: 100px;
   height: 100px;
