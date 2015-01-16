@@ -205,6 +205,8 @@ function get_activitycomments(){
 						);
 					$id = ajan_activity_add($args);
 
+					do_action( 'activity_message_posted', $id ); 
+
 
 					if(!$id){
 						$response = array('error');

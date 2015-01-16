@@ -3369,3 +3369,97 @@ function custom_wp_mail_from_name($name) {
 
 
 
+
+
+
+function activity_message_mail($message_id){
+
+//$message_id = '193';
+
+    global $wpdb;
+
+    $pquery = "Select * from ".$wpdb->base_prefix ."ajan_activity WHERE id = ".$message_id."";
+    $presults = $wpdb->get_row( $pquery,OBJECT);
+
+
+    $jobpost = get_post($presults->item_id, OBJECT);
+
+//get admin email
+    $jobadmin = get_userdata($jobpost->post_author);
+    $jobadmin_email = $jobadmin->user_email;
+
+//get message user name and email
+    $messageuser = get_userdata($presults->user_id);
+    $messageuser_name = $messageuser->display_name;
+
+
+
+//get applied and hired user email data
+    $applied_query = "Select user_id from ".$wpdb->base_prefix ."userjobs WHERE job_id = ".$presults->item_id." AND status IN ('applied', 'hired')";
+    $applied_minyawns = $wpdb->get_results( $applied_query,ARRAY_A);
+
+    $applied_emails = array();
+    foreach($applied_minyawns as $minyawn){
+     $applieduser = get_userdata($minyawn['user_id']);
+     $applieduser_email = $applieduser->user_email;
+     $applied_emails[] = $applieduser_email;
+ }
+
+ //if message has parent
+ if($presults->secondary_item_id > 0){
+     $aquery = "Select * from ".$wpdb->base_prefix ."ajan_activity WHERE id = ".$presults->secondary_item_id."";
+     $aresults = $wpdb->get_row( $aquery,OBJECT);
+   //get message user name and email
+     $p_messageuser = get_userdata($aresults->user_id);
+     $p_messageuser_email = $p_messageuser->user_email;
+
+
+//get all email id for reply comments
+     $cquery = "Select * from ".$wpdb->base_prefix ."ajan_activity WHERE secondary_item_id = ".$presults->secondary_item_id." AND id != ".$message_id."";
+     $cresults = $wpdb->get_results( $cquery,ARRAY_A);
+
+     $commented_emails = array();
+     foreach($cresults as $cresult){
+         $commenteduser = get_userdata($cresult['user_id']);
+         $commenteduser_email = $commenteduser->user_email;
+         $commented_emails[] = $commenteduser_email;
+     }
+
+     $email_list = array_merge(array($jobadmin_email,$p_messageuser_email),$commented_emails);
+     $email_list = array_unique($email_list);
+     $emails = implode(", ", $email_list);
+
+     $message_subject = 'Notification: '.$messageuser_name.' has replied to a Post on '.$jobpost->post_title;
+     $activity_message = email_template_header();
+     $activity_message .= 'Hi,<br/><br/>';
+     $activity_message .= '<strong>'.$messageuser_name.'</strong> has replied to below Post <strong>'.$jobpost->post_title.'</strong><br/><br/>';
+     $activity_message .= $presults->content.'<br/><br/>';
+     $activity_message .= 'Login to the site and click <a href="'. get_permalink($presults->item_id).'">here</a> to reply..<br/>';
+    $activity_message .= email_template_footer();
+
+ }else{
+
+    $email_list = array_merge(array($jobadmin_email),$applied_emails);
+    $email_list = array_unique($email_list);
+    $emails = implode(", ", $email_list);
+
+
+    $message_subject = 'Notification: '.$messageuser_name.' has posted a Message on '.$jobpost->post_title;
+    $activity_message = email_template_header();
+    $activity_message .= 'Hi,<br/><br/>';
+    $activity_message .= '<strong>'.$messageuser_name.'</strong> has posted message on <strong>'.$jobpost->post_title.'</strong><br/><br/>';
+    $activity_message .= $presults->content.'<br/><br/>';
+    $activity_message .= 'Login to the site and click <a href="'. get_permalink($presults->item_id).'">here</a> to reply..<br/>';
+    $activity_message .= email_template_footer();
+    
+
+}
+
+add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+$headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+wp_mail($emails, $message_subject, $activity_message, $headers);
+
+
+}
+
+add_action( 'activity_message_posted', 'activity_message_mail', 10, 2 );
