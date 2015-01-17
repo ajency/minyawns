@@ -2496,7 +2496,9 @@ jQuery(document.body).on('click', '#delete_jobs_link', function() {
 //            });
 
 });
-jQuery(document.body).on('click', '#delete_job', function() {  
+
+
+jQuery(document).on('click', '#delete_job', function() {  
        $.post(SITEURL + '/wp-content/themes/minyawns/libs/job.php/delete-job',
             {
                 job_id: jQuery("#delete_job").attr("job-id"),
