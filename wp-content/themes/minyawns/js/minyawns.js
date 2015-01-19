@@ -87,14 +87,14 @@ jQuery(document).ready(function($) {
     var newUrlCity = getURLParameter('city');
 
  /* minyawns city selection pop up*/
-      if(  (citychk === null) ||  (newUrlCity === null) || (parseInt(citychk) !=0) || (newUrlCity==="") ) {
+     /* if(  (citychk === null) ||  (newUrlCity === null) || (parseInt(citychk) !=0) || (newUrlCity==="") ) {
         checkCookie() ;  //check and set minyawns_visitor_city cookie
      }else{
 
           expiry_days =  365  ; //set to 1 years
 
           setCookie("minyawns_visitor_city",newUrlCity,expiry_days);
-      }
+      }*/
 
 
 
