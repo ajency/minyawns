@@ -1,4 +1,4 @@
-﻿<?php
+<?php
    if(is_user_logged_in())
    	wp_redirect(site_url()."/profile/");
    /**
@@ -45,11 +45,11 @@
    
 		 <div class="row-fluid">
 				<div class="span12">
-					<div class="banner-title">Your Empire, Our Minyawns to Help</div>
-					<div class="banner-desc">1-day assistants for your 1-day tasks</div>
+					<div class="banner-title">Need an extra hand for a day?</div>
+					<div class="banner-desc">access a job board exclusively used by vetted college students</div>
 					<div class="text-center b-text">
-					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-info" id="link_employerregister" onclick="return true">Sign Up and Get Your Minyawns Today</a>
-          			<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-primary" id="link_minyawnregister" onclick="return true">Minyawn Signup and Apply for Jobs Now</a>
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-info" id="link_employerregister" onclick="return true">Post for Free Today</a>
+          			
 		  </div>
 				</div>
 			
