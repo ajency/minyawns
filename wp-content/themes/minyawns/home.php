@@ -72,7 +72,7 @@
 <div id="pliip" class="how-does-it-work">
 <div class="">
    <h3 class="heading-title">How does it work?</h3>
-   <p class="excerpt">Go from being burdened with menial jobs to doing more awesome stuff.</p>
+   <p class="excerpt">Post your gig. wait for studnets to apply, review their profiles, and put them to work!</p>
    </div>
      
    <div class="container steps-3">
@@ -85,13 +85,13 @@
          </div>
          <div class="span4">
            <div class="step2-2"></div>
-            <h4> <span class="badge badge2">2</span> Select your Minyawns</h4>
-            <p>We're talking about professional, reliable, competent, clean and sociable young college students looking for work.</p>
+            <h4> <span class="badge badge2">2</span> Review your applicants</h4>
+            <p>We're talking about professional, reliable, competent and sociable young college students looking for work.</p>
          </div>
          <div class="span4">
                <div class="step3-3"></div>
             <h4> <span class="badge badge2">3</span> Get the help you need.</h4>
-            <p>Get productive and end your to-do list, 100% satisfaction guaranteed.</p>
+            <p>Get productive, end your to-do list and get help for your event.</p>
          </div>
       </div>
       <br>
