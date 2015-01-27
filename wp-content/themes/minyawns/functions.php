@@ -182,7 +182,7 @@ function minyawns_scripts_styles() {
   
             if (is_page('Home') || is_home()) {
                 wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
-                wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array(), null);
+                //wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', //array(), null);
                 wp_enqueue_style('flat-ui', get_template_directory_uri() . '/css/flat-ui.css', array(), null);
                 wp_enqueue_style('mains', get_template_directory_uri() . '/css/main.css', array(), null);
                 wp_enqueue_style('style', get_template_directory_uri() . '/css/style.css', array(), null);
@@ -192,7 +192,7 @@ function minyawns_scripts_styles() {
 
             } else {
                 wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
-                wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array(), null);
+                //wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', //array(), null);
 				wp_enqueue_style('masonry', get_template_directory_uri() . '/css/masonry.css', array(), null);
 				wp_enqueue_style('jqueryfancybox', get_template_directory_uri() . '/css/jquery.fancybox.css', array(), null);
                 wp_enqueue_style('flat-ui', get_template_directory_uri() . '/css/flat-ui.css', array(), null);

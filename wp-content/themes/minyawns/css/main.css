@@ -39,6 +39,9 @@ a:hover {
   font-weight: 100;
   font-family: "Lato", sans-serif;
 }
+.container {
+  width: 1170px;
+}
 .slider1 .cus_1 {
   background: url(../images/sprite.jpg) -1px -247px no-repeat;
   width: 141px!important;
@@ -6480,6 +6483,13 @@ div.tooltip1:after {
   display: flex !important;
   padding: 5px !important;
 }
+.thumbnail-dir .m5li .tags {
+  height: 70px;
+  overflow: hidden;
+}
+.thumbnail-dir .m5li .label {
+  white-space: normal;
+}
 .thumbnail-dir .m5li .thumbnail {
   /*width:100%;*/
   /*.m7{*/
@@ -6576,6 +6586,10 @@ div.tooltip1:after {
   -webkit-box-shadow: 0 0 15px #ccc;
   -moz-box-shadow: 0 0 15px #ccc;
   box-shadow: 0 0 15px #ccc;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .tagsa {
+  height: 70px;
+  overflow: hidden;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .min-app {
   background: #79B91E;
