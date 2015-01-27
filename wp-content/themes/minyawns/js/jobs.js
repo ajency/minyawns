@@ -1776,7 +1776,7 @@ function load_job_minions(jobmodel)
                     if(collection.length > 4){
                        $('#view-all-applicants').show()
                        $('#minion-thumbnails li').hide().filter(':lt(2)').show();
-                        $('#minion-thumbnails').append('<li><a href="javascript:void(0)" class="pull-right view-all-app" id= "view-all-applicants" toggled="all">View All Applicants &raquo;</a></li>')
+                        $('#minion-thumbnails').append('<li><a href="javascript:void(0)" class="pull-right view-all-app btn btn-small btn-default" id= "view-all-applicants" toggled="all">View All Applicants &raquo;</a></li>')
                         $('#minion-thumbnails').find('li:last').click(function(){
                             $(this).siblings(':gt(1)').toggle(); 
                               jQuery(".load_ajaxsingle_job_minions").hide();
