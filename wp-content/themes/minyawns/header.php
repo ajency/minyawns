@@ -125,7 +125,7 @@ addthisevent.settings({
 					<ul>
 					<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
 	<!--                                <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>-->
-					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
+					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Directory</a></li>
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
 									<li id="directory"><?php if (get_logged_in_role() === 'Minion'): ?>
 					<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
