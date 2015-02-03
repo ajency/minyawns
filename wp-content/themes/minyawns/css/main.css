@@ -42,6 +42,15 @@ a:hover {
 .container {
   width: 1170px;
 }
+.ios-android {
+  margin-bottom: 50px;
+}
+.ios-android h1 {
+  font-weight: 200;
+}
+.ios-android .excerpt {
+  margin-bottom: 0 !important;
+}
 .ios-android .highlight {
   color: #8ed030;
 }

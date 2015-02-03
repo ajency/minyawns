@@ -332,9 +332,9 @@
 					<div class="tab-pane active" id="ios">
 						<div class="row">
 							<div class="span8">
-								<h1>ios App</h1>	
+								<h1>iOS App</h1>	
 								<p>Minyawns App is an easy to use,on-demand, reliable way for University of Washington students to easily find part time jobs. The app allows students to search for jobs,apply to them by uploading their photo and check the status of their application. Minyawns can access their account with by logging in with the facebook account or using the web app credentials </p>
-								<a href=""><img src="<?php echo get_template_directory_uri() ?>/images/app-store.png"/></a>
+								<a href="https://itunes.apple.com/us/app/minyawns/id951685419?mt=8"><img src="<?php echo get_template_directory_uri() ?>/images/app-store.png"/></a>
 							</div>
 							<div class="span4">
 								<img src="<?php echo get_template_directory_uri() ?>/images/ios.png"/>
@@ -346,7 +346,7 @@
 							<div class="span8">
 								<h1>Android App</h1>
 								<p>Minyawns App is an easy to use,on-demand, reliable way for University of Washington students to easily find part time jobs. The app allows students to search for jobs,apply to them by uploading their photo and check the status of their application. Minyawns can access their account with by logging in with the facebook account or using the web app credentials </p>
-								<a href="#"><img src="<?php echo get_template_directory_uri() ?>/images/google-play.png"/></a>
+								<a href="https://play.google.com/store/apps/details?id=com.minyawns.minyawnsdelivered&hl=en"><img src="<?php echo get_template_directory_uri() ?>/images/google-play.png"/></a>
 							</div>
 							<div class="span4">
 								<img src="<?php echo get_template_directory_uri() ?>/images/android.png"/>
@@ -355,13 +355,14 @@
 					</div>
 				</div>
 				<ul class="nav nav-tabs" id="myTab2">
-					<li class="active ios"><a href="#ios">ios</a></li>
+					<li class="active ios"><a href="#ios">iOS</a></li>
 					<li class="android"><a href="#android"> Android</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
+
 <!--ios/android-->
 <!--<div id="down-green"></div>-->
 <div class="features">
