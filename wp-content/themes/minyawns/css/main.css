@@ -42,6 +42,32 @@ a:hover {
 .container {
   width: 1170px;
 }
+.ios-android .highlight {
+  color: #8ed030;
+}
+.ios-android .nav-tabs li {
+  padding: 0 !important;
+  background: #ffffff !important;
+  border: 1px solid #000000 !important;
+}
+.ios-android .nav-tabs li a {
+  font-weight: normal;
+  color: #000000 !important;
+}
+.ios-android .nav-tabs li.active {
+  background: #000000 !important;
+}
+.ios-android .nav-tabs li.active a {
+  color: #ffffff !important;
+}
+.ios-android .ios {
+  border-top-left-radius: 35px;
+  border-bottom-left-radius: 35px;
+}
+.ios-android .android {
+  border-top-right-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
 .slider1 .cus_1 {
   background: url(../images/sprite.jpg) -1px -247px no-repeat;
   width: 141px!important;
@@ -2243,15 +2269,19 @@ body .jobs_table .data-title .profile-job {
   line-height: 26px;
   padding: 3px;
 }
-.home .features {
+.home .features,
+.home .ios-android {
   background: #fff;
 }
-.home .features .nav-tabs {
+.home .features .nav-tabs,
+.home .ios-android .nav-tabs {
   border: 0px;
-  width: 75%;
-  margin: auto;
+  /*width: 75%;*/
+  display: table;
+  margin: 0 auto;
 }
-.home .features .nav-tabs li {
+.home .features .nav-tabs li,
+.home .ios-android .nav-tabs li {
   background: #8ed030;
   /* Old browsers */
   padding: 12px;
@@ -2259,13 +2289,15 @@ body .jobs_table .data-title .profile-job {
   border-right: 1px solid #8CB369;
   margin-bottom: 0px;
 }
-.home .features .nav-tabs li a {
+.home .features .nav-tabs li a,
+.home .ios-android .nav-tabs li a {
   color: #FFF;
   background: 0px;
   border: 0px;
   padding: 9px 27px;
 }
-.home .features .nav-tabs li.active {
+.home .features .nav-tabs li.active,
+.home .ios-android .nav-tabs li.active {
   color: #fff;
   background: #42464a;
   /* Old browsers */
@@ -2284,21 +2316,27 @@ body .jobs_table .data-title .profile-job {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#42464a', endColorstr='#000000', GradientType=0);
   /* IE6-9 */
 }
-.home .features .nav-tabs li.active a {
+.home .features .nav-tabs li.active a,
+.home .ios-android .nav-tabs li.active a {
   color: #fff;
 }
-.home .features .tab-content {
+.home .features .tab-content,
+.home .ios-android .tab-content {
   border: 0px;
   margin-top: 15px;
   padding-bottom: 0px;
+  background: none;
+  min-height: inherit;
 }
-.home .features .tab-content h3 {
+.home .features .tab-content h3,
+.home .ios-android .tab-content h3 {
   font-size: 27px;
   text-align: center;
   color: #000;
   font-family: arial;
 }
-.home .features .tab-content p {
+.home .features .tab-content p,
+.home .ios-android .tab-content p {
   margin-bottom: 12px;
 }
 .home .customer {
