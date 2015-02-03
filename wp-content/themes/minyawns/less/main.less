@@ -50,6 +50,36 @@ font-family: "Lato", sans-serif;
 .container{
 	width: 1170px;
 }
+.ios-android{
+	.highlight{
+		color: @green;
+	}
+	.nav-tabs{
+		li{
+			padding: 0 !important;
+			background: @white !important;
+			border: 1px solid @black !important;
+			a{
+				font-weight: normal;
+				color: @black !important;
+			}
+			&.active{
+				background: @black !important;
+				a{
+					color: @white !important;
+				}
+			}
+		}
+	}
+	.ios{
+		border-top-left-radius: 35px;
+		border-bottom-left-radius: 35px;
+	}
+	.android{
+		border-top-right-radius: 35px;
+		border-bottom-right-radius: 35px;
+	}
+}
 .slider1{
 	.cus_1{
 			background: url(../images/sprite.jpg)-1px -247px no-repeat;
@@ -2554,13 +2584,15 @@ margin-left: 12%;
 
 			}
 	}
-	.features{
+	.features,
+	.ios-android{
 		background:#fff;
 		
 		.nav-tabs {
 			border: 0px;
-			width: 75%;
-			margin: auto;
+			/*width: 75%;*/
+			display:table;
+			margin: 0 auto;
 			li{
 				background: @green; /* Old browsers */
 
@@ -2600,6 +2632,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42464a', end
 			border:0px;
 			margin-top: 15px;
 			padding-bottom: 0px;
+			background: none;
+			min-height: inherit;
 			h3{
 				font-size:27px;
 				text-align:center;
