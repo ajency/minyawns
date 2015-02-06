@@ -48,7 +48,7 @@
 					<div class="banner-title">Need an extra hand for a day?</div>
 					<div class="banner-desc">access a job board exclusively used by vetted college students</div>
 					<div class="text-center b-text">
-					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-info" id="link_employerregister" onclick="return true">Post for Free Today</a>
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-info" id="link_employerregister" onclick="return true">Post for Free Today or Call 425-829-4829</a>
           			
 		  </div>
 				</div>
