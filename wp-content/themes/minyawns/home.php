@@ -72,7 +72,7 @@
 <div id="pliip" class="how-does-it-work">
 <div class="">
    <h3 class="heading-title">How does it work?</h3>
-   <p class="excerpt">Post your gig. wait for studnets to apply, review their profiles, and put them to work!</p>
+   <p class="excerpt">Post your gig. wait for students to apply, review their profiles, and put them to work!</p>
    </div>
      
    <div class="container steps-3">
