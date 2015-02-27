@@ -43,7 +43,8 @@ a:hover {
   width: 1170px;
 }
 .ios-android {
-  margin-bottom: 50px;
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: 15px;
 }
 .ios-android h1 {
   font-weight: 200;
@@ -53,6 +54,9 @@ a:hover {
 }
 .ios-android .highlight {
   color: #8ed030;
+}
+.ios-android .nav-tabs {
+  margin-bottom: 40px !important;
 }
 .ios-android .nav-tabs li {
   padding: 0 !important;
@@ -237,7 +241,7 @@ a:hover {
 }
 .step3-3 {
   /*background: url(../images/sprite.jpg) -572px 0px no-repeat;*/
-  background: url(../images/step4-3_N.JPG) no-repeat;
+  background: url(../images/step4-3_N.jpg) no-repeat;
   width: 282px!important;
   height: 205px;
   margin: auto;
