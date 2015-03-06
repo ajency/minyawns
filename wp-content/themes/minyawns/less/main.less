@@ -22,6 +22,7 @@ Version:        0.1.0
 @3-grey: #333333;
 @grey: #F3F3F3;
 @white: #fff;
+@gray: #ccc;
 a{text-decoration:none;}
 a:hover{text-decoration:none !important;}
 .site_link{
@@ -46,6 +47,48 @@ padding:0px !important;
 	font-size: 18PX !important;
 font-weight: 100;
 font-family: "Lato", sans-serif;
+}
+.container{
+	width: 1170px;
+}
+.ios-android{
+	border-bottom: 1px solid @gray;
+	margin-bottom: 15px;
+	h1{
+		font-weight: 200;
+	}
+	.excerpt{
+		margin-bottom: 0 !important;
+	}
+	.highlight{
+		color: @green;
+	}
+	.nav-tabs{
+		margin-bottom: 40px !important;
+		li{
+			padding: 0 !important;
+			background: @white !important;
+			border: 1px solid @black !important;
+			a{
+				font-weight: normal;
+				color: @black !important;
+			}
+			&.active{
+				background: @black !important;
+				a{
+					color: @white !important;
+				}
+			}
+		}
+	}
+	.ios{
+		border-top-left-radius: 35px;
+		border-bottom-left-radius: 35px;
+	}
+	.android{
+		border-top-right-radius: 35px;
+		border-bottom-right-radius: 35px;
+	}
 }
 .slider1{
 	.cus_1{
@@ -2551,13 +2594,15 @@ margin-left: 12%;
 
 			}
 	}
-	.features{
+	.features,
+	.ios-android{
 		background:#fff;
 		
 		.nav-tabs {
 			border: 0px;
-			width: 75%;
-			margin: auto;
+			/*width: 75%;*/
+			display:table;
+			margin: 0 auto;
 			li{
 				background: @green; /* Old browsers */
 
@@ -2597,6 +2642,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42464a', end
 			border:0px;
 			margin-top: 15px;
 			padding-bottom: 0px;
+			background: none;
+			min-height: inherit;
 			h3{
 				font-size:27px;
 				text-align:center;
@@ -7575,6 +7622,13 @@ body .job-view-list{
 	display: -ms-flexbox !important;
 	display:flex !important;
 	padding:5px !important;
+		.tags{
+			height:70px;
+			overflow:hidden;
+		}
+		.label{
+			white-space: normal;
+		}
 		.thumbnail{/*width:100%;*/
 		/*.m7{*/
 			width:100%;
@@ -7687,6 +7741,10 @@ body .job-view-list{
 				-webkit-box-shadow: 0 0 15px #ccc;
 				-moz-box-shadow: 0 0 15px #ccc;
 				box-shadow: 0 0 15px #ccc;
+					.tagsa{
+						height:70px;
+						overflow: hidden;
+					}
 					.min-app{
 							background: #79B91E;
 							width: 40%;

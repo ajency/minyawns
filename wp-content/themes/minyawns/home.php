@@ -141,7 +141,7 @@
    </div><br><br>
 </div>
 
-<div class="what-we-can-do">
+<!--<div class="what-we-can-do">
      <div id="down"></div>
      <div class="stamp">
    		<img src="<?php echo get_template_directory_uri() ?>/images/span4_N.png"/>
@@ -265,7 +265,7 @@
 			</div>
 		</div>-->
 		
-		<div class="span6">
+		<!--<div class="span6">
 			<div class="row-fluid">
 			<div class="span4 wwcd-1 width100">
 			
@@ -318,8 +318,53 @@
    </div>
 
  
+</div>-->
+<!--ios/android-->
+<div class="ios-android">
+	<div>
+		<h3 class="heading-title">mobile<span class="highlight"> app</span></h3>
+		<p class="excerpt">Just a click away from your new job.</p>
+	</div>
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="tab-content">
+					<div class="tab-pane active" id="ios">
+						<div class="row">
+							<div class="span8">
+								<h1>iOS App</h1>	
+								<p>Minyawns App is an easy to use,on-demand, reliable way for University of Washington students to easily find part time jobs. The app allows students to search for jobs,apply to them by uploading their photo and check the status of their application. Minyawns can access their account with by logging in with the facebook account or using the web app credentials </p>
+								<a href="https://itunes.apple.com/us/app/minyawns/id951685419?mt=8"><img src="<?php echo get_template_directory_uri() ?>/images/app-store.png"/></a>
+							</div>
+							<div class="span4">
+								<img src="<?php echo get_template_directory_uri() ?>/images/ios.png"/>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="android">
+						<div class="row">
+							<div class="span8">
+								<h1>Android App</h1>
+								<p>Minyawns App is an easy to use,on-demand, reliable way for University of Washington students to easily find part time jobs. The app allows students to search for jobs,apply to them by uploading their photo and check the status of their application. Minyawns can access their account with by logging in with the facebook account or using the web app credentials </p>
+								<a href="https://play.google.com/store/apps/details?id=com.minyawns.minyawnsdelivered&hl=en"><img src="<?php echo get_template_directory_uri() ?>/images/google-play.png"/></a>
+							</div>
+							<div class="span4">
+								<img src="<?php echo get_template_directory_uri() ?>/images/android.png"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="nav nav-tabs" id="myTab2">
+					<li class="active ios"><a href="#ios">iOS</a></li>
+					<li class="android"><a href="#android"> Android</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
-<div id="down-green"></div>
+
+<!--ios/android-->
+<!--<div id="down-green"></div>-->
 <div class="features">
 <div class="">
             <h3 class="heading-title">Features</h3>
