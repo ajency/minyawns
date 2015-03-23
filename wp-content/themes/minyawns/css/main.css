@@ -976,7 +976,7 @@ body .jobs_table .data-title .profile-job {
   text-align: center;
   display: block;
   font-weight: bold;
-  bottom: 6px;
+  bottom: 0px;
 }
 .avtar-btn {
   position: absolute;
