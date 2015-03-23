@@ -110,8 +110,8 @@ require 'templates/_jobs.php';
     </div>
 
 </div>
-<div class="container">
-    <div id="main-content" class="main-content bg-white" >
+<div class="container main-content-profile">
+    <div id="main-content" class="main-content  " >
         <div class="breadcrumb-text">
 
             <p id="bread-crumbs-id">
@@ -121,8 +121,8 @@ require 'templates/_jobs.php';
                
 <!--                <a href="#" class="view loaded edit-user-profile"><?php if(get_user_id()== get_current_user_id()) echo "My"; else if(strlen(user_profile_company_name())>0) echo mb_convert_case(user_profile_company_name(), MB_CASE_TITLE, "UTF-8"); else echo mb_convert_case(user_profile_first_name(), MB_CASE_TITLE, "UTF-8"); ?></a>-->
             </p>
-        </div>
-		  
+                 </div>  
+		  </div>  
         <div class="row-fluid profile-wrapper">
             <?php
             //if(0check_access()===true)
@@ -131,7 +131,7 @@ require 'templates/_jobs.php';
             if (is_user_logged_in()   ||  get_user_id() !="" ) {
                                    
             ?>
-            <div class="span12" id="profile-view">
+            <div  id="profile-view">
                 	<?php
                                                                    
                  if (get_logged_in_role() == 'Minion') {
@@ -153,11 +153,39 @@ require 'templates/_jobs.php';
 and get more applications from eager minyawns. Simply <a href="'.site_url().'/edit-profile"  class="" >Click Here</a> <button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 
                         }
-					
 			 
  }
-                    ?><h4 class="job-view"><i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs/#browse" class=""> Click Here</a></h4>
-                <div class="row-fluid min_profile  <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">
+                    ?>
+
+                    <h4 class=" span12 job-view content-section uppercase-title lh-md">
+                    <div class="row-fluid">
+                        <div class="span5">
+                                 <i class="icon-briefcase"></i> To Visit Jobs Section <a href="<?php echo site_url() ?>/jobs/#browse" class=""> Click Here</a> 
+                        </div>
+                        <div class="span7 normal-txt">
+                          <?php
+                            if (get_user_role() === "employer") {
+                               // echo user_profile_company_name();
+                              //  $display_name = user_profile_company_name();
+                            } else {
+                               // echo user_profile_first_name() . " " . user_profile_last_name();
+
+                              //  $display_name = user_profile_first_name() . " " . user_profile_last_name();
+                            } if (!is_numeric(check_direct_access())) {
+                                ?>
+                                 <?php if (get_user_role() === 'minyawn'): ?>
+                                <span class="pull-left">Updating your profile with your name, location and a profile picture helps other<br> Employer to know you well </span> 
+                                 <?php endif; ?> 
+                                 <?php if (get_user_role() === 'employer'): ?>
+                                <span class="pull-left">Complete your profile and get more applications from eager minyawns. </span> 
+                                 <?php endif; ?> 
+                                <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit btn btn-primary pull-right"><i class="icon-edit"></i> EDIT PROFILE</a><?php } ?>
+                        </div>
+                     <div class="clear"></div>
+                </h4>
+                
+                <div class="row-fluid ">
+                <div class="span12 min_profile content-section <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">
 
                     <div class="span2 ">
 					<div id="change-avt" class="<?php
@@ -172,14 +200,14 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                            
                            
                             if(get_mn_user_avatar() !== false){
-		              ?><img src="<?php echo get_mn_user_avatar() ?>"/><?php 
+		              ?><img src="<?php echo get_mn_user_avatar() ?>"/> <?php 
                               
                             }else{
 				echo get_avatar(get_user_id(), 168 );
                              }
                              ?>
                         </a> <?php if(is_facebook_user() === 'false' && get_current_user_id() == get_user_id()){ ?>
-						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal">Change Profile Pic</a>
+						  <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal"><i class="icon-camera"></i></a>
                         <?php }?>
 						</div>
                             <?php if (is_user_logged_in()) { ?>              
@@ -187,109 +215,14 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                        
                                                   <input id="change-avatar" type="file" name="files" style="display:none;">
                             <?php }?>
-                    </div>
-                    <div class="span10">
-					  <?php if (get_user_role() === 'minyawn'): ?>
-				<div class="social-link profile-social-link"> 
-                
-                    <?php  if(strlen(user_profile_id_linkedin()) >0 ){ ?>
-                    <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a> 
-                                        <?php  }?>
-                                            
-                    <?php  if(strlen(user_profile_id_facebook()) >0 ){ ?>
-                    <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
-                                        <?php } ?>     </div>                           
-                                            <?php endif; ?> 
-                                      
-					  <h4 class="name"> <?php
-                            if (get_user_role() === "employer") {
-                                echo user_profile_company_name();
-                                $display_name = user_profile_company_name();
-                            } else {
-                                echo user_profile_first_name() . " " . user_profile_last_name();
 
-                                $display_name = user_profile_first_name() . " " . user_profile_last_name();
-                            } if (!is_numeric(check_direct_access())) {
-                                ?>  <a href="<?php echo site_url() ?>/edit-profile" id="edit-user-profile" class="edit"><i class="icon-edit"></i> Edit</a><?php } ?>
-
-								<?php
-                                                      
-                                                            if(is_user_verified()=== 'Y'){ ?>	
-                                                        <span class="minyawnverified"><img src="<?php echo get_template_directory_uri(); ?>/images/verify.png"  style="margin-top: -7px;"/> Minyawn verified </span> 
-                                                       
-                                                        <i class="icon-question-sign verfied-help"  id="example"></i> 
-                                                         <?php }?>
-
-							
-
-								</h4> 
-								 <?php if (get_user_role() === 'employer'): ?>
-								<div class="employer-body">
-								
-								 <?php echo user_profile_body(); ?>
-								</div>
-								<?php endif; ?>	
-								
-								
-                     <div class="profiledata ">
-					  <?php if (get_user_role() === 'minyawn'): ?>
-                                   <ul class="college-data inline">
-
-                                   <?php if( get_user_intro_video_id()!=""){ ?>
-                                    <li class="introvideo_data">
-                                   Intro Video : <b>  <a href="#introvideo" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a></b>
-                                   </li>
-                                   <?php } ?>
-                                    
-
-									<li class="college_data">
-								   College : <b>  <?php echo user_college(); ?></b>
-								   </li>
-								   <li class="major_data">
-								   Major : <b>  <?php echo user_college_major(); ?></b>
-								   </li>
-                                   <li class="major_data">
-                                   Email :  <b>  <a href="mailto:<?php user_profile_email();?>" target="_top">
-                                                    <?php user_profile_email(); ?>
-                                                </a>
-                                            </b>
-                                   </li>
-								   </ul>
-                     <?php
-                            else :
-                                ?>	
-								<ul class="college-data inline">
-									<li class="location">
-								   Location : <b>    <?php echo user_location(); ?></b>
-								   </li>
-								   <li class="website">
-								   Company Website : <b>  <a href="http://<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
-								   </li>
-                                    <li class="website">
-                                   Email : <b>  <a href="mailto:<?php user_profile_email();?>" target="_blank"><?php echo user_profile_email(); ?></a></b>
-                                   </li>
-								   </ul>
-								
-								
-								 <?php
-                            endif;
-                            ?>
-					 
-					 </div>
-
-                    </div>
-                  
-                 		
-                </div>
-<div class="clear"></div><br>
- <?php if (get_user_role() === 'minyawn'): ?>
-				<div class="row-fluid">
-					<div class="span2">
-						<div class="right-wideget-bar">
-							<h3>Ratings</h3>
-							<?php if (get_user_role() === 'minyawn'): ?>
+            <!--Ratings --><br>
+             <?php if (get_user_role() === 'minyawn'): ?>
+                    <div class="right-wideget-bar">
+                          
+                           
                         <div  id="profile-view1">
-                         
+                          Ratings &nbsp;&nbsp;&nbsp;
                             <div class="like_btn">
                                 <a href="#fakelink" >
                                     <i class="icon-thumbs-up"></i>
@@ -317,15 +250,108 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
 <!--                            <span class="userrev">User reviews <a href='javascript:void(0)' id='example_right' class='commentsclick' rel='popover'  user-id="<?php echo user_id(); ?>"  data-html='true'></a><span class='load_ajax_profile_comments' style="display:none; float:right"></span></span> -->
                             <!-- Mobile View Like Button -->
                             <?php }?>
-                        </div>	
-                    <?php endif; ?>	
-						</div>
-					
-					</div>
-					<div class="span10">
-						<div class="list-box">
-							<h3>Skills</h3>
-							 <?php
+                        </div>  
+                
+                        </div>
+                            <?php endif; ?> 
+            <!--Ratings -->
+
+
+
+                    </div>
+                    <div class="span10">
+					 
+                                      
+					  <h4 class="name"> <?php
+                            if (get_user_role() === "employer") {
+                                echo user_profile_company_name();
+                                $display_name = user_profile_company_name();
+                            } else {
+                                echo user_profile_first_name() . " " . user_profile_last_name();
+
+                                $display_name = user_profile_first_name() . " " . user_profile_last_name();
+                            } if (!is_numeric(check_direct_access())) {
+                                ?>  <?php } ?>
+
+								<?php
+                                                      
+                                                            if(is_user_verified()=== 'Y'){ ?>	
+                                                        <span class="minyawnverified"><img src="<?php echo get_template_directory_uri(); ?>/images/verify.png"  style="margin-top: -7px;"/> Minyawn verified </span> 
+                                                       
+                                                        <i class="icon-question-sign verfied-help"  id="example"></i> 
+                                                         <?php }?>
+
+							
+
+								</h4> 
+                                 <?php if (get_user_role() === 'minyawn'): ?>
+                                    <?php echo user_college(); ?>
+                                    <?php endif; ?> 
+								
+								<br>
+						<div class="row-fluid">
+                        <div class="span6">		
+                     <div class="profiledata ">
+                       
+					  <?php if (get_user_role() === 'minyawn'): ?>
+                      <br>
+                                   <ul class="college-data unstyled">
+                                    
+								   <li class="major_data">
+								   <span> Major in : </span> <b> <?php echo user_college_major(); ?></b>
+								   </li>
+                                   <li class="major_data">
+                                   <span> Email :  </span> <b> <a href="mailto:<?php user_profile_email();?>" target="_top">
+                                                    <?php user_profile_email(); ?>
+                                                </a>
+                                            </b>
+                                   </li>
+                                   <li class="major_data">
+                                   <span> Mobile no : </span> <b> 89293940004
+                                            </b>
+                                   </li>
+								   </ul>
+                     <?php
+                            else :
+                                ?>	
+								<ul class="college-data unstyled">
+									<li class="location">
+								   Location : <b>    <?php echo user_location(); ?></b>
+								   </li>
+								   <li class="website">
+								   Company Website : <b>  <a href="http://<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
+								   </li>
+                                    <li class="website">
+                                   Email : <b>  <a href="mailto:<?php user_profile_email();?>" target="_blank"><?php echo user_profile_email(); ?></a></b>
+                                   </li>
+								   </ul>
+								
+								
+								 <?php
+                            endif;
+                            ?>
+					 <?php if (get_user_role() === 'minyawn'): ?>
+                            <div class="social-link profile-social-link"> 
+                            
+                                <?php  if(strlen(user_profile_id_linkedin()) >0 ){ ?>
+                                <a href='http://<?php echo user_profile_linkedin() ?>' target='_blank'><i class="icon-linkedin"></i></a> 
+                                                    <?php  }?>
+                                                        
+                                <?php  if(strlen(user_profile_id_facebook()) >0 ){ ?>
+                                <a href='http://<?php echo user_profile_facebook() ?>' target='_blank' class="icon-facebook-a"><i class="icon-facebook"></i></a> 
+                                                    <?php } ?>    
+                             </div>                           
+                   <?php endif; ?> 
+
+					 </div>
+                    </div>
+                    <div class="span6">
+                        
+                             <?php if (get_user_role() === 'minyawn'): ?>
+                
+                        <div class="list-box">
+                            <h3 class="uppercase-title">Skills &nbsp; <a data-toggle="tooltip" title="first tooltip 3" id="element4"><i class="icon-question-sign text-info"></i></a> </h3>
+                             <?php
                                     if ((get_user_skills() != " ")) {
                                         $skills = explode(',', get_user_skills());
 
@@ -333,25 +359,174 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                                             echo "<span class='label label-small'>$skills[$skill]</span>";
                                     }
                                     ?>
-						</div>
-					</div>
-				</div>
-				    <?php endif; ?>		
+                        </div>
+               
+                    <?php endif; ?> 
+                        
+
+
+                    </div>
+                </div>
+                <?php if (get_user_role() === 'employer'): ?>
+                <br>
+                     <h3 class="uppercase-title">Short Bio <a id="hide" class="anchor">(Show Information)</a> </h3>
+                                            <br>
+                                            <div class="short-bio text-muted" id="me">
+                                <?php echo user_profile_body(); ?> 
+                                            </div>
+                                                
+                                <?php endif; ?> 
+
+                  <?php if (get_user_role() === 'minyawn'): ?>
+                        <h3 class="uppercase-title">Short Bio <a id="hide" class="anchor">(Show Information)</a> </h3>
+                        <br>
+                        <div class="short-bio text-muted" id="me">
+                           Individual form controls receive styling, but without any required base class on the  or large changes in markup. Results in stacked, left-aligned labels on top of form controls.     
+                        </div>
+                <?php endif; ?> 
+             </div>
+                  
+                 		
+                </div>
+            </div>
+<div class="clear"></div><br>
+	       
 				
-				<hr>
-				<h4><i class="icon-briefcase"></i> &nbsp; Job List</h4>
-				<p>All your Jobs are listed below</p>
+				
+				
 				<div class="row-fluid accordion">
 					<div class="span9">
+                     
+                            <div class="row-fluid ">
+                                <div class="span12 content-section">
+                                    
+                        <h3 class="uppercase-title">
+                            <?php if (get_user_role() === 'minyawn'): ?>
+                            <i class="icon-briefcase "></i> &nbsp; Testimonials &nbsp; <a data-toggle="tooltip" title="first tooltip 3" id="element3"><i class="icon-question-sign text-info"></i></a>
+                            <?php endif; ?> 
+                            <?php if (get_user_role() === 'employer'): ?>
+                            <i class="icon-briefcase "></i> &nbsp; Job List &nbsp; <a data-toggle="tooltip" title="Job list" id="element3"><i class="icon-question-sign text-info"></i></a>
+                            <?php endif; ?> 
+                        </h3>
+                        <br>
 						<ul class="unstyled job-view-list" id="accordion24">
 						<dl class="accordion">
                              
 						  <a href="#" class="btn load-btn" style="width:99%;"><i class="icon-undo"></i> Load more</a>
 						  </dl>
 						   </ul>
+                        <!-- New Testimonials -->
+                                <ul class="unstyled job-view-list" id="accordion24">   
+
+
+
+
+    <li class="_li job-closed" >
+    
+
+               <div class="row-fluid mobile-hide" >
+                <div class="span9 ">
+                     <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24" >
+                    <div class="span1" >
+                            <div class="job-date" >
+                            <b id="mf181">07</b>
+                            Nov
+                            </div>
+                      </div>
+                      <div class="span11 border-right job-details" >
+                        Excellent work and very professional and took instructions well. 5 Stars.</p><span class="rating_span text-left"> - Asmith Shah</span>
+                      <hr>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                 <b>Jobs Photo: </b><br>
+                                      <img src="http://localhost/minyawn/wp-content/themes/minyawns/images/profile1.jpg" width="50px"/>
+                                      <img src="http://localhost/minyawn/wp-content/themes/minyawns/images/profile2.jpg" width="50px"/>
+                                      <img src="http://localhost/minyawn/wp-content/themes/minyawns/images/profile3.jpg" width="50px"/>
+                            </div>    
+                            <div class="span6">
+                                <b>Job Type: </b><br>
+                                <span class="category-link" style="cursor: pointer; cursor: hand;" onclick="filter_categories('96','Computer and Tech')">Computer and Tech,</span>
+                            </div> 
+                        </div>    
+                         <p>
+                       
+                     
+
+                      </div>
+                      </div>
+                </div>
+           
+        
+                 <div class="span3">
+
+                      <div class="st-moile-span1" id="mf196">
+                           <div class="well-done" id="mf197"><i class="icon-thumbs-up" id="mf198"></i>You Have Been Rated <br id="mf199"><b id="mf200">Well Done</b><div class="clear" id="mf201"></div><div id="mf202">  
+                         </div>
+
+                  </div> 
+        
+
+         </div> 
+               </div>
+ 
+               
+    </div>
+</li>  
+  </ul>
+            
+                        <!-- New Testimonials -->
+
+                            
+
+                          </div> 
+                             </div> 
 					</div>
-					<div class="span3">
-                    
+					   <div class="span3">
+                        <!-- Video -->
+                         <?php if (get_user_role() === 'minyawn'): ?>
+                         <div class="row-fluid ">
+                                <div class="span12 content-section">
+                                    <h3 class="uppercase-title"><i class="icon-video"></i> &nbsp; Video Profile &nbsp;<a data-toggle="tooltip" title="first tooltip" id="element"><i class="icon-question-sign text-info"></i></a></h3>
+                                  <br>
+                                   <?php if (is_user_logged_in()) { ?>   
+                                   <div class="normal-txt">
+                                        <ul >
+                                            <li>We love close ups, but suggest you sit at arms length.</li>
+                                            <li>You’ve got 30 seconds, so keep an eye on time.</li>
+                                            <li>look in camera to create personal connection</li>
+                                        </ul>
+                                        <br>
+                                        <a class="btn btn-primary ">UPLOAD VIDEO</a>
+                                    </div>
+                                       <?php } ?> 
+
+                                    <!--  When Video Is added -->
+                                     <div style="display:none;"> 
+                                        <br>
+                                <?php if (get_user_role() === 'minyawn'): ?>
+        
+                                   <?php if( get_user_intro_video_id()!=""){ ?>
+                                   
+                                  <b>  <a href="#introvideo" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a></b>
+                                  
+                                   <?php } ?>
+                                  <?php endif; ?>
+
+
+
+                                        <iframe width="100%" height="180" src="https://www.youtube.com/embed/NRdrPMjXF0s" frameborder="0" allowfullscreen></iframe>
+                                         <br><div > <a><i class="icon-play-sign"></i>  Record Video </a> <span class="pull-right"><i class="icon-trash"></i></span></div>
+                                    </div>
+
+                                </div>
+                         </div><br>
+                          <?php endif; ?>
+                        <!-- Video -->
+                        
+                        <div class="row-fluid ">
+                                <div class="span12 content-section">
+                      <h3 class="uppercase-title"><i class="icon-picture"></i> &nbsp; Gallery &nbsp;<a data-toggle="tooltip" title="first tooltip 2" id="element1"><i class="icon-question-sign text-info"></i></a></h3>
+                      <br>
                     <form>
                     <?php $upload_nonce = wp_create_nonce("upload_photo_".get_current_user_id()); ?>
                     <?php $delete_nonce = wp_create_nonce("delete_photo_".get_current_user_id()); ?>
@@ -365,23 +540,29 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     <input type="hidden" id="upload_nonce" name="upload_nonce" value="<?php echo $upload_nonce; ?>" />
                     <input type="hidden" id="delete_nonce" name="delete_nonce" value="<?php echo $delete_nonce; ?>" />
                     <input type="hidden" name="userid" value="<?php echo get_user_id();?>" />
+                <?php if (is_user_logged_in()) { ?>  
+                    <div class="normal-txt">
+                        <ul >
+                            <li>Take your camera, click and upload</li>
+                            <li>Selfie is trending, can we see one of yours</li>
+                            <li>look in camera to create personal connection</li>
+                        </ul>
+                    </div>
+   <?php } ?>
+                    <div class=" author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>" user-admin="<?php echo $user_admin; ?>">
 
-                    <div class="alert alert-success alert-sidebar author-data" id="upload" style="display:none" user-id="<?php echo get_user_id();?>" user-admin="<?php echo $user_admin; ?>">
-
-                     
-                          <div class="row-fluid">
-                          <div class="span12">
+                            
+                       
                             <div id="drop">
-                              <p>Drop Your Photos Here</p>
-                              <a class="btn btn-primary"><i class="icon-file"></i>&nbsp;Browse</a>
+                              
+                              <a class="btn btn-primary">Upload Photo</a>
                               <input type="file" name="photo" multiple />
                             </div>
 
                             <ul>
                               <!-- The file uploads will be shown here -->
                             </ul>
-                          </div>
-                        </div>
+                        
                     </div>
                     </form>
 
@@ -393,6 +574,8 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                           
                           
                         </div>
+
+
 					</div>
 				</div>
 
@@ -411,6 +594,8 @@ and get more applications from eager minyawns. Simply <a href="'.site_url().'/ed
                     </div>
                 </div>-->
                 <div class="clear"></div>
+                 </div>
+                  </div>
             </div>
           
             <div class="clear"></div>

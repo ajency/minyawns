@@ -72,7 +72,7 @@ require 'templates/_jobs.php';
 </script>
 
 <div class="container">
-    <div id="main-content" class="main-content bg-white" >
+    <div id="main-content" class="main-content " >
         <div class="breadcrumb-text">
 
             <p id="bread-crumbs-id">
@@ -84,8 +84,8 @@ require 'templates/_jobs.php';
                 <a href="<?php echo site_url() ?>/profile/<?php echo get_current_user_id() ?>" class="view loaded edit-user-profile">Edit Profile</a>
             </p>
         </div>
-		  
-        <div class="row-fluid profile-wrapper">
+		  <div class="bg-white">
+        <div class="row-fluid profile-wrapper ">
             <?php
             //if(check_access()===true)
             //{
@@ -266,7 +266,7 @@ require 'templates/_jobs.php';
         </div>
     </div>
 </div>
-
+</div>
 
  
  

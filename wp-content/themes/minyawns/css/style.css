@@ -160,6 +160,7 @@ color: #fff;
 padding: 2px;
 position: absolute;
 right:0;
+  z-index: 9999;
 }
 
 
@@ -413,7 +414,7 @@ font-size: 14px;
 }
 .breadcrumb-text {
 	
-	margin-bottom: 38px;
+	/*margin-bottom: 38px;*/
 }
 .logged-in .tab-content {
 	border-radius:0px!important;
@@ -425,7 +426,7 @@ font-size: 14px;
 	padding: 20px;
 	padding-bottom: 60px;
 	min-height: 600px;
-	background:url(../images/gray.png)repeat-x #fff;
+	background:#fff;
 }
  .logged-out .tab-content {
 	border-radius:0px!important;
@@ -437,10 +438,10 @@ font-size: 14px;
 	padding: 20px;
 	padding-bottom: 60px;
 	min-height: 600px;
-	background:url(../images/gray.png)repeat-x #fff;
+	background:#fff;
 }
 .main-content{
-background:url(../images/gray.png)repeat-x #fff;
+ /*background:url(../images/gray.png)repeat-x #fff;*/
 }
 .ui-datepicker {
 	z-index:999!important;
@@ -3101,4 +3102,8 @@ html body .minyawns-grid1 .thumbspan.card{
 	vertical-align: middle;
 	text-align: center;
 }
-
+.fixed-header {
+  position: fixed;
+  top:0; left:0;
+  width: 100%; 
+}

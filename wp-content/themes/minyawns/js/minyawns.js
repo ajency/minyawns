@@ -2659,3 +2659,27 @@ jQuery(function($) {
 $(".fancybox").fancybox();
 });
  
+
+jQuery(function($) {
+  $("#me").hide();
+  $("#hide").click(function(){
+      $("#me").toggle();
+      $(this).text(function(i, val) {
+          return val === '(Hide information)' ? '(show Information)' : '(Hide information)';
+      });
+  });
+  $('#element').tooltip('toggle')
+ $('#element1').tooltip('toggle')
+   $('#element3').tooltip('toggle')
+   $('#element4').tooltip('toggle')
+  $(window).scroll(function(){
+      if ($(this).scrollTop() > 120) {
+          $('.job-view').addClass('fixed');
+      } else {
+          $('.job-view').removeClass('fixed');
+      }
+});
+});
+
+
+
