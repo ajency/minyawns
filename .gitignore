@@ -15,3 +15,4 @@ Thumbs.db
 htaccess
 wp-config .php
 wp-content/plugins/ajency-activity-and-notifications
+wp-content/plugins/wpmandrill
