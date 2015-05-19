@@ -1207,6 +1207,29 @@ function update_paypal_payment($data, $curl_result) {
       } */
 }
 
+
+
+
+
+
+
+
+
+function is_ipn_was_recorded($jobid, $paypal_txn_id){
+    global $wpdb;
+    $paypal_tx = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='" . $jobid . "' AND meta_value like '%" . $paypal_txn_id . "%'  ");
+    if($paypal_tx){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+
+
+
+
  
 
 
