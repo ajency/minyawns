@@ -188,7 +188,7 @@ else
 				if(($data['payment_status']=="Completed") )
 				{
 					  
-					update_paypal_payment($data,$curl_result);
+					//update_paypal_payment($data,$curl_result);
 					  	 
 					/*add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );*/
@@ -252,6 +252,12 @@ else
 
 					$cnt_sel_minyawns++;
 					}
+
+
+
+
+
+					update_paypal_payment($data,$curl_result);
 
 
 
