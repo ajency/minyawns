@@ -1860,6 +1860,13 @@ function is_minion_selected(jobmodel, model)
 //console.log(jobmodel.toJSON());
 //console.log(model.toJSON());
 
+var hired_condition;
+if(USER.user_login == 'admin'){
+    hired_condition = 'jobmodel.toJSON().user_to_job_status[i] != "applied"';
+}else{
+    hired_condition = 'jobmodel.toJSON().user_to_job_status[i] === "hired"';
+}
+
 
 
             if (jobmodel.toJSON()
@@ -1889,8 +1896,7 @@ function is_minion_selected(jobmodel, model)
         .todays_date_time > jobmodel.toJSON()
         .job_end_date_time_check && jobmodel.toJSON()
         .applied_user_id[i] === model.toJSON()
-        .user_id && jobmodel.toJSON()
-        .user_to_job_status[i] === 'hired' && model.toJSON()
+        .user_id && hired_condition && model.toJSON()
         .user_to_job_rating_like === '0' && model.toJSON()
         .user_to_job_rating_dislike === '0')) {
     //alert(model.toJSON().rating_positive);
@@ -1922,7 +1928,10 @@ function is_minion_selected(jobmodel, model)
         }
 
     }
+
     return selectButton;
+
+
 
 
 
@@ -1947,7 +1956,7 @@ function ratings_button(jobmodel, model)
                 var class_name = "icon-thumbs-up weldone";
             }
 
-            if (jobmodel.toJSON().todays_date_time > jobmodel.toJSON().job_end_date_time_check && jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && jobmodel.toJSON().user_to_job_status[i] === 'hired' && (model.toJSON().user_to_job_rating_like > '0' || model.toJSON().user_to_job_rating_dislike > '0'))
+            if (jobmodel.toJSON().todays_date_time > jobmodel.toJSON().job_end_date_time_check && jobmodel.toJSON().applied_user_id[i] === model.toJSON().user_id && (model.toJSON().user_to_job_rating_like > '0' || model.toJSON().user_to_job_rating_dislike > '0'))
             {
 
 
