@@ -3503,29 +3503,98 @@ add_action( 'activity_message_posted', 'activity_message_mail', 10, 2 );
 
 
 
+function get_job_photos($jobid, $userid){
+ 
+$args = array();
 
+ $args["post_parent"] = $jobid;
+ $args["author"] = $userid;
 
+$args['post_type'] = 'attachment';
+$args['posts_per_page'] =  -1;
+ 
+$results= get_posts( $args );
 
+ $data = array();
+foreach($results as $result){
+ 
+    $image_url =   wp_get_attachment_image_src($result->ID, 'thumbnail' );
+    $image_url_large =   wp_get_attachment_image_src($result->ID, 'large' );
 
-function get_minyawns_testimonials(){
+    $image_url_final = ( $image_url!=false)? $image_url[0]:'' ;
+    $image_url_large_final = ( $image_url_large!=false)? $image_url_large[0]:'' ;
 
-$user_id = '134';
-
-$ratings = get_user_rating_data($user_id);
-
-
-$object_id = get_object_id($user_id, '520');
-
-
-$defaults = array(
-                        'post_id' => '54',
+     $data[] = array(
+                    
+                    'url' =>  $image_url_final,
+                    'large_url' =>  $image_url_large_final,
                     );
-              
-                $all_comment = get_comments($defaults);
+}
+     
+    return $data;
+ 
+}
 
-                echo "<pre>";
-                print_r($ratings);
-                echo "</pre>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+function get_minyawns_testimonials($user_id){
+global $wpdb;
+$ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status = 'hired'");
+
+$testimonials = array();
+foreach($ratings as $rating){
+$args = array(
+        'post_id'   => $rating->id,
+        'type'      => 'review',
+        'number'    => '1'
+    );
+$comments = get_comments($args);
+
+if($comments){
+
+    
+    $employer = get_user_meta($comments[0]->user_id, 'company_name', true);
+
+    $testimonials[] = array(
+        'rating'    => $rating->rating,
+        'comment'   => $comments[0]->comment_content,
+        'employer'  => array(
+            'name'  => $employer,
+            'url'   => get_site_url().'/profile/'.$comments[0]->user_id
+            ),
+        'category'  => get_the_terms($rating->job_id, 'job_category'),
+        'day'       => get_the_date( 'd', $rating->job_id ),
+        'month'     => get_the_date( 'M', $rating->job_id ),
+        'year'      => get_the_date( 'Y', $rating->job_id ),
+        'photos'    => get_job_photos($rating->job_id, $user_id)
+        );
+}
 
 }
-//add_action('init', 'get_minyawns_testimonials');
+
+return $testimonials;
+}
+
+
+
+
+
+function test_testimonials(){
+    $testimonals = get_minyawns_testimonials('134');
+
+    echo "<pre>";
+    print_r($testimonals);
+    echo "</pre>";
+}
+//add_action('init', 'test_testimonials');
