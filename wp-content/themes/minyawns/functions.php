@@ -3497,3 +3497,35 @@ wp_mail($emails, $message_subject, $activity_message, $headers);
 }
 
 add_action( 'activity_message_posted', 'activity_message_mail', 10, 2 );
+
+
+
+
+
+
+
+
+
+
+function get_minyawns_testimonials(){
+
+$user_id = '134';
+
+$ratings = get_user_rating_data($user_id);
+
+
+$object_id = get_object_id($user_id, '520');
+
+
+$defaults = array(
+                        'post_id' => '54',
+                    );
+              
+                $all_comment = get_comments($defaults);
+
+                echo "<pre>";
+                print_r($ratings);
+                echo "</pre>";
+
+}
+//add_action('init', 'get_minyawns_testimonials');
