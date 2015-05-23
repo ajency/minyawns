@@ -521,46 +521,65 @@ foreach($testimonials as $testimonial){
 </div> 
 </div> 
 </div>
+
+
+
 <div class="span3">
-    <!-- Video -->
-    <?php if (get_user_role() === 'minyawn'): ?>
-    <div class="row-fluid ">
-        <div class="span12 content-section">
-            <h3 class="uppercase-title"><i class="icon-video"></i> &nbsp; Video Profile &nbsp;<a data-toggle="tooltip" title="first tooltip" id="element"><i class="icon-question-sign text-info"></i></a></h3>
-            <br>
-            <?php if (is_user_logged_in()) { ?>   
-            <div class="normal-txt">
-                <ul >
-                    <li>We love close ups, but suggest you sit at arms length.</li>
-                    <li>You’ve got 30 seconds, so keep an eye on time.</li>
-                    <li>look in camera to create personal connection</li>
-                </ul>
-                <br>
-                <a class="btn btn-primary ">UPLOAD VIDEO</a>
-            </div>
-            <?php } ?> 
+  <!-- Video -->
+  <?php if (get_user_role() === 'minyawn'){ ?>
+  <div class="row-fluid ">
+    <div class="span12 content-section">
+      <h3 class="uppercase-title"><i class="icon-video"></i> &nbsp; Video Profile &nbsp;<a data-toggle="tooltip" title="first tooltip" id="element"><i class="icon-question-sign text-info"></i></a></h3>
+      <br>
+      <?php if (is_user_logged_in() && get_user_intro_video_id() == "") { ?>   
+      <div class="normal-txt" id="novideotext">
+        <ul >
+          <li>We love close ups, but suggest you sit at arms length.</li>
+          <li>You’ve got 30 seconds, so keep an eye on time.</li>
+          <li>look in camera to create personal connection</li>
+        </ul>
+        <br>
+        <a class="btn btn-primary" data-target="#recordvideo" data-toggle="modal">UPLOAD VIDEO</a>
+      </div>
+      <?php } ?>
 
-            <!--  When Video Is added -->
-            <div style="display:none;"> 
-                <br>
-                <?php if (get_user_role() === 'minyawn'): ?>
-                
-                <?php if( get_user_intro_video_id()!=""){ ?>
-                
-                <b>  <a href="#introvideo" data-toggle="modal"><i class="icon-youtube-play"></i> &nbsp;</a></b>
-                
-                <?php } ?>
-            <?php endif; ?>
+      <div class="normal-txt" id="tempuploadtext" style="display:none;">
+        <ul >
+          <li>We love close ups, but suggest you sit at arms length.</li>
+          <li>You’ve got 30 seconds, so keep an eye on time.</li>
+          <li>look in camera to create personal connection</li>
+        </ul>
+        <br>
+        <a class="btn btn-primary" data-target="#recordvideo" data-toggle="modal">UPLOAD VIDEO</a>
+      </div> 
+
+      <!--  When Video Is added -->
+      <div> 
+        <br>
 
 
+        <div id="profileintrowrap">
 
-            <iframe width="100%" height="180" src="https://www.youtube.com/embed/NRdrPMjXF0s" frameborder="0" allowfullscreen></iframe>
-            <br><div > <a><i class="icon-play-sign"></i>  Record Video </a> <span class="pull-right"><i class="icon-trash"></i></span></div>
         </div>
+        <?php if( get_user_intro_video_id() != ""){ ?>
+
+        <div id="profilevideowrap">
+        <iframe width="100%" height="180" src="https://www.youtube.com/embed/<?php echo get_user_intro_video_id(); ?>" frameborder="0" allowfullscreen></iframe>
+        <?php if (is_user_logged_in()){ ?>
+        <br><div > <a data-target="#recordvideo" data-toggle="modal"><i class="icon-play-sign"></i>  Record Video </a> <span class="pull-right"><i class="icon-trash" style="cursor:pointer;" onClick="delteIntroVideo('<?php echo get_user_intro_video_id(); ?>');"></i></span></div>
+        <?php } ?>
+         </div>
+
+        <?php } ?>
+
+      </div>
 
     </div>
-</div><br>
-<?php endif; ?>
+
+    <?php } ?>
+
+  </div>
+  <br>
 <!-- Video -->
 
 <div class="row-fluid ">
@@ -684,6 +703,208 @@ foreach($testimonials as $testimonial){
 </div>
 <?php } ?>
 <!-- End Intro Video Modal -->
+
+
+
+
+
+<!-- Modal for record video with webcam -->
+<div id="recordvideo" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:9999">
+    <div  >
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+   
+    </div>
+    <input type="hidden" id="tab_identifier" value="1">
+    <div class="modal-body">
+        <div style="margin:0 auto; width:489px">
+            <div id="widget"></div>
+
+            <div id="processvideo" style="display:none">
+                <div id="preloadprocess"></div>
+                <div class="videoprocess-text">Processing Video...</div>
+            </div>
+
+            <div id="videoadderror" style="display:none"></div>
+
+        </div>
+    </div>
+
+</div>
+<!-- yutube webcam upload modal End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Youtube video recording with webcam and upload script -->
+<script>
+      // 2. Asynchronously load the Upload Widget and Player API code.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. Define global variables for the widget and the player.
+      // The function loads the widget after the JavaScript code has
+      // downloaded and defines event handlers for callback notifications
+      // related to the widget.
+      var widget;
+      var player;
+      function onYouTubeIframeAPIReady() {
+        widget = new YT.UploadWidget('widget', {
+          width: 500,
+          events: {
+            'onUploadSuccess': onUploadSuccess,
+            'onProcessingComplete': onProcessingComplete
+          }
+        });
+      }
+
+      // 4. This function is called when a video has been successfully uploaded.
+      function onUploadSuccess(event) {
+        //alert('Video ID ' + event.data.videoId + ' was uploaded and is currently being processed.');
+        document.getElementById('widget').style.display = 'none';
+        document.getElementById('processvideo').style.display = 'block';
+      }
+
+      // 5. This function is called when a video has been successfully processed.
+      function onProcessingComplete(event) {
+      
+      //Call function to do the actual process
+      addUserVideo(event.data.videoId);
+       }
+
+
+
+
+
+
+      function addUserVideo(videoid)
+      {
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {
+          xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+          {
+
+            if(xmlhttp.responseText == 'ok'){
+
+              document.getElementById('recordvideo').style.display = 'none';
+              document.getElementsByClassName('modal-backdrop')[0].style.display = 'none';
+
+        //Hide upload video message
+        if (document.getElementById("novideotext")) {
+        document.getElementById('novideotext').style.display = 'none';
+        }
+
+        //Hide the existing video
+        if (document.getElementById("profilevideowrap")) {
+          document.getElementById("profilevideowrap").innerHTML = "";
+        }
+        
+
+        //Scroll to the video div
+        document.getElementById('profileintrowrap').scrollIntoView();
+
+        //Render video
+        player = new YT.Player('profileintrowrap', {
+          height: 150,
+          width: 240,
+          videoId: videoid,
+          events: {}
+        });
+
+
+        /*var vidDiv = document.getElementById('introprofilevidwrap');
+        var delBtn = document.createElement('div');
+        delBtn.id = 'deletevideobtn';     
+        delBtn.innerHTML = 'X';
+        delBtn.setAttribute("onclick","delteIntroVideo('"+videoid+"');");
+        vidDiv.appendChild(delBtn);*/
+        
+
+      }else{
+
+        
+        //Hide video process message
+        document.getElementById('processvideo').style.display = 'none';
+
+        //Display error message div
+        document.getElementById('videoadderror').style.display = 'block';
+
+        //Add error message to div
+        document.getElementById("videoadderror").innerHTML=xmlhttp.responseText;
+          
+            }
+          }
+        }
+        xmlhttp.open("GET","<?php echo get_template_directory_uri(); ?>/youtube-data.php?action=add&videoid="+videoid+"&userid=<?php echo get_current_user_id(); ?>&nonce=<?php echo wp_create_nonce('addvideotousermeta'); ?>",true);
+        xmlhttp.send();
+      }
+
+
+
+      function delteIntroVideo(videoid)
+      {
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {
+          xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+          {
+
+            if(xmlhttp.responseText == 'ok'){
+
+              document.getElementById("profilevideowrap").innerHTML = "";
+
+               //Display upload video text
+               document.getElementById('tempuploadtext').style.display = 'block';
+
+      }else{
+
+        //Alert with error message 
+        alert(xmlhttp.responseText);
+          
+            }
+          }
+        }
+        xmlhttp.open("GET","<?php echo get_template_directory_uri(); ?>/youtube-data.php?action=delete&videoid="+videoid+"&userid=<?php echo get_current_user_id(); ?>&nonce=<?php echo wp_create_nonce('deletevideousermeta'); ?>",true);
+        xmlhttp.send();
+      }
+
+
+
+    </script>
+
+
+
+
+
+
+
 
 
 
