@@ -377,11 +377,11 @@ endif;
     
 <?php endif; ?> 
 
-<?php if (get_user_role() === 'minyawn'): ?>
+<?php if (get_user_role() === 'minyawn' && get_minyawns_short_bio() != ""): ?>
     <h3 class="uppercase-title">Short Bio <a id="hide" class="anchor">(Show Information)</a> </h3>
     <br>
     <div class="short-bio text-muted" id="me">
-     Individual form controls receive styling, but without any required base class on the  or large changes in markup. Results in stacked, left-aligned labels on top of form controls.     
+     <?php echo get_minyawns_short_bio(); ?>
  </div>
 <?php endif; ?> 
 </div>

@@ -16,7 +16,7 @@ require 'templates/_jobs.php';
 
         jQuery("#tab_identifier").val('1');
         
-         $("#example_right").live('click', function() {
+         $("#example_right").on('click', function() {
 
             $(".load_ajax_profile_comments").show();
             var Fetchusercomments = Backbone.Collection.extend({
@@ -133,6 +133,15 @@ require 'templates/_jobs.php';
                                 <div class="controls">
 
                                     <input name="user_skills2" id="user_skills2" class="tagsinput1" value="<?php echo get_user_skills(); ?>"  style="width:60%;"/>
+                                </div>
+                            </div>
+
+
+                             <div class="control-group">
+                                <label class="control-label" for="short_bio">Short Bio</label>
+                                <div class="controls">
+                                  <textarea name="short_bio" id="short_bio" style="width:300px !important;" placeholder="(Max 200 characters)"><?php echo get_minyawns_short_bio(); ?></textarea>
+                                    
                                 </div>
                             </div>
                           

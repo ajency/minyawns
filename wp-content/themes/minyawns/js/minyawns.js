@@ -845,6 +845,9 @@ var image_name=$("#image_name").val();
                 if (ele == 'user_skills2')
                     return;
 
+                /*if (ele == 'short_bio')
+                    return;*/
+
 
                 if (ele == 'linkedin')
                     return;
@@ -852,11 +855,22 @@ var image_name=$("#image_name").val();
                  if (ele == 'facebook_link')
                     return;
 
+                if (ele == 'short_bio')
+                {
+                    if (attr[ele].length >200){
+                        errors.push({field: ele, msg: 'Max 200 characters '});
+                    }else if (attr[ele].length <=0){
+                        return
+                    }
+                }
+
 
                 if (attr[ele] == '')
                 {
                     errors.push({field: ele, msg: 'Please enter ' + ele});
                 }
+
+                
 
             });
             if (errors.length > 0)
@@ -897,7 +911,8 @@ var image_name=$("#image_name").val();
                         }
                     }
 
-              
+
+                              
 
                 var msg_new = msg.replace('_', ' ');
 
