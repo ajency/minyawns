@@ -637,7 +637,12 @@ echo $payment_button; ?></span>
                   <div class="collage align-left"> <%= result.college%> </div>
                   <div class="collage align-left major"> <%= result.major%> </div>
                   <div class="social-link align-left">
+
+                   <% if (is_logged_in === '1'){ %>
                   <%= result.user_email %>
+                  <%}%>
+
+
                   </div>
               </div>
              <div class="span4">

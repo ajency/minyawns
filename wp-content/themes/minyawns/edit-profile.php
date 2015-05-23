@@ -8,6 +8,9 @@ require 'templates/_jobs.php';
 <script>
     jQuery(document).ready(function($) {
   $(".inline li").removeClass("selected");
+
+
+  $('#telephone').usphone();
   
         if (is_logged_in.length === 0) {
             jQuery("#change-avatar-span").attr("href", "#")
@@ -116,6 +119,17 @@ require 'templates/_jobs.php';
                                     <input type="text" id="profileemail" disabled  name="profileemail" placeholder="" value="<?php user_profile_email() ?>" class="input">
                                 </div>
                             </div>
+
+                             <div class="control-group">
+                                <label class="control-label" for="telephone">Telephone No.</label>
+                                <div class="controls">
+                                    <input type="text" id="telephone"  name="telephone" placeholder="" maxlength="30" value="<?php echo get_user_telephone_no(); ?>" class="input">
+                                    <div style="font-size:11px;margin-top: 05px;">
+                                    Your number is only for our reference and wont be displayed publicly.
+                                    </div>
+                                </div>
+                              </div>
+
                             <div class="control-group">
                                 <label class="control-label" for="inptcollege">College</label>
                                 <div class="controls">
@@ -219,6 +233,17 @@ require 'templates/_jobs.php';
                                     <input type="text" id="location"  name="location" placeholder="" value="<?php user_location(); ?>" class="input">
                                 </div>
                             </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="telephone">Telephone No.</label>
+                                <div class="controls">
+                                    <input type="text" id="telephone"  name="telephone" placeholder="" maxlength="30" value="<?php echo get_user_telephone_no(); ?>" class="input">
+                                     <div style="font-size:11px;margin-top: 05px;">
+                                    Your number is only for our reference and wont be displayed publicly.
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="control-group">
                                 <label class="control-label" for="inputbody">Company Website</label>
                                 <div class="controls">

@@ -378,6 +378,13 @@ function get_minyawns_short_bio() {
     
     }
 
+//User Short Bio
+function get_user_telephone_no() {
+    global $current_user_new;
+    return get_user_meta($current_user_new->data->ID, 'telephone', true);
+    
+    }
+
 
 //User profile email
 function user_profile_email() {

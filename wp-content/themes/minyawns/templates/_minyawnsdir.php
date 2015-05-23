@@ -102,9 +102,16 @@
                                     <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"><%= result.college %></div>
                                     <div class="collage major"><%= result.major %></div>
-									<div class="social-link">
+
+                                    <% if (is_logged_in === '1'){ %>
+                                      <div class="social-link">
                                        <%= result.user_email %>
                                     </div>
+                                      <%}%>
+
+									
+
+                                    
 									<a class="" id="invite-minion"  href= "javascript:void(0)" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
 												   <i class="icon-ok"></i>
 												 Invite Minion

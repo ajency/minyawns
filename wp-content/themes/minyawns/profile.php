@@ -300,16 +300,23 @@ jQuery('#example').popover(
              <li class="major_data">
                  <span> Major in : </span> <b> <?php echo user_college_major(); ?></b>
              </li>
+
+            <?php if(is_user_logged_in()){ ?> 
              <li class="major_data">
                  <span> Email :  </span> <b> <a href="mailto:<?php user_profile_email();?>" target="_top">
                  <?php user_profile_email(); ?>
              </a>
          </b>
      </li>
+     <?php } ?>
+
+     <?php if(current_user_can( 'manage_options' ) || get_current_user_id() == get_user_id()){ ?>
      <li class="major_data">
-         <span> Mobile no : </span> <b> 89293940004
+         <span> Telephone no : </span> <b> <?php echo get_user_telephone_no(); ?>
      </b>
  </li>
+ <?php } ?>
+
 </ul>
 <?php
 else :
@@ -321,9 +328,20 @@ else :
  <li class="website">
      Company Website : <b>  <a href="http://<?php user_company_website(); ?>" target="_blank"><?php echo user_company_website(); ?></a></b>
  </li>
+
+ <?php if(is_user_logged_in()){ ?>
  <li class="website">
      Email : <b>  <a href="mailto:<?php user_profile_email();?>" target="_blank"><?php echo user_profile_email(); ?></a></b>
  </li>
+ <?php } ?>
+
+<?php if(current_user_can( 'manage_options' ) || get_current_user_id() == get_user_id()){ ?>
+     <li class="major_data">
+         <span> Telephone no : </span> <b> <?php echo get_user_telephone_no(); ?>
+     </b>
+ </li>
+ <?php } ?>
+
 </ul>
 
 
@@ -369,7 +387,7 @@ endif;
 </div>
 <?php if (get_user_role() === 'employer'): ?>
     <br>
-    <h3 class="uppercase-title">Short Bio <a id="hide" class="anchor">(Show Information)</a> </h3>
+    <h3 class="uppercase-title">Short Description <a id="hide" class="anchor">(Show Information)</a> </h3>
     <br>
     <div class="short-bio text-muted" id="me">
         <?php echo user_profile_body(); ?> 
@@ -378,7 +396,7 @@ endif;
 <?php endif; ?> 
 
 <?php if (get_user_role() === 'minyawn' && get_minyawns_short_bio() != ""): ?>
-    <h3 class="uppercase-title">Short Bio <a id="hide" class="anchor">(Show Information)</a> </h3>
+    <h3 class="uppercase-title">Short Description <a id="hide" class="anchor">(Show Information)</a> </h3>
     <br>
     <div class="short-bio text-muted" id="me">
      <?php echo get_minyawns_short_bio(); ?>
