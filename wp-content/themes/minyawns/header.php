@@ -11,7 +11,7 @@
 		<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="description" content="Your Empire, Our Minyawns to help. A web app to hire Local Seattle college students for short term help on your projects. For any businesses professional, small or big.">
+		
 		<meta name="keywords" content="one day interns, reliable help
 	,temp workers
 	,one day jobs
