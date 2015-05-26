@@ -1527,6 +1527,7 @@ body .jobs_table .data-title .profile-job {
 .frm-edit .controls .tagsinput {
   width: 60%;
   margin-bottom: 1px;
+  max-height: 64px;
 }
 .mobile-toggle-show {
   display: none;
@@ -7247,4 +7248,8 @@ textarea[readonly] {
 .st-moile-span1 div:first-child {
   display: table-cell;
   vertical-align: middle;
+}
+#introprofilevidwrap #introvideowrap {
+  height: auto;
+  max-height: 150px;
 }
