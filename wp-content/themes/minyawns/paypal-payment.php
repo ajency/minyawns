@@ -245,7 +245,7 @@ else
 		                $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
 
 
-		                if(!is_ipn_was_recorded($data['item_number'], $data['txn_id']){
+		                if(!is_ipn_was_recorded($data['item_number'], $data['txn_id'])){
 		                	wp_mail($value->user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
 		                }
 		
