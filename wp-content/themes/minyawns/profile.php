@@ -192,7 +192,7 @@ jQuery('#example').popover(
                   } if (!is_numeric(check_direct_access())) {
                     ?>
                     <?php if (get_user_role() === 'minyawn'): ?>
-                    <span class="pull-left">Updating your profile with your name, location and a profile picture helps other<br> Employer to know you well </span> 
+                    <span class="pull-left">Updating your profile with your Profile picture, Skills and Short Bio helps<br> Employer to know you well </span> 
                 <?php endif; ?> 
                 <?php if (get_user_role() === 'employer'): ?>
                 <span class="pull-left">Complete your profile and get more applications from eager minyawns. </span> 
