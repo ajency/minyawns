@@ -6,7 +6,25 @@
   require 'templates/_jobs.php';
   ?>
   <script type="text/javascript">
+
+
+  function showUserGallery(userid){
+  //alert('profile image clicked for '+userid);
+  jQuery.get(SITEURL+"/api/photos/user/"+userid, {}, function(collection)  { 
+
+   console.log(collection);
+ });
+}
+
+
+
+
+
+
   jQuery(document).ready(function($) {
+
+
+
 
     if (is_logged_in.length === 0) {
         jQuery("#change-avatar-span").attr("href", "#")
@@ -194,7 +212,12 @@ jQuery('#example').popover(
                 echo 'employer-image';
             }
             ?>">
+
+            <?php if(is_facebook_user() === 'false' && get_current_user_id() == get_user_id()){ ?>
             <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
+              <?php } else { ?>
+               <a class="fancybox" rel="group" href="<?php echo get_mn_user_avatar() ?>">
+              <?php } ?>
               
                 <?php
                 
@@ -208,7 +231,7 @@ jQuery('#example').popover(
                 ?>
             </a> <?php if(is_facebook_user() === 'false' && get_current_user_id() == get_user_id()){ ?>
             <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal"><i class="icon-camera"></i></a>
-            <?php }?>
+            <?php } ?>
         </div>
         <?php if (is_user_logged_in()) { ?>              
         
