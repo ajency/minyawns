@@ -216,7 +216,7 @@ jQuery('#example').popover(
             <?php if(is_facebook_user() === 'false' && get_current_user_id() == get_user_id()){ ?>
             <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
               <?php } else { ?>
-               <a class="fancybox" rel="group" href="<?php echo get_mn_user_avatar() ?>">
+               <a class="fancybox change-avtar" rel="group" href="<?php echo get_mn_user_avatar() ?>">
               <?php } ?>
               
                 <?php
