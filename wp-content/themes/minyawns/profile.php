@@ -568,7 +568,7 @@ foreach($testimonials as $testimonial){
 <div class="span3">
   <!-- Video -->
   <?php if (get_user_role() === 'minyawn'){ ?>
-  <div class="row-fluid ">
+  <div class="row-fluid width-fix">
     <div class="span12 content-section">
       <h3 class="uppercase-title"><i class="icon-video"></i> &nbsp; Video Profile &nbsp;<a data-toggle="tooltip" title="This is a quick 30 seconds Intro Video of Minyawn" id="element"><i class="icon-question-sign text-info"></i></a></h3>
       <br>
@@ -620,11 +620,11 @@ foreach($testimonials as $testimonial){
     <?php } ?>
 
   </div>
-  <br>
+  <!-- <br> -->
 <!-- Video -->
 
 <div class="row-fluid ">
-    <div class="span12 content-section">
+    <div class="span9 content-section width-fix-div">
       <h3 class="uppercase-title"><!-- <i class="icon-picture"></i> --> &nbsp; Gallery &nbsp;<a data-toggle="tooltip" title="A collection of Selfies and Job Photos by Minyawn. Click on an image to view them. " id="element1"><i class="icon-question-sign text-info"></i></a></h3>
       <br>
       <form>
