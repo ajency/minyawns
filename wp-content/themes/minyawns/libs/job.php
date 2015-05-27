@@ -585,9 +585,8 @@ $app->map('/user-vote', function() use ($app) {
 	UPDATE {$wpdb->prefix}userjobs 
 	SET rating = '" . trim($_POST['rating']) . "'
 	WHERE user_id = '" . trim($_POST['user_id']) . "'
-            AND job_id = '" . trim($_POST['job_id']) . "' AND status = 'hired'"
- 
-		//AND job_id = '" . trim($_POST['job_id']) . "'"
+            AND job_id = '" . trim($_POST['job_id']) . "'"
+ 		
             );
 
 
