@@ -1861,11 +1861,16 @@ function is_minion_selected(jobmodel, model)
 //console.log(model.toJSON());
 
 var hired_condition;
+var empid;
 if(USER.user_login == 'admin'){
     hired_condition = 'jobmodel.toJSON().user_to_job_status[i] != "applied"';
+    empid = USER.id;
 }else{
     hired_condition = 'jobmodel.toJSON().user_to_job_status[i] === "hired"';
+    empid = jobmodel.toJSON().job_owner_id;
 }
+
+
 
 
 
@@ -1908,20 +1913,17 @@ if(USER.user_login == 'admin'){
         .user_id + "'><div class='span12'><a id='vote-up" + model.toJSON()
         .user_id + "' class='btn btn-small btn-block  btn-success well-done' href='#like' is_rated='0' vote='1'   job-id='" + jobmodel.toJSON()
         .post_id + "' user_id='" + model.toJSON()
-        .user_id + "' action='vote-up' emp_id='" + jobmodel.toJSON()
-        .job_owner_id + "'>+1 Well Done</a></div></div>"
+        .user_id + "' action='vote-up' emp_id='" + empid + "'>+1 Well Done</a></div></div>"
     selectButton += "</div><div class='row-fluid'><div class='span12'><a id='vote-down" + model.toJSON()
         .user_id + "' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' vote='-1'   job-id='" + jobmodel.toJSON()
         .post_id + "' user_id='" + model.toJSON()
-        .user_id + "' action='vote-down' emp_id='" + jobmodel.toJSON()
-        .job_owner_id + "'>";
+        .user_id + "' action='vote-down' emp_id='" + empid + "'>";
     selectButton += "-1 Terrible Job</a></div></div><div class='popover-box' id='review-box" + model.toJSON()
         .user_id + "' style='display:none'><textarea type='text' id='review-text" + model.toJSON()
         .user_id + "' class='' maxlength='160'/><div class='maxchar'>Max charector 160</div><input type='button' value='submit' class='rate-negative rate-button btn btn-medium btn-block green-btn btn-success' id='review" + model.toJSON()
         .user_id + "' user-id='" + model.toJSON()
         .user_id + "' job-id='" + jobmodel.toJSON()
-        .post_id + "' emp_id='" + jobmodel.toJSON()
-        .job_owner_id + "' action='' vote='' ></input></div></div>";
+        .post_id + "' emp_id='" + empid + "' action='' vote='' ></input></div></div>";
 
 
 }
