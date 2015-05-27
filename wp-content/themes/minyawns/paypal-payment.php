@@ -188,7 +188,7 @@ else
 				if(($data['payment_status']=="Completed") )
 				{
 					  
-					//update_paypal_payment($data,$curl_result);
+					update_paypal_payment($data,$curl_result);
 					  	 
 					/*add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 					wp_mail('paragredkar@gmail.com', "verified",  $req.'curl result'.$curl_result );*/
@@ -245,9 +245,9 @@ else
 		                $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
 
 
-		                if(!is_ipn_was_recorded($data['item_number'], $data['txn_id'])){
+		                //if(!is_ipn_was_recorded($data['item_number'], $data['txn_id'])){
 		                	wp_mail($value->user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
-		                }
+		                //}
 		
 
 					$cnt_sel_minyawns++;
@@ -257,7 +257,7 @@ else
 
 
 
-					update_paypal_payment($data,$curl_result);
+					//update_paypal_payment($data,$curl_result);
 
 
 
