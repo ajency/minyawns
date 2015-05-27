@@ -1527,6 +1527,7 @@ body .jobs_table .data-title .profile-job {
 .frm-edit .controls .tagsinput {
   width: 60%;
   margin-bottom: 1px;
+  max-height: 64px;
 }
 .mobile-toggle-show {
   display: none;
@@ -3621,8 +3622,10 @@ body .jobs_table .data-title .profile-job {
   font-size: 13px;
 }
 .job-view-list ._li .accordion-toggle {
-  line-height: 35px;
+  /*line-height: 35px;*/
   color: #349EF1;
+  display: table-cell;
+  width: 100px;
 }
 .job-view-list ._li .status {
   text-align: center;
@@ -5841,7 +5844,7 @@ div.tooltip1:after {
   display: inline-block;
   text-align: center;
   line-height: 29px;
-  margin: 15px 1px;
+  /*margin: 15px 1px;*/
   padding: 2px;
 }
 .employe-detail .employer-body {
@@ -7239,10 +7242,14 @@ textarea[readonly] {
   display: table;
 }
 .st-moile-span1 {
-  height: 120px;
+  /*height: 120px;*/
   display: table !important;
 }
 .st-moile-span1 div:first-child {
   display: table-cell;
   vertical-align: middle;
+}
+#introprofilevidwrap #introvideowrap {
+  height: auto;
+  max-height: 150px;
 }
