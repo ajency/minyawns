@@ -6814,28 +6814,13 @@ div.tooltip1:after {
 .isotope .item {
   width: 25%;
   border: 0px;
+  /*@media screen and (max-width:768px){width:25%;}
+		@media screen and (max-width:640px){width:33.3%;}
+		@media screen and (max-width:480px){width:50%;}
+		@media screen and (max-width:321px){width:100%;}*/
   float: left;
   position: relative;
-}
-@media screen and (max-width: 768px) {
-  .isotope .item {
-    width: 25%;
-  }
-}
-@media screen and (max-width: 640px) {
-  .isotope .item {
-    width: 33.3%;
-  }
-}
-@media screen and (max-width: 480px) {
-  .isotope .item {
-    width: 50%;
-  }
-}
-@media screen and (max-width: 321px) {
-  .isotope .item {
-    width: 100%;
-  }
+  width: auto;
 }
 .isotope .item:hover {
   background: url(../images/search.png) #000000;
@@ -6844,6 +6829,9 @@ div.tooltip1:after {
 .isotope .item:hover img {
   opacity: .4;
 }
+.isotope .item:not(:first-child) {
+  margin: 0 0 5px 5px;
+}
 .isotope .item img {
   max-width: 100% !important;
   height: auto;
@@ -6851,63 +6839,24 @@ div.tooltip1:after {
 .isotope .item-prof {
   width: 50%;
   border: 4px solid #fff;
+  /*@media screen and (max-width:768px){width:25%;}
+		@media screen and (max-width:640px){width:33.3%;}
+		@media screen and (max-width:480px){width:50%;}
+		@media screen and (max-width:321px){width:100%;}*/
   float: left;
-}
-@media screen and (max-width: 768px) {
-  .isotope .item-prof {
-    width: 25%;
-  }
-}
-@media screen and (max-width: 640px) {
-  .isotope .item-prof {
-    width: 33.3%;
-  }
-}
-@media screen and (max-width: 480px) {
-  .isotope .item-prof {
-    width: 50%;
-  }
-}
-@media screen and (max-width: 321px) {
-  .isotope .item-prof {
-    width: 100%;
-  }
 }
 .isotope .item-prof img {
   max-width: 100% !important;
   height: auto;
 }
-@media screen and (max-width: 768px) {
-  .isotope .item,
-  .isotope .item-prof,
-  .isotope .grid-sizer,
-  .isotope .grid-sizer-prof {
-    width: 25%;
-  }
-}
-@media screen and (max-width: 640px) {
-  .isotope .item,
-  .isotope .item-prof,
-  .isotope .grid-sizer,
-  .isotope .grid-sizer-prof {
-    width: 33.3%;
-  }
-}
-@media screen and (max-width: 480px) {
-  .isotope .item,
-  .isotope .item-prof,
-  .isotope .grid-sizer,
-  .isotope .grid-sizer-prof {
-    width: 50%;
-  }
-}
-@media screen and (max-width: 321px) {
-  .isotope .item,
-  .isotope .item-prof,
-  .isotope .grid-sizer,
-  .isotope .grid-sizer-prof {
-    width: 100%;
-  }
+.isotope .item,
+.isotope .item-prof,
+.isotope .grid-sizer,
+.isotope .grid-sizer-prof {
+  /*@media screen and (max-width:768px){width:25%;}
+		@media screen and (max-width:640px){width:33.3%;}
+		@media screen and (max-width:480px){width:50%;}
+		@media screen and (max-width:321px){width:100%;}*/
 }
 /*what we can do*/
 .wwcd-1 {
