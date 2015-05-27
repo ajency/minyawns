@@ -3609,6 +3609,7 @@ function test_testimonials(){
     print_r($ratings);
     echo "</pre>";
 
+
 }
 //add_action('init', 'test_testimonials');
 

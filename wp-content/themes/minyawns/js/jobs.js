@@ -1396,7 +1396,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
                             job_button = "<a class='st-green-link' href='" + siteurl + '/jobs/' + model.toJSON().post_slug + "' target='_blank'>Give ratings to minions</a>";
                         else
-                            job_button = "<a href='" + siteurl + '/add-job/' + model.toJSON().post_id + "' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
+                            job_button = "<a href='" + siteurl + '/add-job/' + model.toJSON().post_id + "' class='st-green-link'><i class='icon-location-arrow'></i> Create Similar Jobs</a>";
 
                     } else if (role === 'minion') //USER ROLE MINION
                     {
@@ -1428,7 +1428,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
                             job_button = "<a  href='" + siteurl + "/jobs/add-job' class='st-green-link'>Add A New Job.</a>";
                         else
-                            job_button = "<a href='" + siteurl + '/add-job/' + model.toJSON().post_id + "' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
+                            job_button = "<a href='" + siteurl + '/add-job/' + model.toJSON().post_id + "' class='st-green-link'><i class='icon-location-arrow'></i> Create Similar Jobs</a>";
 
 
                     } else // ROLE IS MINIONS
@@ -1455,7 +1455,7 @@ function job_collapse_b(model) {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
                             job_button = "<a href='" + siteurl + '/add-job/' + model.toJSON().post_id + "' class='st-green-link'>Do you want to repeat the job ?</a>";
                         else
-                            job_button = "<a href='" + siteurl + '/add-job/' + model.toJSON().post_id + "' class='btn btn-primary'><a class='st-green-link' href='#'>Create Similar Jobs</a></a>";
+                            job_button = "<a href='" + siteurl + '/add-job/' + model.toJSON().post_id + "' class='st-green-link'><i class='icon-location-arrow'></i> Create Similar Jobs</a>";
 
                     } else //ROLE MINION
                     {
