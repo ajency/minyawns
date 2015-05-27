@@ -161,7 +161,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
 
                 </div>
                 <div class="span9">
-                    <?php if (isset($_GET['cat_id'])) { ?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -19px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php } ?>
+                    <?php if (isset($_GET['cat_id'])) { ?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -2px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php } ?>
 
 
                    

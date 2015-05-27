@@ -192,7 +192,7 @@ jQuery('#example').popover(
                   } if (!is_numeric(check_direct_access())) {
                     ?>
                     <?php if (get_user_role() === 'minyawn'): ?>
-                    <span class="pull-left">Updating your profile with your name, location and a profile picture helps other<br> Employer to know you well </span> 
+                    <span class="pull-left">Updating your profile with your Profile picture, Skills and Short Bio helps<br> Employer to know you well </span> 
                 <?php endif; ?> 
                 <?php if (get_user_role() === 'employer'): ?>
                 <span class="pull-left">Complete your profile and get more applications from eager minyawns. </span> 
@@ -570,14 +570,14 @@ foreach($testimonials as $testimonial){
   <?php if (get_user_role() === 'minyawn'){ ?>
   <div class="row-fluid ">
     <div class="span12 content-section">
-      <h3 class="uppercase-title"><i class="icon-video"></i> &nbsp; Video Profile &nbsp;<a data-toggle="tooltip" title="first tooltip" id="element"><i class="icon-question-sign text-info"></i></a></h3>
+      <h3 class="uppercase-title"><i class="icon-video"></i> &nbsp; Video Profile &nbsp;<a data-toggle="tooltip" title="This is a quick 30 seconds Intro Video of Minyawn" id="element"><i class="icon-question-sign text-info"></i></a></h3>
       <br>
       <?php if (is_user_logged_in() && get_user_intro_video_id() == "") { ?>   
       <div class="normal-txt" id="novideotext">
         <ul >
           <li>We love close ups, but suggest you sit at arms length.</li>
           <li>You’ve got 30 seconds, so keep an eye on time.</li>
-          <li>look in camera to create personal connection</li>
+          <li>look In camera to create personal connection</li>
         </ul>
         <br>
         <a class="btn btn-primary" data-target="#recordvideo" data-toggle="modal">UPLOAD VIDEO</a>
@@ -588,7 +588,7 @@ foreach($testimonials as $testimonial){
         <ul >
           <li>We love close ups, but suggest you sit at arms length.</li>
           <li>You’ve got 30 seconds, so keep an eye on time.</li>
-          <li>look in camera to create personal connection</li>
+          <li>look In camera to create personal connection</li>
         </ul>
         <br>
         <a class="btn btn-primary" data-target="#recordvideo" data-toggle="modal">UPLOAD VIDEO</a>
@@ -625,7 +625,7 @@ foreach($testimonials as $testimonial){
 
 <div class="row-fluid ">
     <div class="span12 content-section">
-      <h3 class="uppercase-title"><i class="icon-picture"></i> &nbsp; Gallery &nbsp;<a data-toggle="tooltip" title="first tooltip 2" id="element1"><i class="icon-question-sign text-info"></i></a></h3>
+      <h3 class="uppercase-title"><!-- <i class="icon-picture"></i> --> &nbsp; Gallery &nbsp;<a data-toggle="tooltip" title="A collection of Selfies and Job Photos by Minyawn. Click on an image to view them. " id="element1"><i class="icon-question-sign text-info"></i></a></h3>
       <br>
       <form>
         <?php $upload_nonce = wp_create_nonce("upload_photo_".get_current_user_id()); ?>
@@ -645,7 +645,7 @@ foreach($testimonials as $testimonial){
             <ul >
                 <li>Take your camera, click and upload</li>
                 <li>Selfie is trending, can we see one of yours</li>
-                <li>look in camera to create personal connection</li>
+                <li>look In camera to create personal connection</li>
             </ul>
         </div>
         <?php } ?>

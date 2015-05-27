@@ -1527,6 +1527,7 @@ body .jobs_table .data-title .profile-job {
 .frm-edit .controls .tagsinput {
   width: 60%;
   margin-bottom: 1px;
+  max-height: 64px;
 }
 .mobile-toggle-show {
   display: none;
@@ -3621,8 +3622,10 @@ body .jobs_table .data-title .profile-job {
   font-size: 13px;
 }
 .job-view-list ._li .accordion-toggle {
-  line-height: 35px;
+  /*line-height: 35px;*/
   color: #349EF1;
+  display: table-cell;
+  width: 100px;
 }
 .job-view-list ._li .status {
   text-align: center;
@@ -5841,7 +5844,7 @@ div.tooltip1:after {
   display: inline-block;
   text-align: center;
   line-height: 29px;
-  margin: 15px 1px;
+  /*margin: 15px 1px;*/
   padding: 2px;
 }
 .employe-detail .employer-body {
@@ -6811,28 +6814,13 @@ div.tooltip1:after {
 .isotope .item {
   width: 25%;
   border: 0px;
+  /*@media screen and (max-width:768px){width:25%;}
+		@media screen and (max-width:640px){width:33.3%;}
+		@media screen and (max-width:480px){width:50%;}
+		@media screen and (max-width:321px){width:100%;}*/
   float: left;
   position: relative;
-}
-@media screen and (max-width: 768px) {
-  .isotope .item {
-    width: 25%;
-  }
-}
-@media screen and (max-width: 640px) {
-  .isotope .item {
-    width: 33.3%;
-  }
-}
-@media screen and (max-width: 480px) {
-  .isotope .item {
-    width: 50%;
-  }
-}
-@media screen and (max-width: 321px) {
-  .isotope .item {
-    width: 100%;
-  }
+  width: auto;
 }
 .isotope .item:hover {
   background: url(../images/search.png) #000000;
@@ -6841,6 +6829,9 @@ div.tooltip1:after {
 .isotope .item:hover img {
   opacity: .4;
 }
+.isotope .item:not(:first-child) {
+  margin: 0 0 5px 5px;
+}
 .isotope .item img {
   max-width: 100% !important;
   height: auto;
@@ -6848,63 +6839,24 @@ div.tooltip1:after {
 .isotope .item-prof {
   width: 50%;
   border: 4px solid #fff;
+  /*@media screen and (max-width:768px){width:25%;}
+		@media screen and (max-width:640px){width:33.3%;}
+		@media screen and (max-width:480px){width:50%;}
+		@media screen and (max-width:321px){width:100%;}*/
   float: left;
-}
-@media screen and (max-width: 768px) {
-  .isotope .item-prof {
-    width: 25%;
-  }
-}
-@media screen and (max-width: 640px) {
-  .isotope .item-prof {
-    width: 33.3%;
-  }
-}
-@media screen and (max-width: 480px) {
-  .isotope .item-prof {
-    width: 50%;
-  }
-}
-@media screen and (max-width: 321px) {
-  .isotope .item-prof {
-    width: 100%;
-  }
 }
 .isotope .item-prof img {
   max-width: 100% !important;
   height: auto;
 }
-@media screen and (max-width: 768px) {
-  .isotope .item,
-  .isotope .item-prof,
-  .isotope .grid-sizer,
-  .isotope .grid-sizer-prof {
-    width: 25%;
-  }
-}
-@media screen and (max-width: 640px) {
-  .isotope .item,
-  .isotope .item-prof,
-  .isotope .grid-sizer,
-  .isotope .grid-sizer-prof {
-    width: 33.3%;
-  }
-}
-@media screen and (max-width: 480px) {
-  .isotope .item,
-  .isotope .item-prof,
-  .isotope .grid-sizer,
-  .isotope .grid-sizer-prof {
-    width: 50%;
-  }
-}
-@media screen and (max-width: 321px) {
-  .isotope .item,
-  .isotope .item-prof,
-  .isotope .grid-sizer,
-  .isotope .grid-sizer-prof {
-    width: 100%;
-  }
+.isotope .item,
+.isotope .item-prof,
+.isotope .grid-sizer,
+.isotope .grid-sizer-prof {
+  /*@media screen and (max-width:768px){width:25%;}
+		@media screen and (max-width:640px){width:33.3%;}
+		@media screen and (max-width:480px){width:50%;}
+		@media screen and (max-width:321px){width:100%;}*/
 }
 /*what we can do*/
 .wwcd-1 {
@@ -7239,10 +7191,14 @@ textarea[readonly] {
   display: table;
 }
 .st-moile-span1 {
-  height: 120px;
+  /*height: 120px;*/
   display: table !important;
 }
 .st-moile-span1 div:first-child {
   display: table-cell;
   vertical-align: middle;
+}
+#introprofilevidwrap #introvideowrap {
+  height: auto;
+  max-height: 150px;
 }
