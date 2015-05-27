@@ -7119,7 +7119,7 @@ textarea[readonly] {
 .main-content-profile .content-section {
   border: 0px;
   background: #ffffff;
-  width: 100% !important;
+  /*width: 100% !important;*/
   padding: 15px;
   box-shadow: 1px 0px 6px 1px rgba(0, 0, 0, 0.1);
 }
@@ -7201,4 +7201,10 @@ textarea[readonly] {
 #introprofilevidwrap #introvideowrap {
   height: auto;
   max-height: 150px;
+}
+.width-fix {
+  margin-bottom: 15px;
+}
+.width-fix + .row-fluid > .width-fix-div {
+  width: 100% !important;
 }
