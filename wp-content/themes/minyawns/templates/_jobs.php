@@ -426,7 +426,7 @@ echo $payment_button; ?></span>
     
 
                <div class="row-fluid mobile-hide" >
-                <div class="<% /*if(currentpage_user_role=="employer"){ span9 } else{ */ %>span6<% /* } */  %> ">
+                <div class="<% /*if(currentpage_user_role=="employer"){ span9 } else{ */ %>span9<% /* } */  %> ">
                      <div class="row-fluid " data-toggle="collapse-next" data-parent="#accordion24">
                                       <div class="span2">
                     <div class="job-date">
@@ -477,10 +477,10 @@ echo site_url() ?>/job/<%= result.post_slug %>> <%= result.post_title %></a></h5
     <div id="collapseOne" class="accordion-body collapse ">
       <div class="accordion-inner">
                               <div class="row-fluid mobile-detail">
-                                 <div class="span6 ">
+                                 <div class="span9">
                                     <div class="row-fluid ">
                                       <div class="span12 job-details">
-                                         <p> <%= result.job_details %> <em>job posted by<a href="<?php
+                                         <p> <%= result.job_details %> <em>Job posted by<a href="<?php
 echo site_url() ?>/profile/<%=result.job_author_id %>" target="_blank"> <%= result.job_author%></a></em> </p>
                                        </div>
                                     </div>
