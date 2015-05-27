@@ -7962,6 +7962,10 @@ body .job-view-list{
 		}
 		float:left;
 		position:relative;
+		width: auto;
+		&:not(:first-child){
+			margin: 0 0 5px 5px;
+		}
 			img{
 				max-width:100% !important;
 				height:auto;
@@ -7980,10 +7984,10 @@ body .job-view-list{
 	.item-prof,
 	.grid-sizer,
 	.grid-sizer-prof{
-		@media screen and (max-width:768px){width:25%;}
+		/*@media screen and (max-width:768px){width:25%;}
 		@media screen and (max-width:640px){width:33.3%;}
 		@media screen and (max-width:480px){width:50%;}
-		@media screen and (max-width:321px){width:100%;}
+		@media screen and (max-width:321px){width:100%;}*/
 	}
 }
 
