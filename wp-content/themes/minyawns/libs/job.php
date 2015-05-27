@@ -589,7 +589,7 @@ $app->map('/user-vote', function() use ($app) {
             );
 
             $id_sql = $wpdb->prepare("SELECT id from {$wpdb->prefix}userjobs  WHERE user_id = '" . trim($_POST['user_id']) . "' 
-		AND job_id = '" . trim($_POST['job_id']) . "");
+		AND job_id = '" . trim($_POST['job_id']) . "'");
 
             $last_id = $wpdb->get_row($id_sql);
 

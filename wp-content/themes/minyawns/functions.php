@@ -3550,7 +3550,8 @@ foreach($results as $result){
 
 function get_minyawns_testimonials($user_id){
 global $wpdb;
-$ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status = 'hired'");
+//$ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status = 'hired'");
+$ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status IN ('hired','applied') AND rating != 0");
 
 $testimonials = array();
 foreach($ratings as $rating){
@@ -3563,8 +3564,12 @@ $comments = get_comments($args);
 
 if($comments){
 
-    
+ $user = new WP_User( $comments[0]->user_id );
+ if($user->roles[0] == 'administrator'){
+    $employer = 'admin';
+}else{
     $employer = get_user_meta($comments[0]->user_id, 'company_name', true);
+}
 
     $testimonials[] = array(
         'rating'    => $rating->rating,
@@ -3591,10 +3596,17 @@ return $testimonials;
 
 
 function test_testimonials(){
-    $testimonals = get_minyawns_testimonials('134');
+    global $wpdb;
+    $user_id = '185';
+    $ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status IN ('hired','applied') AND rating != 0");
+
+
+    //$testimonals = get_minyawns_testimonials('185');
 
     echo "<pre>";
-    print_r($testimonals);
+    print_r($ratings);
     echo "</pre>";
+
+
 }
 //add_action('init', 'test_testimonials');
