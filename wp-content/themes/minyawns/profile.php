@@ -443,7 +443,7 @@ endif;
             
             <h3 class="uppercase-title">
                 <?php if (get_user_role() == 'minyawn'): ?>
-                <i class="icon-briefcase "></i> &nbsp; Testimonials &nbsp; <a data-toggle="tooltip" title="Testimonials" id="element3"><i class="icon-question-sign text-info"></i></a>
+                <i class="icon-briefcase "></i> &nbsp; Testimonials &nbsp; <a data-toggle="tooltip" title="What Employer has to say about the Minyawn's past Work" id="element3"><i class="icon-question-sign text-info"></i></a>
             <?php endif; ?> 
             <?php if (get_user_role() == 'employer'): ?>
             <i class="icon-briefcase "></i> &nbsp; Job List &nbsp; <a data-toggle="tooltip" title="Job list" id="element3"><i class="icon-question-sign text-info"></i></a>
@@ -577,7 +577,7 @@ foreach($testimonials as $testimonial){
         <ul >
           <li>We love close ups, but suggest you sit at arms length.</li>
           <li>You’ve got 30 seconds, so keep an eye on time.</li>
-          <li>look In camera to create personal connection</li>
+          <li>Look In camera to create personal connection</li>
         </ul>
         <br>
         <a class="btn btn-primary" data-target="#recordvideo" data-toggle="modal">UPLOAD VIDEO</a>
@@ -588,7 +588,7 @@ foreach($testimonials as $testimonial){
         <ul >
           <li>We love close ups, but suggest you sit at arms length.</li>
           <li>You’ve got 30 seconds, so keep an eye on time.</li>
-          <li>look In camera to create personal connection</li>
+          <li>Look In camera to create personal connection</li>
         </ul>
         <br>
         <a class="btn btn-primary" data-target="#recordvideo" data-toggle="modal">UPLOAD VIDEO</a>
@@ -645,7 +645,7 @@ foreach($testimonials as $testimonial){
             <ul >
                 <li>Take your camera, click and upload</li>
                 <li>Selfie is trending, can we see one of yours</li>
-                <li>look In camera to create personal connection</li>
+                <li>Look In camera to create personal connection</li>
             </ul>
         </div>
         <?php } ?>
