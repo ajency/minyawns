@@ -391,7 +391,7 @@ endif;
    <?php if (get_user_role() === 'minyawn'): ?>
    
    <div class="list-box">
-    <h3 class="uppercase-title">Skills &nbsp; <a data-toggle="tooltip" title="first tooltip 3" id="element4"><i class="icon-question-sign text-info"></i></a> </h3>
+    <h3 class="uppercase-title">Skills &nbsp; <a data-toggle="tooltip" title="Minyawn's Areas of Expertise" id="element4"><i class="icon-question-sign text-info"></i></a> </h3>
     <?php
     if ((get_user_skills() != " ")) {
         $skills = explode(',', get_user_skills());
