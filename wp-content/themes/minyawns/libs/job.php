@@ -642,7 +642,8 @@ $app->map('/user-vote', function() use ($app) {
 
 
 	    //changed == to != for a quick fix, now all emails will be thumbs up...this issue is not resolved
-            if ($_POST['action'] != "vote-up") {
+            //not sure why the above was commented, changed back to == to avoid wrong mail ------Robiul
+            if ($_POST['action'] == "vote-up") {
                 $like_count = $user_rating;
                 $mail_subject = "Minyawns - You have received a Thumbs Up. ";
                 $mail_message = "Hi <a href='" . site_url() . "/profile/" . $_POST['user_id'] . "'>" . $min_name . "</a>,<br/><br/> 
