@@ -363,6 +363,13 @@ foreach ($pageposts as $pagepost) {
                }
 
 
+               if(is_ratings_done_for_minions($pagepost->ID)){
+                    $rating_done = 'yes';
+               }else{
+                    $rating_done = 'no';
+               }
+
+
                 /*
                  *  1 ->running
                  *  2->locked ,if one applicant also hired then locked
@@ -427,6 +434,7 @@ foreach ($pageposts as $pagepost) {
                     'count_rated' => $final_count,
                     'comment' => strlen($comment) > 0 ? $comment : '',
                     'has_expired'   => $has_expired,
+                    'rating_done'   => $rating_done,
                 );
             }
 
