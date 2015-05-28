@@ -6821,6 +6821,7 @@ div.tooltip1:after {
   float: left;
   position: relative;
   /*width: auto;*/
+  width: 18%;
 }
 .isotope .item:hover {
   background: url(../images/search.png) #000000;
@@ -7209,5 +7210,6 @@ textarea[readonly] {
   width: 100% !important;
 }
 .width-fix + .row-fluid > .width-fix-div .item {
-  /*width: 25%;*/
+  width: 25%;
+  margin: 0;
 }
