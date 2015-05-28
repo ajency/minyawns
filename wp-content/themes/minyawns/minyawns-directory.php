@@ -117,6 +117,7 @@ require 'templates/_minyawnsdir.php';
                     <span class='load_ajax_large'></span>
                 </div>
             </div>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
