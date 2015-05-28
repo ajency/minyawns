@@ -3604,6 +3604,7 @@ return $testimonials;
 
 
 
+
 function is_ratings_done_for_minions($job_id){
     global $wpdb;
     $ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE job_id = $job_id AND status = 'hired'");
@@ -3616,6 +3617,18 @@ function is_ratings_done_for_minions($job_id){
         }
     }
     return true;
+}
+
+
+function check_if_minion_profile_completed(){
+    global $current_user_new;
+
+    if($current_user_new->data->first_name && $current_user_new->data->last_name && $current_user_new->data->college && $current_user_new->data->major && $current_user_new->data->user_skills && $current_user_new->data->avatar){
+        return 'yes';
+    }else{
+        return 'no';
+    }
+
 }
 
 
