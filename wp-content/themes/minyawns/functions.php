@@ -3596,6 +3596,26 @@ return $testimonials;
 
 
 
+
+function is_ratings_done_for_minions($job_id){
+    global $wpdb;
+    $ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE job_id = $job_id AND status = 'hired'");
+
+    foreach ($ratings as $rating){
+        if($rating->rating == '0' || $rating->rating == 'NULL'){
+
+            return false;
+            break;
+        }
+    }
+    return true;
+}
+
+
+
+
+
+
 function test_testimonials(){
 
     global $wpdb;

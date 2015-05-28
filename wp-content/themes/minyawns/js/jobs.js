@@ -1394,7 +1394,13 @@ function job_collapse_b(model) {
 
                     if (role === 'Employer') {
                         if (model.toJSON().job_owner_id === logged_in_user_id) // 1) IF USER IS A JOB OWNER
-                            job_button = "<a class='st-green-link' href='" + siteurl + '/jobs/' + model.toJSON().post_slug + "' target='_blank'>Give ratings to minions</a>";
+
+                            if(model.toJSON().rating_done == 'yes'){
+                                job_button = "<a href='" + siteurl + '/add-job/' + model.toJSON().post_id + "' class='st-green-link'><i class='icon-location-arrow'></i> Create Similar Jobs</a>";
+                            }else{
+                               job_button = "<a class='st-green-link' href='" + siteurl + '/jobs/' + model.toJSON().post_slug + "' target='_blank'>Give ratings to minions</a>"; 
+                            }
+                            
                         else
                             job_button = "<a href='" + siteurl + '/add-job/' + model.toJSON().post_id + "' class='st-green-link'><i class='icon-location-arrow'></i> Create Similar Jobs</a>";
 
