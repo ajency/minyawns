@@ -3567,9 +3567,15 @@ if($comments){
 
  $user = new WP_User( $comments[0]->user_id );
  if($user->roles[0] == 'administrator'){
-    $employer = 'admin';
+    $thisjob = get_post($rating->job_id);
+    //$employer = 'admin';
+    $employer = get_user_meta($thisjob->post_author, 'company_name', true);
+    $comment_by_admin = 'yes';
+    $emp_id = $thisjob->post_author;
 }else{
     $employer = get_user_meta($comments[0]->user_id, 'company_name', true);
+    $comment_by_admin = 'no';
+    $emp_id = $comments[0]->user_id;
 }
 
     $testimonials[] = array(
@@ -3577,13 +3583,14 @@ if($comments){
         'comment'   => $comments[0]->comment_content,
         'employer'  => array(
             'name'  => $employer,
-            'url'   => get_site_url().'/profile/'.$comments[0]->user_id
+            'url'   => get_site_url().'/profile/'.$emp_id
             ),
         'category'  => get_the_terms($rating->job_id, 'job_category'),
         'day'       => get_the_date( 'd', $rating->job_id ),
         'month'     => get_the_date( 'M', $rating->job_id ),
         'year'      => get_the_date( 'Y', $rating->job_id ),
-        'photos'    => get_job_photos($rating->job_id, $user_id)
+        'photos'    => get_job_photos($rating->job_id, $user_id),
+        'comment_by_admin' => $comment_by_admin
         );
 }
 
