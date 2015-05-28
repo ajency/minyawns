@@ -6820,7 +6820,7 @@ div.tooltip1:after {
 		@media screen and (max-width:321px){width:100%;}*/
   float: left;
   position: relative;
-  width: auto;
+  /*width: auto;*/
 }
 .isotope .item:hover {
   background: url(../images/search.png) #000000;
@@ -7207,4 +7207,7 @@ textarea[readonly] {
 }
 .width-fix + .row-fluid > .width-fix-div {
   width: 100% !important;
+}
+.width-fix + .row-fluid > .width-fix-div .item {
+  /*width: 25%;*/
 }
