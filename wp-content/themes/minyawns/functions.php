@@ -3596,6 +3596,23 @@ return $testimonials;
 
 
 
+
+
+function check_if_minion_profile_completed(){
+    global $current_user_new;
+
+    if($current_user_new->data->first_name && $current_user_new->data->last_name && $current_user_new->data->college && $current_user_new->data->major && $current_user_new->data->user_skills && $current_user_new->data->avatar){
+        return 'yes';
+    }else{
+        return 'no';
+    }
+}
+
+
+
+
+
+
 function test_testimonials(){
 
     global $wpdb;

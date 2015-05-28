@@ -99,6 +99,10 @@ addthisevent.settings({
 				var logged_in_user_id='<?php echo get_user_id(); ?>'
 				var is_logged_in='<?php echo is_user_logged_in();?>';
 
+				<?php if (get_logged_in_role() == 'Minion'){ ?>
+				var profile_completed = '<?php echo check_if_minion_profile_completed(); ?>';
+				<?php } ?>
+
 				<?php $user = new WP_User( get_user_id() );
 						if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
 							foreach ( $user->roles as $role )

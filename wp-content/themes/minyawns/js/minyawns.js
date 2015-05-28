@@ -842,8 +842,8 @@ var image_name=$("#image_name").val();
                 if (ele == 'id')
                     return;
 
-                if (ele == 'user_skills2')
-                    return;
+                /*if (ele == 'user_skills2')
+                    return;*/
 
                 /*if (ele == 'short_bio')
                     return;*/
@@ -1698,22 +1698,30 @@ $(document.body).on('click', '.edit-job-data', function(e) {
 
 //Single job page apply click action 
 jQuery(document.body).on('click', '#apply-job-browse', function(evt) {
- 
+
     var _this = $(this);
     var _action = $(this).attr('data-action');
     var _job_id = $(this).attr('data-job-id');
     if(_action == "apply"){
 
-        if($("#apply-job-popup").length==0){
+        if(profile_completed == 'yes'){
 
-            $( "body" ).append(appy_job_popup_content(_job_id))
+            if($("#apply-job-popup").length==0){
+                $( "body" ).append(appy_job_popup_content(_job_id));
+            }
+            $("#apply-job-popup").modal('show');
 
-       }
+        }else{
 
-       $("#apply-job-popup").modal('show'); 
-   }
+            if($("#incomplete-profile-popup").length==0){
+             $( "body" ).append(incomplete_minion_profile_popup());
+         }
+         $("#incomplete-profile-popup").modal('show');
 
-   evt.preventDefault();
+     }
+ }
+
+ evt.preventDefault();
 });
 
 
@@ -1848,6 +1856,29 @@ var _this = $(this);
 
         return html;
     }
+
+
+
+
+
+
+    function incomplete_minion_profile_popup(){
+
+        html  = '<div id="incomplete-profile-popup" class="modal hide fade cust-modal apply-modal-dwn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+      
+        html += '<div class="warning-content">'
+
+        html += '<img src="'+THEMEURL +'/images/incomplete_profile.jpg" class="modal-img">'
+
+        html += '</div>'
+         
+        html += '</div>';
+
+        return html;
+    }
+
+
+
 
 
     function onload_calendar()
