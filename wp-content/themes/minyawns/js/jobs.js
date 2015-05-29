@@ -1746,7 +1746,9 @@ function job_status_li(model)
 
 function load_job_minions(jobmodel)
 { 
+
     jQuery(".load_ajaxsingle_job_minions").show();
+    jQuery("#applicant-container").append('<div id="applicant-loader"></div>');
     var Fetchuserprofiles = Backbone.Collection.extend({
         model: Userprofile,
         url: SITEURL + '/wp-content/themes/minyawns/libs/job.php/jobminions'
@@ -1759,7 +1761,9 @@ function load_job_minions(jobmodel)
             job_id: jQuery("#job_id").val()
         },
         success: function(collection, response) {
-             jQuery(".load_ajax_large_minyawns_container").remove()
+             //jQuery(".load_ajax_large_minyawns_container").remove();
+
+             jQuery("#applicant-loader").hide();
 
             var blank = _.template((jQuery("#blank-card").html()));
             if (collection.length > 0) {
