@@ -637,9 +637,23 @@ $app->map('/user-vote', function() use ($app) {
             $user_rating = $minyawns_rating->positive;
             $user_dislike = $minyawns_rating->negative;
             //$user['dislike'] = $rating->negative;
+
+
+
+            $userr = new WP_User( $_POST['emp_id'] );
+            if($userr->roles[0] == 'administrator'){
+                $thisjob = get_post($_POST['job_id']);
+                $emp_data = get_userdata($thisjob->post_author);
+            }else{
+                $emp_data = get_userdata($_POST['emp_id']);
+            }
+
             //get  emplyer details
-            $emp_data = get_userdata($_POST['emp_id']);
-            $emp_name = ucfirst($emp_data->display_name);
+            //$emp_data = get_userdata($_POST['emp_id']);
+            //$emp_name = ucfirst($emp_data->display_name);
+
+            $emp_name = get_user_meta($emp_data->ID, 'company_name', true);
+            $emp_id = $emp_data->ID;
 
 
             //get minyawns details
@@ -657,7 +671,7 @@ $app->map('/user-vote', function() use ($app) {
                 $mail_message = "Hi <a href='" . site_url() . "/profile/" . $_POST['user_id'] . "'>" . $min_name . "</a>,<br/><br/> 
             			Congratulations, <br/><br/>
 
-            			You have received Thumbs Up from <a href='" . site_url() . "/profile/" . $_POST['emp_id'] . "'>" . $emp_name . "</a><br/>
+            			You have received Thumbs Up from <a href='" . site_url() . "/profile/" . $emp_id . "'>" . $emp_name . "</a><br/>
             			Great Job! Keep it up.		<br/><br/>
             			To visit Minyawns site, <a href='" . site_url() . "/'>Click here</a>. <br/><br/<br/>
             			
@@ -666,7 +680,7 @@ $app->map('/user-vote', function() use ($app) {
                 $like_count = $user_dislike;
                 $mail_subject = "Minyawns - You have received Thumbs Down. ";
                 $mail_message = "Hi <a href='" . site_url() . "/profile/" . $_POST['user_id'] . "'>" . $min_name . "</a>,<br/><br/>            			
-            			You have received Thumbs Down from  <a href='" . site_url() . "/profile/" . $_POST['emp_id'] . "'>" . $emp_name . "</a><br/>
+            			You have received Thumbs Down from  <a href='" . site_url() . "/profile/" . $emp_id . "'>" . $emp_name . "</a><br/>
             			Put little more efforts to receive Thumbs Up.<br/><br/>
             			To visit Minyawns site, <a href='" . site_url() . "/'>Click here</a>. <br/><br/<br/>          			
             			
