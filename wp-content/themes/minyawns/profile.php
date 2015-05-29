@@ -495,7 +495,7 @@ foreach($testimonials as $testimonial){
                         <?php
                     $photos = $testimonial['photos'];
                     foreach($photos as $photo){ ?>
-                    <img src="<?php echo $photo['url']; ?>" width="50px"/>
+                    <a class="fancybox" rel="group" href="<?php echo $photo['large_url']; ?>"><img src="<?php echo $photo['url']; ?>" width="50px"/></a>
                     <?php } ?>
                       
                    </div>    
