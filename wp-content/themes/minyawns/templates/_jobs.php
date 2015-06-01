@@ -588,64 +588,16 @@ echo $payment_button; ?></span>
     <div id="b" class=" m3">
   
     <div>
-      <% if(result.is_invited == 4){%>
-      <div class="minions-applied min-app"> <i class="icon-location-arrow "></i> Minion was Invited</div>
-      <%}%>
+      
     </div>
   
-    <div class="caption m4" >
-      <div class="comment-div">
-        <div class="row-fluid">
-          <div class="span4">
-  
-            <div class="minyawns-img" >
-
-              <% if(result.is_hired === true){%>
-              <div class="minaywns-sel">
-               <% } %>
-               <% if(result.intro_video_id !=''){%>
-              <a class="vidbutton cust-icon" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i></a>
-              <% } %>
-                <!--SELECTED-->
-              <% if(result.is_hired === true){%>
-               <i class="icon-ok cust-icon"></i>
-              </div>
-              <% } %>
-   
-              <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
-
-              
-            </div>
-
-            <div class="rating">
-
-              <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
-                <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
-              </a>
-              <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
-                <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
-              </a>
-            </div>
-
-          </div>
-
-          <div class="span8">
-            <div class="row-fluid">
-              <div class="span8">
-                <h4 class="align-left"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
-    
-                  <div class="collage align-left"> <%= result.college%> </div>
-                  <div class="collage align-left major"> <%= result.major%> </div>
-                  <div class="social-link align-left">
-
-                   <% if (is_logged_in === '1'){ %>
-                  <%= result.user_email %>
-                  <%}%>
-
-
-                  </div>
-              </div>
-             <div class="span4">
+  <div class="row-fluid">
+        <div class="span6">
+          <% if(result.is_invited == 4){%>
+          <div class="minions-applied min-app"> <i class="icon-location-arrow "></i> Minion was Invited</div>
+          <%}%>
+        </div>
+        <div class="span6">
                   <div class="social-link   profile-social-link">
                         <% if (result.linkedin.length > 0 ){
 
@@ -680,38 +632,115 @@ echo $payment_button; ?></span>
                         <%} } %>
                   </div>
             </div>
+      </div>
+    <div class="caption m4" >
+      <div class="comment-div">
+
+
+        <div class="row-fluid">
+          <div class="span12">
+  
+            <div class="minyawns-img" >
+
+              <% if(result.is_hired === true){%>
+              <div class="minaywns-sel">
+               <% } %>
+               <% if(result.intro_video_id !=''){%>
+              <a class="vidbutton cust-icon" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i></a>
+              <% } %>
+                <!--SELECTED-->
+              <% if(result.is_hired === true){%>
+               <i class="icon-ok cust-icon"></i>
+              </div>
+              <% } %>
+   
+              <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"><%= result.user_image%></a>
+
+              
+            </div>
+
+            
+
+          </div>
+
+          <!--<div class="span8">-->
+            
     
+       
+
+
+
+      </div>
+      <!--</div>-->
+<!--</div>-->
+
+<!--testing starts-->
+<div class="row-fluid">
+              <div class="span12">
+                <h4 class=""><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
     
-      <div class="row-fluid">
+                  <div class="collage"> <%= result.college%> </div>
+                  <div class="collage align-left major"> <%= result.major%> </div>
+                  <div class="social-link align-left">
+
+                   <% if (is_logged_in === '1'){ %>
+                  <%= result.user_email %>
+                  <%}%>
+
+
+                  </div>
+              </div>
+             
+    </div>
+<!--testing ends-->
+
+<!--tags-->
+<div class="row-fluid">
         <div class="span12">
           <div class="tagsa">
              <% var sk=result.user_skills.split(',');
             if(result.user_skills.length > 0){ %>
-             Tags:<br /> 
+             Tags: 
              <% for(i=0;i<sk.length;i++){ %> <span class="label"><%= sk[i] %></span><%}%>
              <% } else {%>
               
               <%}%>
           </div>
         </div>
-      </div> 
-
-
-
       </div>
-      </div>
+<!--tags ends-->
+
+<div class="row-fluid">
+  <div class="span6">
+    <!--ratings starts-->
+    <div class="rating align-left">
+
+      <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
+        <i class="icon-thumbs-up" ></i> <span class="thumbs_up_counts"><%= result.rating_positive %></span>
+      </a>
+      <a href="#fakelink"  class="icon-thumbs" id="thumbs_down_<%= result.user_id %>">
+        <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
+      </a>
+    </div>
+    <!--rating ends-->
+  </div>
+  <div class="span6">
+    <div class="asd">
+        <%= select_button %>
+    </div>
+  </div>
 </div>
-      <div class="asd">
-          <%= select_button %>
-      </div>
-    
+<div class="clearfix"></div>
+
+      
+
     <div class="dwn-btn review_popover">
       <%= ratings_button %>
 <!--  <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <%= result.comment %></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <%= result.comment %></div><%}%>-->
    </div>
       
   
-        <div class="clearfix"></div>
+        
       
     </div>
 
