@@ -630,6 +630,10 @@ echo $payment_button; ?></span>
                         %>
                         <a href='http://<%= result.facebook_link %>' target='_blank'  class="icon-facebook-a"><i class='icon-facebook'></i></a>
                         <%} } %>
+
+                        <% if(result.intro_video_id !=''){%>
+                          <a class="vidbutton cust-icon" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i></a>
+                        <% } %>
                   </div>
             </div>
       </div>
@@ -645,9 +649,7 @@ echo $payment_button; ?></span>
               <% if(result.is_hired === true){%>
               <div class="minaywns-sel">
                <% } %>
-               <% if(result.intro_video_id !=''){%>
-              <a class="vidbutton cust-icon" href="#introvideo<%= result.user_id %>" data-toggle="modal"><i class="icon-youtube-play"></i></a>
-              <% } %>
+               
                 <!--SELECTED-->
               <% if(result.is_hired === true){%>
                <i class="icon-ok cust-icon"></i>
@@ -677,9 +679,9 @@ echo $payment_button; ?></span>
 <!--testing starts-->
 <div class="row-fluid">
               <div class="span12">
-                <h4 class=""><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
+                <h4 class="min-name"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
     
-                  <div class="collage"> <%= result.college%> </div>
+                  <div class="collage"> <%= result.college%> </div><hr class="m-0">
                   <div class="collage align-left major"> <%= result.major%> </div>
                   <div class="social-link align-left">
 
@@ -724,14 +726,20 @@ echo $payment_button; ?></span>
     </div>
     <!--rating ends-->
   </div>
-  <div class="span6">
+  <div class="span6 align-right">
+  <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> See More &gt;</a>
+    
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="col-md-12">
     <div class="asd">
         <%= select_button %>
     </div>
   </div>
 </div>
 <div class="clearfix"></div>
-
       
 
     <div class="dwn-btn review_popover">

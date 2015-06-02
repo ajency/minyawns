@@ -6653,7 +6653,7 @@ div.tooltip1:after {
   box-shadow: 0 0 15px #ccc;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .tagsa {
-  height: 50px;
+  max-height: 50px;
   overflow: hidden;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .min-app {
@@ -7213,4 +7213,13 @@ textarea[readonly] {
 .width-fix + .row-fluid > .width-fix-div .item {
   width: 25%;
   margin: 0;
+}
+.align-right {
+  text-align: right !important;
+}
+.m-0 {
+  margin: 10px 0;
+}
+.min-name a {
+  color: #555;
 }
