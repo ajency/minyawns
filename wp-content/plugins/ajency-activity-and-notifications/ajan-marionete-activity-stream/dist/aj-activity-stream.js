@@ -395,7 +395,7 @@ data.delseperate = '';
         var data;
         e.preventDefault();
         if ($("#activity_content").val() === "") {
-          return $("#activity_content").after("<span class='error-message'>Mesage cannot be empty</span>");
+          return $("#activity_content").after("<span class='error-message'>Mesage cannot be empty</span><div class='clearfix'></div>");
         } else {
           data = {
             content: $("#activity_content").val()
