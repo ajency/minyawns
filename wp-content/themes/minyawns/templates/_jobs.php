@@ -587,17 +587,15 @@ echo $payment_button; ?></span>
 
     <div id="b" class=" m3">
   
-    <div>
-      
-    </div>
+    
   
-  <div class="row-fluid">
+  <div class="row-fluid m-h-0">
         <div class="span6">
           <% if(result.is_invited == 4){%>
           <div class="minions-applied min-app"> <i class="icon-location-arrow "></i> Minion was Invited</div>
           <%}%>
         </div>
-        <div class="span6">
+        <div class="span6 pull-right">
                   <div class="social-link   profile-social-link">
                         <% if (result.linkedin.length > 0 ){
 
