@@ -7236,11 +7236,17 @@ textarea[readonly] {
   height: 27px !important;
 }
 #minion-thumbnails {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 #minion-thumbnails li.thumbspan {
   width: 49.9%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 #minion-thumbnails li.thumbspan .thumbnail {
