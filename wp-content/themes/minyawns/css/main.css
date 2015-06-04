@@ -5833,6 +5833,7 @@ div.tooltip1:after {
   /*float: right;*/
   margin-right: 5px;
   margin-top: 6px;
+  text-align: right;
 }
 .profile-social-link a,
 .profile-social-link i {
@@ -7233,4 +7234,15 @@ textarea[readonly] {
 }
 #edit-job-form .hasDatepicker {
   height: 27px !important;
+}
+#minion-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+}
+#minion-thumbnails li.thumbspan {
+  width: 49.9%;
+  display: flex;
+}
+#minion-thumbnails li.thumbspan .thumbnail {
+  width: 100%;
 }
