@@ -3623,7 +3623,7 @@ function is_ratings_done_for_minions($job_id){
 function check_if_minion_profile_completed(){
     global $current_user_new;
 
-    if($current_user_new->data->first_name && $current_user_new->data->last_name && $current_user_new->data->college && $current_user_new->data->major && $current_user_new->data->user_skills && $current_user_new->data->avatar){
+    if($current_user_new->data->first_name && $current_user_new->data->last_name && $current_user_new->data->college && $current_user_new->data->major && $current_user_new->data->user_skills ){
         return 'yes';
     }else{
         return 'no';
