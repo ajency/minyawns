@@ -4712,8 +4712,7 @@ div.tooltip1:after {
   display: block;
 }
 .bootstrap-timepicker .add-on {
-  /*height:14px;*/
-  height: 16px;
+  height: 14px;
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
   .btn-block {
@@ -7226,14 +7225,8 @@ textarea[readonly] {
   color: #555;
 }
 /*form-fields*/
-#job-form .hasDatepicker {
-  height: 41px !important;
-}
-#profile-edit-form .input-prepend .add-on {
-  line-height: 20px;
-}
-#edit-job-form .hasDatepicker {
-  height: 27px !important;
+#job-form .ui-spinner {
+  padding: 0 37px 1px 0;
 }
 #minion-thumbnails {
   display: -webkit-flex;
