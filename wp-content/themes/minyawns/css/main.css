@@ -4712,7 +4712,8 @@ div.tooltip1:after {
   display: block;
 }
 .bootstrap-timepicker .add-on {
-  height: 14px;
+  /*height:14px;*/
+  height: 16px;
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
   .btn-block {
@@ -5832,6 +5833,7 @@ div.tooltip1:after {
   /*float: right;*/
   margin-right: 5px;
   margin-top: 6px;
+  text-align: right;
 }
 .profile-social-link a,
 .profile-social-link i {
@@ -7222,4 +7224,34 @@ textarea[readonly] {
 }
 .min-name a {
   color: #555;
+}
+/*form-fields*/
+#job-form .hasDatepicker {
+  height: 41px !important;
+}
+#profile-edit-form .input-prepend .add-on {
+  line-height: 20px;
+}
+#edit-job-form .hasDatepicker {
+  height: 27px !important;
+}
+#minion-thumbnails {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+#minion-thumbnails li.thumbspan {
+  width: 49.9%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+#minion-thumbnails li.thumbspan .thumbnail {
+  width: 100%;
+}
+#minion-thumbnails .m-h-0 .span6 {
+  min-height: 0 !important;
 }

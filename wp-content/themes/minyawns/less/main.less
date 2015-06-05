@@ -5479,7 +5479,8 @@ div.tooltip1:after {
 }
 .bootstrap-timepicker{
 	.add-on{
-		height:14px;
+		/*height:14px;*/
+		height: 16px;
 	}
 }
 	
@@ -6802,6 +6803,7 @@ h3{
 	/*float: right;*/
 	margin-right: 5px;
 	margin-top: 6px;
+	text-align: right;
 	a, i{
 	  width: 30px;
 	  height: 30px;
@@ -8395,5 +8397,46 @@ a{
 .min-name{
 	a{
 		color: #555;
+	}
+}
+
+/*form-fields*/
+#job-form{
+	.hasDatepicker{
+		height: 41px !important;
+	}
+}
+#profile-edit-form{
+	.input-prepend{
+		.add-on{
+			line-height: 20px;
+		}
+	}
+}
+#edit-job-form{
+	.hasDatepicker{
+		height: 27px !important;
+	}
+}
+#minion-thumbnails{
+	display: -webkit-flex;
+  	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+  	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	li.thumbspan{
+		width: 49.9%;
+		display: -webkit-flex;
+  		display: -ms-flexbox;
+		display: flex;
+		.thumbnail{
+			width: 100%;
+		}
+	}
+	.m-h-0{
+		.span6{
+			min-height: 0 !important;
+		}
 	}
 }
