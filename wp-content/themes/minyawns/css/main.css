@@ -7248,3 +7248,30 @@ textarea[readonly] {
 #minion-thumbnails .m-h-0 .span6 {
   min-height: 0 !important;
 }
+/*owl carousel*/
+.banner-owlcarousel .owl-carousel {
+  top: 410px;
+  z-index: 99999;
+}
+@media screen and (min-width: 1420px) {
+  .banner-owlcarousel .owl-carousel {
+    top: 560px;
+  }
+}
+.banner-owlcarousel .owl-carousel .owl-wrapper {
+  margin-top: 0;
+}
+.banner-owlcarousel .owl-carousel .owl-wrapper .owl-item {
+  width: 283px !important;
+  margin-top: 0 !important;
+}
+.banner-owlcarousel .owl-carousel .owl-wrapper .owl-item:not(:first-child) {
+  margin-left: 10px;
+}
+.banner-owlcarousel .owl-carousel .owl-wrapper .owl-item .item {
+  width: 100%;
+  border: initial;
+}
+.banner-owlcarousel .owl-carousel .owl-controls {
+  display: none !important;
+}

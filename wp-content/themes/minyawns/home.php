@@ -56,6 +56,16 @@
 		 </div>
 		
       </div>
+
+      <!-- slider -->
+      <div class="container banner-owlcarousel">
+      	<div class="row-fluid">
+      		<div class="span12">
+      			<?php echo do_shortcode('[owl-carousel category="owl" items="4" autoPlay="true"]'); ?>
+      		</div>
+      	</div>
+      </div>
+      <!-- slider -->
 	
    	<div class="row-fluid learn-more-btn">
 				<div class="span12 learn-more">
@@ -896,6 +906,7 @@ $("#home-video img, #home-video span.play-button").on("click", function() {
   var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
   $(video).insertAfter($("#home-video img"));
   $("#home-video span.play-button").hide();
+  $(".banner-owlcarousel").hide();
   $(".banner-title, .banner-desc, .b-text").hide();
   var closebtn = '<span class="close-button"></span>';
   $(closebtn).insertAfter($(this));
