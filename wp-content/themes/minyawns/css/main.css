@@ -2133,8 +2133,8 @@ body .jobs_table .data-title .profile-job {
 }
 /* Home Page */
 .home {
-  background: url(../images/back2.jpg) repeat-x;
-  background-position: 67px 283px;
+  /*background:url(../images/back2.jpg)repeat-x;*/
+  /*background-position: 67px 283px;*/
   /*.video-home{
 		height: 260px;
 		margin-top: -1px;
@@ -7250,28 +7250,29 @@ textarea[readonly] {
 }
 /*owl carousel*/
 .banner-owlcarousel .owl-carousel {
-  top: 410px;
-  z-index: 99999;
+  /*top: 410px;
+		z-index: 99999;
+		@media screen and (min-width: 1420px){
+			top: 560px;
+		}*/
+  /*.owl-controls{
+			display: none !important;
+		}*/
 }
-@media screen and (min-width: 1420px) {
-  .banner-owlcarousel .owl-carousel {
-    top: 560px;
-  }
+.banner-owlcarousel .owl-carousel .owl-wrapper-outer {
+  height: 250px;
 }
-.banner-owlcarousel .owl-carousel .owl-wrapper {
+.banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper {
   margin-top: 0;
 }
-.banner-owlcarousel .owl-carousel .owl-wrapper .owl-item {
+.banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper .owl-item {
   width: 283px !important;
-  margin-top: 0 !important;
+  /*margin-top: 0 !important;*/
+  /*.item{
+						width: 100%;
+						border: initial;
+					}*/
 }
-.banner-owlcarousel .owl-carousel .owl-wrapper .owl-item:not(:first-child) {
+.banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper .owl-item:not(:first-child) {
   margin-left: 10px;
-}
-.banner-owlcarousel .owl-carousel .owl-wrapper .owl-item .item {
-  width: 100%;
-  border: initial;
-}
-.banner-owlcarousel .owl-carousel .owl-controls {
-  display: none !important;
 }

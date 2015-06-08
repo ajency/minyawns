@@ -57,15 +57,7 @@
 		
       </div>
 
-      <!-- slider -->
-      <div class="container banner-owlcarousel">
-      	<div class="row-fluid">
-      		<div class="span12">
-      			<?php echo do_shortcode('[owl-carousel category="owl" items="4" autoPlay="true"]'); ?>
-      		</div>
-      	</div>
-      </div>
-      <!-- slider -->
+      
 	
    	<div class="row-fluid learn-more-btn">
 				<div class="span12 learn-more">
@@ -79,6 +71,15 @@
 		
    </div> -->
 </div>
+<!-- slider -->
+<div class="container banner-owlcarousel">
+	<div class="row-fluid">
+		<div class="span12">
+			<?php echo do_shortcode('[owl-carousel category="owl" items="4" autoPlay="true"]'); ?>
+		</div>
+	</div>
+</div>
+<!-- slider -->
 <div id="pliip" class="how-does-it-work">
 <div class="">
    <h3 class="heading-title">How does it work?</h3>
