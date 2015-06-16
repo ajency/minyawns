@@ -132,7 +132,7 @@
       <h3 class="heading-title">Here's Our Customers</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minyawns.</p>
    </div>
- <div class="slider1">
+ <!-- <div class="slider1">
       <div class="slide cus_1"></div>
     <div class="slide cus_2"></div>
     <div class="slide cus_3"></div>
@@ -149,7 +149,8 @@
     <div class="slide cus_14"></div>
     <div class="slide cus_15"></div>
    
-   </div><br><br>
+   </div><br><br> -->
+   <?php echo do_shortcode('[Best_Wordpress_Gallery id="1" gal_title="clients"]'); ?>
 </div>
 
 <!--<div class="what-we-can-do">
@@ -907,7 +908,7 @@ $("#home-video img, #home-video span.play-button").on("click", function() {
   var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
   $(video).insertAfter($("#home-video img"));
   $("#home-video span.play-button").hide();
-  $(".banner-owlcarousel").hide();
+  // $(".banner-owlcarousel").hide();
   $(".banner-title, .banner-desc, .b-text").hide();
   var closebtn = '<span class="close-button"></span>';
   $(closebtn).insertAfter($(this));
