@@ -150,7 +150,9 @@
     <div class="slide cus_15"></div>
    
    </div><br><br> -->
-   <?php echo do_shortcode('[Best_Wordpress_Gallery id="1" gal_title="clients"]'); ?>
+   <div class="clients-gallery">
+   	<?php echo do_shortcode('[Best_Wordpress_Gallery id="1" gal_title="clients"]'); ?>
+   </div>
 </div>
 
 <!--<div class="what-we-can-do">

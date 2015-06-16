@@ -7276,3 +7276,10 @@ textarea[readonly] {
 .banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper .owl-item:not(:first-child) {
   margin-left: 10px;
 }
+/*clients gallery*/
+.clients-gallery .bwg_image_wrap,
+.clients-gallery .spider_popup_wrap,
+.clients-gallery .spider_popup_overlay,
+.clients-gallery .spider_popup_loading {
+  display: none !important;
+}
