@@ -7266,7 +7266,8 @@ textarea[readonly] {
   margin-top: 0;
 }
 .banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper .owl-item {
-  width: 283px !important;
+  width: 200px !important;
+  height: 200px !important;
   /*margin-top: 0 !important;*/
   /*.item{
 						width: 100%;
@@ -7277,9 +7278,9 @@ textarea[readonly] {
   margin-left: 10px;
 }
 /*clients gallery*/
-.clients-gallery .bwg_image_wrap,
-.clients-gallery .spider_popup_wrap,
-.clients-gallery .spider_popup_overlay,
-.clients-gallery .spider_popup_loading {
+.bwg_image_wrap,
+.spider_popup_wrap,
+.spider_popup_overlay,
+.spider_popup_loading {
   display: none !important;
 }
