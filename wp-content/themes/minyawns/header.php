@@ -100,7 +100,8 @@ addthisevent.settings({
 				var is_logged_in='<?php echo is_user_logged_in();?>';
 
 				<?php if (get_logged_in_role() == 'Minion'){ ?>
-				var profile_completed = '<?php echo check_if_minion_profile_completed(); ?>';
+				//var profile_completed = '<?php echo check_if_minion_profile_completed(); ?>';
+				var profile_completed = 'yes';
 				<?php } ?>
 
 				<?php $user = new WP_User( get_user_id() );

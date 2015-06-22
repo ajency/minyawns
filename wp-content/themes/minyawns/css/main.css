@@ -2133,8 +2133,8 @@ body .jobs_table .data-title .profile-job {
 }
 /* Home Page */
 .home {
-  background: url(../images/back2.jpg) repeat-x;
-  background-position: 67px 283px;
+  /*background:url(../images/back2.jpg)repeat-x;*/
+  /*background-position: 67px 283px;*/
   /*.video-home{
 		height: 260px;
 		margin-top: -1px;
@@ -5832,6 +5832,7 @@ div.tooltip1:after {
   /*float: right;*/
   margin-right: 5px;
   margin-top: 6px;
+  text-align: right;
 }
 .profile-social-link a,
 .profile-social-link i {
@@ -6653,20 +6654,21 @@ div.tooltip1:after {
   box-shadow: 0 0 15px #ccc;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .tagsa {
-  height: 70px;
+  max-height: 50px;
   overflow: hidden;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .min-app {
-  background: #79B91E;
-  width: 40%;
-  position: absolute;
-  top: -5px;
-  left: 30%;
-  color: #fff;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  font-size: 12px;
+  background: #eee;
+  /*width: 40%;
+							position: absolute;
+							top: -5px;
+							left: 30%;*/
+  color: #79B91E;
+  /*border-radius: 4px;
+							-moz-border-radius: 4px;
+							-webkit-border-radius: 4px;*/
+  font-size: 14px;
+  padding: 8px;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .icon-thumbs-down {
   color: #F65151;
@@ -7212,4 +7214,73 @@ textarea[readonly] {
 .width-fix + .row-fluid > .width-fix-div .item {
   width: 25%;
   margin: 0;
+}
+.align-right {
+  text-align: right !important;
+}
+.m-0 {
+  margin: 10px 0;
+}
+.min-name a {
+  color: #555;
+}
+/*form-fields*/
+#job-form .ui-spinner {
+  padding: 0 37px 1px 0;
+}
+#minion-thumbnails {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+#minion-thumbnails li.thumbspan {
+  width: 49.9%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+#minion-thumbnails li.thumbspan .thumbnail {
+  width: 100%;
+}
+#minion-thumbnails .m-h-0 .span6 {
+  min-height: 0 !important;
+}
+/*owl carousel*/
+.banner-owlcarousel .owl-carousel {
+  /*top: 410px;
+		z-index: 99999;
+		@media screen and (min-width: 1420px){
+			top: 560px;
+		}*/
+  /*.owl-controls{
+			display: none !important;
+		}*/
+}
+.banner-owlcarousel .owl-carousel .owl-wrapper-outer {
+  height: 250px;
+}
+.banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper {
+  margin-top: 0;
+}
+.banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper .owl-item {
+  width: 200px !important;
+  height: 200px !important;
+  /*margin-top: 0 !important;*/
+  /*.item{
+						width: 100%;
+						border: initial;
+					}*/
+}
+.banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper .owl-item:not(:first-child) {
+  margin-left: 10px;
+}
+/*clients gallery*/
+.bwg_image_wrap,
+.spider_popup_wrap,
+.spider_popup_overlay,
+.spider_popup_loading {
+  display: none !important;
 }

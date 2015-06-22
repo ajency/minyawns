@@ -3606,6 +3606,7 @@ return $testimonials;
 
 
 
+
 function check_if_minion_profile_completed(){
     global $current_user_new;
 
@@ -3615,6 +3616,7 @@ function check_if_minion_profile_completed(){
         return 'no';
     }
 }
+
 
 function is_ratings_done_for_minions($job_id){
     global $wpdb;
@@ -3628,6 +3630,7 @@ function is_ratings_done_for_minions($job_id){
         }
     }
     return true;
+
 }
 
 

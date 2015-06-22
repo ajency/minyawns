@@ -384,7 +384,7 @@ data.delseperate = '';
 
     ShowPackage.prototype.initialize = function(options) {};
 
-    ShowPackage.prototype.template = '<div class="msg-cover"> <div class="right"> Show: <select name="activity_filter" id="activity_filter" class="select-filter"> <option value="">Everything</option> </select> </div> <p class="msg left" >Enter your Message here</p><br> <textarea class="full m-b-10 clearfix" rows="3" name="content" id="activity_content"></textarea> <div class="right m-b-10"> <input type="submit" id="ajan-post-activity" class="btn green-btn" value="Post Message"> </div> <div class="avatar-container" id="activity_container"> </div> </div>';
+    ShowPackage.prototype.template = '<div class="msg-cover"> <div class="loader-holder"><div class="right"> Show: <select name="activity_filter" id="activity_filter" class="select-filter"> <option value="">Everything</option> </select> </div> <p class="msg left" >Enter your Message here</p><br> <textarea class="full m-b-10 clearfix" rows="3" name="content" id="activity_content"></textarea> <div class="right m-b-10"> <input type="submit" id="ajan-post-activity" class="btn green-btn" value="Post Message"> </div> </div><div class="avatar-container" id="activity_container"> </div> </div>';
 
     ShowPackage.prototype.childView = SingleView;
 
@@ -395,12 +395,12 @@ data.delseperate = '';
         var data;
         e.preventDefault();
         if ($("#activity_content").val() === "") {
-          return $("#activity_content").after("<span class='error-message'>Mesage cannot be empty</span>");
+          return $("#activity_content").after("<span class='error-message'>Mesage cannot be empty</span><div class='clearfix'></div>");
         } else {
           data = {
             content: $("#activity_content").val()
           };
-          $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
+          $(e.target).parent().parent().append('<span class="text-center throbber-container"><span class="throbber"></span></span>');
           $(e.target).hide();
           return this.trigger("save:new:activity", data);
         }
@@ -422,7 +422,7 @@ data.delseperate = '';
             content: $('#activity-comment-' + $(e.target).attr('activity')).val(),
             secondary_item_id: $(e.target).attr('activity')
           };
-          $(e.target).parent().parent().append('<span class="right throbber-container"><span class="throbber"></span></span>');
+          $(e.target).parent().parent().append('<span class="text-center throbber-container"><span class="throbber"></span></span>');
           $(e.target).next().hide();
           $(e.target).hide();
           return this.trigger("save:new:comment", data);
