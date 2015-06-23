@@ -363,6 +363,13 @@ foreach ($pageposts as $pagepost) {
                }
 
 
+               if(is_ratings_done_for_minions($pagepost->ID)){
+                    $rating_done = 'yes';
+               }else{
+                    $rating_done = 'no';
+               }
+
+
                 /*
                  *  1 ->running
                  *  2->locked ,if one applicant also hired then locked
@@ -427,6 +434,7 @@ foreach ($pageposts as $pagepost) {
                     'count_rated' => $final_count,
                     'comment' => strlen($comment) > 0 ? $comment : '',
                     'has_expired'   => $has_expired,
+                    'rating_done'   => $rating_done,
                 );
             }
 
@@ -584,13 +592,16 @@ $app->map('/user-vote', function() use ($app) {
                     "
 	UPDATE {$wpdb->prefix}userjobs 
 	SET rating = '" . trim($_POST['rating']) . "'
-	WHERE user_id = '" . trim($_POST['user_id']) . "' 
-		AND job_id = '" . trim($_POST['job_id']) . "' AND status = 'hired'
-	"
+	WHERE user_id = '" . trim($_POST['user_id']) . "'
+
+            AND job_id = '" . trim($_POST['job_id']) . "'"
+ 		
             );
 
+
             $id_sql = $wpdb->prepare("SELECT id from {$wpdb->prefix}userjobs  WHERE user_id = '" . trim($_POST['user_id']) . "' 
-		AND job_id = '" . trim($_POST['job_id']) . "' AND status = 'hired' ");
+		AND job_id = '" . trim($_POST['job_id']) . "'");
+
 
             $last_id = $wpdb->get_row($id_sql);
 
@@ -626,9 +637,23 @@ $app->map('/user-vote', function() use ($app) {
             $user_rating = $minyawns_rating->positive;
             $user_dislike = $minyawns_rating->negative;
             //$user['dislike'] = $rating->negative;
+
+
+
+            $userr = new WP_User( $_POST['emp_id'] );
+            if($userr->roles[0] == 'administrator'){
+                $thisjob = get_post($_POST['job_id']);
+                $emp_data = get_userdata($thisjob->post_author);
+            }else{
+                $emp_data = get_userdata($_POST['emp_id']);
+            }
+
             //get  emplyer details
-            $emp_data = get_userdata($_POST['emp_id']);
-            $emp_name = ucfirst($emp_data->display_name);
+            //$emp_data = get_userdata($_POST['emp_id']);
+            //$emp_name = ucfirst($emp_data->display_name);
+
+            $emp_name = get_user_meta($emp_data->ID, 'company_name', true);
+            $emp_id = $emp_data->ID;
 
 
             //get minyawns details
@@ -639,13 +664,14 @@ $app->map('/user-vote', function() use ($app) {
 
 
 	    //changed == to != for a quick fix, now all emails will be thumbs up...this issue is not resolved
-            if ($_POST['action'] != "vote-up") {
+            //not sure why the above was commented, changed back to == to avoid wrong mail ------Robiul
+            if ($_POST['action'] == "vote-up") {
                 $like_count = $user_rating;
                 $mail_subject = "Minyawns - You have received a Thumbs Up. ";
                 $mail_message = "Hi <a href='" . site_url() . "/profile/" . $_POST['user_id'] . "'>" . $min_name . "</a>,<br/><br/> 
             			Congratulations, <br/><br/>
 
-            			You have received Thumbs Up from <a href='" . site_url() . "/profile/" . $_POST['emp_id'] . "'>" . $emp_name . "</a><br/>
+            			You have received Thumbs Up from <a href='" . site_url() . "/profile/" . $emp_id . "'>" . $emp_name . "</a><br/>
             			Great Job! Keep it up.		<br/><br/>
             			To visit Minyawns site, <a href='" . site_url() . "/'>Click here</a>. <br/><br/<br/>
             			
@@ -654,7 +680,7 @@ $app->map('/user-vote', function() use ($app) {
                 $like_count = $user_dislike;
                 $mail_subject = "Minyawns - You have received Thumbs Down. ";
                 $mail_message = "Hi <a href='" . site_url() . "/profile/" . $_POST['user_id'] . "'>" . $min_name . "</a>,<br/><br/>            			
-            			You have received Thumbs Down from  <a href='" . site_url() . "/profile/" . $_POST['emp_id'] . "'>" . $emp_name . "</a><br/>
+            			You have received Thumbs Down from  <a href='" . site_url() . "/profile/" . $emp_id . "'>" . $emp_name . "</a><br/>
             			Put little more efforts to receive Thumbs Up.<br/><br/>
             			To visit Minyawns site, <a href='" . site_url() . "/'>Click here</a>. <br/><br/<br/>          			
             			

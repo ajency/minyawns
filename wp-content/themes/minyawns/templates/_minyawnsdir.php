@@ -98,20 +98,27 @@
 									</div><!--span4 ends-->
 									<div class="span8 text-left"><!--span8 starts-->
 									<div class="row-fluid">
-									<div class="span9"><!--span9 starts-->
+									<div class="span8"><!--span9 starts-->
                                     <h4><a href=<?php echo site_url() ?>/profile/<%= result.user_id %> target="_blank"><%= result.minion_name %></a></h4>
                                     <div class="collage"><%= result.college %></div>
                                     <div class="collage major"><%= result.major %></div>
-									<div class="social-link">
+
+                                    <% if (is_logged_in === '1'){ %>
+                                      <div class="social-link">
                                        <%= result.user_email %>
                                     </div>
+                                      <%}%>
+
+									
+
+                                    
 									<a class="" id="invite-minion"  href= "javascript:void(0)" minion-id="<%= result.user_id %>" employer-id=<?php echo get_current_user_id() ?>>
 												   <i class="icon-ok"></i>
 												 Invite Minion
 												   </a>
 									</div><!--span9 ends-->
 									
-									<div class="span3"><!--span3 starts-->
+									<div class="span4"><!--span3 starts-->
                                     <div class="social-link  profile-social-link">
                                      <% if (result.linkedin.length > 0 ){
                                       var linkedin_id = result.linkedin.split('/').pop();

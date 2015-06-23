@@ -14,7 +14,7 @@ require 'templates/_minyawnsdir.php';
 
 -->
 <div class="container">
-    <div id="main-content" class="main-content bg-white all-minyawns">
+    <div id="main-content" class="main-content  all-minyawns">
         <div class="breadcrumb-text">
             <p id="bread-crumbs-id">
                 <a href="<?php echo site_url() ?>/minyawns-directory" class="view loaded">Minyawn Directory</a>
@@ -25,8 +25,9 @@ require 'templates/_minyawnsdir.php';
                 <span style="margin-bottom: 10px; padding-top: 5px;" onclick="remove_filter()" class="label"><?php echo $_GET['filter'] ?><button data-dismiss="alert" class="close" type="button" style=" margin-left: 10px;margin-top: -2px;">×</button></span>
             <?php } ?>
         </div>
-        <div class="row-fluid profile-wrapper">
-            <div class="row-fluild">
+        <div class="row-fluid profile-wrapper ">
+          <div class="bg-white"><br>
+            <div class="row-fluild ">
                 <div class="span3">
                     <div class="alert alert-success alert-sidebar">
                         <h3>Name / Skills / Major </h3>
@@ -116,10 +117,11 @@ require 'templates/_minyawnsdir.php';
                     <span class='load_ajax_large'></span>
                 </div>
             </div>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
-
+</div>
 
 
 <div class="modal fade minion-dir min-invite-job" id="miniondir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

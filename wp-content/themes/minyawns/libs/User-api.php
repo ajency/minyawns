@@ -371,6 +371,21 @@ function get_user_intro_video_id() {
     }
 
 
+//User Short Bio
+function get_minyawns_short_bio() {
+    global $current_user_new;
+    return get_user_meta($current_user_new->data->ID, 'short_bio', true);
+    
+    }
+
+//User Short Bio
+function get_user_telephone_no() {
+    global $current_user_new;
+    return get_user_meta($current_user_new->data->ID, 'telephone', true);
+    
+    }
+
+
 //User profile email
 function user_profile_email() {
     echo get_user_profile_email();

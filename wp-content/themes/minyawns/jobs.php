@@ -64,6 +64,12 @@ $all_categories = get_categories(array('hide_empty' => 0));
 
     </ul>  -->
     <input type="hidden" id="tab_identifier" />
+        <div class="breadcrumb-text">
+                <p>
+                    <a href="#"><span id="parent_item">My Jobs</span></a>
+                    <span id="sub_item">Job List</span>
+                </p>
+            </div>
     <div class="tab-content">
         <div class="tab-pane jobs_table <?php if (isset($_GET['cat_id'])) { ?> active <?php } ?>" id="tab1">
             <div class="breadcrumb-text">
@@ -155,7 +161,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
 
                 </div>
                 <div class="span9">
-                    <?php if (isset($_GET['cat_id'])) { ?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -19px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php } ?>
+                    <?php if (isset($_GET['cat_id'])) { ?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -2px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php } ?>
 
 
                    
@@ -264,12 +270,7 @@ $all_categories = get_categories(array('hide_empty' => 0));
                 echo '<h6 class="uppermsg">  Browse Jobs to find opportunities that interest you and apply for it</h6>';
             }
             ?>
-            <div class="breadcrumb-text">
-                <p>
-                    <a href="#"><span id="parent_item">My Jobs</span></a>
-                    <span id="sub_item">Job List</span>
-                </p>
-            </div>
+        
             <dic class="row-fluid">
                 
             <div class="span3" id="sidebar_categories">

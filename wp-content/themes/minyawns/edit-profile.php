@@ -8,6 +8,9 @@ require 'templates/_jobs.php';
 <script>
     jQuery(document).ready(function($) {
   $(".inline li").removeClass("selected");
+
+
+  $('#telephone').usphone();
   
         if (is_logged_in.length === 0) {
             jQuery("#change-avatar-span").attr("href", "#")
@@ -16,7 +19,7 @@ require 'templates/_jobs.php';
 
         jQuery("#tab_identifier").val('1');
         
-         $("#example_right").live('click', function() {
+         $("#example_right").on('click', function() {
 
             $(".load_ajax_profile_comments").show();
             var Fetchusercomments = Backbone.Collection.extend({
@@ -72,7 +75,7 @@ require 'templates/_jobs.php';
 </script>
 
 <div class="container">
-    <div id="main-content" class="main-content bg-white" >
+    <div id="main-content" class="main-content " >
         <div class="breadcrumb-text">
 
             <p id="bread-crumbs-id">
@@ -84,8 +87,8 @@ require 'templates/_jobs.php';
                 <a href="<?php echo site_url() ?>/profile/<?php echo get_current_user_id() ?>" class="view loaded edit-user-profile">Edit Profile</a>
             </p>
         </div>
-		  
-        <div class="row-fluid profile-wrapper">
+		  <div class="bg-white">
+        <div class="row-fluid profile-wrapper ">
             <?php
             //if(check_access()===true)
             //{
@@ -116,6 +119,17 @@ require 'templates/_jobs.php';
                                     <input type="text" id="profileemail" disabled  name="profileemail" placeholder="" value="<?php user_profile_email() ?>" class="input">
                                 </div>
                             </div>
+
+                             <div class="control-group">
+                                <label class="control-label" for="telephone">Telephone No.</label>
+                                <div class="controls">
+                                    <input type="text" id="telephone"  name="telephone" placeholder="" maxlength="30" value="<?php echo get_user_telephone_no(); ?>" class="input">
+                                    <div style="font-size:11px;margin-top: 05px;">
+                                    Your number is only for our reference and wont be displayed publicly.
+                                    </div>
+                                </div>
+                              </div>
+
                             <div class="control-group">
                                 <label class="control-label" for="inptcollege">College</label>
                                 <div class="controls">
@@ -133,6 +147,15 @@ require 'templates/_jobs.php';
                                 <div class="controls">
 
                                     <input name="user_skills2" id="user_skills2" class="tagsinput1" value="<?php echo get_user_skills(); ?>"  style="width:60%;"/>
+                                </div>
+                            </div>
+
+
+                             <div class="control-group">
+                                <label class="control-label" for="short_bio">Short Bio</label>
+                                <div class="controls">
+                                  <textarea name="short_bio" id="short_bio" style="width:300px !important;" placeholder="(Max 200 characters)"><?php echo get_minyawns_short_bio(); ?></textarea>
+                                    
                                 </div>
                             </div>
                           
@@ -210,6 +233,17 @@ require 'templates/_jobs.php';
                                     <input type="text" id="location"  name="location" placeholder="" value="<?php user_location(); ?>" class="input">
                                 </div>
                             </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="telephone">Telephone No.</label>
+                                <div class="controls">
+                                    <input type="text" id="telephone"  name="telephone" placeholder="" maxlength="30" value="<?php echo get_user_telephone_no(); ?>" class="input">
+                                     <div style="font-size:11px;margin-top: 05px;">
+                                    Your number is only for our reference and wont be displayed publicly.
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="control-group">
                                 <label class="control-label" for="inputbody">Company Website</label>
                                 <div class="controls">
@@ -266,7 +300,7 @@ require 'templates/_jobs.php';
         </div>
     </div>
 </div>
-
+</div>
 
  
  

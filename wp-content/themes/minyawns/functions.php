@@ -27,6 +27,7 @@ require_once 'cron_functions.php';
 
 require_once 'templates/email_template.php';
 
+
 function get_miny_current_user(){
 
 
@@ -1206,6 +1207,40 @@ function update_paypal_payment($data, $curl_result) {
 
       } */
 }
+
+
+
+
+
+
+
+
+
+function is_ipn_was_recorded($jobid, $paypal_txn_id){
+    global $wpdb;
+    $paypal_tx = $wpdb->get_results("SELECT meta_value as paypal_payment FROM {$wpdb->prefix}postmeta WHERE meta_key ='paypal_payment' and post_id ='" . $jobid . "' AND meta_value like '%" . $paypal_txn_id . "%'  ");
+    
+    if($paypal_tx){
+        $data = unserialize($paypal_tx[0]->paypal_payment);
+        if($data['status'] == 'Completed'){
+            return true;
+        }else{
+            return false;
+            
+        }
+    }else{
+        return false;
+        
+    }
+
+}
+
+
+
+
+
+
+
 
  
 
@@ -3463,3 +3498,166 @@ wp_mail($emails, $message_subject, $activity_message, $headers);
 }
 
 add_action( 'activity_message_posted', 'activity_message_mail', 10, 2 );
+
+
+
+
+
+
+function get_job_photos($jobid, $userid){
+ 
+$args = array();
+
+ $args["post_parent"] = $jobid;
+ $args["author"] = $userid;
+
+$args['post_type'] = 'attachment';
+$args['posts_per_page'] =  -1;
+ 
+$results= get_posts( $args );
+
+ $data = array();
+foreach($results as $result){
+ 
+    $image_url =   wp_get_attachment_image_src($result->ID, 'thumbnail' );
+    $image_url_large =   wp_get_attachment_image_src($result->ID, 'large' );
+
+    $image_url_final = ( $image_url!=false)? $image_url[0]:'' ;
+    $image_url_large_final = ( $image_url_large!=false)? $image_url_large[0]:'' ;
+
+     $data[] = array(
+                    
+                    'url' =>  $image_url_final,
+                    'large_url' =>  $image_url_large_final,
+                    );
+}
+     
+    return $data;
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function get_minyawns_testimonials($user_id){
+global $wpdb;
+//$ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status = 'hired'");
+$ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status IN ('hired','applied') AND rating != 0");
+
+$testimonials = array();
+foreach($ratings as $rating){
+$args = array(
+        'post_id'   => $rating->id,
+        'type'      => 'review',
+        'number'    => '1'
+    );
+$comments = get_comments($args);
+
+if($comments){
+
+ $user = new WP_User( $comments[0]->user_id );
+ if($user->roles[0] == 'administrator'){
+    $thisjob = get_post($rating->job_id);
+    //$employer = 'admin';
+    $employer = get_user_meta($thisjob->post_author, 'company_name', true);
+    $comment_by_admin = 'yes';
+    $emp_id = $thisjob->post_author;
+}else{
+    $employer = get_user_meta($comments[0]->user_id, 'company_name', true);
+    $comment_by_admin = 'no';
+    $emp_id = $comments[0]->user_id;
+}
+
+    $testimonials[] = array(
+        'rating'    => $rating->rating,
+        'comment'   => $comments[0]->comment_content,
+        'employer'  => array(
+            'name'  => $employer,
+            'url'   => get_site_url().'/profile/'.$emp_id
+            ),
+        'category'  => get_the_terms($rating->job_id, 'job_category'),
+        'day'       => get_the_date( 'd', $rating->job_id ),
+        'month'     => get_the_date( 'M', $rating->job_id ),
+        'year'      => get_the_date( 'Y', $rating->job_id ),
+        'photos'    => get_job_photos($rating->job_id, $user_id),
+        'comment_by_admin' => $comment_by_admin
+        );
+}
+
+}
+
+return $testimonials;
+}
+
+
+
+
+
+
+
+function is_ratings_done_for_minions($job_id){
+    global $wpdb;
+    $ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE job_id = $job_id AND status = 'hired'");
+
+    foreach ($ratings as $rating){
+        if($rating->rating == '0' || $rating->rating == 'NULL'){
+
+            return false;
+            break;
+        }
+    }
+    return true;
+
+}
+
+
+
+function check_if_minion_profile_completed(){
+    global $current_user_new;
+
+    if($current_user_new->data->first_name && $current_user_new->data->last_name && $current_user_new->data->college && $current_user_new->data->major && $current_user_new->data->user_skills ){
+        return 'yes';
+    }else{
+        return 'no';
+    }
+
+}
+
+
+
+
+
+
+
+function test_testimonials(){
+
+    global $wpdb;
+    $user_id = '185';
+    $ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status IN ('hired','applied') AND rating != 0");
+
+
+    //$testimonals = get_minyawns_testimonials('185');
+
+    echo "<pre>";
+    print_r($ratings);
+    echo "</pre>";
+
+
+}
+//add_action('init', 'test_testimonials');
+
+
+
+
+
+

@@ -842,8 +842,11 @@ var image_name=$("#image_name").val();
                 if (ele == 'id')
                     return;
 
-                if (ele == 'user_skills2')
-                    return;
+                /*if (ele == 'user_skills2')
+                    return;*/
+
+                /*if (ele == 'short_bio')
+                    return;*/
 
 
                 if (ele == 'linkedin')
@@ -852,11 +855,22 @@ var image_name=$("#image_name").val();
                  if (ele == 'facebook_link')
                     return;
 
+                if (ele == 'short_bio')
+                {
+                    if (attr[ele].length >200){
+                        errors.push({field: ele, msg: 'Max 200 characters '});
+                    }else if (attr[ele].length <=0){
+                        return
+                    }
+                }
+
 
                 if (attr[ele] == '')
                 {
                     errors.push({field: ele, msg: 'Please enter ' + ele});
                 }
+
+                
 
             });
             if (errors.length > 0)
@@ -897,7 +911,8 @@ var image_name=$("#image_name").val();
                         }
                     }
 
-              
+
+                              
 
                 var msg_new = msg.replace('_', ' ');
 
@@ -1683,22 +1698,30 @@ $(document.body).on('click', '.edit-job-data', function(e) {
 
 //Single job page apply click action 
 jQuery(document.body).on('click', '#apply-job-browse', function(evt) {
- 
+
     var _this = $(this);
     var _action = $(this).attr('data-action');
     var _job_id = $(this).attr('data-job-id');
     if(_action == "apply"){
 
-        if($("#apply-job-popup").length==0){
+        if(profile_completed == 'yes'){
 
-            $( "body" ).append(appy_job_popup_content(_job_id))
+            if($("#apply-job-popup").length==0){
+                $( "body" ).append(appy_job_popup_content(_job_id));
+            }
+            $("#apply-job-popup").modal('show');
 
-       }
+        }else{
 
-       $("#apply-job-popup").modal('show'); 
-   }
+            if($("#incomplete-profile-popup").length==0){
+             $( "body" ).append(incomplete_minion_profile_popup());
+         }
+         $("#incomplete-profile-popup").modal('show');
 
-   evt.preventDefault();
+     }
+ }
+
+ evt.preventDefault();
 });
 
 
@@ -1833,6 +1856,29 @@ var _this = $(this);
 
         return html;
     }
+
+
+
+
+
+
+    function incomplete_minion_profile_popup(){
+
+        html  = '<div id="incomplete-profile-popup" class="modal hide fade cust-modal apply-modal-dwn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+      
+        html += '<div class="warning-content">'
+
+        html += '<img src="'+THEMEURL +'/images/incomplete_profile.jpg" class="modal-img">'
+
+        html += '</div>'
+         
+        html += '</div>';
+
+        return html;
+    }
+
+
+
 
 
     function onload_calendar()
@@ -2659,3 +2705,98 @@ jQuery(function($) {
 $(".fancybox").fancybox();
 });
  
+
+jQuery(function($) {
+  $("#me").hide();
+  $("#hide").click(function(){
+      $("#me").toggle();
+      $(this).text(function(i, val) {
+          return val === '(Hide information)' ? '(show Information)' : '(Hide information)';
+      });
+  });
+  $('#element').tooltip('toggle')
+ $('#element1').tooltip('toggle')
+   $('#element3').tooltip('toggle')
+   $('#element4').tooltip('toggle')
+  $(window).scroll(function(){
+      if ($(this).scrollTop() > 120) {
+          $('.job-view').addClass('fixed');
+      } else {
+          $('.job-view').removeClass('fixed');
+      }
+});
+
+
+
+
+
+
+
+
+
+
+//Validate US phone number
+$.fn.usphone = function() 
+  {
+    this.keyup(function() 
+    {
+     var curchrindex = this.value.length;
+     var curval = $(this).val();
+     var strvalidchars = "0123456789()-";
+          
+     for (i =0; i < this.value.length; i++)
+     {
+      var curchar = curval[i];
+      if (strvalidchars.indexOf(curchar) == -1) 
+      {
+       //delete the character typed if this is not a valid character.
+       $(this).val(curval.substring(0, i) + curval.substring(i+1, this.value.length));
+      }
+     }
+     
+     // Insert formatting at the right places
+     if (curchrindex == 3) 
+     {
+      $(this).val("(" + curval + ")" + "-");
+     }
+     else if (curchrindex == 9)
+     {
+      $(this).val(curval + "-");
+     }
+     
+     //Do not allow more than 15 characters including the brackets and the "-"
+     if (curchrindex == 15) 
+     {
+      //delete the last character typed 
+         $(this).val(curval.substring(0, this.value.length-1 ));
+     }
+     
+    });
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
