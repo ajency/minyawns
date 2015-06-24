@@ -354,6 +354,27 @@ echo $payment_button; ?></span>
         
             </ul>
 
+            <div class="clearfix">
+              <div class="pull-left">
+                <a class="btn btn-small">View Less Applicants &raquo;</a>
+              </div>
+              <div class="pull-right">
+                <a href="#myModal-jobx" role="button" class="btn btn-info btn-large" data-toggle="modal">Submit Ratings</a>
+              </div>
+            </div>
+            
+            
+            <div class="rating-modal">
+              <div id="myModal-jobx" class="modal hide fade">
+                  <div class="content">
+                    <p>Double Check: One of the good workers<br> or arrived on time boxes<br> was not checked, <br>is this on purpose.</p>
+                    <a href="" class="btn btn-danger btn-large">Oops I made a mistake</a>
+                    <a href="" class="btn btn-info btn-large">Yep, proceed</a>
+                  </div>
+                  <div class="inner"></div>
+              </div>
+            </div><!--/rating-modal-->
+
             </br></br><span id="div_confirmhire"></span>
  
            <input type="hidden" id="jobid"  name="jobid"  value="<%= result.post_id%>">
@@ -712,7 +733,7 @@ echo $payment_button; ?></span>
 
 <div class="row-fluid">
   <div class="span6">
-    <!--ratings starts-->
+    <!--ratings starts
     <div class="rating align-left">
 
       <a href="#fakelink" id="thumbs_up_<%= result.user_id %>">
@@ -722,7 +743,7 @@ echo $payment_button; ?></span>
         <i class="icon-thumbs-down" ></i> <span class="thumbs_down_counts"><%= result.rating_negative %></span>
       </a>
     </div>
-    <!--rating ends-->
+    rating ends-->
   </div>
   <div class="span6 align-right">
   <a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> See More &gt;</a>
@@ -734,7 +755,38 @@ echo $payment_button; ?></span>
   <div class="col-md-12">
     <div class="asd">
         <%= select_button %>
-    </div>
+        // testing
+        <div class="clearfix"></div>
+        <div class="row m-l-0">
+          <div class="span6 text-left check-left">
+            <label class="">
+              <input type="checkbox"> Good Worker
+            </label>
+            <label class="">
+              <input type="checkbox"> Arrived on time
+            </label>
+          </div>
+          <div class="span6 text-left check-right">
+            <label class="">
+              <input type="checkbox"> Did not show
+            </label>
+            <label class="">
+              <input type="checkbox"> Fast Response to Emails
+            </label>
+          </div>
+
+          <div class="row m-l-0">
+            <div class="span12">
+              <div class="popover-box" id="review-box">
+                <textarea type="text" id="review-text">
+                </textarea>
+                <div class="maxchar">Max charector 160</div>
+              <div>
+            </div>
+          </div> 
+        </div>
+        // testing
+    </div><!--/asd-->
   </div>
 </div>
 <div class="clearfix"></div>
@@ -881,11 +933,11 @@ echo site_url() ?>/minyawns-directory" target="_blank" class="btn btn-primary m-
 </script>
 
 <script type="text/templates" id="no-result">
-    <div class="alert alert-info myjobs no-job ">
-    <b style="text-align: center">Create your first job now </b>&nbsp; <a href="<?php
+    <div class="alert alert-info myjobs no-job test">
+    <p style="text-align: center">Take the next step, start adding jobs! Click on the add jobs button below</p>&nbsp; <a href="<?php
 echo site_url() ?>/add-job" class="btn btn-primary btn-large  mll" id="add-job-button">
-                                <i class="icon-plus-sign"></i>
-                                &nbsp;Add a Job
+                                <i class="icon-plus-sign"></i> Add a Job
+                                
 
                             </a>
     
