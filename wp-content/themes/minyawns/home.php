@@ -132,7 +132,7 @@
       <h3 class="heading-title">Here's Our Customers</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minyawns.</p>
    </div>
- <!-- <div class="slider1">
+ <div class="slider1">
       <div class="slide cus_1"></div>
     <div class="slide cus_2"></div>
     <div class="slide cus_3"></div>
@@ -149,9 +149,9 @@
     <div class="slide cus_14"></div>
     <div class="slide cus_15"></div>
    
-   </div><br><br> -->
+   </div><br><br> 
    <div class="clients-gallery">
-   	<?php echo do_shortcode('[Best_Wordpress_Gallery id="1" gal_title="clients"]'); ?>
+   	<?php /*echo do_shortcode('[Best_Wordpress_Gallery id="1" gal_title="clients"]'); */?>
    </div>
 </div>
 
