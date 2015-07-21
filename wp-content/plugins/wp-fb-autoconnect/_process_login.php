@@ -67,9 +67,14 @@ function jfb_process_login()
     //Get some extra stuff (TODO: I should combine these into one query with the above, for better efficiency)
     $fbuser['profile_url'] = $fbuser['link'];
     $pic = jfb_api_get("https://graph.facebook.com/fql?q=".urlencode("SELECT pic_square,pic_big FROM user WHERE uid=$fb_uid")."&access_token=$access_token");
-    $fbuser['pic_square'] = $pic['data'][0]['pic_square'];
+    //$fbuser['pic_square'] = $pic['data'][0]['pic_square'];
     $fbuser['pic_big'] = $pic['data'][0]['pic_big'];
-    $jfb_log .= "FB: Got user info (".$fbuser['name'].")\n";
+
+
+    //fetch profile photo from facebook
+        $fprodata = file_get_contents('https://graph.facebook.com/me/picture?redirect=0&height=150&type=normal&width=150&access_token='.$access_token);
+        $fprodata = json_decode($fprodata);
+        $fbuser['pic_square'] = $fprodata->data->url;
 
     //See if we were given permission to access the user's email
     //This isn't required, and will only matter if it's a new user without an existing WP account
