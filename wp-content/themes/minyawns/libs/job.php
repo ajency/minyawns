@@ -767,7 +767,8 @@ $app->get('/jobminions/', function() use ($app) {
                     if(isset($user_meta['intro_video_id'][0])){
                         $user_pic_img_src =  '<img src="http://i.ytimg.com/vi/'.$user_meta['intro_video_id'][0].'/1.jpg" />';
                     }else{
-                      $user_pic_img_src = $user['image'];
+                      //$user_pic_img_src = $user['image'];
+                        $user_pic_img_src = get_avatar($minion_ids[$i]);
                      }
 
 
