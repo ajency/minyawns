@@ -84,6 +84,16 @@ $app->map('/change-avatar/', function() use($app) {
                    // $attachment_url = wp_get_attachment_link($attach_id);
                     $attachment_data = wp_get_attachment_image_src($attach_id,'medium');
                     $attachment_url =  $attachment_data[0];
+
+
+                    //thumbnail
+                    $attachment_thumbnail_data = wp_get_attachment_image_src($attach_id,'thumbnail');
+                    $attachment_thumbnail_url =  $attachment_thumbnail_data[0];
+
+                    //full
+                    $attachment_full_data = wp_get_attachment_image_src($attach_id,'full');
+                    $attachment_full_url =  $attachment_rull_data[0];
+
                 }
                    /*Double entry commented
                 $post_data = array(
@@ -105,6 +115,9 @@ $app->map('/change-avatar/', function() use($app) {
             //update_user_meta($user_ID, 'avatar_attachment', $attachment_id);
 
             update_user_meta($userid, 'avatar_attachment', $attachment_id);
+
+            update_user_meta($userid, 'facebook_avatar_thumb', $attachment_thumbnail_url);
+            update_user_meta($userid, 'facebook_avatar_full', $attachment_full_url);
                 
                 
             }

@@ -229,7 +229,7 @@ jQuery('#example').popover(
                     echo get_avatar(get_user_id(), 168 );
                 }
                 ?>
-            </a> <?php if(is_facebook_user() === 'false' && get_current_user_id() == get_user_id()){ ?>
+            </a> <?php if(get_current_user_id() == get_user_id()){ ?>
             <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal"><i class="icon-camera"></i></a>
             <?php } ?>
         </div>
