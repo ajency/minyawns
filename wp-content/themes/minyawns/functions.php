@@ -3660,4 +3660,35 @@ function test_testimonials(){
 
 
 
+add_action('notify_unselected_minyawns', 'notify_unselected_minyawns');
+function notify_unselected_minyawns($job_id){
+    global $wpdb;
+    $job_title = get_the_title($job_id);
+
+    $unselected = $wpdb->get_results("SELECT user_id FROM {$wpdb->prefix}userjobs WHERE job_id = $job_id AND status IN ('applied')", ARRAY_A);
+
+    foreach($unselected as $user){
+        $user_id = $user['user_id'];
+        $user = get_user_by( 'id', $user_id );
+        $user_email = $user->user_email;
+        $user_name = $user->display_name;
+
+        $minyawns_subject = "Minyawns - Not selected for ".$job_title;
+        $minyawns_message = "Hi " . $user_name . ",<br/><br/>
+        Unfortunately you were not selected for the Job '" . $job_title . "'.<br/>
+        But that means you’re free to go play or check out other jobs!.               
+        <br/><br/>
+        To visit Minyawns site, <a href='" . get_site_url() . "' target='_blank'>Click here</a>.               
+        <br/><br/>";
+
+        add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+        $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+        wp_mail($value->user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
+    }
+}
+
+
+
+
+
 
