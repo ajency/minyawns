@@ -692,9 +692,9 @@ function minyawn_job_apply() {
     } else {
         $min_job = new Minyawn_Job($job_id);
 
-        if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns)) {
+        /*if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns)) {
             $status = 2;
-        } else {
+        } else {*/
 
             $wpdb->insert($wpdb->prefix . 'userjobs', array(
                 'user_id' => $user_ID,
@@ -709,9 +709,9 @@ function minyawn_job_apply() {
 
             //print_r(($min_job->required_minyawns)+2);print_r(count($min_job->minyawns));exit();
             /* plus one because it is checking before insert */
-            if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns) + 1)
-                $status = 2;
-        }
+           /* if ((int) ($min_job->required_minyawns) + 2 <= count($min_job->minyawns) + 1)
+                $status = 2;*/
+        //}
     }
     do_action( 'apply_job', $min_job );
     // send mail to employer who created job

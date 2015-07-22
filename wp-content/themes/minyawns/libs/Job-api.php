@@ -440,7 +440,7 @@ $args = array(
                 $applied_count = $applied_count + 1;
 
                 if ($applied_count === $this->required_minyawns + 2)
-                    $applied = 3; //JOB LOCKED MAX APPLICANTS          
+                    $applied = 1; //JOB LOCKED MAX APPLICANTS          
                 else
                     $applied = 1;
             }
@@ -477,7 +477,7 @@ $args = array(
                 $applied_count = $applied_count + 1;
 
                 if ($applied_count === $this->required_minyawns + 2)
-                    $applied = 3; //JOB LOCKED MAX APPLICANTS          
+                    $applied = 1; //JOB LOCKED MAX APPLICANTS          
                 else
                     $applied = 1;
             }
