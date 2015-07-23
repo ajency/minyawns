@@ -3836,7 +3836,44 @@ function notify_unselected_minyawns($job_id){
 
         add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
         $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
-        wp_mail($value->user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
+        wp_mail($user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
+    }
+}
+
+
+
+//Notify all minyawns when new job added
+add_action('new_job_added', 'job_added_notify_minyawns');
+function job_added_notify_minyawns($job_id){
+    $job_title = get_the_title($job_id);
+    $amount = get_post_meta($job_id, 'job_wages_actual', true);
+    $job_date = date('jS F, Y', get_post_meta($job_id, 'job_start_date', true));
+    $start_time = date('h:i A', get_post_meta($job_id, 'job_start_time', true));
+    $end_time = date('h:i A', get_post_meta($job_id, 'job_end_time', true));
+    $location = get_post_meta($job_id, 'job_location', true);
+    
+    $miniyawns = get_users(array('role'=>'minyawn'));
+
+    foreach($miniyawns as $miniyawn){
+
+        $user_email = $miniyawn->user_email;
+        $user_name = $miniyawn->display_name;
+        
+        $minyawns_subject = "$".$amount." on ".$job_date;
+        $minyawns_message = "Hi " . $user_name . ",<br/><br/>
+        Time to earn $".$amount." on ".$job_date.". <a href='".get_post_permalink($job_id)."' target='_blank'>Apply Now</a> !              
+        <br/><br/>
+        Have quick look at the Job:               
+        <br/>
+        <strong>Earn:</strong> $".$amount."<br/> 
+        <strong>What:</strong> ".$job_title."<br/>
+        <strong>Where:</strong> ".$location."<br/>
+        <strong>When:</strong> ".$start_time." to ".$end_time." on ".$job_date;
+
+        add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+        $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+        wp_mail($user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
+
     }
 }
 

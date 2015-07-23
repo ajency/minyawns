@@ -35,6 +35,7 @@ $app->map('/addjob/', function() use ($app) {
             );
 
             $post_id = wp_insert_post($post);
+
 //$post_id=934;
 //print_r($json_a);exit();
             foreach ($json_a as $key => $value) {
@@ -72,6 +73,12 @@ $app->map('/addjob/', function() use ($app) {
                     $categories[] = intval($value);
                 }
             }
+
+
+
+
+            //Add action hook on add job
+            do_action('new_job_added', $post_id);
 
             wp_set_object_terms($post_id, $categories,'job_category');
 
