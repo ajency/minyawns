@@ -23,6 +23,7 @@ Version:        0.1.0
 @grey: #F3F3F3;
 @white: #fff;
 @gray: #ccc;
+@popover: #777272;
 a{text-decoration:none;}
 a:hover{text-decoration:none !important;}
 .site_link{
@@ -1123,7 +1124,10 @@ background: #F8F8F8!important;
 		font-size: 28px;
 		font-weight: 100;
 		margin:0px;
-		
+	}
+	.cust-span6{
+		width: 260px;
+		float: right;
 	}
 	.profiledata{
 		height: 46px;
@@ -7757,6 +7761,85 @@ body .job-view-list{
 				-webkit-box-shadow: 0 0 15px #ccc;
 				-moz-box-shadow: 0 0 15px #ccc;
 				box-shadow: 0 0 15px #ccc;
+				.major-email{
+					.collage{
+						margin-top: 4px;
+					}
+					.social-link{
+						margin-top: 0;
+					}
+				}
+				.jobs-completed{
+					position: relative;
+					.job-no{
+						height: 60px;
+					    width: 60px;
+					    .border-radius(100%);
+					    border: 2px solid @green;
+					    text-align: center;
+					    vertical-align: middle;
+					    line-height: 60px;
+					    font-size: 24px;
+					}
+					.job-status{
+						width: 60px;
+						text-align: center;
+						.border-radius(12px);
+						background: @green;
+						position: absolute;
+						bottom: 20px;
+						font-size: 11px;
+						color: @white;
+					}
+					p{
+						text-align: center;
+						width: 60px;
+					}
+				}
+				.time-warp{
+					.time-circle{
+						height: 60px;
+						width: 60px;
+						border: 2px solid @green;
+						border-radius: 100%;
+						text-align: center;
+						line-height: 60px;
+						vertical-align: middle;
+						position: relative;
+						&:after{
+							content: '';
+							  position: absolute;
+							  top: 5px;
+							  left: 5px;
+							  right: 5px;
+							  bottom: 5px;
+							  border: 1px dashed @green;
+							  border-radius: 100%;
+						}
+					}
+					p{
+						text-align: center;
+						width: 60px;
+					}
+				}
+				.missed-job{
+					.missed-job-no{
+						height: 60px;
+						width: 60px;
+						text-align: center;
+						vertical-align: middle;
+						line-height: 60px;
+						font-size: 40px;
+						color: #e74c3c;
+						border: 2px solid transparent;
+					}
+					p{
+						text-align: center;
+						width: 70px;
+					}
+				}
+				
+				
 					.tagsa{
 						max-height:50px;
 						overflow: hidden;
@@ -8231,6 +8314,11 @@ margin-bottom:10px;
 
 /*minyawns rating popover starts*/
 .popover-box{
+	p{
+		font-size: 13px;
+		color: @white;
+		font-weight: 100;
+	}
 	textarea{
 		-webkit-box-sizing: border-box; 
 		-moz-box-sizing: border-box;    
@@ -8466,3 +8554,171 @@ a{
   display: none !important;
 }
 
+/*mixin*/
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+.min-job-details{
+	.jobs-completed{
+		position: relative;
+		.job-no{
+			height: 60px;
+		    width: 60px;
+		    .border-radius(100%);
+		    border: 2px solid @green;
+		    text-align: center;
+		    vertical-align: middle;
+		    line-height: 60px;
+		    font-size: 24px;
+		}
+		.job-status{
+			width: 60px;
+			text-align: center;
+			.border-radius(12px);
+			background: @green;
+			position: absolute;
+			bottom: 20px;
+			font-size: 11px;
+			color: @white;
+		}
+		p{
+			text-align: center;
+			width: 60px;
+		}
+	}
+	.time-warp{
+		.time-circle{
+			height: 60px;
+			width: 60px;
+			border: 2px solid @green;
+			border-radius: 100%;
+			text-align: center;
+			line-height: 60px;
+			vertical-align: middle;
+			position: relative;
+			&:after{
+				content: '';
+				  position: absolute;
+				  top: 5px;
+				  left: 5px;
+				  right: 5px;
+				  bottom: 5px;
+				  border: 1px dashed @green;
+				  border-radius: 100%;
+			}
+		}
+		p{
+			text-align: center;
+			width: 60px;
+		}
+	}
+	.missed-job{
+		.missed-job-no{
+			height: 60px;
+			width: 60px;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 60px;
+			font-size: 40px;
+			color: #e74c3c;
+			border: 2px solid transparent;
+		}
+		p{
+			text-align: center;
+			width: 70px;
+		}
+	}
+}
+.rate-minyawn{
+	margin-bottom: 15px;
+	.form-group{
+		position: relative;
+		input[type=radio]{
+			position: absolute;
+  			visibility: hidden;
+  			&:checked ~ .check::before{
+  				background: @white;
+  			}
+		}
+		label{
+			display: block;
+			position: relative;
+			font-weight: 300;
+			font-size: 16px;
+			z-index: 9;
+			cursor: pointer;
+		}
+		.check{
+			display: block;
+			position: absolute;
+			border: 3px solid @white;
+			border-radius: 100%;
+			height: 17px;
+			width: 17px;
+			top: -3px;
+			left: 20px;
+			z-index: 5;
+			&:before{
+				display: block;
+				position: absolute;
+				content: '';
+				border-radius: 100%;
+				height: 7px;
+				width: 7px;
+				top: 5px;
+				left: 5px;
+				margin: auto;
+			}
+		}
+	}
+}
+/*checkbox*/
+.squaredTwo {
+  width: 23px;
+  height: 23px;
+  position: relative;
+  left: 20px;
+  background: #fcfff4;
+  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+  label {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+    white-space: nowrap;
+    text-indent: 25px;
+    background: @popover;
+    &:after {
+      content: '';
+      width: 7px;
+      height: 4px;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      border: 3px solid @white;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+    /*&:hover::after {
+      opacity: 0.3;
+    }*/
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    }    
+  }
+}
+.btn-popover{
+	background: @popover;
+}

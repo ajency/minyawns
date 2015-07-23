@@ -1022,6 +1022,10 @@ body .jobs_table .data-title .profile-job {
   font-weight: 100;
   margin: 0px;
 }
+.min_profile .cust-span6 {
+  width: 260px;
+  float: right;
+}
 .min_profile .profiledata {
   height: 46px;
 }
@@ -6653,6 +6657,81 @@ div.tooltip1:after {
   -moz-box-shadow: 0 0 15px #ccc;
   box-shadow: 0 0 15px #ccc;
 }
+.minyawns-grid1 .thumbspan .thumbnail .m3 .major-email .collage {
+  margin-top: 4px;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .major-email .social-link {
+  margin-top: 0;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .jobs-completed {
+  position: relative;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .jobs-completed .job-no {
+  height: 60px;
+  width: 60px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  border: 2px solid #8ed030;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  font-size: 24px;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .jobs-completed .job-status {
+  width: 60px;
+  text-align: center;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  background: #8ed030;
+  position: absolute;
+  bottom: 20px;
+  font-size: 11px;
+  color: #ffffff;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .jobs-completed p {
+  text-align: center;
+  width: 60px;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .time-warp .time-circle {
+  height: 60px;
+  width: 60px;
+  border: 2px solid #8ed030;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 60px;
+  vertical-align: middle;
+  position: relative;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .time-warp .time-circle:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px dashed #8ed030;
+  border-radius: 100%;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .time-warp p {
+  text-align: center;
+  width: 60px;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .missed-job .missed-job-no {
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  font-size: 40px;
+  color: #e74c3c;
+  border: 2px solid transparent;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .missed-job p {
+  text-align: center;
+  width: 70px;
+}
 .minyawns-grid1 .thumbspan .thumbnail .m3 .tagsa {
   max-height: 50px;
   overflow: hidden;
@@ -6970,7 +7049,7 @@ div.tooltip1:after {
   cursor: pointer;
 }
 #home-video span.play-button {
-  background: url(../images/banner2.jpg);
+  background: url(../images/banner3.jpg);
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -7075,6 +7154,11 @@ p.white {
 }
 /*minyawns directory invite popup ends*/
 /*minyawns rating popover starts*/
+.popover-box p {
+  font-size: 13px;
+  color: #ffffff;
+  font-weight: 100;
+}
 .popover-box textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -7283,4 +7367,165 @@ textarea[readonly] {
 .spider_popup_overlay,
 .spider_popup_loading {
   display: none !important;
+}
+/*mixin*/
+.min-job-details .jobs-completed {
+  position: relative;
+}
+.min-job-details .jobs-completed .job-no {
+  height: 60px;
+  width: 60px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  border: 2px solid #8ed030;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  font-size: 24px;
+}
+.min-job-details .jobs-completed .job-status {
+  width: 60px;
+  text-align: center;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  background: #8ed030;
+  position: absolute;
+  bottom: 20px;
+  font-size: 11px;
+  color: #ffffff;
+}
+.min-job-details .jobs-completed p {
+  text-align: center;
+  width: 60px;
+}
+.min-job-details .time-warp .time-circle {
+  height: 60px;
+  width: 60px;
+  border: 2px solid #8ed030;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 60px;
+  vertical-align: middle;
+  position: relative;
+}
+.min-job-details .time-warp .time-circle:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px dashed #8ed030;
+  border-radius: 100%;
+}
+.min-job-details .time-warp p {
+  text-align: center;
+  width: 60px;
+}
+.min-job-details .missed-job .missed-job-no {
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  font-size: 40px;
+  color: #e74c3c;
+  border: 2px solid transparent;
+}
+.min-job-details .missed-job p {
+  text-align: center;
+  width: 70px;
+}
+.rate-minyawn {
+  margin-bottom: 15px;
+}
+.rate-minyawn .form-group {
+  position: relative;
+}
+.rate-minyawn .form-group input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+}
+.rate-minyawn .form-group input[type=radio]:checked ~ .check::before {
+  background: #ffffff;
+}
+.rate-minyawn .form-group label {
+  display: block;
+  position: relative;
+  font-weight: 300;
+  font-size: 16px;
+  z-index: 9;
+  cursor: pointer;
+}
+.rate-minyawn .form-group .check {
+  display: block;
+  position: absolute;
+  border: 3px solid #ffffff;
+  border-radius: 100%;
+  height: 17px;
+  width: 17px;
+  top: -3px;
+  left: 20px;
+  z-index: 5;
+}
+.rate-minyawn .form-group .check:before {
+  display: block;
+  position: absolute;
+  content: '';
+  border-radius: 100%;
+  height: 7px;
+  width: 7px;
+  top: 5px;
+  left: 5px;
+  margin: auto;
+}
+/*checkbox*/
+.squaredTwo {
+  width: 23px;
+  height: 23px;
+  position: relative;
+  left: 20px;
+  background: #fcfff4;
+  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0px 1px 1px #ffffff, 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.squaredTwo label {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px #ffffff;
+  white-space: nowrap;
+  text-indent: 25px;
+  background: #777272;
+  /*&:hover::after {
+      opacity: 0.3;
+    }*/
+}
+.squaredTwo label:after {
+  content: '';
+  width: 7px;
+  height: 4px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border: 3px solid #ffffff;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  transform: rotate(-45deg);
+}
+.squaredTwo input[type=checkbox] {
+  visibility: hidden;
+}
+.squaredTwo input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+.btn-popover {
+  background: #777272;
 }
