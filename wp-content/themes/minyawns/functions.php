@@ -3203,12 +3203,12 @@ function login_response($user_id,$logged_in_key,$logged_in_cookie,$auth_key,$aut
 
 
  
- 
- 
+  
  
 function send_job_day_minyawns_reminder(){
+    global $wpdb;
 
-    $args = array(); 
+   $args = array(); 
     $args["post_type"] = "job";
 
     $today = date('Y-m-d');
@@ -3233,12 +3233,18 @@ $query = new WP_Query($args);
  
 $posts = $query->get_posts();
 
+
+
+
+
 foreach($posts as $post) {
     // Do your stuff, e.g.
-    
 
+
+    
       $minyawns = (get_hired_minyawns_for_job($post->ID));
 
+      
       if($minyawns !=false){
         foreach($minyawns as $minyawn){
  
@@ -3253,10 +3259,49 @@ foreach($posts as $post) {
                     "From: Minyawns <support@minyawns.com>\n" .
                     "Content-Type: text/html; charset=\"" . "\"\n";
 
-             wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
+
+
+
+                    $cronjob = $wpdb->get_row("SELECT * FROM cron_jobs WHERE job_id = $post->ID AND email_recipient = '".$minyawn->user_email."' AND type = 'minyawn_job_reminder'", ARRAY_A);
+
+                    if($cronjob){
+                        if($cronjob['flag'] == '0'){
+                            if(wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers)){
+                              $wpdb->update( 
+                                'cron_jobs', 
+                                array( 
+                                    'flag' => '1'
+                                    ), 
+                                array( 'id' => $cronjob['id'] )
+                                );
+                          }
+
+                      }
+                  }else{
+                    if(wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers)){
+                     $wpdb->insert( 
+                        'cron_jobs', 
+                        array( 
+                            'email_recipient' => $minyawn->user_email, 
+                            'mail_content' => $mail['hhtml'] . $mail['message'] . $mail['fhtml'],
+                            'subject' => $mail['subject'],
+                            'type' => 'minyawn_job_reminder',
+                            'job_id' => $post->ID,
+                            'flag' => '1'
+                            )    
+                        );
+                 }
+             }
+
+             //wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers);
+
+                    //echo $mail['hhtml'] . $mail['message'] . $mail['fhtml'];
+
+
         }
        
       }
+      
 }
 
 

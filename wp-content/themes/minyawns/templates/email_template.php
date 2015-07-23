@@ -168,7 +168,7 @@ function get_email_subject($type, $data) {
             return $email_sub;
 
 
-        case 'minyawn_job_reminder':$email_sub="You have a Job to do tomorrow!";
+        case 'minyawn_job_reminder':$email_sub="Your Job Tomorrow!";
             return $email_sub;
     }//end switch($type)
 }
@@ -289,11 +289,11 @@ If you are facing difficulties applying for the job feel free to email us on <a 
           return $email_msg;  
 
           case 'minyawn_job_reminder':
-            $email_msg= "Hi ".$data['minyawn_name'].", <br/><br/>Check your schedule tomorrow, make sure you are free.<br>";
+            $email_msg= "Hi ".$data['minyawn_name'].", <br/><br/>Just to reminder on your Job tomorrow <a href=".$data['job_page'].">".$data['job_title']."</a>.<br>";
 
-            $email_msg .= 'Get ready for your Job <a href='.$data['job_page'].'>"'.$data['job_title'].'"</a> and be there on time.<br>';
+            $email_msg .= 'Please be on time! It makes a big impression!<br>';
 
-            $email_msg .= "Contact your Employer today if you need any details.";
+            $email_msg .= "Contact your Employer today if you have any questions or need details.";
 
             $email_msg .= "";
           return $email_msg;  
