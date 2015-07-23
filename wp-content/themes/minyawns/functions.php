@@ -3313,6 +3313,114 @@ foreach($posts as $post) {
 add_action('job_day_minyawns_reminder','send_job_day_minyawns_reminder');
 
 
+
+
+
+
+
+
+
+function send_45mints_minyawns_reminder(){
+    global $wpdb;
+
+    $args = array(); 
+    $args["post_type"] = "job";
+
+    $yesterday = date('Y-m-d',strtotime("-1 days"));
+
+    $dayaftertomorrow = date('Y-m-d', strtotime("+2 days")); 
+
+    $args["meta_query"] = array('relation' => 'AND',
+        array(
+            'key' => 'job_start_date',
+            'value' => strtotime($yesterday),
+            'compare' => '>',
+            ),
+        array(
+            'key' => 'job_start_date',
+            'value' => strtotime($dayaftertomorrow),
+            'compare' => '<',
+            ));
+
+    $query = new WP_Query($args);
+
+    $posts = $query->get_posts();
+
+    foreach($posts as $post){
+        $start_time = get_post_meta($post->ID, 'job_start_time', true);
+        $timenow = time();
+        $timeleft = $start_time - $timenow;
+        if( $timeleft <= 2700) {
+
+
+        $minyawns = (get_hired_minyawns_for_job($post->ID));
+            if($minyawns !=false){
+        foreach($minyawns as $minyawn){
+ 
+            $data_mail = array( 'job_title'=>$post->post_title,
+                                'job_page'=>get_permalink($post->ID),
+                                'minyawn_name'=>$minyawn->display_name); 
+            
+            $mail = email_template($minyawn->user_email, $data_mail, 'minyawn_45mints_reminder');
+         
+            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+            $headers .= "MIME-Version: 1.0\n" .
+                    "From: Minyawns <support@minyawns.com>\n" .
+                    "Content-Type: text/html; charset=\"" . "\"\n";
+
+                    $cronjob = $wpdb->get_row("SELECT * FROM cron_jobs WHERE job_id = $post->ID AND email_recipient = '".$minyawn->user_email."' AND type = 'minyawn_45mints_reminder'", ARRAY_A);
+
+                    if($cronjob){
+                        if($cronjob['flag'] == '0'){
+                            if(wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers)){
+                              $wpdb->update( 
+                                'cron_jobs', 
+                                array( 
+                                    'flag' => '1'
+                                    ), 
+                                array( 'id' => $cronjob['id'] )
+                                );
+                          }
+
+                      }
+                  }else{
+                    if(wp_mail($minyawn->user_email, $mail['subject'], $mail['hhtml'] . $mail['message'] . $mail['fhtml'], $headers)){
+                     $wpdb->insert( 
+                        'cron_jobs', 
+                        array( 
+                            'email_recipient' => $minyawn->user_email, 
+                            'mail_content' => $mail['hhtml'] . $mail['message'] . $mail['fhtml'],
+                            'subject' => $mail['subject'],
+                            'type' => 'minyawn_45mints_reminder',
+                            'job_id' => $post->ID,
+                            'flag' => '1'
+                            )    
+                        );
+                 }
+             }
+        }
+       
+      }
+
+
+
+
+        }
+    }
+
+}
+
+add_action('45mints_minyawns_reminder', 'send_45mints_minyawns_reminder');
+
+
+
+
+
+
+
+
+
+
 //to get hired minyawns for a job
 
 

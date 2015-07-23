@@ -63,6 +63,15 @@ function email_template($emailid, $data, $type) {
             );
             break;
 
+        case 'minyawn_45mints_reminder':
+            $template = array(
+                'hhtml' => email_template_header(),
+                'fhtml' => email_template_footer(),
+                'subject' => get_email_subject($type, $data),
+                'message' => get_email_msg($type, $data, $emailid)
+            );
+            break;
+
         default:
             $template = array(
                 'hhtml' => "",
@@ -169,6 +178,9 @@ function get_email_subject($type, $data) {
 
 
         case 'minyawn_job_reminder':$email_sub="Your Job Tomorrow!";
+            return $email_sub;
+
+        case 'minyawn_45mints_reminder':$email_sub="Your Job starts in next 45 mins!";
             return $email_sub;
     }//end switch($type)
 }
@@ -296,7 +308,17 @@ If you are facing difficulties applying for the job feel free to email us on <a 
             $email_msg .= "Contact your Employer today if you have any questions or need details.";
 
             $email_msg .= "";
-          return $email_msg;  
+          return $email_msg;
+
+
+          case 'minyawn_45mints_reminder':
+            $email_msg= "Hi ".$data['minyawn_name'].", <br/><br/>Your Job <a href=".$data['job_page'].">".$data['job_title']."</a> starts in 45 mins. Get hype and get moving! 
+.<br>";
+
+            $email_msg .= "Contact your Employer now if you need any details.";
+
+            $email_msg .= "";
+          return $email_msg;   
 
     }//end switch($type)
 }
