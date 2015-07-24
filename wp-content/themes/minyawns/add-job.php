@@ -411,6 +411,19 @@ $(".inline li").removeClass("selected");
                                             </div>
                                         </div>
 
+                                         <div class="control-group small">
+                                            <label class="control-label" for="inputtask">City</label>
+                                            <div class="controls ">
+                                                <select name="job_city" id="job_city" class="span12">
+                                                   <?php
+                                                    foreach(get_all_city() as $key=>$value){
+                                                      echo '<option value="'.$value.'">'.$value.'</option>';  
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div class="control-group small">
                                             <label class="control-label" for="inputtask">Tags</label>
                                             <div class="controls tagsclass ">

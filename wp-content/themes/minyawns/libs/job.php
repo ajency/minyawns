@@ -67,6 +67,8 @@ $app->map('/addjob/', function() use ($app) {
                     update_post_meta($post_id, 'job_end_date_time', strtotime(date("j-m-Y", strtotime(str_replace(',', ' ', $start))) . $value));
                 } elseif ($key !== 'job_details' && $key !== "job_end_date") {
                     update_post_meta($post_id, $key, $value);
+                } elseif ($key == 'job_city') {
+                    update_post_meta($post_id, $key, $value);
                 }
 
                 if (strstr($key, 'category')) {
@@ -402,6 +404,7 @@ foreach ($pageposts as $pagepost) {
                     'job_start_time' => date('g:i', $post_meta['job_start_time'][0]),
                     'job_end_time' => date('g:i', $post_meta['job_end_time'][0]),
                     'job_location' => $post_meta['job_location'][0],
+                    'job_city' => $post_meta['job_city'][0],
                     'job_details' => strlen($post_content) >0 ? $post_content:'Details of the Employer not available',
                     'tags' => $tags,
                     //'tags_count' => sizeof($tags),

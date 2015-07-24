@@ -347,6 +347,26 @@ You need to confirm the minyawn selection by making the payment,if you leave thi
                         </div>
                     </div>
 
+                    
+                    <div class="control-group small">
+                        <label class="control-label" for="inputtask">City</label>
+                        <div class="controls ">
+                            <select name="job_city" id="job_city" class="span9">
+                             <?php
+                             foreach(get_all_city() as $key=>$value){
+                                if($minyawn_job->get_job_city() == $value){
+                                    $selected = 'selected';
+                                }else{
+                                    $selected = '';
+                                }
+                              echo '<option value="'.$value.'" '.$selected.'>'.$value.'</option>';  
+                          }
+                          ?>
+                      </select>
+                  </div>
+              </div>
+
+
 
                     <div class="control-group small">
                         <label class="control-label" for="inputtask">Tags</label>

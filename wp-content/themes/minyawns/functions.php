@@ -3845,6 +3845,13 @@ function notify_unselected_minyawns($job_id){
 //Notify all minyawns when new job added
 add_action('new_job_added', 'job_added_notify_minyawns');
 function job_added_notify_minyawns($job_id){
+
+    $myPost = get_post($job_id);
+    //Return if job is not new
+    if( $myPost->post_modified_gmt != $myPost->post_date_gmt ){
+        return;
+    }
+    
     $job_title = get_the_title($job_id);
     $amount = get_post_meta($job_id, 'job_wages_actual', true);
     $job_date = date('jS F, Y', get_post_meta($job_id, 'job_start_date', true));
@@ -3875,6 +3882,15 @@ function job_added_notify_minyawns($job_id){
         wp_mail($user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
 
     }
+}
+
+
+
+
+function get_all_city(){
+    return array(
+        'Seattle','Portland'
+        );
 }
 
 

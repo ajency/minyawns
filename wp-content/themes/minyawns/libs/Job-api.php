@@ -103,6 +103,7 @@ class Minyawn_Job {
         $this->wages = trim($job_meta['job_wages'][0]);
 
         $this->location = trim($job_meta['job_location'][0]);
+        $this->city = trim($job_meta['job_city'][0]);
 
         $this->required_minyawns = trim($job_meta['job_required_minyawns'][0]);
 
@@ -360,6 +361,12 @@ $args = array(
         global $minyawn_job;
 
         return $this->location;
+    }
+
+    public function get_job_city() {
+        global $minyawn_job;
+
+        return $this->city;
     }
 
     public function get_job_applied_minyawns() {

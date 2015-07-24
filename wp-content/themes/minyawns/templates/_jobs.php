@@ -18,7 +18,7 @@
 echo site_url() ?>/job/<%= result.post_slug %>><%= result.post_title %></a></h5>
                                           </div>
                                           <div class="job-meta" data-parent="#accordion24">
-                                          <div class="span9">
+                                          <div class="span12">
                                              <ul class="inline">
                                                
  
@@ -26,9 +26,15 @@ echo site_url() ?>/job/<%= result.post_slug %>><%= result.post_title %></a></h5>
                                                 <li data-toggle="collapse-next"  ><i class="icon-time"></i> <%= result.job_start_time %> &nbsp;<%= result.job_start_meridiem %> to <%= result.job_end_time %>  &nbsp;<%= result.job_end_meridiem %></li>
                                                       <li class="" data-toggle="collapse-next" ><i class="icon-map-marker"></i> <%= result.job_location %></li>
                                                       
-
-                                                      <li class="no-bdr">
+                                                      <% if (result.job_city) { %>
+                                                      <li>
+                                                      <%} else {%>
+                                                        <li class="no-bdr">
+                                                      <%}%>
+                                                      
                                                       <i class="icon-calendar"></i>
+                                                                            
+                                                      
 
                                                       <a href="<?php
 echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>" class="addthisevent" style="visibility:visible;color:#949494;z-index:inherit">
@@ -46,6 +52,10 @@ echo site_url() ?>/job/<%= result.post_slug %>" title="<%= result.post_title %>"
                                                       <span class="_date_format">DD/MM/YYYY</span>
                                                       </a>
                                                       </li>
+
+                                                      <% if (result.job_city) { %>
+                                                      <li class="no-bdr" data-toggle="collapse-next" > <%= result.job_city %></li>
+                                                      <%}%>
 
 
  
