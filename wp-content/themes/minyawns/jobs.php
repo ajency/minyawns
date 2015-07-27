@@ -145,6 +145,22 @@ $all_categories = get_categories(array('hide_empty' => 0));
 
                     
                     ?>
+
+
+                    <div class="alert alert-success alert-sidebar">
+                <h3> City</h3><hr>
+                <ul class="unstyled nav nav-list categories">
+                  <?php
+                  foreach(get_all_city() as $key=>$value){ ?> 
+                  <li onclick="filter_city('<?php echo $value ?>')"><?php echo $value; ?> <span class="nav-counter"></span></li>
+                  <?php }   ?>
+              </ul>
+              <br>
+          </div>
+
+
+
+
 					  <div class="alert alert-success alert-sidebar">
                         <h3> Job Categories</h3><hr>
 						<ul class="unstyled nav nav-list categories">
@@ -159,9 +175,19 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         <br>
                     </div>
 
+
+
+
+
+
+
                 </div>
                 <div class="span9">
-                    <?php if (isset($_GET['cat_id'])) { ?> Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -2px;" type="button" class="close" data-dismiss="alert">&times;</button></span> <?php } ?>
+                    <?php if (isset($_GET['cat_id'])) { ?> 
+                    Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -2px;" type="button" class="close" data-dismiss="alert">&times;</button></span>
+                    <?php }else if (isset($_GET['city'])){ ?>
+                    Jobs listed under City: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['city']) ?>  <button style=" margin-left: 10px;margin-top: -2px;" type="button" class="close" data-dismiss="alert">&times;</button></span>
+                    <?php } ?>
 
 
                    
@@ -274,19 +300,35 @@ $all_categories = get_categories(array('hide_empty' => 0));
             <dic class="row-fluid">
                 
             <div class="span3" id="sidebar_categories">
-             <div class="alert alert-success alert-sidebar" id="sidebar-content">
+               <div class="alert alert-success alert-sidebar" id="sidebar-content">
+                <h3> City</h3><hr>
+                <ul class="unstyled nav nav-list categories">
+                  <?php
+                  foreach(get_all_city() as $key=>$value){ ?> 
+                  <li onclick="filter_city('<?php echo $value ?>')"><?php echo $value; ?> <span class="nav-counter"></span></li>
+                  <?php }	?>
+              </ul>
+              <br>
+          </div>
+
+
+
+                    <div class="alert alert-success alert-sidebar" id="sidebar-content">
                         <h3> Job Categories</h3><hr>
-						<ul class="unstyled nav nav-list categories">
-						<?php foreach($category as $cats){
+                        <ul class="unstyled nav nav-list categories">
+                        <?php foreach($category as $cats){
                                                     $count=query_posts("category_name='. $cats->name.'");
                                                     
-                                                    ?>	
+                                                    ?>  
                                                     <li onclick="filter_categories('<?php echo $cats->term_id ?>','<?php echo $cats->name; ?>')"><?php echo $cats->name; ?> <span class="nav-counter"></span></li>
-						
-						<?php } ?>
+                        
+                        <?php } ?>
                                                 </ul>
                         <br>
                     </div>
+
+
+
                 <div  id="my-jobs-emp-min">
                         
                         <br>
@@ -478,6 +520,12 @@ $all_categories = get_categories(array('hide_empty' => 0));
                         <!--<div class="row-fluid " id="accordion24" >
 
                         </div>-->
+
+                        <?php if (isset($_GET['cat_id'])) { ?> 
+                    Jobs listed under Category: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['cat_name']) ?>  <button style=" margin-left: 10px;margin-top: -2px;" type="button" class="close" data-dismiss="alert">&times;</button></span>
+                    <?php }else if (isset($_GET['city'])){ ?>
+                    Jobs listed under City: <br><br><span class="label" onclick="remove_cat()"><?php echo str_replace('-', ' ', $_GET['city']) ?>  <button style=" margin-left: 10px;margin-top: -2px;" type="button" class="close" data-dismiss="alert">&times;</button></span>
+                    <?php } ?>
 						
                         <ul class="unstyled job-view-list" id="accordion24">
 

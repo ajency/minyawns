@@ -99,6 +99,7 @@ $app->get('/fetchjobs/', function() use ($app) {
             $current_user_id = get_current_user_id();
             $category_filter = "";
             $filtertables = "";
+            $city_filter = "";
             /* Category filter */
             
             $logged_in_user_id = $_GET['logged_in_user_id'];
@@ -108,6 +109,8 @@ $app->get('/fetchjobs/', function() use ($app) {
                             AND $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id AND $wpdb->term_taxonomy.term_id IN (" . $_GET['filter'] . ")";
                 $filtertables = "," . "$wpdb->term_relationships,$wpdb->term_taxonomy";
             }
+
+            
 
             if (isset($_GET['my_jobs']))
                 $sort_value="DESC";
@@ -161,7 +164,7 @@ $app->get('/fetchjobs/', function() use ($app) {
                     //AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'
                     $tables = "$wpdb->posts, $wpdb->postmeta";
                     $my_jobs_filter = "WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
-                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "'";
+                            AND $wpdb->postmeta.meta_value >= '" . current_time('timestamp') . "' ";
                     $order_by = "AND $wpdb->postmeta.meta_key = 'job_end_date_time' 
                             ORDER BY $wpdb->postmeta.meta_value $sort_value";
                     if (isset($_GET['all_jobs'])) {
@@ -179,26 +182,42 @@ $app->get('/fetchjobs/', function() use ($app) {
                 }
             }
 
-           $querystr = "
+            if (isset($_GET['city'])) {
+
+                $querystr = "SELECT DISTINCT wposts.*
+                            FROM $wpdb->posts wposts
+                            LEFT JOIN $wpdb->postmeta wpm1 ON (wposts.ID = wpm1.post_id
+                             AND wpm1.meta_key = 'job_end_date_time')
+LEFT JOIN $wpdb->postmeta wpm2 ON (wposts.ID = wpm2.post_id
+ AND wpm2.meta_key = 'job_city')
+LEFT JOIN $wpdb->postmeta wpm3 ON (wposts.ID = wpm3.post_id
+ AND wpm3.meta_key = 'job_end_date_time')
+WHERE
+((wpm1.meta_value >= " . current_time('timestamp') . ")
+   AND (wpm2.meta_value >= '" . $_GET['city'] . "')
+   AND wposts.post_status = 'publish' 
+   AND wposts.post_type = 'job'
+   ) $limit";
+
+           
+                     }else{
+$querystr = "
                             SELECT DISTINCT $wpdb->posts.* 
                             FROM $tables" . "$filtertables
                             $my_jobs_filter
                             $category_filter
+                            $city_filter
                             AND $wpdb->posts.post_status = 'publish' 
                             AND $wpdb->posts.post_type = 'job'
                             $order_by
                             $limit
                          ";
-        /*$querystr = "
-               SELECT DISTINCT $wpdb->posts.*
-               FROM $tables" . "$filtertables
-               $my_jobs_filter
-               $category_filter
-               AND $wpdb->posts.post_status = 'publish'
-               AND $wpdb->posts.post_type = 'job'
-               $order_by
+                     }
 
-            ";*/
+
+                            
+
+        
 $pageposts = $wpdb->get_results($querystr, OBJECT);
 
 $total = get_total_jobs();

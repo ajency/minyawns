@@ -41,11 +41,18 @@ jQuery(document).ready(function($) {
     $("#sidebar_categories").show();//is hidden on the add job function
 
     var first = getUrlVars()["cat_id"];
+    var city = getUrlVars()["city"];
+
+    //console.log('we reach here');
 
     if (typeof(first) !== 'undefined')
     {
 
         load_browse_jobs('', '', first);
+
+    }else if(typeof(city) !== 'undefined'){
+       //load_browse_jobs('', '', '', city);
+       load_browse_jobs('', '', first);
     } else {
         /* function on page load*/
         $(window).on('hashchange', function() {
@@ -182,6 +189,7 @@ function load_add_job_form(event) {
 
 }
 function load_browse_jobs(id, _action, category_ids) {
+
  
 $ = jQuery;
     jQuery("#sidebar-content").show();
@@ -219,6 +227,7 @@ $ = jQuery;
 
     // var category_ids=(category_ids)> 0 ? 1:0;
     var first = getUrlVars()["cat_id"];
+     var city = getUrlVars()["city"];
 
 
 
@@ -238,11 +247,18 @@ $ = jQuery;
         'offset': 0,
     };
 
-    if (!isNaN(id) && filter === 0)
+
+    /*if (!isNaN(id))
+        _data.single_job = id;*/
+
+    if(id)
         _data.single_job = id;
 
     if (typeof(first) !== 'undefined' || category_ids !== 0)
         _data.filter = category_ids;
+
+    if (typeof(city) !== 'undefined')
+        _data.city = city;
 
     $(".inline li").removeClass("selected");
 
@@ -257,7 +273,7 @@ review =""
             if (collection.length === 0) {
                 jQuery("#accordion24").empty();
 
-                if (role === 'Employer')
+                if (currentpage_user_role === 'Employer')
                     var template = _.template(jQuery("#no-result").html());
                 else
                     var template = _.template(jQuery("#no-result-minion").html());
@@ -266,6 +282,8 @@ review =""
                 jQuery("#load-more").hide();
                 jQuery("#loader").hide();
             } else {
+
+                console.log('collection reached');
 
                 var template = _.template(jQuery("#jobs-table").html());
 
@@ -360,6 +378,8 @@ review =""
                         }
 
                     } else {
+
+                        console.log('again, reached');
                         jQuery(".load_more").show();
                         var sample = samplejobs({result: model.toJSON()});
                         
@@ -370,7 +390,7 @@ review =""
  
                         var html = template({result: model.toJSON(), job_progress: job_stat, job_collapse_button: job_collapse_button_var, minyawns_grid: minyawns_grid});
 
-                        if (typeof(first) !== 'undefined')
+                        if (typeof(first) !== 'undefined' )
                             jQuery("#accordion2").append(html);
                         else
                             jQuery("#accordion24").append(html);
@@ -2038,6 +2058,11 @@ function filter_categories(id, cat_name)
     window.location = siteurl + '/jobs/?cat_id=' + id + '&cat_name=' + cat_name.replace(' ', '-');
 
 
+}
+
+function filter_city(city_name)
+{
+window.location = siteurl + '/jobs/?city=' + city_name;
 }
 
 
