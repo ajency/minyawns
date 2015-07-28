@@ -94,16 +94,16 @@ jQuery(document).ready(function($) {
 </script>
 <?php } ?>
 <footer>
-<span class="footer-top"></span>
+
 
 <!-- <div class="text-center chs-city">City :<a href="<?php echo $seattle_url; ?>"> Seattle</a>&nbsp; &nbsp;<a href="<?php echo $fresno_url; ?>">  Fresno</a></div> -->
 	<ul class="footer_menu">
 		<li><a href="<?php echo site_url(); ?>/about/">About</a></li>
+		<li><a href="<?php echo site_url(); ?>/helpfaqs/">Faqs/Help</a></li>
+		<li><a href="<?php echo site_url(); ?>/contact/">Contact</a></li>
 		<li><a href="<?php echo site_url(); ?>/terms-of-service/">Terms</a></li>
 		<li><a href="<?php echo site_url(); ?>/privacy/">Privacy</a></li>
-		<li><a href="<?php echo site_url(); ?>/helpfaqs/">Help</a></li>
-		<li><a href="<?php echo site_url(); ?>/careers/">Careers</a></li>
-		<li><a href="<?php echo site_url(); ?>/contact/">Contact</a></li>
+		<li><a href="<?php echo site_url(); ?>/careers/">Careers</a></li>	
 	</ul>
 	<br>
 	<b class="social-icon">
@@ -113,6 +113,7 @@ jQuery(document).ready(function($) {
 
 	
 	<div class="site_link">All rights reserved 2013-2015 @ Minyawns</div>
+	<span class="footer-top"></span>
 </footer>
 
 <script type="text/javascript">

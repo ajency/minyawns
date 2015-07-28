@@ -45,10 +45,10 @@
    
 		 <div class="row-fluid">
 				<div class="span12">
-					<div class="banner-title">Need an extra hand for a day?</div>
-					<div class="banner-desc">access a job board exclusively used by vetted college students</div>
+					<div class="banner-title">Need some extra hands for a day?</div>
+					<div class="banner-desc">Access a network of reliable college workers</div>
 					<div class="text-center b-text">
-					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-info" id="link_employerregister" onclick="return true">Post for Free Today or Call 425-829-4829</a>
+					<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-green" id="link_employerregister" onclick="return true">Join Free Today</a>
           			
 		  </div>
 				</div>
@@ -59,26 +59,29 @@
 
       
 	
-   	<div class="row-fluid learn-more-btn">
+   	<!-- <div class="row-fluid learn-more-btn">
 				<div class="span12 learn-more">
 				<a href="#pliip" class="jumper"> Learn More
 				<br>
 				<i class="icon-chevron-down"></i>
 				</a>
 				</div>
-				</div>
+				</div> -->
    <!-- <div class="bg-overflow">
 		
    </div> -->
 </div>
 <!-- slider -->
-<div class="container banner-owlcarousel">
-	<div class="row-fluid">
-		<div class="span12">
-			<?php echo do_shortcode('[owl-carousel category="owl" items="4" autoPlay="true"]'); ?>
+<div class="owl-cover">	
+	<div class="container banner-owlcarousel">
+		<div class="row-fluid">
+			<div class="span12">
+				<h4 class="text-center">Our Latest Work</h4>
+				<?php echo do_shortcode('[owl-carousel category="owl" items="4" autoPlay="true"]'); ?>
+			</div>
 		</div>
 	</div>
-</div>
+</div> <!-- /owl-cover -->
 <!-- slider -->
 <div id="pliip" class="how-does-it-work">
 <div class="">
@@ -108,7 +111,7 @@
       <br>
 	 
    </div>
-  <h4 class="video-title"> Revolutionize the way you get things done.</h4>
+  <!-- <h4 class="video-title"> Revolutionize the way you get things done.</h4>
    <div class="row-fluid">
 			<div class="span3"></div>
 			
@@ -123,11 +126,11 @@
 			
 			</div>
 			
-   </div>
+   </div> -->
    
 </div>
 
-<div class="customers">
+<!-- <div class="customers">
     <div>
       <h3 class="heading-title">Here's Our Customers</h3>
       <p class="excerpt">Simply and effectively bridging the gap between businesses and minyawns.</p>
@@ -153,7 +156,7 @@
    <div class="clients-gallery">
    	<?php /*echo do_shortcode('[Best_Wordpress_Gallery id="1" gal_title="clients"]'); */?>
    </div>
-</div>
+</div> -->
 
 <!--<div class="what-we-can-do">
      <div id="down"></div>
@@ -334,7 +337,7 @@
  
 </div>-->
 <!--ios/android-->
-<div class="ios-android">
+<!-- <div class="ios-android">
 	<div>
 		<h3 class="heading-title">mobile<span class="highlight"> app</span></h3>
 		<p class="excerpt">Just a click away from your new job.</p>
@@ -375,11 +378,11 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <!--ios/android-->
 <!--<div id="down-green"></div>-->
-<div class="features">
+<!-- <div class="features">
 <div class="">
             <h3 class="heading-title">Features</h3>
             <p class="excerpt">Check out what you have access to once you sign up. Access to hire local college students</p>
@@ -395,14 +398,14 @@
                <li><a href="#messages"> Secure payment</a></li>
                <li><a href="#settings">Mobile compatible</a></li>
             </ul>
-			<!--testing-
+			testing-
 		<ul class="breadcrumbb">
 			<li class="active"><a href="#home">Add a job</a></li>
             <li><a href="#profile"> Select your minyawn</a></li>
             <li><a href="#messages"> Secure payment</a></li>
             <li><a href="#settings">Mobile compatible</a></li>
 		</ul>
-			testing-->
+			testing
             <div class="tab-content">
                <div class="tab-pane active" id="home">
                   <h3>Don't procrastinate, give those annoying tasks to the minyawns.</h3>
@@ -412,7 +415,7 @@
 						<h4>Eye-catching job title</h4>
 						<p class="data-content">Grab the attention of relevant minyawns with an awesome job title</p>
 						</div>
-						<!--<img src="<?php echo get_template_directory_uri() ?>/images/tooltip.png"/>-->
+						<img src="<?php echo get_template_directory_uri() ?>/images/tooltip.png"/>
 					</div>
 					
 					<div class="tooltip-right-2">
@@ -423,20 +426,20 @@
 					</div>
 					
 					<div class="tooltip-right">
-					<!--<img src="<?php echo get_template_directory_uri() ?>/images/tooltip-right.png"/>-->
+					<img src="<?php /*echo get_template_directory_uri()*/ ?>/images/tooltip-right.png"/>
 						<div class="data">
 						<h4>Pick 'em here
 						<p class="data-content-3">Select the minyawns you feel are most suitable for your job.</p></h4>
 						</div>
 						
 					</div>
-                  <img src="<?php echo get_template_directory_uri() ?>/images/laptop-screen_min.jpg" class="img-center"/>
+                  <img src="<?php /*echo get_template_directory_uri()*/ ?>/images/laptop-screen_min.jpg" class="img-center"/>
                </div>
                <div class="tab-pane" id="profile"><br><br><br>
 				 <div class="row-fluid">
 						
 						<div class="span7">
-						<img src="<?php echo get_template_directory_uri() ?>/images/selection.jpg"/>
+						<img src="<?php /*echo get_template_directory_uri()*/ ?>/images/selection.jpg"/>
 						</div>
 						<div class="span4">
 						<br><br><br><br>
@@ -456,11 +459,11 @@
 						<div class="span1">
 						</div>
 						<div class="span5">
-						<img src="<?php echo get_template_directory_uri() ?>/images/paypal1.jpg"/>
+						<img src="<?php /*echo get_template_directory_uri()*/ ?>/images/paypal1.jpg"/>
 						</div>
 						<div class="span4">
 						<br><br><br><br>
-						<img src="<?php echo get_template_directory_uri() ?>/images/paypal2.jpg" class="img-center"/>
+						<img src="<?php /*echo get_template_directory_uri()*/ ?>/images/paypal2.jpg" class="img-center"/>
 						<br><br>
 						<p align="center" style="font-size: 15px;">You can pay with a credit card or check. We will bill you after the job is complete. We are partnered up with Paypal inc. and our transactions are fully secure.</p>
 						</div>
@@ -471,14 +474,14 @@
 				
 			   </div>
                <div class="tab-pane" id="settings">
-			   <img src="<?php echo get_template_directory_uri() ?>/images/minyawns-mobile.jpg" class="img-center"/>
+			   <img src="<?php /*echo get_template_directory_uri()*/ ?>/images/minyawns-mobile.jpg" class="img-center"/>
 			  
 			   </div>
             </div>
          </div>
       </div>
    </div>
-</div>
+</div> -->
 
 <div class="customer">
    <div class="bg-title-gray">
@@ -613,7 +616,35 @@
    
    </div>
 </div>
-</div> <div id="down-gray"></div>
+</div> 
+
+<!-- client section -->
+<div class="client-section">
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span12">
+				<h4 class="text-center client-section-title">Just some of our many Clients that have used Minyawns to find Reliable Workers</h4>
+				<img src="<?php echo get_template_directory_uri(); ?>/images/ClientsLogoBanner.jpg" alt=""/> 
+			</div>
+		</div>
+	</div>
+</div><!--/client-section-->
+<!-- /client section -->
+
+<!-- mailchimp -->
+<div id="mc_embed_signup">
+	<form action="//minyawns.us3.list-manage.com/subscribe/post?u=0660fd96b7b6a95cb7582944a&amp;id=9a257065b4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	    <div id="mc_embed_signup_scroll">
+		<label for="mce-EMAIL">Want to improve your professional skills? Sign up for tips on how to be business likable!</label>
+		<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+	    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+	    <div style="position: absolute; left: -5000px;"><input type="text" name="b_0660fd96b7b6a95cb7582944a_9a257065b4" tabindex="-1" value=""></div>
+	    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+	    </div>
+	</form>
+</div>
+<!-- /mailchimp -->
+<div id="down-gray"></div>
 <!--	<div class="customer_bg"><br>
 	 <div class="">
       <h3 class="heading-title">Have a look at some of the tasks posted</h3>
