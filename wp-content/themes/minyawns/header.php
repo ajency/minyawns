@@ -300,7 +300,7 @@ addthisevent.settings({
 								<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup as a Student </a> 
 							</div>
 							<div class="data-link">
-								<a  href="#myModal" data-toggle="modal" id="link_employerregister" onclick="return true"><i class="icon-signin"></i> Signup as a Business </a> 
+								<a  href="#myModalBiz" data-toggle="modal" id="link_employerregister" onclick="return true"><i class="icon-signin"></i> Signup as a Business </a> 
 							</div>
 								<div class="data-link">
 								<a <?php /*  commented on 19june2014 href="#mylogin"  ?> <?php if(is_page('fb-connect-test')){ */ ?>  href="#mylogin"   <?php  /* } else { ?>  href="<?php echo site_url()?>/wp-login.php"  <?php } */  ?>  data-toggle="modal" id="btn__login"><i class="icon-unlock-alt"></i> Login </a>
@@ -519,9 +519,9 @@ addthisevent.settings({
 	   <div class="modal-body">
 	  
 		  <div id="div_signupmsg" ></div>
-		  <div class="row-fluid">
-			 <div class="span5">
-				<form name="frm_signup"  id="frm_signup" action="" autocomplete="off">
+		  <!-- <div class="row-fluid">
+			 <div class="span5"> -->
+				<!-- <form name="frm_signup"  id="frm_signup" action="" autocomplete="off">
 				   <input type="hidden" name="signup_role" id="signup_role" value="" />
 				   <h6 class="align-center" style=" margin-bottom: 0px; ">
 					  Create an Account
@@ -546,6 +546,165 @@ addthisevent.settings({
 				   </div>
 				   <div class="clear"></div>
 				   <button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup"  type="button">Sign Up</button>
+				</form> -->
+			 <!-- </div>
+			  <div class="span1">
+				<b class="or">or</b>
+			  </div>
+			 <div class="span6">
+				<h6 class="align-center" style=" margin-bottom: 0px; ">
+				   Sign Up Using Facebook
+				</h6>
+				<p class="align-center">Get using Minyawns, faster !</p>
+				<br><br><br>
+				<?php
+				//if(is_page('fb-connect-test')){
+				   /*jfb_output_facebook_btn();*/
+				/*}
+				else{
+					echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
+				}*/
+				?>
+				<br><br>
+				<p class="align-center"><span id="div_alreadyregister">Already registered at Minyawns?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
+			 </div>
+		  </div> -->
+
+		  <!-- testing -->
+		   <form name="frm_signup"  id="frm_signup" action="" autocomplete="off">
+		   	<input type="hidden" name="signup_role" id="signup_role" value="" />
+			<h6 class="align-center" style=" margin-bottom: 0px; ">
+				Create an Account
+			</h6>
+		   <p class="align-center">Fill out the required information Below</p>
+		   <div class="row-fluid">
+		   	<div class="span5">
+		   		<div class="control-group ">
+					<input type="text" value="" name="signup_email"  id="signup_email"  placeholder="Email Address" class="span3">
+			   	</div>
+			   	<div class="control-group ">
+				  	<input type="password" value="" name="signup_password"  id="signup_password" onblur="this.placeholder = 'Password'"  onfocus="this.placeholder = ''" autocomplete="off"  placeholder="Password" class="span3">
+			   	</div>
+
+			   	<div class="row-fluid">
+			   		<div class="span6">
+			   			<div class="control-group" style=" margin-left: 0px; ">
+							<input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="First Name" class="span3">
+						</div>
+			   		</div>
+			   		<div class="span6">
+			   			<div class="control-group">
+						  	<input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Last Name" class="span3">
+					   	</div>
+			   		</div>
+			   	</div>
+		   	</div>
+		   	<div class="span5">
+		   		<div class="control-group ">
+					<input type="text" value="" name="telephone"  id="telephone_no"  placeholder="Telephone Number" class="span3">
+			   	</div>
+			   	<div class="control-group ">
+				  	<input type="text" value="" name="university"  id="university_name" placeholder="University Name" class="span3">
+			   	</div>
+			   	<div class="control-group ">
+				  	<input type="text" value="" name="major"  id="major_in" placeholder="Major" class="span3">
+			   	</div>
+		   	</div>
+		   	<div class="span2">
+		   		<p class="text-center m-b-0">Upload Photo</p>
+		   		<div id="avatar" class="<?php
+               
+               if (get_user_role() == 'employer') {
+                echo 'employer-image';
+            }
+            ?>">
+
+            <?php if(is_facebook_user() === 'false' && get_current_user_id() == get_user_id()){ ?>
+            <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
+              <?php } else { ?>
+               <a class="fancybox change-avtar" rel="group" href="<?php echo get_mn_user_avatar() ?>">
+              <?php } ?>
+              
+                <?php
+                
+                
+                if(get_mn_user_avatar() !== false){
+                    ?><img src="<?php echo get_mn_user_avatar() ?>"/> <?php 
+                    
+                }else{
+                    echo get_avatar(get_user_id(), 168 );
+                }
+                ?>
+            </a> <?php if(get_current_user_id() == get_user_id()){ ?>
+            <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal"><i class="icon-camera"></i></a>
+            <?php } ?>
+        </div>
+		   	</div>
+		   </div>
+
+		   <div class="row-fluid">
+		   	<div class="span4 offset4">
+		   		<button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup"  type="button">Sign Up</button>
+		   	</div>
+		   </div>
+		   
+		</form>
+
+		<div class="row-fluid">
+			<div class="span6">
+				<h6 class="align-center" style=" margin-bottom: 0px; ">
+				   Sign Up Using Facebook
+				</h6>
+				<p class="align-center">Get using Minyawns, faster !</p>
+			</div>
+			<div class="span6">
+				<?php
+				   jfb_output_facebook_btn();
+				?>
+				<br><br>
+				<p class="align-center"><span id="div_alreadyregister">Already registered at Minyawns?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
+			</div>
+		</div>
+		  <!-- testing -->
+		   <span id="div_signup_subheader"></span>
+	   </div>
+	</div>
+
+	<!-- new modal for business -->
+	<div id="myModalBiz" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
+	   <div class="modal-header">
+		  <button type="button" id="signup_popup_close" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
+		  <span id="div_signupheader"><h4 id="myModalLabel">Sign Up as an Employer</h4></span>
+	   </div>
+	   <div class="modal-body">
+	   	<div id="div_signupmsg" ></div>
+		  <div class="row-fluid">
+			 <div class="span5">
+				<form name="frm_signup-biz"  id="frm_signup-biz" action="" autocomplete="off">
+				   <input type="hidden" name="signup_role" id="signup_role" value="" />
+				   <h6 class="align-center" style=" margin-bottom: 0px; ">
+					  Create an Account
+				   </h6>
+				   <p class="align-center">Fill out the required information Below</p>
+				   <div class="control-group ">
+					  <input type="text" value="" name="signup_email"  id="signup_email"  placeholder="Email Address" class="span3">
+				   </div>
+				   <div class="control-group ">
+					  <input type="password" value="" name="signup_password"  id="signup_password" onblur="this.placeholder = 'Password'"  onfocus="this.placeholder = ''"
+								autocomplete="off"  placeholder="Password" class="span3">
+				   </div>
+				 
+				   <div class="control-group span6 " style=" margin-left: 0px; ">
+					  <input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="First Name" class="span3">
+				   </div>
+				   <div class="control-group span6 ">
+					  <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Last Name" class="span3">
+				   </div>
+					 <div class="control-group ">
+					  <input type="text" value="" name="signup_company"  id="signup_company"  placeholder="Company Name" class="span3">
+				   </div>
+				   <div class="clear"></div>
+				   <button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup-biz"  type="button">Sign Up</button>
 				</form>
 			 </div>
 			  <div class="span1">
@@ -569,9 +728,9 @@ addthisevent.settings({
 				<p class="align-center"><span id="div_alreadyregister">Already registered at Minyawns?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
 			 </div>
 		  </div>
-		   <span id="div_signup_subheader"></span>
 	   </div>
 	</div>
+	<!-- new modal for business -->
 
 	
 	<!--- chosse city-->
@@ -594,4 +753,45 @@ addthisevent.settings({
 		   <span id="div_signup_subheader"></span>
 	   </div>
 	</div>
+
+<!-- modal -->
+<div id="myprofilepic" class="modal hide fade cropimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <?php if (is_user_logged_in() == TRUE)  ?>
+        <h4 id="myModalLabel">Change Profile Pic</h4>
+
+    </div>
+    <input type="hidden" id="tab_identifier" />
+    <div class="modal-body">
+        <div style="margin:0 auto; width:500px">
+
+            <div id="thumbs" style="padding:5px; width:500px"></div>
+            <div style="width:500px" id="image_upload_body">
+
+                <form id="cropimage" method="post" enctype="multipart/form-data">
+                    <a type="button" class="btn btn-primary" id="done-cropping" style="display:none">Done? </a>
+                    Upload your image <input type="file" name="files" id="photoimg" data-user="<?php echo get_user_id(); ?>" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
+                    <br>
+                    <span id="div_cropmsg"> 
+                        <?php /* Please drag to select/crop your picture. */ ?>
+                        <p class="help-block meta">Upload an image for your profile.</p></br>
+                    </span>
+                </br>
+                <input type="hidden" name="image_name" id="image_name" value="" />
+                <img id="uploaded-image" ></img>
+                <input type="hidden"  id="image_height">
+                <input type="hidden"  id="image_width">
+                <input type="hidden"  id="image_x_axis">
+                <input type="hidden"  id="image_y_axis">
+                <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '2:1' : '1:1') ?>" id="aspect_ratio"> 
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- modal -->
 

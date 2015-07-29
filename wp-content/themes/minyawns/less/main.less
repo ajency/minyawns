@@ -8466,3 +8466,37 @@ a{
   display: none !important;
 }
 
+/*signup popup*/
+/*mixin*/
+.border-radius (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+}
+#avatar{
+	position: relative;
+    width: 100px;
+    height: 100px;
+    background: @gray;
+    .border-radius(10px);
+    img{
+    	width: 100px;
+    }
+    .change-avtar{
+    	position: absolute;
+	    text-align: center;
+	    display: block;
+	    font-weight: bold;
+	    bottom: 0px;
+    }
+    .avtar-btn{
+    	background: rgba(255, 255, 255, 0.9);
+	    font-size: 16px;
+	    margin-top: -60px;
+	    width: 30px;
+	    height: 30px;
+	    border-radius: 100%;
+	    line-height: 30px;
+	    margin-left: 4px;
+    }
+}

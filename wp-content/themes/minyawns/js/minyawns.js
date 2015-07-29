@@ -1385,7 +1385,7 @@ var image_name=$("#image_name").val();
     function setup_minionsignup_modal()
     {
         jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up as a Minion</h4>');
-        jQuery("#div_signup_subheader").html('Not a Minion? Go ahead sign up to get one <a href="#" id="show_employerreg">here</a>');
+        //jQuery("#div_signup_subheader").html('Not a Minion? Go ahead sign up to get one <a href="#" id="show_employerreg">here</a>');
         jQuery("#signup_role").val('minyawn');
         if (jQuery("#usr_role").length > 0)
         {
@@ -1480,6 +1480,13 @@ $(document.body).on('keyup', '#myModal', function(e) {
   }
 });
 
+//on enter key press trigger form submission Business
+$(document.body).on('keyup', '#myModalBiz', function(e) { 
+  if (e.keyCode == 13) {
+    $("#btn_signup-biz").trigger('click')
+  }
+});
+
 //on enter key press trigger form submission
 $(document.body).on('keyup', '#mylogin', function(e) {  
   if (e.keyCode == 13) { 
@@ -1545,6 +1552,67 @@ jQuery(document.body).on('click', '#btn_signup', function(e) {
 
     });
     /*END POPUP SIGNUP */
+
+    // biz popup
+    jQuery(document.body).on('click', '#btn_signup-biz', function(e) {   
+        jQuery('#frm_signup-biz').submit();
+    })
+
+    var validator_signup = $('#frm_signup-biz').validate({
+        rules: {
+            'signup_password': {
+                required: true,
+                minlength: 3
+            },
+            'signup_email': {
+                required: true,
+                minlength: 6,
+                email: true
+            },
+            'signup_fname': {
+                required: true,
+                minlength: 2
+            },
+            'signup_lname': {
+                required: true,
+                minlength: 2
+            }
+
+        },
+        submitHandler: function(form) {
+
+            jQuery("#div_signupmsg").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50' class='img-center'/>");
+            jQuery.post(ajaxurl, {
+                action: 'popup_usersignup',
+                //data :  data 
+                pdemail_: jQuery("#signup_email").val(),
+                pdpass_: jQuery("#signup_password").val(),
+                pdfname_: jQuery("#signup_fname").val(),
+                pdlname_: jQuery("#signup_lname").val(),
+                pdcompany_: jQuery("#signup_company").val(),
+                pdrole_: jQuery("#signup_role").val()
+            },
+            function(response) {
+                console.log(response);
+                if (response.success == true)
+                {
+                    jQuery("#div_signupmsg").html(response.msg);
+                    jQuery("#signup_email").val("");
+                    jQuery("#signup_password").val("");
+                    jQuery("#signup_fname").val("");
+                    jQuery("#signup_lname").val("");
+                    window.location.href = SITEURL+'/profile/';
+                }
+                else
+                {
+                    jQuery("#div_signupmsg").html(response.msg);
+                }
+            })
+            return false;
+        }
+
+    });
+    // biz popup ends
 
 $(document.body).on('click', '.edit-job-data', function(e) {   
 
