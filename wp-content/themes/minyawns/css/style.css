@@ -1476,6 +1476,7 @@ font-size: 16px;
 }
 .popover-box{
     position: absolute;
+    left: 0;
   	bottom: 85px;
     background: #777272;
     width: 100%;

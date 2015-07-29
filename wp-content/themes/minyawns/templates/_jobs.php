@@ -788,7 +788,7 @@ echo $payment_button; ?></span>
               </div>
 
               <div class="squaredTwo">
-                <input type="checkbox" value="None" id="squaredTwo" name="check" />
+                <input type="checkbox" value="1" id="squaredTwo" name="same" />
                 <label for="squaredTwo" class="text-warning">Showed up Late</label>
               </div>
             </div>
@@ -801,7 +801,7 @@ echo $payment_button; ?></span>
               </div>
 
               <div class="squaredTwo">
-                <input type="checkbox" value="None" id="squaredTwoo" name="check" />
+                <input type="checkbox" value="1" id="squaredTwoo" name="same" />
                 <label for="squaredTwoo" class="text-warning">Did not Show up</label>
               </div>
             </div>
