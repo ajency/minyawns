@@ -283,9 +283,9 @@ jQuery('#example').popover(
 
 </div>
 <div class="span10">
-  
-  
- <h4 class="name"> <?php
+  <div class="row-fluid">
+    <div class="span6">
+      <h4 class="name"> <?php
  if (get_user_role() === "employer") {
     echo user_profile_company_name();
     $display_name = user_profile_company_name();
@@ -298,7 +298,7 @@ jQuery('#example').popover(
 
     <?php
     
-    if(is_user_verified()=== 'Y'){ ?>	
+    if(is_user_verified()=== 'Y'){ ?> 
     <span class="minyawnverified"><img src="<?php echo get_template_directory_uri(); ?>/images/verify.png"  style="margin-top: -7px;"/> Minyawn verified </span> 
     
     <i class="icon-question-sign verfied-help"  id="example"></i> 
@@ -306,7 +306,42 @@ jQuery('#example').popover(
 
     
 
-</h4> 
+</h4>
+    </div>
+    <div class="span6 cust-span6">
+      <div class="min-job-details">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="jobs-completed">
+        <div class="job-no">07</div>
+        <div class="job-status">Completed</div>
+        <p>Jobs</p>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="time-warp">
+        <div class="time-circle">100%</div>
+        <p>On time</p>
+      </div>
+      
+    </div>
+    <div class="span4">
+    <div class="missed-job">
+      <div class="missed-job-no">
+        5
+      </div>
+      <p>Missed Job</p>
+    </div>
+    
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+  
+ 
+
+<div class="clearfix"></div> 
 <?php if (get_user_role() === 'minyawn'): ?>
     <?php echo user_college(); ?>
 <?php endif; ?> 

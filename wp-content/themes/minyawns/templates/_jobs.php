@@ -689,20 +689,55 @@ echo $payment_button; ?></span>
               <div class="span12">
                 <h4 class="min-name"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
     
-                  <div class="collage"> <%= result.college%> </div><hr class="m-0">
-                  <div class="collage align-left major"> <%= result.major%> </div>
-                  <div class="social-link align-left">
-
-                   <% if (is_logged_in === '1'){ %>
-                  <%= result.user_email %>
-                  <%}%>
-
-
+                  <div class="collage"> <%= result.college%> </div>
+                  <div class="row-fluid major-email">
+                    <div class="span6">
+                      <div class="collage align-left major"> <%= result.major%> </div>
+                    </div>
+                    <div class="span6">
+                      <div class="social-link align-left">
+                        <% if (is_logged_in === '1'){ %>
+                        <%= result.user_email %>
+                        <%}%>
+                      </div>
+                    </div>
                   </div>
               </div>
              
     </div>
+    <!--<hr class="m-0">-->
 <!--testing ends-->
+
+
+
+<!--new feature-->
+<div class="row-fluid">
+  <div class="span4">
+    <div class="jobs-completed">
+      <div class="job-no">07</div>
+      <div class="job-status">Completed</div>
+      <p>Jobs</p>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="time-warp">
+      <div class="time-circle">100%</div>
+      <p>On time</p>
+    </div>
+    
+  </div>
+  <div class="span4">
+  <div class="missed-job">
+    <div class="missed-job-no">
+      5
+    </div>
+    <p>Missed Job</p>
+  </div>
+  
+  </div>
+</div>
+<div class="clearfix"></div>
+<!--/new feature-->
 
 <!--tags-->
 <div class="row-fluid">
@@ -744,6 +779,51 @@ echo $payment_button; ?></span>
   <div class="col-md-12">
     <div class="asd">
         <%= select_button %>
+        <!--test-->
+        <a class="btn btn-small btn-block btn-popover">Rate this Minyawn</a>
+        <div class="popover-box">
+        <p>Kindly Select the applicable feedback for this minyawn</p>
+
+        
+
+        <!--rate-->
+        <div class="rate-minyawn">
+          <div class="row">
+
+            <div class="span6">
+              <div class="form-group">
+                <input type="radio" id="f-option" name="selector">
+                <label for="f-option" class="text-success">Good Job</label>
+                <div class="check"></div>
+              </div>
+
+              <div class="squaredTwo">
+                <input type="checkbox" value="None" id="squaredTwo" name="check" />
+                <label for="squaredTwo" class="text-warning">Showed up Late</label>
+              </div>
+            </div>
+
+            <div class="span6">
+              <div class="form-group">
+                <input type="radio" id="s-option" name="selector">
+                <label for="s-option" class="text-danger">Bad Job</label>
+                <div class="check"></div>
+              </div>
+
+              <div class="squaredTwo">
+                <input type="checkbox" value="None" id="squaredTwoo" name="check" />
+                <label for="squaredTwoo" class="text-warning">Did not Show up</label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!--/rate-->
+          <textarea maxlength="160" placeholder="Write your Comments/Feedback here"></textarea>
+          <div class="maxchar">Max charector 160</div>
+          <input type="button" value="submit" class="btn green-btn rate-button rate-negative">
+        </div>
+        <!--test-->
     </div>
   </div>
 </div>
