@@ -487,7 +487,7 @@ endif;
     <br>
 
      <?php if (get_user_role() == 'employer'){ ?>
-    <ul class="unstyled job-view-list" id="accordion24">
+    <ul class="unstyled job-view-list  test" id="accordion24">
       <dl class="accordion">
        
         <a href="#" class="btn load-btn" style="width:99%;"><i class="icon-undo"></i> Load more</a>
@@ -570,6 +570,10 @@ foreach($testimonials as $testimonial){
         <?php }else{ ?>
         <div></div>
         <?php } ?>
+        
+        <!--notifications-->
+        <div class="notification"><i class="icon-time"></i> Arrived on time</div>
+        <div class="notification"><i class="icon-time"></i> Arrived late</div>
          
      </div>
 
