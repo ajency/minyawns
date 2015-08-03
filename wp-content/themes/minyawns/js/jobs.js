@@ -1941,19 +1941,21 @@ if(USER.user_login == 'admin'){
         .addClass('minyans-select');
     selectButton += "<div class='dwn-btn'><div class='row-fluid' id='rating_container" + model.toJSON()
         .user_id + "'><div class='span12'><a id='vote-up" + model.toJSON()
-        .user_id + "' class='btn btn-small btn-block  btn-success well-done' href='#like' is_rated='0' vote='1'   job-id='" + jobmodel.toJSON()
+        .user_id + "' class='btn btn-small btn-block btn-popover well-done' href='#like' is_rated='0' vote='1'   job-id='" + jobmodel.toJSON()
         .post_id + "' user_id='" + model.toJSON()
-        .user_id + "' action='vote-up' emp_id='" + empid + "'>+1 Well Done</a></div></div>"
-    selectButton += "</div><div class='row-fluid'><div class='span12'><a id='vote-down" + model.toJSON()
-        .user_id + "' class='btn btn-small btn-block  btn-danger terrible' href='#like' is_rated='0' vote='-1'   job-id='" + jobmodel.toJSON()
-        .post_id + "' user_id='" + model.toJSON()
-        .user_id + "' action='vote-down' emp_id='" + empid + "'>";
-    selectButton += "-1 Terrible Job</a></div></div><div class='popover-box' id='review-box" + model.toJSON()
-        .user_id + "' style='display:none'><textarea type='text' id='review-text" + model.toJSON()
-        .user_id + "' class='' maxlength='160'/><div class='maxchar'>Max charector 160</div><input type='button' value='submit' class='rate-negative rate-button btn btn-medium btn-block green-btn btn-success' id='review" + model.toJSON()
-        .user_id + "' user-id='" + model.toJSON()
-        .user_id + "' job-id='" + jobmodel.toJSON()
-        .post_id + "' emp_id='" + empid + "' action='' vote='' ></input></div></div>";
+        .user_id + "' action='vote-up' emp_id='" + empid + "'>Rate this Minyawn</a></div></div>"
+    selectButton += "</div>";
+    selectButton += "<div class='popover-box' id='review-box" + model.toJSON()
+        .user_id + "' style='display:none'><p>Kindly Select the applicable feedback for this minyawn</p>";
+        selectButton += "<div class='rate-minyawn'><div class='row'>";
+        selectButton += "<div class='span6'><div class='form-group'><input type='radio' value='1' id='f-option_" + model.toJSON().user_id + "' name='selector_" + model.toJSON().user_id + "'><label for='f-option_" + model.toJSON().user_id + "' class='text-success'>Good Job</label><div class='check'></div></div>";
+        selectButton += "<div class='squaredTwo'><input type='checkbox' value='L' id='squaredTwo_" + model.toJSON().user_id + "' name='check_" + model.toJSON().user_id + "' /><label for='squaredTwo_" + model.toJSON().user_id + "' class='text-warning'>Showed up Late</label></div></div>";
+        selectButton += "<div class='span6'><div class='form-group'><input type='radio' value='-1' id='s-option_" + model.toJSON().user_id + "' name='selector_" + model.toJSON().user_id + "'><label for='s-option_" + model.toJSON().user_id + "' class='text-danger'>Bad Job</label><div class='check'></div></div>";
+        selectButton += "<div class='squaredTwo'><input type='checkbox' value='M' id='squaredTwoo_" + model.toJSON().user_id + "' name='check_" + model.toJSON().user_id + "' /><label for='squaredTwoo_" + model.toJSON().user_id + "' class='text-warning'>Did not Show up</label></div></div>";
+        selectButton += "</div></div>";
+        selectButton += "<textarea name='comment_" + model.toJSON().user_id + "' id='comment_" + model.toJSON().user_id + "' maxlength='160' placeholder='Write your Comments/Feedback here'></textarea><div class='maxchar'>Max charector 160</div><input type='button' value='submit' class='btn green-btn rate-button-new rate-negative' user-id='" + model.toJSON().user_id + "' job-id='" + jobmodel.toJSON().post_id + "' emp_id='" + empid + "' action='' vote=''></div>";
+        selectButton += "</div></div>";
+        selectButton += "</div><div class='clearfix'></div>";
 
 
 }
@@ -2175,4 +2177,26 @@ $(".tag a").on('click', function() {
 
     $(this).parent().remove();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//New Rating Feature
+function showRatingPop(id){
+$('#rating_pop_'+id).toggle( "slow", function() {
+    // Animation complete.
+
+  });
+$(this).hide();
+}
 

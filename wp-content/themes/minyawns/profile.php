@@ -313,14 +313,14 @@ jQuery('#example').popover(
   <div class="row-fluid">
     <div class="span4">
       <div class="jobs-completed">
-        <div class="job-no">07</div>
+        <div class="job-no"><?php echo get_user_completed_job(); ?></div>
         <div class="job-status">Completed</div>
         <p>Jobs</p>
       </div>
     </div>
     <div class="span4">
       <div class="time-warp">
-        <div class="time-circle">100%</div>
+        <div class="time-circle"><?php echo get_user_punctuality_percent(); ?></div>
         <p>On time</p>
       </div>
       
@@ -328,7 +328,7 @@ jQuery('#example').popover(
     <div class="span4">
     <div class="missed-job">
       <div class="missed-job-no">
-        5
+        <?php echo get_user_missed_job(); ?>
       </div>
       <p>Missed Job</p>
     </div>
@@ -565,8 +565,10 @@ foreach($testimonials as $testimonial){
         <?php
         if($testimonial['rating'] == '1'){ ?>
         <div class="well-done" id="mf197"><i class="icon-thumbs-up" id="mf198"></i>You Have Been Rated <br id="mf199"><b id="mf200">Well Done</b><div class="clear" id="mf201"></div><div id="mf202">  
-        <?php }else{ ?>
+        <?php }else if($testimonial['rating'] == '-1'){ ?>
         <div class="terrible" id="mf197"><i class="icon-thumbs-down" id="mf198"></i>You Have Been Rated <br id="mf199"><b id="mf200">Terrible</b><div class="clear" id="mf201"></div><div id="mf202">  
+        <?php }else{ ?>
+        <div></div>
         <?php } ?>
          
      </div>

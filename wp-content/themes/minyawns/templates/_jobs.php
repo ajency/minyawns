@@ -714,14 +714,14 @@ echo $payment_button; ?></span>
 <div class="row-fluid">
   <div class="span4">
     <div class="jobs-completed">
-      <div class="job-no">07</div>
+      <div class="job-no"><%= result.completed_job%></div>
       <div class="job-status">Completed</div>
       <p>Jobs</p>
     </div>
   </div>
   <div class="span4">
     <div class="time-warp">
-      <div class="time-circle">100%</div>
+      <div class="time-circle"><%= result.punctuality_percent%></div>
       <p>On time</p>
     </div>
     
@@ -729,7 +729,7 @@ echo $payment_button; ?></span>
   <div class="span4">
   <div class="missed-job">
     <div class="missed-job-no">
-      5
+     <%= result.missed_job%>
     </div>
     <p>Missed Job</p>
   </div>
@@ -775,64 +775,40 @@ echo $payment_button; ?></span>
   </div>
 </div>
 
+
+
+<%= result.job_owner_id %>
+
 <div class="row-fluid">
   <div class="col-md-12">
     <div class="asd">
         <%= select_button %>
         <!--test-->
-        <a class="btn btn-small btn-block btn-popover">Rate this Minyawn</a>
-        <div class="popover-box">
-        <p>Kindly Select the applicable feedback for this minyawn</p>
 
-        
+     
 
-        <!--rate-->
-        <div class="rate-minyawn">
-          <div class="row">
 
-            <div class="span6">
-              <div class="form-group">
-                <input type="radio" id="f-option" name="selector">
-                <label for="f-option" class="text-success">Good Job</label>
-                <div class="check"></div>
-              </div>
 
-              <div class="squaredTwo">
-                <input type="checkbox" value="None" id="squaredTwo" name="check" />
-                <label for="squaredTwo" class="text-warning">Showed up Late</label>
-              </div>
-            </div>
-
-            <div class="span6">
-              <div class="form-group">
-                <input type="radio" id="s-option" name="selector">
-                <label for="s-option" class="text-danger">Bad Job</label>
-                <div class="check"></div>
-              </div>
-
-              <div class="squaredTwo">
-                <input type="checkbox" value="None" id="squaredTwoo" name="check" />
-                <label for="squaredTwoo" class="text-warning">Did not Show up</label>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <!--/rate-->
-          <textarea maxlength="160" placeholder="Write your Comments/Feedback here"></textarea>
-          <div class="maxchar">Max charector 160</div>
-          <input type="button" value="submit" class="btn green-btn rate-button rate-negative">
-        </div>
-        <!--test-->
-    </div>
-  </div>
-</div>
-<div class="clearfix"></div>
       
 
     <div class="dwn-btn review_popover">
-      <%= ratings_button %>
-<!--  <%  if(result.comment !== 0){ %><div  class="comment-box"> <i class="icon-thumbs-up weldone"></i> <%= result.comment %></div><% }else{%><div  class="comment-box"> <i class="icon-thumbs-down terrible"></i> <%= result.comment %></div><%}%>-->
+      <!--<%= ratings_button %>-->
+  <%  if(result.is_user_rated == 'yes'){ %>
+
+    <% if(result.user_punctuality == 'L' || result.user_punctuality == 'M'){ %>
+    <div  class="comment-box"> 
+    <% if(result.user_punctuality == 'L'){ %><i class="icon-time terrible"></i> <span class="ratetext">Showed up Late</span><% } %>
+    <% if(result.user_punctuality == 'M'){ %><i class="icon-ban-circle terrible"></i> <span class="ratetext">Did not show up</span><% } %>
+    </div>
+    <% } %>
+
+    <div  class="comment-box">
+    <%  if(result.rating_status == 1){ %><i class="icon-thumbs-up weldone"></i><% } %>
+    <%  if(result.rating_status == -1){ %><i class="icon-thumbs-down terrible"></i><% } %> 
+    <span class="ratetext"><%= result.comment %></span>
+    </div>
+
+    <% } %>
    </div>
       
   

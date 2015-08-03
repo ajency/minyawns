@@ -3897,4 +3897,74 @@ function get_all_city(){
 
 
 
+function get_missed_job($user_id){
+    global $wpdb;
+    $missed_count = $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->prefix}userjobs WHERE user_id=$user_id AND punctuality='M'" );
+    return $missed_count;
+}
+
+function get_completed_job($user_id){
+    global $wpdb;
+    $jobs = $wpdb->get_results( "SELECT job_id FROM {$wpdb->prefix}userjobs WHERE user_id=$user_id AND status='hired'" );
+    $completed = array();
+    foreach($jobs as $job){
+        $start_date_time = get_post_meta($job->job_id,'job_start_date_time',true);
+        if ($start_date_time < current_time('timestamp')) {
+            $completed[] = 'yes';
+        }
+        
+    }
+    return count($completed)-get_missed_job($user_id);
+}
+
+function get_punctuality_percent($user_id){
+    global $wpdb;
+    $late_count = $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->prefix}userjobs WHERE user_id=$user_id AND punctuality='L'" );
+    $total_count = get_completed_job($user_id);
+    $on_time = $total_count-$late_count;
+    if($total_count > 0){
+        $percent = ($on_time/$total_count)*100;
+    }else{
+        $percent = 100;
+    }
+    return $percent.'%';
+}
+
+
+function is_user_rated($user_id,$job_id){
+global $wpdb;
+$comment_id = $wpdb->get_var( "SELECT id FROM {$wpdb->prefix}userjobs WHERE user_id=$user_id AND job_id=$job_id" );
+$comment = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}comments WHERE comment_post_ID=$comment_id" );
+if(count($comment) > 0){
+return true;
+}else{
+return false;
+}
+}
+
+
+function get_rating_status($user_id,$job_id){
+ global $wpdb;
+ $job_user = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id=$user_id AND job_id=$job_id" );
+ return $job_user->rating;
+}
+
+
+function get_user_punctuality($user_id,$job_id){
+ global $wpdb;
+ $job_user = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id=$user_id AND job_id=$job_id" );
+ return $job_user->punctuality;
+}
+
+
+//add_action('init','rating_status');
+
+
+
+
+
+
+
+
+
 

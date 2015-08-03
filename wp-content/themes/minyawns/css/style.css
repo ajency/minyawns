@@ -1435,6 +1435,13 @@ font-size: 22px;
 float: left;
 padding: 5px;
 }
+
+.single-view .review_popover .comment-box span.ratetext {
+	color: #979797;
+	text-align: left;
+	padding-top: 5px;
+	display: block;
+}
 .single-view .review_popover .comment-box {
 /*padding-top:5px;
 padding-bottom:5px;*/

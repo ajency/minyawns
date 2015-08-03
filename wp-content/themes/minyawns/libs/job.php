@@ -397,6 +397,8 @@ foreach ($pageposts as $pagepost) {
                     $rating_done = 'no';
                }
 
+               
+
 
                 /*
                  *  1 ->running
@@ -801,6 +803,18 @@ $app->get('/jobminions/', function() use ($app) {
                      }
 
 
+                     $missed_job = get_missed_job($minion_ids[$i]);
+                     $completed_job = get_completed_job($minion_ids[$i]);
+                     $punctuality_percent = get_punctuality_percent($minion_ids[$i]);
+
+
+                     if(is_user_rated($minion_ids[$i],$_GET['job_id'])){
+                        $user_rated = 'yes';
+                    }else{
+                        $user_rated = 'no';
+                    }
+
+
 
 
 $user_email=get_userdata($minion_ids[$i]);
@@ -815,6 +829,12 @@ $user_email=get_userdata($minion_ids[$i]);
                         'user_email' =>$user_email->user_email, /* nick name temp fix */
                         'rating_positive' => $user_rating,
                         'rating_negative' => $user_dislike,
+                        'missed_job' => $missed_job,
+                        'completed_job' => $completed_job,
+                        'punctuality_percent' => $punctuality_percent,
+                        'is_user_rated' => $user_rated,
+                        'rating_status' => get_rating_status($minion_ids[$i],$_GET['job_id']),
+                        'user_punctuality' => get_user_punctuality($minion_ids[$i],$_GET['job_id']),
                         'user_image' => $user_pic_img_src,
                         'user_to_job_rating_like' => $user_to_job_rating->positive,
                         'user_to_job_rating_dislike' => $user_to_job_rating->negative,
@@ -966,6 +986,114 @@ $app->map('/inviteminions', function() use($app) {
         })->via('GET', 'POST', 'PUT', 'DELETE');
 
 
+
+
+
+
+
+
+
+
+
+$app->map('/user-vote-new', function() use ($app) {
+            global $wpdb;
+
+            if(!isset($_POST['punctuality'])){
+                $punctuality = NULL;
+            }else{
+             $punctuality = trim($_POST['punctuality']);
+            }
+
+            if(!isset($_POST['rating'])){
+                $rating = 0;
+            }else{
+             $rating = trim($_POST['rating']);
+            }  
+
+
+            
+            $wpdb->update( 
+                $wpdb->prefix.'userjobs', 
+                array( 'rating' => $rating, 'punctuality' => $punctuality),
+                array( 'user_id' => trim($_POST['user_id']), 'job_id' => trim($_POST['job_id']) )
+                );
+
+
+            $id_sql = $wpdb->prepare("SELECT id from {$wpdb->prefix}userjobs  WHERE user_id = '" . trim($_POST['user_id']) . "' 
+        AND job_id = '" . trim($_POST['job_id']) . "'");
+
+
+            $last_id = $wpdb->get_row($id_sql);
+
+            if (strlen($_POST['comment']) > 0) {
+                $ip = getenv('HTTP_CLIENT_IP')?:
+                getenv('HTTP_X_FORWARDED_FOR')?:
+                getenv('HTTP_X_FORWARDED')?:
+                getenv('HTTP_FORWARDED_FOR')?:
+                getenv('HTTP_FORWARDED')?:
+                getenv('REMOTE_ADDR');
+                $data = array(
+                    'comment_post_ID' => $last_id->id,
+                    'comment_content' => trim($_POST['comment']),
+                    'comment_type' => 'review',
+                    'comment_parent' => 0,
+                    'user_id' => trim($_POST['emp_id']),
+                    'comment_author_IP' => $ip,
+                    'comment_agent' => $_SERVER['HTTP_USER_AGENT'],
+                    'comment_approved' => 1,
+                );
+            }
+            wp_insert_comment($data);
+
+
+
+
+            $sql = $wpdb->prepare("SELECT {$wpdb->prefix}userjobs.user_id,{$wpdb->prefix}userjobs.job_id, SUM( if( rating =1, 1, 0 ) ) AS positive, SUM( if( rating = -1, 1, 0 ) ) AS negative
+                              FROM {$wpdb->prefix}userjobs
+                              WHERE {$wpdb->prefix}userjobs.user_id = %d AND {$wpdb->prefix}userjobs.job_id
+                              GROUP BY {$wpdb->prefix}userjobs.user_id", $_POST['user_id'], $_POST['job_id']);
+
+            $minyawns_rating = $wpdb->get_row($sql);
+
+
+            $rating_good = $minyawns_rating->positive;
+            $rating_bad = $minyawns_rating->negative;
+            $missed_job = get_missed_job(trim($_POST['user_id']));
+            $completed_job = get_completed_job(trim($_POST['user_id']));
+            $punctuality_percent = get_punctuality_percent(trim($_POST['user_id']));
+            $comment = $_POST['comment'];
+            $rating_status = get_rating_status($_POST['user_id'],$_POST['job_id']);
+            $user_punctuality = get_user_punctuality($_POST['user_id'],$_POST['job_id']);
+
+
+
+echo json_encode(array(
+    'rating_good'=>$rating_good, 
+    'rating_bad'=>$rating_bad, 
+    'user_id' => $_POST['user_id'], 
+    'review' => $_POST['comment'],
+    'missed_job' => $missed_job,
+    'completed_job' => $completed_job,
+    'punctuality_percent' => $punctuality_percent,
+    'rating_status' => $rating_status,
+    'user_punctuality' => $user_punctuality
+    ));
+
+})->via('GET', 'POST', 'PUT', 'DELETE');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $app->run();
 
 function send_invite($jobid, $userid) {
@@ -1072,3 +1200,12 @@ function get_activejobs($flag) {
 
     return $data;
 }
+
+
+
+
+
+
+
+
+

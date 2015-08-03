@@ -2336,7 +2336,12 @@ $(document.body).on('click', '.well-done,.terrible', function(evt) {
 
     });
 
-$(document.body).on('click', '.rate-button', function() {  
+
+
+
+
+$(document.body).on('click', '.rate-button', function() {
+
     
 //alert('rate button clicked');
       //  alert('rate button')
@@ -2778,6 +2783,93 @@ $.fn.usphone = function()
 
 
 
+
+
+
+
+
+
+  $(document.body).on('click', '.popover-box input:checkbox', function() {
+   var box = $(this);
+   if (box.is(":checked")) {
+
+    var group = "input:checkbox[name='" + box.attr("name") + "']";
+    
+    $(group).prop("checked", false);
+    box.prop("checked", true);
+} else {
+    box.prop("checked", false);
+}
+});
+
+
+
+
+
+$(document.body).on('click', '.rate-button-new', function() {
+
+    var _punctuality = null;
+
+    var _user_id = $(this).attr('user-id');
+    var _job_id = $(this).attr('job-id');
+    var _emp_id = $(this).attr('emp_id');
+    var _comment = $("#comment_" + _user_id).val();
+    _punctuality = $("input[name=check_"+_user_id+"]:checked").val();
+    var _rating = $("#review-box"+_user_id+" input[type='radio']:checked").val();
+
+    if(_comment == ''){
+        alert('Comment is required.');
+        return false;
+    }
+
+$.post( SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote-new',
+ { 
+     rating: _rating,
+     job_id: _job_id,
+     user_id: _user_id,
+     punctuality: _punctuality,
+     emp_id: _emp_id,
+     comment: _comment 
+})
+  .done(function( data ) {
+ 
+var result = JSON.parse(data);
+
+var rating_text = '';
+if(result.user_punctuality == 'L' || result.user_punctuality == 'M'){
+    rating_text += '<div  class="comment-box">'; 
+    if(result.user_punctuality == 'L'){ 
+        rating_text += '<i class="icon-time terrible"></i> <span class="ratetext">Showed up Late</span>';
+    }else if(result.user_punctuality == 'M'){
+        rating_text += '<i class="icon-ban-circle terrible"></i> <span class="ratetext">Did not show up</span>';
+    }
+    rating_text += '</div>';
+}
+
+rating_text += '<div  class="comment-box">';
+if(result.rating_status == 1){
+    rating_text += '<i class="icon-thumbs-up weldone"></i>';
+}else if(result.rating_status == -1){
+    rating_text += '<i class="icon-thumbs-down terrible"></i>';
+}
+rating_text += '<span class="ratetext">'+result.review+'</span>';
+rating_text += '</div>';
+
+
+
+ $("#"+_user_id+" .job-no").html(result.completed_job); 
+ $("#"+_user_id+" .time-circle").html(result.punctuality_percent);
+ $("#"+_user_id+" .missed-job-no").html(result.missed_job);
+ $("#"+_user_id+" .thumbs_up_counts").html(result.rating_good);
+ $("#"+_user_id+" .thumbs_down_counts").html(result.rating_bad);
+ $("#"+_user_id+" .review_popover").html(rating_text); 
+
+$("#rating_container"+_user_id).hide();
+$("#review-box"+_user_id).hide();
+  });
+
+
+});
 
 
 

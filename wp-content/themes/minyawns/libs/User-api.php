@@ -224,6 +224,28 @@ function get_user_profile_first_name() {
     return $current_user_new->data->first_name;
 }
 
+
+
+
+function get_user_missed_job(){
+global $current_user_new;
+return get_missed_job($current_user_new->data->ID);
+}
+
+function get_user_completed_job(){
+global $current_user_new;
+return get_completed_job($current_user_new->data->ID);
+}
+
+function get_user_punctuality_percent(){
+global $current_user_new;
+return get_punctuality_percent($current_user_new->data->ID);
+}
+
+
+
+
+
 //User profile last name
 function user_profile_last_name() {
     return get_user_profile_last_name();
@@ -874,6 +896,8 @@ function get_minyawn_profile($userData,$total)
                         $user_rating = $rating->positive;
                         $user_dislike = $rating->negative;
                     }
+
+                    $missed_job = 0;
 
                     $user_profile_pic = isset($user_meta['avatar_attachment']) ? trim($user_meta['avatar_attachment'][0]) : false;
 
