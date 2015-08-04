@@ -3733,6 +3733,7 @@ if($comments){
 
     $testimonials[] = array(
         'rating'    => $rating->rating,
+        'punctuality' => $rating->punctuality,
         'comment'   => $comments[0]->comment_content,
         'employer'  => array(
             'name'  => $employer,
@@ -3927,7 +3928,7 @@ function get_punctuality_percent($user_id){
     }else{
         $percent = 100;
     }
-    return $percent.'%';
+    return round($percent).'%';
 }
 
 

@@ -1067,6 +1067,64 @@ $app->map('/user-vote-new', function() use ($app) {
 
 
 
+
+
+
+            $userr = new WP_User( $_POST['emp_id'] );
+            if($userr->roles[0] == 'administrator'){
+                $thisjob = get_post($_POST['job_id']);
+                $emp_data = get_userdata($thisjob->post_author);
+            }else{
+                $emp_data = get_userdata($_POST['emp_id']);
+            }
+
+           
+            $emp_name = get_user_meta($emp_data->ID, 'company_name', true);
+            $emp_id = $emp_data->ID;
+
+
+            //get minyawns details
+            $min_data = get_userdata($_POST['user_id']);
+            $min_name = ucfirst($min_data->display_name);
+            $min_email = $min_data->user_email;
+
+
+
+            if ($_POST['action'] == "vote-up") {
+                $like_count = $rating_good;
+                $mail_subject = "Minyawns - You have received a Thumbs Up. ";
+                $mail_message = "Hi <a href='" . site_url() . "/profile/" . $_POST['user_id'] . "'>" . $min_name . "</a>,<br/><br/> 
+                        Congratulations, <br/><br/>
+
+                        You have received Thumbs Up from <a href='" . site_url() . "/profile/" . $emp_id . "'>" . $emp_name . "</a><br/>
+                        Great Job! Keep it up.      <br/><br/>
+                        To visit Minyawns site, <a href='" . site_url() . "/'>Click here</a>. <br/><br/<br/>
+                        
+                        ";
+            } else {
+                $like_count = $rating_bad;
+                $mail_subject = "Minyawns - You have received Thumbs Down. ";
+                $mail_message = "Hi <a href='" . site_url() . "/profile/" . $_POST['user_id'] . "'>" . $min_name . "</a>,<br/><br/>                     
+                        You have received Thumbs Down from  <a href='" . site_url() . "/profile/" . $emp_id . "'>" . $emp_name . "</a><br/>
+                        Put little more efforts to receive Thumbs Up.<br/><br/>
+                        To visit Minyawns site, <a href='" . site_url() . "/'>Click here</a>. <br/><br/<br/>                    
+                        
+                        ";
+            }
+
+
+
+            //send mail to minyawn for vote-up & vote down
+            add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+            $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+            wp_mail($min_email, $mail_subject, email_header() . $mail_message . email_signature(), $headers);
+
+
+
+
+
+
+
 echo json_encode(array(
     'rating_good'=>$rating_good, 
     'rating_bad'=>$rating_bad, 

@@ -2822,6 +2822,8 @@ $(document.body).on('click', '.rate-button-new', function() {
         return false;
     }
 
+    $("#rating-loader_"+_user_id).show();
+
 $.post( SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote-new',
  { 
      rating: _rating,
@@ -2832,6 +2834,7 @@ $.post( SITEURL + '/wp-content/themes/minyawns/libs/job.php/user-vote-new',
      comment: _comment 
 })
   .done(function( data ) {
+
  
 var result = JSON.parse(data);
 
@@ -2863,6 +2866,8 @@ rating_text += '</div>';
  $("#"+_user_id+" .thumbs_up_counts").html(result.rating_good);
  $("#"+_user_id+" .thumbs_down_counts").html(result.rating_bad);
  $("#"+_user_id+" .review_popover").html(rating_text); 
+
+ $("#rating-loader_"+_user_id).hide();
 
 $("#rating_container"+_user_id).hide();
 $("#review-box"+_user_id).hide();

@@ -1442,6 +1442,17 @@ padding: 5px;
 	padding-top: 5px;
 	display: block;
 }
+
+.rating-loader {
+    background: url("../images/ajax-loader.gif") no-repeat scroll 0 0 transparent;
+    height: 35px;
+    position: inherit;
+    width: 40px;
+    margin: auto;
+    background-size: 30px;
+    margin-top: 6px;
+    display:none;
+}
 .single-view .review_popover .comment-box {
 /*padding-top:5px;
 padding-bottom:5px;*/

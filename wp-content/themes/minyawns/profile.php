@@ -572,10 +572,15 @@ foreach($testimonials as $testimonial){
         <?php } ?>
         
         <!--notifications-->
+        <?php if($testimonial['punctuality'] == 'L'){ ?>
+        <div class="notification"><i class="icon-time" style="color:#E71C1C"></i> Arrived late</div>
+        <?php }else if($testimonial['punctuality'] == 'M'){ ?>
+        <div class="notification"><i class="icon-ban-circle" style="color:#E71C1C"></i> Missed Job</div>
+        <?php }else{ ?>
         <div class="notification"><i class="icon-time"></i> Arrived on time</div>
-        <div class="notification"><i class="icon-time"></i> Arrived late</div>
-         
-     </div>
+        <?php } ?>
+
+    </div>
 
  </div> 
 
