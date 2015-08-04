@@ -7530,6 +7530,7 @@ textarea[readonly] {
   background: #777272;
 }
 .notification {
+  margin-top: 15px;
   padding: 5px;
   display: block !important;
   -webkit-border-radius: 4px;
