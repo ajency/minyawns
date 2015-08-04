@@ -308,35 +308,42 @@ jQuery('#example').popover(
 
 </h4>
     </div>
+
+
+<?php if (get_user_role() === 'minyawn'){ ?>
     <div class="span6 cust-span6">
       <div class="min-job-details">
-  <div class="row-fluid">
-    <div class="span4">
-      <div class="jobs-completed">
-        <div class="job-no"><?php echo get_user_completed_job(); ?></div>
-        <div class="job-status">Completed</div>
-        <p>Jobs</p>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="jobs-completed">
+              <div class="job-no"><?php echo get_user_completed_job(); ?></div>
+              <div class="job-status">Completed</div>
+              <p>Jobs</p>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="time-warp">
+              <div class="time-circle"><?php echo get_user_punctuality_percent(); ?></div>
+              <p>On time</p>
+            </div>
+
+          </div>
+          <div class="span4">
+            <div class="missed-job">
+              <div class="missed-job-no">
+                <?php echo get_user_missed_job(); ?>
+              </div>
+              <p>Missed Job</p>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
-    <div class="span4">
-      <div class="time-warp">
-        <div class="time-circle"><?php echo get_user_punctuality_percent(); ?></div>
-        <p>On time</p>
-      </div>
-      
-    </div>
-    <div class="span4">
-    <div class="missed-job">
-      <div class="missed-job-no">
-        <?php echo get_user_missed_job(); ?>
-      </div>
-      <p>Missed Job</p>
-    </div>
-    
-    </div>
-  </div>
-</div>
-    </div>
+<?php } ?>
+
+
+
   </div>
   
  
