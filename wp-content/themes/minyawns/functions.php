@@ -414,6 +414,12 @@ function popup_usersignup() {
                 add_user_meta($user_id, 'company_name', $_REQUEST['pdcompany_']);
 
 
+            if ($_REQUEST['pdrole_'] == "minyawn")
+                add_user_meta($user_id, 'telephone', $_REQUEST['min_telephone_']);
+                add_user_meta($user_id, 'college', $_REQUEST['min_university_']);
+                add_user_meta($user_id, 'major', $_REQUEST['min_major_']);
+
+
             /* $msg = "Error occured while creating a new user. Please try again.";			
               $response = array('success' => true,'user'=>$user_->user_login.$pd_pass );
               wp_send_json($response);

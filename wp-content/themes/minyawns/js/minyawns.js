@@ -1428,6 +1428,19 @@ var image_name=$("#image_name").val();
 
 
 
+
+function customValidate(data){
+console.log(data.rules);
+return false;
+}
+
+
+function ValidateEmail(email) {
+        var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return expr.test(email);
+    };
+
+
     //function to set div,message for employer sign up modal
     function setupemployersignup_modal()
     {
@@ -1493,13 +1506,61 @@ $(document.body).on('keyup', '#mylogin', function(e) {
     $("#btn_login").trigger('click')
   }
 });
-jQuery(document.body).on('click', '#btn_signup', function(e) {   
-        jQuery('#frm_signup').submit();
+
+
+
+jQuery(document.body).on('click', '#btn_signup', function(e) {
+
+    var error = [];
+
+    if($("#signup_password").val().length == 0){
+        error.push('signup_password');
+    }
+    if($("#signup_email").val().length == 0){
+        error.push('signup_email');
+    }
+    if (!ValidateEmail($("#signup_email").val())) {
+            error.push('signup_email');
+    }
+    if($("#signup_fname").val().length == 0){
+        error.push('signup_fname');
+    }
+    if($("#signup_lname").val().length == 0){
+        error.push('signup_lname');
+    }
+    if($("#telephone_no").val().length == 0){
+        error.push('telephone_no');
+    }
+    if(!$.isNumeric($("#telephone_no").val())){
+        error.push('telephone_no');
+    }
+    if($("#university_name").val().length == 0){
+        error.push('university_name');
+    }
+    if($("#major_in").val().length == 0){
+        error.push('major_in');
+    }
+        /*console.log(error);
+        console.log(error.length);*/
+
+        if(error.length>0){
+            $("#signup-error").show();
+            return false;
+        }else{
+            $("#signup-error").hide();
+            jQuery('#frm_signup').submit();
+        }
+      
     })
+
+
+
+
+
 
     var validator_signup = $('#frm_signup').validate({
         rules: {
-            'signup_password': {
+            /*'signup_password': {
                 required: true,
                 minlength: 3
             },
@@ -1515,7 +1576,19 @@ jQuery(document.body).on('click', '#btn_signup', function(e) {
             'signup_lname': {
                 required: true,
                 minlength: 2
-            }
+            },
+            'telephone_no': {
+                required: true,
+                minlength: 2
+            },
+            'university_name': {
+                required: true,
+                minlength: 2
+            },
+            'major_in': {
+                required: true,
+                minlength: 2
+            }*/
 
         },
         submitHandler: function(form) {
@@ -1529,7 +1602,10 @@ jQuery(document.body).on('click', '#btn_signup', function(e) {
                 pdfname_: jQuery("#signup_fname").val(),
                 pdlname_: jQuery("#signup_lname").val(),
                 pdcompany_: jQuery("#signup_company").val(),
-                pdrole_: jQuery("#signup_role").val()
+                pdrole_: jQuery("#signup_role").val(),
+                min_telephone_: jQuery("#telephone_no").val(),
+                min_university_: jQuery("#university_name").val(),
+                min_major_: jQuery("#major_in").val()
             },
             function(response) {
                 console.log(response);

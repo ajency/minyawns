@@ -577,6 +577,13 @@ addthisevent.settings({
 				Create an Account
 			</h6>
 		   <p class="align-center">Fill out the required information Below</p>
+		   <div class="row-fluid" id="signup-error" style="display:none;">
+		   	<div class="span12">
+		   		<div class="alert alert-error" style="padding: 10px 40px 10px 30px;">
+		   			<b style="text-align: center">All the below fields are required</b>&nbsp;        
+		   		</div>
+		   	</div>
+		   </div>
 		   <div class="row-fluid">
 		   	<div class="span5">
 		   		<div class="control-group ">
@@ -601,13 +608,13 @@ addthisevent.settings({
 		   	</div>
 		   	<div class="span5">
 		   		<div class="control-group ">
-					<input type="text" value="" name="telephone"  id="telephone_no"  placeholder="Telephone Number" class="span3">
+					<input type="text" value="" name="telephone_no"  id="telephone_no"  placeholder="Telephone Number" class="span3">
 			   	</div>
 			   	<div class="control-group ">
-				  	<input type="text" value="" name="university"  id="university_name" placeholder="University Name" class="span3">
+				  	<input type="text" value="" name="university_name"  id="university_name" placeholder="University Name" class="span3">
 			   	</div>
 			   	<div class="control-group ">
-				  	<input type="text" value="" name="major"  id="major_in" placeholder="Major" class="span3">
+				  	<input type="text" value="" name="major_in"  id="major_in" placeholder="Major" class="span3">
 			   	</div>
 		   	</div>
 		   	<div class="span2">
