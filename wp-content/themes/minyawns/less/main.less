@@ -7643,7 +7643,7 @@ body .job-view-list{
 	display:flex !important;
 	padding:5px !important;
 		.tags{
-			height:70px;
+			max-height:70px;
 			overflow:hidden;
 		}
 		.label{
@@ -8732,5 +8732,32 @@ a{
 	background: lighten(@gray, 10%);
 	i{
 		font-size: 20px;
+	}
+}
+
+/*min-directory rating sysytem*/
+.min-job-details.min-dir{
+	margin-top: 10px;
+	.jobs-completed{
+		position: relative;
+		.job-no{
+			height: 50px;
+		    width: 50px;
+		    line-height: 50px;
+		}
+	}
+	.time-warp{
+		.time-circle{
+			height: 50px;
+		    width: 50px;
+		    line-height: 50px;
+		}
+	}
+	.missed-job{
+		.missed-job-no{
+			height: 50px;
+		    width: 50px;
+		    line-height: 50px;
+		}
 	}
 }

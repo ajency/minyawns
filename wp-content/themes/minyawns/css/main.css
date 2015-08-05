@@ -6554,7 +6554,7 @@ div.tooltip1:after {
   padding: 5px !important;
 }
 .thumbnail-dir .m5li .tags {
-  height: 70px;
+  max-height: 70px;
   overflow: hidden;
 }
 .thumbnail-dir .m5li .label {
@@ -7540,4 +7540,26 @@ textarea[readonly] {
 }
 .notification i {
   font-size: 20px;
+}
+/*min-directory rating sysytem*/
+.min-job-details.min-dir {
+  margin-top: 10px;
+}
+.min-job-details.min-dir .jobs-completed {
+  position: relative;
+}
+.min-job-details.min-dir .jobs-completed .job-no {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+}
+.min-job-details.min-dir .time-warp .time-circle {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+}
+.min-job-details.min-dir .missed-job .missed-job-no {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
 }

@@ -690,12 +690,12 @@ echo $payment_button; ?></span>
                 <h4 class="min-name"><a href='<?php echo site_url(); ?>/profile/<%= result.user_id %>' target="_blank"> <%= result.name %></a></h4>
     
                   <div class="collage"> <%= result.college%> </div>
-                  <div class="row-fluid major-email">
-                    <div class="span6">
-                      <div class="collage align-left major"> <%= result.major%> </div>
+                  <div class="major-email">
+                    <div class="">
+                      <div class="collage major"> <%= result.major%> </div>
                     </div>
-                    <div class="span6">
-                      <div class="social-link align-left">
+                    <div class="">
+                      <div class="social-link">
                         <% if (is_logged_in === '1'){ %>
                         <%= result.user_email %>
                         <%}%>

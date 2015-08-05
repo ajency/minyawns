@@ -1424,10 +1424,10 @@ color: #FFF;*/
     position: relative;
 width: 100%;
 /*background: #FAF4B4;*/
-	background:#eee;
+	/*background:#eee;*/
 	color:#fff;
 	font-weight:bold;
-	border-radius:4px;
+	/*border-radius:4px;*/
 	/*margin-top:10px;*/
 }
 .single-view .review_popover .comment-box i {
@@ -1460,6 +1460,11 @@ padding-bottom:5px;*/
 overflow: hidden;
 /*height: 73px;*/
 overflow-y: auto;
+background: #eee;
+margin-bottom: 5px;
+  -webkit-border-radius: 4px; 
+  -moz-border-radius: 4px; 
+  border-radius: 4px; 
 }
 .comment-box .weldone{
 color: #38A324;

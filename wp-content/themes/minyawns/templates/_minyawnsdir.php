@@ -155,6 +155,36 @@
 									  </div>
 									  <div class="row-fluid"><!--c-row-fluid starts-->
 									  <div class="span12"><!--span12 starts-->
+
+                    <!--ratings-->
+                    <div class="row-fluid">
+                      <div class="min-job-details min-dir">
+                        <div class="span4">
+                          <div class="jobs-completed">
+                            <div class="job-no"><?php echo get_user_completed_job(); ?></div>
+                            <div class="job-status">Completed</div>
+                            <p>Jobs</p>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="time-warp">
+                            <div class="time-circle"><?php echo get_user_punctuality_percent(); ?></div>
+                            <p>On time</p>
+                          </div>
+
+                        </div>
+                        <div class="span4">
+                          <div class="missed-job">
+                            <div class="missed-job-no">
+                              <?php echo get_user_missed_job(); ?>
+                            </div>
+                            <p>Missed Job</p>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!--/ratings-->
 									  <div class="tags">
                                      <% var sk=result.skills.split(',');
                                      if(result.skills.length > 0){ %>
