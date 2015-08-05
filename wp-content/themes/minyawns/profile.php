@@ -203,7 +203,7 @@ jQuery('#example').popover(
     </h4>
     
     <div class="row-fluid ">
-        <div class="span12 min_profile content-section <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?>	">
+        <div class="span12 min_profile content-section <?php if (get_user_role() === 'employer'): ?> employe-detail <?php endif; ?> ">
 
             <div class="span2 ">
                <div id="change-avt" class="<?php
@@ -355,7 +355,7 @@ jQuery('#example').popover(
 
 <br>
 <div class="row-fluid">
-    <div class="span6">		
+    <div class="span6">   
        <div class="profiledata ">
          
          <?php if (get_user_role() === 'minyawn'): ?>
@@ -385,7 +385,7 @@ jQuery('#example').popover(
 </ul>
 <?php
 else :
-    ?>	
+    ?>  
 <ul class="college-data unstyled">
    <li class="location">
      Location : <b>    <?php echo user_location(); ?></b>
@@ -575,7 +575,7 @@ foreach($testimonials as $testimonial){
         <?php }else if($testimonial['rating'] == '-1'){ ?>
         <div class="terrible" id="mf197"><i class="icon-thumbs-down" id="mf198"></i>You Have Been Rated <br id="mf199"><b id="mf200">Terrible</b><div class="clear" id="mf201"></div><div id="mf202">  
         <?php }else{ ?>
-        <div></div>
+        <div><div class="clear" id="mf201"></div><div id="mf202">
         <?php } ?>
         
         <!--notifications-->
@@ -584,7 +584,7 @@ foreach($testimonials as $testimonial){
         <?php }else if($testimonial['punctuality'] == 'M'){ ?>
         <div class="notification"><i class="icon-ban-circle" style="color:#E71C1C"></i> Missed Job</div>
         <?php }else{ ?>
-        <div class="notification"><i class="icon-time"></i> Arrived on time</div>
+        <div class="notification"><i class="icon-time" style="color:#8ed030"></i> Arrived on time</div>
         <?php } ?>
 
     </div>
