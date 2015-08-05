@@ -3705,7 +3705,7 @@ foreach($results as $result){
 function get_minyawns_testimonials($user_id){
 global $wpdb;
 //$ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status = 'hired'");
-$ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status IN ('hired','applied') AND rating != 0");
+$ratings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}userjobs WHERE user_id = $user_id AND status IN ('hired','applied')");
 
 $testimonials = array();
 foreach($ratings as $rating){
@@ -3935,11 +3935,11 @@ function get_punctuality_percent($user_id){
     if($total_count > 0){
         $percent = ($on_time/$total_count)*100;
     }else{
-        $percent = 100;
+        $percent = 0;
     }
 
     if($percent<0){
-       $percent = 100;
+       $percent = 0;
     }
     
     return round($percent).'%';
