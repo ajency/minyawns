@@ -2,7 +2,7 @@
 /*
 Template Name: Student
 */
-get_header();
+get_header('student');
 ?>
 
 

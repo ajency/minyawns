@@ -209,7 +209,7 @@ addthisevent.settings({
 						<div class="pull-right">
 							<div id="logged-in">
 							
-							<div class="user-profile">
+							<div class="user-profile test">
 										<b><?php echo get_logged_in_email(); ?></b><br>
 										Role :<?php echo get_logged_in_role(); ?>
 										</div>
@@ -263,19 +263,23 @@ addthisevent.settings({
 			<!-- city -name-->
 			<div class="main-menu">
 			<ul class="inline">
-					<li><b>Browse:</b></li>
-					<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
-									<li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
-					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
-					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
-					<li class="green-btn-top"   >
-					 <?php if (get_logged_in_role() === 'Minion'): ?>
+					<!-- <li><b>Browse:</b></li> -->
+					<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse" class="pop-links">All Jobs </a></li>
+									<!-- <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
+					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li> -->
+					<li id="directory"><a href="<?php echo site_url() ?>/blog/" class="pop-links">Blog</a></li>
+					<!-- <li class="green-btn-top"   >
+					 <?php /*if (get_logged_in_role() === 'Minion'): */?>
 					<i class="icon-edit"></i>&nbsp;<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
-					   <?php endif; ?>	
-						<?php if (get_logged_in_role() === 'Employer'): ?>
-					<i class="icon-plus-sign" ></i><a href="<?php echo site_url() ?>/add-job/">&nbsp; Create a job</a>
-					   <?php endif; ?>
-					   </li>
+					   <?php /*endif;*/ ?>	
+						<?php /*if (get_logged_in_role() === 'Employer'): */?>
+					<i class="icon-plus-sign" ></i><a href="<?php /*echo site_url() */?>/add-job/">&nbsp; Create a job</a>
+					   <?php /*endif;*/ ?>
+					   </li> -->
+
+					   <li><a href="" class="pop-links">Login</a></li>
+					   <li>|</li>
+					   <li><a href="" class="btn btn-small btn-green pop-links">Signup</a></li>
 					
 			</ul>
 			
@@ -289,7 +293,7 @@ addthisevent.settings({
 						<div class="bottom-menu  bottom-menu-inverse top-menu">
 							<div class="text-center">
 								COLLEGE STUDENTS LOOKING FOR WORK?
-								<a href="" class="btn btn-info btn-small student">Become a minyawn</a>
+								<a href="" class="btn btn-info btn-small student">Become a minyawns</a>
 								<a class="pull-right close-x" id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>x</a>
 							</div>
 					<!-- <div class="row">
@@ -357,7 +361,7 @@ addthisevent.settings({
 					   <li><a href="" class="pop-links">Login</a></li>
 					   <li>|</li>
 					   <li><a href="" class="pop-links">Signup</a></li>
-					   <li><a href="<?php echo site_url() ?>/add-job/" class="btn btn-small btn-green pop-links">Post Job</a></li>
+					   <li><a href="<?php echo site_url() ?>/add-job/" class="btn btn-small btn-green">Post Job</a></li>
 					
 			</ul>
 			
