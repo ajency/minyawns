@@ -3915,7 +3915,16 @@ function get_completed_job($user_id){
         }
         
     }
-    return count($completed)-get_missed_job($user_id);
+
+    $total_count = count($completed)-get_missed_job($user_id);
+
+    if($total_count<=0){
+        return count($completed);
+    }else{
+       return $total_count; 
+    }
+
+    //return count($completed)-get_missed_job($user_id);
 }
 
 function get_punctuality_percent($user_id){
