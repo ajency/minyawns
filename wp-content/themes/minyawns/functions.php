@@ -3937,6 +3937,11 @@ function get_punctuality_percent($user_id){
     }else{
         $percent = 100;
     }
+
+    if($percent<0){
+       $percent = 100;
+    }
+    
     return round($percent).'%';
 }
 
