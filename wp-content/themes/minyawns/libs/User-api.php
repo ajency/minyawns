@@ -930,6 +930,9 @@ function get_minyawn_profile($userData,$total)
                         'rating_negative' => isset($user_dislike) ? $user_dislike : 0,
                         'user_avatar' => $user_pic_img_src,
                         'total' => $total,
+                        'missed_job' => get_missed_job($userData->ID),
+                        'completed_job' => get_completed_job($userData->ID),
+                        'punctuality_percent' => get_punctuality_percent($userData->ID),
                         'minion_name' => isset($user_meta['first_name'][0]) > 0 ? substr($user_meta['first_name'][0] ." ". $user_meta['last_name'][0],0,20) :'',
                         'user_verified'=>isset($user_meta['user_verified'][0]) ? $user_meta['user_verified'][0] :'N',
                         'intro_video_id'=>isset($user_meta['intro_video_id'][0]) ? $user_meta['intro_video_id'][0] :''     

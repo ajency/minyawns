@@ -161,14 +161,14 @@
                       <div class="min-job-details min-dir">
                         <div class="span4">
                           <div class="jobs-completed">
-                            <div class="job-no"><?php echo get_user_completed_job(); ?></div>
+                            <div class="job-no"><%= result.completed_job %></div>
                             <div class="job-status">Completed</div>
                             <p>Jobs</p>
                           </div>
                         </div>
                         <div class="span4">
                           <div class="time-warp">
-                            <div class="time-circle"><?php echo get_user_punctuality_percent(); ?></div>
+                            <div class="time-circle"><%= result.punctuality_percent %></div>
                             <p>On time</p>
                           </div>
 
@@ -176,7 +176,7 @@
                         <div class="span4">
                           <div class="missed-job">
                             <div class="missed-job-no">
-                              <?php echo get_user_missed_job(); ?>
+                              <%= result.missed_job %>
                             </div>
                             <p>Missed Job</p>
                           </div>
