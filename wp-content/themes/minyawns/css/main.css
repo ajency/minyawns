@@ -7670,3 +7670,7 @@ textarea[readonly] {
 .btn-green {
   background: #8ed030;
 }
+.loggedin-menu {
+  background: #f4f4f4 !important;
+  padding: 0 !important;
+}

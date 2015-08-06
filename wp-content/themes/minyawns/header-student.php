@@ -194,7 +194,7 @@ addthisevent.settings({
 
 						if (is_user_logged_in() == TRUE) {
 								?>
-			<div class="bottom-menu  bottom-menu-inverse top-menu">
+			<div class="bottom-menu  bottom-menu-inverse top-menu loggedin-menu">
 			
 					<div class="row">
 						<div  class="small-tag-line ">
