@@ -6665,6 +6665,7 @@ div.tooltip1:after {
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .jobs-completed {
   position: relative;
+  display: inline-block;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .jobs-completed .job-no {
   height: 60px;
@@ -6686,13 +6687,16 @@ div.tooltip1:after {
   border-radius: 12px;
   background: #8ed030;
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   font-size: 11px;
   color: #ffffff;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .jobs-completed p {
   text-align: center;
   width: 60px;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .time-warp {
+  display: inline-block;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .time-warp .time-circle {
   height: 60px;
@@ -6717,6 +6721,9 @@ div.tooltip1:after {
 .minyawns-grid1 .thumbspan .thumbnail .m3 .time-warp p {
   text-align: center;
   width: 60px;
+}
+.minyawns-grid1 .thumbspan .thumbnail .m3 .missed-job {
+  display: inline-block;
 }
 .minyawns-grid1 .thumbspan .thumbnail .m3 .missed-job .missed-job-no {
   height: 60px;
@@ -7536,7 +7543,7 @@ textarea[readonly] {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  background: #e6e6e6;
+  /*background: lighten(@gray, 10%);*/
 }
 .notification i {
   font-size: 20px;
@@ -7552,6 +7559,11 @@ textarea[readonly] {
   height: 50px;
   width: 50px;
   line-height: 50px;
+}
+.min-job-details.min-dir .jobs-completed .job-status {
+  width: 50px;
+  /*padding: 0 10px;*/
+  font-size: 9px;
 }
 .min-job-details.min-dir .time-warp .time-circle {
   height: 50px;
