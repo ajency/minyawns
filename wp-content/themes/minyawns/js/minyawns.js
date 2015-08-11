@@ -10,8 +10,18 @@ jQuery("#signinlink").click(function() {
     window.location = siteurl+"/wp-login.php";
 });
 
-jQuery(document).ready(function($) {
 
+
+    
+
+  
+
+
+
+
+
+
+jQuery(document).ready(function($) {
 
      $(document.body).on('change', '#lst_sitecity', function() {
 
@@ -827,6 +837,398 @@ var image_name=$("#image_name").val();
     //Backbone.emulateJSON = true;
 
 
+
+
+
+
+
+
+
+
+
+$('#min-profimagerr').fileupload({
+        url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/upload-profile-pic',
+        dataType: 'json',
+        done: function(data) {
+          
+          console.log(data);
+
+          return false;
+          
+           /* $(".load_ajax-crop-upload").hide();
+            $('#change-avatar-span').find('img').attr('src', data.result.image);
+            $("#image_name").attr('src', data.result.image);
+            $('#change-avatar').removeAttr("disabled");*/
+
+
+
+
+            ratio_y = data.result.image_height / 420
+            ratio_x = data.result.image_width / 500
+            if (ratio_y < ratio_x)
+                a_ratio = Math.round(ratio_x * 1000) / 1000;
+            else
+                a_ratio = Math.round(ratio_y * 1000) / 1000;
+
+            if (a_ratio < 1)
+                a_ratio = 1;
+
+
+            // alert("original :- width"+data.result.image_width+", height "+data.result.image_height+", ratio:"+a_ratio);
+            img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
+            img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
+
+           // $("#uploaded-image").attr('src', data.result.image); remove this to show tool
+            $("#image_name").val(data.result.image_name);
+            $("#uploaded-image").css('width', img_width);
+            $("#uploaded-image").css('height', img_height);
+
+
+            $("#uploaded-image").load(function() {
+
+                // $('img#uploaded-image').imgAreaSelect( {update: true} );           
+                $("#div_cropmsg").html("Please drag to select/crop your picture.<br/>");
+
+                //get the image position
+                if ($("#uploaded-image").attr('src') != "")
+                {
+                    loaded_img_x = Math.round($("#uploaded-image").position().top * 1000) / 1000;
+                    loaded_img_y = Math.round($("#uploaded-image").position().left * 1000) / 1000;
+
+                    //alert(loaded_img_x+" - "+loaded_img_y);
+                    pd_aspect_ratio = $("#aspect_ratio").val().split(":");
+
+                    var defaultcrop_adjust;
+                    defaultcrop_adjust = 50;
+
+                    /* default crop fix for small dimension images */
+                    if (pd_aspect_ratio[0] == 2)
+                    {
+                        defaultcrop_adjust_x = 50;
+                        defaultcrop_adjust_y = 50;
+                        if ((img_width < 200))
+                            defaultcrop_adjust_x = img_width / 4;
+                        if ((img_height < 100))
+                            defaultcrop_adjust_y = img_height / 4;
+                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+                            defaultcrop_adjust = defaultcrop_adjust_x;
+                        else
+                            defaultcrop_adjust = defaultcrop_adjust_y;
+                    }
+
+
+                    if (pd_aspect_ratio[0] == 1)
+                    {
+                        defaultcrop_adjust_x = 50;
+                        defaultcrop_adjust_y = 50;
+                        if ((img_width < 100))
+                            defaultcrop_adjust_x = img_width / 2;
+                        if ((img_height < 100))
+                            defaultcrop_adjust_y = img_height / 2;
+                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+                            defaultcrop_adjust = defaultcrop_adjust_x;
+                        else
+                            defaultcrop_adjust = defaultcrop_adjust_y;
+                    }
+                    /* End default crop fix for small dimension images */
+
+
+
+
+                    default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * defaultcrop_adjust);
+                    default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * defaultcrop_adjust);
+                    default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * defaultcrop_adjust);
+                    default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * defaultcrop_adjust);
+
+                    /* alert(img_width / 2);
+                     alert(pd_aspect_ratio[0]);
+                     alert(pd_aspect_ratio[1]);*/
+
+                    /* alert(loaded_img_x);
+                     alert(loaded_img_y);
+                     */
+                    /*default_x1 = loaded_img_x+300 ;
+                     default_y1 = loaded_img_y+300 ;
+                     default_x2 = loaded_img_x+400;
+                     default_y2 = loaded_img_y +400; 
+                     */
+                    /*alert(default_x1+" -- "+default_x2);
+                     alert(default_y1+" -- "+default_y2);*/
+
+                    default_x1 = Math.round(default_x1 * 1000) / 1000;
+                    default_y1 = Math.round(default_y1 * 1000) / 1000;
+                    default_x2 = Math.round(default_x2 * 1000) / 1000;
+                    default_y2 = Math.round(default_y2 * 1000) / 1000;
+
+
+                    default_thumb_width = default_x2 - default_x1;
+                    default_thumb_height = default_y2 - default_y1;
+                    $("#done-cropping").show();
+                    $("#image_height").val(default_thumb_height);
+                    $("#image_width").val(default_thumb_width)
+                    $("#image_x_axis").val(default_x1);
+                    $("#image_y_axis").val(default_y1);
+
+                    $('img#uploaded-image').imgAreaSelect({
+                        x1: default_x1,
+                        y1: default_y1,
+                        x2: default_x2,
+                        y2: default_y2,
+                        update: true
+
+
+                    });
+
+                }
+
+            })
+
+        },
+        start: function(e, data) {
+            $(".load_ajax-crop-upload").show();
+
+            $('#change-avatar').attr("disabled", "disabled");
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+        }
+    });
+
+    $(document.body).on('click', '#done-cropping', function() { 
+        $(".load_ajax-crop-upload").show();
+        $("#div_cropmsg").html("<br/>");
+
+
+        console.log("w: " + $("#image_width").val() + " h:" + $("#image_height").val() + 'x1:' + $("#image_x_axis").val() + 'y1:' + $("#image_y_axis").val() + "image_name:" + $("#image_name").val() + " asp_ratio:" + $("#aspect_ratio").val());
+
+var image_name=$("#image_name").val();
+       
+        $.ajax({
+            type: "POST",
+            url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/resize-user-avatar',
+            data: {w: $("#image_width").val(), h: $("#image_height").val(), 'x1': $("#image_x_axis").val(), 'y1': $("#image_y_axis").val(), image_name: image_name.replace(/ /g, "_"), asp_ratio: $("#aspect_ratio").val()}
+        }).done(function(img_link) {
+            $('#myprofilepic').modal('hide')
+//            $('#change-avatar-span').find('img').attr('src', img_link);
+//            $('#logged-in').find('img').attr('src', img_link);
+            //location.reload();
+            $(".load_ajax-crop-upload").hide();
+            $("#div_cropmsg").html('<p class="help-block meta">Upload an image for your profile.</p></br>');
+
+        });
+    });
+
+
+
+    //reset height for first span
+    $(' .profile-wrapper').height($('#profile-edit').height() + 100);
+    $(function() {
+        $('.switch')['bootstrapSwitch']();
+    });
+    /** ANimate the profile view + edit views */ 
+    $(document.body).on('click', '.edit-user-profile', function(e) { 
+
+        e.preventDefault();
+        var span1 = $('#profile-view');
+        var span2 = $('#profile-edit');
+        var w = $(span1).width();
+        if (!$(this).hasClass('loaded'))
+        {
+            if ($(this).hasClass('view'))
+            {
+
+                $(span1).animate({left: 0}, 500);
+                $(span2).show().animate({left: w}, 500);
+                //  $('#bread-crumbs-id').html('<a href="#" class="view edit-user-profile">My Profile</a>');
+                $('#bread-crumbs-id').html("<a href='" + siteurl + "/jobs' class='view loaded'>My Jobs</a><a href='#' class='view edit-user-profile'>Profile</a><a href='#' class='view loaded edit-user-profile'>My</a>");
+            }
+            else
+            {
+
+                $(this).removeClass('loaded');
+                $('#profile-edit').find('div.alert').remove();
+                $(span1).animate({left: -1 * w}, 500);
+                $(span2).css({'left': w, 'top': 0});
+                $(span2).show().animate({left: 0}, 500);
+                $('#bread-crumbs-id').html("<a href='" + siteurl + "/jobs' class='view loaded'>My Jobs</a><a href='#' class='view edit-user-profile'>Profile</a><a href='#' class='view loaded edit-user-profile'>Edit Profile</a>");
+
+            }
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+$('#min-profimage').fileupload({
+    dataType : 'json',
+    url : SITEURL + '/wp-content/themes/minyawns/libs/user.php/upload-profile-pic',
+    add: function (e, data) {
+        data.submit();
+    },
+    done: function (e, data) {
+            //console.log(data);
+            ratio_y = data.result.image_height / 420
+            ratio_x = data.result.image_width / 500
+            if (ratio_y < ratio_x)
+                a_ratio = Math.round(ratio_x * 1000) / 1000;
+            else
+                a_ratio = Math.round(ratio_y * 1000) / 1000;
+
+            if (a_ratio < 1)
+                a_ratio = 1;
+
+            img_width = Math.round((data.result.image_width / a_ratio) * 1000) / 1000;
+            img_height = Math.round((data.result.image_height / a_ratio) * 1000) / 1000;
+
+            $("#uploaded-image").attr('src', data.result.image);
+            $("#image_name").val(data.result.image_name);
+            $("#uploaded-image").css('width', img_width);
+            $("#uploaded-image").css('height', img_height);
+
+            $("#uploaded-image").load(function() {
+
+                // $('img#uploaded-image').imgAreaSelect( {update: true} );           
+                $("#div_cropmsg").html("Please drag to select/crop your picture.<br/>");
+
+                //get the image position
+                if ($("#uploaded-image").attr('src') != "")
+                {
+
+                    console.log('image loaded...');
+                    loaded_img_x = Math.round($("#uploaded-image").position().top * 1000) / 1000;
+                    loaded_img_y = Math.round($("#uploaded-image").position().left * 1000) / 1000;
+
+                    //alert(loaded_img_x+" - "+loaded_img_y);
+                    pd_aspect_ratio = $("#aspect_ratio").val().split(":");
+
+                    var defaultcrop_adjust;
+                    defaultcrop_adjust = 50;
+
+                    /* default crop fix for small dimension images */
+                    if (pd_aspect_ratio[0] == 2)
+                    {
+                        defaultcrop_adjust_x = 50;
+                        defaultcrop_adjust_y = 50;
+                        if ((img_width < 200))
+                            defaultcrop_adjust_x = img_width / 4;
+                        if ((img_height < 100))
+                            defaultcrop_adjust_y = img_height / 4;
+                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+                            defaultcrop_adjust = defaultcrop_adjust_x;
+                        else
+                            defaultcrop_adjust = defaultcrop_adjust_y;
+                    }
+
+
+                    if (pd_aspect_ratio[0] == 1)
+                    {
+                        defaultcrop_adjust_x = 50;
+                        defaultcrop_adjust_y = 50;
+                        if ((img_width < 100))
+                            defaultcrop_adjust_x = img_width / 2;
+                        if ((img_height < 100))
+                            defaultcrop_adjust_y = img_height / 2;
+                        if (defaultcrop_adjust_x < defaultcrop_adjust_y)
+                            defaultcrop_adjust = defaultcrop_adjust_x;
+                        else
+                            defaultcrop_adjust = defaultcrop_adjust_y;
+                    }
+                    /* End default crop fix for small dimension images */
+
+
+
+
+                    default_x1 = (img_width / 2) - (pd_aspect_ratio[0] * defaultcrop_adjust);
+                    default_y1 = (img_height / 2) - (pd_aspect_ratio[1] * defaultcrop_adjust);
+                    default_x2 = (img_width / 2) + (pd_aspect_ratio[0] * defaultcrop_adjust);
+                    default_y2 = (img_height / 2) + (pd_aspect_ratio[1] * defaultcrop_adjust);
+
+                    default_x1 = Math.round(default_x1 * 1000) / 1000;
+                    default_y1 = Math.round(default_y1 * 1000) / 1000;
+                    default_x2 = Math.round(default_x2 * 1000) / 1000;
+                    default_y2 = Math.round(default_y2 * 1000) / 1000;
+
+
+                    default_thumb_width = default_x2 - default_x1;
+                    default_thumb_height = default_y2 - default_y1;
+                    $("#done-cropped").show();
+                    $("#image_height").val(default_thumb_height);
+                    $("#image_width").val(default_thumb_width)
+                    $("#image_x_axis").val(default_x1);
+                    $("#image_y_axis").val(default_y1);
+                    $("#unique_code").val(data.result.unique_code);
+
+                    $('img#uploaded-image').imgAreaSelect({
+                        x1: default_x1,
+                        y1: default_y1,
+                        x2: default_x2,
+                        y2: default_y2,
+                        update: true
+
+
+                    });
+
+                }
+
+            })
+},
+start: function(e, data) {
+    $(".load_ajax-crop-upload").show();
+
+    $('#change-avatar').attr("disabled", "disabled");
+    var progress = parseInt(data.loaded / data.total * 100, 10);
+}
+});
+
+
+
+
+
+$(document.body).on('click', '#done-cropped', function() { 
+        $("#preloadprocess").css('display','block');
+        $("#div_cropmsg").html("<br/>");
+
+
+        //console.log("w: " + $("#image_width").val() + " h:" + $("#image_height").val() + 'x1:' + $("#image_x_axis").val() + 'y1:' + $("#image_y_axis").val() + "image_name:" + $("#image_name").val() + " asp_ratio:" + $("#aspect_ratio").val());
+
+var image_name=$("#image_name").val();
+       
+        $.ajax({
+            type: "POST",
+            url: SITEURL + '/wp-content/themes/minyawns/libs/user.php/profile-pic-resize',
+            data: {w: $("#image_width").val(), unique_code: $("#unique_code").val(), h: $("#image_height").val(), 'x1': $("#image_x_axis").val(), 'y1': $("#image_y_axis").val(), image_name: image_name.replace(/ /g, "_"), asp_ratio: $("#aspect_ratio").val()}
+        }).done(function(data) {
+            if(data.path.length>0){
+                $("#preloadprocess").css('display','none');
+                $('#myprofilepic').modal('hide');
+                $('#profile_pic_path').val(data.path);
+                $('#profile_image_id').val(data.unique_id);
+                $("#avatar img").attr('src', data.url);
+
+            }
+                        
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * A simple backbone model for profile
      */
@@ -1385,7 +1787,7 @@ var image_name=$("#image_name").val();
     function setup_minionsignup_modal()
     {
         jQuery("#div_signupheader").html('<h4 id="myModalLabel">Sign Up as a Minion</h4>');
-        jQuery("#div_signup_subheader").html('Not a Minion? Go ahead sign up to get one <a href="#" id="show_employerreg">here</a>');
+        //jQuery("#div_signup_subheader").html('Not a Minion? Go ahead sign up to get one <a href="#" id="show_employerreg">here</a>');
         jQuery("#signup_role").val('minyawn');
         if (jQuery("#usr_role").length > 0)
         {
@@ -1409,7 +1811,7 @@ var image_name=$("#image_name").val();
         jQuery("#signup_password").show()
         jQuery("#signup_company").hide();
         jQuery("#div_signupmsg").html("");
-        validator_signup.resetForm();
+        //validator_signup.resetForm();
         jQuery("#signup_email").val("");
         jQuery("#signup_password").val("");
         jQuery("#signup_fname").val("");
@@ -1426,6 +1828,19 @@ var image_name=$("#image_name").val();
     })
 
 
+
+
+
+function customValidate(data){
+console.log(data.rules);
+return false;
+}
+
+
+function ValidateEmail(email) {
+        var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return expr.test(email);
+    };
 
 
     //function to set div,message for employer sign up modal
@@ -1480,17 +1895,166 @@ $(document.body).on('keyup', '#myModal', function(e) {
   }
 });
 
+//on enter key press trigger form submission Business
+$(document.body).on('keyup', '#myModalBiz', function(e) { 
+  if (e.keyCode == 13) {
+    $("#btn_signup-biz").trigger('click')
+  }
+});
+
 //on enter key press trigger form submission
 $(document.body).on('keyup', '#mylogin', function(e) {  
   if (e.keyCode == 13) { 
     $("#btn_login").trigger('click')
   }
 });
-jQuery(document.body).on('click', '#btn_signup', function(e) {   
-        jQuery('#frm_signup').submit();
+
+
+
+jQuery(document.body).on('click', '#btn_signup', function(e) {
+
+    var error = [];
+
+    if($("#signup_password").val().length == 0){
+        error.push('signup_password');
+    }
+    if($("#signup_email").val().length == 0){
+        error.push('signup_email');
+    }
+    if (!ValidateEmail($("#signup_email").val())) {
+            error.push('signup_email');
+    }
+    if($("#signup_fname").val().length == 0){
+        error.push('signup_fname');
+    }
+    if($("#signup_lname").val().length == 0){
+        error.push('signup_lname');
+    }
+    if($("#telephone_no").val().length == 0){
+        error.push('telephone_no');
+    }
+    if(!$.isNumeric($("#telephone_no").val())){
+        error.push('telephone_no');
+    }
+    if($("#university_name").val().length == 0){
+        error.push('university_name');
+    }
+    if($("#major_in").val().length == 0){
+        error.push('major_in');
+    }
+        /*console.log(error);
+        console.log(error.length);*/
+
+        if(error.length>0){
+            $("#signup-error-photo").hide();
+            $("#signup-error").show();
+            return false;
+        }else{
+            if($("#profile_pic_path").val().length == 0){
+                $("#signup-error").hide();
+                $("#signup-error-photo").show();
+                return false;
+            }else{
+                $("#signup-error").hide();
+                $("#signup-error-photo").hide();
+                jQuery('#frm_signup').submit();
+            }
+            
+        }
+      
     })
 
+
+
+
+
+
     var validator_signup = $('#frm_signup').validate({
+        rules: {
+            /*'signup_password': {
+                required: true,
+                minlength: 3
+            },
+            'signup_email': {
+                required: true,
+                minlength: 6,
+                email: true
+            },
+            'signup_fname': {
+                required: true,
+                minlength: 2
+            },
+            'signup_lname': {
+                required: true,
+                minlength: 2
+            },
+            'telephone_no': {
+                required: true,
+                minlength: 2
+            },
+            'university_name': {
+                required: true,
+                minlength: 2
+            },
+            'major_in': {
+                required: true,
+                minlength: 2
+            }*/
+
+        },
+        submitHandler: function(form) {
+
+            jQuery("#div_signupmsg").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50' class='img-center'/>");
+            jQuery.post(ajaxurl, {
+                action: 'popup_usersignup',
+                //data :  data 
+                pdemail_: jQuery("#signup_email").val(),
+                pdpass_: jQuery("#signup_password").val(),
+                pdfname_: jQuery("#signup_fname").val(),
+                pdlname_: jQuery("#signup_lname").val(),
+                pdcompany_: jQuery("#signup_company").val(),
+                pdrole_: jQuery("#signup_role").val(),
+                min_telephone_: jQuery("#telephone_no").val(),
+                min_university_: jQuery("#university_name").val(),
+                min_major_: jQuery("#major_in").val(),
+                profile_pic_path: jQuery("#profile_pic_path").val(),
+                profile_image_id: jQuery("#profile_image_id").val()
+            },
+            function(response) {
+                console.log(response);
+                if (response.success == true)
+                {
+                    jQuery("#div_signupmsg").html(response.msg);
+                    jQuery("#signup_email").val("");
+                    jQuery("#signup_password").val("");
+                    jQuery("#signup_fname").val("");
+                    jQuery("#signup_lname").val("");
+
+                    jQuery("#profile_pic_path").val("");
+                    jQuery("#profile_image_id").val("");
+                    jQuery("#telephone_no").val("");
+                    jQuery("#university_name").val("");
+                    jQuery("#major_in").val("");
+                    
+                    window.location.href = SITEURL+'/profile/';
+                }
+                else
+                {
+                    jQuery("#div_signupmsg").html(response.msg);
+                }
+            })
+            return false;
+        }
+
+    });
+    /*END POPUP SIGNUP */
+
+    // biz popup
+    jQuery(document.body).on('click', '#btn_signup-biz', function(e) {   
+        jQuery('#frm_signup-biz').submit();
+    })
+
+    var validator_signup = $('#frm_signup-biz').validate({
         rules: {
             'signup_password': {
                 required: true,
@@ -1544,7 +2108,7 @@ jQuery(document.body).on('click', '#btn_signup', function(e) {
         }
 
     });
-    /*END POPUP SIGNUP */
+    // biz popup ends
 
 $(document.body).on('click', '.edit-job-data', function(e) {   
 
@@ -2883,7 +3447,25 @@ $("#review-box"+_user_id).hide();
 
 
 
+
+
+
+
+
+
+
+
+
 });
+
+
+
+
+
+
+            
+
+       
 
 
 
