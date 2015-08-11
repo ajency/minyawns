@@ -573,10 +573,13 @@ addthisevent.settings({
 		  <!-- testing -->
 		   <form name="frm_signup"  id="frm_signup" action="" autocomplete="off">
 		   	<input type="hidden" name="signup_role" id="signup_role" value="" />
+		   	<input type="hidden" name="profile_pic_path" id="profile_pic_path" value="" />
+		   	<input type="hidden" name="profile_image_id" id="profile_image_id" value="" />
 			<h6 class="align-center" style=" margin-bottom: 0px; ">
 				Create an Account
 			</h6>
 		   <p class="align-center">Fill out the required information Below</p>
+
 		   <div class="row-fluid" id="signup-error" style="display:none;">
 		   	<div class="span12">
 		   		<div class="alert alert-error" style="padding: 10px 40px 10px 30px;">
@@ -584,6 +587,15 @@ addthisevent.settings({
 		   		</div>
 		   	</div>
 		   </div>
+
+		   <div class="row-fluid" id="signup-error-photo" style="display:none;">
+		   	<div class="span12">
+		   		<div class="alert alert-error" style="padding: 10px 40px 10px 30px;">
+		   			<b style="text-align: center">Upload profile picture</b>&nbsp;        
+		   		</div>
+		   	</div>
+		   </div>
+
 		   <div class="row-fluid">
 		   	<div class="span5">
 		   		<div class="control-group ">
@@ -619,33 +631,12 @@ addthisevent.settings({
 		   	</div>
 		   	<div class="span2">
 		   		<p class="text-center m-b-0">Upload Photo</p>
-		   		<div id="avatar" class="<?php
-               
-               if (get_user_role() == 'employer') {
-                echo 'employer-image';
-            }
-            ?>">
 
-            <?php if(is_facebook_user() === 'false' && get_current_user_id() == get_user_id()){ ?>
-            <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar" data-toggle="modal">
-              <?php } else { ?>
-               <a class="fancybox change-avtar" rel="group" href="<?php echo get_mn_user_avatar() ?>">
-              <?php } ?>
-              
-                <?php
-                
-                
-                if(get_mn_user_avatar() !== false){
-                    ?><img src="<?php echo get_mn_user_avatar() ?>"/> <?php 
-                    
-                }else{
-                    echo get_avatar(get_user_id(), 168 );
-                }
-                ?>
-            </a> <?php if(get_current_user_id() == get_user_id()){ ?>
-            <a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal"><i class="icon-camera"></i></a>
-            <?php } ?>
-        </div>
+		   		<div id="avatar">
+		   			<img src="<?php echo get_template_directory_uri(); ?>/images/avatar2.jpg" >
+		   			<a href="#myprofilepic"  id="change-avatar-span" class="change-avtar avtar-btn" data-toggle="modal"><i class="icon-camera"></i></a>
+		   		</div>
+
 		   	</div>
 		   </div>
 
@@ -765,7 +756,7 @@ addthisevent.settings({
 <div id="myprofilepic" class="modal hide fade cropimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <?php if (is_user_logged_in() == TRUE)  ?>
+        
         <h4 id="myModalLabel">Change Profile Pic</h4>
 
     </div>
@@ -777,8 +768,8 @@ addthisevent.settings({
             <div style="width:500px" id="image_upload_body">
 
                 <form id="cropimage" method="post" enctype="multipart/form-data">
-                    <a type="button" class="btn btn-primary" id="done-cropping" style="display:none">Done? </a>
-                    Upload your image <input type="file" name="files" id="photoimg" data-user="<?php echo get_user_id(); ?>" /><br><span class='load_ajax-crop-upload' style="display:none"></span>
+                    <a type="button" class="btn btn-primary" id="done-cropped" style="display:none">Done? </a>
+                    Upload your image <input type="file" name="files" id="min-profimage" data-user="<?php echo get_user_id(); ?>" /><br><span id='preloadprocess' style="display:none"></span>
                     <br>
                     <span id="div_cropmsg"> 
                         <?php /* Please drag to select/crop your picture. */ ?>
@@ -791,6 +782,7 @@ addthisevent.settings({
                 <input type="hidden"  id="image_width">
                 <input type="hidden"  id="image_x_axis">
                 <input type="hidden"  id="image_y_axis">
+                <input type="hidden"  id="unique_code">
                 <input type="hidden" value="<?php echo (get_user_role() == 'employer' ? '2:1' : '1:1') ?>" id="aspect_ratio"> 
 
             </form>

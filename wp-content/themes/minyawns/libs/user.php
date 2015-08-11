@@ -266,7 +266,152 @@ $app->map('/resize-user-avatar', function() use($app) {
            
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(get_user_company_logo($user_ID));
-        })->via('GET', 'POST', 'PUT', 'DELETE');;
+        })->via('GET', 'POST', 'PUT', 'DELETE');
+
+
+
+
+
+
+
+
+
+
+
+$app->map('/upload-profile-pic/', function() use($app) {
+
+   $req = $app->request();
+   $userid = 0;
+
+   $upload_dir = wp_upload_dir();
+   $target = $upload_dir['basedir'].'/temp';
+   $random_number = generateRandomString();
+   wp_mkdir_p($target."/".$random_number);
+
+   $image_path_sufix = $target."/".$random_number;
+   $image_url_sufix = $upload_dir['baseurl'].'/temp/'.$random_number;
+
+
+   $files = $_FILES['files'];
+
+   if ($files['name']) {
+    $file = array(
+        'name' => preg_replace('/\s+/', '_',  strtolower($files['name'])),
+        'type' => strtolower($files['type']),
+        'tmp_name' => preg_replace('/\s+/', '_',  $files['tmp_name']),
+        'error' => $files['error'],
+        'size' => $files['size']
+        );
+
+    $filename = $_FILES['files']['tmp_name'];
+    list($width, $height) = getimagesize($filename);
+    $image_width = $width;
+    $image_height = $height;
+
+    if (move_uploaded_file($filename, $image_path_sufix.'/'.$file['name'])) {
+        $attachment_url = $image_url_sufix.'/'.$file['name'];
+        $data = array('success' => 1, 'unique_code' => $random_number, 'image' => $attachment_url, 'image_name' => strtolower($files['name']), 'image_height' => $image_height, 'image_width' => $image_width);
+    }else{
+        $data = array('success' => 0);
+    }
+
+}else{
+    $data = array('success' => 0);
+}
+
+$app->response()->header("Content-Type", "application/json");
+echo json_encode($data);
+
+})->via('GET', 'POST', 'PUT', 'DELETE');
+
+
+
+
+
+
+
+$app->map('/profile-pic-resize/', function() use($app) {
+
+ extract($_POST);
+ //$targetFolder = "../../../uploads/user-avatars/0/";
+
+ $upload_dir = wp_upload_dir();
+ $target = $upload_dir['basedir'].'/temp';
+ $targetFolder = $target."/".$unique_code.'/';
+   
+ $new_name = 'profile-'.$unique_code.'.png';
+
+ if($asp_ratio=="1:1")
+            {
+                $t_width = 100; // Maximum thumbnail width
+                $t_height =100; // Maximum thumbnail height
+            }
+            else 
+            {
+                $t_width = 170; // Maximum thumbnail width
+                $t_height = 85; // Maximum thumbnail height
+            }
+            
+             list($orig__width, $orig__height, $orig__type,$orig__attr) = getimagesize($targetFolder . $image_name);
+            
+            $orig_x_ratio = $orig__width/500;
+            $orig_y_ratio = $orig__height/420;
+            
+            
+            if($orig_x_ratio>$orig_y_ratio)
+                $fin_asp_ratio = round($orig_x_ratio,3);
+            else
+                $fin_asp_ratio = round($orig_y_ratio,3);
+ 
+            if($fin_asp_ratio<1)
+                $fin_asp_ratio = 1;
+    
+            
+            $new_width = round(($orig__width /$fin_asp_ratio),3);
+            $new_height = round(($orig__height/$fin_asp_ratio),3);
+            
+            $ratio = ($t_width / $w);
+            $nw = round($w * $ratio,3);
+            $nh = round($h * $ratio,3);
+            $nimg = imagecreatetruecolor($nw, $nh);
+            
+            
+            if (stripos($image_name, "png") !== false)
+                $im_src = imagecreatefrompng($targetFolder . $image_name);
+            else
+                $im_src = imagecreatefromjpeg($targetFolder . $image_name);
+            
+            
+            imagecopyresampled($nimg, $im_src, 0, 0, $x1*$fin_asp_ratio, $y1*$fin_asp_ratio,$nw, $nh, $w*$fin_asp_ratio, $h*$fin_asp_ratio);
+           
+            /*if($new_name!="")
+            {
+                if(file_exists($targetFolder.$new_name))
+                    unlink($targetFolder.$new_name);
+            }*/
+            imagepng($nimg, $targetFolder.$new_name);
+
+            $imageurl = $upload_dir['baseurl'].'/temp/'.$unique_code.'/';
+            
+            $app->response()->header("Content-Type", "application/json");
+            echo json_encode(array('path'=>$targetFolder.$new_name, 'url'=>$imageurl.$new_name, 'unique_id'=>$unique_code));
+
+})->via('GET', 'POST', 'PUT', 'DELETE');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $app->run();
 

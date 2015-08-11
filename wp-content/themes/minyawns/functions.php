@@ -191,6 +191,10 @@ function minyawns_scripts_styles() {
                 wp_enqueue_style('customer-scroller', get_template_directory_uri() . '/css/jquery.bxslider.css', array(), null);
                 wp_enqueue_style('owl-carousel-css', get_template_directory_uri() . '/css/owl.carousel.css', array(), null);
 
+                wp_enqueue_style('imgareaselect-animated', get_template_directory_uri() . '/css/imgareaselect-animated.css', array(), null);
+                wp_enqueue_style('imgareaselect-default', get_template_directory_uri() . '/css/imgareaselect-default.css', array(), null);
+                wp_enqueue_style('imgareaselect-deprecated', get_template_directory_uri() . '/css/imgareaselect-deprecated.css', array(), null);
+
             } else {
                 wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null);
                 //wp_enqueue_style('bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', //array(), null);
@@ -203,9 +207,7 @@ function minyawns_scripts_styles() {
 
                 wp_enqueue_style('tooltip', get_template_directory_uri() . '/css/tipTip.css', array(), null);
                 wp_enqueue_style('ajaxload', get_template_directory_uri() . '/css/ajaxload.css', array(), null);
-                wp_enqueue_style('imgareaselect-animated', get_template_directory_uri() . '/css/imgareaselect-animated.css', array(), null);
-                wp_enqueue_style('imgareaselect-default', get_template_directory_uri() . '/css/imgareaselect-default.css', array(), null);
-                wp_enqueue_style('imgareaselect-deprecated', get_template_directory_uri() . '/css/imgareaselect-deprecated.css', array(), null);
+                
 				
 			 wp_enqueue_style('font', get_template_directory_uri() . '/css/font.css', array(), null);
 			 wp_enqueue_style('plugin', get_template_directory_uri() . '/css/plugin.css', array(), null);
@@ -277,6 +279,8 @@ wp_enqueue_style('bootstrap-switch', get_template_directory_uri() . '/css/bootst
             wp_enqueue_script('application', get_template_directory_uri() . '/js/application.js', array('minyawns-jquery'), null);
             wp_enqueue_script('imgareaselect-pack', get_template_directory_uri() . '/js/jquery.imgareaselect.pack.js', array('minyawns-jquery'), null);
 			 wp_enqueue_script('menu-pack', get_template_directory_uri() . '/js/jquery.mmenu.min.all.js', array('minyawns-jquery'), null);
+
+
 	
             wp_enqueue_script('imgareaselect-min', get_template_directory_uri() . '/js/jquery.imgareaselect.min.js', array('minyawns-jquery'), null);
             wp_enqueue_script('minyawns-js', get_template_directory_uri() . '/js/minyawns.js', array('minyawns-jquery'), null);
@@ -377,6 +381,7 @@ function generate_user_activation_key($user_email) {
 function popup_usersignup() {
     global $wpdb;
 
+    
     $user_activation_key = generate_user_activation_key($userdata_['user_email']);
 
     $userdata_['user_login'] = $_REQUEST['pdemail_'];
@@ -418,6 +423,36 @@ function popup_usersignup() {
                 add_user_meta($user_id, 'telephone', $_REQUEST['min_telephone_']);
                 add_user_meta($user_id, 'college', $_REQUEST['min_university_']);
                 add_user_meta($user_id, 'major', $_REQUEST['min_major_']);
+                $upload_dir = wp_upload_dir();
+                $imgpath = pathinfo($_REQUEST['profile_pic_path']);
+                $target = $upload_dir['basedir'].'/user-avatars/'.$user_id;
+                if (!file_exists($target)) {
+                wp_mkdir_p( $target );
+                }
+
+                $source_path = stripslashes($_REQUEST['profile_pic_path']);
+                $target_path = $target.'/'.$imgpath['basename'];
+                if(copy($source_path, $target_path)){
+                    $post_data = array(
+                        'post_author' => $user_id,
+                        'post_content' => '',
+                        'post_date' => date('Y-m-d H:i:s'),
+                        'post_date_gmt' => date('Y-m-d H:i:s'),
+                        'post_excerpt' => '',
+                        'post_name' => $imgpath['basename'],
+                        'post_parent' => 0,
+                        'post_status' => 'inherit',
+                        'post_title' => $imgpath['basename'],
+                        'post_type' => 'attachment',
+                        'post_mime_type' => 'image/jpeg',
+                        'guid' => site_url() . "/wp-content/uploads/user-avatars/" . $user_id . "/" . $imgpath['basename'],
+                        );
+                    $for_user_meta = "user-avatars/" . $user_id . "/" . $imgpath['basename'];
+                    $atach_post_id = wp_insert_post($post_data);
+                    $attachment_id_photo = update_post_meta($atach_post_id, '_wp_attached_file', $for_user_meta);
+                    update_user_meta($user_id, 'avatar_attachment', $atach_post_id);
+                }
+                
 
 
             /* $msg = "Error occured while creating a new user. Please try again.";			
@@ -474,7 +509,7 @@ function popup_usersignup() {
 
             wp_set_auth_cookie( $user_id );
 
-            $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id);
+            $response = array("success" => true, 'msg' => $msg, 'user' => $user_->user_login, 'userdata' => $userdata_, 'ret_userid' => $user_id, 'source_path' => stripslashes($_REQUEST['profile_pic_path']), 'target_path' => $target.'/'.$imgpath['basename']);
             wp_send_json($response);
         }
     }
@@ -3901,6 +3936,16 @@ function get_all_city(){
 
 
 
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 
 
 
