@@ -7375,8 +7375,6 @@ textarea[readonly] {
 .spider_popup_loading {
   display: none !important;
 }
-<<<<<<< HEAD
-/*mixin*/
 .min-job-details .jobs-completed {
   position: relative;
 }
@@ -7575,7 +7573,7 @@ textarea[readonly] {
   height: 50px;
   width: 50px;
   line-height: 50px;
-=======
+}
 /*signup popup*/
 /*mixin*/
 #avatar {
@@ -7595,7 +7593,7 @@ textarea[readonly] {
   text-align: center;
   display: block;
   font-weight: bold;
-  bottom: 0px;
+  bottom: 4px;
 }
 #avatar .avtar-btn {
   background: rgba(255, 255, 255, 0.9);
@@ -7606,5 +7604,4 @@ textarea[readonly] {
   border-radius: 100%;
   line-height: 30px;
   margin-left: 4px;
->>>>>>> issue#250
 }
