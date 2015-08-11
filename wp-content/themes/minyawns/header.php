@@ -289,7 +289,7 @@ addthisevent.settings({
 						<div class="bottom-menu  bottom-menu-inverse top-menu">
 							<div class="text-center">
 								COLLEGE STUDENTS LOOKING FOR WORK?
-								<a href="http://localhost/minyawns/Student" class="btn btn-info btn-small student">Become a minyawn</a>
+								<a href="<?php echo get_permalink_by_slug('student'); ?>" class="btn btn-info btn-small student">Become a minyawn</a>
 								<a class="pull-right close-x" id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>x</a>
 							</div>
 					<!-- <div class="row">

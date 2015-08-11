@@ -3895,6 +3895,14 @@ function get_all_city(){
 
 
 
+function get_permalink_by_slug($slug){
+  $page = get_page_by_path($slug);
+  return get_permalink($page->ID);
+ }
+
+
+
+
 
 
 
