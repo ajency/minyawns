@@ -194,7 +194,7 @@ addthisevent.settings({
 
 						if (is_user_logged_in() == TRUE) {
 								?>
-			<div class="bottom-menu  bottom-menu-inverse top-menu">
+			<div class="bottom-menu  bottom-menu-inverse top-menu loggedin-menu">
 			
 					<div class="row">
 						<div  class="small-tag-line ">
@@ -287,14 +287,18 @@ addthisevent.settings({
 		</div>
 				<?php } else { ?>
 						<div class="bottom-menu  bottom-menu-inverse top-menu">
-			
-					<div class="row">
+							<div class="text-center">
+								COLLEGE STUDENTS LOOKING FOR WORK?
+								<a href="<?php echo get_permalink_by_slug('student'); ?>" class="btn btn-info btn-small student">Become a minyawn</a>
+								<a class="pull-right close-x" id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>x</a>
+							</div>
+					<!-- <div class="row">
 						<div  class="small-tag-line ">
 							<p>Minyawns is an easy to use, on-demand, reliable way to find work or help fast.</p>
 						</div>
 				
 						
-						<div class=" notify <?php if(get_user_role() == 'employer'){ echo 'employer-icon'; }?>  ">
+						<div class=" notify <?php /*if(get_user_role() == 'employer'){ echo 'employer-icon'; }*/?>  ">
 						<div class="pull-right">
 							<div class="data-link">
 								<a href="#myModal" data-toggle="modal"  id="link_minyawnregister" onclick="return true"><i class="icon-signin"></i> Signup as a Student </a> 
@@ -306,7 +310,7 @@ addthisevent.settings({
 								<a <?php /*  commented on 19june2014 href="#mylogin"  ?> <?php if(is_page('fb-connect-test')){ */ ?>  href="#mylogin"   <?php  /* } else { ?>  href="<?php echo site_url()?>/wp-login.php"  <?php } */  ?>  data-toggle="modal" id="btn__login"><i class="icon-unlock-alt"></i> Login </a>
 							</div>
 								<div class="data-link">
-								<a href="<?php echo site_url(); ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a>
+								<a href="<?php /*echo site_url();*/ ?>/helpfaqs/" title="Help and FAQ" target="_blank"><i class="icon-question-sign"></i> Help</a>
 							</div>
 							</div>
 						
@@ -318,7 +322,7 @@ addthisevent.settings({
 						
 
 					
-						</div>
+						</div> -->
 			 
 				</div>
 						<div class="top-menu-header">
@@ -339,17 +343,21 @@ addthisevent.settings({
 			<!-- city -name-->
 			<div class="main-menu">
 			<ul class="inline">
-					<li><b>Browse:</b></li>
-					<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
-	<!--                                <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>-->
-					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
-					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
+					<!-- <li><b>Browse:</b></li>
+					<li id="browse"><a id="browse" href="<?php /*echo site_url()*/?>/jobs/#browse">All Jobs </a></li>
+	                               <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
+					<li id="directory"><a href="<?php /*echo site_url() */?>/minyawns-directory">Minyawns Directory</a></li>
+					<li id="directory"><a href="<?php /*echo site_url()*/?>/blog/">Blog</a></li>
 					<li class="green-btn-top"   >
 					 
 					   
-					<i class="icon-plus-sign" ></i><a href="<?php echo site_url() ?>/add-job/">&nbsp; Create a job</a>
+					<i class="icon-plus-sign" ></i><a href="<?php /*echo site_url() */?>/add-job/">&nbsp; Create a job</a>
 					  
-					   </li>
+					   </li> -->
+					   <li><a href="#mylogin" data-toggle="modal" id="btn__login" class="pop-links">Login</a></li>
+					   <li>|</li>
+					   <li><a href="#myModalBiz" class="pop-links" data-toggle="modal" id="link_employerregister" onclick="return true">Signup</a></li>
+					   <li><a href="<?php echo site_url() ?>/add-job/" class="btn btn-small btn-green pop-links">Post Job</a></li>
 					
 			</ul>
 			

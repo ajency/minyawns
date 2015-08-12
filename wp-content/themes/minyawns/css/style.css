@@ -1216,12 +1216,13 @@ ul.holder li.bit-box-focus a.closebutton, ul.holder li.bit-box-focus a.closebutt
 }
 #innermainimage .banner-content .banner-desc {
 font-size: 16px;
-color: #000000;
+/*color: #000000;*/
+color: #fff;
 font-weight: 800;
 text-align: center;
 text-transform: uppercase;
 margin-top: 0px;
-text-shadow: 3px 3px 5px #FFF;
+/*text-shadow: 3px 3px 5px #FFF;*/
 }
 
 #innermainimage .banner-content .btn-primary:hover {
