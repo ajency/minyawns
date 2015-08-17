@@ -95,10 +95,10 @@ function jfb_output_facebook_btn()
     //Figure out our scope (aka extended permissions)
     $email_perms = get_option($opt_jfb_ask_perms) || get_option($opt_jfbp_requirerealmail);
     $stream_perms = get_option($opt_jfb_ask_stream);
-    if( $email_perms && $stream_perms )    $scope = 'email,publish_stream';
-    else if( $email_perms )                $scope = 'email';
-    else if( $stream_perms )               $scope = 'publish_stream';
-    else                                   $scope = '';
+    if( $email_perms && $stream_perms )    $scope = 'email,publish_stream,user_education_history';
+    else if( $email_perms )                $scope = 'email,user_education_history';
+    else if( $stream_perms )               $scope = 'publish_stream,user_education_history';
+    else                                   $scope = 'user_education_history';
     $scope = apply_filters('wpfb_extended_permissions', $scope);
 
     //Output the button for the Premium version.  NOTE: This will not work with pre-v30 Premium addons.

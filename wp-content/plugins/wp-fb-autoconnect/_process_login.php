@@ -71,6 +71,21 @@ function jfb_process_login()
     $fbuser['pic_big'] = $pic['data'][0]['pic_big'];
 
 
+
+
+    //University
+    if(get_key_value_exist($fbuser['education'],'type','College')){
+        foreach($fbuser['education'] as $education){
+            if($education['type'] == 'College'){
+                $university = $education['school']['name'];
+                break;
+            }
+        }
+    }else{
+        $university = $fbuser['education'][0]['school']['name'];
+    }
+
+
     //fetch profile photo from facebook
         $fprodata = file_get_contents('https://graph.facebook.com/me/picture?redirect=0&height=150&type=normal&width=150&access_token='.$access_token);
         $fprodata = json_decode($fprodata);
@@ -233,6 +248,11 @@ function jfb_process_login()
     global $jfb_uid_meta_name;
     update_user_meta($user_login_id, $jfb_uid_meta_name, $fb_uid);
     $jfb_log .= "WP: Updated usermeta ($jfb_uid_meta_name)\n";
+
+
+    if(count($fbuser['education'])>0){
+        update_user_meta($user_login_id, 'college', $university);
+    }
 
     //Also store the user's facebook avatar(s), in case the user wants to use them later
     if( $fbuser['pic_square'] )

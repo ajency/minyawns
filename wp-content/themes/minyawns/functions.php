@@ -4034,6 +4034,16 @@ function get_user_punctuality($user_id,$job_id){
 //add_action('init','rating_status');
 
 
+function get_key_value_exist($array, $key, $val) {
+    foreach ($array as $item)
+        if (isset($item[$key]) && $item[$key] == $val)
+            return true;
+    return false;
+}
+
+
+
+
 
 
 
