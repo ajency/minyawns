@@ -16,3 +16,5 @@ htaccess
 wp-config .php
 wp-content/plugins/ajency-activity-and-notifications
 wp-content/plugins/wpmandrill
+wp-content/plugins/owl-carousel
+wp-content/plugins/photo-gallery
