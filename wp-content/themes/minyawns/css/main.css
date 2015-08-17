@@ -7390,14 +7390,14 @@ textarea[readonly] {
 .owl-cover .banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper .owl-item {
   width: 200px !important;
   height: 200px !important;
-  /*margin-top: 0 !important;*/
-  /*.item{
-							width: 100%;
-							border: initial;
-						}*/
+  margin-top: 0 !important;
 }
 .owl-cover .banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper .owl-item:not(:first-child) {
   margin-left: 10px;
+}
+.owl-cover .banner-owlcarousel .owl-carousel .owl-wrapper-outer .owl-wrapper .owl-item .item {
+  width: initial;
+  border: initial;
 }
 /*clients gallery*/
 .bwg_image_wrap,

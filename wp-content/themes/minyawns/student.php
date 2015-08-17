@@ -24,11 +24,11 @@ get_header('student');
 </div>
 
 <!-- slider -->
-<div class="owl-cover">
+<div class="owl-cover student">
   <div class="container banner-owlcarousel">
   	<div class="row-fluid">
   		<div class="span12">
-  			<h4 class="text-center">Our Recent Activity: Recognize Anyone?</h4>
+  			<h4 class="text-center">OUR RECENT ACTIVITY: RECOGNIZE ANYONE?</h4>
   			<?php echo do_shortcode('[owl-carousel category="owl" items="4" autoPlay="true"]'); ?>
   		</div>
   	</div>
@@ -62,7 +62,8 @@ get_header('student');
           </div>
       </div>
    </div>
-</div>
+
+</div><hr/>
 <!-- /how does it work -->
 
 <!--ios/android-->
@@ -148,6 +149,21 @@ get_header('student');
 </div>
 <!-- /mailchimp -->
 <!-- /main-content -->
+
+<script>
+  jQuery(document).ready(function($) {
+  $("#owl-example").owlCarousel({
+   autoPlay: 3000, //Set AutoPlay to 3 seconds
+      
+    
+      items : 4,
+    itemsDesktop : [1199,4],
+     itemsDesktopSmall : [980,3]
+      
+  });
+});
+</script>
 <?php
 get_footer();
 ?>
+

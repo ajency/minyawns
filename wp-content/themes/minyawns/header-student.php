@@ -130,9 +130,11 @@ addthisevent.settings({
 			<ul class="inline">
 					<!-- <li><b>Browse:</b></li> -->
 					<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse" class="pop-links">All Jobs </a></li>
+					<li>|</li>
 									<!-- <li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
 					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li> -->
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/" class="pop-links">Blog</a></li>
+					<li>|</li>
 					<!-- <li class="green-btn-top"   >
 					 <?php /*if (get_logged_in_role() === 'Minion'): */?>
 					<i class="icon-edit"></i>&nbsp;<a href="<?php echo site_url() ?>/edit-profile"> Update Your Profile</a>
@@ -143,7 +145,7 @@ addthisevent.settings({
 					   </li> -->
 
 					   <li><a href="#mylogin" data-toggle="modal" id="btn__login" class="pop-links">Login</a></li>
-					   <li>|</li>
+					   <li></li>
 					   <li><a href="#myModal" class="btn btn-small btn-green pop-links" data-toggle="modal"  id="link_minyawnregister" onclick="return true">Signup</a></li>
 					
 			</ul>

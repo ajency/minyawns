@@ -76,7 +76,7 @@
 	<div class="container banner-owlcarousel">
 		<div class="row-fluid">
 			<div class="span12">
-				<h4 class="text-center">Our Latest Work</h4>
+				<h4 class="text-center">OUR LATEST WORK</h4>
 				<?php echo do_shortcode('[owl-carousel category="owl" items="4" autoPlay="true"]'); ?>
 			</div>
 		</div>
