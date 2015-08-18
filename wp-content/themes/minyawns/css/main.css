@@ -3432,7 +3432,7 @@ body .jobs_table .data-title .profile-job {
   padding: 5px;
 }
 .cropimage {
-  top: 6% !important;
+  /*top: 6% !important;*/
 }
 .cropimage .modal-body {
   max-height: 100% !important;

@@ -29,7 +29,7 @@ get_header('student');
   	<div class="row-fluid">
   		<div class="span12">
   			<h4 class="text-center">OUR RECENT ACTIVITY: RECOGNIZE ANYONE?</h4>
-  			<?php echo do_shortcode('[owl-carousel category="owl" items="4" autoPlay="true"]'); ?>
+  			<?php echo do_shortcode('[owl-carousel category="student" items="4" autoPlay="true"]'); ?>
   		</div>
   	</div>
   </div>

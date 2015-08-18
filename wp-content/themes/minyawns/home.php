@@ -77,7 +77,7 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h4 class="text-center">OUR LATEST WORK</h4>
-				<?php echo do_shortcode('[owl-carousel category="owl" items="4" autoPlay="true"]'); ?>
+				<?php echo do_shortcode('[owl-carousel category="business" items="4" autoPlay="true"]'); ?>
 			</div>
 		</div>
 	</div>
