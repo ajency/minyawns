@@ -48,7 +48,7 @@
 					<div class="banner-title">Need some extra hands for a day?</div>
 					<div class="banner-desc">Access a network of reliable college workers</div>
 					<div class="text-center b-text">
-					<a class="btn btn-huge btn-green" href="#myModalBiz" data-toggle="modal" id="link_employerregister" onclick="return true">Join Free Today</a>
+					<a class="btn btn-huge btn-green m-t-20" href="#myModalBiz" data-toggle="modal" id="link_employerregister" onclick="return true">JOIN FREE TODAY</a>
           			
 		  </div>
 				</div>
@@ -76,7 +76,7 @@
 	<div class="container banner-owlcarousel">
 		<div class="row-fluid">
 			<div class="span12">
-				<h4 class="text-center">OUR LATEST WORK</h4>
+				<h3 class="text-center">OUR LATEST WORK</h3>
 				<?php echo do_shortcode('[owl-carousel category="business" items="4" autoPlay="true"]'); ?>
 			</div>
 		</div>

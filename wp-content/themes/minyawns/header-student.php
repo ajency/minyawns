@@ -146,7 +146,7 @@ addthisevent.settings({
 
 					   <li><a href="#mylogin" data-toggle="modal" id="btn__login" class="pop-links">Login</a></li>
 					   <li></li>
-					   <li><a href="#myModal" class="btn btn-small btn-green pop-links" data-toggle="modal"  id="link_minyawnregister" onclick="return true">Signup</a></li>
+					   <li><a href="#myModal" class="btn btn-small btn-green pop-links" data-toggle="modal"  id="link_minyawnregister" onclick="return true">Sign Up</a></li>
 					
 			</ul>
 			
