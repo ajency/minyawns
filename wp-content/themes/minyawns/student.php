@@ -32,7 +32,7 @@ get_header('student');
   			<?php echo do_shortcode('[owl-carousel category="student" items="4" autoPlay="true"]'); ?>
   		</div>
   	</div>
-  </div>
+  </div><hr/>
 </div>
 <!-- slider -->
 

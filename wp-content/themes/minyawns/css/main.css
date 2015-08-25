@@ -7367,8 +7367,8 @@ textarea[readonly] {
 }
 /*owl carousel*/
 .owl-cover {
-  /*background: @dark-grey;*/
-  background: url(../images/what-we-can-do-bg.jpg);
+  background: #ffffff;
+  /*background: url(../images/what-we-can-do-bg.jpg);*/
 }
 .owl-cover .banner-owlcarousel h3 {
   color: #000000;

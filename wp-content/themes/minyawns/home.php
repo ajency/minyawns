@@ -48,7 +48,7 @@
 					<div class="banner-title">Need some extra hands for a day?</div>
 					<div class="banner-desc">Access a network of reliable college workers</div>
 					<div class="text-center b-text">
-					<a class="btn btn-huge btn-green m-t-20" href="#myModalBiz" data-toggle="modal" id="link_employerregister" onclick="return true">JOIN FREE TODAY</a>
+					<a class="btn btn-huge btn-green m-t-20" href="<?php echo site_url() ?>/request-event-helpers/" data-toggle="modal" id="link_employerregister" onclick="return true">JOIN FREE TODAY</a>
           			
 		  </div>
 				</div>
@@ -80,7 +80,7 @@
 				<?php echo do_shortcode('[owl-carousel category="business" items="4" autoPlay="true"]'); ?>
 			</div>
 		</div>
-	</div>
+	</div><hr/>
 </div> <!-- /owl-cover -->
 <!-- slider -->
 <div id="pliip" class="how-does-it-work">
@@ -935,25 +935,25 @@ jQuery(document).ready(function($) {
   });
 });
 
- jQuery(document).ready(function($) {
-$("#home-video img, #home-video span.play-button").on("click", function() {
-  $("#home-video").css("min-height","600px");
-  var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
-  $(video).insertAfter($("#home-video img"));
-  $("#home-video span.play-button").hide();
-  // $(".banner-owlcarousel").hide();
-  $(".banner-title, .banner-desc, .b-text").hide();
-  var closebtn = '<span class="close-button"></span>';
-  $(closebtn).insertAfter($(this));
+//  jQuery(document).ready(function($) {
+// $("#home-video img, #home-video span.play-button").on("click", function() {
+//   $("#home-video").css("min-height","600px");
+//   var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
+//   $(video).insertAfter($("#home-video img"));
+//   $("#home-video span.play-button").hide();
+//   // $(".banner-owlcarousel").hide();
+//   $(".banner-title, .banner-desc, .b-text").hide();
+//   var closebtn = '<span class="close-button"></span>';
+//   $(closebtn).insertAfter($(this));
   
-  $("#home-video span.close-button").on("click", function() {
-    $("#home-video").css("min-height","100px");
-    $("#video-player").remove();
-    $(this).remove();
-    $("#home-video span.play-button").show();
-  });
-});
-});
+//   $("#home-video span.close-button").on("click", function() {
+//     $("#home-video").css("min-height","100px");
+//     $("#video-player").remove();
+//     $(this).remove();
+//     $("#home-video span.play-button").show();
+//   });
+// });
+// });
 </script>
 <?php 
 get_footer(); 
