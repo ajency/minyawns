@@ -2076,7 +2076,8 @@ body .jobs_table .data-title .profile-job {
 #innermainimage .banner-content {
   position: absolute;
   z-index: 999;
-  margin-top: 120px;
+  /*margin-top:120px;*/
+  margin-top: 320px;
 }
 #innermainimage .banner-content .banner-title {
   font-weight: 800;
@@ -7081,8 +7082,8 @@ div.tooltip1:after {
   cursor: pointer;
 }
 #home-video span.play-button {
-  /*background:url(../images/banner3.jpg);*/
-  background: url(../images/Business-Homepage-Banner.jpg);
+  background: url(../images/banner3-new.jpg);
+  /*background: url(../images/Business-Homepage-Banner.jpg);*/
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -7790,7 +7791,8 @@ textarea[readonly] {
 #innermainimage-student .banner-content {
   position: absolute;
   z-index: 999;
-  margin-top: 120px;
+  /*margin-top:120px;*/
+  margin-top: 320px;
 }
 #innermainimage-student .banner-content .banner-title {
   font-weight: 800;
@@ -7876,7 +7878,8 @@ textarea[readonly] {
   background: url(../images/Student-Homepage-Banner.jpg);
 }
 #innermainimage-student .banner-content .banner-title {
-  margin-top: 200px;
+  /*margin-top: 200px;*/
+  margin-top: 0;
 }
 #innermainimage-student .banner-content .sign-free {
   background: #8ed030;
