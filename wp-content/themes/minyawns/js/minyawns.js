@@ -2079,31 +2079,39 @@ jQuery(document.body).on('click', '#btn_signup', function(e) {
         },
         submitHandler: function(form) {
 
-            jQuery("#div_signupmsg").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50' class='img-center'/>");
+            jQuery("#myModalBiz #div_signupmsg").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50' class='img-center'/>");
+
+            console.log(jQuery("#frm_signup-biz #signup_email").val());
+            console.log(jQuery("#frm_signup-biz #signup_password").val());
+            console.log(jQuery("#frm_signup-biz #signup_fname").val());
+            console.log(jQuery("#frm_signup-biz #signup_lname").val());
+            console.log(jQuery("#frm_signup-biz #signup_company").val());
+            console.log(jQuery("#signup_role").val());
+
             jQuery.post(ajaxurl, {
                 action: 'popup_usersignup',
                 //data :  data 
-                pdemail_: jQuery("#signup_email").val(),
-                pdpass_: jQuery("#signup_password").val(),
-                pdfname_: jQuery("#signup_fname").val(),
-                pdlname_: jQuery("#signup_lname").val(),
-                pdcompany_: jQuery("#signup_company").val(),
+                pdemail_: jQuery("#frm_signup-biz #signup_email").val(),
+                pdpass_: jQuery("#frm_signup-biz #signup_password").val(),
+                pdfname_: jQuery("#frm_signup-biz #signup_fname").val(),
+                pdlname_: jQuery("#frm_signup-biz #signup_lname").val(),
+                pdcompany_: jQuery("#frm_signup-biz #signup_company").val(),
                 pdrole_: jQuery("#signup_role").val()
             },
             function(response) {
                 console.log(response);
                 if (response.success == true)
                 {
-                    jQuery("#div_signupmsg").html(response.msg);
-                    jQuery("#signup_email").val("");
-                    jQuery("#signup_password").val("");
-                    jQuery("#signup_fname").val("");
-                    jQuery("#signup_lname").val("");
+                    jQuery("#frm_signup-biz #div_signupmsg").html(response.msg);
+                    jQuery("#frm_signup-biz #signup_email").val("");
+                    jQuery("#frm_signup-biz #signup_password").val("");
+                    jQuery("#frm_signup-biz #signup_fname").val("");
+                    jQuery("#frm_signup-biz #signup_lname").val("");
                     window.location.href = SITEURL+'/profile/';
                 }
                 else
                 {
-                    jQuery("#div_signupmsg").html(response.msg);
+                    jQuery("#myModalBiz #div_signupmsg").html(response.msg);
                 }
             })
             return false;

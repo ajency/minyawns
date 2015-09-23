@@ -266,7 +266,9 @@ addthisevent.settings({
 					<li><b>Browse:</b></li>
 					<li id="browse"><a id="browse" href="<?php echo site_url()?>/jobs/#browse">All Jobs </a></li>
 									<li id="my_jobs"><a id="my_jobs" href="<?php echo site_url()?>/jobs/#my-jobs" >My Jobs</a></li>
+					<?php if (get_logged_in_role() === 'Employer'): ?>
 					<li id="directory"><a href="<?php echo site_url() ?>/minyawns-directory">Minyawns Directory</a></li>
+					<?php endif; ?>
 					<li id="directory"><a href="<?php echo site_url() ?>/blog/">Blog</a></li>
 					<li class="green-btn-top"   >
 					 <?php if (get_logged_in_role() === 'Minion'): ?>
