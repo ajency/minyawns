@@ -779,7 +779,7 @@ addthisevent.settings({
 
                 <form id="cropimage" method="post" enctype="multipart/form-data">
                     <a type="button" class="btn btn-primary" id="done-cropped" style="display:none">Done? </a>
-                    Upload your image <input type="file" name="files" id="min-profimage" data-user="<?php echo get_user_id(); ?>" /><br><span id='preloadprocess' style="display:none"></span>
+                    Upload your image <input type="file" name="files" id="min-profimage" data-user="<?php echo get_user_id(); ?>" />
                     <br>
                     <span id="div_cropmsg"> 
                         <?php /* Please drag to select/crop your picture. */ ?>
@@ -788,6 +788,7 @@ addthisevent.settings({
                 </br>
                 <input type="hidden" name="image_name" id="image_name" value="" />
                 <img id="uploaded-image" ></img>
+                <span id='preloadprocess' style="display:none"></span>
                 <input type="hidden"  id="image_height">
                 <input type="hidden"  id="image_width">
                 <input type="hidden"  id="image_x_axis">

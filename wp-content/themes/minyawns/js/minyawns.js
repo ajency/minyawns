@@ -1072,8 +1072,11 @@ $('#min-profimage').fileupload({
     url : SITEURL + '/wp-content/themes/minyawns/libs/user.php/upload-profile-pic',
     add: function (e, data) {
         data.submit();
+        $("#preloadprocess").css('display','block');
     },
     done: function (e, data) {
+
+        $("#preloadprocess").css('display','none');
             //console.log(data);
             ratio_y = data.result.image_height / 210
             ratio_x = data.result.image_width / 250
@@ -2080,13 +2083,6 @@ jQuery(document.body).on('click', '#btn_signup', function(e) {
         submitHandler: function(form) {
 
             jQuery("#myModalBiz #div_signupmsg").html("<img src='" + jQuery("#hdn_siteurl").val() + "/wp-content/themes/minyawns/images/ajax-loader.gif' width='50' height='50' class='img-center'/>");
-
-            console.log(jQuery("#frm_signup-biz #signup_email").val());
-            console.log(jQuery("#frm_signup-biz #signup_password").val());
-            console.log(jQuery("#frm_signup-biz #signup_fname").val());
-            console.log(jQuery("#frm_signup-biz #signup_lname").val());
-            console.log(jQuery("#frm_signup-biz #signup_company").val());
-            console.log(jQuery("#signup_role").val());
 
             jQuery.post(ajaxurl, {
                 action: 'popup_usersignup',

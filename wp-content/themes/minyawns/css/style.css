@@ -594,7 +594,7 @@ div.profile-wrapper{
 #preloadprocess{
 	z-index: 1000;
 	height:80px;  
-	background: rgba(255, 255, 255, 1) url('../images/ajax-loader.gif') 47% 50% no-repeat;
+	background: rgba(255, 255, 255, 1) url('../images/ajax-loader.gif') no-repeat;
 }
 .videoprocess-text{
 	text-align: center;
