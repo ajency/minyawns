@@ -672,6 +672,14 @@ vertical-align: middle;
 
 
 
+img#uploaded-image{
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+
+
 
 
 .single-job-1 .data-title {

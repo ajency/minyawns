@@ -883,6 +883,8 @@ $('#min-profimagerr').fileupload({
             $("#uploaded-image").css('width', img_width);
             $("#uploaded-image").css('height', img_height);
 
+            alert(img_height);
+
 
             $("#uploaded-image").load(function() {
 
@@ -1073,8 +1075,8 @@ $('#min-profimage').fileupload({
     },
     done: function (e, data) {
             //console.log(data);
-            ratio_y = data.result.image_height / 420
-            ratio_x = data.result.image_width / 500
+            ratio_y = data.result.image_height / 210
+            ratio_x = data.result.image_width / 250
             if (ratio_y < ratio_x)
                 a_ratio = Math.round(ratio_x * 1000) / 1000;
             else

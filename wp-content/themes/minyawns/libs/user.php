@@ -354,8 +354,8 @@ $app->map('/profile-pic-resize/', function() use($app) {
             
              list($orig__width, $orig__height, $orig__type,$orig__attr) = getimagesize($targetFolder . $image_name);
             
-            $orig_x_ratio = $orig__width/500;
-            $orig_y_ratio = $orig__height/420;
+            $orig_x_ratio = $orig__width/250;
+            $orig_y_ratio = $orig__height/210;
             
             
             if($orig_x_ratio>$orig_y_ratio)
