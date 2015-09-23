@@ -289,7 +289,7 @@ addthisevent.settings({
 						<div class="bottom-menu  bottom-menu-inverse top-menu">
 							<div class="text-center">
 								COLLEGE STUDENTS LOOKING FOR WORK?
-								<a href="<?php echo get_permalink_by_slug('student'); ?>" class="btn btn-info btn-small student">Become a minyawn</a>
+								<a href="<?php echo get_permalink_by_slug('student'); ?>" class="btn btn-info btn-small student m-l-15">BECOME A MINYAWN</a>
 								<a class="pull-right close-x" id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>x</a>
 							</div>
 					<!-- <div class="row">
@@ -356,7 +356,7 @@ addthisevent.settings({
 					   </li> -->
 					   <li><a href="#mylogin" data-toggle="modal" id="btn__login" class="pop-links">Login</a></li>
 					   <li>|</li>
-					   <li><a href="#myModalBiz" class="pop-links" data-toggle="modal" id="link_employerregister" onclick="return true">Signup</a></li>
+					   <li><a href="#myModalBiz" class="pop-links" data-toggle="modal" id="link_employerregister" onclick="return true">Sign Up</a></li>
 					   <li><a href="<?php echo site_url() ?>/add-job/" class="btn btn-small btn-green pop-links">Post Job</a></li>
 					
 			</ul>

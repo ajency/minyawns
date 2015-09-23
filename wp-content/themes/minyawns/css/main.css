@@ -481,7 +481,8 @@ body .jobs_table .data-title .profile-job {
 }
 .top-menu .bottom-menu-inverse {
   /*background:#f4f4f4;*/
-  background: #333232;
+  /*background: rgb(51,50,50);*/
+  background: #000000;
   /*border-bottom: 1px solid #C9C9C9;*/
   /*padding: 0px;*/
   padding: 12px;
@@ -2075,13 +2076,14 @@ body .jobs_table .data-title .profile-job {
 #innermainimage .banner-content {
   position: absolute;
   z-index: 999;
-  margin-top: 120px;
+  /*margin-top:120px;*/
+  margin-top: 320px;
 }
 #innermainimage .banner-content .banner-title {
   font-weight: 800;
   /*color: #000;*/
   color: #ffffff;
-  font-size: 45px;
+  font-size: 54px;
   margin-bottom: 12px;
   margin-top: 0px;
   text-align: center;
@@ -2148,7 +2150,7 @@ body .jobs_table .data-title .profile-job {
   border-top: 0px;
 }
 #innermainimage .banner-content .btn-huge {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 26px;
   font-weight: 100;
   border-bottom: 4px solid rgba(255, 255, 255, 0.36);
@@ -6142,8 +6144,8 @@ div.tooltip1:after {
 }
 .top-menu-header {
   /*background: rgba(51, 50, 50, 0.86);*/
-  background: rgba(51, 50, 50, 0.4);
-  border-bottom: 1px solid #ffffff;
+  background: rgba(51, 50, 50, 0.75);
+  border-bottom: 5px solid #ffffff;
 }
 .minion-dir {
   left: 47%;
@@ -7080,8 +7082,8 @@ div.tooltip1:after {
   cursor: pointer;
 }
 #home-video span.play-button {
-  /*background:url(../images/banner3.jpg);*/
-  background: url(../images/Business-Homepage-Banner.jpg);
+  background: url(../images/banner3-new.jpg);
+  /*background: url(../images/Business-Homepage-Banner.jpg);*/
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -7366,10 +7368,12 @@ textarea[readonly] {
 }
 /*owl carousel*/
 .owl-cover {
-  background: #333232;
+  background: #ffffff;
+  /*background: url(../images/what-we-can-do-bg.jpg);*/
 }
-.owl-cover .banner-owlcarousel h4 {
-  color: #ffffff;
+.owl-cover .banner-owlcarousel h3 {
+  color: #000000;
+  font-weight: 900;
 }
 .owl-cover .banner-owlcarousel .owl-carousel {
   /*top: 410px;
@@ -7787,13 +7791,14 @@ textarea[readonly] {
 #innermainimage-student .banner-content {
   position: absolute;
   z-index: 999;
-  margin-top: 120px;
+  /*margin-top:120px;*/
+  margin-top: 320px;
 }
 #innermainimage-student .banner-content .banner-title {
   font-weight: 800;
   /*color: #000;*/
   color: #ffffff;
-  font-size: 45px;
+  font-size: 54px;
   margin-bottom: 12px;
   margin-top: 0px;
   text-align: center;
@@ -7860,7 +7865,7 @@ textarea[readonly] {
   border-top: 0px;
 }
 #innermainimage-student .banner-content .btn-huge {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 26px;
   font-weight: 100;
   border-bottom: 4px solid rgba(255, 255, 255, 0.36);
@@ -7873,7 +7878,8 @@ textarea[readonly] {
   background: url(../images/Student-Homepage-Banner.jpg);
 }
 #innermainimage-student .banner-content .banner-title {
-  margin-top: 200px;
+  /*margin-top: 200px;*/
+  margin-top: 0;
 }
 #innermainimage-student .banner-content .sign-free {
   background: #8ed030;
@@ -8002,4 +8008,13 @@ textarea[readonly] {
 .loggedin-menu {
   background: #f4f4f4 !important;
   padding: 0 !important;
+}
+.m-l-15 {
+  margin-left: 15px;
+}
+.m-t-20 {
+  margin-top: 20px !important;
+}
+.client-section-title {
+  color: #000000;
 }

@@ -511,8 +511,9 @@ $(".inline li").removeClass("selected");
  
 		<br>
 		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="btn__login_oaccess" class="btn btn-large  btn-success default-btn"  >Login</a>
-        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__minyawnregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >SignUp as Minyawn</a>
-		<a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__employerregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >SignUp as Business</a>
+        <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__minyawnregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >Sign Up as Minyawn</a>
+		<!-- <a <?php /* commented on 19june2014 href="#mylogin" */ ?>  href="javascript:void(0)"   data-toggle="modal" id="link__employerregister" class="btn btn-large  btn-success default-btn auto-width-btn"  >Sign Up as Business</a> -->
+        <a href="#myModalBiz" class="btn btn-large  btn-success default-btn auto-width-btn" data-toggle="modal" id="link_employerregister" onclick="return true">Sign Up as Business</a>
         <div class="clear"></div></div>
 			</div>
 		</div>
@@ -655,6 +656,68 @@ $(".inline li").removeClass("selected");
         </div>
     </div>
 </div>  </div>  </div>
+
+<!-- new modal for business -->
+    <div id="myModalBiz" class="modal signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:url(<?php echo get_template_directory_uri();?>/images/pattern-bg.png)">
+       <div class="modal-header">
+          <button type="button" id="signup_popup_close" class="close" data-dismiss="modal" aria-hidden="true"><img src="<?php echo get_template_directory_uri(); ?>/images/delete.png"/></button>
+          <span id="div_signupheader"><h4 id="myModalLabel">Sign Up as an Employer</h4></span>
+       </div>
+       <div class="modal-body">
+        <div id="div_signupmsg" ></div>
+          <div class="row-fluid">
+             <div class="span5">
+                <form name="frm_signup-biz"  id="frm_signup-biz" action="" autocomplete="off">
+                   <input type="hidden" name="signup_role" id="signup_role" value="" />
+                   <h6 class="align-center" style=" margin-bottom: 0px; ">
+                      Create an Account
+                   </h6>
+                   <p class="align-center">Fill out the required information Below</p>
+                   <div class="control-group ">
+                      <input type="text" value="" name="signup_email"  id="signup_email"  placeholder="Email Address" class="span3">
+                   </div>
+                   <div class="control-group ">
+                      <input type="password" value="" name="signup_password"  id="signup_password" onblur="this.placeholder = 'Password'"  onfocus="this.placeholder = ''"
+                                autocomplete="off"  placeholder="Password" class="span3">
+                   </div>
+                 
+                   <div class="control-group span6 " style=" margin-left: 0px; ">
+                      <input type="text" value=""  name="signup_fname"   id="signup_fname"  placeholder="First Name" class="span3">
+                   </div>
+                   <div class="control-group span6 ">
+                      <input type="text" value=""  name="signup_lname"   id="signup_lname"  placeholder="Last Name" class="span3">
+                   </div>
+                     <div class="control-group ">
+                      <input type="text" value="" name="signup_company"  id="signup_company"  placeholder="Company Name" class="span3">
+                   </div>
+                   <div class="clear"></div>
+                   <button href="#" class="btn btn-large btn-block btn-inverse" id="btn_signup-biz"  type="button">Sign Up</button>
+                </form>
+             </div>
+              <div class="span1">
+                <b class="or">or</b>
+              </div>
+             <div class="span6">
+                <h6 class="align-center" style=" margin-bottom: 0px; ">
+                   Sign Up Using Facebook
+                </h6>
+                <p class="align-center">Get using Minyawns, faster !</p>
+                <br><br><br>
+                <?php
+                //if(is_page('fb-connect-test')){
+                   jfb_output_facebook_btn();
+                /*}
+                else{
+                    echo "<p class='align-center'><span style='color:#FA8258; font-weight:bold; font-size:18px; '>Coming soon</span></p>";
+                }*/
+                ?>
+                <br><br>
+                <p class="align-center"><span id="div_alreadyregister">Already registered at Minyawns?</span><a href="#" id="lnk_signin"><b> Sign in here</b></a></p>
+             </div>
+          </div>
+       </div>
+    </div>
+    <!-- new modal for business -->
 <?php
 get_footer();
 ?>

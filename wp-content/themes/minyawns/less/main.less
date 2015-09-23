@@ -513,7 +513,8 @@ background-color: rgba(0, 0, 0, 0.33);
 	z-index:999;
 	.bottom-menu-inverse {
 			/*background:#f4f4f4;*/
-			background: rgb(51,50,50);
+			/*background: rgb(51,50,50);*/
+			background: @black;
 	/*border-bottom: 1px solid #C9C9C9;*/
 	/*padding: 0px;*/
 	padding: 12px;
@@ -2352,12 +2353,13 @@ background-size: cover;
 	.banner-content{
 		position: absolute;
 		z-index: 999;
-		margin-top:120px;
+		/*margin-top:120px;*/
+		margin-top: 320px;
 		.banner-title{
 		font-weight: 800;
 /*color: #000;*/
 color: @white;
-font-size: 45px;
+font-size: 54px;
 margin-bottom: 12px;
 margin-top: 0px;
 text-align: center;
@@ -2430,7 +2432,7 @@ text-align: center;
 			border-top: 0px;
 		}
 		.btn-huge{
-			font-size: 20px;
+			font-size: 16px;
 			line-height: 26px;
 			font-weight: 100;
 			border-bottom: 4px solid rgba(255, 255, 255, 0.36);
@@ -7168,8 +7170,8 @@ margin-top: -46px;
 
 .top-menu-header{
 	/*background: rgba(51, 50, 50, 0.86);*/
-	background: rgba(51,  50, 50, 0.4);
-	border-bottom: 1px solid @white;
+	background: rgba(51,  50, 50, 0.75);
+	border-bottom: 5px solid @white;
 }
 
 .minion-dir{
@@ -8224,8 +8226,8 @@ body .job-view-list{
 
 #home-video {
   span.play-button {
-    /*background:url(../images/banner3.jpg);*/
-    background: url(../images/Business-Homepage-Banner.jpg);
+    background:url(../images/banner3-new.jpg);
+    /*background: url(../images/Business-Homepage-Banner.jpg);*/
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -8548,10 +8550,12 @@ a{
 }
 /*owl carousel*/
 .owl-cover{
-	background: @dark-grey;
+	background: @white;
+	/*background: url(../images/what-we-can-do-bg.jpg);*/
 	.banner-owlcarousel{
-		h4{
-			color: @white;
+		h3{
+			color: @black;
+			font-weight: 900;
 		}
 		.owl-carousel{
 			/*top: 410px;
@@ -8977,7 +8981,8 @@ a{
 	}
 	.banner-content{
 		.banner-title{
-			margin-top: 200px;
+			/*margin-top: 200px;*/
+			margin-top: 0;
 		}
 		.sign-free{
 			background: @green;
@@ -9116,4 +9121,13 @@ a{
 .loggedin-menu{
 	background: @grey + #010101 !important;
 	padding: 0 !important;
+}
+.m-l-15{
+	margin-left: 15px;
+}
+.m-t-20{
+	margin-top: 20px !important;
+}
+.client-section-title{
+	color: @black;
 }

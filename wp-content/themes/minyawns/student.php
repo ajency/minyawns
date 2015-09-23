@@ -16,7 +16,7 @@ get_header('student');
 			<div class="span12">
 				<div class="banner-title">Access 1-day jobs for college students</div>
 				<div class="text-center b-text">
-				<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-green" data-toggle="modal"  id="link_minyawnregister" onclick="return true">Sign Up Free</a>
+				<a href="#myModal" data-toggle="modal" class="btn btn-huge btn-green" data-toggle="modal"  id="link_minyawnregister" onclick="return true">SIGN UP FREE</a>
           		</div>
 			</div>	
 		</div>
@@ -28,11 +28,11 @@ get_header('student');
   <div class="container banner-owlcarousel">
   	<div class="row-fluid">
   		<div class="span12">
-  			<h4 class="text-center">OUR RECENT ACTIVITY: RECOGNIZE ANYONE?</h4>
+  			<h3 class="text-center">OUR RECENT ACTIVITY: RECOGNIZE ANYONE?</h3>
   			<?php echo do_shortcode('[owl-carousel category="student" items="4" autoPlay="true"]'); ?>
   		</div>
   	</div>
-  </div>
+  </div><hr/>
 </div>
 <!-- slider -->
 

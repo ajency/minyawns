@@ -45,10 +45,10 @@
    
 		 <div class="row-fluid">
 				<div class="span12">
-					<div class="banner-title">Need some extra hands for a day?</div>
-					<div class="banner-desc">Access a network of reliable college workers</div>
+					<div class="banner-title">Local Booth Helpers, Wherever You Might Be</div>
+					<div class="banner-desc">RELIABLE HELP TO REPRESENT YOUR BRAND. $25/HR</div>
 					<div class="text-center b-text">
-					<a class="btn btn-huge btn-green" href="#myModalBiz" data-toggle="modal" id="link_employerregister" onclick="return true">Join Free Today</a>
+					<a class="btn btn-huge btn-green m-t-20" href="<?php echo site_url() ?>/request-event-helpers/" data-toggle="modal" id="link_employerregister" onclick="return true">REQUEST A HELPER</a>
           			
 		  </div>
 				</div>
@@ -76,11 +76,11 @@
 	<div class="container banner-owlcarousel">
 		<div class="row-fluid">
 			<div class="span12">
-				<h4 class="text-center">OUR LATEST WORK</h4>
+				<h3 class="text-center">OUR LATEST WORK</h3>
 				<?php echo do_shortcode('[owl-carousel category="business" items="4" autoPlay="true"]'); ?>
 			</div>
 		</div>
-	</div>
+	</div><hr/>
 </div> <!-- /owl-cover -->
 <!-- slider -->
 <div id="pliip" class="how-does-it-work">
@@ -94,18 +94,18 @@
          <div class="span4">
 		 	 <div class="step1-1"></div>
             
-            <h4><span class="badge badge2">1</span> Post one-day jobs</h4>
-            <p>Describe what you need to get done, when you want help, and how much you are willing to pay.</p>
+            <h4><span class="badge badge2">1</span> Submit the Details</h4>
+            <p>Give us the details on when you need the extra help, and the company message you want them to know.</p>
          </div>
          <div class="span4">
            <div class="step2-2"></div>
-            <h4> <span class="badge badge2">2</span> Review your applicants</h4>
-            <p>We're talking about professional, reliable, competent and sociable young college students looking for work.</p>
+            <h4> <span class="badge badge2">2</span> Let us do the screening</h4>
+            <p>We will prevet your candidates and have them arrive at your booth location on time and ready to work. (We will give their contact information 48 Hours ahead of time in case you want extra assurance)</p>
          </div>
          <div class="span4">
                <div class="step3-3"></div>
-            <h4> <span class="badge badge2">3</span> Get the help you need.</h4>
-            <p>Get productive, end your to-do list and get help for your event.</p>
+            <h4> <span class="badge badge2">3</span> Have a successful Event.</h4>
+            <p>Make this most productive event you've ever been a part of and convert strangers into customers!</p>
          </div>
       </div>
       <br>
@@ -482,6 +482,30 @@
       </div>
    </div>
 </div> -->
+
+<!-- why minions -->
+<div class="why-minyawns">
+  <div class="why-minyawns-title">
+    <h3>WHY MINYAWNS?</h3>
+  </div>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span4">
+        <h4>Save Money</h4>
+        <p>Instead of flying your entire team and paying for Hotels, let us do some of your work for you. Our helpers will have your business memorized and ready to help.</p>
+      </div>
+      <div class="span4">
+        <h4>Increase Exposure and Sales</h4>
+        <p>Trade shows is all about visability and what better way to find potential clients!</p>
+      </div>
+      <div class="span4">
+        <h4>Focus on Whats Important</h4>
+        <p>Having our Helpers do things such as registration, collecting information, and even cuting up samples will allow you to focus on making important business connections</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /why minions -->
 
 <div class="customer">
    <div class="bg-title-gray">
@@ -935,25 +959,25 @@ jQuery(document).ready(function($) {
   });
 });
 
- jQuery(document).ready(function($) {
-$("#home-video img, #home-video span.play-button").on("click", function() {
-  $("#home-video").css("min-height","600px");
-  var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
-  $(video).insertAfter($("#home-video img"));
-  $("#home-video span.play-button").hide();
-  // $(".banner-owlcarousel").hide();
-  $(".banner-title, .banner-desc, .b-text").hide();
-  var closebtn = '<span class="close-button"></span>';
-  $(closebtn).insertAfter($(this));
+//  jQuery(document).ready(function($) {
+// $("#home-video img, #home-video span.play-button").on("click", function() {
+//   $("#home-video").css("min-height","600px");
+//   var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
+//   $(video).insertAfter($("#home-video img"));
+//   $("#home-video span.play-button").hide();
+//   // $(".banner-owlcarousel").hide();
+//   $(".banner-title, .banner-desc, .b-text").hide();
+//   var closebtn = '<span class="close-button"></span>';
+//   $(closebtn).insertAfter($(this));
   
-  $("#home-video span.close-button").on("click", function() {
-    $("#home-video").css("min-height","100px");
-    $("#video-player").remove();
-    $(this).remove();
-    $("#home-video span.play-button").show();
-  });
-});
-});
+//   $("#home-video span.close-button").on("click", function() {
+//     $("#home-video").css("min-height","100px");
+//     $("#video-player").remove();
+//     $(this).remove();
+//     $("#home-video span.play-button").show();
+//   });
+// });
+// });
 </script>
 <?php 
 get_footer(); 
