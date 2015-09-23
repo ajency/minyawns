@@ -1916,6 +1916,16 @@ $(document.body).on('keyup', '#mylogin', function(e) {
 
 
 
+
+jQuery(document.body).on('click', '.signup-error-btn', function(e) {
+$("#signup-error").hide();
+$("#signup-error-photo").hide();
+});
+
+
+
+
+
 jQuery(document.body).on('click', '#btn_signup', function(e) {
 
     var error = [];

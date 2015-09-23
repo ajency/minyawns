@@ -181,6 +181,7 @@ addthisevent.settings({
 		   <div class="row-fluid" id="signup-error" style="display:none;">
 		   	<div class="span12">
 		   		<div class="alert alert-error" style="padding: 10px 40px 10px 30px;">
+		   		<button type="button" class="close signup-error-btn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		   			<b style="text-align: center">All the below fields are required</b>&nbsp;        
 		   		</div>
 		   	</div>
@@ -189,6 +190,7 @@ addthisevent.settings({
 		   <div class="row-fluid" id="signup-error-photo" style="display:none;">
 		   	<div class="span12">
 		   		<div class="alert alert-error" style="padding: 10px 40px 10px 30px;">
+		   		<button type="button" class="close signup-error-btn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		   			<b style="text-align: center">Upload profile picture</b>&nbsp;        
 		   		</div>
 		   	</div>
