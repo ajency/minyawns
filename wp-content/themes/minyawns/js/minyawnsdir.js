@@ -419,6 +419,8 @@ $(document).on('click', '.on-pop', function(event) {
                 jQuery("#invite_to").append("No jobs here! Please add a job");
 
             }
+
+            location.reload();
         }
     });
 });

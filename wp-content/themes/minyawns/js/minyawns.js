@@ -2186,6 +2186,8 @@ $(document.body).on('click', '.edit-job-data', function(e) {
                     wait: true,
                     success: function(model, resp) {
 
+                        console.log("#######Job updated######");
+
                         var data = model.toJSON();
                         $('html, body').animate({scrollTop: '0px'}, 300);
 // alert(data.job_task);

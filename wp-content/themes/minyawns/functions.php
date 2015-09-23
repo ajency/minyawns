@@ -3889,15 +3889,53 @@ function notify_unselected_minyawns($job_id){
 
 
 
+
+
+
+
+add_action( 'transition_post_status', 'wpse_transition_post_status', 10, 3 );  
+
+function wpse_transition_post_status( $new_status, $old_status, $post ) {
+
+    if ($post->post_type != 'job'){
+        return;
+    }
+
+
+    if ( $new_status == 'publish' && $old_status == 'new' ) {
+        // the post is inserted
+    } else if ( $new_status == 'publish' && $old_status != 'publish' ) {
+        job_added_notify_minyawns($post->ID);
+    } else {
+        // the post is updated
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 //Notify all minyawns when new job added
-add_action('new_job_added', 'job_added_notify_minyawns');
+//add_action('save_post_job', 'job_added_notify_minyawns');
 function job_added_notify_minyawns($job_id){
 
     $myPost = get_post($job_id);
-    //Return if job is not new
-    if( $myPost->post_modified_gmt != $myPost->post_date_gmt ){
+
+    //Return if post type is not job
+    /*if ($myPost->post_type != 'job'){
         return;
-    }
+    }*/
+
+    //Return if job is not new
+    /*if( $myPost->post_modified_gmt != $myPost->post_date_gmt ){
+        return;
+    }*/
     
     $job_title = get_the_title($job_id);
     $amount = get_post_meta($job_id, 'job_wages_actual', true);

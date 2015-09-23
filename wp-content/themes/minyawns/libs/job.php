@@ -10,24 +10,17 @@ require '../../../../wp-load.php';
 /** Update the profile data */
 $app->map('/addjob/', function() use ($app) {
 
+ 
             $requestBody = $app->request()->getBody();  // <- getBody() of http request
             $json_a = json_decode($requestBody, true);
 
             $postid = ($json_a['id']) > 0 ? $json_a['id'] : '';
-            // var_dump($json_a);
-//            foreach ($json_a as $key => $value) {
-//                if (strstr($key, 'category')) {
-//                    var_dump($value);
-//                }
-//            }
-//
-//            exit();
-
+            
             $post = array(
                 'ID' => $postid,
-                'post_author' => get_current_user_id(), //The user ID number of the author.
-                'post_date' => date("Y-m-d H:i:s"), //The time post was made.
-                'post_date_gmt' => date("Y-m-d H:i:s"), //The time post was made, in GMT.
+                'post_author' => get_current_user_id(),
+                'post_date' => date("Y-m-d H:i:s"),
+                'post_date_gmt' => date("Y-m-d H:i:s"), 
                 'post_status' => 'publish',
                 'post_title' => $json_a['job_task'],
                 'post_type' => 'job',
@@ -80,13 +73,14 @@ $app->map('/addjob/', function() use ($app) {
 
 
             //Add action hook on add job
-            do_action('new_job_added', $post_id);
+            //do_action('new_job_added', $post_id);
 
             wp_set_object_terms($post_id, $categories,'job_category');
 
 
             $app->response()->header("Content-Type", "application/json");
             echo json_encode(array('post_slug' => get_permalink($post_id)));
+
         })->via('GET', 'POST', 'PUT', 'DELETE'); 
 
  
