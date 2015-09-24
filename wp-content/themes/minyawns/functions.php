@@ -3893,7 +3893,7 @@ function notify_unselected_minyawns($job_id){
 
 
 
-add_action( 'transition_post_status', 'wpse_transition_post_status', 10, 3 );  
+//add_action( 'transition_post_status', 'wpse_transition_post_status', 10, 3 );  
 
 function wpse_transition_post_status( $new_status, $old_status, $post ) {
 
@@ -4083,6 +4083,73 @@ function get_key_value_exist($array, $key, $val) {
             return true;
     return false;
 }
+
+
+
+
+
+function send_mail_on_new_job_submit_schedule_db($job_id/* = '2792'*/){
+
+    global $wpdb;
+
+    $job_title = get_the_title($job_id);
+    $amount = get_post_meta($job_id, 'job_wages_actual', true);
+    $job_date = date('jS F, Y', get_post_meta($job_id, 'job_start_date', true));
+    $start_time = date('h:i A', get_post_meta($job_id, 'job_start_time', true));
+    $end_time = date('h:i A', get_post_meta($job_id, 'job_end_time', true));
+    $location = get_post_meta($job_id, 'job_location', true);
+
+    $miniyawns = get_users(array('role'=>'minyawn'));
+
+    $emails = array();
+
+    foreach($miniyawns as $miniyawn){
+
+        $u_email = $miniyawn->user_email;
+        $emails[] = $u_email;
+    }
+
+    $all_emails = array_unique($emails);
+
+    foreach($all_emails as $key=>$user_email){
+
+        $user = get_user_by( 'email', $user_email );
+        $user_name = $user->display_name;
+
+
+        $minyawns_subject = "$".$amount." on ".$job_date;
+        $minyawns_message = "Hi " . $user_name . ",<br/><br/>
+        Time to earn $".$amount." on ".$job_date.". <a href='".get_post_permalink($job_id)."' target='_blank'>Apply Now</a> !              
+        <br/><br/>
+        Have quick look at the Job:               
+        <br/>
+        <strong>Earn:</strong> $".$amount."<br/> 
+        <strong>What:</strong> ".$job_title."<br/>
+        <strong>Where:</strong> ".$location."<br/>
+        <strong>When:</strong> ".$start_time." to ".$end_time." on ".$job_date;
+
+
+        add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+        $headers = 'From: Minyawns <support@minyawns.com>' . "\r\n";
+        wp_mail($user_email, $minyawns_subject, email_header() . $minyawns_message . email_signature(), $headers);
+
+    }
+
+}
+add_action( 'send_mail_on_job_submit', 'send_mail_on_new_job_submit_schedule_db', 10, 1 );
+
+//add_action('save_post_job', 'new_job_added_schedule_email');
+
+function new_job_added_schedule_email($job_id){
+    $myPost = get_post($job_id);
+
+    //Return if job is not new
+    if( $myPost->post_modified_gmt == $myPost->post_date_gmt ){
+        wp_schedule_single_event( time(), 'send_mail_on_job_submit', array( $job_id ) );
+    }
+    
+}
+
 
 
 
