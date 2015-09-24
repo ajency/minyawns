@@ -4138,7 +4138,7 @@ function send_mail_on_new_job_submit_schedule_db($job_id/* = '2792'*/){
 }
 add_action( 'send_mail_on_job_submit', 'send_mail_on_new_job_submit_schedule_db', 10, 1 );
 
-//add_action('save_post_job', 'new_job_added_schedule_email');
+add_action('save_post_job', 'new_job_added_schedule_email');
 
 function new_job_added_schedule_email($job_id){
     $myPost = get_post($job_id);
