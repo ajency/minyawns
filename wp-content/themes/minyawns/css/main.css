@@ -8018,3 +8018,40 @@ textarea[readonly] {
 .client-section-title {
   color: #000000;
 }
+/*formidable-form - Request Helper*/
+.frm-show-form .frm_form_fields input[type=text],
+.frm-show-form .frm_form_fields input[type=email],
+.frm-show-form .frm_form_fields textarea {
+  width: 50%;
+}
+.frm-show-form .frm_form_fields .frm_date,
+.frm-show-form .frm_form_fields select,
+.frm-show-form .frm_form_fields input[type=number] {
+  width: 20% !important;
+}
+.frm-show-form .frm_form_fields input[type=tel] {
+  width: 25% !important;
+}
+.frm-show-form .frm_form_fields input[type=submit] {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: #8ed030;
+  color: #ffffff;
+}
