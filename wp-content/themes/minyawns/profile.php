@@ -485,7 +485,7 @@ endif;
             
             <h3 class="uppercase-title">
                 <?php if (get_user_role() == 'minyawn'): ?>
-                <i class="icon-briefcase "></i> &nbsp; Testimonials &nbsp; <a data-toggle="tooltip" title="Hear what past employers had to say about this Minyawns work!"><i class="icon-question-sign text-info"></i></a>
+                <i class="icon-briefcase "></i> &nbsp; Testimonials &nbsp; <a data-toggle="tooltip" title="Hear what past employers had to say about this Minyawns work!" id="element3"><i class="icon-question-sign text-info"></i></a>
             <?php endif; ?> 
             <?php if (get_user_role() == 'employer'): ?>
             <i class="icon-briefcase "></i> &nbsp; Job List &nbsp; <a data-toggle="tooltip" title="Job list" id="element3"><i class="icon-question-sign text-info"></i></a>
