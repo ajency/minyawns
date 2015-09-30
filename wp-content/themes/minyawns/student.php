@@ -89,7 +89,7 @@ get_header('student');
             </div>
           </div>
           <div class="tab-pane" id="android">
-            <div class="row">
+            <div class="row-fluid">
               <div class="span8">
                 <h1>Android App</h1>
                 <p>Minyawns App is an easy to use,on-demand, reliable way for University of Washington students to easily find part time jobs. The app allows students to search for jobs,apply to them by uploading their photo and check the status of their application. Minyawns can access their account with by logging in with the facebook account or using the web app credentials </p>

@@ -8055,3 +8055,6 @@ textarea[readonly] {
   background: #8ed030;
   color: #ffffff;
 }
+.frm-show-form .frm_form_fields img {
+  display: none;
+}
